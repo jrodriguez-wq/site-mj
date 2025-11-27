@@ -1,0 +1,402 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "buyHome": "Comprar Casa",
+    "rentToOwn": "Renta con Opción a Compra",
+    "rentToOwnDesc": "Sé dueño de tu casa soñada con $0 de enganche",
+    "models": "Modelos de Casas",
+    "modelsDesc": "Explora nuestra colección completa de modelos de casas",
+    "communities": "Nuestras Comunidades",
+    "viewAllCommunities": "Explora todas nuestras comunidades",
+    "labelle": "LaBelle",
+    "lehighAcres": "Lehigh Acres",
+    "homeBuyingGuide": "Guía para Comprar Casa",
+    "homeBuyingGuideDesc": "Aprende todo sobre comprar una casa",
+    "buildWithUs": "Construye con Nosotros",
+    "resources": "Recursos",
+    "warranty": "Garantía",
+    "warrantyDesc": "Información completa sobre garantías",
+    "company": "Empresa",
+    "aboutUs": "Sobre Nosotros",
+    "aboutUsDesc": "Conoce más sobre M.J. Newell Homes",
+    "contact": "Contacto",
+    "contactDesc": "Ponte en contacto con nuestro equipo",
+    "applyNow": "Aplicar Ahora"
+  },
+  "hero": {
+    "title1": "Estamos construyendo el futuro para",
+    "subtitle1": "familias estadounidenses en el Sur de Florida.",
+    "title2": "Tu casa soñada comienza aquí",
+    "subtitle2": "Nuevas construcciones en LaBelle y Lehigh Acres.",
+    "title3": "Renta con Opción a Compra con $0 de enganche",
+    "subtitle3": "Hacemos accesible la propiedad de vivienda para todos.",
+    "title4": "Casas de calidad en lotes de 1/4 de acre",
+    "subtitle4": "Sin cuotas HOA, más espacio para tu familia.",
+    "title5": "Construyendo Casas Americanas",
+    "subtitle5": "Precios excepcionales para familias del Sur de Florida.",
+    "title6": "Tu familia merece lo mejor",
+    "subtitle6": "Casas modernas diseñadas para tu estilo de vida.",
+    "title7": "Vida espaciosa en hermosas comunidades",
+    "subtitle7": "Experimenta la combinación perfecta de comodidad y estilo.",
+    "title8": "Convierte tus sueños en realidad",
+    "subtitle8": "Desde el concepto hasta las llaves, estamos contigo en cada paso.",
+    "title9": "Calidad premium a precios accesibles",
+    "subtitle9": "Descubre por qué las familias eligen M.J. Newell Homes.",
+    "title10": "Donde se crean los recuerdos",
+    "subtitle10": "Crea momentos duraderos en tu casa perfecta.",
+    "title11": "Comienza tu viaje hoy",
+    "subtitle11": "Contáctanos y construyamos tu futuro juntos.",
+    "title12": "Visita nuestra oficina",
+    "subtitle12": "Estamos aquí para ayudarte a encontrar tu casa perfecta.",
+    "description": "Encontremos la casa de tus sueños. Contacta a un experto y haz realidad tu sueño de ser propietario.",
+    "applyNow": "Aplicar Ahora",
+    "viewCommunities": "Ver Comunidades"
+  },
+  "features": {
+    "title": "Por Qué Las Familias Nos Eligen",
+    "subtitle": "Construyendo casas que las familias pueden pagar y de las que pueden estar orgullosas",
+    "learnMore": "Saber Más",
+    "modern": {
+      "title": "Construcciones Nuevas y Modernas",
+      "description": "Casas familiares en lotes de 1/4 de acre con diseños contemporáneos y artesanía de calidad."
+    },
+    "pricing": {
+      "title": "Precios Excepcionales",
+      "description": "Casas accesibles para familias del Sur de Florida. El mejor valor del mercado con financiamiento flexible."
+    },
+    "noHOA": {
+      "title": "Sin Cuotas HOA",
+      "description": "Ahorra cientos de dólares cada mes. Sin cuotas de asociación de propietarios, más dinero para tu familia."
+    }
+  },
+  "communities": {
+    "title": "Nuestras Comunidades",
+    "subtitle": "Descubre tu casa perfecta en los lugares más deseables del Sur de Florida",
+    "labelle": {
+      "name": "LaBelle",
+      "description": "Hermosas casas nuevas en el corazón de LaBelle, Florida",
+      "features": {
+        "acreLots": "Lotes de 1/4 de Acre",
+        "noHOA": "Sin Cuotas HOA",
+        "familyFriendly": "Para Familias"
+      },
+      "explore": "Explorar LaBelle"
+    },
+    "lehighAcres": {
+      "name": "Lehigh Acres",
+      "description": "Casas modernas en la creciente comunidad de Lehigh Acres",
+      "features": {
+        "spaciousLots": "Lotes Espaciosos",
+        "greatSchools": "Excelentes Escuelas",
+        "primeLocation": "Ubicación Privilegiada"
+      },
+      "explore": "Explorar Lehigh Acres"
+    }
+  },
+  "whyChooseUs": {
+    "title": "Por Qué Elegir M.J. Newell Homes",
+    "subtitle": "Construyendo casas americanas con calidad, integridad y el futuro de tu familia en mente",
+    "benefits": {
+      "quality": {
+        "title": "Calidad Garantizada",
+        "description": "Todas nuestras casas vienen con garantías completas y aseguramiento de calidad."
+      },
+      "downPayment": {
+        "title": "$0 de Enganche",
+        "description": "El programa de Renta con Opción a Compra hace accesible la propiedad de vivienda sin costos iniciales."
+      },
+      "lots": {
+        "title": "Lotes de 1/4 de Acre",
+        "description": "Lotes espaciosos perfectos para familias, jardines y actividades al aire libre."
+      },
+      "noHOA": {
+        "title": "Sin Cuotas HOA",
+        "description": "Ahorra cientos cada mes sin cuotas de asociación de propietarios."
+      },
+      "familyFocused": {
+        "title": "Enfocado en Familias",
+        "description": "Casas diseñadas pensando en familias, en comunidades seguras y acogedoras."
+      },
+      "quickMoveIn": {
+        "title": "Mudanza Rápida",
+        "description": "Casas de nueva construcción listas para que te mudes y comiences a crear recuerdos."
+      }
+    }
+  },
+  "statistics": {
+    "title": "Construyendo Sueños, Una Casa a la Vez",
+    "subtitle": "Nuestros números hablan por sí mismos",
+    "stats": {
+      "homesBuilt": {
+        "value": "500+",
+        "label": "Casas Construidas",
+        "description": "Casas de calidad entregadas a familias"
+      },
+      "happyFamilies": {
+        "value": "500+",
+        "label": "Familias Felices",
+        "description": "Familias viviendo su sueño americano"
+      },
+      "yearsExperience": {
+        "value": "15+",
+        "label": "Años de Experiencia",
+        "description": "Construyendo confianza y excelencia"
+      },
+      "downPayment": {
+        "value": "$0",
+        "label": "Enganche",
+        "description": "Programa de Renta con Opción a Compra disponible"
+      }
+    }
+  },
+  "homeModels": {
+    "title": "Nuestros Modelos de Casas",
+    "subtitle": "Elige de nuestra selección de planos de planta bellamente diseñados",
+    "model": "Modelo",
+    "beds": "Habitaciones",
+    "baths": "Baños",
+    "sqft": "Pies Cuad.",
+    "viewDetails": "Ver Detalles",
+    "startingFrom": "Desde",
+    "price": "Precio",
+    "features": "Características",
+    "specifications": "Especificaciones",
+    "applyNow": "Aplicar Ahora",
+    "scheduleTour": "Agendar Visita",
+    "viewAllModels": "Ver Todos los Modelos",
+    "viewFloorPlan": "Ver Plano",
+    "floorPlan": "Plano",
+    "moreDetails": "Más Detalles",
+    "allModels": "Todos los Modelos de Casas",
+    "allModelsSubtitle": "Explora nuestra colección completa de casas bellamente diseñadas",
+    "models": {
+      "louisiana": {
+        "name": "Louisiana",
+        "description": "Casa familiar espaciosa con amenidades modernas",
+        "price": "$189,900",
+        "priceRange": "$189,900 - $219,900",
+        "features": [
+          "Área de estar de concepto abierto",
+          "Cocina moderna con electrodomésticos de acero inoxidable",
+          "Suite principal con walk-in closet",
+          "Ventanas eficientes en energía",
+          "Garaje para 2 autos",
+          "Patio con paisajismo"
+        ],
+        "specifications": {
+          "bedrooms": "3-4 Habitaciones",
+          "bathrooms": "2-3 Baños",
+          "squareFeet": "1,500 - 2,000 pies cuadrados",
+          "garage": "Garaje para 2 Autos",
+          "stories": "1 Piso",
+          "lotSize": "Lote Estándar"
+        }
+      },
+      "viana": {
+        "name": "Viana",
+        "description": "Diseño elegante perfecto para familias en crecimiento",
+        "price": "$199,900",
+        "priceRange": "$199,900 - $229,900",
+        "features": [
+          "Sala familiar espaciosa",
+          "Cocina gourmet con encimeras de granito",
+          "Dormitorio principal con baño privado",
+          "Sistema HVAC eficiente en energía",
+          "Garaje para 2 autos",
+          "Patio cubierto"
+        ],
+        "specifications": {
+          "bedrooms": "3-4 Habitaciones",
+          "bathrooms": "2-3 Baños",
+          "squareFeet": "1,600 - 2,100 pies cuadrados",
+          "garage": "Garaje para 2 Autos",
+          "stories": "1 Piso",
+          "lotSize": "Lote Estándar"
+        }
+      },
+      "delanie": {
+        "name": "Delanie",
+        "description": "Estilo contemporáneo con planos abiertos",
+        "price": "$229,900",
+        "priceRange": "$229,900 - $259,900",
+        "features": [
+          "Diseño de planta abierta",
+          "Cocina mejorada con isla",
+          "Suite principal con doble lavabo",
+          "Techos altos en toda la casa",
+          "Garaje para 2 autos",
+          "Patio trasero privado"
+        ],
+        "specifications": {
+          "bedrooms": "4 Habitaciones",
+          "bathrooms": "3 Baños",
+          "squareFeet": "2,000 - 2,400 pies cuadrados",
+          "garage": "Garaje para 2 Autos",
+          "stories": "1 Piso",
+          "lotSize": "Lote Estándar"
+        }
+      },
+      "aurora": {
+        "name": "Aurora",
+        "description": "Características de lujo en un paquete accesible",
+        "price": "$259,900",
+        "priceRange": "$259,900 - $289,900",
+        "features": [
+          "Pisos de vinilo de lujo",
+          "Cocina gourmet con electrodomésticos premium",
+          "Suite principal con baño tipo spa",
+          "Listo para casa inteligente",
+          "Garaje para 2 autos",
+          "Patio cubierto extendido"
+        ],
+        "specifications": {
+          "bedrooms": "4-5 Habitaciones",
+          "bathrooms": "3-4 Baños",
+          "squareFeet": "2,200 - 2,600 pies cuadrados",
+          "garage": "Garaje para 2 Autos",
+          "stories": "1 Piso",
+          "lotSize": "Lote Estándar"
+        }
+      },
+      "langdon": {
+        "name": "Langdon",
+        "description": "Acabados premium y espacio excepcional",
+        "price": "$289,900",
+        "priceRange": "$289,900 - $319,900",
+        "features": [
+          "Pisos estilo madera premium",
+          "Cocina de chef con isla grande",
+          "Suite principal con área de estar",
+          "Oficina/estudio en casa",
+          "Garaje para 2 autos",
+          "Área de vida al aire libre"
+        ],
+        "specifications": {
+          "bedrooms": "4-5 Habitaciones",
+          "bathrooms": "3-4 Baños",
+          "squareFeet": "2,400 - 2,800 pies cuadrados",
+          "garage": "Garaje para 2 Autos",
+          "stories": "1 Piso",
+          "lotSize": "Lote Estándar"
+        }
+      },
+      "emelia": {
+        "name": "Emelia",
+        "description": "Nuestro modelo más grande con lujo en todas partes",
+        "price": "$319,900",
+        "priceRange": "$319,900 - $349,900",
+        "features": [
+          "Acabados de lujo en toda la casa",
+          "Cocina gourmet con electrodomésticos de primera línea",
+          "Suite principal con baño de lujo",
+          "Múltiples áreas de estar",
+          "Garaje para 2 autos",
+          "Área premium de entretenimiento al aire libre"
+        ],
+        "specifications": {
+          "bedrooms": "5 Habitaciones",
+          "bathrooms": "4 Baños",
+          "squareFeet": "2,600 - 3,000 pies cuadrados",
+          "garage": "Garaje para 2 Autos",
+          "stories": "1 Piso",
+          "lotSize": "Lote Estándar"
+        }
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "subtitle": "Tu viaje hacia la propiedad de vivienda en 6 pasos simples",
+    "step": "Paso",
+    "next": "Siguiente",
+    "complete": "Completado",
+    "steps": {
+      "1": {
+        "number": "01",
+        "title": "Obtén Pre-Aprobación",
+        "description": "Comienza obteniendo pre-aprobación para financiamiento. Entiende tu presupuesto y demuestra a los vendedores que estás serio."
+      },
+      "2": {
+        "number": "02",
+        "title": "Elige Tu Comunidad",
+        "description": "Selecciona entre LaBelle o Lehigh Acres. Cada comunidad ofrece beneficios y amenidades únicas."
+      },
+      "3": {
+        "number": "03",
+        "title": "Selecciona Tu Modelo",
+        "description": "Elige de nuestros modelos disponibles: Louisiana, Viana, Delanie, Aurora, Langdon, o Emelia."
+      },
+      "4": {
+        "number": "04",
+        "title": "Elige Financiamiento",
+        "description": "Explora nuestras opciones de financiamiento incluyendo hipotecas tradicionales y nuestro programa de Renta con Opción a Compra con $0 de enganche."
+      },
+      "5": {
+        "number": "05",
+        "title": "Construye Tu Casa",
+        "description": "Observa cómo tu casa soñada cobra vida con construcción de calidad y atención al detalle."
+      },
+      "6": {
+        "number": "06",
+        "title": "Mudarse",
+        "description": "Recibe las llaves de tu nueva casa y comienza a crear recuerdos duraderos con tu familia."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Lo Que Dicen Nuestras Familias",
+    "subtitle": "Historias reales de familias reales que encontraron su casa soñada con nosotros",
+    "testimonials": {
+      "1": {
+        "name": "Sarah & Michael Johnson",
+        "location": "LaBelle, FL",
+        "text": "M.J. Newell Homes hizo realidad nuestro sueño. El programa de Renta con Opción a Compra nos permitió mudarnos a nuestra hermosa casa con $0 de enganche. La calidad es excepcional y el proceso fue fluido de principio a fin."
+      },
+      "2": {
+        "name": "Roberto & Maria Garcia",
+        "location": "Lehigh Acres, FL",
+        "text": "¡No podríamos estar más felices con nuestra nueva casa! El lote de 1/4 de acre les da a nuestros hijos mucho espacio para jugar, y sin cuotas HOA significa que ahorramos dinero cada mes. ¡Recomiendo ampliamente M.J. Newell Homes!"
+      },
+      "3": {
+        "name": "David & Jennifer Smith",
+        "location": "LaBelle, FL",
+        "text": "El equipo de M.J. Newell Homes fue profesional, receptivo y realmente se preocupó por las necesidades de nuestra familia. Nuestra nueva casa superó todas las expectativas. ¡Gracias por hacer posible la propiedad de vivienda para nosotros!"
+      },
+      "4": {
+        "name": "Carlos & Ana Rodriguez",
+        "location": "Lehigh Acres, FL",
+        "text": "¡Experiencia increíble desde el primer día! La calidad de construcción es excepcional y el servicio al cliente es de primera clase. Amamos nuestra nueva casa y la comunidad. M.J. Newell Homes realmente cumple sus promesas."
+      },
+      "5": {
+        "name": "James & Lisa Thompson",
+        "location": "LaBelle, FL",
+        "text": "¡La mejor decisión que jamás tomamos! El programa de Renta con Opción a Compra fue perfecto para nuestra situación. La casa es hermosa, espaciosa y exactamente lo que necesitábamos. ¡Gracias M.J. Newell Homes por hacer realidad nuestro sueño!"
+      },
+      "6": {
+        "name": "Miguel & Carmen Martinez",
+        "location": "Lehigh Acres, FL",
+        "text": "Estamos muy agradecidos con M.J. Newell Homes. Todo el proceso fue transparente y sin estrés. Nuestra nueva casa es perfecta para nuestra familia en crecimiento. ¡La calidad y atención al detalle superaron nuestras expectativas!"
+      }
+    }
+  },
+  "location": {
+    "title": "Visita Nuestra Oficina",
+    "subtitle": "Visita nuestra oficina en LaBelle, Florida. Estamos aquí para ayudarte a encontrar tu casa soñada.",
+    "officeInfo": "Información de la Oficina",
+    "address": "Dirección",
+    "phone": "Teléfono",
+    "website": "Sitio Web",
+    "directions": "Cómo llegar en Google Maps",
+    "callNow": "Llamar ahora"
+  },
+  "cta": {
+    "title": "¿Listo para Comenzar Tu Viaje hacia la Propiedad?",
+    "subtitle": "Obtén asesoramiento gratuito sobre el proceso de compra y descubre cómo puedes ser dueño de tu casa soñada con $0 de enganche a través de nuestro programa de Renta con Opción a Compra.",
+    "applyNow": "Aplicar Ahora - $0 de Enganche",
+    "schedule": "Programar una Consulta"
+  },
+  "carousel": {
+    "message": "Sé Dueño de Tu Casa Soñada con $0 de Enganche - Programa de Renta con Opción a Compra Disponible Ahora"
+  }
+}
+

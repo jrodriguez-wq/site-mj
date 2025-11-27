@@ -1,0 +1,402 @@
+{
+  "nav": {
+    "home": "Home",
+    "buyHome": "Buy a Home",
+    "rentToOwn": "Rent to Own",
+    "rentToOwnDesc": "Own your dream home with $0 down payment",
+    "models": "Home Models",
+    "modelsDesc": "Explore our complete collection of home models",
+    "communities": "Our Communities",
+    "viewAllCommunities": "Explore all our communities",
+    "labelle": "LaBelle",
+    "lehighAcres": "Lehigh Acres",
+    "homeBuyingGuide": "Home Buying Guide",
+    "homeBuyingGuideDesc": "Learn everything about buying a home",
+    "buildWithUs": "Build With Us",
+    "resources": "Resources",
+    "warranty": "Warranty",
+    "warrantyDesc": "Comprehensive warranty information",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "aboutUsDesc": "Learn more about M.J. Newell Homes",
+    "contact": "Contact",
+    "contactDesc": "Get in touch with our team",
+    "applyNow": "Apply Now"
+  },
+  "hero": {
+    "title1": "We are building the future for",
+    "subtitle1": "American families in South Florida.",
+    "title2": "Your dream home starts here",
+    "subtitle2": "New constructions in LaBelle and Lehigh Acres.",
+    "title3": "Rent to Own with $0 down payment",
+    "subtitle3": "Make homeownership accessible for everyone.",
+    "title4": "Quality homes on 1/4 acre lots",
+    "subtitle4": "No HOA fees, more space for your family.",
+    "title5": "Building American Homes",
+    "subtitle5": "Exceptional pricing for South Florida families.",
+    "title6": "Your family deserves the best",
+    "subtitle6": "Modern homes designed for your lifestyle.",
+    "title7": "Spacious living in beautiful communities",
+    "subtitle7": "Experience the perfect blend of comfort and style.",
+    "title8": "Turn your dreams into reality",
+    "subtitle8": "From concept to keys, we're with you every step.",
+    "title9": "Premium quality at affordable prices",
+    "subtitle9": "Discover why families choose M.J. Newell Homes.",
+    "title10": "Where memories are made",
+    "subtitle10": "Create lasting moments in your perfect home.",
+    "title11": "Start your journey today",
+    "subtitle11": "Contact us and let's build your future together.",
+    "title12": "Visit our office",
+    "subtitle12": "We're here to help you find your perfect home.",
+    "description": "Let's find the house of your dreams. Contact an expert and make your dream of homeownership come true.",
+    "applyNow": "Apply Now",
+    "viewCommunities": "View Communities"
+  },
+  "features": {
+    "title": "Why Families Choose Us",
+    "subtitle": "Building homes that families can afford and be proud of",
+    "learnMore": "Learn More",
+    "modern": {
+      "title": "New and Modern Constructions",
+      "description": "Family homes on a 1/4 acre with contemporary designs and quality craftsmanship."
+    },
+    "pricing": {
+      "title": "Exceptional Pricing",
+      "description": "Affordable homes for South Florida families. Best value in the market with flexible financing."
+    },
+    "noHOA": {
+      "title": "No HOA Fees",
+      "description": "Save hundreds of dollars every month. No homeowners association fees, more money for your family."
+    }
+  },
+  "communities": {
+    "title": "Our Communities",
+    "subtitle": "Discover your perfect home in South Florida's most desirable locations",
+    "labelle": {
+      "name": "LaBelle",
+      "description": "Beautiful new homes in the heart of LaBelle, Florida",
+      "features": {
+        "acreLots": "1/4 Acre Lots",
+        "noHOA": "No HOA Fees",
+        "familyFriendly": "Family-Friendly"
+      },
+      "explore": "Explore LaBelle"
+    },
+    "lehighAcres": {
+      "name": "Lehigh Acres",
+      "description": "Modern homes in growing Lehigh Acres community",
+      "features": {
+        "spaciousLots": "Spacious Lots",
+        "greatSchools": "Great Schools",
+        "primeLocation": "Prime Location"
+      },
+      "explore": "Explore Lehigh Acres"
+    }
+  },
+  "whyChooseUs": {
+    "title": "Why Choose M.J. Newell Homes",
+    "subtitle": "Building American homes with quality, integrity, and your family's future in mind",
+    "benefits": {
+      "quality": {
+        "title": "Quality Guaranteed",
+        "description": "All our homes come with comprehensive warranties and quality assurance."
+      },
+      "downPayment": {
+        "title": "$0 Down Payment",
+        "description": "Rent to Own program makes homeownership accessible with no upfront costs."
+      },
+      "lots": {
+        "title": "1/4 Acre Lots",
+        "description": "Spacious lots perfect for families, gardens, and outdoor activities."
+      },
+      "noHOA": {
+        "title": "No HOA Fees",
+        "description": "Save hundreds every month with no homeowners association fees."
+      },
+      "familyFocused": {
+        "title": "Family-Focused",
+        "description": "Homes designed with families in mind, in safe, welcoming communities."
+      },
+      "quickMoveIn": {
+        "title": "Quick Move-In",
+        "description": "New construction homes ready for you to move in and start making memories."
+      }
+    }
+  },
+  "statistics": {
+    "title": "Building Dreams, One Home at a Time",
+    "subtitle": "Our numbers speak for themselves",
+    "stats": {
+      "homesBuilt": {
+        "value": "500+",
+        "label": "Homes Built",
+        "description": "Quality homes delivered to families"
+      },
+      "happyFamilies": {
+        "value": "500+",
+        "label": "Happy Families",
+        "description": "Families living their American dream"
+      },
+      "yearsExperience": {
+        "value": "15+",
+        "label": "Years Experience",
+        "description": "Building trust and excellence"
+      },
+      "downPayment": {
+        "value": "$0",
+        "label": "Down Payment",
+        "description": "Rent to Own program available"
+      }
+    }
+  },
+  "homeModels": {
+    "title": "Our Home Models",
+    "subtitle": "Choose from our selection of beautifully designed floor plans",
+    "model": "Model",
+    "beds": "Beds",
+    "baths": "Baths",
+    "sqft": "Sq Ft",
+    "viewDetails": "View Details",
+    "startingFrom": "Starting from",
+    "price": "Price",
+    "features": "Features",
+    "specifications": "Specifications",
+    "applyNow": "Apply Now",
+    "scheduleTour": "Schedule a Tour",
+    "viewAllModels": "View All Models",
+    "viewFloorPlan": "View Floor Plan",
+    "floorPlan": "Floor Plan",
+    "moreDetails": "More Details",
+    "allModels": "All Home Models",
+    "allModelsSubtitle": "Explore our complete collection of beautifully designed homes",
+    "models": {
+      "louisiana": {
+        "name": "Louisiana",
+        "description": "Spacious family home with modern amenities",
+        "price": "$189,900",
+        "priceRange": "$189,900 - $219,900",
+        "features": [
+          "Open concept living area",
+          "Modern kitchen with stainless steel appliances",
+          "Master suite with walk-in closet",
+          "Energy-efficient windows",
+          "2-car garage",
+          "Landscaped yard"
+        ],
+        "specifications": {
+          "bedrooms": "3-4 Bedrooms",
+          "bathrooms": "2-3 Bathrooms",
+          "squareFeet": "1,500 - 2,000 sq ft",
+          "garage": "2-Car Garage",
+          "stories": "1 Story",
+          "lotSize": "Standard Lot"
+        }
+      },
+      "viana": {
+        "name": "Viana",
+        "description": "Elegant design perfect for growing families",
+        "price": "$199,900",
+        "priceRange": "$199,900 - $229,900",
+        "features": [
+          "Spacious family room",
+          "Gourmet kitchen with granite countertops",
+          "Master bedroom with ensuite bathroom",
+          "Energy-efficient HVAC system",
+          "2-car garage",
+          "Covered patio"
+        ],
+        "specifications": {
+          "bedrooms": "3-4 Bedrooms",
+          "bathrooms": "2-3 Bathrooms",
+          "squareFeet": "1,600 - 2,100 sq ft",
+          "garage": "2-Car Garage",
+          "stories": "1 Story",
+          "lotSize": "Standard Lot"
+        }
+      },
+      "delanie": {
+        "name": "Delanie",
+        "description": "Contemporary style with open floor plans",
+        "price": "$229,900",
+        "priceRange": "$229,900 - $259,900",
+        "features": [
+          "Open floor plan design",
+          "Upgraded kitchen with island",
+          "Master suite with dual vanities",
+          "High ceilings throughout",
+          "2-car garage",
+          "Private backyard"
+        ],
+        "specifications": {
+          "bedrooms": "4 Bedrooms",
+          "bathrooms": "3 Bathrooms",
+          "squareFeet": "2,000 - 2,400 sq ft",
+          "garage": "2-Car Garage",
+          "stories": "1 Story",
+          "lotSize": "Standard Lot"
+        }
+      },
+      "aurora": {
+        "name": "Aurora",
+        "description": "Luxury features in an affordable package",
+        "price": "$259,900",
+        "priceRange": "$259,900 - $289,900",
+        "features": [
+          "Luxury vinyl plank flooring",
+          "Gourmet kitchen with premium appliances",
+          "Master suite with spa-like bathroom",
+          "Smart home ready",
+          "2-car garage",
+          "Extended covered patio"
+        ],
+        "specifications": {
+          "bedrooms": "4-5 Bedrooms",
+          "bathrooms": "3-4 Bathrooms",
+          "squareFeet": "2,200 - 2,600 sq ft",
+          "garage": "2-Car Garage",
+          "stories": "1 Story",
+          "lotSize": "Standard Lot"
+        }
+      },
+      "langdon": {
+        "name": "Langdon",
+        "description": "Premium finishes and exceptional space",
+        "price": "$289,900",
+        "priceRange": "$289,900 - $319,900",
+        "features": [
+          "Premium hardwood-style flooring",
+          "Chef's kitchen with large island",
+          "Master suite with sitting area",
+          "Home office/study room",
+          "2-car garage",
+          "Outdoor living space"
+        ],
+        "specifications": {
+          "bedrooms": "4-5 Bedrooms",
+          "bathrooms": "3-4 Bathrooms",
+          "squareFeet": "2,400 - 2,800 sq ft",
+          "garage": "2-Car Garage",
+          "stories": "1 Story",
+          "lotSize": "Standard Lot"
+        }
+      },
+      "emelia": {
+        "name": "Emelia",
+        "description": "Our largest model with luxury throughout",
+        "price": "$319,900",
+        "priceRange": "$319,900 - $349,900",
+        "features": [
+          "Luxury finishes throughout",
+          "Gourmet kitchen with top-tier appliances",
+          "Master suite with luxury bathroom",
+          "Multiple living areas",
+          "2-car garage",
+          "Premium outdoor entertainment area"
+        ],
+        "specifications": {
+          "bedrooms": "5 Bedrooms",
+          "bathrooms": "4 Bathrooms",
+          "squareFeet": "2,600 - 3,000 sq ft",
+          "garage": "2-Car Garage",
+          "stories": "1 Story",
+          "lotSize": "Standard Lot"
+        }
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Your journey to homeownership in 6 simple steps",
+    "step": "Step",
+    "next": "Next",
+    "complete": "Complete",
+    "steps": {
+      "1": {
+        "number": "01",
+        "title": "Get Pre-Approved",
+        "description": "Start by getting pre-approved for financing. Understand your budget and show sellers you're serious."
+      },
+      "2": {
+        "number": "02",
+        "title": "Choose Your Community",
+        "description": "Select between LaBelle or Lehigh Acres. Each community offers unique benefits and amenities."
+      },
+      "3": {
+        "number": "03",
+        "title": "Select Your Model",
+        "description": "Choose from our available models: Louisiana, Viana, Delanie, Aurora, Langdon, or Emelia."
+      },
+      "4": {
+        "number": "04",
+        "title": "Choose Financing",
+        "description": "Explore our financing options including traditional mortgages and our Rent to Own program with $0 down."
+      },
+      "5": {
+        "number": "05",
+        "title": "Build Your Home",
+        "description": "Watch your dream home come to life with quality construction and attention to detail."
+      },
+      "6": {
+        "number": "06",
+        "title": "Move In",
+        "description": "Receive the keys to your new home and start creating lasting memories with your family."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What Our Families Say",
+    "subtitle": "Real stories from real families who found their dream home with us",
+    "testimonials": {
+      "1": {
+        "name": "Sarah & Michael Johnson",
+        "location": "LaBelle, FL",
+        "text": "M.J. Newell Homes made our dream come true. The Rent to Own program allowed us to move into our beautiful home with $0 down. The quality is exceptional and the process was smooth from start to finish."
+      },
+      "2": {
+        "name": "Roberto & Maria Garcia",
+        "location": "Lehigh Acres, FL",
+        "text": "We couldn't be happier with our new home! The 1/4 acre lot gives our kids plenty of space to play, and no HOA fees means we save money every month. Highly recommend M.J. Newell Homes!"
+      },
+      "3": {
+        "name": "David & Jennifer Smith",
+        "location": "LaBelle, FL",
+        "text": "The team at M.J. Newell Homes was professional, responsive, and truly cared about our family's needs. Our new home exceeded all expectations. Thank you for making homeownership possible for us!"
+      },
+      "4": {
+        "name": "Carlos & Ana Rodriguez",
+        "location": "Lehigh Acres, FL",
+        "text": "Amazing experience from day one! The build quality is outstanding and the customer service is top-notch. We love our new home and the community. M.J. Newell Homes truly delivers on their promises."
+      },
+      "5": {
+        "name": "James & Lisa Thompson",
+        "location": "LaBelle, FL",
+        "text": "Best decision we ever made! The Rent to Own program was perfect for our situation. The home is beautiful, spacious, and exactly what we needed. Thank you M.J. Newell Homes for making our dream a reality!"
+      },
+      "6": {
+        "name": "Miguel & Carmen Martinez",
+        "location": "Lehigh Acres, FL",
+        "text": "We are so grateful to M.J. Newell Homes. The entire process was transparent and stress-free. Our new home is perfect for our growing family. The quality and attention to detail exceeded our expectations!"
+      }
+    }
+  },
+  "location": {
+    "title": "Visit Our Office",
+    "subtitle": "Stop by our office in LaBelle, Florida. We're here to help you find your dream home.",
+    "officeInfo": "Office Information",
+    "address": "Address",
+    "phone": "Phone",
+    "website": "Website",
+    "directions": "Get directions on Google Maps",
+    "callNow": "Call now"
+  },
+  "cta": {
+    "title": "Ready to Start Your Homeownership Journey?",
+    "subtitle": "Get free advice on the buying process and discover how you can own your dream home with $0 down payment through our Rent to Own program.",
+    "applyNow": "Apply Now - $0 Down",
+    "schedule": "Schedule a Consultation"
+  },
+  "carousel": {
+    "message": "Own Your Dream Home with $0 Down Payment - Rent to Own Program Available Now"
+  }
+}
+
