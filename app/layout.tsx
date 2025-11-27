@@ -11,6 +11,7 @@ import {
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { LanguageInitializer } from "@/components/layout/language-initializer";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </LanguageInitializer>
+        <Analytics />
       </body>
     </html>
   );
