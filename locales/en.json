@@ -397,6 +397,12 @@
   },
   "carousel": {
     "message": "Own Your Dream Home with $0 Down Payment - Rent to Own Program Available Now"
+  },
+  "contactForm": {
+    "title": "Get in Touch",
+    "subtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+    "formTitle": "Contact Us",
+    "formDescription": "We're here to help you find your dream home."
   }
 }
 

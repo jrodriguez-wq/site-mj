@@ -397,6 +397,12 @@
   },
   "carousel": {
     "message": "Sé Dueño de Tu Casa Soñada con $0 de Enganche - Programa de Renta con Opción a Compra Disponible Ahora"
+  },
+  "contactForm": {
+    "title": "Ponte en Contacto",
+    "subtitle": "Completa el formulario a continuación y nos pondremos en contacto contigo lo antes posible.",
+    "formTitle": "Contáctanos",
+    "formDescription": "Estamos aquí para ayudarte a encontrar tu casa soñada."
   }
 }
 

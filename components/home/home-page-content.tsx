@@ -11,11 +11,14 @@ import { HowItWorks } from "@/components/home/how-it-works";
 import { Testimonials } from "@/components/home/testimonials";
 import { LocationMap } from "@/components/home/location-map";
 import { CTASection } from "@/components/home/cta-section";
+import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
 
 export const HomePageContent = () => {
   return (
     <div className="flex flex-col">
       <HeroSlider />
+      
+      <HubSpotFormSection />
       
       <InfiniteTextCarousel />
 
