@@ -58,6 +58,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
+
   // Headers de seguridad y performance
   async headers() {
     return [

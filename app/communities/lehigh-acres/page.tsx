@@ -4,10 +4,10 @@ import { CommunityModelsSection } from "@/components/communities/community-model
 import { CommunityPageContent } from "@/components/communities/community-page-content";
 
 const lehighAcresImages = [
-  "/img/2.jpg",
-  "/img/3.jpg",
-  "/img/5.jpg",
-  "/img/6.jpg",
+  "/recursos/shutterstock_1197062707.jpg",
+  "/recursos/shutterstock_2252703911.jpg",
+  "/recursos/shutterstock_440999080.jpg",
+  "/recursos/shutterstock_1065297917.jpg",
 ];
 
 const lehighAcresActivities = [

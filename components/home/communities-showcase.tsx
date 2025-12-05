@@ -24,7 +24,7 @@ const COMMUNITIES_CONFIG = [
     nameKey: "lehighAcres",
     alt: "Lehigh Acres community",
     href: "/communities/lehigh-acres",
-    image: "/img/2.jpg",
+    image: "/recursos/shutterstock_1197062707.jpg",
     featureKeys: [
       "communities.lehighAcres.features.spaciousLots",
       "communities.lehighAcres.features.greatSchools",

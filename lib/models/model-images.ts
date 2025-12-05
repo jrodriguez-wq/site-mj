@@ -27,5 +27,5 @@ export const getModelImages = (modelKey: string): string[] => {
 
 export const getModelMainImage = (modelKey: string): string => {
   const images = getModelImages(modelKey);
-  return images[0] || "/img/1.jpg";
+  return images[0] || "/recursos/shutterstock_1065297917.jpg";
 };

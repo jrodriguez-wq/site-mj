@@ -85,7 +85,7 @@ export default function AboutUsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12">
             <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border-2 border-border/50">
               <Image
-                src="/img/4.jpg"
+                src="/recursos/shutterstock_2252703911.jpg"
                 alt="M.J. Newell Homes Building"
                 fill
                 className="object-cover"

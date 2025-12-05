@@ -209,9 +209,9 @@ export default function RentToOwnPage() {
                 const isLabelle = community.href.includes("labelle");
                 const isLehighAcres = community.href.includes("lehigh-acres");
                 const communityImage = isLabelle 
-                  ? "/labelle/shutterstock_1065297917.jpg"
+                  ? "/recursos/shutterstock_1065297917.jpg"
                   : isLehighAcres
-                  ? "/img/2.jpg"
+                  ? "/recursos/shutterstock_1197062707.jpg"
                   : null;
                 
                 return (
