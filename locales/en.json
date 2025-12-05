@@ -180,6 +180,7 @@
       "louisiana": {
         "name": "Louisiana",
         "description": "Spacious family home with modern amenities",
+        "fullDescription": "The Louisiana model offers 4 grand bedrooms and 3 full bathrooms. This statuesque home spans 3,277 sq/ft of meticulously designed flow space to satisfy the needs of the most discerning of clients. Light placement and vaulted ceilings have been engineered and thought through at the highest level to provide an energy efficient yet luxurious level of comfort to this estate. The kitchen space was designed with your family in mind, prepare to fall in love with our high end finishes! Feel the quality of the stone countertops, enjoy the smooth feeling of the soft close cabinetry. Let your eyes enjoy the sleek design of our all stainless modern appliances.",
         "price": "$189,900",
         "priceRange": "$189,900 - $219,900",
         "features": [
@@ -202,6 +203,7 @@
       "viana": {
         "name": "Viana",
         "description": "Elegant design perfect for growing families",
+        "fullDescription": "With 4 bedrooms and 3 full bathrooms, it spans over 2,978 square feet. Prepare to fall in love. Its open concept offers a spacious living area, complemented by vaulted ceilings and ample lighting, complete with a modern kitchen design that includes: custom cabinets, granite countertops and energy-efficient stainless-steel appliances.",
         "price": "$199,900",
         "priceRange": "$199,900 - $229,900",
         "features": [
@@ -224,6 +226,7 @@
       "delanie": {
         "name": "Delanie",
         "description": "Contemporary style with open floor plans",
+        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Delanie is one of our most sophisticated models. With 3 bedrooms, 1 den/4th bedroom optional, and 2 full bathrooms, it spans over 2,610 square feet. Prepare to fall in love with the Delanie. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Delanie model is a stunning family home with a diverse, spacious and modern design.",
         "price": "$229,900",
         "priceRange": "$229,900 - $259,900",
         "features": [
@@ -246,6 +249,7 @@
       "aurora": {
         "name": "Aurora",
         "description": "Luxury features in an affordable package",
+        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Aurora is one of our most sophisticated models. With 4 bedrooms and 3 full bathrooms, it spans over 2,227 square feet. Prepare to fall in love with the Aurora. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Aurora model is a stunning family home with a diverse, spacious and modern design.",
         "price": "$259,900",
         "priceRange": "$259,900 - $289,900",
         "features": [
@@ -268,6 +272,7 @@
       "langdon": {
         "name": "Langdon",
         "description": "Premium finishes and exceptional space",
+        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Langdon model is one of our most elegant models. With 3 bedrooms and 2 full bathrooms, it spans over 1,900 square feet. Prepare to fall in love with the Langdon. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Langdon model is a lovely family home with a diverse and modern design.",
         "price": "$289,900",
         "priceRange": "$289,900 - $319,900",
         "features": [
@@ -290,6 +295,7 @@
       "emelia": {
         "name": "Emelia",
         "description": "Our largest model with luxury throughout",
+        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Emelia model is one of our most spacious models. With 3 bedrooms and 2 full bathrooms, it spans over 2,060 square feet. Prepare to fall in love with the Emelia. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Emelia model is a lovely family home with a diverse and spacious design.",
         "price": "$319,900",
         "priceRange": "$319,900 - $349,900",
         "features": [
@@ -308,6 +314,53 @@
           "stories": "1 Story",
           "lotSize": "Standard Lot"
         }
+      }
+    },
+    "modelPage": {
+      "startingPrice": "Starting Price",
+      "contactForFinancing": "Contact us for financing options and special promotions",
+      "aboutThisModel": "About This Model",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "sqft": "Square Feet",
+      "garage": "Garage",
+      "viewGallery": "View Gallery",
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "closeGallery": "Close gallery",
+      "viewImage": "View image",
+      "noImagesAvailable": "No images available",
+      "virtualTourTitle": "Virtual Tour",
+      "floorplanComingSoon": "Floor plan coming soon",
+      "sections": {
+        "inside": "Inside",
+        "exterior": "Exterior",
+        "virtualTour": "Virtual tour",
+        "floorplan": "Floorplan",
+        "standardFeatures": "Standard Features"
+      },
+      "sectionDescriptions": {
+        "inside": "Explore the beautiful interior spaces of this model",
+        "exterior": "See the stunning exterior design and architecture",
+        "virtualTour": "Take a virtual walkthrough of this beautiful home",
+        "floorplan": "View the detailed floor plan layout",
+        "standardFeatures": "All the standard features included in this model"
+      },
+      "standardFeaturesCategories": {
+        "structural": "Structural & Construction Materials",
+        "kitchen": "Kitchen Components",
+        "bathroom": "Bathroom Items",
+        "warranty": "Warranty",
+        "windows": "Windows, Trim & Doors",
+        "electrical": "Electrical Items",
+        "other": "Other Features"
+      },
+      "requestInfo": {
+        "title": "Request info",
+        "subtitle": "We are building the future for American families in Southwest Florida",
+        "description": "Let's find the house of your dreams. Contact an expert and make your dream of homeownership come true.",
+        "viewGallery": "View Gallery",
+        "noImages": "No images available"
       }
     }
   },

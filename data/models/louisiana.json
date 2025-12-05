@@ -1,0 +1,105 @@
+{
+  "key": "louisiana",
+  "name": "LOUISIANA",
+  "sqft": "3,277",
+  "bedrooms": "4",
+  "bathrooms": "3",
+  "garage": "3-Car Garage",
+  "price": "$469,900",
+  "description": "The Louisiana model offers 4 grand bedrooms and 3 full bathrooms. This statuesque home spans 3,277 sq/ft of meticulously designed flow space to satisfy the needs of the most discerning of clients. Light placement and vaulted ceilings have been engineered and thought through at the highest level to provide an energy efficient yet luxurious level of comfort to this estate. The kitchen space was designed with your family in mind, prepare to fall in love with our high end finishes! Feel the quality of the stone countertops, enjoy the smooth feeling of the soft close cabinetry. Let your eyes enjoy the sleek design of our all stainless modern appliances.",
+  "youtubeUrl": "https://www.youtube.com/watch?v=ekTwRFHRRs4",
+  "imagesFolder": "louisiana",
+  "sections": {
+    "inside": {
+      "title": "Inside",
+      "description": "Explore the beautiful interior spaces of the Louisiana model."
+    },
+    "exterior": {
+      "title": "Exterior",
+      "description": "See the stunning exterior design and architecture."
+    },
+    "virtualTour": {
+      "title": "Virtual tour",
+      "description": "Take a virtual walkthrough of this beautiful home."
+    },
+    "floorplan": {
+      "title": "Floorplan",
+      "description": "View the detailed floor plan layout."
+    },
+    "standardFeatures": {
+      "title": "Standard Features",
+      "description": "All the standard features included in this model.",
+      "categories": {
+        "structural": {
+          "title": "Structural & Construction Materials",
+          "items": [
+            "Concrete block construction",
+            "Reinforced concrete foundation",
+            "Impact-resistant windows",
+            "Hurricane-rated doors",
+            "Energy-efficient insulation"
+          ]
+        },
+        "kitchen": {
+          "title": "Kitchen Components",
+          "items": [
+            "Stone countertops",
+            "Soft-close cabinetry",
+            "Stainless steel appliances",
+            "Modern range hood",
+            "Spacious pantry"
+          ]
+        },
+        "bathroom": {
+          "title": "Bathroom Items",
+          "items": [
+            "Premium fixtures",
+            "Modern vanities",
+            "Tile flooring",
+            "Water-efficient toilets",
+            "Shower/tub combinations"
+          ]
+        },
+        "warranty": {
+          "title": "Warranty",
+          "items": [
+            "10-year structural warranty",
+            "2-year systems warranty",
+            "1-year workmanship warranty"
+          ]
+        },
+        "windows": {
+          "title": "Windows, Trim & Doors",
+          "items": [
+            "Impact-resistant windows",
+            "Energy-efficient glass",
+            "Premium door hardware",
+            "Crown molding",
+            "Baseboards throughout"
+          ]
+        },
+        "electrical": {
+          "title": "Electrical Items",
+          "items": [
+            "200-amp electrical service",
+            "GFCI outlets in bathrooms and kitchen",
+            "Ceiling fans pre-wired",
+            "LED lighting throughout",
+            "Smart home ready"
+          ]
+        },
+        "other": {
+          "title": "Other Features",
+          "items": [
+            "Vaulted ceilings",
+            "Open floor plan",
+            "Laundry room",
+            "Walk-in closets",
+            "Energy-efficient HVAC system"
+          ]
+        }
+      }
+    }
+  }
+}
+

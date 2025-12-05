@@ -180,6 +180,7 @@
       "louisiana": {
         "name": "Louisiana",
         "description": "Casa familiar espaciosa con amenidades modernas",
+        "fullDescription": "El modelo Louisiana ofrece 4 amplias habitaciones y 3 baños completos. Esta imponente casa abarca 3,277 pies cuadrados de espacio meticulosamente diseñado para satisfacer las necesidades de los clientes más exigentes. La colocación de luz y los techos abovedados han sido diseñados y pensados al más alto nivel para proporcionar un nivel de comodidad energéticamente eficiente pero lujoso a esta propiedad. El espacio de la cocina fue diseñado pensando en tu familia, ¡prepárate para enamorarte de nuestros acabados de alta gama! Siente la calidad de las encimeras de piedra, disfruta la sensación suave de los gabinetes de cierre suave. Deja que tus ojos disfruten del diseño elegante de nuestros electrodomésticos modernos totalmente de acero inoxidable.",
         "price": "$189,900",
         "priceRange": "$189,900 - $219,900",
         "features": [
@@ -202,6 +203,7 @@
       "viana": {
         "name": "Viana",
         "description": "Diseño elegante perfecto para familias en crecimiento",
+        "fullDescription": "Con 4 habitaciones y 3 baños completos, abarca más de 2,978 pies cuadrados. Prepárate para enamorarte. Su concepto abierto ofrece una amplia área de estar, complementada con techos abovedados e iluminación abundante, completa con un diseño de cocina moderna que incluye: gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía.",
         "price": "$199,900",
         "priceRange": "$199,900 - $229,900",
         "features": [
@@ -224,6 +226,7 @@
       "delanie": {
         "name": "Delanie",
         "description": "Estilo contemporáneo con planos abiertos",
+        "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El Delanie es uno de nuestros modelos más sofisticados. Con 3 habitaciones, 1 estudio/4ta habitación opcional, y 2 baños completos, abarca más de 2,610 pies cuadrados. Prepárate para enamorarte del Delanie. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Delanie es una impresionante casa familiar con un diseño diverso, espacioso y moderno.",
         "price": "$229,900",
         "priceRange": "$229,900 - $259,900",
         "features": [
@@ -246,6 +249,7 @@
       "aurora": {
         "name": "Aurora",
         "description": "Características de lujo en un paquete accesible",
+        "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El Aurora es uno de nuestros modelos más sofisticados. Con 4 habitaciones y 3 baños completos, abarca más de 2,227 pies cuadrados. Prepárate para enamorarte del Aurora. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Aurora es una impresionante casa familiar con un diseño diverso, espacioso y moderno.",
         "price": "$259,900",
         "priceRange": "$259,900 - $289,900",
         "features": [
@@ -268,6 +272,7 @@
       "langdon": {
         "name": "Langdon",
         "description": "Acabados premium y espacio excepcional",
+        "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El modelo Langdon es uno de nuestros modelos más elegantes. Con 3 habitaciones y 2 baños completos, abarca más de 1,900 pies cuadrados. Prepárate para enamorarte del Langdon. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Langdon es una encantadora casa familiar con un diseño diverso y moderno.",
         "price": "$289,900",
         "priceRange": "$289,900 - $319,900",
         "features": [
@@ -290,6 +295,7 @@
       "emelia": {
         "name": "Emelia",
         "description": "Nuestro modelo más grande con lujo en todas partes",
+        "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El modelo Emelia es uno de nuestros modelos más espaciosos. Con 3 habitaciones y 2 baños completos, abarca más de 2,060 pies cuadrados. Prepárate para enamorarte del Emelia. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Emelia es una encantadora casa familiar con un diseño diverso y espacioso.",
         "price": "$319,900",
         "priceRange": "$319,900 - $349,900",
         "features": [
@@ -308,6 +314,53 @@
           "stories": "1 Piso",
           "lotSize": "Lote Estándar"
         }
+      }
+    },
+    "modelPage": {
+      "startingPrice": "Precio Inicial",
+      "contactForFinancing": "Contáctanos para opciones de financiamiento y promociones especiales",
+      "aboutThisModel": "Acerca de Este Modelo",
+      "bedrooms": "Habitaciones",
+      "bathrooms": "Baños",
+      "sqft": "Pies Cuadrados",
+      "garage": "Garaje",
+      "viewGallery": "Ver Galería",
+      "previousImage": "Imagen anterior",
+      "nextImage": "Imagen siguiente",
+      "closeGallery": "Cerrar galería",
+      "viewImage": "Ver imagen",
+      "noImagesAvailable": "No hay imágenes disponibles",
+      "virtualTourTitle": "Recorrido Virtual",
+      "floorplanComingSoon": "El plano estará disponible pronto",
+      "sections": {
+        "inside": "Interior",
+        "exterior": "Exterior",
+        "virtualTour": "Recorrido Virtual",
+        "floorplan": "Plano",
+        "standardFeatures": "Características Estándar"
+      },
+      "sectionDescriptions": {
+        "inside": "Explora los hermosos espacios interiores de este modelo",
+        "exterior": "Ve el impresionante diseño exterior y arquitectura",
+        "virtualTour": "Realiza un recorrido virtual de esta hermosa casa",
+        "floorplan": "Ver el diseño detallado del plano",
+        "standardFeatures": "Todas las características estándar incluidas en este modelo"
+      },
+      "standardFeaturesCategories": {
+        "structural": "Estructural y Materiales de Construcción",
+        "kitchen": "Componentes de Cocina",
+        "bathroom": "Artículos de Baño",
+        "warranty": "Garantía",
+        "windows": "Ventanas, Molduras y Puertas",
+        "electrical": "Artículos Eléctricos",
+        "other": "Otras Características"
+      },
+      "requestInfo": {
+        "title": "Solicitar Información",
+        "subtitle": "Estamos construyendo el futuro para familias estadounidenses en el Suroeste de Florida",
+        "description": "Encontremos la casa de tus sueños. Contacta a un experto y haz realidad tu sueño de ser propietario.",
+        "viewGallery": "Ver Galería",
+        "noImages": "No hay imágenes disponibles"
       }
     }
   },

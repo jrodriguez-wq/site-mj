@@ -1,0 +1,107 @@
+{
+  "key": "viana",
+  "name": "VIANA",
+  "sqft": "2,978",
+  "bedrooms": "4",
+  "bathrooms": "3",
+  "garage": "2-Car Garage",
+  "price": "$449,900",
+  "description": "With 4 bedrooms and 3 full bathrooms, it spans over 2,978 square feet. Prepare to fall in love. Its open concept offers a spacious living area, complemented by vaulted ceilings and ample lighting, complete with a modern kitchen design that includes: custom cabinets, granite countertops and energy-efficient stainless-steel appliances.",
+  "youtubeUrl": "https://www.youtube.com/watch?v=sy13SHdR3Sk",
+  "imagesFolder": "viana",
+  "sections": {
+    "inside": {
+      "title": "Inside",
+      "description": "Explore the beautiful interior spaces of the Viana model."
+    },
+    "exterior": {
+      "title": "Exterior",
+      "description": "See the stunning exterior design and architecture."
+    },
+    "virtualTour": {
+      "title": "Virtual tour",
+      "description": "Take a virtual walkthrough of this beautiful home."
+    },
+    "floorplan": {
+      "title": "Floorplan",
+      "description": "View the detailed floor plan layout."
+    },
+    "standardFeatures": {
+      "title": "Standard Features",
+      "description": "All the standard features included in this model.",
+      "categories": {
+        "structural": {
+          "title": "Structural & Construction Materials",
+          "items": [
+            "Concrete block construction & 5/8″ rebar",
+            "All dirt fill & grade",
+            "Pretreated soil for termites",
+            "Engineered to 160 mph winds",
+            "Aluminum soffit",
+            "Energy-saving water heater",
+            "Concrete driveway & walkway"
+          ]
+        },
+        "kitchen": {
+          "title": "Kitchen Components",
+          "items": [
+            "Custom cabinets",
+            "Granite countertops",
+            "Energy-efficient stainless-steel appliances",
+            "Modern kitchen design",
+            "Spacious layout"
+          ]
+        },
+        "bathroom": {
+          "title": "Bathroom Items",
+          "items": [
+            "Premium fixtures",
+            "Modern vanities",
+            "Tile flooring",
+            "Water-efficient toilets",
+            "Shower/tub combinations"
+          ]
+        },
+        "warranty": {
+          "title": "Warranty",
+          "items": [
+            "10-year structural warranty",
+            "2-year systems warranty",
+            "1-year workmanship warranty"
+          ]
+        },
+        "windows": {
+          "title": "Windows, Trim & Doors",
+          "items": [
+            "Impact-resistant windows",
+            "Energy-efficient glass",
+            "Premium door hardware",
+            "Crown molding",
+            "Baseboards throughout"
+          ]
+        },
+        "electrical": {
+          "title": "Electrical Items",
+          "items": [
+            "Smoke detectors",
+            "All interior and exterior light fixtures",
+            "Pre-wired for phone and cable",
+            "200-amp electrical service",
+            "GFCI outlets in bathrooms and kitchen"
+          ]
+        },
+        "other": {
+          "title": "Other Features",
+          "items": [
+            "Vaulted ceilings",
+            "Open concept living area",
+            "Ample lighting",
+            "Spacious design",
+            "Energy-efficient features"
+          ]
+        }
+      }
+    }
+  }
+}
+

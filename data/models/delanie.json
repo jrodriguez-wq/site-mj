@@ -1,0 +1,107 @@
+{
+  "key": "delanie",
+  "name": "DELANIE",
+  "sqft": "2,610",
+  "bedrooms": "3",
+  "bathrooms": "2",
+  "garage": "3-Car Garage",
+  "price": "$369,900",
+  "description": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Delanie is one of our most sophisticated models. With 3 bedrooms, 1 den/4th bedroom optional, and 2 full bathrooms, it spans over 2,610 square feet. Prepare to fall in love with the Delanie. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Delanie model is a stunning family home with a diverse, spacious and modern design.",
+  "youtubeUrl": "https://www.youtube.com/watch?v=IXASzq9SzKM",
+  "imagesFolder": "delanie",
+  "sections": {
+    "inside": {
+      "title": "Inside",
+      "description": "Explore the beautiful interior spaces of the Delanie model."
+    },
+    "exterior": {
+      "title": "Exterior",
+      "description": "See the stunning exterior design and architecture."
+    },
+    "virtualTour": {
+      "title": "Virtual tour",
+      "description": "Take a virtual walkthrough of this beautiful home."
+    },
+    "floorplan": {
+      "title": "Floorplan",
+      "description": "View the detailed floor plan layout."
+    },
+    "standardFeatures": {
+      "title": "Standard Features",
+      "description": "All the standard features included in this model.",
+      "categories": {
+        "structural": {
+          "title": "Structural & Construction Materials",
+          "items": [
+            "Concrete block construction & 5/8″ rebar",
+            "All dirt fill & grade",
+            "Pretreated soil for termites",
+            "Engineered to 160 mph winds",
+            "Aluminum soffit",
+            "Energy-saving water heater",
+            "Concrete driveway & walkway"
+          ]
+        },
+        "kitchen": {
+          "title": "Kitchen Components",
+          "items": [
+            "Custom cabinets",
+            "Granite countertops",
+            "Energy-efficient stainless-steel appliances",
+            "Open concept floor plan",
+            "Spacious layout"
+          ]
+        },
+        "bathroom": {
+          "title": "Bathroom Items",
+          "items": [
+            "Premium fixtures",
+            "Modern vanities",
+            "Tile flooring",
+            "Water-efficient toilets",
+            "Shower/tub combinations"
+          ]
+        },
+        "warranty": {
+          "title": "Warranty",
+          "items": [
+            "10-year structural warranty",
+            "2-year systems warranty",
+            "1-year workmanship warranty"
+          ]
+        },
+        "windows": {
+          "title": "Windows, Trim & Doors",
+          "items": [
+            "Hurricane impact windows",
+            "Solid core exterior doors",
+            "Custom raised panel doors",
+            "Colonial base moldings",
+            "Custom hardware"
+          ]
+        },
+        "electrical": {
+          "title": "Electrical Items",
+          "items": [
+            "200-amp electrical service",
+            "GFCI outlets in bathrooms and kitchen",
+            "Ceiling fans pre-wired",
+            "LED lighting throughout",
+            "Smart home ready"
+          ]
+        },
+        "other": {
+          "title": "Other Features",
+          "items": [
+            "Vaulted ceilings",
+            "Open concept floor plan",
+            "Spacious living area",
+            "Ample lighting",
+            "Modern design"
+          ]
+        }
+      }
+    }
+  }
+}
+

@@ -1,6 +1,5 @@
 "use client";
 
-import { PageContent } from "@/components/layout/page-container";
 import { useTranslation } from "@/hooks/use-translation";
 import { ModelCard } from "@/components/models/model-card";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
@@ -93,8 +92,8 @@ export default function ModelsPage() {
   ];
 
   return (
-    <>
-      <PageContent size="lg">
+    <div className="pt-32 md:pt-36 lg:pt-40 pb-16 md:pb-24">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="space-y-12 py-8 md:py-12">
           <div className="text-center space-y-4">
             <h1
@@ -111,7 +110,7 @@ export default function ModelsPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-2 grid-cols-1 md:grid-cols-2">
             {models.map((model) => {
               const config = MODEL_CONFIG[model.key as keyof typeof MODEL_CONFIG];
               const modelImages = getModelImages(model.key);
@@ -144,8 +143,8 @@ export default function ModelsPage() {
             })}
           </div>
         </div>
-      </PageContent>
-    </>
+      </div>
+    </div>
   );
 }
 

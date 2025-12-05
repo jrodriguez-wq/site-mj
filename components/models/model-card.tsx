@@ -106,13 +106,13 @@ export const ModelCard = (props: ModelCardProps) => {
   return (
     <>
       {/* Main Card Container */}
-      <div className="relative max-w-md w-full group">
+      <div className="relative w-full group">
         {/* Gradient Border Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
 
         <div className="relative bg-card/95 backdrop-blur-xl rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
           {/* Image Carousel */}
-          <div className="relative h-72 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          <div className="relative h-80 md:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div
               className={cn(
                 "flex transition-transform duration-700 ease-out h-full",
