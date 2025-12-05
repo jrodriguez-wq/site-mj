@@ -57,9 +57,6 @@ export const HubSpotForm = ({
   const formCreatedRef = useRef(false)
 
   useEffect(() => {
-    // Evitar crear múltiples instancias
-    if (formCreatedRef.current) return
-
     const targetSelector = target || `#hubspot-form-${formId}`
     const container = containerRef.current
 
@@ -104,9 +101,14 @@ export const HubSpotForm = ({
 
     // Crear el formulario
     const createForm = () => {
-      if (!window.hbspt || formCreatedRef.current) return
+      if (!window.hbspt) return
 
       try {
+        // Limpiar el contenedor antes de crear un nuevo formulario
+        if (container) {
+          container.innerHTML = ""
+        }
+
         const formOptions: {
           portalId: string
           formId: string
@@ -137,10 +139,13 @@ export const HubSpotForm = ({
 
     // Cleanup
     return () => {
-      // El script se mantiene en el DOM para reutilización
-      // Solo limpiamos el formulario si es necesario
+      // Limpiar el formulario cuando cambien las dependencias
+      if (container) {
+        container.innerHTML = ""
+      }
+      formCreatedRef.current = false
     }
-  }, [portalId, formId, region, target])
+  }, [portalId, formId, region, target, redirectUrl])
 
   return (
     <div
