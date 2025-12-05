@@ -18,8 +18,18 @@ export const CTASection = () => {
             {t("cta.subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button asChild size="lg" className="px-8">
-              <Link href="/rent-to-own" suppressHydrationWarning>{t("cta.applyNow")}</Link>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                const formSection = document.getElementById("quick-register-form");
+                if (formSection) {
+                  formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+              size="lg"
+              className="px-8"
+            >
+              <span suppressHydrationWarning>{t("cta.applyNow")}</span>
             </Button>
             <Button asChild variant="outline" size="lg" className="px-8">
               <Link href="/contact" suppressHydrationWarning>{t("cta.schedule")}</Link>

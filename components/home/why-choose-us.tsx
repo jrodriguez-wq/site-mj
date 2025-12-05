@@ -2,6 +2,7 @@
 
 import { Shield, DollarSign, Home, Award, Users, Clock } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/use-translation";
 
 export const WhyChooseUs = () => {
@@ -81,6 +82,22 @@ export const WhyChooseUs = () => {
               </Card>
             );
           })}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              const formSection = document.getElementById("quick-register-form");
+              if (formSection) {
+                formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }}
+            size="lg"
+            className="px-8 py-6 text-base font-semibold"
+          >
+            <span suppressHydrationWarning>{t("hero.applyNow")}</span>
+          </Button>
         </div>
       </div>
     </section>

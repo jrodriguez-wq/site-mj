@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
+import { Geist, Geist_Mono, Outfit, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { defaultMetadata, SEO_CONFIG } from "@/config/seo";
 import { StructuredDataComponent } from "@/components/seo/structured-data";
@@ -23,6 +24,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
@@ -39,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang={SEO_CONFIG.defaultLocale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} antialiased`}
         suppressHydrationWarning
       >
         <StructuredDataComponent data={structuredData} />
@@ -51,6 +64,11 @@ export default function RootLayout({
           </div>
         </LanguageInitializer>
         <Analytics />
+        <Script
+          id="hs-script-loader"
+          strategy="afterInteractive"
+          src="https://js.hs-scripts.com/50215941.js"
+        />
       </body>
     </html>
   );

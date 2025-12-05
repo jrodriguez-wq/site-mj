@@ -18,8 +18,6 @@ export const HomePageContent = () => {
     <div className="flex flex-col">
       <HeroSlider />
       
-      <HubSpotFormSection />
-      
       <InfiniteTextCarousel />
 
       <Features />
@@ -27,6 +25,8 @@ export const HomePageContent = () => {
       <CommunitiesShowcase />
 
       <WhyChooseUs />
+
+      <HubSpotFormSection />
 
       <Statistics />
 

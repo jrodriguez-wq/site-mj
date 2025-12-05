@@ -92,8 +92,9 @@ export const HeroSlider = () => {
                 index === currentIndex && "animate-subtle-zoom"
               )}
               priority={index === 0}
-              quality={90}
+              quality={75}
               sizes="100vw"
+              suppressHydrationWarning
             />
           </div>
         ))}
@@ -170,7 +171,7 @@ export const HeroSlider = () => {
 
           <div
             className={cn(
-              "flex flex-col sm:flex-row gap-4 justify-center",
+              "flex flex-col sm:flex-row gap-4 justify-center flex-wrap",
               "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
               isTransitioning
                 ? "opacity-0"
@@ -181,7 +182,13 @@ export const HeroSlider = () => {
             }}
           >
             <Button
-              asChild
+              onClick={(e) => {
+                e.preventDefault();
+                const formSection = document.getElementById("quick-register-form");
+                if (formSection) {
+                  formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
               size="lg"
               className={cn(
                 "bg-primary hover:bg-primary/90 text-white",
@@ -192,10 +199,8 @@ export const HeroSlider = () => {
                 "relative overflow-hidden group"
               )}
             >
-              <Link href="/rent-to-own">
-                <span className="relative z-10" suppressHydrationWarning>{t("hero.applyNow")}</span>
-                <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-              </Link>
+              <span className="relative z-10" suppressHydrationWarning>{t("hero.applyNow")}</span>
+              <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
             </Button>
             <Button
               asChild
@@ -229,7 +234,7 @@ export const HeroSlider = () => {
             key={index}
             onClick={() => handleSlideChange(index)}
             className={cn(
-              "h-2 rounded-full transition-all duration-500 ease-out",
+              "h-2 rounded-full transition-all duration-500 ease-out cursor-pointer",
               "smooth-hover",
               index === currentIndex
                 ? "w-8 bg-primary shadow-lg shadow-primary/50"

@@ -64,7 +64,7 @@ export const LocationMap = () => {
                   </h3>
                   <a
                     href={`tel:${phone.replace(/[^0-9]/g, "")}`}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     {phone}
                   </a>
@@ -79,7 +79,7 @@ export const LocationMap = () => {
                     href={`https://${website}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     {website}
                   </a>

@@ -50,7 +50,8 @@
     "subtitle12": "Estamos aquí para ayudarte a encontrar tu casa perfecta.",
     "description": "Encontremos la casa de tus sueños. Contacta a un experto y haz realidad tu sueño de ser propietario.",
     "applyNow": "Aplicar Ahora",
-    "viewCommunities": "Ver Comunidades"
+    "viewCommunities": "Ver Comunidades",
+    "quickRegister": "Registro Rápido - Interesado en Nuestros Programas"
   },
   "features": {
     "title": "Por Qué Las Familias Nos Eligen",
@@ -121,7 +122,8 @@
         "title": "Mudanza Rápida",
         "description": "Casas de nueva construcción listas para que te mudes y comiences a crear recuerdos."
       }
-    }
+    },
+    "registerButton": "Regístrate Ahora - Interesado en Nuestros Programas"
   },
   "statistics": {
     "title": "Construyendo Sueños, Una Casa a la Vez",
@@ -169,6 +171,11 @@
     "moreDetails": "Más Detalles",
     "allModels": "Todos los Modelos de Casas",
     "allModelsSubtitle": "Explora nuestra colección completa de casas bellamente diseñadas",
+    "viewPhotos": "Ver Fotos",
+    "gallery": "Galería",
+    "image": "imagen",
+    "images": "imágenes",
+    "available": "disponibles",
     "models": {
       "louisiana": {
         "name": "Louisiana",
@@ -393,7 +400,8 @@
     "title": "¿Listo para Comenzar Tu Viaje hacia la Propiedad?",
     "subtitle": "Obtén asesoramiento gratuito sobre el proceso de compra y descubre cómo puedes ser dueño de tu casa soñada con $0 de enganche a través de nuestro programa de Renta con Opción a Compra.",
     "applyNow": "Aplicar Ahora - $0 de Enganche",
-    "schedule": "Programar una Consulta"
+    "schedule": "Programar una Consulta",
+    "quickRegister": "Registro Rápido - Interesado en Nuestros Programas"
   },
   "carousel": {
     "message": "Sé Dueño de Tu Casa Soñada con $0 de Enganche - Programa de Renta con Opción a Compra Disponible Ahora"
@@ -403,6 +411,53 @@
     "subtitle": "Completa el formulario a continuación y nos pondremos en contacto contigo lo antes posible.",
     "formTitle": "Contáctanos",
     "formDescription": "Estamos aquí para ayudarte a encontrar tu casa soñada."
+  },
+  "warranty": {
+    "title": "Garantía y Servicio",
+    "subtitle": "Respaldo a nuestra construcción de calidad",
+    "coverage": {
+      "title": "Nuestra Cobertura de Garantía",
+      "description": "M.J. Newell Homes proporciona cobertura de garantía completa para todas las casas de nueva construcción."
+    },
+    "features": {
+      "comprehensive": {
+        "title": "Cobertura Integral",
+        "description": "Protección completa de garantía para tu nueva casa"
+      },
+      "timely": {
+        "title": "Respuesta Oportuna",
+        "description": "Respuesta rápida a todas las solicitudes de servicio"
+      },
+      "support": {
+        "title": "Soporte Dedicado",
+        "description": "Equipo experto listo para ayudar"
+      },
+      "quality": {
+        "title": "Calidad Garantizada",
+        "description": "Aseguramos que tu casa permanezca en excelente condición"
+      }
+    },
+    "form": {
+      "title": "Enviar Solicitud de Garantía",
+      "description": "Completa el formulario a continuación para enviar una solicitud de garantía o servicio. Nuestro equipo revisará tu solicitud y te contactará pronto."
+    }
+  },
+  "thankYou": {
+    "backHome": "Volver al Inicio",
+    "contactAgain": "Contáctanos de Nuevo",
+    "viewWarranty": "Ver Información de Garantía",
+    "contact": {
+      "title": "¡Gracias!",
+      "subtitle": "Hemos recibido tu mensaje",
+      "message": "Te responderemos lo antes posible.",
+      "nextSteps": "Nuestro equipo revisará tu mensaje y te responderá en un plazo de 24-48 horas."
+    },
+    "warranty": {
+      "title": "¡Gracias!",
+      "subtitle": "Hemos recibido tu solicitud de garantía",
+      "message": "Nuestro equipo de garantía revisará tu solicitud pronto.",
+      "nextSteps": "Nuestro equipo de garantía revisará tu solicitud y te contactará pronto."
+    }
   }
 }
 

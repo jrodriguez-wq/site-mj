@@ -1,14 +1,23 @@
 "use client";
 
+import { useMemo } from "react";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "@/hooks/use-translation";
+import { SEO_CONFIG } from "@/config/seo";
 
 export const HubSpotFormSection = () => {
   const { t } = useTranslation();
 
+  const redirectUrl = useMemo(() => {
+    const baseUrl = typeof window !== 'undefined' 
+      ? window.location.origin 
+      : SEO_CONFIG.siteUrl;
+    return `${baseUrl}/thank-you?type=contact`;
+  }, []);
+
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted">
+    <section id="quick-register-form" className="py-16 md:py-24 bg-gradient-to-b from-background to-muted scroll-mt-20">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-center space-y-4 mb-8">
@@ -34,6 +43,7 @@ export const HubSpotFormSection = () => {
                 portalId="50215941"
                 formId="93068cd5-cb63-461a-b7a6-00a3ca4fcd0a"
                 region="na1"
+                redirectUrl={redirectUrl}
                 className="w-full"
               />
             </CardContent>

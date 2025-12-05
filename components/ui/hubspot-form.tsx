@@ -25,6 +25,10 @@ interface HubSpotFormProps {
    * Target CSS selector para el contenedor (por defecto: `#hubspot-form-${formId}`)
    */
   target?: string
+  /**
+   * URL a la que redirigir después de enviar el formulario
+   */
+  redirectUrl?: string
 }
 
 /**
@@ -46,6 +50,7 @@ export const HubSpotForm = ({
   className,
   region = "na1",
   target,
+  redirectUrl,
 }: HubSpotFormProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const scriptLoadedRef = useRef(false)
@@ -102,12 +107,25 @@ export const HubSpotForm = ({
       if (!window.hbspt || formCreatedRef.current) return
 
       try {
-        window.hbspt.forms.create({
+        const formOptions: {
+          portalId: string
+          formId: string
+          target: string
+          region?: string
+          redirectUrl?: string
+          [key: string]: unknown
+        } = {
           portalId,
           formId,
           target: targetSelector,
           region,
-        })
+        }
+
+        if (redirectUrl) {
+          formOptions.redirectUrl = redirectUrl
+        }
+
+        window.hbspt.forms.create(formOptions)
         formCreatedRef.current = true
       } catch (error) {
         console.error("Error al crear el formulario de HubSpot:", error)

@@ -50,7 +50,8 @@
     "subtitle12": "We're here to help you find your perfect home.",
     "description": "Let's find the house of your dreams. Contact an expert and make your dream of homeownership come true.",
     "applyNow": "Apply Now",
-    "viewCommunities": "View Communities"
+    "viewCommunities": "View Communities",
+    "quickRegister": "Quick Register - Interested in Our Programs"
   },
   "features": {
     "title": "Why Families Choose Us",
@@ -121,7 +122,8 @@
         "title": "Quick Move-In",
         "description": "New construction homes ready for you to move in and start making memories."
       }
-    }
+    },
+    "registerButton": "Register Now - Interested in Our Programs"
   },
   "statistics": {
     "title": "Building Dreams, One Home at a Time",
@@ -169,6 +171,11 @@
     "moreDetails": "More Details",
     "allModels": "All Home Models",
     "allModelsSubtitle": "Explore our complete collection of beautifully designed homes",
+    "viewPhotos": "View Photos",
+    "gallery": "Gallery",
+    "image": "image",
+    "images": "images",
+    "available": "available",
     "models": {
       "louisiana": {
         "name": "Louisiana",
@@ -393,7 +400,8 @@
     "title": "Ready to Start Your Homeownership Journey?",
     "subtitle": "Get free advice on the buying process and discover how you can own your dream home with $0 down payment through our Rent to Own program.",
     "applyNow": "Apply Now - $0 Down",
-    "schedule": "Schedule a Consultation"
+    "schedule": "Schedule a Consultation",
+    "quickRegister": "Quick Register - Interested in Our Programs"
   },
   "carousel": {
     "message": "Own Your Dream Home with $0 Down Payment - Rent to Own Program Available Now"
@@ -403,6 +411,53 @@
     "subtitle": "Fill out the form below and we'll get back to you as soon as possible.",
     "formTitle": "Contact Us",
     "formDescription": "We're here to help you find your dream home."
+  },
+  "warranty": {
+    "title": "Warranty & Service",
+    "subtitle": "We stand behind our quality construction",
+    "coverage": {
+      "title": "Our Warranty Coverage",
+      "description": "M.J. Newell Homes provides comprehensive warranty coverage for all new construction homes."
+    },
+    "features": {
+      "comprehensive": {
+        "title": "Comprehensive Coverage",
+        "description": "Full warranty protection for your new home"
+      },
+      "timely": {
+        "title": "Timely Response",
+        "description": "Quick response to all service requests"
+      },
+      "support": {
+        "title": "Dedicated Support",
+        "description": "Expert team ready to help"
+      },
+      "quality": {
+        "title": "Quality Guaranteed",
+        "description": "We ensure your home remains in excellent condition"
+      }
+    },
+    "form": {
+      "title": "Submit Warranty Request",
+      "description": "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you shortly."
+    }
+  },
+  "thankYou": {
+    "backHome": "Back to Home",
+    "contactAgain": "Contact Us Again",
+    "viewWarranty": "View Warranty Info",
+    "contact": {
+      "title": "Thank You!",
+      "subtitle": "We've received your message",
+      "message": "We'll get back to you as soon as possible.",
+      "nextSteps": "Our team will review your message and get back to you within 24-48 hours."
+    },
+    "warranty": {
+      "title": "Thank You!",
+      "subtitle": "We've received your warranty request",
+      "message": "Our warranty team will review your request shortly.",
+      "nextSteps": "Our warranty team will review your request and contact you shortly."
+    }
   }
 }
 

@@ -75,7 +75,7 @@ export const Features = () => {
                 <CardContent className="relative pt-0">
                   <Link
                     href={feature.href}
-                    className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-300 group-hover:underline"
+                    className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-300 group-hover:underline cursor-pointer"
                   >
                     <span suppressHydrationWarning>{t("features.learnMore")}</span>
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
