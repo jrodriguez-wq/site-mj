@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
 import { PageContent } from "@/components/layout/page-container";
 import { useTranslation } from "@/hooks/use-translation";
@@ -12,47 +12,55 @@ export const ContactPageContent = () => {
   const { t } = useTranslation();
 
   const redirectUrl = useMemo(() => {
-    const baseUrl = typeof window !== 'undefined' 
-      ? window.location.origin 
-      : SEO_CONFIG.siteUrl;
-    return `${baseUrl}/thank-you?type=contact`;
+    // Usar el siteUrl del config para evitar problemas de hidratación
+    return `${SEO_CONFIG.siteUrl}/thank-you?type=contact`;
   }, []);
 
   return (
-    <PageContent size="xl">
-      <div className="space-y-8">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
+    <PageContent size="lg">
+      <div className="space-y-12">
+        {/* Header Section */}
+        <div className="text-center space-y-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent" suppressHydrationWarning>
             {t("contactForm.title") || "Contact Us"}
           </h1>
-          <p className="text-xl text-muted-foreground" suppressHydrationWarning>
+          <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mx-auto"></div>
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
             {t("contactForm.subtitle") || "Get in touch with our team"}
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+        {/* Main Content Grid */}
+        <div className="grid gap-8 lg:grid-cols-3 max-w-7xl mx-auto">
           {/* Contact Information - Left Column */}
+          <div className="lg:col-span-1 space-y-6">
           <div className="space-y-4">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6" suppressHydrationWarning>
+                {t("contactForm.contactInfo.title") || "Contact Information"}
+              </h2>
+              
             {/* Phone Card */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="pt-6 pb-6">
-                <div className="flex items-center gap-6">
-                  <div className="p-3 bg-primary/10 rounded-full shrink-0">
+              <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors shrink-0">
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-sm text-muted-foreground mb-2">Phone</p>
-                    <div className="space-y-1">
+                      <p className="font-semibold text-sm text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.phone") || "Phone"}
+                      </p>
+                      <div className="space-y-2">
                       <a
                         href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-                        className="text-base font-medium hover:text-primary cursor-pointer block"
+                          className="text-lg font-semibold hover:text-primary transition-colors block"
                       >
                         {CONTACT_INFO.phone}
                       </a>
                       {CONTACT_INFO.phoneSecondary && (
                         <a
                           href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
-                          className="text-base font-medium hover:text-primary cursor-pointer block"
+                            className="text-lg font-semibold hover:text-primary transition-colors block"
                         >
                           {CONTACT_INFO.phoneSecondary}
                         </a>
@@ -64,17 +72,19 @@ export const ContactPageContent = () => {
             </Card>
 
             {/* Email Card */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="pt-6 pb-6">
-                <div className="flex items-center gap-6">
-                  <div className="p-3 bg-primary/10 rounded-full shrink-0">
+              <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors shrink-0">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-sm text-muted-foreground mb-2">Email</p>
+                      <p className="font-semibold text-sm text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.email") || "Email"}
+                      </p>
                     <a
                       href={`mailto:${CONTACT_INFO.email}`}
-                      className="text-base font-medium hover:text-primary cursor-pointer block break-words"
+                        className="text-lg font-semibold hover:text-primary transition-colors block break-words"
                     >
                       {CONTACT_INFO.email}
                     </a>
@@ -84,35 +94,66 @@ export const ContactPageContent = () => {
             </Card>
 
             {/* Location Card */}
-            <Card className="hover:shadow-lg transition-shadow duration-300">
-              <CardContent className="pt-6 pb-6">
-                <div className="flex items-center gap-6">
-                  <div className="p-3 bg-primary/10 rounded-full shrink-0">
+              <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors shrink-0">
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-sm text-muted-foreground mb-2">Location</p>
-                    <p className="text-base font-medium">
+                      <p className="font-semibold text-sm text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.location") || "Location"}
+                      </p>
+                      <p className="text-lg font-semibold">
                       {CONTACT_INFO.address.addressLocality}, {CONTACT_INFO.address.addressRegion}
                     </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
+
+              {/* Hours Card */}
+              <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors shrink-0">
+                      <Clock className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.hours") || "Business Hours"}
+                      </p>
+                      <div className="space-y-1 text-base">
+                        <p className="font-medium">
+                          {t("contactForm.contactInfo.weekdays") || "Monday - Friday"}: {CONTACT_INFO.openingHours.weekdays.opens} - {CONTACT_INFO.openingHours.weekdays.closes}
+                        </p>
+                        <p className="font-medium">
+                          {t("contactForm.contactInfo.saturday") || "Saturday"}: {CONTACT_INFO.openingHours.saturday.opens} - {CONTACT_INFO.openingHours.saturday.closes}
+                        </p>
+                        <p className="font-medium text-muted-foreground">
+                          {t("contactForm.contactInfo.sunday") || "Sunday"}: {t("contactForm.contactInfo.closed") || "Closed"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
-          {/* Contact Form - Right Column */}
-          <div>
-            <Card className="shadow-lg sticky top-8">
-              <CardHeader>
-                <CardTitle className="text-center" suppressHydrationWarning>
+          {/* Contact Form - Right Column (2 columns) */}
+          <div className="lg:col-span-2">
+            <Card className="shadow-2xl border-2 border-primary/20 bg-gradient-to-br from-background to-muted/20">
+              <CardHeader className="text-center space-y-3 pb-6">
+                <CardTitle className="text-3xl md:text-4xl font-bold" suppressHydrationWarning>
                   {t("contactForm.formTitle") || "Send us a Message"}
                 </CardTitle>
-                <CardDescription className="text-center" suppressHydrationWarning>
+                <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mx-auto"></div>
+                <CardDescription className="text-lg pt-2" suppressHydrationWarning>
                   {t("contactForm.formDescription") || "Fill out the form below and we'll get back to you as soon as possible."}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="px-6 md:px-8 pb-8">
                 <HubSpotForm
                   portalId="50215941"
                   formId="93068cd5-cb63-461a-b7a6-00a3ca4fcd0a"

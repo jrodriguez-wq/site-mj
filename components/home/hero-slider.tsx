@@ -21,18 +21,14 @@ interface HeroSlide {
 }
 
 const heroSlidesConfig: HeroSlideConfig[] = [
-  { image: "/img/4.jpg", titleKey: "hero.title1", subtitleKey: "hero.subtitle1" },
-  { image: "/img/1.jpg", titleKey: "hero.title2", subtitleKey: "hero.subtitle2" },
-  { image: "/img/2.jpg", titleKey: "hero.title3", subtitleKey: "hero.subtitle3" },
-  { image: "/img/3.jpg", titleKey: "hero.title4", subtitleKey: "hero.subtitle4" },
-  { image: "/img/5.jpg", titleKey: "hero.title5", subtitleKey: "hero.subtitle5" },
-  { image: "/img/6.jpg", titleKey: "hero.title6", subtitleKey: "hero.subtitle6" },
-  { image: "/img/7.jpg", titleKey: "hero.title7", subtitleKey: "hero.subtitle7" },
-  { image: "/img/8.jpg", titleKey: "hero.title8", subtitleKey: "hero.subtitle8" },
-  { image: "/img/9.jpg", titleKey: "hero.title9", subtitleKey: "hero.subtitle9" },
-  { image: "/img/10.jpg", titleKey: "hero.title10", subtitleKey: "hero.subtitle10" },
-  { image: "/img/11.png", titleKey: "hero.title11", subtitleKey: "hero.subtitle11" },
-  { image: "/img/oficina.jpg", titleKey: "hero.title12", subtitleKey: "hero.subtitle12" },
+  { image: "/img/hero/AURORA.png", titleKey: "hero.title1", subtitleKey: "hero.subtitle1" },
+  { image: "/img/hero/1W5A1505 E5.jpg", titleKey: "hero.title2", subtitleKey: "hero.subtitle2" },
+  { image: "/img/hero/1W5A1493 E5.jpg", titleKey: "hero.title3", subtitleKey: "hero.subtitle3" },
+  { image: "/img/hero/1W5A1489 E5.jpg", titleKey: "hero.title4", subtitleKey: "hero.subtitle4" },
+  { image: "/img/hero/1W5A1456 E5.jpg", titleKey: "hero.title5", subtitleKey: "hero.subtitle5" },
+  { image: "/img/hero/1W5A0754 E4.jpg", titleKey: "hero.title6", subtitleKey: "hero.subtitle6" },
+  { image: "/img/hero/1W5A0814_1.jpg", titleKey: "hero.title7", subtitleKey: "hero.subtitle7" },
+  { image: "/img/hero/1W5A0741_1.jpg", titleKey: "hero.title8", subtitleKey: "hero.subtitle8" },
 ];
 
 export const HeroSlider = () => {

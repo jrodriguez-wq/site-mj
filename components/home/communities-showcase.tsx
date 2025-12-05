@@ -7,39 +7,42 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Home } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 
+// Configuración estática de comunidades (fuera del componente para evitar problemas de hidratación)
+const COMMUNITIES_CONFIG = [
+  {
+    nameKey: "labelle",
+    alt: "LaBelle community",
+    href: "/communities/labelle",
+    image: "/recursos/shutterstock_1065297917.jpg",
+    featureKeys: [
+      "communities.labelle.features.acreLots",
+      "communities.labelle.features.noHOA",
+      "communities.labelle.features.familyFriendly",
+    ],
+  },
+  {
+    nameKey: "lehighAcres",
+    alt: "Lehigh Acres community",
+    href: "/communities/lehigh-acres",
+    image: "/img/2.jpg",
+    featureKeys: [
+      "communities.lehighAcres.features.spaciousLots",
+      "communities.lehighAcres.features.greatSchools",
+      "communities.lehighAcres.features.primeLocation",
+    ],
+  },
+] as const;
+
 export const CommunitiesShowcase = () => {
   const { t } = useTranslation();
 
-  const communities = [
-    {
-      name: t("communities.labelle.name"),
-      nameKey: "labelle",
-      alt: "LaBelle community", // Alt estático para consistencia SSR
-      href: "/communities/labelle",
-      description: t("communities.labelle.description"),
-      features: [
-        t("communities.labelle.features.acreLots"),
-        t("communities.labelle.features.noHOA"),
-        t("communities.labelle.features.familyFriendly"),
-      ],
-      image: "/img/4.jpg",
-      exploreText: t("communities.labelle.explore"),
-    },
-    {
-      name: t("communities.lehighAcres.name"),
-      nameKey: "lehighAcres",
-      alt: "Lehigh Acres community", // Alt estático para consistencia SSR
-      href: "/communities/lehigh-acres",
-      description: t("communities.lehighAcres.description"),
-      features: [
-        t("communities.lehighAcres.features.spaciousLots"),
-        t("communities.lehighAcres.features.greatSchools"),
-        t("communities.lehighAcres.features.primeLocation"),
-      ],
-      image: "/img/1.jpg",
-      exploreText: t("communities.lehighAcres.explore"),
-    },
-  ];
+  const communities = COMMUNITIES_CONFIG.map((config) => ({
+    ...config,
+    name: t(`communities.${config.nameKey}.name`),
+    description: t(`communities.${config.nameKey}.description`),
+    features: config.featureKeys.map((key) => t(key)),
+    exploreText: t(`communities.${config.nameKey}.explore`),
+  }));
 
   return (
     <section className="py-16 md:py-24">
@@ -56,15 +59,18 @@ export const CommunitiesShowcase = () => {
         <div className="grid gap-8 md:grid-cols-2">
           {communities.map((community) => (
             <Card
-              key={community.name}
+              key={community.nameKey}
               className="overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2"
             >
               <div className="relative h-72 md:h-96 overflow-hidden">
                 <Image
+                  key={community.image}
                   src={community.image}
                   alt={community.alt}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={community.nameKey === "labelle"}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />

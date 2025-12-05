@@ -76,22 +76,112 @@
     "labelle": {
       "name": "LaBelle",
       "description": "Hermosas casas nuevas en el corazón de LaBelle, Florida",
+      "country": {
+        "title": "Comunidades",
+        "subtitle": "LaBelle Country"
+      },
       "features": {
         "acreLots": "Lotes de 1/4 de Acre",
         "noHOA": "Sin Cuotas HOA",
         "familyFriendly": "Para Familias"
       },
-      "explore": "Explorar LaBelle"
+      "explore": "Explorar LaBelle",
+      "about": {
+        "title": "Acerca de LaBelle",
+        "description": "LaBelle es una encantadora comunidad en el Suroeste de Florida, perfecta para familias que buscan un estilo de vida tranquilo con fácil acceso a las principales ciudades. Nuestras casas de construcción nueva en LaBelle ofrecen comodidades modernas, lotes espaciosos y valor excepcional.",
+        "fullDescription": "La ciudad de LaBelle está ubicada en una región con exuberantes bosques y vida silvestre, inmersa en robles que caracterizan su paisaje y proporcionan sombra a su tierra. Con el roble siendo una especie que aún permanece como insignia en la región, continúa habitando la mayoría de los desarrollos residenciales en toda el área. La ciudad de LaBelle es el principal conglomerado urbano en la región hoy y preserva un importante centro histórico con edificios construidos a finales del siglo XIX y principios del siglo XX. LaBelle continúa contribuyendo a la conservación del rico patrimonio arquitectónico en Florida. Mientras cultiva su historia, orgullosamente da la bienvenida a la urbanización de sus áreas en desarrollo."
+      },
+      "activities": {
+        "title": "Actividades para Toda la Familia",
+        "fishing": {
+          "title": "Pesca",
+          "description": "Disfruta de la pesca de agua dulce en las hermosas aguas de LaBelle"
+        },
+        "outdoor walks": {
+          "title": "Caminatas al Aire Libre",
+          "description": "Explora senderos naturales rodeados de robles"
+        },
+        "boating": {
+          "title": "Navegación",
+          "description": "Experimenta la navegación en el río Caloosahatchee"
+        }
+      },
+      "future": {
+        "title": "El Futuro de Florida",
+        "description": "Compra tu casa en una ciudad de ensueño. Nuevas construcciones en el Suroeste de Florida. ¡Compra tu nueva casa con beneficios de $0 de enganche y asistencia en costos de cierre!"
+      },
+      "models": {
+        "title": "Modelos Disponibles",
+        "subtitle": "Elige entre nuestros hermosos modelos de casas disponibles en LaBelle"
+      },
+      "schedule": {
+        "title": "Programa tu visita a nuestras casas modelo con nosotros",
+        "description": "Recibe consultoría personalizada para elegir tu propiedad y opciones de financiamiento",
+        "button": "Programar tu Visita"
+      },
+      "gallery": {
+        "title": "Descubre LaBelle"
+      },
+      "cta": {
+        "title": "¿Listo para Llamar a LaBelle tu Hogar?",
+        "description": "Explora nuestro programa de Renta con Opción a Compra y comienza tu viaje hacia la propiedad de vivienda hoy.",
+        "button": "Aplicar Ahora"
+      }
     },
     "lehighAcres": {
       "name": "Lehigh Acres",
       "description": "Casas modernas en la creciente comunidad de Lehigh Acres",
+      "country": {
+        "title": "Comunidades",
+        "subtitle": "Lehigh Acres Country"
+      },
       "features": {
         "spaciousLots": "Lotes Espaciosos",
         "greatSchools": "Excelentes Escuelas",
         "primeLocation": "Ubicación Privilegiada"
       },
-      "explore": "Explorar Lehigh Acres"
+      "explore": "Explorar Lehigh Acres",
+      "about": {
+        "title": "Acerca de Lehigh Acres",
+        "description": "Lehigh Acres es una comunidad en crecimiento en el Suroeste de Florida, que ofrece vivienda asequible con excelentes comodidades. Nuestras casas de construcción nueva en Lehigh Acres cuentan con diseños modernos, planos espaciosos y nuestro innovador programa de Renta con Opción a Compra con 5 años de estabilidad de renta.",
+        "fullDescription": "Lehigh Acres está situado en una de las áreas de tierra más elevadas del condado de Lee, entre 27 y 30 pies sobre el nivel del mar. En esta comunidad, los residentes pueden disfrutar de pesca de agua dulce durante todo el año, campos de golf de clase mundial, tenis, ciclismo, senderos naturales y numerosas otras actividades en varios clubes y organizaciones. Como una de las ciudades de más rápido crecimiento en el estado de Florida, Lehigh Acres casi ha duplicado la construcción de viviendas nuevas en los últimos 24 meses. Está ubicado a solo 15 minutos al este de Cape Coral, 12 millas (19 kilómetros) al este de Fort Myers, y está equidistante de 3 ciudades principales: Miami, Orlando y Tampa. Lehigh Acres ofrece hermosos lagos y está aproximadamente a 35 minutos de algunas de las playas más impresionantes de Florida, incluyendo Bonita Beach, Fort Myers Beach, y las Islas de Sanibel y Captiva."
+      },
+      "activities": {
+        "title": "Actividades para Toda la Familia",
+        "beaches": {
+          "title": "Playas",
+          "description": "Explora las playas más hermosas de Florida"
+        },
+        "entertainment": {
+          "title": "Entretenimiento",
+          "description": "Entretenimiento para toda la familia"
+        },
+        "nature": {
+          "title": "Naturaleza",
+          "description": "Disfruta de la armonía de las maravillas de la naturaleza"
+        }
+      },
+      "future": {
+        "title": "El Futuro de Florida",
+        "description": "Compra tu casa en una ciudad de ensueño. Nuevas construcciones en el Suroeste de Florida. ¡Compra tu nueva casa con beneficios de $0 de enganche y asistencia en costos de cierre!"
+      },
+      "models": {
+        "title": "Modelos Disponibles",
+        "subtitle": "Elige entre nuestros hermosos modelos de casas disponibles en Lehigh Acres"
+      },
+      "schedule": {
+        "title": "Programa tu visita a nuestras casas modelo con nosotros",
+        "description": "Recibe consultoría personalizada para elegir tu propiedad y opciones de financiamiento",
+        "button": "Programar tu Visita"
+      },
+      "gallery": {
+        "title": "Descubre Lehigh Acres"
+      },
+      "cta": {
+        "title": "¿Listo para Llamar a Lehigh Acres tu Hogar?",
+        "description": "Explora nuestro programa de Renta con Opción a Compra y comienza tu viaje hacia la propiedad de vivienda hoy.",
+        "button": "Aplicar Ahora"
+      }
     }
   },
   "whyChooseUs": {
@@ -460,10 +550,21 @@
     "message": "Sé Dueño de Tu Casa Soñada con $0 de Enganche - Programa de Renta con Opción a Compra Disponible Ahora"
   },
   "contactForm": {
-    "title": "Ponte en Contacto",
-    "subtitle": "Completa el formulario a continuación y nos pondremos en contacto contigo lo antes posible.",
-    "formTitle": "Contáctanos",
-    "formDescription": "Estamos aquí para ayudarte a encontrar tu casa soñada."
+    "title": "Contáctanos",
+    "subtitle": "Estamos aquí para ayudarte. Ponte en contacto con nuestro equipo y descubre cómo podemos hacer realidad tu sueño de ser propietario.",
+    "formTitle": "Envíanos un Mensaje",
+    "formDescription": "Completa el formulario a continuación y nos pondremos en contacto contigo lo antes posible.",
+    "contactInfo": {
+      "title": "Información de Contacto",
+      "phone": "Teléfono",
+      "email": "Correo Electrónico",
+      "location": "Ubicación",
+      "hours": "Horario de Atención",
+      "weekdays": "Lunes - Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo",
+      "closed": "Cerrado"
+    }
   },
   "warranty": {
     "title": "Garantía y Servicio",
@@ -510,6 +611,99 @@
       "subtitle": "Hemos recibido tu solicitud de garantía",
       "message": "Nuestro equipo de garantía revisará tu solicitud pronto.",
       "nextSteps": "Nuestro equipo de garantía revisará tu solicitud y te contactará pronto."
+    }
+  },
+  "aboutUs": {
+    "hero": {
+      "title": "Construyendo Casas Americanas",
+      "description": "En 2019, contribuimos a los momentos alegres de las familias estadounidenses participando en la propiedad de vivienda en el Suroeste de Florida. Esta experiencia gratificante nos ha motivado a mejorar continuamente la calidad de nuestro servicio e innovar nuestros métodos de construcción con cada año que pasa."
+    },
+    "stats": {
+      "families": "Familias que son dueñas de sus casas soñadas",
+      "familiesDesc": "Familias satisfechas",
+      "experience": "Años de experiencia en construcción nueva",
+      "experienceDesc": "Años de experiencia",
+      "development": "Años de desarrollo en el Suroeste de Florida",
+      "developmentDesc": "Años en el Suroeste de Florida"
+    },
+    "servicesSection": {
+      "title": "¿Qué podemos hacer por ti?"
+    },
+    "services": {
+      "professionalAdvice": "Asesoría profesional",
+      "professionalAdviceDesc": "Obtén orientación experta de nuestro equipo con años de experiencia en el mercado inmobiliario.",
+      "qualityGuarantee": "Garantía de calidad en construcción nueva",
+      "qualityGuaranteeDesc": "Cada casa está construida con los más altos estándares de calidad y materiales premium.",
+      "loanGuidance": "Orientación en tu proceso de préstamo",
+      "loanGuidanceDesc": "Te ayudamos a navegar el proceso de financiamiento y encontrar la mejor opción para ti.",
+      "assistance": "Asistencia para enganche y costos de cierre",
+      "assistanceDesc": "Ofrecemos programas especiales para ayudarte con el enganche y los costos de cierre."
+    },
+    "team": {
+      "title": "Miembros del equipo",
+      "subtitle": "Apoyo 360 grados para tus sueños",
+      "description": "Cada familia tiene su propio camino hacia su sueño. Agentes con la mayor experiencia se preparan todos los días para brindarte el apoyo más preciso."
+    },
+    "future": {
+      "title": "El Futuro de Florida",
+      "subtitle": "Construyendo Casas Americanas",
+      "tagline": "Tu sueño se convirtió en nuestro propósito."
+    },
+    "cta": {
+      "title": "¿Listo para comenzar tu viaje?",
+      "description": "Contáctanos hoy y descubre cómo podemos ayudarte a hacer realidad tu sueño de ser propietario de una casa.",
+      "button": "Contáctanos Ahora"
+    }
+  },
+  "rentToOwn": {
+    "hero": {
+      "title": "Transforma tu pago de renta en propiedad",
+      "subtitle": "M.J. NEWELL HOMES - Renta una de nuestras casas nuevas con opción a compra"
+    },
+    "application": {
+      "title": "Solicitud de Renta",
+      "description": "Renta una de nuestras casas nuevas con opción a compra",
+      "highlight": "¡Parte de tu renta mensual se aplicará al enganche de tu casa!"
+    },
+    "documents": {
+      "title": "Documentos Necesarios",
+      "bankStatements": "Últimos dos meses de estados de cuenta bancarios",
+      "idCopy": "Copia de identificación",
+      "firstLastSecurity": "Primero, último y depósito de seguridad"
+    },
+    "opportunity": {
+      "title": "Oportunidad para Todos",
+      "description": "¡Renta una de nuestras casas nuevas con opción a compra! Parte de tu renta mensual se aplicará al enganche de tu casa."
+    },
+    "steps": {
+      "title": "Cómo Funciona",
+      "step": "Paso",
+      "documents": {
+        "title": "Documentos",
+        "description": "Prepara los documentos necesarios: estados de cuenta bancarios, identificación y depósito de seguridad"
+      },
+      "interview": {
+        "title": "Entrevista",
+        "description": "Completa el formulario y reúnete con nosotros para la evaluación de tu solicitud"
+      },
+      "choose": {
+        "title": "Elige tu Casa",
+        "description": "Selecciona de nuestros modelos disponibles en LaBelle o Lehigh Acres"
+      },
+      "rent": {
+        "title": "Renta y Construye",
+        "description": "Comienza a rentar mientras construyes hacia la propiedad. Parte de tu renta va al enganche"
+      }
+    },
+    "communities": {
+      "title": "El Futuro de Florida",
+      "subtitle": "Descubre proyectos disponibles para tus seres queridos en el Sur de Florida. Encuentra la casa perfecta para tu familia.",
+      "explore": "Explorar"
+    },
+    "cta": {
+      "title": "¡Aplica Ahora!",
+      "description": "Renta y conviértete en el dueño de una casa nueva. Completa tu solicitud en línea.",
+      "button": "Aplicar Ahora"
     }
   }
 }

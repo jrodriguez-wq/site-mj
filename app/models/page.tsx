@@ -110,7 +110,7 @@ export default function ModelsPage() {
             </p>
           </div>
 
-          <div className="grid gap-2 grid-cols-1 md:grid-cols-2">
+          <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2">
             {models.map((model) => {
               const config = MODEL_CONFIG[model.key as keyof typeof MODEL_CONFIG];
               const modelImages = getModelImages(model.key);
