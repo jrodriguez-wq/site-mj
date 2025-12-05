@@ -60,7 +60,7 @@ export const CommunitiesShowcase = () => {
           {communities.map((community) => (
             <Card
               key={community.nameKey}
-              className="overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2"
+              className="overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 p-0"
             >
               <div className="relative h-72 md:h-96 overflow-hidden">
                 <Image

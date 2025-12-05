@@ -203,7 +203,7 @@ export const Navbar = () => {
               )}
               size="default"
             >
-              <Link href="/rent-to-own" suppressHydrationWarning>{t("nav.applyNow")}</Link>
+              <Link href="/#quick-register-form" suppressHydrationWarning>{t("nav.applyNow")}</Link>
             </Button>
 
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -314,7 +314,7 @@ export const Navbar = () => {
                     {CONTACT_INFO.phone}
                   </a>
                   <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white font-bold shadow-lg hover:shadow-xl" size="lg">
-                    <Link href="/rent-to-own" onClick={() => setIsOpen(false)} suppressHydrationWarning>
+                    <Link href="/#quick-register-form" onClick={() => setIsOpen(false)} suppressHydrationWarning>
                       {t("nav.applyNow")}
                     </Link>
                   </Button>
