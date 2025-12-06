@@ -615,16 +615,120 @@
   },
   "aboutUs": {
     "hero": {
-      "title": "Building American Homes",
-      "description": "In 2019, we contributed to the joyous moments of American families by participating in homeownership in Southwest Florida. This fulfilling experience has motivated us to continually enhance the quality of our service and innovate our construction methods with each passing year."
+      "title": "About Us",
+      "description": "Building American Homes in South Florida with a Win-Win Approach"
     },
     "stats": {
-      "families": "Families who own their dream homes",
-      "familiesDesc": "Satisfied families",
-      "experience": "Years of experience in new construction",
-      "experienceDesc": "Years of experience",
-      "development": "Years of development in Southwest Florida",
-      "developmentDesc": "Years in Southwest Florida"
+      "homesBuilt": {
+        "value": "600+",
+        "label": "Homes Built",
+        "description": "Residential dwellings completed to date"
+      },
+      "teamMembers": {
+        "value": "200+",
+        "label": "Team Members",
+        "description": "From contractors to office personnel"
+      },
+      "buildingsCompleted": {
+        "value": "1,950+",
+        "label": "Buildings Completed",
+        "description": "Across Florida by Standard Land Development"
+      },
+      "annualGoal": {
+        "value": "1,200+",
+        "label": "Annual Goal",
+        "description": "Homes per year by 2023"
+      }
+    },
+    "leadership": {
+      "badge": "Leadership",
+      "title": "Michael J. Newell",
+      "subtitle": "Founder & CEO of Standard Land Development and M.J. Newell Homes",
+      "description": "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at both Standard Land Development and M.J. Newell Homes, resulting in enormous growth within a 5-year period.",
+      "quote": "\"The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I'd have to enlist first-line powerhouses.\"",
+      "quoteAuthor": "— Michael J. Newell",
+      "belief": "Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization.",
+      "mission": {
+        "title": "Our Mission",
+        "text": "\"We want to make prime-value homes available at an economical rate to all Americans. We believe that affordable housing should be no more than a quarter of their income.\""
+      },
+      "vision": {
+        "title": "Vision for 2023",
+        "text": "By 2023, M.J. Newell Homes will build 1,200+ units per year. Standard Land Development will continue to develop sites statewide."
+      }
+    },
+    "values": {
+      "title": "Our Core Values",
+      "subtitle": "The principles that guide everything we do",
+      "teamMentality": {
+        "title": "Team Mentality",
+        "description": "We believe in harnessing each team member's individual strengths to achieve multi-linear success throughout the organization."
+      },
+      "winWin": {
+        "title": "Win-Win Approach",
+        "description": "We look for win-win solutions in business and help each other along the way, creating positive domino effects for millions of Americans."
+      },
+      "affordableHousing": {
+        "title": "Affordable Housing",
+        "description": "We believe affordable housing should be no more than 25% of monthly income, ensuring families can live comfortably."
+      },
+      "ethicalBusiness": {
+        "title": "Ethical Business",
+        "description": "Founded on ethical business and social principles, we provide comprehensive support from beginning to end."
+      }
+    },
+    "companies": {
+      "title": "Our Companies",
+      "subtitle": "Two complementary businesses working together to build communities",
+      "sld": {
+        "name": "Standard Land Development",
+        "description": "Standard Land Development establishes communities all throughout Florida. SLD's process is to develop the plot of land by building the roads, installing sewer systems, electricity and other infrastructure as needed before erecting the development of homes or industrial buildings.",
+        "achievements": "Key Achievements:",
+        "achievement1": "Over 1,950 buildings completed in Florida",
+        "achievement2": "Complete infrastructure development",
+        "achievement3": "Statewide residential, commercial, and industrial projects"
+      },
+      "mjNewell": {
+        "name": "M.J. Newell Homes",
+        "description": "M.J. Newell Homes provides both the sale and customer service of all homes built by Standard Land Development. The customer may purchase from 6 different model home options or custom build their dream abode directly through M.J. Newell Homes.",
+        "achievements": "Key Achievements:",
+        "achievement1": "Over 600 residential dwellings built to date",
+        "achievement2": "490 single-family homes expected this year",
+        "achievement3": "6 model home options available"
+      }
+    },
+    "achievements": {
+      "title": "Our Achievements",
+      "subtitle": "Building success one home at a time",
+      "fiveYears": {
+        "title": "5 Years of Growth",
+        "description": "Both Standard Land Development and M.J. Newell Homes have experienced enormous growth within a 5-year period."
+      },
+      "homesThisYear": {
+        "title": "490 Homes This Year",
+        "description": "Expected to complete 490 single-family homes this year alone."
+      },
+      "statewide": {
+        "title": "Statewide Development",
+        "description": "Standard Land Development establishes communities all throughout Florida with complete infrastructure."
+      },
+      "sixModels": {
+        "title": "6 Model Options",
+        "description": "Customers can choose from 6 different model home options or custom build their dream home."
+      }
+    },
+    "housingCrisis": {
+      "title": "Solving the Affordable Housing Crisis",
+      "description": "Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed both of his businesses to help solve our country's predicament.",
+      "learnToBuild": {
+        "title": "Learn to Build Course",
+        "description": "Michael Newell has created a course called \"Learn to Build,\" in which he details every building process step. He believes that by sharing his construction knowledge with others, this can ultimately impact the housing deficit in our nation.",
+        "quote": "\"I feel that a new builder who comes into this industry will only strengthen the market. Our country needs good builders who can supply the growing demand for new construction.\""
+      },
+      "commitment": {
+        "title": "Our Commitment",
+        "text": "\"The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. In a world where most people attempt to suppress others to gain power for themselves, we believe it's a detriment to society if we don't look for a win-win solution in business and help each other along the way.\""
+      }
     },
     "servicesSection": {
       "title": "What can we do for you?"
@@ -650,9 +754,9 @@
       "tagline": "Your dream became our purpose."
     },
     "cta": {
-      "title": "Ready to Start Your Journey?",
-      "description": "Contact us today and discover how we can help you make your dream of homeownership come true.",
-      "button": "Contact Us Now"
+      "title": "Ready to Find Your Dream Home?",
+      "description": "Let us guide you through the entire process of buying your new home.",
+      "button": "Get in Touch"
     }
   },
   "rentToOwn": {
