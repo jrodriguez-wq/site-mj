@@ -615,16 +615,120 @@
   },
   "aboutUs": {
     "hero": {
-      "title": "Construyendo Casas Americanas",
-      "description": "En 2019, contribuimos a los momentos alegres de las familias estadounidenses participando en la propiedad de vivienda en el Suroeste de Florida. Esta experiencia gratificante nos ha motivado a mejorar continuamente la calidad de nuestro servicio e innovar nuestros métodos de construcción con cada año que pasa."
+      "title": "Sobre Nosotros",
+      "description": "Construyendo Casas Americanas en el Sur de Florida con un Enfoque Ganar-Ganar"
     },
     "stats": {
-      "families": "Familias que son dueñas de sus casas soñadas",
-      "familiesDesc": "Familias satisfechas",
-      "experience": "Años de experiencia en construcción nueva",
-      "experienceDesc": "Años de experiencia",
-      "development": "Años de desarrollo en el Suroeste de Florida",
-      "developmentDesc": "Años en el Suroeste de Florida"
+      "homesBuilt": {
+        "value": "600+",
+        "label": "Casas Construidas",
+        "description": "Viviendas residenciales completadas hasta la fecha"
+      },
+      "teamMembers": {
+        "value": "200+",
+        "label": "Miembros del Equipo",
+        "description": "Desde contratistas hasta personal de oficina"
+      },
+      "buildingsCompleted": {
+        "value": "1,950+",
+        "label": "Edificios Completados",
+        "description": "En toda Florida por Standard Land Development"
+      },
+      "annualGoal": {
+        "value": "1,200+",
+        "label": "Meta Anual",
+        "description": "Casas por año para 2023"
+      }
+    },
+    "leadership": {
+      "badge": "Liderazgo",
+      "title": "Michael J. Newell",
+      "subtitle": "Fundador y CEO de Standard Land Development y M.J. Newell Homes",
+      "description": "Michael J. Newell aplica un enfoque \"Ganar-Ganar\" en los negocios, creando viviendas asequibles para los estadounidenses comunes. Ha aplicado una estrategia de \"mentalidad de equipo\" tanto en Standard Land Development como en M.J. Newell Homes, resultando en un crecimiento enorme en un período de 5 años.",
+      "quote": "\"El poder de un equipo es crucial. Debes reclutar individuos que sean fuertes y confiables. Sabía que para tener éxito, tendría que reclutar potencias de primera línea.\"",
+      "quoteAuthor": "— Michael J. Newell",
+      "belief": "Michael cree firmemente que administrar un negocio significa conocer a tus empleados y cultivar una cultura de respeto y aprecio. Ha invertido diligentemente cientos de horas con cada miembro del equipo para lograr un éxito multi-lineal en toda la organización.",
+      "mission": {
+        "title": "Nuestra Misión",
+        "text": "\"Queremos hacer que las casas de valor principal estén disponibles a una tasa económica para todos los estadounidenses. Creemos que la vivienda asequible no debería ser más de un cuarto de sus ingresos.\""
+      },
+      "vision": {
+        "title": "Visión para 2023",
+        "text": "Para 2023, M.J. Newell Homes construirá más de 1,200 unidades por año. Standard Land Development continuará desarrollando sitios en todo el estado."
+      }
+    },
+    "values": {
+      "title": "Nuestros Valores Fundamentales",
+      "subtitle": "Los principios que guían todo lo que hacemos",
+      "teamMentality": {
+        "title": "Mentalidad de Equipo",
+        "description": "Creemos en aprovechar las fortalezas individuales de cada miembro del equipo para lograr un éxito multi-lineal en toda la organización."
+      },
+      "winWin": {
+        "title": "Enfoque Ganar-Ganar",
+        "description": "Buscamos soluciones ganar-ganar en los negocios y nos ayudamos mutuamente en el camino, creando efectos dominó positivos para millones de estadounidenses."
+      },
+      "affordableHousing": {
+        "title": "Vivienda Asequible",
+        "description": "Creemos que la vivienda asequible no debería ser más del 25% de los ingresos mensuales, asegurando que las familias puedan vivir cómodamente."
+      },
+      "ethicalBusiness": {
+        "title": "Negocio Ético",
+        "description": "Fundado en principios comerciales y sociales éticos, proporcionamos apoyo integral de principio a fin."
+      }
+    },
+    "companies": {
+      "title": "Nuestras Empresas",
+      "subtitle": "Dos negocios complementarios trabajando juntos para construir comunidades",
+      "sld": {
+        "name": "Standard Land Development",
+        "description": "Standard Land Development establece comunidades en toda Florida. El proceso de SLD es desarrollar el terreno construyendo las carreteras, instalando sistemas de alcantarillado, electricidad y otra infraestructura según sea necesario antes de erigir el desarrollo de viviendas o edificios industriales.",
+        "achievements": "Logros Clave:",
+        "achievement1": "Más de 1,950 edificios completados en Florida",
+        "achievement2": "Desarrollo completo de infraestructura",
+        "achievement3": "Proyectos residenciales, comerciales e industriales en todo el estado"
+      },
+      "mjNewell": {
+        "name": "M.J. Newell Homes",
+        "description": "M.J. Newell Homes proporciona tanto la venta como el servicio al cliente de todas las casas construidas por Standard Land Development. El cliente puede comprar entre 6 opciones diferentes de modelos de casas o construir su hogar soñado personalizado directamente a través de M.J. Newell Homes.",
+        "achievements": "Logros Clave:",
+        "achievement1": "Más de 600 viviendas residenciales construidas hasta la fecha",
+        "achievement2": "490 casas unifamiliares esperadas este año",
+        "achievement3": "6 opciones de modelos de casas disponibles"
+      }
+    },
+    "achievements": {
+      "title": "Nuestros Logros",
+      "subtitle": "Construyendo éxito una casa a la vez",
+      "fiveYears": {
+        "title": "5 Años de Crecimiento",
+        "description": "Tanto Standard Land Development como M.J. Newell Homes han experimentado un crecimiento enorme en un período de 5 años."
+      },
+      "homesThisYear": {
+        "title": "490 Casas Este Año",
+        "description": "Se espera completar 490 casas unifamiliares solo este año."
+      },
+      "statewide": {
+        "title": "Desarrollo en Todo el Estado",
+        "description": "Standard Land Development establece comunidades en toda Florida con infraestructura completa."
+      },
+      "sixModels": {
+        "title": "6 Opciones de Modelos",
+        "description": "Los clientes pueden elegir entre 6 opciones diferentes de modelos de casas o construir su hogar soñado personalizado."
+      }
+    },
+    "housingCrisis": {
+      "title": "Resolviendo la Crisis de Vivienda Asequible",
+      "description": "Como la mayoría de los estadounidenses, Michael Newell ha observado cómo la crisis de vivienda continúa creciendo en los Estados Unidos. Como resultado, ha empleado estratégicamente ambos de sus negocios para ayudar a resolver la situación de nuestro país.",
+      "learnToBuild": {
+        "title": "Curso Aprende a Construir",
+        "description": "Michael Newell ha creado un curso llamado \"Aprende a Construir\", en el que detalla cada paso del proceso de construcción. Cree que al compartir su conocimiento de construcción con otros, esto puede impactar finalmente el déficit de vivienda en nuestra nación.",
+        "quote": "\"Siento que un nuevo constructor que entra en esta industria solo fortalecerá el mercado. Nuestro país necesita buenos constructores que puedan suministrar la creciente demanda de nueva construcción.\""
+      },
+      "commitment": {
+        "title": "Nuestro Compromiso",
+        "text": "\"Las ventajas de la transparencia empresarial tienen un efecto dominó positivo no solo para mí y mi equipo, sino para millones de otros estadounidenses. En un mundo donde la mayoría de las personas intentan suprimir a otros para ganar poder para sí mismos, creemos que es un perjuicio para la sociedad si no buscamos una solución ganar-ganar en los negocios y nos ayudamos mutuamente en el camino.\""
+      }
     },
     "servicesSection": {
       "title": "¿Qué podemos hacer por ti?"
@@ -650,9 +754,9 @@
       "tagline": "Tu sueño se convirtió en nuestro propósito."
     },
     "cta": {
-      "title": "¿Listo para comenzar tu viaje?",
-      "description": "Contáctanos hoy y descubre cómo podemos ayudarte a hacer realidad tu sueño de ser propietario de una casa.",
-      "button": "Contáctanos Ahora"
+      "title": "¿Listo para Encontrar tu Casa Soñada?",
+      "description": "Déjanos guiarte a través de todo el proceso de compra de tu nueva casa.",
+      "button": "Ponerse en Contacto"
     }
   },
   "rentToOwn": {
