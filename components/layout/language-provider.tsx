@@ -14,14 +14,25 @@ export function LanguageProvider() {
     
     const hasTranslations = Object.keys(translations).length > 0;
     
+    // Si no hay traducciones, cargar el idioma por defecto (inglés)
     if (!hasTranslations && !isLoading) {
-      setLanguage(language).catch(console.error);
+      const defaultLanguage = language || "en";
+      setLanguage(defaultLanguage).catch(console.error);
     }
     
     if (hasTranslations) {
-      document.documentElement.lang = language;
+      document.documentElement.lang = language || "en";
     }
   }, [language, translations, isLoading, setLanguage]);
+
+  // Cargar traducciones inmediatamente al montar si no están disponibles
+  useEffect(() => {
+    const hasTranslations = Object.keys(translations).length > 0;
+    if (!hasTranslations && !isLoading) {
+      const defaultLanguage = language || "en";
+      setLanguage(defaultLanguage).catch(console.error);
+    }
+  }, []); // Solo ejecutar una vez al montar
 
   return null;
 }

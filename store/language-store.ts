@@ -78,8 +78,19 @@ export const useLanguageStore = create<LanguageState>()(
       },
 
       t: (key: string) => {
-        const { translations, isLoading } = get();
-        // Si no hay traducciones o están cargando, devolver la clave
+        const { translations, isLoading, language } = get();
+        // Si no hay traducciones, intentar cargar inglés por defecto
+        if (Object.keys(translations).length === 0 && !isLoading) {
+          const defaultLang = language || "en";
+          // Cargar traducciones de forma asíncrona sin bloquear
+          loadTranslations(defaultLang)
+            .then((loadedTranslations) => {
+              set({ translations: loadedTranslations, isLoading: false });
+            })
+            .catch(console.error);
+          return key;
+        }
+        // Si están cargando o no hay traducciones, devolver la clave
         if (isLoading || Object.keys(translations).length === 0) {
           return key;
         }
@@ -94,6 +105,16 @@ export const useLanguageStore = create<LanguageState>()(
         return async (state, error) => {
           if (error) {
             console.error("Error rehydrating language store:", error);
+            // Aún así, cargar inglés por defecto
+            try {
+              const translations = await loadTranslations("en");
+              useLanguageStore.setState({ language: "en", translations, isLoading: false });
+              if (typeof document !== "undefined") {
+                document.documentElement.lang = "en";
+              }
+            } catch (err) {
+              console.error("Error loading default translations:", err);
+            }
             return;
           }
           if (state) {
@@ -110,8 +131,29 @@ export const useLanguageStore = create<LanguageState>()(
               useLanguageStore.setState({ translations, isLoading: false });
             } catch (err) {
               console.error("Error loading translations during rehydration:", err);
-              state.isLoading = false;
-              useLanguageStore.setState({ isLoading: false });
+              // Si falla, intentar cargar inglés por defecto
+              try {
+                const defaultTranslations = await loadTranslations("en");
+                useLanguageStore.setState({ language: "en", translations: defaultTranslations, isLoading: false });
+                if (typeof document !== "undefined") {
+                  document.documentElement.lang = "en";
+                }
+              } catch (defaultErr) {
+                console.error("Error loading default translations:", defaultErr);
+                state.isLoading = false;
+                useLanguageStore.setState({ isLoading: false });
+              }
+            }
+          } else {
+            // Si no hay estado, cargar inglés por defecto
+            try {
+              const translations = await loadTranslations("en");
+              useLanguageStore.setState({ language: "en", translations, isLoading: false });
+              if (typeof document !== "undefined") {
+                document.documentElement.lang = "en";
+              }
+            } catch (err) {
+              console.error("Error loading default translations:", err);
             }
           }
         };

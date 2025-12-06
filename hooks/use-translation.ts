@@ -14,16 +14,22 @@ export const useTranslation = () => {
 
   useEffect(() => {
     // Asegurar que las traducciones se carguen si no están disponibles
+    // Usar inglés por defecto si no hay idioma seleccionado
+    const currentLanguage = language || "en";
     if (Object.keys(translations).length === 0 && !isLoading) {
-      setLanguage(language).catch((err) => {
+      setLanguage(currentLanguage).catch((err) => {
         console.error("Error loading translations:", err);
+        // Si falla, intentar cargar inglés
+        if (currentLanguage !== "en") {
+          setLanguage("en").catch(console.error);
+        }
       });
     }
   }, [translations, isLoading, language, setLanguage]);
 
   return {
     t,
-    language,
+    language: language || "en",
     setLanguage,
     isLoading,
   };
