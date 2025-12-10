@@ -58,6 +58,13 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  // Permitir solicitudes cross-origin en desarrollo desde IPs de red local
+  allowedDevOrigins: [
+    "localhost",
+    "127.0.0.1",
+    "192.168.40.4",
+  ],
+
 
   // Headers de seguridad y performance
   async headers() {
