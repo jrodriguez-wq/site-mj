@@ -28,6 +28,8 @@ export interface ModelCardProps {
   galleryTitle?: string;
   galleryDescription?: string;
   modelLabel?: string;
+  carouselDelay?: number;
+  initialDelay?: number;
 }
 
 export const ModelCard = (props: ModelCardProps) => {
@@ -49,6 +51,8 @@ export const ModelCard = (props: ModelCardProps) => {
     viewDetailsLabel = "Ver más detalles",
     viewPhotosLabel,
     modelLabel = "Modelo",
+    carouselDelay = 4000,
+    initialDelay = 0,
   } = props;
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -64,18 +68,26 @@ export const ModelCard = (props: ModelCardProps) => {
   const displayImages = images.length > 0 ? images : [image];
   const hasMultipleImages = displayImages.length > 1;
 
-  // Auto carousel
+  // Auto carousel with staggered delay
   useEffect(() => {
     if (!isGalleryOpen && hasMultipleImages) {
-      intervalRef.current = setInterval(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
-      }, 4000);
+      // Add initial delay to stagger animations between cards
+      const timeoutId = setTimeout(() => {
+        intervalRef.current = setInterval(() => {
+          setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
+        }, carouselDelay);
+      }, initialDelay);
+
+      return () => {
+        clearTimeout(timeoutId);
+        if (intervalRef.current) clearInterval(intervalRef.current);
+      };
     }
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isGalleryOpen, displayImages.length, hasMultipleImages]);
+  }, [isGalleryOpen, displayImages.length, hasMultipleImages, carouselDelay, initialDelay]);
 
   const openGallery = () => {
     setIsGalleryOpen(true);
@@ -250,11 +262,14 @@ export const ModelCard = (props: ModelCardProps) => {
               </div>
               <Button
                 asChild
-                className="bg-gradient-to-r from-primary to-primary/90 text-primary-foreground px-6 py-3 rounded-2xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 flex items-center gap-2 group"
+                className="relative bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-8 py-4 rounded-2xl font-bold text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 flex items-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden"
               >
                 <Link href={modelLink}>
-                  {viewDetailsLabel}
-                  <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  <span className="relative z-10 flex items-center gap-2">
+                    {viewDetailsLabel}
+                    <Maximize2 className="w-5 h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300" />
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 </Link>
               </Button>
             </div>
@@ -416,10 +431,14 @@ export const ModelCard = (props: ModelCardProps) => {
                 <div className="flex flex-col gap-3 pt-6 border-t border-border">
                   <Button
                     asChild
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 text-primary-foreground py-3 px-6 rounded-2xl font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+                    className="relative w-full bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground py-4 px-8 rounded-2xl font-bold text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 group hover:scale-105 border-2 border-primary/20 hover:border-primary/50 overflow-hidden"
                   >
                     <Link href={modelLink} onClick={closeGallery}>
-                      {viewDetailsLabel}
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        {viewDetailsLabel}
+                        <Maximize2 className="w-5 h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300" />
+                      </span>
+                      <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                     </Link>
                   </Button>
                 </div>

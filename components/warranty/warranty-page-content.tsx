@@ -7,6 +7,7 @@ import { PageContent } from "@/components/layout/page-container";
 import { useTranslation } from "@/hooks/use-translation";
 import { Shield, CheckCircle2, Clock, HeadphonesIcon } from "lucide-react";
 import { SEO_CONFIG } from "@/config/seo";
+import { WARRANTY_INFO } from "@/config/warranty-info";
 
 export const WarrantyPageContent = () => {
   const { t } = useTranslation();
@@ -38,6 +39,39 @@ export const WarrantyPageContent = () => {
             <CardDescription suppressHydrationWarning>
               {t("warranty.coverage.description") || "M.J. Newell Homes provides comprehensive warranty coverage for all new construction homes."}
             </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="mt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-primary/20">
+                      <th className="text-left py-3 px-4 font-bold text-foreground">Tipo de garantía</th>
+                      <th className="text-left py-3 px-4 font-bold text-foreground">Duración</th>
+                      <th className="text-left py-3 px-4 font-bold text-foreground">Cobertura</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {WARRANTY_INFO.map((warranty, index) => (
+                      <tr key={index} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <td className="py-4 px-4 font-semibold">{warranty.type}</td>
+                        <td className="py-4 px-4 text-primary font-medium">{warranty.duration}</td>
+                        <td className="py-4 px-4 text-muted-foreground">{warranty.coverage}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Shield className="h-5 w-5 text-primary" />
+              {t("warranty.features.comprehensive.title") || "Why Choose Our Warranty"}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-2 mt-6">

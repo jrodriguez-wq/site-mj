@@ -12,6 +12,7 @@ import {
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { LanguageProvider } from "@/components/layout/language-provider";
+import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -63,6 +64,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <PromotionModal />
         <Analytics />
         <SpeedInsights />
         <Script

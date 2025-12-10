@@ -4,7 +4,7 @@ export const SEO_CONFIG = {
   siteName: "M.J. Newell Homes",
   siteDescription:
     "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Rent to Own programs with $0 down payment. Your dream home, ideal for your family.",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://mjnewellhomes.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.mjnewellhomes.com",
   defaultLocale: "en",
   locale: "en_US",
   ogImage: "/og-image.jpg",
@@ -55,11 +55,12 @@ export const CONTACT_INFO = {
 export const SOCIAL_LINKS = {
   twitter: "", // No disponible
   twitterHandle: "", // No disponible
-  facebook: "https://www.facebook.com/share/1A2SNvY51b/",
-  instagram: "https://www.instagram.com/mjnewellhomes/",
+  facebook: "https://www.facebook.com/MJNewellHomes", // MJ Newell Homes
+  instagram: "https://www.instagram.com/mjnewellhomes/", // @mjnewellhomes
   linkedin: "https://www.linkedin.com/company/mj-newell-homes-fl/",
   youtube: "", // Opcional
   tiktok: "https://www.tiktok.com/@mjnhomesofficial",
+  website: "https://www.mjnewellhomes.com",
 } as const;
 
 export const KEYWORDS = [

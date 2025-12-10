@@ -21,7 +21,7 @@ const steps = [
     number: "03",
     icon: Home,
     title: "Select Your Model",
-    description: "Choose from our available models: Louisiana, Viana, Delanie, Aurora, Langdon, or Emelia.",
+    description: "Choose from our available models: Louisiana, Viana, Delanie, Aurora, Langdon, Emelia, or Duplex.",
   },
   {
     number: "04",

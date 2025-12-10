@@ -14,6 +14,7 @@ import delanieData from "@/data/models/delanie.json";
 import auroraData from "@/data/models/aurora.json";
 import langdonData from "@/data/models/langdon.json";
 import emeliaData from "@/data/models/emelia.json";
+import duplexData from "@/data/models/duplex.json";
 import { cn } from "@/lib/utils";
 
 const modelsData = [
@@ -23,6 +24,7 @@ const modelsData = [
   auroraData,
   langdonData,
   emeliaData,
+  duplexData,
 ];
 
 export const HomeModels = () => {

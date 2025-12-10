@@ -13,12 +13,25 @@ export const MODEL_IMAGES: Record<string, string[]> = {
   delanie: Array.from({ length: 22 }, (_, i) => 
     `/modelos-optimized/delanie/delanie-${String(i + 1).padStart(3, '0')}.jpg`
   ),
+  aurora: [
+    ...Array.from({ length: 15 }, (_, i) => 
+      `/modelos-optimized/aurora/${i + 1}.jpg`
+    ),
+    `/modelos-optimized/aurora/A6.jpg`,
+    `/modelos-optimized/aurora/A7.jpg`,
+    `/modelos-optimized/aurora/A8.jpg`,
+    `/modelos-optimized/aurora/A9.jpg`,
+    `/modelos-optimized/aurora/A10.jpg`,
+  ],
   langdon: Array.from({ length: 34 }, (_, i) => 
     `/modelos-optimized/langdon/langdon-${String(i + 1).padStart(3, '0')}.jpg`
   ),
   emelia: Array.from({ length: 35 }, (_, i) => 
     `/modelos-optimized/emelia/emelia-${String(i + 1).padStart(3, '0')}.jpg`
   ),
+  duplex: [
+    `/modelos-optimized/duplex/1.jpg`,
+  ],
 };
 
 export const getModelImages = (modelKey: string): string[] => {

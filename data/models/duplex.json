@@ -1,0 +1,107 @@
+{
+  "key": "duplex",
+  "name": "DUPLEX",
+  "sqft": "2,060",
+  "bedrooms": "2+1",
+  "bathrooms": "2",
+  "garage": "1-Car Garage",
+  "price": "$510,000",
+  "description": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living in one and renting the other. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
+  "youtubeUrl": "",
+  "imagesFolder": "duplex",
+  "sections": {
+    "inside": {
+      "title": "Inside",
+      "description": "Explore the beautiful interior spaces of the Duplex model."
+    },
+    "exterior": {
+      "title": "Exterior",
+      "description": "See the stunning exterior design and architecture."
+    },
+    "virtualTour": {
+      "title": "Virtual tour",
+      "description": "Take a virtual walkthrough of this beautiful property."
+    },
+    "floorplan": {
+      "title": "Floorplan",
+      "description": "View the detailed floor plan layout.",
+      "image": "/modelos-optimized/duplex/duplex-plano.png"
+    },
+    "standardFeatures": {
+      "title": "Standard Features",
+      "description": "All the standard features included in this model.",
+      "categories": {
+        "structural": {
+          "title": "Structural & Construction Materials",
+          "items": [
+            "Concrete block construction",
+            "Reinforced concrete foundation",
+            "Impact-resistant windows",
+            "Hurricane-rated doors",
+            "Energy-efficient insulation"
+          ]
+        },
+        "kitchen": {
+          "title": "Kitchen Components",
+          "items": [
+            "Stone countertops",
+            "Soft-close cabinetry",
+            "Stainless steel appliances",
+            "Modern range hood",
+            "Spacious pantry"
+          ]
+        },
+        "bathroom": {
+          "title": "Bathroom Items",
+          "items": [
+            "Premium fixtures",
+            "Modern vanities",
+            "Tile flooring",
+            "Water-efficient toilets",
+            "Shower/tub combinations"
+          ]
+        },
+        "warranty": {
+          "title": "Warranty",
+          "items": [
+            "10-year structural warranty",
+            "2-year systems warranty",
+            "1-year workmanship warranty"
+          ]
+        },
+        "windows": {
+          "title": "Windows, Trim & Doors",
+          "items": [
+            "Impact-resistant windows",
+            "Energy-efficient glass",
+            "Premium door hardware",
+            "Crown molding",
+            "Baseboards throughout"
+          ]
+        },
+        "electrical": {
+          "title": "Electrical Items",
+          "items": [
+            "200-amp electrical service",
+            "GFCI outlets in bathrooms and kitchen",
+            "Ceiling fans pre-wired",
+            "LED lighting throughout",
+            "Smart home ready"
+          ]
+        },
+        "other": {
+          "title": "Other Features",
+          "items": [
+            "Two independent units",
+            "Perfect for living and renting",
+            "Investment opportunity",
+            "Modern design",
+            "Bright open spaces",
+            "High-end finishes"
+          ]
+        }
+      }
+    }
+  }
+}
+

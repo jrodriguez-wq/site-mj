@@ -66,6 +66,17 @@ export const Footer = () => {
                 >
                   {CONTACT_INFO.phone}
                 </a>
+                {CONTACT_INFO.phoneSecondary && (
+                  <>
+                    {" | "}
+                    <a
+                      href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
+                      className="text-background/80 hover:text-primary transition-colors"
+                    >
+                      {CONTACT_INFO.phoneSecondary}
+                    </a>
+                  </>
+                )}
               </p>
               <p>
                 <strong className="text-background">Email:</strong>{" "}
@@ -76,6 +87,19 @@ export const Footer = () => {
                   {CONTACT_INFO.email}
                 </a>
               </p>
+              {SOCIAL_LINKS.website && (
+                <p>
+                  <strong className="text-background">Website:</strong>{" "}
+                  <a
+                    href={SOCIAL_LINKS.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-background/80 hover:text-primary transition-colors"
+                  >
+                    {SOCIAL_LINKS.website.replace(/^https?:\/\//, "")}
+                  </a>
+                </p>
+              )}
             </div>
             <div className="flex gap-4 mt-6">
               {SOCIAL_LINKS.facebook && (

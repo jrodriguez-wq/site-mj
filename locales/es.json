@@ -404,6 +404,31 @@
           "stories": "1 Piso",
           "lotSize": "Lote Estándar"
         }
+      },
+      "duplex": {
+        "name": "Duplex",
+        "description": "Oportunidad de inversión perfecta - vive en una unidad, renta la otra",
+        "fullDescription": "Descubre el modelo Duplex, una propiedad impresionante que cuenta con dos unidades independientes, perfectas para vivir en una y rentar la otra. Cada unidad incluye 3 habitaciones, 2 baños y un garaje privado. Con su diseño moderno, espacios abiertos y brillantes, y acabados de alta gama, este duplex es una inversión ideal que combina comodidad, estilo y rentabilidad.",
+        "price": "$510,000",
+        "priceRange": "$510,000",
+        "features": [
+          "Dos unidades independientes",
+          "Perfecto para vivir y rentar",
+          "Oportunidad de inversión",
+          "Diseño moderno",
+          "Espacios abiertos y brillantes",
+          "Acabados de alta gama",
+          "Garaje para 1 auto por unidad",
+          "Potencial de ingreso por renta: $2,000 por unidad"
+        ],
+        "specifications": {
+          "bedrooms": "2 Habitaciones + 1 Estudio",
+          "bathrooms": "2 Baños",
+          "squareFeet": "2,060 pies cuadrados",
+          "garage": "Garaje para 1 Auto",
+          "stories": "1 Piso",
+          "lotSize": "Lote Estándar"
+        }
       }
     },
     "modelPage": {
@@ -761,53 +786,168 @@
   },
   "rentToOwn": {
     "hero": {
-      "title": "Transforma tu pago de renta en propiedad",
-      "subtitle": "M.J. NEWELL HOMES - Renta una de nuestras casas nuevas con opción a compra"
+      "badge": "Programa Rent to Own",
+      "title": "Rent to Own",
+      "subtitle": "Vive en tu casa nueva mientras ahorras para tu futura compra"
     },
-    "application": {
-      "title": "Solicitud de Renta",
-      "description": "Renta una de nuestras casas nuevas con opción a compra",
-      "highlight": "¡Parte de tu renta mensual se aplicará al enganche de tu casa!"
-    },
-    "documents": {
-      "title": "Documentos Necesarios",
-      "bankStatements": "Últimos dos meses de estados de cuenta bancarios",
-      "idCopy": "Copia de identificación",
-      "firstLastSecurity": "Primero, último y depósito de seguridad"
-    },
-    "opportunity": {
-      "title": "Oportunidad para Todos",
-      "description": "¡Renta una de nuestras casas nuevas con opción a compra! Parte de tu renta mensual se aplicará al enganche de tu casa."
-    },
-    "steps": {
-      "title": "Cómo Funciona",
-      "step": "Paso",
-      "documents": {
-        "title": "Documentos",
-        "description": "Prepara los documentos necesarios: estados de cuenta bancarios, identificación y depósito de seguridad"
-      },
-      "interview": {
-        "title": "Entrevista",
-        "description": "Completa el formulario y reúnete con nosotros para la evaluación de tu solicitud"
-      },
-      "choose": {
-        "title": "Elige tu Casa",
-        "description": "Selecciona de nuestros modelos disponibles en LaBelle o Lehigh Acres"
-      },
-      "rent": {
-        "title": "Renta y Construye",
-        "description": "Comienza a rentar mientras construyes hacia la propiedad. Parte de tu renta va al enganche"
+    "whatIs": {
+      "title": "¿Qué es Rent to Own?",
+      "description": "El programa Rent to Own (RTO) te permite vivir desde ya en una casa nueva mientras una parte de tu renta mensual se acumula como ahorro para tu futura compra. No somos una renta tradicional. Pagas por vivir en tu nueva casa. Parte de ese pago mensual se convierte en ahorro. Al finalizar tu plan, puedes usar ese ahorro como enganche o parte del pago inicial de tu vivienda.",
+      "objective": {
+        "title": "Objetivo del Programa",
+        "description": "Ayudar a las familias a ahorrar mientras viven en una casa nueva, acumulando fondos que luego pueden usar como parte del pago inicial para su futura compra."
       }
     },
-    "communities": {
-      "title": "El Futuro de Florida",
-      "subtitle": "Descubre proyectos disponibles para tus seres queridos en el Sur de Florida. Encuentra la casa perfecta para tu familia.",
-      "explore": "Explorar"
+    "keyFeatures": {
+      "title": "Características Clave del Programa",
+      "subtitle": "Beneficios diseñados para ayudarte a alcanzar tu sueño de ser propietario",
+      "minimumRent": {
+        "title": "Renta mínima",
+        "description": "$2,500 USD mensuales (modelo Emelia). El valor puede variar según el modelo y la ubicación."
+      },
+      "monthlySavings": {
+        "title": "Ahorro mensual",
+        "description": "Entre $300 y $1,000 USD según el plan elegido para tu futura compra."
+      },
+      "frozenPrices": {
+        "title": "Precios congelados",
+        "description": "Pagos y precios congelados hasta por 5 años."
+      },
+      "maintenanceIncluded": {
+        "title": "Mantenimiento incluido",
+        "description": "Incluye mantenimiento y jardinería gratuitos."
+      },
+      "petsAllowed": {
+        "title": "Mascotas permitidas",
+        "description": "Se aceptan mascotas."
+      },
+      "noCreditCheck": {
+        "title": "Sin verificación de crédito",
+        "description": "No se requiere crédito ni verificación de empleo."
+      },
+      "easyEntry": {
+        "title": "Ingreso fácil",
+        "description": "¡Ingresar con un solo mes!"
+      }
+    },
+    "savingsPlans": {
+      "title": "Planes de Ahorro",
+      "subtitle": "Elige el plan que mejor se adapte a tus necesidades y objetivos",
+      "table": {
+        "duration": "Duración del contrato",
+        "monthlySavings": "Ahorro mensual",
+        "totalSavings": "Ahorro total aproximado",
+        "description": "Descripción",
+        "plan1": {
+          "duration": "1 año",
+          "description": "Ideal para quienes planean comprar pronto"
+        },
+        "plan2": {
+          "duration": "2 años",
+          "description": "Plan intermedio con ahorro sólido"
+        },
+        "plan3": {
+          "duration": "3 años",
+          "description": "Opción flexible para familias que se preparan para comprar"
+        },
+        "plan4": {
+          "duration": "4 a 5 años",
+          "description": "Plan de ahorro a largo plazo y mayor estabilidad"
+        }
+      }
+    },
+    "availableModels": {
+      "title": "Modelos Disponibles para Rent to Own",
+      "subtitle": "Cualquier modelo puede ser Rent to Own. Elige el que mejor se adapte a tu familia",
+      "rtoAvailable": "RTO Disponible",
+      "price": "Precio",
+      "viewDetails": "Ver Detalles",
+      "loading": "Cargando modelos..."
+    },
+    "requirements": {
+      "title": "Requisitos para Aplicar",
+      "subtitle": "Requisitos simples y accesibles para calificar",
+      "minimumIncome": {
+        "title": "Ingreso mínimo",
+        "description": "Ingreso familiar o individual de al menos $6,000 USD mensuales. Recuerda que tus ingresos puedes calcularlos con tus Banks statements (estados de cuenta bancarios) cash (efectivo) y referencias comerciales."
+      },
+      "noEvictions": {
+        "title": "Sin historial de desalojos",
+        "description": "No tener historial de desalojos."
+      },
+      "immigrationStatus": {
+        "title": "Estado migratorio",
+        "description": "Ser ciudadano, residente, contar con permiso de trabajo vigente o tener ITIN."
+      }
+    },
+    "documents": {
+      "title": "Documentación Requerida",
+      "subtitle": "Documentos simples y fáciles de obtener",
+      "taxes": {
+        "name": "Impuestos de los últimos 2 años",
+        "description": "W2 o 1099"
+      },
+      "payStubs": {
+        "name": "Desprendibles de pago",
+        "description": "Últimos 30 días"
+      },
+      "bankStatements": {
+        "name": "Estados de cuenta bancarios",
+        "description": "Últimos 60 días"
+      },
+      "id": {
+        "name": "Licencia de conducir o ID",
+        "description": "Identificación válida"
+      },
+      "ssn": {
+        "name": "Seguro Social o ITIN",
+        "description": "Número de identificación"
+      }
+    },
+    "process": {
+      "title": "Proceso de Aplicación",
+      "subtitle": "Pasos simples para comenzar tu camino hacia la propiedad",
+      "step1": {
+        "title": "Enviar documentos",
+        "description": "Envía los documentos requeridos para iniciar tu aplicación."
+      },
+      "step2": {
+        "title": "Completar aplicación",
+        "description": "Completa la aplicación RTO ($50 por solicitante)."
+      },
+      "step3": {
+        "title": "Entrevista y revisión",
+        "description": "Entrevista y revisión de documentos por nuestro equipo."
+      },
+      "step4": {
+        "title": "Firma del contrato",
+        "description": "Firma del contrato y pago del depósito."
+      },
+      "step5": {
+        "title": "Asignación y mudanza",
+        "description": "Asignación de vivienda y fecha de mudanza."
+      }
+    },
+    "benefits": {
+      "title": "¿Por qué elegir nuestro programa Rent to Own?",
+      "saveWhileLiving": {
+        "title": "Ahorra mientras vives",
+        "description": "Parte de tu renta se convierte en ahorro para tu futura compra"
+      },
+      "frozenPrices": {
+        "title": "Precios congelados",
+        "description": "Pagos y precios congelados hasta por 5 años"
+      },
+      "noCreditCheck": {
+        "title": "Sin verificación de crédito",
+        "description": "No se requiere crédito ni verificación de empleo"
+      }
     },
     "cta": {
-      "title": "¡Aplica Ahora!",
-      "description": "Renta y conviértete en el dueño de una casa nueva. Completa tu solicitud en línea.",
-      "button": "Aplicar Ahora"
+      "title": "¿Listo para comenzar?",
+      "description": "Contáctanos hoy y descubre cómo puedes vivir en tu casa nueva mientras ahorras para tu futura compra",
+      "applyNow": "Aplicar Ahora",
+      "call": "Llamar"
     }
   }
 }
