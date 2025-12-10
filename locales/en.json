@@ -404,6 +404,31 @@
           "stories": "1 Story",
           "lotSize": "Standard Lot"
         }
+      },
+      "duplex": {
+        "name": "Duplex",
+        "description": "Perfect investment opportunity - live in one unit, rent the other",
+        "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living in one and renting the other. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
+        "price": "$510,000",
+        "priceRange": "$510,000",
+        "features": [
+          "Two independent units",
+          "Perfect for living and renting",
+          "Investment opportunity",
+          "Modern design",
+          "Bright open spaces",
+          "High-end finishes",
+          "1-car garage per unit",
+          "Rental income potential: $2,000 per unit"
+        ],
+        "specifications": {
+          "bedrooms": "2 Bedrooms + 1 Den",
+          "bathrooms": "2 Bathrooms",
+          "squareFeet": "2,060 sq ft",
+          "garage": "1-Car Garage",
+          "stories": "1 Story",
+          "lotSize": "Standard Lot"
+        }
       }
     },
     "modelPage": {
@@ -761,53 +786,168 @@
   },
   "rentToOwn": {
     "hero": {
-      "title": "Transform your rent payment into homeownership",
-      "subtitle": "M.J. NEWELL HOMES - Rent one of our brand-new homes with an option to buy"
+      "badge": "Rent to Own Program",
+      "title": "Rent to Own",
+      "subtitle": "Live in your new home while saving for your future purchase"
     },
-    "application": {
-      "title": "Rental Application",
-      "description": "Rent one of our brand-new homes with an option to buy",
-      "highlight": "Part of your monthly rent will go towards the down payment on your home!"
-    },
-    "documents": {
-      "title": "Required Documents",
-      "bankStatements": "The last two months of bank statements",
-      "idCopy": "Copy of ID",
-      "firstLastSecurity": "First, last and security deposit"
-    },
-    "opportunity": {
-      "title": "Opportunity for All",
-      "description": "Rent one of our brand new homes with an option to buy! Part of your monthly rent will go towards the down payment on your home!"
-    },
-    "steps": {
-      "title": "How It Works",
-      "step": "Step",
-      "documents": {
-        "title": "Documents",
-        "description": "Prepare the required documents: bank statements, ID, and security deposit"
-      },
-      "interview": {
-        "title": "Interview",
-        "description": "Complete the form and meet with us for the assessment of your application"
-      },
-      "choose": {
-        "title": "Choose Your Home",
-        "description": "Select from our available models in LaBelle or Lehigh Acres"
-      },
-      "rent": {
-        "title": "Rent and Build",
-        "description": "Start renting while building toward ownership. Part of your rent goes to the down payment"
+    "whatIs": {
+      "title": "What is Rent to Own?",
+      "description": "The Rent to Own (RTO) program allows you to live in a new home right away while a portion of your monthly rent accumulates as savings for your future purchase. We are not a traditional rental. You pay to live in your new home. Part of that monthly payment becomes savings. At the end of your plan, you can use that savings as a down payment or part of the initial payment for your home.",
+      "objective": {
+        "title": "Program Objective",
+        "description": "Help families save while living in a new home, accumulating funds that they can later use as part of the down payment for their future purchase."
       }
     },
-    "communities": {
-      "title": "The Future of Florida",
-      "subtitle": "Discover available projects for your loved ones in South Florida. Find the perfect home for your family.",
-      "explore": "Explore"
+    "keyFeatures": {
+      "title": "Key Program Features",
+      "subtitle": "Benefits designed to help you achieve your dream of homeownership",
+      "minimumRent": {
+        "title": "Minimum Rent",
+        "description": "$2,500 USD monthly (Emelia model). The price may vary depending on the model and location."
+      },
+      "monthlySavings": {
+        "title": "Monthly Savings",
+        "description": "Between $300 and $1,000 USD depending on the plan chosen for your future purchase."
+      },
+      "frozenPrices": {
+        "title": "Frozen Prices",
+        "description": "Payments and prices frozen for up to 5 years."
+      },
+      "maintenanceIncluded": {
+        "title": "Maintenance Included",
+        "description": "Includes free maintenance and landscaping."
+      },
+      "petsAllowed": {
+        "title": "Pets Allowed",
+        "description": "Pets are accepted."
+      },
+      "noCreditCheck": {
+        "title": "No Credit Check",
+        "description": "No credit or employment verification required."
+      },
+      "easyEntry": {
+        "title": "Easy Entry",
+        "description": "Move in with just one month!"
+      }
+    },
+    "savingsPlans": {
+      "title": "Savings Plans",
+      "subtitle": "Choose the plan that best fits your needs and goals",
+      "table": {
+        "duration": "Contract Duration",
+        "monthlySavings": "Monthly Savings",
+        "totalSavings": "Approximate Total Savings",
+        "description": "Description",
+        "plan1": {
+          "duration": "1 year",
+          "description": "Ideal for those planning to buy soon"
+        },
+        "plan2": {
+          "duration": "2 years",
+          "description": "Intermediate plan with solid savings"
+        },
+        "plan3": {
+          "duration": "3 years",
+          "description": "Flexible option for families preparing to buy"
+        },
+        "plan4": {
+          "duration": "4 to 5 years",
+          "description": "Long-term savings plan with greater stability"
+        }
+      }
+    },
+    "availableModels": {
+      "title": "Available Models for Rent to Own",
+      "subtitle": "Any model can be Rent to Own. Choose the one that best fits your family",
+      "rtoAvailable": "RTO Available",
+      "price": "Price",
+      "viewDetails": "View Details",
+      "loading": "Loading models..."
+    },
+    "requirements": {
+      "title": "Application Requirements",
+      "subtitle": "Simple and accessible requirements to qualify",
+      "minimumIncome": {
+        "title": "Minimum Income",
+        "description": "Family or individual income of at least $6,000 USD monthly. Remember that you can calculate your income with your bank statements (bank account statements), cash, and commercial references."
+      },
+      "noEvictions": {
+        "title": "No Eviction History",
+        "description": "No history of evictions."
+      },
+      "immigrationStatus": {
+        "title": "Immigration Status",
+        "description": "Be a citizen, resident, have a valid work permit, or have an ITIN."
+      }
+    },
+    "documents": {
+      "title": "Required Documentation",
+      "subtitle": "Simple and easy-to-obtain documents",
+      "taxes": {
+        "name": "Taxes from the last 2 years",
+        "description": "W2 or 1099"
+      },
+      "payStubs": {
+        "name": "Pay Stubs",
+        "description": "Last 30 days"
+      },
+      "bankStatements": {
+        "name": "Bank Account Statements",
+        "description": "Last 60 days"
+      },
+      "id": {
+        "name": "Driver's License or ID",
+        "description": "Valid identification"
+      },
+      "ssn": {
+        "name": "Social Security or ITIN",
+        "description": "Identification number"
+      }
+    },
+    "process": {
+      "title": "Application Process",
+      "subtitle": "Simple steps to begin your path to homeownership",
+      "step1": {
+        "title": "Submit Documents",
+        "description": "Submit the required documents to begin your application."
+      },
+      "step2": {
+        "title": "Complete Application",
+        "description": "Complete the RTO application ($50 per applicant)."
+      },
+      "step3": {
+        "title": "Interview and Review",
+        "description": "Interview and document review by our team."
+      },
+      "step4": {
+        "title": "Sign Contract",
+        "description": "Sign the contract and pay the deposit."
+      },
+      "step5": {
+        "title": "Assignment and Move-in",
+        "description": "Home assignment and move-in date."
+      }
+    },
+    "benefits": {
+      "title": "Why Choose Our Rent to Own Program?",
+      "saveWhileLiving": {
+        "title": "Save While You Live",
+        "description": "Part of your rent becomes savings for your future purchase"
+      },
+      "frozenPrices": {
+        "title": "Frozen Prices",
+        "description": "Payments and prices frozen for up to 5 years"
+      },
+      "noCreditCheck": {
+        "title": "No Credit Check",
+        "description": "No credit or employment verification required"
+      }
     },
     "cta": {
-      "title": "Apply Now!",
-      "description": "Rent and become the owner of a new home. Complete your application online.",
-      "button": "Apply Now"
+      "title": "Ready to Get Started?",
+      "description": "Contact us today and discover how you can live in your new home while saving for your future purchase",
+      "applyNow": "Apply Now",
+      "call": "Call"
     }
   }
 }

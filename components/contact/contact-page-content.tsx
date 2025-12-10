@@ -3,8 +3,8 @@
 import { useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
+import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Globe } from "lucide-react";
+import { CONTACT_INFO, SEO_CONFIG, SOCIAL_LINKS } from "@/config/seo";
 import { PageContent } from "@/components/layout/page-container";
 import { useTranslation } from "@/hooks/use-translation";
 
@@ -133,6 +133,72 @@ export const ContactPageContent = () => {
                         <p className="font-medium text-muted-foreground">
                           {t("contactForm.contactInfo.sunday") || "Sunday"}: {t("contactForm.contactInfo.closed") || "Closed"}
                         </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Website Card */}
+              {SOCIAL_LINKS.website && (
+                <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 group">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors shrink-0">
+                        <Globe className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm text-muted-foreground mb-2 uppercase tracking-wider">
+                          Website
+                        </p>
+                        <a
+                          href={SOCIAL_LINKS.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-lg font-semibold hover:text-primary transition-colors block break-words"
+                        >
+                          {SOCIAL_LINKS.website.replace(/^https?:\/\//, "")}
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Social Media Card */}
+              <Card className="hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50 group">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors shrink-0">
+                      <Facebook className="h-6 w-6 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm text-muted-foreground mb-3 uppercase tracking-wider">
+                        Follow Us
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                        {SOCIAL_LINKS.facebook && (
+                          <a
+                            href={SOCIAL_LINKS.facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors text-sm font-medium"
+                          >
+                            <Facebook className="h-4 w-4" />
+                            Facebook
+                          </a>
+                        )}
+                        {SOCIAL_LINKS.instagram && (
+                          <a
+                            href={SOCIAL_LINKS.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors text-sm font-medium"
+                          >
+                            <Instagram className="h-4 w-4" />
+                            Instagram
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -36,6 +36,6 @@ export const getModelDataWithImages = async (modelKey: string): Promise<(ModelDa
 export const getAllModelKeys = async (): Promise<string[]> => {
   // Por ahora retornamos los modelos conocidos
   // En el futuro se puede hacer dinámico leyendo la carpeta data/models
-  return ["louisiana", "viana", "delanie", "aurora", "langdon", "emelia"];
+  return ["louisiana", "viana", "delanie", "aurora", "langdon", "emelia", "duplex"];
 };
 

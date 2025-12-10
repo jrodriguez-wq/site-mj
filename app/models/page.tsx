@@ -1,8 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslation } from "@/hooks/use-translation";
 import { ModelCard } from "@/components/models/model-card";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
+import { getModelData } from "@/lib/models/model-data";
+import { ModelData } from "@/types/model";
 
 // Configuración de badges y datos adicionales por modelo
 const MODEL_CONFIG = {
@@ -29,67 +32,96 @@ const MODEL_CONFIG = {
     badges: [{ type: "satisfied" as const, label: "Familias Satisfechas" }],
     satisfiedFamilies: 95,
   },
+  duplex: {
+    badges: [{ type: "favorite" as const, label: "Inversión" }],
+    satisfiedFamilies: 0,
+  },
 };
+
+interface ModelDisplayData {
+  key: string;
+  nameKey: string;
+  descriptionKey: string;
+  priceKey: string;
+  price: string;
+  beds: string;
+  baths: string;
+  sqft: string;
+  modelData: ModelData | null;
+}
 
 export default function ModelsPage() {
   const { t } = useTranslation();
+  const [models, setModels] = useState<ModelDisplayData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const models = [
-    {
-      key: "louisiana",
-      nameKey: "homeModels.models.louisiana.name",
-      descriptionKey: "homeModels.models.louisiana.description",
-      priceKey: "homeModels.models.louisiana.price",
-      beds: "3-4",
-      baths: "2-3",
-      sqft: "1,500-2,000",
-    },
-    {
-      key: "viana",
-      nameKey: "homeModels.models.viana.name",
-      descriptionKey: "homeModels.models.viana.description",
-      priceKey: "homeModels.models.viana.price",
-      beds: "3-4",
-      baths: "2-3",
-      sqft: "1,600-2,100",
-    },
-    {
-      key: "delanie",
-      nameKey: "homeModels.models.delanie.name",
-      descriptionKey: "homeModels.models.delanie.description",
-      priceKey: "homeModels.models.delanie.price",
-      beds: "4",
-      baths: "3",
-      sqft: "2,000-2,400",
-    },
-    {
-      key: "aurora",
-      nameKey: "homeModels.models.aurora.name",
-      descriptionKey: "homeModels.models.aurora.description",
-      priceKey: "homeModels.models.aurora.price",
-      beds: "4-5",
-      baths: "3-4",
-      sqft: "2,200-2,600",
-    },
-    {
-      key: "langdon",
-      nameKey: "homeModels.models.langdon.name",
-      descriptionKey: "homeModels.models.langdon.description",
-      priceKey: "homeModels.models.langdon.price",
-      beds: "4-5",
-      baths: "3-4",
-      sqft: "2,400-2,800",
-    },
-    {
-      key: "emelia",
-      nameKey: "homeModels.models.emelia.name",
-      descriptionKey: "homeModels.models.emelia.description",
-      priceKey: "homeModels.models.emelia.price",
-      beds: "5",
-      baths: "4",
-      sqft: "2,600-3,000",
-    },
-  ];
+  useEffect(() => {
+    const loadModelsData = async () => {
+      const modelKeys = [
+        {
+          key: "louisiana",
+          nameKey: "homeModels.models.louisiana.name",
+          descriptionKey: "homeModels.models.louisiana.description",
+          priceKey: "homeModels.models.louisiana.price",
+        },
+        {
+          key: "viana",
+          nameKey: "homeModels.models.viana.name",
+          descriptionKey: "homeModels.models.viana.description",
+          priceKey: "homeModels.models.viana.price",
+        },
+        {
+          key: "delanie",
+          nameKey: "homeModels.models.delanie.name",
+          descriptionKey: "homeModels.models.delanie.description",
+          priceKey: "homeModels.models.delanie.price",
+        },
+        {
+          key: "aurora",
+          nameKey: "homeModels.models.aurora.name",
+          descriptionKey: "homeModels.models.aurora.description",
+          priceKey: "homeModels.models.aurora.price",
+        },
+        {
+          key: "langdon",
+          nameKey: "homeModels.models.langdon.name",
+          descriptionKey: "homeModels.models.langdon.description",
+          priceKey: "homeModels.models.langdon.price",
+        },
+        {
+          key: "emelia",
+          nameKey: "homeModels.models.emelia.name",
+          descriptionKey: "homeModels.models.emelia.description",
+          priceKey: "homeModels.models.emelia.price",
+        },
+        {
+          key: "duplex",
+          nameKey: "homeModels.models.duplex.name",
+          descriptionKey: "homeModels.models.duplex.description",
+          priceKey: "homeModels.models.duplex.price",
+        },
+      ];
+
+      const modelsWithData = await Promise.all(
+        modelKeys.map(async (model) => {
+          const modelData = await getModelData(model.key);
+          return {
+            ...model,
+            price: modelData?.price || "",
+            beds: modelData?.bedrooms || "",
+            baths: modelData?.bathrooms || "",
+            sqft: modelData?.sqft || "",
+            modelData,
+          };
+        })
+      );
+
+      setModels(modelsWithData);
+      setIsLoading(false);
+    };
+
+    loadModelsData();
+  }, []);
 
   return (
     <div className="pt-32 md:pt-36 lg:pt-40 pb-16 md:pb-24">
@@ -110,38 +142,50 @@ export default function ModelsPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2">
-            {models.map((model) => {
-              const config = MODEL_CONFIG[model.key as keyof typeof MODEL_CONFIG];
-              const modelImages = getModelImages(model.key);
-              const mainImage = getModelMainImage(model.key);
+          {isLoading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="text-muted-foreground">Cargando modelos...</div>
+            </div>
+          ) : (
+            <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2" suppressHydrationWarning>
+              {models.map((model, index) => {
+                const config = MODEL_CONFIG[model.key as keyof typeof MODEL_CONFIG];
+                const modelImages = getModelImages(model.key);
+                const mainImage = getModelMainImage(model.key);
+                // Stagger initial delays: each card starts at a different time (index * 800ms)
+                // But all cards change images at the same interval (4000ms)
+                const initialDelay = index * 800;
+                const carouselInterval = 4000;
 
-              return (
-                <ModelCard
-                  key={model.key}
-                  modelKey={model.key}
-                  name={t(model.nameKey)}
-                  description={t(model.descriptionKey)}
-                  image={mainImage}
-                  images={modelImages}
-                  price={t(model.priceKey)}
-                  beds={model.beds}
-                  bedsLabel={t("homeModels.beds")}
-                  baths={model.baths}
-                  bathsLabel={t("homeModels.baths")}
-                  sqft={model.sqft}
-                  sqftLabel={t("homeModels.sqft")}
-                  badges={config?.badges}
-                  satisfiedFamilies={config?.satisfiedFamilies}
-                  viewDetailsLabel={t("homeModels.moreDetails")}
-                  viewPhotosLabel={`${t("homeModels.viewPhotos")} (${modelImages.length})`}
-                  galleryTitle={`${t("homeModels.gallery")} ${t(model.nameKey)}`}
-                  galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
-                  modelLabel={t("homeModels.model")}
-                />
-              );
-            })}
-          </div>
+                return (
+                  <ModelCard
+                    key={model.key}
+                    modelKey={model.key}
+                    name={t(model.nameKey)}
+                    description={t(model.descriptionKey)}
+                    image={mainImage}
+                    images={modelImages}
+                    price={model.price}
+                    beds={model.beds}
+                    bedsLabel={t("homeModels.beds")}
+                    baths={model.baths}
+                    bathsLabel={t("homeModels.baths")}
+                    sqft={model.sqft}
+                    sqftLabel={t("homeModels.sqft")}
+                    badges={config?.badges}
+                    satisfiedFamilies={config?.satisfiedFamilies}
+                    viewDetailsLabel={t("homeModels.moreDetails")}
+                    viewPhotosLabel={`${t("homeModels.viewPhotos")} (${modelImages.length})`}
+                    galleryTitle={`${t("homeModels.gallery")} ${t(model.nameKey)}`}
+                    galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
+                    modelLabel={t("homeModels.model")}
+                    carouselDelay={carouselInterval}
+                    initialDelay={initialDelay}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

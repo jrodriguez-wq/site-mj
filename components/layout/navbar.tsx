@@ -36,6 +36,10 @@ export const Navbar = () => {
       href: "/",
     },
     {
+      title: t("nav.rentToOwn"),
+      href: "/rent-to-own",
+    },
+    {
       title: t("nav.buyHome"),
       href: "#",
       children: [
@@ -43,11 +47,6 @@ export const Navbar = () => {
           title: t("nav.models"),
           href: "/models",
           description: t("nav.modelsDesc"),
-        },
-        {
-          title: t("nav.rentToOwn"),
-          href: "/rent-to-own",
-          description: t("nav.rentToOwnDesc"),
         },
         {
           title: t("nav.labelle"),
