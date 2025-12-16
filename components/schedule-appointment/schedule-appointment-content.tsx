@@ -1,0 +1,271 @@
+"use client";
+
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { HubSpotForm } from "@/components/ui/hubspot-form";
+import { MapPin, Phone, ExternalLink, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map } from "lucide-react";
+import { CONTACT_INFO } from "@/config/seo";
+import { useTranslation } from "@/hooks/use-translation";
+
+const address = "45 Bridge St, LaBelle, FL 33935";
+const googleMapsUrl = "https://www.google.com/maps?q=45+Bridge+St,+LaBelle,+FL+33935";
+
+// Configuración del formulario de HubSpot para agendamiento
+const HUBSPOT_FORM_CONFIG = {
+  portalId: "50215941",
+  formId: "77bc0a99-fc8a-4509-8eb5-1b457f3452df",
+  region: "na1" as const,
+};
+
+export const ScheduleAppointmentContent = () => {
+  const { t } = useTranslation();
+  const encodedAddress = encodeURIComponent(address);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
+      {/* Hero Section - Moderno y llamativo */}
+      <section className="relative py-16 md:py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent" />
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center space-y-4 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              <Calendar className="h-4 w-4" />
+              <span suppressHydrationWarning>{t("scheduleAppointment.title")}</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent" suppressHydrationWarning>
+              {t("scheduleAppointment.heroTitle")}
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+              {t("scheduleAppointment.heroSubtitle")}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content - Formulario como elemento principal */}
+      <section className="py-8 md:py-12 pb-16 md:pb-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid gap-8 lg:grid-cols-3">
+              {/* Columna Principal - Formulario (2/3 del espacio) */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Formulario destacado */}
+                <Card className="border-2 border-primary/20 shadow-2xl">
+                  <CardContent className="p-6 md:p-8">
+                    <div className="space-y-6">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="p-2 bg-primary/10 rounded-lg">
+                            <Calendar className="h-6 w-6 text-primary" />
+                          </div>
+                          <div>
+                            <h2 className="text-2xl md:text-3xl font-bold text-foreground" suppressHydrationWarning>
+                              {t("scheduleAppointment.formTitle")}
+                            </h2>
+                            <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                              {t("scheduleAppointment.formDescription")}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Formulario de HubSpot */}
+                      <div className=" rounded-xl p-6">
+                        <HubSpotForm
+                          portalId={HUBSPOT_FORM_CONFIG.portalId}
+                          formId={HUBSPOT_FORM_CONFIG.formId}
+                          region={HUBSPOT_FORM_CONFIG.region}
+                          className="w-full"
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Beneficios - Diseño moderno */}
+                <Card>
+                  <CardContent className="p-6 md:p-8">
+                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2" suppressHydrationWarning>
+                      <CheckCircle2 className="h-5 w-5 text-primary" />
+                      {t("scheduleAppointment.whatToExpect.title")}
+                    </h3>
+                    <div className="grid gap-4 sm:grid-cols-3">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1.5 bg-primary/10 rounded-md">
+                            <DollarSign className="h-4 w-4 text-primary" />
+                          </div>
+                          <h4 className="font-semibold text-sm" suppressHydrationWarning>
+                            {t("scheduleAppointment.whatToExpect.financialEvaluation.title")}
+                          </h4>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                          {t("scheduleAppointment.whatToExpect.financialEvaluation.description")}
+                        </p>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1.5 bg-primary/10 rounded-md">
+                            <Home className="h-4 w-4 text-primary" />
+                          </div>
+                          <h4 className="font-semibold text-sm" suppressHydrationWarning>
+                            {t("scheduleAppointment.whatToExpect.viewHomes.title")}
+                          </h4>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                          {t("scheduleAppointment.whatToExpect.viewHomes.description")}
+                        </p>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <div className="p-1.5 bg-primary/10 rounded-md">
+                            <Users className="h-4 w-4 text-primary" />
+                          </div>
+                          <h4 className="font-semibold text-sm" suppressHydrationWarning>
+                            {t("scheduleAppointment.whatToExpect.personalConsultation.title")}
+                          </h4>
+                        </div>
+                        <p className="text-xs text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                          {t("scheduleAppointment.whatToExpect.personalConsultation.description")}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Sidebar - Información de oficina (1/3 del espacio) */}
+              <div className="space-y-6">
+                {/* Office Image Card */}
+                <Card className="overflow-hidden border-2">
+                  <CardContent className="p-0">
+                    <div className="relative w-full h-64 md:h-80">
+                      <Image
+                        src="/img/hero/1W5A0741_1.jpg"
+                        alt="M.J. Newell Homes Office - 45 Bridge St, LaBelle, FL"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        priority
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-background/95 backdrop-blur-sm rounded-lg p-3 border border-border/50">
+                          <div className="flex items-center gap-2 mb-1">
+                            <MapPin className="h-4 w-4 text-primary" />
+                            <h3 className="text-sm font-bold" suppressHydrationWarning>
+                              {t("scheduleAppointment.officeInfo.title")}
+                            </h3>
+                          </div>
+                          <p className="text-xs text-muted-foreground">{address}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Office Information Card - Sin sticky */}
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="space-y-5">
+                      <div>
+                        <h4 className="text-sm font-semibold mb-1 text-muted-foreground" suppressHydrationWarning>
+                          {t("scheduleAppointment.officeInfo.address")}
+                        </h4>
+                        <p className="text-sm font-medium">{address}</p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-semibold mb-1 text-muted-foreground flex items-center gap-2" suppressHydrationWarning>
+                          <Phone className="h-4 w-4" />
+                          {t("scheduleAppointment.officeInfo.phone")}
+                        </h4>
+                        <a
+                          href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                          className="text-sm text-primary hover:underline font-medium"
+                        >
+                          {CONTACT_INFO.phone}
+                        </a>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-semibold mb-2 text-muted-foreground flex items-center gap-2" suppressHydrationWarning>
+                          <Clock className="h-4 w-4" />
+                          {t("scheduleAppointment.officeInfo.hours")}
+                        </h4>
+                        <div className="text-xs text-muted-foreground space-y-1">
+                          <p suppressHydrationWarning>
+                            {t("scheduleAppointment.officeInfo.weekdays")}: {CONTACT_INFO.openingHours.weekdays.opens} - {CONTACT_INFO.openingHours.weekdays.closes}
+                          </p>
+                          <p suppressHydrationWarning>
+                            {t("scheduleAppointment.officeInfo.saturday")}: {CONTACT_INFO.openingHours.saturday.opens} - {CONTACT_INFO.openingHours.saturday.closes}
+                          </p>
+                          <p suppressHydrationWarning>
+                            {t("scheduleAppointment.officeInfo.sunday")}: {t("scheduleAppointment.officeInfo.closed")}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t space-y-2">
+                        <Button
+                          asChild
+                          className="w-full"
+                          size="default"
+                        >
+                          <a
+                            href={googleMapsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2"
+                          >
+                            <Map className="h-4 w-4" />
+                            <span suppressHydrationWarning>{t("scheduleAppointment.getDirections")}</span>
+                          </a>
+                        </Button>
+
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="w-full"
+                          size="default"
+                        >
+                          <a
+                            href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                            className="flex items-center justify-center gap-2"
+                          >
+                            <Phone className="h-4 w-4" />
+                            <span suppressHydrationWarning>{t("scheduleAppointment.callNow")}</span>
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Map Card */}
+                <Card className="overflow-hidden border-2">
+                  <CardContent className="p-0">
+                    <div className="relative w-full h-[300px]">
+                      <iframe
+                        src={`https://www.google.com/maps?q=${encodedAddress}&output=embed`}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="M.J. Newell Homes Office Location"
+                        className="absolute inset-0"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};

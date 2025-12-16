@@ -41,7 +41,7 @@ export default function LaBellePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Image */}
-      <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden">
+      <div className="relative w-full h-[400px] sm:h-[450px] md:h-[550px] lg:h-[650px] xl:h-[700px] overflow-hidden">
         <Image
           src={labelleImages[0]}
           alt="LaBelle, Florida - Beautiful community"
@@ -52,17 +52,17 @@ export default function LaBellePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 lg:p-16">
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-4">
-              <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider bg-background/90 backdrop-blur-md px-4 py-2 rounded-full border border-primary/20 shadow-lg">
+            <div className="mb-2 sm:mb-3 md:mb-4">
+              <span className="inline-block text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider bg-background/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-primary/20 shadow-lg">
                 Communities
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-foreground drop-shadow-2xl mb-4 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-foreground drop-shadow-2xl mb-2 sm:mb-3 md:mb-4 leading-tight">
               LaBelle Country
             </h1>
-            <p className="text-2xl md:text-3xl lg:text-4xl text-foreground/95 drop-shadow-lg font-semibold">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-foreground/95 drop-shadow-lg font-semibold">
               Discover Your Dream Home in Southwest Florida
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function LaBellePage() {
       </div>
 
       <PageContent size="lg">
-        <div className="py-16 md:py-20 lg:py-24">
+        <div className="py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24">
           <CommunityPageContent
             aboutTitle="About LaBelle"
             aboutDescription="The city of LaBelle is located in a region with exuberant forests and wildlife, immersed in oak trees that characterize its landscape and provide shade to its land. With the oak tree being a species that still remains an insignia in the region, it continues to inhabit most residential developments throughout the area. The city of LaBelle is the main urban conglomerate in the region today and preserves an important historical center with buildings constructed at the end of the 19th century and the beginning of the 20th century. LaBelle continues to contribute to the conservation of the rich architectural heritage in Florida. While cultivating its history, it proudly welcomes the urbanization of its developing areas."
@@ -93,7 +93,7 @@ export default function LaBellePage() {
             ctaButton="Apply Now"
           />
 
-          <div className="pt-20 md:pt-24 pb-12 md:pb-16">
+          <div className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-8 sm:pb-10 md:pb-12 lg:pb-16">
             <CommunityModelsSection
               modelKeys={labelleModels.map((m) => m.key)}
               title="Available Models"

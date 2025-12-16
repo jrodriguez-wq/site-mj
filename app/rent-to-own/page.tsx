@@ -87,10 +87,10 @@ export default function RentToOwnPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Image */}
-      <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
+      <div className="relative w-full h-[400px] sm:h-[450px] md:h-[550px] lg:h-[600px] xl:h-[650px] overflow-hidden">
         <Image
           src="/img/hero/1W5A0754 E4.jpg"
-          alt="Rent to Own - M.J. Newell Homes"
+          alt={t("rentToOwn.images.hero")}
           fill
           className="object-cover"
           priority
@@ -99,19 +99,19 @@ export default function RentToOwnPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-background/50"></div>
         
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 lg:p-16">
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16">
           <PageContent size="lg">
             <div className="max-w-5xl">
-              <div className="mb-4">
-                <span className="inline-block px-4 py-2 bg-primary/90 backdrop-blur-md text-white font-bold rounded-full border-2 border-white/50 shadow-xl">
-                  <Sparkles className="inline h-4 w-4 mr-2" />
+              <div className="mb-2 sm:mb-3 md:mb-4">
+                <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/90 backdrop-blur-md text-white text-xs sm:text-sm font-bold rounded-full border-2 border-white/50 shadow-xl">
+                  <Sparkles className="inline h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
                   {t("rentToOwn.hero.badge")}
                 </span>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-foreground drop-shadow-2xl mb-6 leading-tight" suppressHydrationWarning>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-foreground drop-shadow-2xl mb-3 sm:mb-4 md:mb-6 leading-tight px-2" suppressHydrationWarning>
                 {t("rentToOwn.hero.title")}
               </h1>
-              <p className="text-2xl md:text-3xl lg:text-4xl text-foreground/95 drop-shadow-lg font-semibold max-w-3xl" suppressHydrationWarning>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-foreground/95 drop-shadow-lg font-semibold max-w-3xl px-2" suppressHydrationWarning>
                 {t("rentToOwn.hero.subtitle")}
               </p>
             </div>
@@ -121,37 +121,37 @@ export default function RentToOwnPage() {
 
       {/* Main Description Section */}
       <PageContent size="lg">
-        <div className="py-12 md:py-16">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20">
+        <div className="py-8 sm:py-10 md:py-12 lg:py-16">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <div className="relative h-56 sm:h-64 md:h-72 lg:h-80 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20">
               <Image
                 src="/img/hero/1W5A1456 E5.jpg"
-                alt="Casa nueva - Rent to Own"
+                alt={t("rentToOwn.images.newHome")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-primary/5 via-background to-background overflow-hidden relative">
-              <CardContent className="pt-8 md:pt-10">
-                <div className="space-y-6">
-                  <div className="space-y-3">
-                    <h2 className="text-2xl md:text-3xl font-bold" suppressHydrationWarning>
+              <CardContent className="pt-6 sm:pt-8 md:pt-10 p-4 sm:p-6 md:p-8">
+                <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                  <div className="space-y-2 sm:space-y-3">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold" suppressHydrationWarning>
                       {t("rentToOwn.whatIs.title")}
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
+                    <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
                   </div>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed" suppressHydrationWarning>
                     {t("rentToOwn.whatIs.description")}
                   </p>
-                  <div className="bg-gradient-to-r from-primary/15 via-primary/10 to-primary/15 rounded-xl p-6 border border-primary/20">
-                    <div className="flex items-start gap-3">
+                  <div className="bg-gradient-to-r from-primary/15 via-primary/10 to-primary/15 rounded-xl p-4 sm:p-5 md:p-6 border border-primary/20">
+                    <div className="flex items-start gap-2 sm:gap-3">
                       <div className="p-2 bg-primary/20 rounded-lg shrink-0">
-                        <PiggyBank className="h-6 w-6 text-primary" />
+                        <PiggyBank className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-1" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.title")}</h3>
-                        <p className="text-sm md:text-base text-foreground" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.description")}</p>
+                        <h3 className="text-base sm:text-lg font-bold mb-1" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.title")}</h3>
+                        <p className="text-xs sm:text-sm md:text-base text-foreground" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.description")}</p>
                       </div>
                     </div>
                   </div>
@@ -204,24 +204,24 @@ export default function RentToOwnPage() {
       </section>
 
       {/* Savings Plans Table Section */}
-      <section className="py-12 md:py-16 bg-background">
+      <section className="py-8 sm:py-10 md:py-12 lg:py-16 bg-background">
         <PageContent size="lg">
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-10">
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20 order-2 md:order-1">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center mb-6 sm:mb-8 md:mb-10">
+            <div className="relative h-56 sm:h-64 md:h-72 lg:h-80 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20 order-2 md:order-1">
               <Image
                 src="/img/hero/1W5A1489 E5.jpg"
-                alt="Planes de ahorro - Rent to Own"
+                alt={t("rentToOwn.images.savingsPlans")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="space-y-3 order-1 md:order-2">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
+            <div className="space-y-2 sm:space-y-3 order-1 md:order-2">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
                 {t("rentToOwn.savingsPlans.title")}
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
-              <p className="text-base md:text-lg text-muted-foreground" suppressHydrationWarning>
+              <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground" suppressHydrationWarning>
                 {t("rentToOwn.savingsPlans.subtitle")}
               </p>
             </div>
@@ -229,14 +229,15 @@ export default function RentToOwnPage() {
 
           <Card className="border-2 shadow-2xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="overflow-x-auto">
+              {/* Desktop Table View */}
+              <div className="hidden md:block overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-gradient-to-r from-primary/20 to-primary/10">
                     <tr>
-                      <th className="text-left py-5 px-6 font-bold text-foreground text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.duration")}</th>
-                      <th className="text-left py-5 px-6 font-bold text-foreground text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.monthlySavings")}</th>
-                      <th className="text-left py-5 px-6 font-bold text-foreground text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.totalSavings")}</th>
-                      <th className="text-left py-5 px-6 font-bold text-foreground text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.description")}</th>
+                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.duration")}</th>
+                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.monthlySavings")}</th>
+                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.totalSavings")}</th>
+                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.description")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -251,15 +252,64 @@ export default function RentToOwnPage() {
                             "hover:bg-primary/5"
                           )}
                         >
-                          <td className="py-5 px-6 font-bold text-lg" suppressHydrationWarning>{t(`rentToOwn.savingsPlans.table.${planKey}.duration`)}</td>
-                          <td className="py-5 px-6 text-primary font-black text-xl">{plan.monthlySavings}</td>
-                          <td className="py-5 px-6 text-primary font-black text-xl">{plan.totalSavings}</td>
-                          <td className="py-5 px-6 text-muted-foreground" suppressHydrationWarning>{t(`rentToOwn.savingsPlans.table.${planKey}.description`)}</td>
+                          <td className="py-4 sm:py-5 px-4 sm:px-6 font-bold text-base sm:text-lg" suppressHydrationWarning>{t(`rentToOwn.savingsPlans.table.${planKey}.duration`)}</td>
+                          <td className="py-4 sm:py-5 px-4 sm:px-6 text-primary font-black text-lg sm:text-xl">{plan.monthlySavings}</td>
+                          <td className="py-4 sm:py-5 px-4 sm:px-6 text-primary font-black text-lg sm:text-xl">{plan.totalSavings}</td>
+                          <td className="py-4 sm:py-5 px-4 sm:px-6 text-sm sm:text-base text-muted-foreground" suppressHydrationWarning>{t(`rentToOwn.savingsPlans.table.${planKey}.description`)}</td>
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div className="md:hidden divide-y divide-border/50">
+                {RTO_SAVINGS_PLANS.map((plan, index) => {
+                  const planKey = `plan${index + 1}` as "plan1" | "plan2" | "plan3" | "plan4";
+                  return (
+                    <div
+                      key={index}
+                      className={cn(
+                        "p-4 sm:p-5 transition-colors",
+                        index % 2 === 0 ? "bg-background" : "bg-muted/30"
+                      )}
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between pb-2 border-b border-border/30">
+                          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider" suppressHydrationWarning>
+                            {t("rentToOwn.savingsPlans.table.duration")}
+                          </span>
+                          <span className="font-bold text-base sm:text-lg text-foreground" suppressHydrationWarning>
+                            {t(`rentToOwn.savingsPlans.table.${planKey}.duration`)}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block" suppressHydrationWarning>
+                              {t("rentToOwn.savingsPlans.table.monthlySavings")}
+                            </span>
+                            <span className="text-primary font-black text-lg sm:text-xl block">{plan.monthlySavings}</span>
+                          </div>
+                          <div className="space-y-1">
+                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block" suppressHydrationWarning>
+                              {t("rentToOwn.savingsPlans.table.totalSavings")}
+                            </span>
+                            <span className="text-primary font-black text-lg sm:text-xl block">{plan.totalSavings}</span>
+                          </div>
+                        </div>
+                        <div className="pt-2 border-t border-border/30">
+                          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5" suppressHydrationWarning>
+                            {t("rentToOwn.savingsPlans.table.description")}
+                          </span>
+                          <p className="text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                            {t(`rentToOwn.savingsPlans.table.${planKey}.description`)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </CardContent>
           </Card>
@@ -365,7 +415,7 @@ export default function RentToOwnPage() {
             <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20">
               <Image
                 src="/img/hero/1W5A1493 E5.jpg"
-                alt="Requisitos Rent to Own"
+                alt={t("rentToOwn.images.requirements")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -443,7 +493,7 @@ export default function RentToOwnPage() {
             <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20 order-2 md:order-1">
               <Image
                 src="/img/hero/1W5A1505 E5.jpg"
-                alt="Proceso de aplicación - Rent to Own"
+                alt={t("rentToOwn.images.applicationProcess")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -541,7 +591,7 @@ export default function RentToOwnPage() {
             <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20">
               <Image
                 src="/img/hero/AURORA.png"
-                alt="Beneficios Rent to Own"
+                alt={t("rentToOwn.images.benefits")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"

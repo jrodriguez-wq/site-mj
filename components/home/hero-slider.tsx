@@ -69,7 +69,7 @@ export const HeroSlider = () => {
   const currentSlide = heroSlides[currentIndex];
 
   return (
-    <section className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
+    <section className="relative w-full h-[500px] sm:h-[550px] md:h-[650px] lg:h-[750px] overflow-hidden">
       <div className="absolute inset-0 z-0">
         {heroSlides.map((slide, index) => (
           <div
@@ -98,11 +98,11 @@ export const HeroSlider = () => {
       </div>
 
       <div className="relative z-30 w-full h-full flex items-center justify-center">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl text-center space-y-6 mx-auto">
+        <div className="container mx-auto px-4 sm:px-5 md:px-6">
+          <div className="max-w-4xl text-center space-y-4 sm:space-y-5 md:space-y-6 mx-auto">
           <div
             className={cn(
-              "space-y-4",
+              "space-y-3 sm:space-y-4",
               "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
               isTransitioning ? "opacity-0" : "opacity-100"
             )}
@@ -112,7 +112,7 @@ export const HeroSlider = () => {
           >
             <h1
               className={cn(
-                "text-4xl font-black tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-white",
+                "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white px-2",
                 "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
                 isTransitioning
                   ? "translate-y-4 opacity-0"
@@ -130,7 +130,7 @@ export const HeroSlider = () => {
               {currentSlide.subtitle && (
                 <span
                   className={cn(
-                    "block text-primary mt-2 font-black",
+                    "block text-primary mt-1 sm:mt-2 font-black",
                     "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
                     isTransitioning
                       ? "translate-x-4 opacity-0"
@@ -149,7 +149,7 @@ export const HeroSlider = () => {
             </h1>
             <p
               className={cn(
-                "mx-auto max-w-[700px] text-white text-lg md:text-xl font-semibold",
+                "mx-auto max-w-[700px] text-white text-sm sm:text-base md:text-lg lg:text-xl font-semibold px-4",
                 "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
                 isTransitioning
                   ? "translate-y-4 opacity-0"
@@ -167,7 +167,7 @@ export const HeroSlider = () => {
 
           <div
             className={cn(
-              "flex flex-col sm:flex-row gap-4 justify-center flex-wrap",
+              "flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center flex-wrap px-4",
               "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
               isTransitioning
                 ? "opacity-0"
@@ -187,8 +187,8 @@ export const HeroSlider = () => {
               }}
               size="lg"
               className={cn(
-                "bg-primary hover:bg-primary/90 text-white",
-                "px-8 py-6 text-base font-semibold",
+                "bg-primary hover:bg-primary/90 text-white w-full sm:w-auto",
+                "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
                 "shadow-lg hover:shadow-xl hover:shadow-primary/30",
                 "transition-all duration-300 ease-out",
                 "hover:scale-105 active:scale-100",
@@ -203,8 +203,8 @@ export const HeroSlider = () => {
               variant="outline"
               size="lg"
               className={cn(
-                "bg-white/15 border-2 border-white/40 text-white",
-                "px-8 py-6 text-base font-semibold",
+                "bg-white/15 border-2 border-white/40 text-white w-full sm:w-auto",
+                "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
                 "hover:bg-white/25 hover:border-white/60",
                 "shadow-lg hover:shadow-xl",
                 "transition-all duration-300 ease-out",
@@ -220,7 +220,7 @@ export const HeroSlider = () => {
 
       <div
         className={cn(
-          "absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex gap-2",
+          "absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex gap-2",
           "animate-fade-in"
         )}
         style={{ animationDelay: "600ms" }}
@@ -230,11 +230,11 @@ export const HeroSlider = () => {
             key={index}
             onClick={() => handleSlideChange(index)}
             className={cn(
-              "h-2 rounded-full transition-all duration-500 ease-out cursor-pointer",
+              "h-1.5 sm:h-2 rounded-full transition-all duration-500 ease-out cursor-pointer",
               "smooth-hover",
               index === currentIndex
-                ? "w-8 bg-primary shadow-lg shadow-primary/50"
-                : "w-2 bg-white/50 hover:bg-white/70 hover:w-3"
+                ? "w-6 sm:w-8 bg-primary shadow-lg shadow-primary/50"
+                : "w-1.5 sm:w-2 bg-white/50 hover:bg-white/70 hover:w-2 sm:hover:w-3"
             )}
             aria-label={`Go to slide ${index + 1}`}
           />

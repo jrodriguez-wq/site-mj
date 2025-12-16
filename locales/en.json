@@ -21,7 +21,8 @@
     "aboutUsDesc": "Learn more about M.J. Newell Homes",
     "contact": "Contact",
     "contactDesc": "Get in touch with our team",
-    "applyNow": "Apply Now"
+    "applyNow": "Apply Now",
+    "scheduleAppointment": "Schedule Appointment"
   },
   "hero": {
     "title1": "We are building the future for",
@@ -584,11 +585,20 @@
       "phone": "Phone",
       "email": "Email",
       "location": "Location",
+      "address": "Address",
       "hours": "Business Hours",
       "weekdays": "Monday - Friday",
       "saturday": "Saturday",
       "sunday": "Sunday",
-      "closed": "Closed"
+      "closed": "Closed",
+      "socialMedia": "Follow Us",
+      "scheduleAppointment": "Schedule Appointment",
+      "scheduleAppointmentDesc": "Visit our office and see our homes",
+      "socialNetworks": {
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "tiktok": "TikTok"
+      }
     }
   },
   "warranty": {
@@ -948,6 +958,91 @@
       "description": "Contact us today and discover how you can live in your new home while saving for your future purchase",
       "applyNow": "Apply Now",
       "call": "Call"
+    },
+    "images": {
+      "hero": "Rent to Own - M.J. Newell Homes",
+      "newHome": "New home - Rent to Own",
+      "savingsPlans": "Savings plans - Rent to Own",
+      "requirements": "Rent to Own requirements",
+      "applicationProcess": "Rent to Own application process",
+      "benefits": "Rent to Own benefits"
+    }
+  },
+  "promotion": {
+    "badge": "Limited Time Offer!",
+    "limitedTime": "Limited Time",
+    "thisMonthOnly": "This Month Only!",
+    "dontMissOut": "Don't miss out!",
+    "validDuring": "Valid during",
+    "benefits": {
+      "downPayment": "Down Payment",
+      "flexibleFinancing": "Flexible Financing",
+      "limitedTimeOffer": "Limited Time Offer"
+    },
+    "tabs": {
+      "info": "Promotion Info",
+      "schedule": "Schedule Appointment"
+    },
+    "schedule": {
+      "title": "Schedule Your Appointment",
+      "subtitle": "Fill out the form below and we'll contact you to schedule your appointment",
+      "formTitle": "Appointment Request Form"
+    }
+  },
+  "scheduleAppointment": {
+    "title": "Schedule Your Appointment",
+    "heroTitle": "Schedule Your Appointment",
+    "heroSubtitle": "Visit our office, see our homes and models in person, and get a financial evaluation",
+    "subtitle": "Visit our office, see our homes and models in person, and get a financial evaluation",
+    "formTitle": "Appointment Request Form",
+    "formDescription": "Fill out the form below and our team will contact you to confirm your appointment date and time.",
+    "whatToExpect": {
+      "title": "What to Expect",
+      "financialEvaluation": {
+        "title": "Financial Evaluation",
+        "description": "Get a personalized financial evaluation to determine your eligibility and explore financing options."
+      },
+      "viewHomes": {
+        "title": "View Homes & Models",
+        "description": "Tour our available homes and model homes in person to see the quality and craftsmanship firsthand."
+      },
+      "personalConsultation": {
+        "title": "Personal Consultation",
+        "description": "Meet with our team to discuss your needs, preferences, and answer all your questions about our homes and programs."
+      }
+    },
+    "officeInfo": {
+      "title": "Our Office",
+      "address": "Address",
+      "phone": "Phone",
+      "hours": "Business Hours",
+      "weekdays": "Monday - Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed"
+    },
+    "getDirections": "Get Directions",
+    "callNow": "Call Now"
+  },
+  "footer": {
+    "description": "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Rent to Own programs with $0 down payment.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "followUs": "Follow Us",
+    "copyright": "Copyright © 2025 M.J. Newell Homes. All Rights Reserved",
+    "sections": {
+      "properties": "Properties",
+      "communities": "Communities",
+      "resources": "Resources",
+      "company": "Company"
+    },
+    "links": {
+      "duplex": "Duplex",
+      "rentalApplication": "Rental Application",
+      "scheduleAppointment": "Schedule Appointment",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms & Conditions"
     }
   }
 }

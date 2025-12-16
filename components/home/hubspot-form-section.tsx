@@ -17,14 +17,14 @@ export const HubSpotFormSection = () => {
   }, []);
 
   return (
-    <section id="quick-register-form" className="py-16 md:py-24 bg-gradient-to-b from-background to-muted scroll-mt-20">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="quick-register-form" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-background to-muted scroll-mt-20">
+      <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center space-y-4 mb-8">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl" suppressHydrationWarning>
+          <div className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
               {t("contactForm.title") || "Get in Touch"}
             </h2>
-            <p className="text-muted-foreground text-lg md:text-xl" suppressHydrationWarning>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4" suppressHydrationWarning>
               {t("contactForm.subtitle") || "Fill out the form below and we'll get back to you as soon as possible."}
             </p>
           </div>

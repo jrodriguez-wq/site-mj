@@ -53,6 +53,28 @@ export default function RootLayout({
 
   return (
     <html lang={SEO_CONFIG.defaultLocale} suppressHydrationWarning>
+      <head>
+        {/* Preload de recursos críticos */}
+        <link
+          rel="preload"
+          href="/img/logo.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://js.hs-scripts.com"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://js.hsforms.net"
+        />
+        <link
+          rel="preconnect"
+          href="https://js.hs-scripts.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} antialiased`}
         suppressHydrationWarning
@@ -61,7 +83,7 @@ export default function RootLayout({
         <LanguageProvider />
         <div className="flex min-h-screen flex-col">
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1" id="main-content">{children}</main>
           <Footer />
         </div>
         <PromotionModal />

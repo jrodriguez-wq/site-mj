@@ -77,10 +77,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
   return (
     <>
     <PageContent size="xl">
-      <div className="space-y-12">
+      <div className="space-y-8 sm:space-y-10 md:space-y-12">
           {/* Hero Section */}
           <div className="relative">
-          <div className="relative h-[60vh] min-h-[500px] rounded-2xl overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          <div className="relative h-[50vh] sm:h-[55vh] md:h-[60vh] min-h-[400px] sm:min-h-[450px] md:min-h-[500px] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             {images.length > 0 ? (
               <>
                 <Image
@@ -91,7 +91,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   priority
                   sizes="100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
 
                 {/* Navigation Arrows */}
                 {images.length > 1 && (
@@ -99,134 +99,134 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     <button
                       onClick={handlePreviousImage}
                       onKeyDown={(e) => handleKeyDown(e, handlePreviousImage)}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10"
+                      className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 sm:p-3 rounded-full hover:bg-background transition-colors border border-border z-20"
                       aria-label={t("homeModels.modelPage.previousImage")}
                       type="button"
                     >
-                      <ChevronLeft className="w-6 h-6 text-foreground" />
+                      <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-foreground" />
                     </button>
                     <button
                       onClick={handleNextImage}
                       onKeyDown={(e) => handleKeyDown(e, handleNextImage)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10"
+                      className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 sm:p-3 rounded-full hover:bg-background transition-colors border border-border z-20"
                       aria-label={t("homeModels.modelPage.nextImage")}
                       type="button"
                     >
-                      <ChevronRight className="w-6 h-6 text-foreground" />
+                      <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-foreground" />
                     </button>
                   </>
                 )}
 
-                {/* Image Counter */}
+                {/* Image Counter - Moved to top left to avoid overlap */}
                 {images.length > 1 && (
-                  <div className="absolute bottom-4 left-4 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full border border-border">
-                    <span className="text-foreground text-sm font-medium">
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-border z-20">
+                    <span className="text-foreground text-xs sm:text-sm font-medium">
                       {currentImageIndex + 1} / {images.length}
                     </span>
                   </div>
                 )}
 
-                {/* View Gallery Button */}
+                {/* View Gallery Button - Moved to top right */}
                 {images.length > 1 && (
                   <button
                     onClick={() => openGallery(currentImageIndex)}
                     onKeyDown={(e) => handleKeyDown(e, () => openGallery(currentImageIndex))}
-                    className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2 hover:bg-background transition-colors border border-border z-10"
+                    className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 hover:bg-background transition-colors border border-border z-20"
                     aria-label={t("homeModels.modelPage.viewGallery")}
                     type="button"
                   >
-                    <Maximize2 className="w-4 h-4 text-foreground" />
-                    <span className="text-foreground text-sm font-medium" suppressHydrationWarning>{t("homeModels.modelPage.viewGallery")}</span>
+                    <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-foreground" />
+                    <span className="text-foreground text-xs sm:text-sm font-medium hidden sm:inline" suppressHydrationWarning>{t("homeModels.modelPage.viewGallery")}</span>
                   </button>
                 )}
               </>
             ) : (
               <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground text-lg" suppressHydrationWarning>{t("homeModels.modelPage.noImagesAvailable")}</p>
+                <p className="text-muted-foreground text-base sm:text-lg" suppressHydrationWarning>{t("homeModels.modelPage.noImagesAvailable")}</p>
               </div>
             )}
-          </div>
 
-          {/* Model Title Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-            <div className="max-w-4xl mx-auto">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground drop-shadow-lg" suppressHydrationWarning>{modelName}</h1>
+            {/* Model Title Overlay - Now properly positioned at bottom with padding for indicators */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 pb-16 sm:pb-20 md:pb-24 z-10">
+              <div className="max-w-4xl mx-auto">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground drop-shadow-lg leading-tight" suppressHydrationWarning>{modelName}</h1>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Model Information Section */}
-        <section className="mt-8 md:mt-12">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Price Card - Featured */}
             <Card className="md:col-span-2 lg:col-span-1 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardHeader>
-                <CardDescription className="text-sm font-semibold text-muted-foreground uppercase tracking-wider" suppressHydrationWarning>
+              <CardHeader className="p-4 sm:p-6">
+                <CardDescription className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider" suppressHydrationWarning>
                   {t("homeModels.modelPage.startingPrice")}
                 </CardDescription>
-                <CardTitle className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   {price}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+              <CardContent className="p-4 sm:p-6 pt-0">
+                <p className="text-xs sm:text-sm text-muted-foreground" suppressHydrationWarning>
                   {t("homeModels.modelPage.contactForFinancing")}
                 </p>
               </CardContent>
             </Card>
 
             {/* Features Grid */}
-            <div className="md:col-span-2 lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="md:col-span-2 lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
               <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col items-center text-center space-y-3">
-                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Square className="w-6 h-6 text-primary" />
+                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
+                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
+                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                      <Square className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="text-2xl md:text-3xl font-bold text-foreground">{sqft}</p>
-                      <p className="text-xs md:text-sm text-muted-foreground font-medium mt-1" suppressHydrationWarning>{t("homeModels.modelPage.sqft")}</p>
+                      <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{sqft}</p>
+                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium mt-0.5 sm:mt-1" suppressHydrationWarning>{t("homeModels.modelPage.sqft")}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col items-center text-center space-y-3">
-                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Bed className="w-6 h-6 text-primary" />
+                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
+                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
+                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                      <Bed className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="text-2xl md:text-3xl font-bold text-foreground">{bedrooms}</p>
-                      <p className="text-xs md:text-sm text-muted-foreground font-medium mt-1" suppressHydrationWarning>{t("homeModels.modelPage.bedrooms")}</p>
+                      <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{bedrooms}</p>
+                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium mt-0.5 sm:mt-1" suppressHydrationWarning>{t("homeModels.modelPage.bedrooms")}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col items-center text-center space-y-3">
-                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Bath className="w-6 h-6 text-primary" />
+                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
+                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
+                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                      <Bath className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="text-2xl md:text-3xl font-bold text-foreground">{bathrooms}</p>
-                      <p className="text-xs md:text-sm text-muted-foreground font-medium mt-1" suppressHydrationWarning>{t("homeModels.modelPage.bathrooms")}</p>
+                      <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{bathrooms}</p>
+                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium mt-0.5 sm:mt-1" suppressHydrationWarning>{t("homeModels.modelPage.bathrooms")}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-6">
-                  <div className="flex flex-col items-center text-center space-y-3">
-                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Car className="w-6 h-6 text-primary" />
+                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
+                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
+                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                      <Car className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                     </div>
                     <div>
-                      <p className="text-lg md:text-xl font-bold text-foreground leading-tight">{garage}</p>
+                      <p className="text-base sm:text-lg md:text-xl font-bold text-foreground leading-tight">{garage}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -236,30 +236,30 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
         </section>
 
         {/* Description Section */}
-        <section className="mt-12 md:mt-16">
-          <div className="space-y-6">
+        <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-16">
+          <div className="space-y-4 sm:space-y-6">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2" suppressHydrationWarning>{t("homeModels.modelPage.aboutThisModel")}</h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" suppressHydrationWarning>{t("homeModels.modelPage.aboutThisModel")}</h2>
+              <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
             </div>
             <Card className="border-2">
-              <CardContent className="pt-6">
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed" suppressHydrationWarning>{modelDescription}</p>
+              <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed" suppressHydrationWarning>{modelDescription}</p>
               </CardContent>
             </Card>
           </div>
         </section>
 
         {/* Tabs Section */}
-        <section className="mt-16 md:mt-20">
+        <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <div className="mb-8 md:mb-12">
-              <TabsList className="inline-flex h-auto p-1.5 bg-muted/50 rounded-xl border border-border/50 shadow-sm w-full md:w-auto">
-                <div className="flex flex-wrap gap-2 w-full md:w-auto">
+            <div className="mb-6 sm:mb-8 md:mb-12">
+              <TabsList className="inline-flex h-auto p-1 sm:p-1.5 bg-muted/50 rounded-xl border border-border/50 shadow-sm w-full md:w-auto">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 w-full md:w-auto">
                   {sections.inside && (
                     <TabsTrigger 
                       value="inside"
-                      className="px-6 py-3 text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20"
+                      className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
                       {t("homeModels.modelPage.sections.inside")}
@@ -268,7 +268,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   {sections.exterior && (
                     <TabsTrigger 
                       value="exterior"
-                      className="px-6 py-3 text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20"
+                      className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
                       {t("homeModels.modelPage.sections.exterior")}
@@ -277,7 +277,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   {sections.virtualTour && (
                     <TabsTrigger 
                       value="virtualTour"
-                      className="px-6 py-3 text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20"
+                      className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
                       {t("homeModels.modelPage.sections.virtualTour")}
@@ -286,7 +286,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   {sections.floorplan && (
                     <TabsTrigger 
                       value="floorplan"
-                      className="px-6 py-3 text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20"
+                      className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
                       {t("homeModels.modelPage.sections.floorplan")}
@@ -295,7 +295,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   {sections.standardFeatures && (
                     <TabsTrigger 
                       value="standardFeatures"
-                      className="px-6 py-3 text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20"
+                      className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
                       {t("homeModels.modelPage.sections.standardFeatures")}
@@ -307,12 +307,12 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Inside Tab */}
             {sections.inside && (
-              <TabsContent value="inside" className="space-y-8 mt-8">
+              <TabsContent value="inside" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.inside")}</h3>
-                  <p className="text-lg text-muted-foreground mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.inside")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.inside")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.inside")}</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {insideImages.map((image, index) => (
                     <button
                       key={index}
@@ -338,12 +338,12 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Exterior Tab */}
             {sections.exterior && (
-              <TabsContent value="exterior" className="space-y-8 mt-8">
+              <TabsContent value="exterior" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.exterior")}</h3>
-                  <p className="text-lg text-muted-foreground mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.exterior")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.exterior")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.exterior")}</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                   {exteriorImages.map((image, index) => (
                     <button
                       key={index}
@@ -369,10 +369,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Virtual Tour Tab */}
             {sections.virtualTour && youtubeUrl && (
-              <TabsContent value="virtualTour" className="space-y-8 mt-8">
+              <TabsContent value="virtualTour" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.virtualTour")}</h3>
-                  <p className="text-lg text-muted-foreground mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.virtualTour")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.virtualTour")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.virtualTour")}</p>
                 </div>
                 <div className="max-w-4xl mx-auto">
                   <YouTubeVideo url={youtubeUrl} title={`${modelName} ${t("homeModels.modelPage.virtualTourTitle")}`} />
@@ -382,10 +382,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Floorplan Tab */}
             {sections.floorplan && (
-              <TabsContent value="floorplan" className="space-y-8 mt-8">
+              <TabsContent value="floorplan" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.floorplan")}</h3>
-                  <p className="text-lg text-muted-foreground mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.floorplan")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.floorplan")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.floorplan")}</p>
                 </div>
                 {sections.floorplan.image ? (
                   <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-muted">
@@ -409,10 +409,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Standard Features Tab */}
             {sections.standardFeatures && (
-              <TabsContent value="standardFeatures" className="space-y-8 mt-8">
+              <TabsContent value="standardFeatures" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.standardFeatures")}</h3>
-                  <p className="text-lg text-muted-foreground mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.standardFeatures")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.standardFeatures")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.standardFeatures")}</p>
                 </div>
                 {sections.standardFeatures.categories && (
                   <Accordion type="single" collapsible className="w-full">
@@ -440,18 +440,18 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
         </section>
 
         {/* Request Info Section */}
-        <section className="py-12 md:py-16 mt-16 md:mt-20">
+        <section className="py-8 sm:py-10 md:py-12 lg:py-16 mt-10 sm:mt-12 md:mt-16 lg:mt-20">
           <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle className="text-3xl text-center" suppressHydrationWarning>{t("homeModels.modelPage.requestInfo.title")}</CardTitle>
-              <CardDescription className="text-center text-lg" suppressHydrationWarning>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-2xl sm:text-3xl text-center" suppressHydrationWarning>{t("homeModels.modelPage.requestInfo.title")}</CardTitle>
+              <CardDescription className="text-center text-sm sm:text-base md:text-lg" suppressHydrationWarning>
                 {t("homeModels.modelPage.requestInfo.subtitle")}
               </CardDescription>
-              <CardDescription className="text-center" suppressHydrationWarning>
+              <CardDescription className="text-center text-xs sm:text-sm" suppressHydrationWarning>
                 {t("homeModels.modelPage.requestInfo.description")}
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               <HubSpotForm
                 portalId="50215941"
                 formId="93068cd5-cb63-461a-b7a6-00a3ca4fcd0a"
