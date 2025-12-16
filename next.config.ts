@@ -53,10 +53,15 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-dialog",
       "@radix-ui/react-dropdown-menu",
       "@radix-ui/react-select",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-navigation-menu",
       "lucide-react",
       "framer-motion",
     ],
   },
+  
+  // Power optimizations
+  poweredByHeader: false,
 
   // Permitir solicitudes cross-origin en desarrollo desde IPs de red local
   allowedDevOrigins: [

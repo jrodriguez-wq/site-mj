@@ -55,11 +55,11 @@ export const CONTACT_INFO = {
 export const SOCIAL_LINKS = {
   twitter: "", // No disponible
   twitterHandle: "", // No disponible
-  facebook: "https://www.facebook.com/MJNewellHomes", // MJ Newell Homes
-  instagram: "https://www.instagram.com/mjnewellhomes/", // @mjnewellhomes
+  facebook: "https://www.facebook.com/MjNewellHomesFL/", // MJ Newell Homes
+  instagram: "https://www.instagram.com/mjnewellhomes?igsh=emg5bHZpcnJnZnIy", // @mjnewellhomes
   linkedin: "https://www.linkedin.com/company/mj-newell-homes-fl/",
   youtube: "", // Opcional
-  tiktok: "https://www.tiktok.com/@mjnhomesofficial",
+  tiktok: "https://www.tiktok.com/@mjnhomesofficial?_r=1&_t=ZM-92HUBTS1UFP",
   website: "https://www.mjnewellhomes.com",
 } as const;
 
@@ -153,6 +153,16 @@ export const defaultMetadata: Metadata = {
   // Robots
   robots: ROBOTS_CONFIG,
   
+  // Alternates para SEO multilingüe
+  alternates: {
+    canonical: SEO_CONFIG.siteUrl,
+    languages: {
+      "en": SEO_CONFIG.siteUrl,
+      "es": `${SEO_CONFIG.siteUrl}/es`,
+      "x-default": SEO_CONFIG.siteUrl,
+    },
+  },
+  
   // Iconos
   icons: {
     icon: [
@@ -169,6 +179,16 @@ export const defaultMetadata: Metadata = {
   },
   
   manifest: SEO_CONFIG.manifest,
+  
+  // Metadata adicional para SEO
+  category: "Real Estate",
+  classification: "Home Builder",
+  other: {
+    "geo.region": "US-FL",
+    "geo.placename": "LaBelle, Florida",
+    "geo.position": `${CONTACT_INFO.coordinates.latitude};${CONTACT_INFO.coordinates.longitude}`,
+    "ICBM": `${CONTACT_INFO.coordinates.latitude}, ${CONTACT_INFO.coordinates.longitude}`,
+  },
 };
 
 export const SITEMAP_CONFIG = {

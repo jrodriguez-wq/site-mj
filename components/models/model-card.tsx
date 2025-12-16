@@ -122,9 +122,9 @@ export const ModelCard = (props: ModelCardProps) => {
         {/* Gradient Border Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
 
-        <div className="relative bg-card/95 backdrop-blur-xl rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
           {/* Image Carousel */}
-          <div className="relative h-80 md:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div
               className={cn(
                 "flex transition-transform duration-700 ease-out h-full",
@@ -151,10 +151,10 @@ export const ModelCard = (props: ModelCardProps) => {
             </div>
 
             {/* Top Actions Bar */}
-            <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
+            <div className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 flex justify-between items-start z-10">
               {/* Badges */}
               {badges && badges.length > 0 && (
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {badges.map((badge, idx) => (
                     <ModelBadge
                       key={idx}
@@ -167,26 +167,26 @@ export const ModelCard = (props: ModelCardProps) => {
               )}
 
               {/* Action Buttons */}
-              <div className="flex gap-2">
+              <div className="flex gap-1.5 sm:gap-2">
                 <button
                   onClick={() => setIsLiked(!isLiked)}
-                  className="bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border/50"
+                  className="bg-background/80 backdrop-blur-sm p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/50"
                   aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
                   type="button"
                 >
                   <Heart
                     className={cn(
-                      "w-5 h-5 transition-colors",
+                      "w-4 h-4 sm:w-5 sm:h-5 transition-colors",
                       isLiked ? "fill-red-500 text-red-500" : "text-foreground/70"
                     )}
                   />
                 </button>
                 <button
-                  className="bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border/50"
+                  className="bg-background/80 backdrop-blur-sm p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/50"
                   aria-label="Share"
                   type="button"
                 >
-                  <Share2 className="w-5 h-5 text-foreground/70" />
+                  <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/70" />
                 </button>
               </div>
             </div>
@@ -196,40 +196,40 @@ export const ModelCard = (props: ModelCardProps) => {
               <button
                 onClick={openGallery}
                 onKeyDown={(e) => handleKeyDown(e, openGallery)}
-                className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-2 hover:bg-background transition-colors border border-border/50 z-10"
+                className="absolute bottom-2 sm:bottom-3 md:bottom-4 right-2 sm:right-3 md:right-4 bg-background/80 backdrop-blur-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 hover:bg-background transition-colors border border-border/50 z-10"
                 aria-label={`View ${displayImages.length} photos`}
                 type="button"
               >
-                <Eye className="w-4 h-4 text-foreground" />
-                <span className="text-foreground text-sm font-medium">
+                <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-foreground" />
+                <span className="text-foreground text-xs sm:text-sm font-medium hidden sm:inline">
                   {viewPhotosLabel || `Ver ${displayImages.length} fotos`}
                 </span>
               </button>
             )}
 
             {/* Price Badge */}
-            <div className="absolute top-16 right-4 bg-primary/90 backdrop-blur-sm text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg z-10">
+            <div className="absolute top-12 sm:top-14 md:top-16 right-2 sm:right-3 md:right-4 bg-primary/90 backdrop-blur-sm text-primary-foreground px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg z-10">
               {price}
             </div>
           </div>
 
           {/* Property Info */}
-          <div className="p-6 space-y-6">
+          <div className="p-4 sm:p-5 md:p-6 space-y-4 sm:space-y-5 md:space-y-6">
             {/* Title and Location */}
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2 gap-2">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent flex-1 min-w-0">
                   {name}
                 </h2>
-                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <span className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0">
                   {modelLabel}
                 </span>
               </div>
-              <p className="text-muted-foreground text-sm font-medium">{description}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium line-clamp-2">{description}</p>
             </div>
 
             {/* Quick Features */}
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-4 gap-2 sm:gap-3">
               {[
                 { icon: Bed, value: beds, label: bedsLabel },
                 { icon: Bath, value: baths, label: bathsLabel },
@@ -240,34 +240,35 @@ export const ModelCard = (props: ModelCardProps) => {
                 return (
                   <div
                     key={index}
-                    className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-3 text-center hover:from-primary/10 hover:to-primary/20 transition-colors border border-border/50"
+                    className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 md:p-3 text-center hover:from-primary/10 hover:to-primary/20 transition-colors border border-border/50"
                   >
-                    <div className="text-primary flex justify-center mb-2">
-                      <Icon className="w-5 h-5" />
+                    <div className="text-primary flex justify-center mb-1 sm:mb-2">
+                      <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5" />
                     </div>
-                    <div className="font-bold text-foreground text-sm">{feature.value}</div>
-                    <div className="text-xs text-muted-foreground">{feature.label}</div>
+                    <div className="font-bold text-foreground text-xs sm:text-sm">{feature.value}</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground leading-tight">{feature.label}</div>
                   </div>
                 );
               })}
             </div>
 
             {/* Price and CTA */}
-            <div className="flex items-end justify-between pt-4 border-t border-border/50">
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Precio desde</p>
-                <p className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border/50">
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider font-medium">Precio desde</p>
+                <p className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   {price}
                 </p>
               </div>
               <Button
                 asChild
-                className="relative bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-8 py-4 rounded-2xl font-bold text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 flex items-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden"
+                className="relative w-full sm:w-auto bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-4 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm md:text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden"
               >
                 <Link href={modelLink}>
-                  <span className="relative z-10 flex items-center gap-2">
-                    {viewDetailsLabel}
-                    <Maximize2 className="w-5 h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300" />
+                  <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                    <span className="hidden sm:inline">{viewDetailsLabel}</span>
+                    <span className="sm:hidden">Ver más</span>
+                    <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300" />
                   </span>
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 </Link>

@@ -7,19 +7,25 @@ import {
 import { SEO_CONFIG, CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
 
 export const generateOrganizationStructuredData =
-  (): OrganizationStructuredData => {
+  (): OrganizationStructuredData & Record<string, unknown> => {
     return {
       "@context": "https://schema.org",
       "@type": "Organization",
       name: SEO_CONFIG.siteName,
       url: SEO_CONFIG.siteUrl,
+      description: SEO_CONFIG.siteDescription,
       logo: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
+      image: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
       contactPoint: {
         "@type": "ContactPoint",
         telephone: CONTACT_INFO.phone,
         contactType: "customer service",
         email: CONTACT_INFO.email,
         areaServed: CONTACT_INFO.address.addressCountry,
+      },
+      address: {
+        "@type": "PostalAddress",
+        ...CONTACT_INFO.address,
       },
       sameAs: [
         SOCIAL_LINKS.twitter,
@@ -29,7 +35,7 @@ export const generateOrganizationStructuredData =
         SOCIAL_LINKS.youtube,
         SOCIAL_LINKS.tiktok,
       ].filter(Boolean),
-    };
+    } as OrganizationStructuredData & Record<string, unknown>;
   };
 
 export const generateRealEstateListingStructuredData = (
@@ -122,6 +128,8 @@ export const generateWebSiteStructuredData = (): StructuredData => {
     "@type": "WebSite",
     name: SEO_CONFIG.siteName,
     url: SEO_CONFIG.siteUrl,
+    description: SEO_CONFIG.siteDescription,
+    inLanguage: ["en", "es"],
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -129,6 +137,14 @@ export const generateWebSiteStructuredData = (): StructuredData => {
         urlTemplate: `${SEO_CONFIG.siteUrl}/buscar?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SEO_CONFIG.siteName,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
+      },
     },
   };
 };

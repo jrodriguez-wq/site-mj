@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
-import { Menu, Phone, X, ChevronDown, Sparkles } from "lucide-react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { Menu, Phone, X, ChevronDown, Sparkles, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -28,85 +28,107 @@ interface NavigationItem {
 }
 
 export const Navbar = () => {
-  const { t } = useTranslation();
+  const { t, isLoading } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  const navigationItems: NavigationItem[] = [
-    {
-      title: t("nav.home"),
-      href: "/",
-    },
-    {
-      title: t("nav.rentToOwn"),
-      href: "/rent-to-own",
-    },
-    {
-      title: t("nav.buyHome"),
-      href: "#",
-      children: [
-        {
-          title: t("nav.models"),
-          href: "/models",
-          description: t("nav.modelsDesc"),
-        },
-        {
-          title: t("nav.labelle"),
-          href: "/communities/labelle",
-          description: t("communities.labelle.description"),
-        },
-        {
-          title: t("nav.lehighAcres"),
-          href: "/communities/lehigh-acres",
-          description: t("communities.lehighAcres.description"),
-        },
-        {
-          title: t("nav.buildWithUs"),
-          href: "/build-with-us",
-        },
-        {
-          title: t("nav.homeBuyingGuide"),
-          href: "/home-buying-guide",
-          description: t("nav.homeBuyingGuideDesc"),
-        },
-      ],
-    },
-    {
-      title: t("nav.resources"),
-      href: "#",
-      children: [
-        {
-          title: t("nav.homeBuyingGuide"),
-          href: "/home-buying-guide",
-          description: t("nav.homeBuyingGuideDesc"),
-        },
-        {
-          title: t("nav.warranty"),
-          href: "/warranty",
-          description: t("nav.warrantyDesc"),
-        },
-      ],
-    },
-    {
-      title: t("nav.company"),
-      href: "#",
-      children: [
-        {
-          title: t("nav.aboutUs"),
-          href: "/about-us",
-          description: t("nav.aboutUsDesc"),
-        },
-        {
-          title: t("nav.contact"),
-          href: "/contact",
-          description: t("nav.contactDesc"),
-        },
-      ],
-    },
-  ];
+  // Track mount state to prevent hydration mismatches
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Memoize navigation items to prevent hydration mismatches
+  // Only compute when translations are loaded and component is mounted on client
+  const navigationItems: NavigationItem[] = useMemo(() => {
+    // Check if translations are actually loaded by verifying t() doesn't return the key
+    // If t("nav.home") returns "nav.home", translations aren't loaded yet
+    const homeTranslation = t("nav.home");
+    const translationsLoaded = homeTranslation !== "nav.home" && !isLoading;
+
+    // During SSR (isMounted is false), always return empty array to prevent hydration mismatch
+    // On client, only compute navigation items after mount and when translations are loaded
+    // This ensures server and client render the same initial state (empty array)
+    if (!isMounted || !translationsLoaded) {
+      return [];
+    }
+
+    return [
+      {
+        title: t("nav.home"),
+        href: "/",
+      },
+      {
+        title: t("nav.rentToOwn"),
+        href: "/rent-to-own",
+      },
+      {
+        title: t("nav.buyHome"),
+        href: "#",
+        children: [
+          {
+            title: t("nav.models"),
+            href: "/models",
+            description: t("nav.modelsDesc"),
+          },
+          {
+            title: t("nav.labelle"),
+            href: "/communities/labelle",
+            description: t("communities.labelle.description"),
+          },
+          {
+            title: t("nav.lehighAcres"),
+            href: "/communities/lehigh-acres",
+            description: t("communities.lehighAcres.description"),
+          },
+          {
+            title: t("nav.buildWithUs"),
+            href: "/build-with-us",
+          },
+          {
+            title: t("nav.homeBuyingGuide"),
+            href: "/home-buying-guide",
+            description: t("nav.homeBuyingGuideDesc"),
+          },
+        ],
+      },
+      {
+        title: t("nav.resources"),
+        href: "#",
+        children: [
+          {
+            title: t("nav.homeBuyingGuide"),
+            href: "/home-buying-guide",
+            description: t("nav.homeBuyingGuideDesc"),
+          },
+          {
+            title: t("nav.warranty"),
+            href: "/warranty",
+            description: t("nav.warrantyDesc"),
+          },
+        ],
+      },
+      {
+        title: t("nav.company"),
+        href: "#",
+        children: [
+          {
+            title: t("nav.aboutUs"),
+            href: "/about-us",
+            description: t("nav.aboutUsDesc"),
+          },
+          {
+            title: t("nav.contact"),
+            href: "/contact",
+            description: t("nav.contactDesc"),
+          },
+        ],
+      },
+    ];
+  }, [t, isLoading, isMounted]);
 
   // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
@@ -168,28 +190,33 @@ export const Navbar = () => {
       {/* Elegant top accent line */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="flex h-20 md:h-24 lg:h-28 items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
+        <div className="flex h-16 sm:h-18 md:h-20 lg:h-24 items-center justify-between">
           {/* Logo - Premium styling */}
           <Link
             href="/"
-            className="flex items-center space-x-3 group relative transition-all duration-500 ease-out hover:scale-[1.02]"
+            className="flex items-center space-x-2 sm:space-x-3 group relative transition-all duration-300 ease-out hover:scale-[1.02]"
             aria-label="M.J. Newell Homes - Home"
           >
-            <div className="absolute inset-0 bg-primary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+            <div className="absolute inset-0 bg-primary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <Image
               src="/img/logo.svg"
               alt="M.J. Newell Homes"
               width={280}
               height={160}
-              className="relative h-16 md:h-20 lg:h-24 xl:h-28 w-auto object-contain transition-all duration-500 group-hover:brightness-110"
+              className="relative h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain transition-all duration-300 group-hover:brightness-105"
               priority
             />
           </Link>
 
           {/* Desktop Navigation - Premium Design */}
-          <nav className="hidden lg:flex items-center space-x-1" role="navigation" aria-label="Main navigation">
-            {navigationItems.map((item, index) => {
+          <nav 
+            className="hidden lg:flex items-center space-x-2" 
+            role="navigation" 
+            aria-label="Main navigation"
+            suppressHydrationWarning
+          >
+            {navigationItems.length > 0 && navigationItems.map((item, index) => {
               if (item.children) {
                 const isOpen = openDropdown === item.title;
                 return (
@@ -206,7 +233,7 @@ export const Navbar = () => {
                     <button
                       onClick={() => handleClick(item.title)}
                       className={cn(
-                        "group relative inline-flex h-10 items-center justify-center rounded-lg px-4 py-2",
+                        "group relative inline-flex h-10 items-center justify-center rounded-lg px-3 py-2",
                         "text-sm font-semibold tracking-normal transition-all duration-300 ease-out",
                         "text-foreground/80 hover:text-foreground",
                         "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
@@ -304,7 +331,7 @@ export const Navbar = () => {
                   key={item.title}
                   href={item.href}
                   className={cn(
-                    "group relative inline-flex h-10 items-center justify-center rounded-lg px-4 py-2",
+                    "group relative inline-flex h-10 items-center justify-center rounded-lg px-3 py-2",
                     "text-sm font-semibold tracking-normal transition-all duration-300 ease-out",
                     "text-foreground/80 hover:text-foreground",
                     "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
@@ -317,28 +344,48 @@ export const Navbar = () => {
                   )}
                   suppressHydrationWarning
                 >
-                  <span className="relative z-10">{item.title}</span>
+                  <span className="relative z-10" suppressHydrationWarning>{item.title}</span>
                 </Link>
               );
             })}
           </nav>
 
           {/* Right Side Actions - Premium Styling */}
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-2 lg:gap-3">
             <LanguageSelector />
 
-            {/* Premium Phone Link */}
+            {/* Premium Phone Link - Solo icono en pantallas grandes */}
             <a
               href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-              className="hidden lg:flex items-center gap-2.5 px-5 py-2.5 text-sm font-semibold text-foreground/70 hover:text-foreground transition-all duration-300 rounded-xl hover:bg-primary/5 cursor-pointer border border-transparent hover:border-primary/10 group/phone"
+              className="hidden lg:flex items-center justify-center h-9 w-9 rounded-lg text-foreground/70 hover:text-foreground transition-all duration-300 hover:bg-primary/5 cursor-pointer border border-transparent hover:border-primary/10 group/phone"
               aria-label={`Call us at ${CONTACT_INFO.phone}`}
             >
-              <div className="relative">
-                <Phone className="h-4 w-4 transition-transform duration-300 group-hover/phone:scale-110" />
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-md opacity-0 group-hover/phone:opacity-100 transition-opacity duration-300" />
-              </div>
-              <span className="hidden xl:inline tracking-wide">{CONTACT_INFO.phone}</span>
+              <Phone className="h-4 w-4 transition-transform duration-300 group-hover/phone:scale-110" />
             </a>
+
+            {/* Schedule Appointment Button - Quick Action */}
+            <Button
+              asChild
+              className={cn(
+                "hidden lg:flex bg-gradient-to-r from-primary via-primary to-primary/95",
+                "hover:from-primary/95 hover:via-primary hover:to-primary",
+                "text-white px-4 xl:px-5 py-2.5 text-sm font-bold tracking-wide",
+                "shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40",
+                "transition-all duration-300 ease-out",
+                "hover:scale-105 active:scale-100",
+                "rounded-xl border border-primary/20",
+                "relative overflow-hidden group/schedule",
+                "before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0",
+                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
+              )}
+              size="default"
+            >
+              <Link href="/schedule-appointment" className="relative z-10 flex items-center gap-1.5 xl:gap-2" suppressHydrationWarning>
+                <Calendar className="h-4 w-4 opacity-90 group-hover/schedule:opacity-100 transition-opacity duration-300" />
+                <span className="hidden xl:inline" suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
+                <span className="xl:hidden" suppressHydrationWarning>Schedule</span>
+              </Link>
+            </Button>
 
             {/* Premium CTA Button */}
             <Button
@@ -346,7 +393,7 @@ export const Navbar = () => {
               className={cn(
                 "hidden lg:flex bg-gradient-to-r from-primary via-primary to-primary/95",
                 "hover:from-primary/95 hover:via-primary hover:to-primary",
-                "text-white px-8 py-2.5 text-sm font-bold tracking-wide",
+                "text-white px-5 xl:px-6 py-2.5 text-sm font-bold tracking-wide",
                 "shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40",
                 "transition-all duration-300 ease-out",
                 "hover:scale-105 active:scale-100",
@@ -357,9 +404,9 @@ export const Navbar = () => {
               )}
               size="default"
             >
-              <Link href="/#quick-register-form" className="relative z-10 flex items-center gap-2" suppressHydrationWarning>
+              <Link href="/#quick-register-form" className="relative z-10 flex items-center gap-1.5 xl:gap-2" suppressHydrationWarning>
                 <Sparkles className="h-3.5 w-3.5 opacity-80 group-hover/cta:opacity-100 transition-opacity duration-300" />
-                {t("nav.applyNow")}
+                <span suppressHydrationWarning>{t("nav.applyNow")}</span>
               </Link>
             </Button>
 
@@ -401,9 +448,14 @@ export const Navbar = () => {
                   </div>
                 </SheetHeader>
                 
-                <nav className="flex-1 overflow-y-auto px-6 py-6" role="navigation" aria-label="Mobile navigation">
+                <nav 
+                  className="flex-1 overflow-y-auto px-6 py-6" 
+                  role="navigation" 
+                  aria-label="Mobile navigation"
+                  suppressHydrationWarning
+                >
                   <div className="flex flex-col gap-2">
-                    {navigationItems.map((item, index) => (
+                    {navigationItems.length > 0 && navigationItems.map((item, index) => (
                       <div key={item.title} style={{ animationDelay: `${index * 50}ms` }}>
                         {item.children ? (
                           <div className="space-y-2">
@@ -489,6 +541,21 @@ export const Navbar = () => {
                     <Phone className="h-5 w-5 group-hover/phone:scale-110 transition-transform duration-300" />
                     <span className="tracking-wide">{CONTACT_INFO.phone}</span>
                   </a>
+                  <Button
+                    asChild
+                    className="w-full bg-gradient-to-r from-primary via-primary to-primary/95 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold shadow-lg hover:shadow-xl tracking-wide rounded-xl border border-primary/20 relative overflow-hidden group/schedule"
+                    size="lg"
+                  >
+                    <Link
+                      href="/schedule-appointment"
+                      onClick={() => setIsOpen(false)}
+                      className="relative z-10 flex items-center justify-center gap-2"
+                      suppressHydrationWarning
+                    >
+                      <Calendar className="h-4 w-4 opacity-90" />
+                      <span suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
+                    </Link>
+                  </Button>
                   <Button
                     asChild
                     className="w-full bg-gradient-to-r from-primary via-primary to-primary/95 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold shadow-lg hover:shadow-xl tracking-wide rounded-xl border border-primary/20 relative overflow-hidden group/cta"

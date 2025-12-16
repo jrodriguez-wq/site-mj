@@ -20,7 +20,7 @@ export const PageContainer = ({
   size = "lg",
 }: PageContainerProps) => {
   return (
-    <div className={cn("container mx-auto px-4 md:px-6", className)}>
+    <div className={cn("container mx-auto px-4 sm:px-5 md:px-6", className)}>
       <div className={cn("mx-auto", sizeClasses[size])}>{children}</div>
     </div>
   );
@@ -34,7 +34,7 @@ export const PageSection = ({
   className?: string;
 }) => {
   return (
-    <section className={cn("w-full pt-32 md:pt-36 lg:pt-40 pb-16 md:pb-24", className)}>
+    <section className={cn("w-full pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-24", className)}>
       {children}
     </section>
   );
