@@ -220,7 +220,7 @@ export const Footer = () => {
         <div className="mt-10 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-background/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-background/70">
             <p suppressHydrationWarning>
-              {t ? t("footer.copyright") || "Copyright © 2025 M.J. Newell Homes. All Rights Reserved" : "Copyright © 2025 M.J. Newell Homes. All Rights Reserved"}
+                {t ? t("footer.copyright") || "Copyright © 2026 M.J. Newell Homes. All Rights Reserved" : "Copyright © 2026 M.J. Newell Homes. All Rights Reserved"}
             </p>
             <div className="flex gap-4">
               <Link href="/privacy-policy" className="hover:text-background transition-colors" suppressHydrationWarning>
