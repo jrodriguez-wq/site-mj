@@ -118,11 +118,11 @@ export const ModelCard = (props: ModelCardProps) => {
   return (
     <>
       {/* Main Card Container */}
-      <div className="relative w-full group">
+      <div className="relative w-full group animate-fade-in-up">
         {/* Gradient Border Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
 
-        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 will-change-transform">
           {/* Image Carousel */}
           <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div

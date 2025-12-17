@@ -184,7 +184,7 @@ export const Navbar = () => {
 
   return (
     <header 
-      className="sticky top-0 z-50 w-full border-b border-border/20 bg-background/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_3px_rgba(0,0,0,0.05)]"
+      className="sticky top-0 z-50 w-full border-b border-border/20 bg-background/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_3px_rgba(0,0,0,0.05)] animate-fade-in-down"
       role="banner"
     >
       {/* Elegant top accent line */}
