@@ -9,7 +9,8 @@ import { CONTACT_INFO } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
-const googleMapsUrl = "https://www.google.com/maps?q=45+Bridge+St,+LaBelle,+FL+33935";
+const googleMapsUrl = "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8";
+const googleMapsEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d515.3257077253446!2d-81.43737737748471!3d26.762324092310248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db856a8ff9fc6b%3A0xce6810c83740a1d4!2sMJ%20Newell%20Homes!5e0!3m2!1ses!2sco!4v1765941661174!5m2!1ses!2sco";
 
 // Configuración del formulario de HubSpot para agendamiento
 const HUBSPOT_FORM_CONFIG = {
@@ -20,7 +21,6 @@ const HUBSPOT_FORM_CONFIG = {
 
 export const ScheduleAppointmentContent = () => {
   const { t } = useTranslation();
-  const encodedAddress = encodeURIComponent(address);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
@@ -248,7 +248,7 @@ export const ScheduleAppointmentContent = () => {
                   <CardContent className="p-0">
                     <div className="relative w-full h-[300px]">
                       <iframe
-                        src={`https://www.google.com/maps?q=${encodedAddress}&output=embed`}
+                        src={googleMapsEmbedUrl}
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
