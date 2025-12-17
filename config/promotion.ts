@@ -74,6 +74,6 @@ export const PROMOTION_CONFIG: PromotionConfig = {
   delaySeconds: 5,
   
   month: "January",
-  year: "2025",
+  year: "2026",
 };
 
