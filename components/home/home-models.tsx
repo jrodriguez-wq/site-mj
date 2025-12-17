@@ -44,15 +44,16 @@ export const HomeModels = () => {
         </div>
 
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {modelsData.map((model) => {
+          {modelsData.map((model, index) => {
             const mainImage = getModelMainImage(model.key);
             
             return (
               <div
                 key={model.key}
                 className={cn(
-                  "group relative overflow-hidden border-2 rounded-xl bg-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col"
+                  "group relative overflow-hidden border-2 rounded-xl bg-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col animate-fade-in-up will-change-transform"
                 )}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Image Section - Principal */}
                 <div className="relative h-56 sm:h-64 md:h-72 bg-muted/30 overflow-hidden">

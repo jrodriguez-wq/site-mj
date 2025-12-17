@@ -75,7 +75,7 @@ export const Footer = () => {
   }, [t, isLoading, isMounted]);
 
   return (
-    <footer className="border-t border-border/40 bg-foreground text-background">
+    <footer className="border-t border-border/40 bg-foreground text-background animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
       <div className="container mx-auto px-4 sm:px-5 md:px-6 py-10 sm:py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Company Info - Larger Column */}

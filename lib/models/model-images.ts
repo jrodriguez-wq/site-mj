@@ -42,3 +42,25 @@ export const getModelMainImage = (modelKey: string): string => {
   const images = getModelImages(modelKey);
   return images[0] || "/recursos/shutterstock_1065297917.jpg";
 };
+
+/**
+ * Obtiene la ruta del plano optimizado para un modelo
+ */
+export const getModelFloorplan = (modelKey: string): string | null => {
+  const floorplanPath = `/modelos-optimized/planos/${modelKey.toLowerCase()}-floorplan.jpg`;
+  // Retornamos la ruta, el componente verificará si existe
+  return floorplanPath;
+};
+
+/**
+ * Mapeo de modelos a sus planos
+ */
+export const MODEL_FLOORPLANS: Record<string, string> = {
+  aurora: "/modelos-optimized/planos/aurora-floorplan.jpg",
+  viana: "/modelos-optimized/planos/viana-floorplan.jpg",
+  louisiana: "/modelos-optimized/planos/louisiana-floorplan.jpg",
+  langdon: "/modelos-optimized/planos/langdon-floorplan.jpg",
+  emelia: "/modelos-optimized/planos/emelia-floorplan.jpg",
+  duplex: "/modelos-optimized/planos/duplex-floorplan.jpg",
+  delanie: "/modelos-optimized/planos/delanie-floorplan.jpg",
+};

@@ -13,6 +13,7 @@ import { ModelData } from "@/types/model";
 import { cn } from "@/lib/utils";
 import { SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
+import { MODEL_FLOORPLANS } from "@/lib/models/model-images";
 
 interface ModelPageContentProps {
   modelData: ModelData & { images: string[] };
@@ -79,7 +80,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
     <PageContent size="xl">
       <div className="space-y-8 sm:space-y-10 md:space-y-12">
           {/* Hero Section */}
-          <div className="relative">
+          <div className="relative animate-fade-in-scale">
           <div className="relative h-[50vh] sm:h-[55vh] md:h-[60vh] min-h-[400px] sm:min-h-[450px] md:min-h-[500px] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             {images.length > 0 ? (
               <>
@@ -91,7 +92,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   priority
                   sizes="100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                {/* Subtle gradient overlay - minimal to show image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
 
                 {/* Navigation Arrows */}
                 {images.length > 1 && (
@@ -99,7 +101,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     <button
                       onClick={handlePreviousImage}
                       onKeyDown={(e) => handleKeyDown(e, handlePreviousImage)}
-                      className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 sm:p-3 rounded-full hover:bg-background transition-colors border border-border z-20"
+                      className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2 sm:p-3 rounded-full hover:bg-background transition-all hover:scale-110 border border-border/50 shadow-lg z-20"
                       aria-label={t("homeModels.modelPage.previousImage")}
                       type="button"
                     >
@@ -108,7 +110,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     <button
                       onClick={handleNextImage}
                       onKeyDown={(e) => handleKeyDown(e, handleNextImage)}
-                      className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-2 sm:p-3 rounded-full hover:bg-background transition-colors border border-border z-20"
+                      className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2 sm:p-3 rounded-full hover:bg-background transition-all hover:scale-110 border border-border/50 shadow-lg z-20"
                       aria-label={t("homeModels.modelPage.nextImage")}
                       type="button"
                     >
@@ -119,7 +121,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
                 {/* Image Counter - Moved to top left to avoid overlap */}
                 {images.length > 1 && (
-                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-border z-20">
+                  <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-background/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-border/50 shadow-lg z-20">
                     <span className="text-foreground text-xs sm:text-sm font-medium">
                       {currentImageIndex + 1} / {images.length}
                     </span>
@@ -131,7 +133,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   <button
                     onClick={() => openGallery(currentImageIndex)}
                     onKeyDown={(e) => handleKeyDown(e, () => openGallery(currentImageIndex))}
-                    className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 hover:bg-background transition-colors border border-border z-20"
+                    className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-background/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 hover:bg-background transition-all hover:scale-105 border border-border/50 shadow-lg z-20"
                     aria-label={t("homeModels.modelPage.viewGallery")}
                     type="button"
                   >
@@ -146,17 +148,33 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
               </div>
             )}
 
-            {/* Model Title Overlay - Now properly positioned at bottom with padding for indicators */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 pb-16 sm:pb-20 md:pb-24 z-10">
-              <div className="max-w-4xl mx-auto">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground drop-shadow-lg leading-tight" suppressHydrationWarning>{modelName}</h1>
+            {/* Elegant Model Title Overlay - Subtle and modern */}
+            <div className="absolute bottom-0 left-0 right-0 z-10">
+              <div className="relative">
+                {/* Very subtle gradient background for title readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent h-32 sm:h-40 md:h-48" />
+                
+                {/* Title Container - Elegant and subtle */}
+                <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-8 md:py-10 lg:py-12">
+                  <div className="max-w-5xl mx-auto text-center">
+                    <h1 
+                      className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-tight text-white/95"
+                      style={{
+                        textShadow: "0 2px 8px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2)",
+                      }}
+                      suppressHydrationWarning
+                    >
+                      {modelName}
+                    </h1>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Model Information Section */}
-        <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+        <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
           <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Price Card - Featured */}
             <Card className="md:col-span-2 lg:col-span-1 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
@@ -236,7 +254,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
         </section>
 
         {/* Description Section */}
-        <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-16">
+        <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
           <div className="space-y-4 sm:space-y-6">
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" suppressHydrationWarning>{t("homeModels.modelPage.aboutThisModel")}</h2>
@@ -251,7 +269,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
         </section>
 
         {/* Tabs Section */}
-        <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
+        <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <div className="mb-6 sm:mb-8 md:mb-12">
               <TabsList className="inline-flex h-auto p-1 sm:p-1.5 bg-muted/50 rounded-xl border border-border/50 shadow-sm w-full md:w-auto">
@@ -387,23 +405,41 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.floorplan")}</h3>
                   <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.floorplan")}</p>
                 </div>
-                {sections.floorplan.image ? (
-                  <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-muted">
-                    <Image
-                      src={sections.floorplan.image}
-                      alt={`${modelName} Floorplan`}
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 80vw"
-                    />
-                  </div>
-                ) : (
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="text-center text-muted-foreground" suppressHydrationWarning>{t("homeModels.modelPage.floorplanComingSoon")}</p>
-                    </CardContent>
-                  </Card>
-                )}
+                {(() => {
+                  // Prioridad: 1) Imagen del JSON, 2) Plano optimizado del mapeo, 3) Mensaje de "próximamente"
+                  const floorplanImage = sections.floorplan.image || MODEL_FLOORPLANS[modelData.key.toLowerCase()];
+                  
+                  if (floorplanImage) {
+                    return (
+                      <Card className="border-2 border-border shadow-xl overflow-hidden">
+                        <CardContent className="p-0">
+                          <div className="relative w-full bg-gradient-to-br from-muted/50 to-muted rounded-lg">
+                            <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] min-h-[400px] sm:min-h-[500px]">
+                              <Image
+                                src={floorplanImage}
+                                alt={`${modelName} Floorplan - ${t("homeModels.modelPage.sections.floorplan")}`}
+                                fill
+                                className="object-contain p-4 sm:p-6 lg:p-8"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+                                quality={90}
+                                priority={false}
+                                loading="lazy"
+                              />
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  }
+                  
+                  return (
+                    <Card>
+                      <CardContent className="pt-6">
+                        <p className="text-center text-muted-foreground" suppressHydrationWarning>{t("homeModels.modelPage.floorplanComingSoon")}</p>
+                      </CardContent>
+                    </Card>
+                  );
+                })()}
               </TabsContent>
             )}
 
@@ -440,7 +476,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
         </section>
 
         {/* Request Info Section */}
-        <section className="py-8 sm:py-10 md:py-12 lg:py-16 mt-10 sm:mt-12 md:mt-16 lg:mt-20">
+        <section className="py-8 sm:py-10 md:py-12 lg:py-16 mt-10 sm:mt-12 md:mt-16 lg:mt-20 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
           <Card className="max-w-2xl mx-auto">
             <CardHeader className="p-4 sm:p-6">
               <CardTitle className="text-2xl sm:text-3xl text-center" suppressHydrationWarning>{t("homeModels.modelPage.requestInfo.title")}</CardTitle>
