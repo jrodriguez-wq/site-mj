@@ -7,7 +7,6 @@ import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Calendar } from "lucide-react";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SEO_CONFIG, SOCIAL_LINKS } from "@/config/seo";
-import { PageContent } from "@/components/layout/page-container";
 import { useTranslation } from "@/hooks/use-translation";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
@@ -20,230 +19,308 @@ export const ContactPageContent = () => {
   }, []);
 
   return (
-    <PageContent size="lg">
-      <div className="space-y-12 md:space-y-16">
-        {/* Header Section */}
-        <div className="text-center space-y-4 sm:space-y-5 md:space-y-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight" suppressHydrationWarning>
-            {t("contactForm.title")}
-          </h1>
-          <div className="w-20 sm:w-24 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mx-auto"></div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
-            {t("contactForm.subtitle")}
-          </p>
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section - Dark Background */}
+      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl" />
         </div>
+        
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center space-y-4 sm:space-y-5 md:space-y-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-background" suppressHydrationWarning>
+                {t("contactForm.title") || "Contact Us"}
+              </h1>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-background/80 max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
+                {t("contactForm.subtitle") || "Get in touch with our team for questions about our homes, Rent to Own program, or to schedule a viewing."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        {/* Main Content Grid */}
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-3 max-w-7xl mx-auto">
-          {/* Contact Information - Left Column */}
-          <div className="lg:col-span-1 space-y-4">
-            <h2 className="text-xl sm:text-2xl font-bold mb-4" suppressHydrationWarning>
-              {t("contactForm.contactInfo.title")}
-            </h2>
-            
-            {/* Phone Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border hover:border-primary/50 group">
-              <CardContent className="p-5">
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
-                    <Phone className="h-5 w-5 text-primary" />
+      {/* Main Content Section */}
+      <section className="py-10 md:py-14 lg:py-18 bg-background">
+        <div className="container mx-auto px-4 sm:px-5 md:px-6">
+          <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
+            {/* Title */}
+            <div className="text-center">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-2" suppressHydrationWarning>
+                {t("contactForm.contactInfo.title") || "Contact Information"}
+              </h2>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+            </div>
+
+            {/* Top 3 Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {/* Phone Card */}
+              <Card className="hover:shadow-xl transition-all duration-300 border-2 border-primary/20 hover:border-primary/50 group hover:-translate-y-1">
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
+                      <Phone className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 w-full min-w-0">
+                      <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.phone") || "Phone"}
+                      </p>
+                      <div className="space-y-1.5">
+                        <a
+                          href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                          className="text-sm sm:text-base font-black hover:text-primary transition-colors block break-words"
+                        >
+                          {CONTACT_INFO.phone}
+                        </a>
+                        {CONTACT_INFO.phoneSecondary && (
+                          <a
+                            href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
+                            className="text-sm sm:text-base font-black hover:text-primary transition-colors block break-words"
+                          >
+                            {CONTACT_INFO.phoneSecondary}
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                      {t("contactForm.contactInfo.phone")}
-                    </p>
-                    <div className="space-y-1.5">
+                </CardContent>
+              </Card>
+
+              {/* Email Card */}
+              <Card className="hover:shadow-xl transition-all duration-300 border-2 border-primary/20 hover:border-primary/50 group hover:-translate-y-1">
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
+                      <Mail className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 w-full min-w-0">
+                      <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.email") || "Email"}
+                      </p>
                       <a
-                        href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-                        className="text-sm sm:text-base font-semibold hover:text-primary transition-colors block"
+                        href={`mailto:${CONTACT_INFO.email}`}
+                        className="text-xs sm:text-[13px] md:text-[14px] font-black hover:text-primary transition-colors block break-words word-break-break-all"
                       >
-                        {CONTACT_INFO.phone}
+                        {CONTACT_INFO.email}
                       </a>
-                      {CONTACT_INFO.phoneSecondary && (
-                        <a
-                          href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
-                          className="text-sm sm:text-base font-semibold hover:text-primary transition-colors block"
-                        >
-                          {CONTACT_INFO.phoneSecondary}
-                        </a>
-                      )}
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* Email Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border hover:border-primary/50 group">
-              <CardContent className="p-5">
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                      {t("contactForm.contactInfo.email")}
-                    </p>
-                    <a
-                      href={`mailto:${CONTACT_INFO.email}`}
-                      className="text-sm sm:text-base font-semibold hover:text-primary transition-colors block break-words"
-                    >
-                      {CONTACT_INFO.email}
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Location Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border hover:border-primary/50 group">
-              <CardContent className="p-5">
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
-                    <MapPin className="h-5 w-5 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                      {t("contactForm.contactInfo.address")}
-                    </p>
-                    <p className="text-sm sm:text-base font-semibold mb-1">
-                      {address}
-                    </p>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      {CONTACT_INFO.address.addressLocality}, {CONTACT_INFO.address.addressRegion} {CONTACT_INFO.address.postalCode}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Hours Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border hover:border-primary/50 group">
-              <CardContent className="p-5">
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
-                    <Clock className="h-5 w-5 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                      {t("contactForm.contactInfo.hours")}
-                    </p>
-                    <div className="space-y-1 text-xs sm:text-sm">
-                      <p className="font-medium">
-                        {t("contactForm.contactInfo.weekdays")}: {CONTACT_INFO.openingHours.weekdays.opens} - {CONTACT_INFO.openingHours.weekdays.closes}
+              {/* Location Card */}
+              <Card className="hover:shadow-xl transition-all duration-300 border-2 border-primary/20 hover:border-primary/50 group hover:-translate-y-1 md:col-span-2 lg:col-span-1">
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
+                      <MapPin className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 w-full min-w-0">
+                      <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.address") || "Address"}
                       </p>
-                      <p className="font-medium">
-                        {t("contactForm.contactInfo.saturday")}: {CONTACT_INFO.openingHours.saturday.opens} - {CONTACT_INFO.openingHours.saturday.closes}
+                      <p className="text-sm sm:text-base font-black mb-1 break-words">
+                        {address}
                       </p>
-                      <p className="font-medium text-muted-foreground">
-                        {t("contactForm.contactInfo.sunday")}: {t("contactForm.contactInfo.closed")}
+                      <p className="text-xs sm:text-sm text-muted-foreground break-words">
+                        {CONTACT_INFO.address.addressLocality}, {CONTACT_INFO.address.addressRegion} {CONTACT_INFO.address.postalCode}
                       </p>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
 
-            {/* Schedule Appointment Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border-2 border-primary/30 hover:border-primary/50 group bg-gradient-to-br from-primary/5 to-transparent">
-              <CardContent className="p-5">
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary/20 rounded-lg group-hover:bg-primary/30 transition-colors shrink-0">
-                    <Calendar className="h-5 w-5 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                      {t("contactForm.contactInfo.scheduleAppointment")}
-                    </p>
-                    <Link
-                      href="/schedule-appointment"
-                      className="text-sm sm:text-base font-semibold hover:text-primary transition-colors block"
-                      suppressHydrationWarning
-                    >
-                      {t("contactForm.contactInfo.scheduleAppointmentDesc")}
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Contact Form */}
+            <div className="max-w-4xl mx-auto">
+              <Card className="shadow-2xl border-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
+                <CardHeader className="text-center space-y-3 pb-6 p-6 sm:p-8">
+                  <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-black" suppressHydrationWarning>
+                    {t("contactForm.formTitle") || "Send Us a Message"}
+                  </CardTitle>
+                  <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+                  <CardDescription className="text-sm sm:text-base md:text-lg pt-2 text-muted-foreground" suppressHydrationWarning>
+                    {t("contactForm.formDescription") || "Fill out the form below and we'll get back to you as soon as possible."}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="px-6 sm:px-8 md:px-10 pb-8 sm:pb-10">
+                  <HubSpotForm
+                    portalId="50215941"
+                    formId="93068cd5-cb63-461a-b7a6-00a3ca4fcd0a"
+                    region="na1"
+                    redirectUrl={redirectUrl}
+                    className="w-full"
+                  />
+                </CardContent>
+              </Card>
+            </div>
 
-            {/* Social Media Card */}
-            <Card className="hover:shadow-lg transition-all duration-300 border hover:border-primary/50 group">
-              <CardContent className="p-5">
-                <div className="flex items-start gap-3">
-                  <div className="p-2.5 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors shrink-0">
-                    <Facebook className="h-5 w-5 text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-xs text-muted-foreground mb-3 uppercase tracking-wider" suppressHydrationWarning>
-                      {t("contactForm.contactInfo.socialMedia")}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {SOCIAL_LINKS.facebook && (
-                        <a
-                          href={SOCIAL_LINKS.facebook}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-medium hover:scale-105"
-                        >
-                          <Facebook className="h-3.5 w-3.5" />
-                          <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.facebook")}</span>
-                        </a>
-                      )}
-                      {SOCIAL_LINKS.instagram && (
-                        <a
-                          href={SOCIAL_LINKS.instagram}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-medium hover:scale-105"
-                        >
-                          <Instagram className="h-3.5 w-3.5" />
-                          <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.instagram")}</span>
-                        </a>
-                      )}
-                      {SOCIAL_LINKS.tiktok && (
-                        <a
-                          href={SOCIAL_LINKS.tiktok}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-medium hover:scale-105"
-                        >
-                          <TikTokIcon size={12} />
-                          <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.tiktok")}</span>
-                        </a>
-                      )}
+            {/* Bottom 3 Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {/* Hours Card */}
+              <Card className="hover:shadow-xl transition-all duration-300 border-2 border-primary/20 hover:border-primary/50 group bg-gradient-to-br from-primary/5 to-transparent hover:-translate-y-1">
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
+                      <Clock className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 w-full min-w-0">
+                      <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.hours") || "Business Hours"}
+                      </p>
+                      <div className="space-y-1.5 text-xs sm:text-sm">
+                        <p className="font-semibold text-foreground break-words">
+                          {t("contactForm.contactInfo.everyDay") || "Every Day"}: {CONTACT_INFO.openingHours.weekdays.opens} - {CONTACT_INFO.openingHours.weekdays.closes}
+                        </p>
+                        <p className="text-xs text-muted-foreground break-words">
+                          {t("contactForm.contactInfo.hoursNote") || "Monday through Sunday"}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                </CardContent>
+              </Card>
 
-          {/* Contact Form - Right Column (2 columns) */}
-          <div className="lg:col-span-2">
-            <Card className="shadow-xl border-2 border-primary/20">
-              <CardHeader className="text-center space-y-3 pb-6 p-6 sm:p-8">
-                <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold" suppressHydrationWarning>
-                  {t("contactForm.formTitle")}
-                </CardTitle>
-                <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mx-auto"></div>
-                <CardDescription className="text-sm sm:text-base md:text-lg pt-2" suppressHydrationWarning>
-                  {t("contactForm.formDescription")}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="px-6 sm:px-8 md:px-10 pb-8 sm:pb-10">
-                <HubSpotForm
-                  portalId="50215941"
-                  formId="93068cd5-cb63-461a-b7a6-00a3ca4fcd0a"
-                  region="na1"
-                  redirectUrl={redirectUrl}
-                  className="w-full"
-                />
-              </CardContent>
-            </Card>
+              {/* Schedule Appointment Card */}
+              <Card className="hover:shadow-xl transition-all duration-300 border-2 border-primary/30 hover:border-primary/50 group bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover:-translate-y-1">
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/30 rounded-xl group-hover:bg-primary/40 group-hover:scale-110 transition-all duration-300 shrink-0">
+                      <Calendar className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 w-full min-w-0">
+                      <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.scheduleAppointment") || "Schedule Appointment"}
+                      </p>
+                      <Link
+                        href="/schedule-appointment"
+                        className="text-sm sm:text-base font-black hover:text-primary transition-colors block break-words"
+                        suppressHydrationWarning
+                      >
+                        {t("contactForm.contactInfo.scheduleAppointmentDesc") || "Visit our office and see our homes"}
+                      </Link>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Social Media Card */}
+              <Card className="hover:shadow-xl transition-all duration-300 border-2 border-primary/20 hover:border-primary/50 group hover:-translate-y-1 md:col-span-2 lg:col-span-1">
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
+                      <Facebook className="h-5 w-5 text-primary" />
+                    </div>
+                    <div className="flex-1 w-full min-w-0">
+                      <p className="font-semibold text-xs text-muted-foreground mb-3 uppercase tracking-wider" suppressHydrationWarning>
+                        {t("contactForm.contactInfo.socialMedia") || "Follow Us"}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {SOCIAL_LINKS.facebook && (
+                          <a
+                            href={SOCIAL_LINKS.facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-semibold hover:scale-105 border border-primary/20"
+                          >
+                            <Facebook className="h-3.5 w-3.5" />
+                            <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.facebook") || "Facebook"}</span>
+                          </a>
+                        )}
+                        {SOCIAL_LINKS.instagram && (
+                          <a
+                            href={SOCIAL_LINKS.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-semibold hover:scale-105 border border-primary/20"
+                          >
+                            <Instagram className="h-3.5 w-3.5" />
+                            <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.instagram") || "Instagram"}</span>
+                          </a>
+                        )}
+                        {SOCIAL_LINKS.tiktok && (
+                          <a
+                            href={SOCIAL_LINKS.tiktok}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-semibold hover:scale-105 border border-primary/20"
+                          >
+                            <TikTokIcon size={12} />
+                            <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.tiktok") || "TikTok"}</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
-      </div>
-    </PageContent>
+      </section>
+
+      {/* Response Times Section - Dark Background */}
+      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
+                {t("aboutUs.responseTimes.title") || "Fast Response Times"}
+              </h2>
+              <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
+                {t("aboutUs.responseTimes.subtitle") || "We value your time and respond quickly to all inquiries"}
+              </p>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.phone.value") || "< 24h"}
+                </div>
+                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.phone.label") || "Phone Calls"}
+                </h3>
+                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.phone.description") || "We respond to all phone inquiries within 24 hours"}
+                </p>
+              </div>
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.email.value") || "< 48h"}
+                </div>
+                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.email.label") || "Email Inquiries"}
+                </h3>
+                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.email.description") || "Email responses within 48 hours"}
+                </p>
+              </div>
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.appointment.value") || "Same Day"}
+                </div>
+                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.appointment.label") || "Appointments"}
+                </h3>
+                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                  {t("aboutUs.responseTimes.appointment.description") || "Schedule your visit the same day"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };

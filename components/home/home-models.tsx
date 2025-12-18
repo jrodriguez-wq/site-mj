@@ -16,8 +16,9 @@ import langdonData from "@/data/models/langdon.json";
 import emeliaData from "@/data/models/emelia.json";
 import duplexData from "@/data/models/duplex.json";
 import { cn } from "@/lib/utils";
+import { sortModelsByPrice } from "@/lib/models/model-utils";
 
-const modelsData = [
+const modelsData = sortModelsByPrice([
   louisianaData,
   vianaData,
   delanieData,
@@ -25,14 +26,14 @@ const modelsData = [
   langdonData,
   emeliaData,
   duplexData,
-];
+]);
 
 export const HomeModels = () => {
   const { t } = useTranslation();
   const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set());
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
@@ -55,8 +56,8 @@ export const HomeModels = () => {
                 )}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Image Section - Principal */}
-                <div className="relative h-56 sm:h-64 md:h-72 bg-muted/30 overflow-hidden">
+                {/* Image Section - Principal - Más espacio */}
+                <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 bg-muted/30 overflow-hidden">
                   <Image
                     src={mainImage}
                     alt={model.name}

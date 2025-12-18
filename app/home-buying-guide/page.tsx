@@ -1,51 +1,58 @@
+"use client";
+
 import { generateMetadata } from "@/lib/seo/metadata";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageContent } from "@/components/layout/page-container";
 import { FileCheck, MapPin, Home, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/hooks/use-translation";
 
-const steps = [
-  {
-    number: "01",
-    icon: FileCheck,
-    title: "Get Pre-Approved",
-    description: "Start by getting pre-approved for financing. This helps you understand your budget and shows sellers you're serious.",
-  },
-  {
-    number: "02",
-    icon: MapPin,
-    title: "Choose Your Location",
-    description: "Select between our communities in LaBelle or Lehigh Acres, each offering unique benefits and amenities.",
-  },
-  {
-    number: "03",
-    icon: Home,
-    title: "Select Your Model",
-    description: "Choose from our available models: Louisiana, Viana, Delanie, Aurora, Langdon, Emelia, or Duplex.",
-  },
-  {
-    number: "04",
-    icon: DollarSign,
-    title: "Financing Options",
-    description: "Explore our financing options including traditional mortgages and our Rent to Own program with $0 down payment.",
-  },
-];
-
-export const metadata = generateMetadata({
-  title: "Home Buying Guide",
-  description: "Complete guide to buying your new home. Get free advice on the buying process of your property.",
-});
+const iconMap = {
+  "1": FileCheck,
+  "2": MapPin,
+  "3": Home,
+  "4": DollarSign,
+};
 
 export default function HomeBuyingGuidePage() {
+  const { t } = useTranslation();
+
+  const steps = [
+    {
+      number: "1",
+      icon: FileCheck,
+      title: t("homeBuyingGuide.steps.1.title"),
+      description: t("homeBuyingGuide.steps.1.description"),
+    },
+    {
+      number: "2",
+      icon: MapPin,
+      title: t("homeBuyingGuide.steps.2.title"),
+      description: t("homeBuyingGuide.steps.2.description"),
+    },
+    {
+      number: "3",
+      icon: Home,
+      title: t("homeBuyingGuide.steps.3.title"),
+      description: t("homeBuyingGuide.steps.3.description"),
+    },
+    {
+      number: "4",
+      icon: DollarSign,
+      title: t("homeBuyingGuide.steps.4.title"),
+      description: t("homeBuyingGuide.steps.4.description"),
+    },
+  ];
+
   return (
     <PageContent size="md">
       <div className="space-y-12">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-            Home Buying Guide
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
+            {t("homeBuyingGuide.title")}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Get free advice on the buying process of your property. Follow these simple steps to make your homeownership dream a reality.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+            {t("homeBuyingGuide.subtitle")}
           </p>
         </div>
 
@@ -66,17 +73,17 @@ export default function HomeBuyingGuidePage() {
                       <Icon className="h-7 w-7" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-sm font-bold text-primary/60 mb-1">
-                        Step {step.number}
+                      <div className="text-sm font-bold text-primary/60 mb-1" suppressHydrationWarning>
+                        {t("homeBuyingGuide.step")} {t(`homeBuyingGuide.steps.${step.number}.number`)}
                       </div>
-                      <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors duration-300">
+                      <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors duration-300" suppressHydrationWarning>
                         {step.title}
                       </CardTitle>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="relative">
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
                     {step.description}
                   </p>
                 </CardContent>

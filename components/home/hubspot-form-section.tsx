@@ -17,7 +17,7 @@ export const HubSpotFormSection = () => {
   }, []);
 
   return (
-    <section id="quick-register-form" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-background to-muted scroll-mt-20">
+    <section id="quick-register-form" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/30 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <div className="max-w-2xl mx-auto">
           <div className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8">

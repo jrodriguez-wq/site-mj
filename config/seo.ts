@@ -14,6 +14,10 @@ export const SEO_CONFIG = {
   favicon32: "/favicon-32x32.png",
   appleTouchIcon: "/apple-touch-icon.png",
   manifest: "/site.webmanifest",
+  // Google Search Console verification code
+  // Obtén este código desde: https://search.google.com/search-console
+  // Formato: "content="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx""
+  googleSearchConsole: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE || "xWR2GgdY-YACqGW_BYfHOOQDVCQX8RL7YUOIVz_dvB4",
 } as const;
 
 export const CONTACT_INFO = {
@@ -38,17 +42,20 @@ export const CONTACT_INFO = {
     longitude: -81.4381,
   },
   
-  // Horario de atención
+  // Horario de atención - Todos los días de 8am a 5pm
   openingHours: {
     weekdays: {
-      opens: "09:00",
-      closes: "18:00",
+      opens: "08:00",
+      closes: "17:00",
     },
     saturday: {
-      opens: "10:00",
-      closes: "16:00",
+      opens: "08:00",
+      closes: "17:00",
     },
-    sunday: false, // Cerrado los domingos
+    sunday: {
+      opens: "08:00",
+      closes: "17:00",
+    },
   },
 } as const;
 
@@ -220,11 +227,6 @@ export const SITEMAP_CONFIG = {
     },
     {
       path: "/home-buying-guide",
-      priority: 0.8,
-      changeFrequency: "monthly" as const,
-    },
-    {
-      path: "/build-with-us",
       priority: 0.8,
       changeFrequency: "monthly" as const,
     },

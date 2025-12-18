@@ -4,8 +4,8 @@
     "buyHome": "Buy a Home",
     "rentToOwn": "Rent to Own",
     "rentToOwnDesc": "Own your dream home with $0 down payment",
-    "models": "Home Models",
-    "modelsDesc": "Explore our complete collection of home models",
+    "models": "Our Models",
+    "modelsDesc": "Explore our complete collection of models",
     "communities": "Our Communities",
     "viewAllCommunities": "Explore all our communities",
     "labelle": "LaBelle",
@@ -25,38 +25,24 @@
     "scheduleAppointment": "Schedule Appointment"
   },
   "hero": {
-    "title1": "We are building the future for",
-    "subtitle1": "American families in South Florida.",
-    "title2": "Your dream home starts here",
-    "subtitle2": "New constructions in LaBelle and Lehigh Acres.",
-    "title3": "Rent to Own with $0 down payment",
-    "subtitle3": "Make homeownership accessible for everyone.",
-    "title4": "Quality homes on 1/4 acre lots",
-    "subtitle4": "No HOA fees, more space for your family.",
-    "title5": "Building American Homes",
-    "subtitle5": "Exceptional pricing for South Florida families.",
-    "title6": "Your family deserves the best",
-    "subtitle6": "Modern homes designed for your lifestyle.",
-    "title7": "Spacious living in beautiful communities",
-    "subtitle7": "Experience the perfect blend of comfort and style.",
-    "title8": "Turn your dreams into reality",
-    "subtitle8": "From concept to keys, we're with you every step.",
-    "title9": "Premium quality at affordable prices",
-    "subtitle9": "Discover why families choose M.J. Newell Homes.",
-    "title10": "Where memories are made",
-    "subtitle10": "Create lasting moments in your perfect home.",
-    "title11": "Start your journey today",
-    "subtitle11": "Contact us and let's build your future together.",
-    "title12": "Visit our office",
-    "subtitle12": "We're here to help you find your perfect home.",
-    "description": "Let's find the house of your dreams. Contact an expert and make your dream of homeownership come true.",
+    "title1": "Building the Future for American Families",
+    "subtitle1": "Find the home of your dreams.",
+    "description1": "Your dream home is waiting. Let's make homeownership a reality for your family.",
+    "title2": "Rent to Own New Homes",
+    "subtitle2": "Become a Home Owner",
+    "description2": "Live in your new home while building equity. Start your journey to homeownership today.",
+    "title3": "$0 Down Payment & $0 Closing Cost",
+    "subtitle3": "No HOA Fees, Spacious Family Homes",
+    "description3": "Affordable homes with no hidden fees. More space, more savings, more value for your family.",
+    "contactUs": "Contact Us",
     "applyNow": "Apply Now",
+    "getPreQualified": "Get Pre-Qualified",
     "viewCommunities": "View Communities",
     "quickRegister": "Quick Register - Interested in Our Programs"
   },
   "features": {
-    "title": "Why Families Choose Us",
-    "subtitle": "Building homes that families can afford and be proud of",
+    "title": "What We Offer",
+    "subtitle": "Everything you need to make your dream home a reality",
     "learnMore": "Learn More",
     "modern": {
       "title": "New and Modern Constructions",
@@ -79,7 +65,7 @@
       "description": "Beautiful new homes in the heart of LaBelle, Florida",
       "country": {
         "title": "Communities",
-        "subtitle": "LaBelle Country"
+        "subtitle": "LaBelle"
       },
       "features": {
         "acreLots": "1/4 Acre Lots",
@@ -113,7 +99,7 @@
       },
       "models": {
         "title": "Available Models",
-        "subtitle": "Choose from our beautiful home models available in LaBelle"
+        "subtitle": "Choose from our beautiful models available in LaBelle"
       },
       "schedule": {
         "title": "Schedule your visit to our model homes with us",
@@ -121,7 +107,12 @@
         "button": "Schedule Your Visit"
       },
       "gallery": {
-        "title": "Discover LaBelle"
+        "title": "Discover LaBelle",
+        "description": "Explore the beauty and charm of our community"
+      },
+      "hero": {
+        "badge": "Communities",
+        "subtitle": "Discover Your Dream Home in Southwest Florida"
       },
       "cta": {
         "title": "Ready to Call LaBelle Home?",
@@ -134,7 +125,7 @@
       "description": "Modern homes in growing Lehigh Acres community",
       "country": {
         "title": "Communities",
-        "subtitle": "Lehigh Acres Country"
+        "subtitle": "Lehigh Acres"
       },
       "features": {
         "spaciousLots": "Spacious Lots",
@@ -168,7 +159,7 @@
       },
       "models": {
         "title": "Available Models",
-        "subtitle": "Choose from our beautiful home models available in Lehigh Acres"
+        "subtitle": "Choose from our beautiful models available in Lehigh Acres"
       },
       "schedule": {
         "title": "Schedule your visit to our model homes with us",
@@ -176,7 +167,12 @@
         "button": "Schedule Your Visit"
       },
       "gallery": {
-        "title": "Discover Lehigh Acres"
+        "title": "Discover Lehigh Acres",
+        "description": "Explore the beauty and charm of our community"
+      },
+      "hero": {
+        "badge": "Communities",
+        "subtitle": "Your Perfect Home Awaits in Southwest Florida"
       },
       "cta": {
         "title": "Ready to Call Lehigh Acres Home?",
@@ -188,6 +184,18 @@
   "whyChooseUs": {
     "title": "Why Choose M.J. Newell Homes",
     "subtitle": "Building American homes with quality, integrity, and your family's future in mind",
+    "badge": "Why Choose Us",
+    "highlights": {
+      "downPayment": "$0 Down Payment",
+      "noHOA": "No HOA Fees",
+      "yearsExperience": "Years Experience",
+      "happyFamilies": "Happy Families"
+    },
+    "points": {
+      "quality": "Premium quality construction with comprehensive warranties and quality assurance",
+      "flexibility": "Flexible financing options including our innovative Rent to Own program",
+      "experience": "Over 15 years of experience building homes for American families"
+    },
     "benefits": {
       "quality": {
         "title": "Quality Guaranteed",
@@ -221,19 +229,19 @@
     "subtitle": "Our numbers speak for themselves",
     "stats": {
       "homesBuilt": {
-        "value": "500+",
+        "value": "1,500+",
         "label": "Homes Built",
         "description": "Quality homes delivered to families"
       },
       "happyFamilies": {
-        "value": "500+",
+        "value": "1,500+",
         "label": "Happy Families",
         "description": "Families living their American dream"
       },
       "yearsExperience": {
-        "value": "15+",
-        "label": "Years Experience",
-        "description": "Building trust and excellence"
+        "value": "Pioneers",
+        "label": "Rent to Own",
+        "description": "Pioneers in the Rent to Own program"
       },
       "downPayment": {
         "value": "$0",
@@ -242,8 +250,24 @@
       }
     }
   },
+  "models": {
+    "filters": {
+      "title": "Filters",
+      "reset": "Reset Filters",
+      "priceRange": "Price Range",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "sqftRange": "Square Feet"
+    },
+    "results": {
+      "one": "model",
+      "many": "models",
+      "found": "found",
+      "sortedBy": "Sorted by price: Low to High"
+    }
+  },
   "homeModels": {
-    "title": "Our Home Models",
+    "title": "Our Models",
     "subtitle": "Choose from our selection of beautifully designed floor plans",
     "model": "Model",
     "beds": "Beds",
@@ -256,11 +280,11 @@
     "specifications": "Specifications",
     "applyNow": "Apply Now",
     "scheduleTour": "Schedule a Tour",
-    "viewAllModels": "View All Models",
+    "viewAllModels": "View Our Models",
     "viewFloorPlan": "View Floor Plan",
     "floorPlan": "Floor Plan",
     "moreDetails": "More Details",
-    "allModels": "All Home Models",
+    "allModels": "Our Models",
     "allModelsSubtitle": "Explore our complete collection of beautifully designed homes",
     "viewPhotos": "View Photos",
     "gallery": "Gallery",
@@ -522,6 +546,7 @@
   "testimonials": {
     "title": "What Our Families Say",
     "subtitle": "Real stories from real families who found their dream home with us",
+    "moreReviews": "+90 more reviews on Google Maps",
     "testimonials": {
       "1": {
         "name": "Sarah & Michael Johnson",
@@ -587,6 +612,8 @@
       "location": "Location",
       "address": "Address",
       "hours": "Business Hours",
+      "everyDay": "Every Day",
+      "hoursNote": "Monday through Sunday",
       "weekdays": "Monday - Friday",
       "saturday": "Saturday",
       "sunday": "Sunday",
@@ -601,25 +628,60 @@
       }
     }
   },
+  "homeBuyingGuide": {
+    "title": "Home Buying Guide",
+    "subtitle": "Get free advice on the buying process of your property. Follow these simple steps to make your homeownership dream a reality.",
+    "description": "Complete guide to buying your new home. Get free advice on the buying process of your property.",
+    "step": "Step",
+    "steps": {
+      "1": {
+        "number": "01",
+        "title": "Get Pre-Approved",
+        "description": "Start by getting pre-approved for financing. This helps you understand your budget and shows sellers you're serious."
+      },
+      "2": {
+        "number": "02",
+        "title": "Choose Your Location",
+        "description": "Select between our communities in LaBelle or Lehigh Acres, each offering unique benefits and amenities."
+      },
+      "3": {
+        "number": "03",
+        "title": "Select Your Model",
+        "description": "Choose from our available models: Louisiana, Viana, Delanie, Aurora, Langdon, Emelia, or Duplex."
+      },
+      "4": {
+        "number": "04",
+        "title": "Financing Options",
+        "description": "Explore our financing options including traditional mortgages and our Rent to Own program with $0 down payment."
+      }
+    }
+  },
   "warranty": {
     "title": "Warranty & Service",
     "subtitle": "We stand behind our quality construction",
     "coverage": {
       "title": "Our Warranty Coverage",
-      "description": "M.J. Newell Homes provides comprehensive warranty coverage for all new construction homes."
+      "description": "M.J. Newell Homes provides comprehensive warranty coverage for all new construction homes.",
+      "structural": {
+        "title": "Structural Warranty",
+        "duration": "10 Years",
+        "description": "Complete protection for the structural integrity of your home"
+      },
+      "mechanical": {
+        "title": "Mechanical Warranty",
+        "duration": "1 Year",
+        "description": "Coverage for all mechanical systems including plumbing, electrical, and HVAC"
+      }
     },
     "features": {
-      "comprehensive": {
-        "title": "Comprehensive Coverage",
-        "description": "Full warranty protection for your new home"
-      },
+      "title": "Why Choose Our Warranty",
       "timely": {
-        "title": "Timely Response",
-        "description": "Quick response to all service requests"
+        "title": "Fast Response",
+        "description": "We respond to all service requests within 48 hours"
       },
       "support": {
         "title": "Dedicated Support",
-        "description": "Expert team ready to help"
+        "description": "Expert team ready to help with any warranty needs"
       },
       "quality": {
         "title": "Quality Guaranteed",
@@ -628,7 +690,7 @@
     },
     "form": {
       "title": "Submit Warranty Request",
-      "description": "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you shortly."
+      "description": "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you within 48 hours."
     }
   },
   "thankYou": {
@@ -678,8 +740,9 @@
     "leadership": {
       "badge": "Leadership",
       "title": "Michael J. Newell",
-      "subtitle": "Founder & CEO of Standard Land Development and M.J. Newell Homes",
-      "description": "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at both Standard Land Development and M.J. Newell Homes, resulting in enormous growth within a 5-year period.",
+      "role": "Founder & CEO",
+      "subtitle": "Founder & CEO of M.J. Newell Homes",
+      "description": "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth and helping over 1,500 families achieve their dream of homeownership.",
       "quote": "\"The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I'd have to enlist first-line powerhouses.\"",
       "quoteAuthor": "— Michael J. Newell",
       "belief": "Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization.",
@@ -688,8 +751,8 @@
         "text": "\"We want to make prime-value homes available at an economical rate to all Americans. We believe that affordable housing should be no more than a quarter of their income.\""
       },
       "vision": {
-        "title": "Vision for 2023",
-        "text": "By 2023, M.J. Newell Homes will build 1,200+ units per year. Standard Land Development will continue to develop sites statewide."
+        "title": "Vision for 2026",
+        "text": "By 2026, M.J. Newell Homes continues to build quality homes and expand our Rent to Own program, helping more families achieve their dream of homeownership."
       }
     },
     "values": {
@@ -754,7 +817,7 @@
     },
     "housingCrisis": {
       "title": "Solving the Affordable Housing Crisis",
-      "description": "Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed both of his businesses to help solve our country's predicament.",
+      "description": "Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed M.J. Newell Homes to help solve our country's predicament.",
       "learnToBuild": {
         "title": "Learn to Build Course",
         "description": "Michael Newell has created a course called \"Learn to Build,\" in which he details every building process step. He believes that by sharing his construction knowledge with others, this can ultimately impact the housing deficit in our nation.",
@@ -779,9 +842,33 @@
       "assistanceDesc": "We offer special programs to help you with down payment and closing costs."
     },
     "team": {
-      "title": "Team members",
+      "title": "Our Team",
       "subtitle": "360-degree support for your dreams",
-      "description": "Every family has their own path towards their dream. Agents with the most experience prepare every day to provide you with the most accurate support."
+      "description": "Every family has their own path towards their dream. Agents with the most experience prepare every day to provide you with the most accurate support.",
+      "juliana": {
+        "name": "Juliana Bonilla",
+        "role": "Administrative & Sales",
+        "description": "Juliana Bonilla brings expertise in administration and sales, ensuring smooth operations and excellent customer service. She is dedicated to helping families find their dream home."
+      }
+    },
+    "responseTimes": {
+      "title": "Fast Response Times",
+      "subtitle": "We value your time and respond quickly to all inquiries",
+      "phone": {
+        "value": "< 24h",
+        "label": "Phone Calls",
+        "description": "We respond to all phone inquiries within 24 hours"
+      },
+      "email": {
+        "value": "< 48h",
+        "label": "Email Inquiries",
+        "description": "Email responses within 48 hours"
+      },
+      "appointment": {
+        "value": "Same Day",
+        "label": "Appointments",
+        "description": "Schedule your visit the same day"
+      }
     },
     "future": {
       "title": "The Future of Florida",
@@ -840,31 +927,22 @@
         "description": "Move in with just one month!"
       }
     },
+    "pioneers": {
+      "badge": "Industry Leaders",
+      "title": "Pioneers in Rent to Own",
+      "description": "M.J. Newell Homes was and continues to be a pioneer in the Rent to Own program, helping thousands of families achieve their dream of homeownership."
+    },
+    "savingsWhileLiving": {
+      "title": "Save While You Live",
+      "description": "With our Rent to Own program, you can save money while living in your own home. Build equity and work towards ownership at your own pace.",
+      "flexible": "Flexible",
+      "flexibleDesc": "Plans from 1-5 years",
+      "monthly": "Monthly",
+      "monthlyDesc": "Automatic savings"
+    },
     "savingsPlans": {
       "title": "Savings Plans",
-      "subtitle": "Choose the plan that best fits your needs and goals",
-      "table": {
-        "duration": "Contract Duration",
-        "monthlySavings": "Monthly Savings",
-        "totalSavings": "Approximate Total Savings",
-        "description": "Description",
-        "plan1": {
-          "duration": "1 year",
-          "description": "Ideal for those planning to buy soon"
-        },
-        "plan2": {
-          "duration": "2 years",
-          "description": "Intermediate plan with solid savings"
-        },
-        "plan3": {
-          "duration": "3 years",
-          "description": "Flexible option for families preparing to buy"
-        },
-        "plan4": {
-          "duration": "4 to 5 years",
-          "description": "Long-term savings plan with greater stability"
-        }
-      }
+      "subtitle": "Choose the plan that best fits your needs and goals"
     },
     "availableModels": {
       "title": "Available Models for Rent to Own",

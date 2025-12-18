@@ -12,23 +12,59 @@ interface HeroSlideConfig {
   image: string;
   titleKey: string;
   subtitleKey?: string;
+  descriptionKey?: string;
+  primaryButtonKey?: string;
+  primaryButtonLink?: string;
+  primaryButtonAction?: "link" | "scroll" | "none";
+  secondaryButtonKey?: string;
+  secondaryButtonLink?: string;
+  secondaryButtonAction?: "link" | "scroll" | "none";
 }
 
 interface HeroSlide {
   image: string;
   title: string;
   subtitle?: string;
+  description?: string;
+  primaryButton?: string;
+  primaryButtonLink?: string;
+  primaryButtonAction?: "link" | "scroll" | "none";
+  secondaryButton?: string;
+  secondaryButtonLink?: string;
+  secondaryButtonAction?: "link" | "scroll" | "none";
 }
 
 const heroSlidesConfig: HeroSlideConfig[] = [
-  { image: "/img/hero/AURORA.png", titleKey: "hero.title1", subtitleKey: "hero.subtitle1" },
-  { image: "/img/hero/1W5A1505 E5.jpg", titleKey: "hero.title2", subtitleKey: "hero.subtitle2" },
-  { image: "/img/hero/1W5A1493 E5.jpg", titleKey: "hero.title3", subtitleKey: "hero.subtitle3" },
-  { image: "/img/hero/1W5A1489 E5.jpg", titleKey: "hero.title4", subtitleKey: "hero.subtitle4" },
-  { image: "/img/hero/1W5A1456 E5.jpg", titleKey: "hero.title5", subtitleKey: "hero.subtitle5" },
-  { image: "/img/hero/1W5A0754 E4.jpg", titleKey: "hero.title6", subtitleKey: "hero.subtitle6" },
-  { image: "/img/hero/1W5A0814_1.jpg", titleKey: "hero.title7", subtitleKey: "hero.subtitle7" },
-  { image: "/img/hero/1W5A0741_1.jpg", titleKey: "hero.title8", subtitleKey: "hero.subtitle8" },
+  { 
+    image: "/img/hero/1W5A0741_1.jpg", 
+    titleKey: "hero.title1", 
+    subtitleKey: "hero.subtitle1",
+    descriptionKey: "hero.description1",
+    primaryButtonKey: "hero.contactUs",
+    primaryButtonAction: "scroll",
+    secondaryButtonKey: "hero.applyNow",
+    secondaryButtonAction: "scroll"
+  },
+  { 
+    image: "/img/hero/1W5A0814_1.jpg", 
+    titleKey: "hero.title2", 
+    subtitleKey: "hero.subtitle2",
+    descriptionKey: "hero.description2",
+    primaryButtonKey: "hero.getPreQualified",
+    primaryButtonLink: "/rent-to-own",
+    primaryButtonAction: "link"
+  },
+  { 
+    image: "/img/hero/1W5A1489 E5.jpg", 
+    titleKey: "hero.title3", 
+    subtitleKey: "hero.subtitle3",
+    descriptionKey: "hero.description3",
+    primaryButtonKey: "hero.applyNow",
+    primaryButtonAction: "scroll",
+    secondaryButtonKey: "hero.viewCommunities",
+    secondaryButtonLink: "/communities/labelle",
+    secondaryButtonAction: "link"
+  },
 ];
 
 export const HeroSlider = () => {
@@ -43,6 +79,13 @@ export const HeroSlider = () => {
       image: slide.image,
       title: t(slide.titleKey),
       subtitle: slide.subtitleKey ? t(slide.subtitleKey) : undefined,
+      description: slide.descriptionKey ? t(slide.descriptionKey) : undefined,
+      primaryButton: slide.primaryButtonKey ? t(slide.primaryButtonKey) : undefined,
+      primaryButtonLink: slide.primaryButtonLink,
+      primaryButtonAction: slide.primaryButtonAction || "link",
+      secondaryButton: slide.secondaryButtonKey ? t(slide.secondaryButtonKey) : undefined,
+      secondaryButtonLink: slide.secondaryButtonLink,
+      secondaryButtonAction: slide.secondaryButtonAction || "link",
     }));
   }, [t, translations]);
 
@@ -147,22 +190,24 @@ export const HeroSlider = () => {
                 </span>
               )}
             </h1>
-            <p
-              className={cn(
-                "mx-auto max-w-[700px] text-white text-sm sm:text-base md:text-lg lg:text-xl font-semibold px-4",
-                "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                isTransitioning
-                  ? "translate-y-4 opacity-0"
-                  : "translate-y-0 opacity-100"
-              )}
-              style={{
-                textShadow: "0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)",
-                transitionDelay: isTransitioning ? "0ms" : "300ms",
-              }}
-              suppressHydrationWarning
-            >
-              {t("hero.description")}
-            </p>
+            {currentSlide.description && (
+              <p
+                className={cn(
+                  "mx-auto max-w-[700px] text-white text-sm sm:text-base md:text-lg lg:text-xl font-semibold px-4",
+                  "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  isTransitioning
+                    ? "translate-y-4 opacity-0"
+                    : "translate-y-0 opacity-100"
+                )}
+                style={{
+                  textShadow: "0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)",
+                  transitionDelay: isTransitioning ? "0ms" : "300ms",
+                }}
+                suppressHydrationWarning
+              >
+                {currentSlide.description}
+              </p>
+            )}
           </div>
 
           <div
@@ -177,42 +222,90 @@ export const HeroSlider = () => {
               transitionDelay: isTransitioning ? "0ms" : "400ms",
             }}
           >
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                const formSection = document.getElementById("quick-register-form");
-                if (formSection) {
-                  formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
-              size="lg"
-              className={cn(
-                "bg-primary hover:bg-primary/90 text-white w-full sm:w-auto",
-                "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
-                "shadow-lg hover:shadow-xl hover:shadow-primary/30",
-                "transition-all duration-300 ease-out",
-                "hover:scale-105 active:scale-100",
-                "relative overflow-hidden group"
-              )}
-            >
-              <span className="relative z-10" suppressHydrationWarning>{t("hero.applyNow")}</span>
-              <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className={cn(
-                "bg-white/15 border-2 border-white/40 text-white w-full sm:w-auto",
-                "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
-                "hover:bg-white/25 hover:border-white/60",
-                "shadow-lg hover:shadow-xl",
-                "transition-all duration-300 ease-out",
-                "hover:scale-105 active:scale-100"
-              )}
-            >
-              <Link href="/communities/labelle" suppressHydrationWarning>{t("hero.viewCommunities")}</Link>
-            </Button>
+            {currentSlide.primaryButton && (
+              currentSlide.primaryButtonAction === "scroll" ? (
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const formSection = document.getElementById("quick-register-form");
+                    if (formSection) {
+                      formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }}
+                  size="lg"
+                  className={cn(
+                    "bg-primary hover:bg-primary/90 text-white w-full sm:w-auto",
+                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
+                    "shadow-lg hover:shadow-xl hover:shadow-primary/30",
+                    "transition-all duration-300 ease-out",
+                    "hover:scale-105 active:scale-100",
+                    "relative overflow-hidden group"
+                  )}
+                >
+                  <span className="relative z-10" suppressHydrationWarning>{currentSlide.primaryButton}</span>
+                  <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                </Button>
+              ) : currentSlide.primaryButtonLink ? (
+                <Button
+                  asChild
+                  size="lg"
+                  className={cn(
+                    "bg-primary hover:bg-primary/90 text-white w-full sm:w-auto",
+                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
+                    "shadow-lg hover:shadow-xl hover:shadow-primary/30",
+                    "transition-all duration-300 ease-out",
+                    "hover:scale-105 active:scale-100",
+                    "relative overflow-hidden group"
+                  )}
+                >
+                  <Link href={currentSlide.primaryButtonLink} suppressHydrationWarning>
+                    <span className="relative z-10">{currentSlide.primaryButton}</span>
+                    <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                  </Link>
+                </Button>
+              ) : null
+            )}
+            {currentSlide.secondaryButton && (
+              currentSlide.secondaryButtonAction === "scroll" ? (
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const formSection = document.getElementById("quick-register-form");
+                    if (formSection) {
+                      formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }}
+                  variant="outline"
+                  size="lg"
+                  className={cn(
+                    "bg-white/15 border-2 border-white/40 text-white w-full sm:w-auto",
+                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
+                    "hover:bg-white/25 hover:border-white/60",
+                    "shadow-lg hover:shadow-xl",
+                    "transition-all duration-300 ease-out",
+                    "hover:scale-105 active:scale-100"
+                  )}
+                >
+                  <span suppressHydrationWarning>{currentSlide.secondaryButton}</span>
+                </Button>
+              ) : currentSlide.secondaryButtonLink ? (
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className={cn(
+                    "bg-white/15 border-2 border-white/40 text-white w-full sm:w-auto",
+                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
+                    "hover:bg-white/25 hover:border-white/60",
+                    "shadow-lg hover:shadow-xl",
+                    "transition-all duration-300 ease-out",
+                    "hover:scale-105 active:scale-100"
+                  )}
+                >
+                  <Link href={currentSlide.secondaryButtonLink} suppressHydrationWarning>{currentSlide.secondaryButton}</Link>
+                </Button>
+              ) : null
+            )}
           </div>
           </div>
         </div>
