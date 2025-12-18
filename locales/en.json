@@ -27,7 +27,7 @@
   "hero": {
     "title1": "Building the Future",
     "subtitle1": "For American Familes",
-    "description1": "Your dream home is waiting. Let's make homeownership a reality for your family.",
+    "description1": "Let's make homeownership a reality for your family.",
     "title2": "Rent to Own New Homes",
     "subtitle2": "Become a Home Owner",
     "description2": "Live in your new home while building equity. Start your journey to homeownership today.",
@@ -59,7 +59,7 @@
   },
   "communities": {
     "title": "Our Communities",
-    "subtitle": "Discover your perfect home in South Florida's most desirable locations",
+    "subtitle": "Discover your perfect home in South West Florida's most desirable locations",
     "labelle": {
       "name": "LaBelle",
       "description": "Beautiful new homes in the heart of LaBelle, Florida",
@@ -75,14 +75,14 @@
       "explore": "Explore LaBelle",
       "about": {
         "title": "About LaBelle",
-        "description": "LaBelle is a charming community in Southwest Florida, perfect for families looking for a peaceful lifestyle with easy access to major cities. Our new construction homes in LaBelle offer modern amenities, spacious lots, and exceptional value.",
-        "fullDescription": "The city of LaBelle is located in a region with exuberant forests and wildlife, immersed in oak trees that characterize its landscape and provide shade to its land. With the oak tree being a species that still remains an insignia in the region, it continues to inhabit most residential developments throughout the area. The city of LaBelle is the main urban conglomerate in the region today and preserves an important historical center with buildings constructed at the end of the 19th century and the beginning of the 20th century. LaBelle continues to contribute to the conservation of the rich architectural heritage in Florida. While cultivating its history, it proudly welcomes the urbanization of its developing areas."
+        "description": "LaBelle is a growing community in Southwest Florida, perfect for families looking for a peaceful lifestyle with easy access to major cities. Our new construction homes in LaBelle offer modern amenities, spacious lots, and exceptional value.",
+        "fullDescription": "The city of LaBelle is located in a region with calming outdoors and wildlife, immersed in oak trees that characterize its landscape and provide shade to its land. With these exceptional outdoors, you can enjoy activites such as fishing, offroading, hiking, boating and more. The city of LaBelle is the main urban conglomerate in the region today and preserves an important historical center with buildings constructed at the end of the 19th century and the beginning of the 20th century. LaBelle continues to contribute to the conservation of the rich architectural heritage in Florida. While cultivating its history, it proudly welcomes the urbanization of its developing areas."
       },
       "activities": {
         "title": "Family-friendly Activities",
         "fishing": {
           "title": "Fishing",
-          "description": "Enjoy freshwater fishing in the beautiful waters of LaBelle"
+          "description": "Enjoy freshwater fishing in the beautiful waters of the Caloosahatchee River and many available lakes"
         },
         "outdoor walks": {
           "title": "Outdoor Walks",
@@ -95,15 +95,15 @@
       },
       "future": {
         "title": "The Future of Florida",
-        "description": "Purchase your home in a dream city. New constructions in Southwest Florida. Purchase your new home with $0 down payment benefits and closing cost assistance!"
+        "description": "Become a homeowner in a growing city. Purchase your new home with $0 down payment benefits and closing cost assistance!"
       },
       "models": {
-        "title": "Available Models",
+        "title": "Our Models",
         "subtitle": "Choose from our beautiful models available in LaBelle"
       },
       "schedule": {
-        "title": "Schedule your visit to our model homes with us",
-        "description": "Receive personalized consultation in choosing your property and financing options",
+        "title": "Meet our team and models!",
+        "description": "Schedule a visit to meet our properties and team. Receive personalized consultation and financing options",
         "button": "Schedule Your Visit"
       },
       "gallery": {
