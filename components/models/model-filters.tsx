@@ -81,9 +81,10 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
         onClick={() => setIsOpen(!isOpen)}
         variant="outline"
         className={cn(
-          "lg:hidden w-full justify-between h-11 mb-4",
+          "lg:hidden w-full justify-between h-10 sm:h-11 mb-3 sm:mb-4",
           "border border-border/50 hover:border-primary/50",
-          "bg-background hover:bg-muted/50 transition-all"
+          "bg-background hover:bg-muted/50 transition-all",
+          "text-sm sm:text-base"
         )}
       >
         <span className="flex items-center gap-2">
@@ -102,7 +103,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
 
       {/* Mobile Filter Panel */}
       <div className={cn(
-        "lg:hidden mt-4 p-5 rounded-xl border border-border/50 bg-card shadow-lg space-y-6",
+        "lg:hidden mt-3 sm:mt-4 p-4 sm:p-5 rounded-xl border border-border/50 bg-card shadow-lg space-y-4 sm:space-y-5 md:space-y-6",
         isOpen ? "block animate-in fade-in-0 slide-in-from-top-2" : "hidden"
       )}>
         <div className="flex items-center justify-between pb-4 border-b border-border/30">

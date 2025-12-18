@@ -6,10 +6,13 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Calidad optimizada: más alta para móvil (mejor experiencia), más baja para desktop (mejor rendimiento)
     qualities: [75],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 año
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Optimización para móvil
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
@@ -45,6 +48,9 @@ const nextConfig: NextConfig = {
 
   // Optimizaciones de producción
   reactStrictMode: true,
+  
+  // Optimización de producción (swcMinify está habilitado por defecto en Next.js 16+)
+  productionBrowserSourceMaps: false,
 
   // Optimización de bundle
   experimental: {
@@ -75,6 +81,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Headers generales para todas las rutas
         source: "/:path*",
         headers: [
           {
@@ -90,12 +97,17 @@ const nextConfig: NextConfig = {
             value: "nosniff",
           },
           {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
             key: "Referrer-Policy",
             value: "origin-when-cross-origin",
           },
         ],
       },
       {
+        // Caché para imágenes estáticas
         source: "/img/:path*",
         headers: [
           {
@@ -105,6 +117,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Caché para modelos optimizados
         source: "/modelos-optimized/:path*",
         headers: [
           {
@@ -114,6 +127,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Caché para assets estáticos de Next.js
         source: "/_next/static/:path*",
         headers: [
           {
@@ -123,6 +137,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Caché para imágenes optimizadas de Next.js
         source: "/_next/image",
         headers: [
           {

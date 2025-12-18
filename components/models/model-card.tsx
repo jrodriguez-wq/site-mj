@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -61,6 +62,13 @@ const ModelCardComponent = (props: ModelCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Intersection Observer para lazy loading
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+    rootMargin: "50px",
+  });
+
   // Ensure modelKey is available in scope
   const modelLink = `/models/${modelKey}`;
 
@@ -118,13 +126,13 @@ const ModelCardComponent = (props: ModelCardProps) => {
   return (
     <>
       {/* Main Card Container */}
-      <div className="relative w-full group">
+      <div ref={ref} className="relative w-full group">
         {/* Gradient Border Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
 
         <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2">
           {/* Image Carousel */}
-          <div className="relative h-56 xs:h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          <div className="relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div
               className={cn(
                 "flex transition-transform duration-700 ease-out h-full",
@@ -138,18 +146,22 @@ const ModelCardComponent = (props: ModelCardProps) => {
             >
               {displayImages.map((img, index) => (
                 <div key={index} className="min-w-full h-full relative">
-                  <Image
-                    src={img}
-                    alt={`${name} - ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                    priority={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    quality={85}
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                  />
+                  {inView || index === 0 ? (
+                    <Image
+                      src={img}
+                      alt={`${name} - ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                      priority={index === 0 && inView}
+                      loading={index === 0 && inView ? "eager" : "lazy"}
+                      quality={85}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-muted animate-pulse" />
+                  )}
                 </div>
               ))}
             </div>
@@ -224,7 +236,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
           </div>
 
           {/* Property Info - Optimized padding for mobile */}
-          <div className="p-4 sm:p-5 md:p-6 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
+          <div className="p-3 sm:p-4 md:p-5 lg:p-6 space-y-2.5 sm:space-y-3 md:space-y-4 lg:space-y-5">
             {/* Title and Location */}
             <div>
               <div className="flex items-start sm:items-center justify-between mb-1.5 sm:mb-2 gap-2">
@@ -239,7 +251,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
             </div>
 
             {/* Quick Features - Better spacing for mobile */}
-            <div className="grid grid-cols-4 gap-1.5 sm:gap-2 md:gap-3">
+            <div className="grid grid-cols-4 gap-1 sm:gap-1.5 md:gap-2 lg:gap-3">
               {[
                 { icon: Bed, value: beds, label: bedsLabel },
                 { icon: Bath, value: baths, label: bathsLabel },
@@ -263,7 +275,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
             </div>
 
             {/* Price and CTA - Better mobile layout */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border/50">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-2.5 sm:gap-3 md:gap-4 pt-2.5 sm:pt-3 md:pt-4 border-t border-border/50">
               <div className="flex-1 min-w-0 pb-0 sm:pb-0">
                 <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider font-medium mb-0.5 sm:mb-1">Precio desde</p>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent leading-tight sm:leading-normal break-words">

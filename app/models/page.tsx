@@ -238,19 +238,19 @@ export default function ModelsPage() {
   }, []);
 
   return (
-    <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 lg:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 max-w-[1800px]">
+    <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <div className="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 max-w-[1800px]">
         {/* Header Section - All Screens */}
-        <div className="mb-6 sm:mb-8 lg:mb-10">
-          <div className="text-center space-y-2 sm:space-y-3 mb-6 sm:mb-8">
+        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+          <div className="text-center space-y-1.5 sm:space-y-2 md:space-y-3 mb-4 sm:mb-6 md:mb-8">
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-foreground leading-tight sm:leading-normal"
               suppressHydrationWarning
             >
               {t("homeModels.allModels")}
             </h1>
             <p
-              className="mx-auto max-w-2xl text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed px-2"
+              className="mx-auto max-w-2xl text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4"
               suppressHydrationWarning
             >
               {t("homeModels.allModelsSubtitle")}
@@ -292,12 +292,12 @@ export default function ModelsPage() {
           <div className="flex-1 min-w-0 w-full">
             {/* Results count and info - All Screens */}
             {!isLoading && (
-              <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 text-sm pb-4 border-b border-border/30">
+              <div className="mb-4 sm:mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm pb-3 sm:pb-4 border-b border-border/30">
                 <span className="text-muted-foreground font-medium">
                   <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
                   {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
                 </span>
-                <span className="text-muted-foreground/70 text-xs sm:text-sm" suppressHydrationWarning>
+                <span className="text-muted-foreground/70 text-[10px] sm:text-xs md:text-sm" suppressHydrationWarning>
                   {t("models.results.sortedBy") || "Sorted by price: Low to High"}
                 </span>
               </div>
@@ -305,12 +305,12 @@ export default function ModelsPage() {
 
             {/* Models Grid - Fully Responsive */}
             {isLoading ? (
-              <div className="flex justify-center items-center py-12 sm:py-16 md:py-20">
-                <div className="text-muted-foreground text-sm sm:text-base">Loading models...</div>
+              <div className="flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20">
+                <div className="text-muted-foreground text-xs sm:text-sm md:text-base">Loading models...</div>
               </div>
             ) : filteredModels.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 text-center">
-                <p className="text-muted-foreground text-sm sm:text-base mb-4" suppressHydrationWarning>
+              <div className="flex flex-col items-center justify-center py-8 sm:py-12 md:py-16 lg:py-20 text-center px-4">
+                <p className="text-muted-foreground text-xs sm:text-sm md:text-base mb-3 sm:mb-4" suppressHydrationWarning>
                   {t("models.noResults") || "No models found matching your filters."}
                 </p>
                 <Button
@@ -328,7 +328,7 @@ export default function ModelsPage() {
               </div>
             ) : (
               <div 
-                className="grid gap-6 sm:gap-7 md:gap-8 lg:gap-10 xl:gap-12 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 w-full" 
+                className="grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 grid-cols-1 md:grid-cols-2 w-full" 
                 suppressHydrationWarning
               >
                 {filteredModels.map((model) => {

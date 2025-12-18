@@ -19,23 +19,35 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
+  fallback: ["monospace"],
 });
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 export const metadata: Metadata = defaultMetadata;
@@ -54,13 +66,22 @@ export default function RootLayout({
   return (
     <html lang={SEO_CONFIG.defaultLocale} suppressHydrationWarning>
       <head>
+        {/* Viewport optimizado para móvil */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
+        />
+        
         {/* Preload de recursos críticos */}
         <link
           rel="preload"
           href="/img/logo.svg"
           as="image"
           type="image/svg+xml"
+          fetchPriority="high"
         />
+        
+        {/* Preconnect y DNS prefetch para recursos externos */}
         <link
           rel="dns-prefetch"
           href="https://js.hs-scripts.com"
@@ -81,6 +102,15 @@ export default function RootLayout({
         <link
           rel="preconnect"
           href="https://www.googletagmanager.com"
+          crossOrigin="anonymous"
+        />
+        
+        {/* Preload de fuentes críticas */}
+        <link
+          rel="preload"
+          href="/_next/static/media/geist-sans.woff2"
+          as="font"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
         
@@ -126,10 +156,10 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         
-        {/* HubSpot Embed Code - Tracking */}
+        {/* HubSpot Embed Code - Tracking - Defer para mejor rendimiento */}
         <Script
           id="hs-script-loader"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src="https://js.hs-scripts.com/50215941.js"
         />
       </body>
