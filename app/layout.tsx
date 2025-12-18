@@ -80,6 +80,14 @@ export default function RootLayout({
           type="image/svg+xml"
           fetchPriority="high"
         />
+        {/* Preload de imagen de promoción para mejor rendimiento */}
+        <link
+          rel="preload"
+          href="/img/hero/1W5A0754 E4.jpg"
+          as="image"
+          type="image/jpeg"
+          fetchPriority="high"
+        />
         
         {/* Preconnect y DNS prefetch para recursos externos */}
         <link
@@ -152,7 +160,6 @@ export default function RootLayout({
           <main className="flex-1" id="main-content">{children}</main>
           <Footer />
         </div>
-        <PromotionModal />
         <Analytics />
         <SpeedInsights />
         

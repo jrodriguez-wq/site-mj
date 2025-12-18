@@ -12,6 +12,7 @@ import { Testimonials } from "@/components/home/testimonials";
 import { LocationMap } from "@/components/home/location-map";
 import { CTASection } from "@/components/home/cta-section";
 import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
+import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { useScrollAnimation } from "@/lib/utils/animations";
 
 const AnimatedSection = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
@@ -78,6 +79,9 @@ export const HomePageContent = () => {
       <AnimatedSection delay={100}>
         <CTASection />
       </AnimatedSection>
+
+      {/* Modal de promoción - solo aparece en home */}
+      <PromotionModal />
     </div>
   );
 };
