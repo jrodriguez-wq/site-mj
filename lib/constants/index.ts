@@ -14,7 +14,6 @@ export const ROUTES = {
   WARRANTY: "/warranty",
   LABELLE: "/communities/labelle",
   LEHIGH_ACRES: "/communities/lehigh-acres",
-  BUILD_WITH_US: "/build-with-us",
   HOME_BUYING_GUIDE: "/home-buying-guide",
 } as const;
 

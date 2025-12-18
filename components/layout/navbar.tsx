@@ -84,15 +84,6 @@ export const Navbar = () => {
             href: "/communities/lehigh-acres",
             description: t("communities.lehighAcres.description"),
           },
-          {
-            title: t("nav.buildWithUs"),
-            href: "/build-with-us",
-          },
-          {
-            title: t("nav.homeBuyingGuide"),
-            href: "/home-buying-guide",
-            description: t("nav.homeBuyingGuideDesc"),
-          },
         ],
       },
       {

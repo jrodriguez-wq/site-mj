@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
 import { SEO_CONFIG, SITEMAP_CONFIG } from "@/config/seo";
+import { getAllModelKeys } from "@/lib/models/model-data";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SEO_CONFIG.siteUrl;
   const now = new Date();
 
@@ -19,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
-  // Rutas adicionales importantes
+  // Rutas adicionales importantes (sin duplicar warranty que ya está en mainRoutes)
   const additionalRoutes = [
     {
       url: `${baseUrl}/schedule-appointment`,
@@ -27,13 +28,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/warranty`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
   ];
 
-  return [...mainRoutes, ...additionalRoutes];
+  // Rutas de modelos individuales
+  const modelKeys = await getAllModelKeys();
+  const modelRoutes = modelKeys.map((modelKey) => ({
+    url: `${baseUrl}/models/${modelKey}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+    alternates: {
+      languages: {
+        en: `${baseUrl}/models/${modelKey}`,
+        es: `${baseUrl}/es/models/${modelKey}`,
+      },
+    },
+  }));
+
+  return [...mainRoutes, ...additionalRoutes, ...modelRoutes];
 }

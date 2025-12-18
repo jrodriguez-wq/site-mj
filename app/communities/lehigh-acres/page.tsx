@@ -95,7 +95,7 @@ export default function LehighAcresPage() {
             <CommunityModelsSection
               modelKeys={lehighAcresModels.map((m) => m.key)}
               title="Available Models"
-              subtitle="Choose from our beautiful home models available in Lehigh Acres"
+              subtitle="Choose from our beautiful models available in Lehigh Acres"
             />
           </div>
         </div>

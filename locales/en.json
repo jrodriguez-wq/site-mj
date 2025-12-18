@@ -4,8 +4,8 @@
     "buyHome": "Buy a Home",
     "rentToOwn": "Rent to Own",
     "rentToOwnDesc": "Own your dream home with $0 down payment",
-    "models": "Home Models",
-    "modelsDesc": "Explore our complete collection of home models",
+    "models": "Our Models",
+    "modelsDesc": "Explore our complete collection of models",
     "communities": "Our Communities",
     "viewAllCommunities": "Explore all our communities",
     "labelle": "LaBelle",
@@ -113,7 +113,7 @@
       },
       "models": {
         "title": "Available Models",
-        "subtitle": "Choose from our beautiful home models available in LaBelle"
+        "subtitle": "Choose from our beautiful models available in LaBelle"
       },
       "schedule": {
         "title": "Schedule your visit to our model homes with us",
@@ -168,7 +168,7 @@
       },
       "models": {
         "title": "Available Models",
-        "subtitle": "Choose from our beautiful home models available in Lehigh Acres"
+        "subtitle": "Choose from our beautiful models available in Lehigh Acres"
       },
       "schedule": {
         "title": "Schedule your visit to our model homes with us",
@@ -243,7 +243,7 @@
     }
   },
   "homeModels": {
-    "title": "Our Home Models",
+    "title": "Our Models",
     "subtitle": "Choose from our selection of beautifully designed floor plans",
     "model": "Model",
     "beds": "Beds",
@@ -256,11 +256,11 @@
     "specifications": "Specifications",
     "applyNow": "Apply Now",
     "scheduleTour": "Schedule a Tour",
-    "viewAllModels": "View All Models",
+    "viewAllModels": "View Our Models",
     "viewFloorPlan": "View Floor Plan",
     "floorPlan": "Floor Plan",
     "moreDetails": "More Details",
-    "allModels": "All Home Models",
+    "allModels": "Our Models",
     "allModelsSubtitle": "Explore our complete collection of beautifully designed homes",
     "viewPhotos": "View Photos",
     "gallery": "Gallery",

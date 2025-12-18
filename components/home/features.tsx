@@ -13,7 +13,7 @@ export const Features = () => {
       icon: Home,
       titleKey: "features.modern.title",
       descriptionKey: "features.modern.description",
-      href: "/build-with-us",
+      href: "/models",
       color: "text-blue-600",
       bgColor: "bg-blue-50",
     },

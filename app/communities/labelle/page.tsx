@@ -97,7 +97,7 @@ export default function LaBellePage() {
             <CommunityModelsSection
               modelKeys={labelleModels.map((m) => m.key)}
               title="Available Models"
-              subtitle="Choose from our beautiful home models available in LaBelle"
+              subtitle="Choose from our beautiful models available in LaBelle"
             />
           </div>
         </div>

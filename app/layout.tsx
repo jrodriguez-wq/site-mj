@@ -83,23 +83,16 @@ export default function RootLayout({
           href="https://www.googletagmanager.com"
           crossOrigin="anonymous"
         />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} antialiased`}
-        suppressHydrationWarning
-      >
-        <StructuredDataComponent data={structuredData} />
-        <LanguageProvider />
-        <div className="flex min-h-screen flex-col">
-          <Navbar />
-          <main className="flex-1" id="main-content">{children}</main>
-          <Footer />
-        </div>
-        <PromotionModal />
-        <Analytics />
-        <SpeedInsights />
         
-        {/* Google Analytics */}
+        {/* Google Search Console Verification */}
+        {SEO_CONFIG.googleSearchConsole && (
+          <meta
+            name="google-site-verification"
+            content={SEO_CONFIG.googleSearchConsole}
+          />
+        )}
+        
+        {/* Google Analytics - Google tag (gtag.js) */}
         <Script
           id="google-analytics"
           strategy="afterInteractive"
@@ -117,6 +110,21 @@ export default function RootLayout({
             `,
           }}
         />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} antialiased`}
+        suppressHydrationWarning
+      >
+        <StructuredDataComponent data={structuredData} />
+        <LanguageProvider />
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex-1" id="main-content">{children}</main>
+          <Footer />
+        </div>
+        <PromotionModal />
+        <Analytics />
+        <SpeedInsights />
         
         {/* HubSpot Script */}
         <Script
