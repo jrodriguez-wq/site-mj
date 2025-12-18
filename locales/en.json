@@ -433,7 +433,7 @@
       "duplex": {
         "name": "Duplex",
         "description": "Perfect investment opportunity - live in one unit, rent the other",
-        "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living in one and renting the other. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
+        "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living or renting. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
         "price": "$510,000",
         "priceRange": "$510,000",
         "features": [
@@ -447,7 +447,7 @@
           "Rental income potential: $2,000 per unit"
         ],
         "specifications": {
-          "bedrooms": "2 Bedrooms + 1 Den",
+          "bedrooms": "2-3 Bedrooms Den",
           "bathrooms": "2 Bathrooms",
           "squareFeet": "2,060 sq ft",
           "garage": "1-Car Garage",
@@ -505,7 +505,7 @@
     }
   },
   "howItWorks": {
-    "title": "How It Works",
+    "title": "Start Now",
     "subtitle": "Your journey to homeownership in 6 simple steps",
     "step": "Step",
     "next": "Next",
@@ -514,12 +514,12 @@
       "1": {
         "number": "01",
         "title": "Get Pre-Approved",
-        "description": "Start by getting pre-approved for financing. Understand your budget and show sellers you're serious."
+        "description": "Start by getting pre-approved in one of our programs. Meet an advisor who will guide you through the process."
       },
       "2": {
         "number": "02",
         "title": "Choose Your Community",
-        "description": "Select between LaBelle or Lehigh Acres. Each community offers unique benefits and amenities."
+        "description": "Select between LaBelle or Lehigh Acres. Each community offers unique benefits."
       },
       "3": {
         "number": "03",
@@ -630,7 +630,7 @@
   },
   "homeBuyingGuide": {
     "title": "Home Buying Guide",
-    "subtitle": "Get free advice on the buying process of your property. Follow these simple steps to make your homeownership dream a reality.",
+    "subtitle": "Get free guidance while purchasing your property. Follow these simple steps to make your homeownership dream a reality.",
     "description": "Complete guide to buying your new home. Get free advice on the buying process of your property.",
     "step": "Step",
     "steps": {
@@ -652,7 +652,7 @@
       "4": {
         "number": "04",
         "title": "Financing Options",
-        "description": "Explore our financing options including traditional mortgages and our Rent to Own program with $0 down payment."
+        "description": "Explore our financing options including traditional mortgages and our Rent to Own program."
       }
     }
   },
@@ -661,14 +661,14 @@
     "subtitle": "We stand behind our quality construction",
     "coverage": {
       "title": "Our Warranty Coverage",
-      "description": "M.J. Newell Homes provides comprehensive warranty coverage for all new construction homes.",
+      "description": "M.J. Newell Homes provides an extensive warranty coverage for all new construction homes.",
       "structural": {
         "title": "Structural Warranty",
         "duration": "10 Years",
         "description": "Complete protection for the structural integrity of your home"
       },
       "mechanical": {
-        "title": "Mechanical Warranty",
+        "title": "Overall Warranty",
         "duration": "1 Year",
         "description": "Coverage for all mechanical systems including plumbing, electrical, and HVAC"
       }
@@ -677,7 +677,7 @@
       "title": "Why Choose Our Warranty",
       "timely": {
         "title": "Fast Response",
-        "description": "We respond to all service requests within 48 hours"
+        "description": "We respond to all service requests within 48-72 hours"
       },
       "support": {
         "title": "Dedicated Support",
@@ -690,7 +690,7 @@
     },
     "form": {
       "title": "Submit Warranty Request",
-      "description": "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you within 48 hours."
+      "description": "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you within 48-72 hours."
     }
   },
   "thankYou": {
@@ -699,21 +699,21 @@
     "viewWarranty": "View Warranty Info",
     "contact": {
       "title": "Thank You!",
-      "subtitle": "We've received your message",
+      "subtitle": "Your warranty has been submitted.",
       "message": "We'll get back to you as soon as possible.",
-      "nextSteps": "Our team will review your message and get back to you within 24-48 hours."
+      "nextSteps": "Our team will review your message and get back to you within 48 hours."
     },
     "warranty": {
       "title": "Thank You!",
       "subtitle": "We've received your warranty request",
-      "message": "Our warranty team will review your request shortly.",
-      "nextSteps": "Our warranty team will review your request and contact you shortly."
+      "message": "Our warranty team will process your request shortly.",
+      "nextSteps": "Our warranty team will process your request and contact you shortly."
     }
   },
   "aboutUs": {
     "hero": {
       "title": "About Us",
-      "description": "Building American Homes in South Florida with a Win-Win Approach"
+      "description": "Building American Homes in South West Florida with a families in mind."
     },
     "stats": {
       "homesBuilt": {
