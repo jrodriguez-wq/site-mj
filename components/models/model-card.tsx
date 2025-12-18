@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share2, Maximize2 } from "lucide-react";
@@ -32,7 +32,7 @@ export interface ModelCardProps {
   initialDelay?: number;
 }
 
-export const ModelCard = (props: ModelCardProps) => {
+const ModelCardComponent = (props: ModelCardProps) => {
   const {
     modelKey,
     name,
@@ -68,9 +68,9 @@ export const ModelCard = (props: ModelCardProps) => {
   const displayImages = images.length > 0 ? images : [image];
   const hasMultipleImages = displayImages.length > 1;
 
-  // Auto carousel with staggered delay
+  // Auto carousel with staggered delay - Only if carouselDelay > 0
   useEffect(() => {
-    if (!isGalleryOpen && hasMultipleImages) {
+    if (!isGalleryOpen && hasMultipleImages && carouselDelay > 0) {
       // Add initial delay to stagger animations between cards
       const timeoutId = setTimeout(() => {
         intervalRef.current = setInterval(() => {
@@ -89,40 +89,40 @@ export const ModelCard = (props: ModelCardProps) => {
     };
   }, [isGalleryOpen, displayImages.length, hasMultipleImages, carouselDelay, initialDelay]);
 
-  const openGallery = () => {
+  const openGallery = useCallback(() => {
     setIsGalleryOpen(true);
     setGalleryImageIndex(currentImageIndex);
     if (intervalRef.current) clearInterval(intervalRef.current);
-  };
+  }, [currentImageIndex]);
 
-  const closeGallery = () => {
+  const closeGallery = useCallback(() => {
     setIsGalleryOpen(false);
-  };
+  }, []);
 
-  const changeGalleryImage = (direction: number) => {
+  const changeGalleryImage = useCallback((direction: number) => {
     setGalleryImageIndex((prev) => {
       const newIndex = prev + direction;
       if (newIndex < 0) return displayImages.length - 1;
       if (newIndex >= displayImages.length) return 0;
       return newIndex;
     });
-  };
+  }, [displayImages.length]);
 
-  const handleKeyDown = (e: React.KeyboardEvent, callback: () => void) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent, callback: () => void) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       callback();
     }
-  };
+  }, []);
 
   return (
     <>
       {/* Main Card Container */}
-      <div className="relative w-full group animate-fade-in-up">
+      <div className="relative w-full group">
         {/* Gradient Border Effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
 
-        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2 will-change-transform">
+        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2">
           {/* Image Carousel */}
           <div className="relative h-56 xs:h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div
@@ -145,6 +145,10 @@ export const ModelCard = (props: ModelCardProps) => {
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                     priority={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                 </div>
               ))}
@@ -324,6 +328,9 @@ export const ModelCard = (props: ModelCardProps) => {
                   fill
                   className="object-contain"
                   sizes="100vw"
+                  quality={90}
+                  priority={galleryImageIndex === 0}
+                  loading={galleryImageIndex === 0 ? "eager" : "lazy"}
                 />
               </div>
 
@@ -379,6 +386,8 @@ export const ModelCard = (props: ModelCardProps) => {
                               fill
                               className="object-cover"
                               sizes="48px"
+                              quality={75}
+                              loading="lazy"
                             />
                           </div>
                         </button>
@@ -405,6 +414,9 @@ export const ModelCard = (props: ModelCardProps) => {
                     fill
                     className="object-cover"
                     sizes="50vw"
+                    quality={90}
+                    priority={galleryImageIndex === 0}
+                    loading={galleryImageIndex === 0 ? "eager" : "lazy"}
                   />
                 </div>
 
@@ -453,6 +465,8 @@ export const ModelCard = (props: ModelCardProps) => {
                             fill
                             className="object-cover"
                             sizes="64px"
+                            quality={75}
+                            loading="lazy"
                           />
                         </div>
                       </button>
@@ -558,3 +572,6 @@ export const ModelCard = (props: ModelCardProps) => {
     </>
   );
 };
+
+// Memoize component to prevent unnecessary re-renders
+export const ModelCard = memo(ModelCardComponent);
