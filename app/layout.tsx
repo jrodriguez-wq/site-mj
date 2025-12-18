@@ -74,6 +74,15 @@ export default function RootLayout({
           href="https://js.hs-scripts.com"
           crossOrigin="anonymous"
         />
+        <link
+          rel="dns-prefetch"
+          href="https://www.googletagmanager.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://www.googletagmanager.com"
+          crossOrigin="anonymous"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} antialiased`}
@@ -89,6 +98,27 @@ export default function RootLayout({
         <PromotionModal />
         <Analytics />
         <SpeedInsights />
+        
+        {/* Google Analytics */}
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-XBCDDYFMJQ"
+        />
+        <Script
+          id="google-analytics-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XBCDDYFMJQ');
+            `,
+          }}
+        />
+        
+        {/* HubSpot Script */}
         <Script
           id="hs-script-loader"
           strategy="afterInteractive"

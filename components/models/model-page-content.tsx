@@ -25,6 +25,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryImageIndex, setGalleryImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("inside");
+  const [isFloorplanExpanded, setIsFloorplanExpanded] = useState(false);
 
   const { name, sqft, bedrooms, bathrooms, garage, price, description, youtubeUrl, images, sections } = modelData;
   
@@ -411,31 +412,98 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   
                   if (floorplanImage) {
                     return (
-                      <Card className="border-2 border-border shadow-xl overflow-hidden">
-                        <CardContent className="p-0">
-                          <div className="relative w-full bg-gradient-to-br from-muted/50 to-muted rounded-lg">
-                            <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] min-h-[400px] sm:min-h-[500px]">
-                              <Image
-                                src={floorplanImage}
-                                alt={`${modelName} Floorplan - ${t("homeModels.modelPage.sections.floorplan")}`}
-                                fill
-                                className="object-contain p-4 sm:p-6 lg:p-8"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-                                quality={90}
-                                priority={false}
-                                loading="lazy"
-                              />
+                      <>
+                        <Card className="border-2 border-border shadow-xl overflow-hidden">
+                          <CardContent className="p-2 sm:p-3 md:p-4 lg:p-6">
+                            <div className="relative w-full bg-background rounded-lg overflow-hidden">
+                              {/* Mobile optimized container - no horizontal scroll */}
+                              <div className="relative w-full max-h-[60vh] sm:max-h-[70vh] md:max-h-none">
+                                <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
+                                  <Image
+                                    src={floorplanImage}
+                                    alt={`${modelName} Floorplan - ${t("homeModels.modelPage.sections.floorplan")}`}
+                                    fill
+                                    className="object-contain p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8"
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw"
+                                    quality={90}
+                                    priority={false}
+                                    loading="lazy"
+                                  />
+                                </div>
+                              </div>
+                              {/* Expand button for mobile */}
+                              <div className="md:hidden mt-3 flex items-center justify-center gap-2">
+                                <button
+                                  onClick={() => setIsFloorplanExpanded(true)}
+                                  className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors"
+                                  type="button"
+                                >
+                                  <Maximize2 className="w-4 h-4" />
+                                  <span suppressHydrationWarning>{t("homeModels.modelPage.expandFloorplan") || "Ver plano completo"}</span>
+                                </button>
+                              </div>
+                              {/* Helper text for desktop */}
+                              <div className="hidden md:block mt-3 text-center">
+                                <p className="text-xs text-muted-foreground" suppressHydrationWarning>
+                                  {t("homeModels.modelPage.floorplanZoomHint") || "Haz clic en la imagen para ampliar"}
+                                </p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        {/* Expanded Floorplan Modal for Mobile */}
+                        {isFloorplanExpanded && (
+                          <div
+                            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-background/95 backdrop-blur-sm md:hidden"
+                            onClick={() => setIsFloorplanExpanded(false)}
+                          >
+                            <div
+                              className="bg-card rounded-2xl max-w-full w-full max-h-[95vh] overflow-hidden shadow-2xl border-2 border-border relative"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              {/* Close Button */}
+                              <button
+                                onClick={() => setIsFloorplanExpanded(false)}
+                                className="absolute top-3 right-3 z-10 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border"
+                                aria-label="Close"
+                                type="button"
+                              >
+                                <X className="w-5 h-5 text-foreground" />
+                              </button>
+
+                              {/* Expanded Image */}
+                              <div className="relative w-full h-[95vh] overflow-auto bg-background">
+                                <div className="relative w-full min-h-full p-4 flex items-center justify-center">
+                                  <Image
+                                    src={floorplanImage}
+                                    alt={`${modelName} Floorplan - ${t("homeModels.modelPage.sections.floorplan")} - Expanded`}
+                                    width={1200}
+                                    height={900}
+                                    className="object-contain w-full h-auto max-w-full"
+                                    quality={95}
+                                    priority={false}
+                                  />
+                                </div>
+                              </div>
+
+                              {/* Helper text */}
+                              <div className="absolute bottom-4 left-4 right-4 text-center">
+                                <p className="text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-2 rounded-lg inline-block" suppressHydrationWarning>
+                                  {t("homeModels.modelPage.floorplanScrollHint") || "Desliza para ver el plano completo"}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
+                        )}
+                      </>
                     );
                   }
                   
                   return (
                     <Card>
-                      <CardContent className="pt-6">
-                        <p className="text-center text-muted-foreground" suppressHydrationWarning>{t("homeModels.modelPage.floorplanComingSoon")}</p>
+                      <CardContent className="pt-6 p-4 sm:p-6">
+                        <p className="text-center text-sm sm:text-base text-muted-foreground" suppressHydrationWarning>{t("homeModels.modelPage.floorplanComingSoon")}</p>
                       </CardContent>
                     </Card>
                   );
