@@ -30,15 +30,16 @@ export default function PromotionPreviewPage() {
         </div>
 
         <div className="bg-card rounded-xl p-6 border border-border/50 shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Características del Modal Mejorado</h2>
+          <h2 className="text-2xl font-bold mb-4">Características del Modal de Promoción</h2>
           <ul className="space-y-2 text-muted-foreground">
-            <li>✓ Diseño ultra moderno y elegante</li>
-            <li>✓ Efectos glassmorphism</li>
-            <li>✓ Animaciones sofisticadas</li>
+            <li>✓ Diseño visual y disruptivo</li>
+            <li>✓ Colores llamativos de promoción (rojo, naranja, amarillo)</li>
+            <li>✓ Menos texto, más impacto visual</li>
+            <li>✓ Badge animado y llamativo</li>
+            <li>✓ Botón CTA destacado y grande</li>
             <li>✓ Totalmente responsive</li>
-            <li>✓ Internacionalizado (ES/EN)</li>
-            <li>✓ Efectos visuales premium</li>
-            <li>✓ Mejor tipografía y espaciado</li>
+            <li>✓ Efectos de animación y brillo</li>
+            <li>✓ Funcionalidad de agendar cita preservada</li>
           </ul>
         </div>
       </div>

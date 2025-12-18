@@ -483,7 +483,16 @@
   }
 
   /* Bounce subtle animation for promotion badge */
-  @keyframes bounce-subtle {
+  @keyframes badgeFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes bounce-subtle {
     0%, 100% {
       transform: translateY(0);
     }
@@ -494,6 +503,10 @@
 
   .animate-bounce-subtle {
     animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  .animate-badge-float {
+    animation: badgeFloat 2s ease-in-out infinite;
   }
 
   /* Custom scrollbar for promotion modal */

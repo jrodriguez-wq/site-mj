@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, Suspense, lazy, useCallback } from "react";
 import { useTranslation } from "@/hooks/use-translation";
-import { ModelCard } from "@/components/models/model-card";
+import { Button } from "@/components/ui/button";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
 import { getModelData } from "@/lib/models/model-data";
 import { extractPrice } from "@/lib/models/model-utils";
 import { ModelData } from "@/types/model";
-import { ModelFilters, FilterState } from "@/components/models/model-filters";
+import { FilterState } from "@/components/models/model-filters";
+
+// Lazy load heavy components
+const ModelCard = lazy(() => import("@/components/models/model-card").then(module => ({ default: module.ModelCard })));
+const ModelFilters = lazy(() => import("@/components/models/model-filters").then(module => ({ default: module.ModelFilters })));
 
 // Configuración de badges y datos adicionales por modelo
 const MODEL_CONFIG = {
@@ -81,6 +85,8 @@ export default function ModelsPage() {
   });
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadModelsData = async () => {
       const modelKeys = [
         {
@@ -127,28 +133,47 @@ export default function ModelsPage() {
         },
       ];
 
-      const modelsWithData = await Promise.all(
-        modelKeys.map(async (model) => {
-          const modelData = await getModelData(model.key);
-          const price = modelData?.price || "";
-          const beds = modelData?.bedrooms || "";
-          const baths = modelData?.bathrooms || "";
-          const sqft = modelData?.sqft || "";
-          
-          return {
-            ...model,
-            price,
-            priceNumber: extractPrice(price),
-            beds,
-            bedsNumber: extractNumber(beds),
-            baths,
-            bathsNumber: extractNumber(baths),
-            sqft,
-            sqftNumber: extractSqft(sqft),
-            modelData,
-          };
-        })
-      );
+      // Load models in batches to avoid blocking
+      const batchSize = 3;
+      const modelsWithData: ModelDisplayData[] = [];
+
+      for (let i = 0; i < modelKeys.length; i += batchSize) {
+        if (!isMounted) break;
+        
+        const batch = modelKeys.slice(i, i + batchSize);
+        const batchData = await Promise.all(
+          batch.map(async (model) => {
+            const modelData = await getModelData(model.key);
+            const price = modelData?.price || "";
+            const beds = modelData?.bedrooms || "";
+            const baths = modelData?.bathrooms || "";
+            const sqft = modelData?.sqft || "";
+            
+            return {
+              ...model,
+              price,
+              priceNumber: extractPrice(price),
+              beds,
+              bedsNumber: extractNumber(beds),
+              baths,
+              bathsNumber: extractNumber(baths),
+              sqft,
+              sqftNumber: extractSqft(sqft),
+              modelData,
+            };
+          })
+        );
+
+        modelsWithData.push(...batchData);
+        
+        // Update state incrementally for better perceived performance
+        if (isMounted && i === 0) {
+          const sortedModels = [...modelsWithData].sort((a, b) => a.priceNumber - b.priceNumber);
+          setModels(sortedModels);
+        }
+      }
+
+      if (!isMounted) return;
 
       // Sort by price (cheapest first)
       const sortedModels = modelsWithData.sort((a, b) => a.priceNumber - b.priceNumber);
@@ -167,6 +192,10 @@ export default function ModelsPage() {
     };
 
     loadModelsData();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Filter and sort models
@@ -204,132 +233,143 @@ export default function ModelsPage() {
     return models.length > 0 ? Math.max(...models.map((m) => m.sqftNumber), 4000) : 4000;
   }, [models]);
 
+  const handleFiltersChange = useCallback((newFilters: FilterState) => {
+    setFilters(newFilters);
+  }, []);
+
   return (
-    <div className="pt-20 md:pt-24 lg:pt-28 pb-16 md:pb-20 lg:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        {/* Header Section - Mobile & Tablet */}
-        <div className="mb-6 md:mb-8 lg:hidden">
-          <div className="text-center space-y-2 mb-6">
+    <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <div className="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 max-w-[1800px]">
+        {/* Header Section - All Screens */}
+        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10">
+          <div className="text-center space-y-1.5 sm:space-y-2 md:space-y-3 mb-4 sm:mb-6 md:mb-8">
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-foreground"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-foreground leading-tight sm:leading-normal"
               suppressHydrationWarning
             >
               {t("homeModels.allModels")}
             </h1>
             <p
-              className="mx-auto max-w-xl text-muted-foreground text-sm md:text-base leading-relaxed"
+              className="mx-auto max-w-2xl text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4"
               suppressHydrationWarning
             >
               {t("homeModels.allModelsSubtitle")}
             </p>
           </div>
 
-          {/* Mobile Filters */}
+          {/* Mobile Filters - Only visible on mobile/tablet */}
           {!isLoading && (
-            <ModelFilters
-              filters={filters}
-              onFiltersChange={setFilters}
-              maxPrice={maxPrice}
-              maxSqft={maxSqft}
-            />
+            <div className="lg:hidden">
+              <Suspense fallback={<div className="h-20 bg-muted/50 rounded-xl animate-pulse" />}>
+                <ModelFilters
+                  filters={filters}
+                  onFiltersChange={handleFiltersChange}
+                  maxPrice={maxPrice}
+                  maxSqft={maxSqft}
+                />
+              </Suspense>
+            </div>
           )}
         </div>
 
-        {/* Main Layout - Desktop: Sidebar + Content */}
-        <div className="flex gap-8 lg:gap-10 xl:gap-12">
-          {/* Sidebar Filters - Desktop */}
+        {/* Main Layout - Desktop: Sidebar Left + Content Right | Mobile: Stacked */}
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 xl:gap-12">
+          {/* Desktop Sidebar Filters - Left Side */}
           {!isLoading && (
-            <ModelFilters
-              filters={filters}
-              onFiltersChange={setFilters}
-              maxPrice={maxPrice}
-              maxSqft={maxSqft}
-            />
+            <aside className="hidden lg:block w-80 xl:w-96 shrink-0">
+              <Suspense fallback={<div className="h-96 bg-muted/50 rounded-2xl animate-pulse" />}>
+                <ModelFilters
+                  filters={filters}
+                  onFiltersChange={handleFiltersChange}
+                  maxPrice={maxPrice}
+                  maxSqft={maxSqft}
+                />
+              </Suspense>
+            </aside>
           )}
 
-          {/* Main Content Area */}
-          <div className="flex-1 min-w-0">
-            {/* Header - Desktop */}
-            <div className="hidden lg:block mb-8">
-              <div className="space-y-2 mb-6">
-                <h1
-                  className="text-4xl xl:text-5xl font-black tracking-tight text-foreground"
-                  suppressHydrationWarning
-                >
-                  {t("homeModels.allModels")}
-                </h1>
-                <p
-                  className="text-muted-foreground text-base xl:text-lg leading-relaxed max-w-2xl"
-                  suppressHydrationWarning
-                >
-                  {t("homeModels.allModelsSubtitle")}
-                </p>
-              </div>
-
-              {/* Results count and info */}
-              <div className="flex items-center justify-between text-sm pb-4 border-b border-border/30">
-                <span className="text-muted-foreground font-medium">
-                  <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
-                  {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
-                </span>
-                <span className="text-muted-foreground/70 text-xs" suppressHydrationWarning>
-                  {t("models.results.sortedBy") || "Sorted by price: Low to High"}
-                </span>
-              </div>
-            </div>
-
-            {/* Results count - Mobile */}
+          {/* Main Content Area - Right Side (Desktop) */}
+          <div className="flex-1 min-w-0 w-full">
+            {/* Results count and info - All Screens */}
             {!isLoading && (
-              <div className="lg:hidden mb-6 flex items-center justify-between text-sm pb-4 border-b border-border/30">
+              <div className="mb-4 sm:mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm pb-3 sm:pb-4 border-b border-border/30">
                 <span className="text-muted-foreground font-medium">
                   <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
                   {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
                 </span>
-                <span className="text-muted-foreground/70 text-xs" suppressHydrationWarning>
+                <span className="text-muted-foreground/70 text-[10px] sm:text-xs md:text-sm" suppressHydrationWarning>
                   {t("models.results.sortedBy") || "Sorted by price: Low to High"}
                 </span>
               </div>
             )}
 
-            {/* Models Grid - Airbnb Style */}
+            {/* Models Grid - Fully Responsive */}
             {isLoading ? (
-              <div className="flex justify-center items-center py-20">
-                <div className="text-muted-foreground">Loading models...</div>
+              <div className="flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20">
+                <div className="text-muted-foreground text-xs sm:text-sm md:text-base">Loading models...</div>
+              </div>
+            ) : filteredModels.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-8 sm:py-12 md:py-16 lg:py-20 text-center px-4">
+                <p className="text-muted-foreground text-xs sm:text-sm md:text-base mb-3 sm:mb-4" suppressHydrationWarning>
+                  {t("models.noResults") || "No models found matching your filters."}
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => setFilters({
+                    priceRange: [0, maxPrice],
+                    bedrooms: [],
+                    bathrooms: [],
+                    sqftRange: [0, maxSqft],
+                  })}
+                  className="text-xs sm:text-sm"
+                >
+                  {t("models.filters.reset") || "Reset Filters"}
+                </Button>
               </div>
             ) : (
-              <div className="grid gap-6 sm:gap-7 lg:gap-8 grid-cols-1 md:grid-cols-2" suppressHydrationWarning>
-                {filteredModels.map((model, index) => {
+              <div 
+                className="grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 grid-cols-1 md:grid-cols-2 w-full" 
+                suppressHydrationWarning
+              >
+                {filteredModels.map((model) => {
                   const config = MODEL_CONFIG[model.key as keyof typeof MODEL_CONFIG];
                   const modelImages = getModelImages(model.key);
                   const mainImage = getModelMainImage(model.key);
-                  const initialDelay = index * 100;
-                  const carouselInterval = 4000;
+                  // Disable auto carousel for better performance
+                  const carouselInterval = 0; // Disabled
+                  const initialDelay = 0;
 
                   return (
-                    <ModelCard
-                      key={model.key}
-                      modelKey={model.key}
-                      name={t(model.nameKey)}
-                      description={t(model.descriptionKey)}
-                      image={mainImage}
-                      images={modelImages}
-                      price={model.price}
-                      beds={model.beds}
-                      bedsLabel={t("homeModels.beds")}
-                      baths={model.baths}
-                      bathsLabel={t("homeModels.baths")}
-                      sqft={model.sqft}
-                      sqftLabel={t("homeModels.sqft")}
-                      badges={config?.badges}
-                      satisfiedFamilies={config?.satisfiedFamilies}
-                      viewDetailsLabel={t("homeModels.moreDetails")}
-                      viewPhotosLabel={`${t("homeModels.viewPhotos")} (${modelImages.length})`}
-                      galleryTitle={`${t("homeModels.gallery")} ${t(model.nameKey)}`}
-                      galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
-                      modelLabel={t("homeModels.model")}
-                      carouselDelay={carouselInterval}
-                      initialDelay={initialDelay}
-                    />
+                    <Suspense 
+                      key={model.key} 
+                      fallback={
+                        <div className="h-96 bg-muted/50 rounded-2xl animate-pulse" />
+                      }
+                    >
+                      <ModelCard
+                        modelKey={model.key}
+                        name={t(model.nameKey)}
+                        description={t(model.descriptionKey)}
+                        image={mainImage}
+                        images={modelImages}
+                        price={model.price}
+                        beds={model.beds}
+                        bedsLabel={t("homeModels.beds")}
+                        baths={model.baths}
+                        bathsLabel={t("homeModels.baths")}
+                        sqft={model.sqft}
+                        sqftLabel={t("homeModels.sqft")}
+                        badges={config?.badges}
+                        satisfiedFamilies={config?.satisfiedFamilies}
+                        viewDetailsLabel={t("homeModels.moreDetails")}
+                        viewPhotosLabel={`${t("homeModels.viewPhotos")} (${modelImages.length})`}
+                        galleryTitle={`${t("homeModels.gallery")} ${t(model.nameKey)}`}
+                        galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
+                        modelLabel={t("homeModels.model")}
+                        carouselDelay={carouselInterval}
+                        initialDelay={initialDelay}
+                      />
+                    </Suspense>
                   );
                 })}
               </div>

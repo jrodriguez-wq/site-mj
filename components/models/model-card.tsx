@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share2, Maximize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -32,7 +33,7 @@ export interface ModelCardProps {
   initialDelay?: number;
 }
 
-export const ModelCard = (props: ModelCardProps) => {
+const ModelCardComponent = (props: ModelCardProps) => {
   const {
     modelKey,
     name,
@@ -61,6 +62,13 @@ export const ModelCard = (props: ModelCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Intersection Observer para lazy loading
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+    rootMargin: "50px",
+  });
+
   // Ensure modelKey is available in scope
   const modelLink = `/models/${modelKey}`;
 
@@ -68,9 +76,9 @@ export const ModelCard = (props: ModelCardProps) => {
   const displayImages = images.length > 0 ? images : [image];
   const hasMultipleImages = displayImages.length > 1;
 
-  // Auto carousel with staggered delay
+  // Auto carousel with staggered delay - Only if carouselDelay > 0
   useEffect(() => {
-    if (!isGalleryOpen && hasMultipleImages) {
+    if (!isGalleryOpen && hasMultipleImages && carouselDelay > 0) {
       // Add initial delay to stagger animations between cards
       const timeoutId = setTimeout(() => {
         intervalRef.current = setInterval(() => {
@@ -89,42 +97,42 @@ export const ModelCard = (props: ModelCardProps) => {
     };
   }, [isGalleryOpen, displayImages.length, hasMultipleImages, carouselDelay, initialDelay]);
 
-  const openGallery = () => {
+  const openGallery = useCallback(() => {
     setIsGalleryOpen(true);
     setGalleryImageIndex(currentImageIndex);
     if (intervalRef.current) clearInterval(intervalRef.current);
-  };
+  }, [currentImageIndex]);
 
-  const closeGallery = () => {
+  const closeGallery = useCallback(() => {
     setIsGalleryOpen(false);
-  };
+  }, []);
 
-  const changeGalleryImage = (direction: number) => {
+  const changeGalleryImage = useCallback((direction: number) => {
     setGalleryImageIndex((prev) => {
       const newIndex = prev + direction;
       if (newIndex < 0) return displayImages.length - 1;
       if (newIndex >= displayImages.length) return 0;
       return newIndex;
     });
-  };
+  }, [displayImages.length]);
 
-  const handleKeyDown = (e: React.KeyboardEvent, callback: () => void) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent, callback: () => void) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       callback();
     }
-  };
+  }, []);
 
   return (
     <>
       {/* Main Card Container */}
-      <div className="relative w-full group animate-fade-in-up">
+      <div ref={ref} className="relative w-full group">
         {/* Gradient Border Effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
 
-        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 will-change-transform">
+        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2">
           {/* Image Carousel */}
-          <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          <div className="relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div
               className={cn(
                 "flex transition-transform duration-700 ease-out h-full",
@@ -138,20 +146,28 @@ export const ModelCard = (props: ModelCardProps) => {
             >
               {displayImages.map((img, index) => (
                 <div key={index} className="min-w-full h-full relative">
-                  <Image
-                    src={img}
-                    alt={`${name} - ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                    priority={index === 0}
-                  />
+                  {inView || index === 0 ? (
+                    <Image
+                      src={img}
+                      alt={`${name} - ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                      priority={index === 0 && inView}
+                      loading={index === 0 && inView ? "eager" : "lazy"}
+                      quality={85}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-muted animate-pulse" />
+                  )}
                 </div>
               ))}
             </div>
 
-            {/* Top Actions Bar */}
-            <div className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 flex justify-between items-start z-10">
+            {/* Top Actions Bar - Left Side: Badges */}
+            <div className="absolute top-3 sm:top-4 md:top-5 left-3 sm:left-4 md:left-5 z-20">
               {/* Badges */}
               {badges && badges.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
@@ -165,71 +181,77 @@ export const ModelCard = (props: ModelCardProps) => {
                   ))}
                 </div>
               )}
-
-              {/* Action Buttons */}
-              <div className="flex gap-1.5 sm:gap-2">
-                <button
-                  onClick={() => setIsLiked(!isLiked)}
-                  className="bg-background/80 backdrop-blur-sm p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/50"
-                  aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
-                  type="button"
-                >
-                  <Heart
-                    className={cn(
-                      "w-4 h-4 sm:w-5 sm:h-5 transition-colors",
-                      isLiked ? "fill-red-500 text-red-500" : "text-foreground/70"
-                    )}
-                  />
-                </button>
-                <button
-                  className="bg-background/80 backdrop-blur-sm p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/50"
-                  aria-label="Share"
-                  type="button"
-                >
-                  <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/70" />
-                </button>
-              </div>
             </div>
 
-            {/* View Gallery Button */}
+            {/* Top Actions Bar - Right Side: Action Buttons */}
+            <div className="absolute top-3 sm:top-4 md:top-5 right-3 sm:right-4 md:right-5 flex gap-1.5 sm:gap-2 z-20">
+              <button
+                onClick={() => setIsLiked(!isLiked)}
+                className="bg-background/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/70 shadow-sm"
+                aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
+                type="button"
+              >
+                <Heart
+                  className={cn(
+                    "w-4 h-4 sm:w-5 sm:h-5 transition-colors",
+                    isLiked ? "fill-red-500 text-red-500" : "text-foreground/70"
+                  )}
+                />
+              </button>
+              <button
+                className="bg-background/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/70 shadow-sm"
+                aria-label="Share"
+                type="button"
+              >
+                <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/70" />
+              </button>
+            </div>
+
+            {/* View Gallery Button - Hidden on mobile, visible on tablet+ */}
             {hasMultipleImages && (
               <button
                 onClick={openGallery}
                 onKeyDown={(e) => handleKeyDown(e, openGallery)}
-                className="absolute bottom-2 sm:bottom-3 md:bottom-4 right-2 sm:right-3 md:right-4 bg-background/80 backdrop-blur-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 hover:bg-background transition-colors border border-border/50 z-10"
+                className="hidden sm:flex absolute bottom-3 md:bottom-4 lg:bottom-5 right-3 md:right-4 lg:right-5 bg-background/95 backdrop-blur-md px-2.5 md:px-3 py-1.5 md:py-2 rounded-full items-center gap-1.5 md:gap-2 hover:bg-background transition-all border border-border/70 shadow-md z-20"
                 aria-label={`View ${displayImages.length} photos`}
                 type="button"
               >
-                <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-foreground" />
-                <span className="text-foreground text-xs sm:text-sm font-medium hidden sm:inline">
+                <Eye className="w-4 h-4 md:w-4 md:h-4 text-foreground flex-shrink-0" />
+                <span className="text-foreground text-xs md:text-sm font-medium whitespace-nowrap">
                   {viewPhotosLabel || `Ver ${displayImages.length} fotos`}
                 </span>
               </button>
             )}
 
-            {/* Price Badge */}
-            <div className="absolute top-12 sm:top-14 md:top-16 right-2 sm:right-3 md:right-4 bg-primary/90 backdrop-blur-sm text-primary-foreground px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg z-10">
-              {price}
-            </div>
+            {/* Price Badge - Positioned below badges to avoid overlap, dynamic positioning */}
+            {badges && badges.length > 0 ? (
+              <div className="absolute top-14 sm:top-16 md:top-18 lg:top-20 left-3 sm:left-4 md:left-5 bg-primary/95 backdrop-blur-md text-primary-foreground px-3 sm:px-3.5 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg shadow-xl z-20">
+                {price}
+              </div>
+            ) : (
+              <div className="absolute top-3 sm:top-4 md:top-5 left-3 sm:left-4 md:left-5 bg-primary/95 backdrop-blur-md text-primary-foreground px-3 sm:px-3.5 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg shadow-xl z-20">
+                {price}
+              </div>
+            )}
           </div>
 
-          {/* Property Info */}
-          <div className="p-4 sm:p-5 md:p-6 space-y-4 sm:space-y-5 md:space-y-6">
+          {/* Property Info - Optimized padding for mobile */}
+          <div className="p-3 sm:p-4 md:p-5 lg:p-6 space-y-2.5 sm:space-y-3 md:space-y-4 lg:space-y-5">
             {/* Title and Location */}
             <div>
-              <div className="flex items-center justify-between mb-1.5 sm:mb-2 gap-2">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent flex-1 min-w-0">
+              <div className="flex items-start sm:items-center justify-between mb-1.5 sm:mb-2 gap-2">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent flex-1 min-w-0 leading-tight sm:leading-normal">
                   {name}
                 </h2>
-                <span className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0">
+                <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0 mt-0.5 sm:mt-0">
                   {modelLabel}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-muted-foreground font-medium line-clamp-2">{description}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium line-clamp-2 mt-1 sm:mt-1.5">{description}</p>
             </div>
 
-            {/* Quick Features */}
-            <div className="grid grid-cols-4 gap-2 sm:gap-3">
+            {/* Quick Features - Better spacing for mobile */}
+            <div className="grid grid-cols-4 gap-1 sm:gap-1.5 md:gap-2 lg:gap-3">
               {[
                 { icon: Bed, value: beds, label: bedsLabel },
                 { icon: Bath, value: baths, label: bathsLabel },
@@ -240,35 +262,35 @@ export const ModelCard = (props: ModelCardProps) => {
                 return (
                   <div
                     key={index}
-                    className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 md:p-3 text-center hover:from-primary/10 hover:to-primary/20 transition-colors border border-border/50"
+                    className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg sm:rounded-xl md:rounded-2xl p-1.5 sm:p-2 md:p-2.5 lg:p-3 text-center hover:from-primary/10 hover:to-primary/20 transition-colors border border-border/50"
                   >
-                    <div className="text-primary flex justify-center mb-1 sm:mb-2">
-                      <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5" />
+                    <div className="text-primary flex justify-center mb-0.5 sm:mb-1 md:mb-2">
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                     </div>
-                    <div className="font-bold text-foreground text-xs sm:text-sm">{feature.value}</div>
-                    <div className="text-[10px] sm:text-xs text-muted-foreground leading-tight">{feature.label}</div>
+                    <div className="font-bold text-foreground text-[10px] sm:text-xs md:text-sm leading-tight">{feature.value}</div>
+                    <div className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground leading-tight mt-0.5">{feature.label}</div>
                   </div>
                 );
               })}
             </div>
 
-            {/* Price and CTA */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 sm:gap-4 pt-3 sm:pt-4 border-t border-border/50">
-              <div className="flex-1 min-w-0">
-                <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider font-medium">Precio desde</p>
-                <p className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            {/* Price and CTA - Better mobile layout */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-2.5 sm:gap-3 md:gap-4 pt-2.5 sm:pt-3 md:pt-4 border-t border-border/50">
+              <div className="flex-1 min-w-0 pb-0 sm:pb-0">
+                <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider font-medium mb-0.5 sm:mb-1">Precio desde</p>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent leading-tight sm:leading-normal break-words">
                   {price}
                 </p>
               </div>
               <Button
                 asChild
-                className="relative w-full sm:w-auto bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-4 sm:px-6 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm md:text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden"
+                className="relative w-full sm:w-auto bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm md:text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden shrink-0"
               >
                 <Link href={modelLink}>
-                  <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                  <span className="relative z-10 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
                     <span className="hidden sm:inline">{viewDetailsLabel}</span>
                     <span className="sm:hidden">Ver más</span>
-                    <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300" />
+                    <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300 flex-shrink-0" />
                   </span>
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 </Link>
@@ -278,30 +300,139 @@ export const ModelCard = (props: ModelCardProps) => {
         </div>
       </div>
 
-      {/* Gallery Modal */}
+      {/* Gallery Modal - Simplified for mobile, full for desktop */}
       {isGalleryOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/95 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm"
           onClick={closeGallery}
         >
+          {/* Mobile: Simple Image Viewer */}
           <div
-            className="bg-card rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl border-2 border-border"
+            className="lg:hidden w-full h-full flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="grid lg:grid-cols-2 h-full">
+            {/* Mobile Header */}
+            <div className="flex items-center justify-between p-4 bg-background/95 backdrop-blur-md border-b border-border">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base font-bold text-foreground truncate">{name}</h3>
+                {hasMultipleImages && (
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {galleryImageIndex + 1} / {displayImages.length}
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={closeGallery}
+                className="ml-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border shrink-0"
+                aria-label="Close gallery"
+                type="button"
+              >
+                <X className="w-5 h-5 text-foreground" />
+              </button>
+            </div>
+
+            {/* Mobile Image Container */}
+            <div className="relative flex-1 bg-muted overflow-hidden">
+              <div className="relative w-full h-full">
+                <Image
+                  src={displayImages[galleryImageIndex]}
+                  alt={`${name} - ${galleryImageIndex + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  quality={90}
+                  priority={galleryImageIndex === 0}
+                  loading={galleryImageIndex === 0 ? "eager" : "lazy"}
+                />
+              </div>
+
+              {/* Mobile Navigation Controls */}
+              {hasMultipleImages && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      changeGalleryImage(-1);
+                    }}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2.5 rounded-full hover:bg-background transition-colors border border-border z-10 shadow-lg"
+                    aria-label="Previous image"
+                    type="button"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-foreground" />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      changeGalleryImage(1);
+                    }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2.5 rounded-full hover:bg-background transition-colors border border-border z-10 shadow-lg"
+                    aria-label="Next image"
+                    type="button"
+                  >
+                    <ChevronRight className="w-5 h-5 text-foreground" />
+                  </button>
+
+                  {/* Mobile Thumbnail Strip */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-background/95 backdrop-blur-md border-t border-border">
+                    <div className="flex gap-2 justify-center overflow-x-auto pb-1">
+                      {displayImages.map((img, index) => (
+                        <button
+                          key={index}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setGalleryImageIndex(index);
+                          }}
+                          className={cn(
+                            "w-12 h-9 rounded-md overflow-hidden border-2 transition-all flex-shrink-0",
+                            index === galleryImageIndex
+                              ? "border-primary scale-105"
+                              : "border-transparent opacity-60 hover:opacity-100"
+                          )}
+                          aria-label={`View image ${index + 1}`}
+                          type="button"
+                        >
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={img}
+                              alt={`Thumbnail ${index + 1}`}
+                              fill
+                              className="object-cover"
+                              sizes="48px"
+                              quality={75}
+                              loading="lazy"
+                            />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Desktop: Full Gallery with Details */}
+          <div
+            className="hidden lg:flex bg-card rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl border-2 border-border"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="grid lg:grid-cols-2 h-full w-full">
               {/* Left: Image Gallery */}
-              <div className="relative bg-muted h-[400px] lg:h-auto">
+              <div className="relative bg-muted h-full min-h-[500px]">
                 <div className="relative w-full h-full">
                   <Image
                     src={displayImages[galleryImageIndex]}
                     alt={`${name} - ${galleryImageIndex + 1}`}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="50vw"
+                    quality={90}
+                    priority={galleryImageIndex === 0}
+                    loading={galleryImageIndex === 0 ? "eager" : "lazy"}
                   />
                 </div>
 
-                {/* Gallery Controls */}
+                {/* Desktop Gallery Controls */}
                 {hasMultipleImages && (
                   <>
                     <button
@@ -323,7 +454,7 @@ export const ModelCard = (props: ModelCardProps) => {
                   </>
                 )}
 
-                {/* Thumbnail Strip */}
+                {/* Desktop Thumbnail Strip */}
                 {hasMultipleImages && (
                   <div className="absolute bottom-4 left-4 right-4 flex gap-2 justify-center z-10 overflow-x-auto pb-2">
                     {displayImages.map((img, index) => (
@@ -346,6 +477,8 @@ export const ModelCard = (props: ModelCardProps) => {
                             fill
                             className="object-cover"
                             sizes="64px"
+                            quality={75}
+                            loading="lazy"
                           />
                         </div>
                       </button>
@@ -353,7 +486,7 @@ export const ModelCard = (props: ModelCardProps) => {
                   </div>
                 )}
 
-                {/* Image Counter */}
+                {/* Desktop Image Counter */}
                 {hasMultipleImages && (
                   <div className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full border border-border">
                     <span className="text-foreground text-sm font-medium">
@@ -362,7 +495,7 @@ export const ModelCard = (props: ModelCardProps) => {
                   </div>
                 )}
 
-                {/* Close Button */}
+                {/* Desktop Close Button */}
                 <button
                   onClick={closeGallery}
                   className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border z-10"
@@ -373,8 +506,8 @@ export const ModelCard = (props: ModelCardProps) => {
                 </button>
               </div>
 
-              {/* Right: Property Details */}
-              <div className="p-8 lg:p-10 overflow-y-auto max-h-[90vh] lg:max-h-auto">
+              {/* Right: Property Details - Desktop Only */}
+              <div className="p-8 lg:p-10 overflow-y-auto max-h-[90vh]">
                 {/* Header */}
                 <div className="mb-8">
                   {badges && badges.length > 0 && (
@@ -451,3 +584,6 @@ export const ModelCard = (props: ModelCardProps) => {
     </>
   );
 };
+
+// Memoize component to prevent unnecessary re-renders
+export const ModelCard = memo(ModelCardComponent);

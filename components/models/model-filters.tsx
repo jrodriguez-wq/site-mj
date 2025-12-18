@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Filter, DollarSign, Bed, Bath, Square, RotateCcw, ChevronDown } from "lucide-react";
@@ -21,25 +21,25 @@ interface ModelFiltersProps {
   maxSqft: number;
 }
 
-export const ModelFilters = ({ filters, onFiltersChange, maxPrice, maxSqft }: ModelFiltersProps) => {
+const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: ModelFiltersProps) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handlePriceChange = (value: number[]) => {
+  const handlePriceChange = useCallback((value: number[]) => {
     onFiltersChange({
       ...filters,
       priceRange: [value[0], value[1]] as [number, number],
     });
-  };
+  }, [filters, onFiltersChange]);
 
-  const handleSqftChange = (value: number[]) => {
+  const handleSqftChange = useCallback((value: number[]) => {
     onFiltersChange({
       ...filters,
       sqftRange: [value[0], value[1]] as [number, number],
     });
-  };
+  }, [filters, onFiltersChange]);
 
-  const toggleBedroom = (bedrooms: number) => {
+  const toggleBedroom = useCallback((bedrooms: number) => {
     const newBedrooms = filters.bedrooms.includes(bedrooms)
       ? filters.bedrooms.filter((b) => b !== bedrooms)
       : [...filters.bedrooms, bedrooms];
@@ -47,9 +47,9 @@ export const ModelFilters = ({ filters, onFiltersChange, maxPrice, maxSqft }: Mo
       ...filters,
       bedrooms: newBedrooms,
     });
-  };
+  }, [filters, onFiltersChange]);
 
-  const toggleBathroom = (bathrooms: number) => {
+  const toggleBathroom = useCallback((bathrooms: number) => {
     const newBathrooms = filters.bathrooms.includes(bathrooms)
       ? filters.bathrooms.filter((b) => b !== bathrooms)
       : [...filters.bathrooms, bathrooms];
@@ -57,16 +57,16 @@ export const ModelFilters = ({ filters, onFiltersChange, maxPrice, maxSqft }: Mo
       ...filters,
       bathrooms: newBathrooms,
     });
-  };
+  }, [filters, onFiltersChange]);
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     onFiltersChange({
       priceRange: [0, maxPrice],
       bedrooms: [],
       bathrooms: [],
       sqftRange: [0, maxSqft],
     });
-  };
+  }, [maxPrice, maxSqft, onFiltersChange]);
 
   const activeFiltersCount =
     (filters.priceRange[0] > 0 || filters.priceRange[1] < maxPrice ? 1 : 0) +
@@ -81,9 +81,10 @@ export const ModelFilters = ({ filters, onFiltersChange, maxPrice, maxSqft }: Mo
         onClick={() => setIsOpen(!isOpen)}
         variant="outline"
         className={cn(
-          "lg:hidden w-full justify-between h-11 mb-4",
+          "lg:hidden w-full justify-between h-10 sm:h-11 mb-3 sm:mb-4",
           "border border-border/50 hover:border-primary/50",
-          "bg-background hover:bg-muted/50 transition-all"
+          "bg-background hover:bg-muted/50 transition-all",
+          "text-sm sm:text-base"
         )}
       >
         <span className="flex items-center gap-2">
@@ -102,7 +103,7 @@ export const ModelFilters = ({ filters, onFiltersChange, maxPrice, maxSqft }: Mo
 
       {/* Mobile Filter Panel */}
       <div className={cn(
-        "lg:hidden mt-4 p-5 rounded-xl border border-border/50 bg-card shadow-lg space-y-6",
+        "lg:hidden mt-3 sm:mt-4 p-4 sm:p-5 rounded-xl border border-border/50 bg-card shadow-lg space-y-4 sm:space-y-5 md:space-y-6",
         isOpen ? "block animate-in fade-in-0 slide-in-from-top-2" : "hidden"
       )}>
         <div className="flex items-center justify-between pb-4 border-b border-border/30">
@@ -383,3 +384,6 @@ export const ModelFilters = ({ filters, onFiltersChange, maxPrice, maxSqft }: Mo
     </>
   );
 };
+
+// Memoize component to prevent unnecessary re-renders
+export const ModelFilters = memo(ModelFiltersComponent);
