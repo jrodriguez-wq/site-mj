@@ -20,15 +20,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   }));
 
-  // Rutas adicionales importantes (sin duplicar warranty que ya está en mainRoutes)
-  const additionalRoutes = [
-    {
-      url: `${baseUrl}/schedule-appointment`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    },
-  ];
+  // No hay rutas adicionales, todas están en mainRoutes ahora
+  const additionalRoutes: MetadataRoute.Sitemap = [];
 
   // Rutas de modelos individuales
   const modelKeys = await getAllModelKeys();

@@ -75,7 +75,7 @@
       "explore": "Explore LaBelle",
       "about": {
         "title": "About LaBelle",
-        "description": "LaBelle is a growing community in Southwest Florida, perfect for families looking for a peaceful lifestyle with easy access to major cities. Our new construction homes in LaBelle offer modern amenities, spacious lots, and exceptional value.",
+        "description": "LaBelle is a growing community in Southwest Florida, perfect for families looking for a peaceful lifestyle with easy access to major cities. Our new construction homes in LaBelle offers spacious lots, exceptional value, and our innovative Rent to Own program with 5 years of rent stability..",
         "fullDescription": "The city of LaBelle is located in a region with calming outdoors and wildlife, immersed in oak trees that characterize its landscape and provide shade to its land. With these exceptional outdoors, you can enjoy activites such as fishing, offroading, hiking, boating and more. The city of LaBelle is the main urban conglomerate in the region today and preserves an important historical center with buildings constructed at the end of the 19th century and the beginning of the 20th century. LaBelle continues to contribute to the conservation of the rich architectural heritage in Florida. While cultivating its history, it proudly welcomes the urbanization of its developing areas."
       },
       "activities": {
@@ -116,7 +116,7 @@
       },
       "cta": {
         "title": "Ready to Call LaBelle Home?",
-        "description": "Explore our Rent to Own program and start your journey to homeownership today.",
+        "description": "Explore our Rent to Own program and start your journey to homeownership today!",
         "button": "Apply Now"
       }
     },
@@ -135,22 +135,22 @@
       "explore": "Explore Lehigh Acres",
       "about": {
         "title": "About Lehigh Acres",
-        "description": "Lehigh Acres is a growing community in Southwest Florida, offering affordable living with great amenities. Our new construction homes in Lehigh Acres feature modern designs, spacious layouts, and our innovative Rent to Own program with 5 years of rent stability.",
-        "fullDescription": "Lehigh Acres is situated on one of the most elevated areas of land in Lee County, between 27 and 30 feet above sea level. In this community, residents can enjoy freshwater fishing year-round, world-class golf courses, tennis, bicycling, nature trails, and numerous other activities at various clubs and organizations. As one of the fastest growing cities in the state of Florida, Lehigh Acres has nearly doubled in new home construction within the last 24 months. It is located only 15 minutes east of Cape Coral, 12 miles (19 kilometers) east of Fort Myers, and is equidistant to 3 major cities: Miami, Orlando and Tampa. Lehigh Acres offers beautiful lakes and is approximately 35 minutes away from a few of Florida's most breathtaking beaches, including Bonita Beach, Fort Myers Beach, and the Islands of Sanibel and Captiva."
+        "description": "Lehigh Acres is a growing community in Southwest Florida, offering affordable living in a great location. Our new construction homes in Lehigh Acres feature modern designs, spacious layouts, and our innovative Rent to Own program with 5 years of rent stability.",
+        "fullDescription": "Lehigh Acres is a community where residents can enjoy freshwater fishing year-round, world-class golf courses, tennis, bicycling, nature trails, and numerous other activities at various clubs and organizations. As one of the fastest growing cities in the state of Florida, Lehigh Acres has nearly doubled in new home construction within the last 24 months. It is located only 15 minutes east of Cape Coral, 12 miles east of Fort Myers, and is equidistant to 3 major cities: Miami, Orlando and Tampa. Lehigh Acres offers beautiful lakes and is approximately 35 minutes away from a few of Florida's most breathtaking beaches, including Bonita Beach, Fort Myers Beach, and the Islands of Sanibel and Captiva."
       },
       "activities": {
         "title": "Family-friendly Activities",
         "beaches": {
           "title": "Explore Florida's most beautiful beaches",
-          "description": "Explore Florida's most beautiful beaches"
+          "description": "Enjoy easy access to Gulf Coast beaches like Fort Myers Beach and Sanibel Island"
         },
         "entertainment": {
           "title": "Entertainment for the whole family",
-          "description": "Entertainment for the whole family"
+          "description": "From restaurants to shopping and outdoor adventures, there's something for everyone."
         },
         "nature": {
           "title": "Enjoy the harmony of nature's wonders",
-          "description": "Enjoy the harmony of nature's wonders"
+          "description": "Ideal location for those who enjoy outdoor activities and wildlife observation. "
         }
       },
       "future": {
@@ -162,8 +162,8 @@
         "subtitle": "Choose from our beautiful models available in Lehigh Acres"
       },
       "schedule": {
-        "title": "Schedule your visit to our model homes with us",
-        "description": "Receive personalized consultation in choosing your property and financing options",
+        "title": "Meet our team and models!",
+        "description": "Schedule a visit to meet our properties and team. Receive personalized consultation and financing options",
         "button": "Schedule Your Visit"
       },
       "gallery": {
@@ -188,37 +188,37 @@
     "highlights": {
       "downPayment": "$0 Down Payment",
       "noHOA": "No HOA Fees",
-      "yearsExperience": "Years Experience",
+      "yearsExperience": "15+ Years Experience",
       "happyFamilies": "Happy Families"
     },
     "points": {
-      "quality": "Premium quality construction with comprehensive warranties and quality assurance",
+      "quality": "Premium quality construction with extensive warranties and quality assurance",
       "flexibility": "Flexible financing options including our innovative Rent to Own program",
       "experience": "Over 15 years of experience building homes for American families"
     },
     "benefits": {
       "quality": {
         "title": "Quality Guaranteed",
-        "description": "All our homes come with comprehensive warranties and quality assurance."
+        "description": "All our homes come with extensive warranties and quality assurance."
       },
       "downPayment": {
         "title": "$0 Down Payment",
-        "description": "Rent to Own program makes homeownership accessible with no upfront costs."
+        "description": "Rent to Own program makes homeownership accessible to everyone. We give you time to prepare to purchase in with $0 down."
       },
       "lots": {
-        "title": "1/4 Acre Lots",
-        "description": "Spacious lots perfect for families, gardens, and outdoor activities."
+        "title": "Spacious Lots",
+        "description": "perfect lots for families, gardens, and outdoor activities."
       },
       "noHOA": {
         "title": "No HOA Fees",
         "description": "Save hundreds every month with no homeowners association fees."
       },
       "familyFocused": {
-        "title": "Family-Focused",
+        "title": "Family Oriented",
         "description": "Homes designed with families in mind, in safe, welcoming communities."
       },
       "quickMoveIn": {
-        "title": "Quick Move-In",
+        "title": "Ready to Move In",
         "description": "New construction homes ready for you to move in and start making memories."
       }
     },
@@ -246,7 +246,7 @@
       "downPayment": {
         "value": "$0",
         "label": "Down Payment",
-        "description": "Rent to Own program available"
+        "description": "Homeownership with $0 down payment"
       }
     }
   },
@@ -294,23 +294,23 @@
     "models": {
       "louisiana": {
         "name": "Louisiana",
-        "description": "Spacious family home with modern amenities",
-        "fullDescription": "The Louisiana model offers 4 grand bedrooms and 3 full bathrooms. This statuesque home spans 3,277 sq/ft of meticulously designed flow space to satisfy the needs of the most discerning of clients. Light placement and vaulted ceilings have been engineered and thought through at the highest level to provide an energy efficient yet luxurious level of comfort to this estate. The kitchen space was designed with your family in mind, prepare to fall in love with our high end finishes! Feel the quality of the stone countertops, enjoy the smooth feeling of the soft close cabinetry. Let your eyes enjoy the sleek design of our all stainless modern appliances.",
-        "price": "$189,900",
-        "priceRange": "$189,900 - $219,900",
+        "description": "Our biggest model yet. A family home with modern amenities",
+        "fullDescription": "The Louisiana model offers 4 grand bedrooms and 3 full bathrooms and 2 dens. This home spans 3,277 sq/ft of meticulously designed flow space to satisfy the needs of the most discerning of clients. Light placement and high ceilings have been engineered and thought through at the highest level to provide an energy efficient yet luxurious level of comfort to this home. The kitchen space was designed with your family in mind, prepare to fall in love with our high end finishes! Feel the quality of the countertops, enjoy the soft close cabinetry and the sleek design of our all stainless modern appliances.",
+        "price": "$469,900",
+        "priceRange": "$469,900 - $510,000",
         "features": [
           "Open concept living area",
           "Modern kitchen with stainless steel appliances",
           "Master suite with walk-in closet",
-          "Energy-efficient windows",
-          "2-car garage",
+          "Hurricane impact windows",
+          "3-car garage",
           "Landscaped yard"
         ],
         "specifications": {
           "bedrooms": "3-4 Bedrooms",
           "bathrooms": "2-3 Bathrooms",
           "squareFeet": "1,500 - 2,000 sq ft",
-          "garage": "2-Car Garage",
+          "garage": "3-Car Garage",
           "stories": "1 Story",
           "lotSize": "Standard Lot"
         }
@@ -318,21 +318,21 @@
       "viana": {
         "name": "Viana",
         "description": "Elegant design perfect for growing families",
-        "fullDescription": "With 4 bedrooms and 3 full bathrooms, it spans over 2,978 square feet. Prepare to fall in love. Its open concept offers a spacious living area, complemented by vaulted ceilings and ample lighting, complete with a modern kitchen design that includes: custom cabinets, granite countertops and energy-efficient stainless-steel appliances.",
-        "price": "$199,900",
-        "priceRange": "$199,900 - $229,900",
+        "fullDescription": "With 4 bedrooms and 3 full bathrooms and 2 dens, it spans 2,978 square feet. Prepare to fall in love. Its open concept offers a spacious living area, complemented by high ceilings and ample lighting, complete with a modern kitchen design that includes: custom cabinets, granite countertops and stainless-steel appliances.",
+        "price": "$449,900",
+        "priceRange": "$449,900 - $510,000",
         "features": [
           "Spacious family room",
-          "Gourmet kitchen with granite countertops",
+          "Gourmet kitchen with high end countertops",
           "Master bedroom with ensuite bathroom",
           "Energy-efficient HVAC system",
           "2-car garage",
-          "Covered patio"
+          "Covered lanai"
         ],
         "specifications": {
           "bedrooms": "3-4 Bedrooms",
           "bathrooms": "2-3 Bathrooms",
-          "squareFeet": "1,600 - 2,100 sq ft",
+          "squareFeet": "2,000 - 3,000 sq ft",
           "garage": "2-Car Garage",
           "stories": "1 Story",
           "lotSize": "Standard Lot"
@@ -340,23 +340,23 @@
       },
       "delanie": {
         "name": "Delanie",
-        "description": "Contemporary style with open floor plans",
-        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Delanie is one of our most sophisticated models. With 3 bedrooms, 1 den/4th bedroom optional, and 2 full bathrooms, it spans over 2,610 square feet. Prepare to fall in love with the Delanie. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Delanie model is a stunning family home with a diverse, spacious and modern design.",
-        "price": "$229,900",
-        "priceRange": "$229,900 - $259,900",
+        "description": "Contemporary style with an open floor concept",
+        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Delanie is one of our most sophisticated models. With 3 bedrooms, 1 den/4th bedroom optional, and 2 full bathrooms, it spans 2,610 square feet. Prepare to fall in love with the Delanie. Its special features include an open concept floor plan, spacious living area, high ceilings, ample lighting, custom cabinets, quality countertops, and stainless-steel appliances. The Delanie model is a stunning family home with a diverse, spacious and modern design.",
+        "price": "$369,900",
+        "priceRange": "$369,900 - $410,00",
         "features": [
-          "Open floor plan design",
+          "Open floor concept",
           "Upgraded kitchen with island",
           "Master suite with dual vanities",
           "High ceilings throughout",
-          "2-car garage",
+          "3-car garage",
           "Private backyard"
         ],
         "specifications": {
-          "bedrooms": "4 Bedrooms",
-          "bathrooms": "3 Bathrooms",
-          "squareFeet": "2,000 - 2,400 sq ft",
-          "garage": "2-Car Garage",
+          "bedrooms": "3-4 Bedrooms",
+          "bathrooms": "2 Bathrooms",
+          "squareFeet": "2,000 - 2,700 sq ft",
+          "garage": "3-Car Garage",
           "stories": "1 Story",
           "lotSize": "Standard Lot"
         }
@@ -365,19 +365,19 @@
         "name": "Aurora",
         "description": "Luxury features in an affordable package",
         "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Aurora is one of our most sophisticated models. With 4 bedrooms and 3 full bathrooms, it spans over 2,227 square feet. Prepare to fall in love with the Aurora. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Aurora model is a stunning family home with a diverse, spacious and modern design.",
-        "price": "$259,900",
-        "priceRange": "$259,900 - $289,900",
+        "price": "$345,000",
+        "priceRange": "$345,000 - $389,900",
         "features": [
-          "Luxury vinyl plank flooring",
-          "Gourmet kitchen with premium appliances",
-          "Master suite with spa-like bathroom",
-          "Smart home ready",
+          "Luxury flooring",
+          "Spacious kitchen with premium appliances",
+          "Master suite with private bathroom",
+          "High ceilings",
           "2-car garage",
-          "Extended covered patio"
+          "Extended covered lanai"
         ],
         "specifications": {
-          "bedrooms": "4-5 Bedrooms",
-          "bathrooms": "3-4 Bathrooms",
+          "bedrooms": "3-4 Bedrooms",
+          "bathrooms": "2-3 Bathrooms",
           "squareFeet": "2,200 - 2,600 sq ft",
           "garage": "2-Car Garage",
           "stories": "1 Story",
@@ -387,21 +387,21 @@
       "langdon": {
         "name": "Langdon",
         "description": "Premium finishes and exceptional space",
-        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Langdon model is one of our most elegant models. With 3 bedrooms and 2 full bathrooms, it spans over 1,900 square feet. Prepare to fall in love with the Langdon. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Langdon model is a lovely family home with a diverse and modern design.",
-        "price": "$289,900",
-        "priceRange": "$289,900 - $319,900",
+        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family while keeping it affordable. Its special features and remarkable price will exceed your expectations. The Langdon model is one of our most elegant models. With 3 bedrooms and 2 full bathrooms, it spans 1,900 square feet. Prepare to fall in love with the Langdon. Its special features include an open concept floor plan, spacious living area, high ceilings, ample lighting, custom cabinets, granite countertops, and hurraicane imapact roofs, windows & doors. The Langdon model is a lovely family home with a diverse and modern design.",
+        "price": "$316,900",
+        "priceRange": "$316,900 - $345,900",
         "features": [
-          "Premium hardwood-style flooring",
+          "High ceilings throughout",
           "Chef's kitchen with large island",
-          "Master suite with sitting area",
-          "Home office/study room",
+          "Master suite with private bathroom",
+          "Hurricane impact windows and doors",
           "2-car garage",
           "Outdoor living space"
         ],
         "specifications": {
-          "bedrooms": "4-5 Bedrooms",
-          "bathrooms": "3-4 Bathrooms",
-          "squareFeet": "2,400 - 2,800 sq ft",
+          "bedrooms": "3-4 Bedrooms",
+          "bathrooms": "2-3 Bathrooms",
+          "squareFeet": "1,800 - 2,000 sq ft",
           "garage": "2-Car Garage",
           "stories": "1 Story",
           "lotSize": "Standard Lot"
@@ -409,22 +409,22 @@
       },
       "emelia": {
         "name": "Emelia",
-        "description": "Our largest model with luxury throughout",
-        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Emelia model is one of our most spacious models. With 3 bedrooms and 2 full bathrooms, it spans over 2,060 square feet. Prepare to fall in love with the Emelia. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Emelia model is a lovely family home with a diverse and spacious design.",
-        "price": "$319,900",
-        "priceRange": "$319,900 - $349,900",
+        "description": "Our most popular model with luxury throughout",
+        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Emelia model is one of our most beautiful models yet. With 3 bedrooms and 2 full bathrooms, it spans 2,060 square feet. Prepare to fall in love with the Emelia. Its special features include a spacious living area, high ceilings, ample lighting, custom cabinets, quality countertops, and hurricaine impact roof, windows & doors. The Emelia model is a lovely family home with a diverse and spacious design.",
+        "price": "$345,000",
+        "priceRange": "$345,000 - $374,900",
         "features": [
           "Luxury finishes throughout",
-          "Gourmet kitchen with top-tier appliances",
+          "Gourmet kitchen with stainless steel appliances",
           "Master suite with luxury bathroom",
-          "Multiple living areas",
+          "Spacious living areas",
           "2-car garage",
           "Premium outdoor entertainment area"
         ],
         "specifications": {
-          "bedrooms": "5 Bedrooms",
-          "bathrooms": "4 Bathrooms",
-          "squareFeet": "2,600 - 3,000 sq ft",
+          "bedrooms": "3-4 Bedrooms",
+          "bathrooms": "2-3 Bathrooms",
+          "squareFeet": "2,000 - 3,500 sq ft",
           "garage": "2-Car Garage",
           "stories": "1 Story",
           "lotSize": "Standard Lot"

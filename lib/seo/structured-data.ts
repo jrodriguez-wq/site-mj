@@ -16,13 +16,26 @@ export const generateOrganizationStructuredData =
       description: SEO_CONFIG.siteDescription,
       logo: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
       image: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
-      contactPoint: {
-        "@type": "ContactPoint",
-        telephone: CONTACT_INFO.phone,
-        contactType: "customer service",
-        email: CONTACT_INFO.email,
-        areaServed: CONTACT_INFO.address.addressCountry,
-      },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: CONTACT_INFO.phone,
+          contactType: "customer service",
+          email: CONTACT_INFO.email,
+          areaServed: [
+            "US-FL",
+            "LaBelle",
+            "Lehigh Acres",
+            "Fort Myers",
+            "Cape Coral",
+            "Naples",
+            "Miami",
+            "Clewiston",
+            "Immokalee",
+          ],
+          availableLanguage: ["English", "Spanish"],
+        },
+      ],
       address: {
         "@type": "PostalAddress",
         ...CONTACT_INFO.address,
@@ -59,14 +72,18 @@ export const generateRealEstateListingStructuredData = (
     floorSize?: number;
     numberOfRooms?: number;
     yearBuilt?: number;
+    url?: string;
+    availability?: string;
   }
 ): RealEstateListingStructuredData => {
   const structuredData: RealEstateListingStructuredData = {
     "@context": "https://schema.org",
     "@type": "RealEstateListing",
     name: listing.name,
-    description: listing.description,
+    description: listing.description || `${listing.name} - New construction home by M.J. Newell Homes`,
     image: listing.image,
+    url: listing.url || `${SEO_CONFIG.siteUrl}/models/${listing.name.toLowerCase().replace(/\s+/g, "-")}`,
+    availability: listing.availability || "https://schema.org/InStock",
   };
 
   if (listing.address) {
@@ -85,14 +102,14 @@ export const generateRealEstateListingStructuredData = (
 
   if (listing.price) {
     structuredData.price = listing.price;
-    structuredData.priceCurrency = listing.priceCurrency || "EUR";
+    structuredData.priceCurrency = listing.priceCurrency || "USD";
   }
 
   if (listing.floorSize) {
     structuredData.floorSize = {
       "@type": "QuantitativeValue",
       value: listing.floorSize,
-      unitCode: "MTK",
+      unitCode: "SQM", // Square meters, but we'll convert from sqft if needed
     };
   }
 
@@ -103,6 +120,15 @@ export const generateRealEstateListingStructuredData = (
   if (listing.yearBuilt) {
     structuredData.yearBuilt = listing.yearBuilt;
   }
+
+  // Add offer details
+  structuredData.offers = {
+    "@type": "Offer",
+    price: listing.price || "0",
+    priceCurrency: listing.priceCurrency || "USD",
+    availability: listing.availability || "https://schema.org/InStock",
+    url: listing.url || `${SEO_CONFIG.siteUrl}/models/${listing.name.toLowerCase().replace(/\s+/g, "-")}`,
+  };
 
   return structuredData;
 };
@@ -177,6 +203,16 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
       closes: CONTACT_INFO.openingHours.saturday.closes,
     });
   }
+  
+  // Domingo
+  if (CONTACT_INFO.openingHours.sunday) {
+    openingHours.push({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Sunday",
+      opens: CONTACT_INFO.openingHours.sunday.opens,
+      closes: CONTACT_INFO.openingHours.sunday.closes,
+    });
+  }
 
   return {
     "@context": "https://schema.org",
@@ -185,6 +221,7 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
     url: SEO_CONFIG.siteUrl,
     logo: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
     image: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
+    description: SEO_CONFIG.siteDescription,
     address: {
       "@type": "PostalAddress",
       ...CONTACT_INFO.address,
@@ -198,6 +235,86 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
       latitude: CONTACT_INFO.coordinates.latitude,
       longitude: CONTACT_INFO.coordinates.longitude,
     } : undefined,
+    areaServed: [
+      {
+        "@type": "City",
+        name: "LaBelle",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Lehigh Acres",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Fort Myers",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Cape Coral",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Naples",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Miami",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Clewiston",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+      {
+        "@type": "City",
+        name: "Immokalee",
+        containedIn: {
+          "@type": "State",
+          name: "Florida",
+        },
+      },
+    ],
+    serviceType: "New Home Construction",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Home Models",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Product",
+            name: "New Construction Homes",
+          },
+        },
+      ],
+    },
   };
 };
 
