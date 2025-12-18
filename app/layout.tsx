@@ -126,7 +126,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         
-        {/* HubSpot Script */}
+        {/* HubSpot Embed Code - Tracking */}
         <Script
           id="hs-script-loader"
           strategy="afterInteractive"

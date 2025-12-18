@@ -1,103 +1,155 @@
 "use client";
 
-import { Shield, DollarSign, Home, Award, Users, Clock } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { TrendingUp, Home, DollarSign, Award, CheckCircle2 } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
+import { Button } from "@/components/ui/button";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
 
-  const benefits = [
+  const stats = [
     {
-      icon: Shield,
-      titleKey: "whyChooseUs.benefits.quality.title",
-      descriptionKey: "whyChooseUs.benefits.quality.description",
-    },
-    {
+      number: "$0",
+      labelKey: "whyChooseUs.highlights.downPayment",
       icon: DollarSign,
-      titleKey: "whyChooseUs.benefits.downPayment.title",
-      descriptionKey: "whyChooseUs.benefits.downPayment.description",
     },
     {
+      number: "100%",
+      labelKey: "whyChooseUs.highlights.noHOA",
       icon: Home,
-      titleKey: "whyChooseUs.benefits.lots.title",
-      descriptionKey: "whyChooseUs.benefits.lots.description",
     },
     {
+      number: "15+",
+      labelKey: "whyChooseUs.highlights.yearsExperience",
       icon: Award,
-      titleKey: "whyChooseUs.benefits.noHOA.title",
-      descriptionKey: "whyChooseUs.benefits.noHOA.description",
     },
     {
-      icon: Users,
-      titleKey: "whyChooseUs.benefits.familyFocused.title",
-      descriptionKey: "whyChooseUs.benefits.familyFocused.description",
-    },
-    {
-      icon: Clock,
-      titleKey: "whyChooseUs.benefits.quickMoveIn.title",
-      descriptionKey: "whyChooseUs.benefits.quickMoveIn.description",
+      number: "500+",
+      labelKey: "whyChooseUs.highlights.happyFamilies",
+      icon: TrendingUp,
     },
   ];
 
-  return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/50">
-      <div className="container mx-auto px-4 sm:px-5 md:px-6">
-        <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-            {t("whyChooseUs.title")}
-          </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            {t("whyChooseUs.subtitle")}
-          </p>
-        </div>
+  const benefits = [
+    "whyChooseUs.points.quality",
+    "whyChooseUs.points.flexibility",
+    "whyChooseUs.points.experience",
+  ];
 
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((benefit) => {
-            const Icon = benefit.icon;
-            return (
-              <Card
-                key={benefit.titleKey}
-                className="group relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-br from-card to-card/50"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CardHeader className="relative p-4 sm:p-6">
-                  <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="p-3 sm:p-4 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg border border-primary/20 shrink-0">
-                      <Icon className="h-5 w-5 sm:h-7 sm:w-7 text-primary" />
+  return (
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-background">
+      <div className="container mx-auto px-4 sm:px-5 md:px-6">
+        {/* Main Layout - Split Design */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Side - Image with Integrated Stats */}
+          <div className="relative order-2 lg:order-1">
+            <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src="/img/hero/1W5A0741_1.jpg"
+                alt="M.J. Newell Homes - Quality Construction"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              
+              {/* Stats Overlay - Bottom Right, Integrated */}
+              <div className="absolute bottom-6 right-6 left-6">
+                <div className="grid grid-cols-2 gap-3">
+                  {stats.slice(0, 2).map((stat, index) => {
+                    const Icon = stat.icon;
+                    return (
+                      <div
+                        key={index}
+                        className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/50"
+                      >
+                        <div className="flex items-center gap-2 mb-1">
+                          <Icon className="h-4 w-4 text-primary" />
+                        </div>
+                        <div className="text-2xl sm:text-3xl font-black text-foreground mb-0.5" suppressHydrationWarning>
+                          {stat.number}
+                        </div>
+                        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight" suppressHydrationWarning>
+                          {t(stat.labelKey)}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Stats - Below Image */}
+            <div className="grid grid-cols-2 gap-4 mt-6">
+              {stats.slice(2).map((stat, index) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={index}
+                    className="text-center p-6 rounded-2xl bg-muted/50 border border-border/50 hover:bg-muted transition-colors"
+                  >
+                    <div className="flex justify-center mb-3">
+                      <div className="p-3 bg-primary/10 rounded-xl">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <CardTitle className="text-lg sm:text-xl md:text-2xl group-hover:text-primary transition-colors duration-300" suppressHydrationWarning>
-                        {t(benefit.titleKey)}
-                      </CardTitle>
+                    <div className="text-3xl sm:text-4xl font-black text-foreground mb-2" suppressHydrationWarning>
+                      {stat.number}
+                    </div>
+                    <div className="text-xs sm:text-sm text-muted-foreground font-medium" suppressHydrationWarning>
+                      {t(stat.labelKey)}
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="relative p-4 sm:p-6 pt-0">
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                    {t(benefit.descriptionKey)}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+                );
+              })}
+            </div>
+          </div>
 
-        <div className="mt-8 sm:mt-10 md:mt-12 text-center px-4">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              const formSection = document.getElementById("quick-register-form");
-              if (formSection) {
-                formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-              }
-            }}
-            size="lg"
-            className="w-full sm:w-auto px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold"
-          >
-            <span suppressHydrationWarning>{t("hero.applyNow")}</span>
-          </Button>
+          {/* Right Side - Content */}
+          <div className="space-y-8 order-1 lg:order-2">
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.1] mb-6" suppressHydrationWarning>
+                  {t("whyChooseUs.title")}
+                </h2>
+                <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl" suppressHydrationWarning>
+                  {t("whyChooseUs.subtitle")}
+                </p>
+              </div>
+
+              {/* Benefits List - Clean Design */}
+              <div className="space-y-4 pt-4">
+                {benefits.map((benefitKey, index) => (
+                  <div key={index} className="flex items-start gap-4 group">
+                    <div className="shrink-0 mt-1">
+                      <CheckCircle2 className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
+                    </div>
+                    <p className="text-base sm:text-lg text-foreground leading-relaxed flex-1" suppressHydrationWarning>
+                      {t(benefitKey)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="pt-4">
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  const formSection = document.getElementById("quick-register-form");
+                  if (formSection) {
+                    formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }}
+                size="lg"
+                className="px-8 py-6 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
+              >
+                <span suppressHydrationWarning>{t("hero.applyNow")}</span>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

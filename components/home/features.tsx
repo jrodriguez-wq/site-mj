@@ -36,13 +36,13 @@ export const Features = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-foreground text-background">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-            {t("features.title")}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
+            {t("features.title") || "What We Offer"}
           </h2>
-          <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
+          <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
             {t("features.subtitle")}
           </p>
         </div>
@@ -53,26 +53,26 @@ export const Features = () => {
             return (
               <Card
                 key={feature.titleKey}
-                className="group relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-gradient-to-br from-card to-card/50"
+                className="group relative overflow-hidden border-2 border-background/20 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 bg-background/10 hover:bg-background/15 backdrop-blur-sm"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CardHeader className="relative p-4 sm:p-6">
-                  <div className="mb-4 sm:mb-6 flex items-start justify-between">
-                    <div className={`inline-flex p-3 sm:p-4 rounded-2xl ${feature.bgColor} group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
-                      <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${feature.color}`} />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardHeader className="relative p-6 sm:p-8">
+                  <div className="mb-6 sm:mb-8 flex items-start justify-between">
+                    <div className={`inline-flex p-4 sm:p-5 rounded-2xl bg-primary/20 group-hover:bg-primary/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg border border-primary/30`}>
+                      <Icon className={`h-8 w-8 sm:h-10 sm:w-10 text-primary`} />
                     </div>
-                    <div className="text-3xl sm:text-4xl font-black text-muted/20 group-hover:text-primary/20 transition-colors duration-500">
+                    <div className="text-3xl sm:text-4xl font-black text-background/10 group-hover:text-primary/20 transition-colors duration-500">
                       {features.indexOf(feature) + 1}
                     </div>
                   </div>
-                  <CardTitle className="text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 group-hover:text-primary transition-colors duration-300" suppressHydrationWarning>
+                  <CardTitle className="text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-4 group-hover:text-primary transition-colors duration-300 text-background" suppressHydrationWarning>
                     {t(feature.titleKey)}
                   </CardTitle>
-                  <CardDescription className="text-sm sm:text-base leading-relaxed" suppressHydrationWarning>
+                  <CardDescription className="text-sm sm:text-base leading-relaxed text-background/70" suppressHydrationWarning>
                     {t(feature.descriptionKey)}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="relative pt-0 p-4 sm:p-6">
+                <CardContent className="relative pt-0 p-6 sm:p-8">
                   <Link
                     href={feature.href}
                     className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-300 group-hover:underline cursor-pointer text-sm sm:text-base"

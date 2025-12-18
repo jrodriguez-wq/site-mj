@@ -1,7 +1,9 @@
+"use client";
+
 import Image from "next/image";
-import { PageContent } from "@/components/layout/page-container";
 import { CommunityModelsSection } from "@/components/communities/community-models-section";
 import { CommunityPageContent } from "@/components/communities/community-page-content";
+import { useTranslation } from "@/hooks/use-translation";
 
 const lehighAcresImages = [
   "/recursos/shutterstock_1197062707.jpg",
@@ -10,96 +12,116 @@ const lehighAcresImages = [
   "/recursos/shutterstock_1065297917.jpg",
 ];
 
-const lehighAcresActivities = [
-  {
-    icon: "Droplets",
-    title: "Beaches",
-    description: "Explore Florida's most beautiful beaches",
-  },
-  {
-    icon: "Users",
-    title: "Entertainment",
-    description: "Entertainment for the whole family",
-  },
-  {
-    icon: "TreePine",
-    title: "Nature",
-    description: "Enjoy the harmony of nature's wonders",
-  },
-];
-
-const lehighAcresModels = [
-  { key: "viana" },
-  { key: "delanie" },
-  { key: "langdon" },
-  { key: "emelia" },
-];
-
 export default function LehighAcresPage() {
+  const { t } = useTranslation();
+
+  const lehighAcresActivities = [
+    {
+      icon: "Droplets",
+      title: t("communities.lehighAcres.activities.beaches.title"),
+      description: t("communities.lehighAcres.activities.beaches.description"),
+      image: "/recursos/playa.jpg",
+    },
+    {
+      icon: "Users",
+      title: t("communities.lehighAcres.activities.entertainment.title"),
+      description: t("communities.lehighAcres.activities.entertainment.description"),
+      image: "/recursos/shutterstock_2252703911.jpg",
+    },
+    {
+      icon: "TreePine",
+      title: t("communities.lehighAcres.activities.nature.title"),
+      description: t("communities.lehighAcres.activities.nature.description"),
+      image: "/recursos/pai.jpg",
+    },
+  ];
+
+  const lehighAcresModels = [
+    { key: "viana" },
+    { key: "delanie" },
+    { key: "langdon" },
+    { key: "emelia" },
+  ];
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section with Image */}
-      <div className="relative w-full h-[400px] sm:h-[450px] md:h-[550px] lg:h-[650px] xl:h-[700px] overflow-hidden">
-        <Image
-          src={lehighAcresImages[0]}
-          alt="Lehigh Acres, Florida - Beautiful community"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16">
-          <div className="max-w-5xl mx-auto">
-            <div className="mb-2 sm:mb-3 md:mb-4">
-              <span className="inline-block text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider bg-background/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-primary/20 shadow-lg">
-                Communities
-              </span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-foreground drop-shadow-2xl mb-2 sm:mb-3 md:mb-4 leading-tight">
-              Lehigh Acres Country
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-foreground/95 drop-shadow-lg font-semibold">
-              Your Perfect Home Awaits in Southwest Florida
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <PageContent size="lg">
-        <div className="py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24">
-          <CommunityPageContent
-            aboutTitle="About Lehigh Acres"
-            aboutDescription="Lehigh Acres is situated on one of the most elevated areas of land in Lee County, between 27 and 30 feet above sea level. In this community, residents can enjoy freshwater fishing year-round, world-class golf courses, tennis, bicycling, nature trails, and numerous other activities at various clubs and organizations. As one of the fastest growing cities in the state of Florida, Lehigh Acres has nearly doubled in new home construction within the last 24 months. It is located only 15 minutes east of Cape Coral, 12 miles (19 kilometers) east of Fort Myers, and is equidistant to 3 major cities: Miami, Orlando and Tampa. Lehigh Acres offers beautiful lakes and is approximately 35 minutes away from a few of Florida's most breathtaking beaches, including Bonita Beach, Fort Myers Beach, and the Islands of Sanibel and Captiva."
-            activitiesTitle="Family-friendly Activities"
-            activities={lehighAcresActivities}
-            features={[
-              { icon: "Square", label: "Spacious Lots" },
-              { icon: "Home", label: "Great Schools" },
-              { icon: "Car", label: "Prime Location" },
-            ]}
-            futureTitle="The Future of Florida"
-            futureDescription="Purchase your home in a dream city. New constructions in Southwest Florida. Purchase your new home with $0 down payment benefits and closing cost assistance!"
-            scheduleTitle="Schedule your visit to our model homes with us"
-            scheduleDescription="Receive personalized consultation in choosing your property and financing options"
-            scheduleButton="Schedule Your Visit"
-            galleryTitle="Discover Lehigh Acres"
-            galleryImages={lehighAcresImages}
-            ctaTitle="Ready to Call Lehigh Acres Home?"
-            ctaDescription="Explore our Rent to Own program and start your journey to homeownership today."
-            ctaButton="Apply Now"
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section with Image - Similar to Home */}
+      <section className="relative w-full h-[500px] sm:h-[550px] md:h-[650px] lg:h-[750px] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={lehighAcresImages[0]}
+            alt={`${t("communities.lehighAcres.name")}, Florida - Beautiful community`}
+            fill
+            className="object-cover animate-subtle-zoom"
+            priority
+            sizes="100vw"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55 z-20" />
+        </div>
 
-          <div className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-8 sm:pb-10 md:pb-12 lg:pb-16">
-            <CommunityModelsSection
-              modelKeys={lehighAcresModels.map((m) => m.key)}
-              title="Available Models"
-              subtitle="Choose from our beautiful models available in Lehigh Acres"
-            />
+        <div className="relative z-30 w-full h-full flex items-center justify-center">
+          <div className="container mx-auto px-4 sm:px-5 md:px-6">
+            <div className="max-w-4xl text-center space-y-4 sm:space-y-5 md:space-y-6 mx-auto">
+              <div className="mb-4 sm:mb-5">
+                <span className="inline-block px-4 sm:px-5 py-2 sm:py-2.5 bg-primary/95 backdrop-blur-md text-white text-xs sm:text-sm font-bold rounded-full border-2 border-white/60 shadow-2xl" suppressHydrationWarning>
+                  {t("communities.lehighAcres.hero.badge") || t("communities.lehighAcres.country.title")}
+                </span>
+              </div>
+              <h1
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white px-2"
+                style={{
+                  textShadow: "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.4)",
+                  fontWeight: 900,
+                  letterSpacing: "-0.02em",
+                }}
+                suppressHydrationWarning
+              >
+                {t("communities.lehighAcres.country.subtitle") || "Lehigh Acres"}
+              </h1>
+              <p
+                className="mx-auto max-w-[700px] text-white text-base sm:text-lg md:text-xl lg:text-2xl font-semibold px-4"
+                style={{
+                  textShadow: "0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)",
+                }}
+                suppressHydrationWarning
+              >
+                {t("communities.lehighAcres.hero.subtitle") || "Your Perfect Home Awaits in Southwest Florida"}
+              </p>
+            </div>
           </div>
         </div>
-      </PageContent>
+      </section>
+
+      <CommunityPageContent
+        aboutTitle={t("communities.lehighAcres.about.title")}
+        aboutDescription={t("communities.lehighAcres.about.fullDescription")}
+        activitiesTitle={t("communities.lehighAcres.activities.title")}
+        activities={lehighAcresActivities}
+        features={[
+          { icon: "Square", label: t("communities.lehighAcres.features.spaciousLots") },
+          { icon: "Home", label: t("communities.lehighAcres.features.greatSchools") },
+          { icon: "Car", label: t("communities.lehighAcres.features.primeLocation") },
+        ]}
+        futureTitle={t("communities.lehighAcres.future.title")}
+        futureDescription={t("communities.lehighAcres.future.description")}
+        scheduleTitle={t("communities.lehighAcres.schedule.title")}
+        scheduleDescription={t("communities.lehighAcres.schedule.description")}
+        scheduleButton={t("communities.lehighAcres.schedule.button")}
+        galleryTitle={t("communities.lehighAcres.gallery.title")}
+        galleryDescription={t("communities.lehighAcres.gallery.description")}
+        galleryImages={lehighAcresImages}
+        ctaTitle={t("communities.lehighAcres.cta.title")}
+        ctaDescription={t("communities.lehighAcres.cta.description")}
+        ctaButton={t("communities.lehighAcres.cta.button")}
+      />
+
+      <div className="py-10 md:py-14 lg:py-18">
+        <CommunityModelsSection
+          modelKeys={lehighAcresModels.map((m) => m.key)}
+          title={t("communities.lehighAcres.models.title")}
+          subtitle={t("communities.lehighAcres.models.subtitle")}
+        />
+      </div>
     </div>
   );
 }

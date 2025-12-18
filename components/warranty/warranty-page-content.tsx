@@ -7,7 +7,6 @@ import { PageContent } from "@/components/layout/page-container";
 import { useTranslation } from "@/hooks/use-translation";
 import { Shield, CheckCircle2, Clock, HeadphonesIcon } from "lucide-react";
 import { SEO_CONFIG } from "@/config/seo";
-import { WARRANTY_INFO } from "@/config/warranty-info";
 
 export const WarrantyPageContent = () => {
   const { t } = useTranslation();
@@ -24,76 +23,82 @@ export const WarrantyPageContent = () => {
       <div className="space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
-            {t("warranty.title") || "Warranty & Service"}
+            {t("warranty.title")}
           </h1>
           <p className="text-xl text-muted-foreground" suppressHydrationWarning>
-            {t("warranty.subtitle") || "We stand behind our quality construction"}
+            {t("warranty.subtitle")}
           </p>
         </div>
 
+        {/* Warranty Coverage - Simplified */}
         <Card>
           <CardHeader>
             <CardTitle suppressHydrationWarning>
-              {t("warranty.coverage.title") || "Our Warranty Coverage"}
+              {t("warranty.coverage.title")}
             </CardTitle>
             <CardDescription suppressHydrationWarning>
-              {t("warranty.coverage.description") || "M.J. Newell Homes provides comprehensive warranty coverage for all new construction homes."}
+              {t("warranty.coverage.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="mt-6">
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="border-b-2 border-primary/20">
-                      <th className="text-left py-3 px-4 font-bold text-foreground">Tipo de garantía</th>
-                      <th className="text-left py-3 px-4 font-bold text-foreground">Duración</th>
-                      <th className="text-left py-3 px-4 font-bold text-foreground">Cobertura</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {WARRANTY_INFO.map((warranty, index) => (
-                      <tr key={index} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="py-4 px-4 font-semibold">{warranty.type}</td>
-                        <td className="py-4 px-4 text-primary font-medium">{warranty.duration}</td>
-                        <td className="py-4 px-4 text-muted-foreground">{warranty.coverage}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="mt-6 space-y-6">
+              {/* Structural Warranty */}
+              <div className="flex items-start gap-4 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background hover:border-primary/40 transition-all duration-300">
+                <div className="flex-shrink-0 p-3 bg-primary/10 rounded-xl">
+                  <Shield className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-foreground mb-2" suppressHydrationWarning>
+                    {t("warranty.coverage.structural.title")}
+                  </h3>
+                  <p className="text-lg text-primary font-semibold mb-1" suppressHydrationWarning>
+                    {t("warranty.coverage.structural.duration")}
+                  </p>
+                  <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                    {t("warranty.coverage.structural.description")}
+                  </p>
+                </div>
+              </div>
+
+              {/* Mechanical Warranty */}
+              <div className="flex items-start gap-4 p-6 rounded-xl border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background hover:border-primary/40 transition-all duration-300">
+                <div className="flex-shrink-0 p-3 bg-primary/10 rounded-xl">
+                  <CheckCircle2 className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-foreground mb-2" suppressHydrationWarning>
+                    {t("warranty.coverage.mechanical.title")}
+                  </h3>
+                  <p className="text-lg text-primary font-semibold mb-1" suppressHydrationWarning>
+                    {t("warranty.coverage.mechanical.duration")}
+                  </p>
+                  <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                    {t("warranty.coverage.mechanical.description")}
+                  </p>
+                </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
+        {/* Features */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" />
-              {t("warranty.features.comprehensive.title") || "Why Choose Our Warranty"}
+              <span suppressHydrationWarning>{t("warranty.features.title")}</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-2 mt-6">
               <div className="flex items-start gap-3">
-                <Shield className="h-5 w-5 mt-0.5 text-primary shrink-0" />
-                <div>
-                  <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.comprehensive.title") || "Comprehensive Coverage"}
-                  </p>
-                  <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.comprehensive.description") || "Full warranty protection for your new home"}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
                 <Clock className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.timely.title") || "Timely Response"}
+                    {t("warranty.features.timely.title")}
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.timely.description") || "Quick response to all service requests"}
+                    {t("warranty.features.timely.description")}
                   </p>
                 </div>
               </div>
@@ -101,10 +106,10 @@ export const WarrantyPageContent = () => {
                 <HeadphonesIcon className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.support.title") || "Dedicated Support"}
+                    {t("warranty.features.support.title")}
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.support.description") || "Expert team ready to help"}
+                    {t("warranty.features.support.description")}
                   </p>
                 </div>
               </div>
@@ -112,10 +117,10 @@ export const WarrantyPageContent = () => {
                 <CheckCircle2 className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.quality.title") || "Quality Guaranteed"}
+                    {t("warranty.features.quality.title")}
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.quality.description") || "We ensure your home remains in excellent condition"}
+                    {t("warranty.features.quality.description")}
                   </p>
                 </div>
               </div>
@@ -123,13 +128,14 @@ export const WarrantyPageContent = () => {
           </CardContent>
         </Card>
 
+        {/* Form */}
         <Card className="shadow-lg">
           <CardHeader>
             <CardTitle className="text-center" suppressHydrationWarning>
-              {t("warranty.form.title") || "Submit Warranty Request"}
+              {t("warranty.form.title")}
             </CardTitle>
             <CardDescription className="text-center" suppressHydrationWarning>
-              {t("warranty.form.description") || "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you shortly."}
+              {t("warranty.form.description")}
             </CardDescription>
           </CardHeader>
           <CardContent>

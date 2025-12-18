@@ -33,7 +33,9 @@ export const Navbar = () => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
   const [isMounted, setIsMounted] = useState(false);
+  const [justClosed, setJustClosed] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   // Track mount state to prevent hydration mismatches
@@ -142,6 +144,22 @@ export const Navbar = () => {
 
   // Manejar hover con delay de 1 segundo
   const handleMouseEnter = (itemTitle: string) => {
+    // Cancelar cualquier timeout de cierre pendiente
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      setCloseTimeout(null);
+    }
+    
+    // Si ya está abierto, no hacer nada
+    if (openDropdown === itemTitle) {
+      return;
+    }
+    
+    // No abrir si se acaba de cerrar por un click en un link (esperar 2 segundos)
+    if (justClosed) {
+      return;
+    }
+    
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
     }
@@ -152,14 +170,55 @@ export const Navbar = () => {
   };
 
   const handleMouseLeave = () => {
+    // Limpiar timeout de hover
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
       setHoverTimeout(null);
+    }
+    
+    // Si hay un dropdown abierto, esperar un poco antes de cerrarlo
+    // Esto permite que el usuario mueva el mouse del botón al dropdown
+    if (openDropdown) {
+      const timeout = setTimeout(() => {
+        setOpenDropdown(null);
+      }, 200); // 200ms de delay para permitir movimiento del mouse
+      setCloseTimeout(timeout);
+    }
+  };
+  
+  // Manejar cuando el mouse entra al dropdown
+  const handleDropdownMouseEnter = () => {
+    // Cancelar cualquier timeout de cierre pendiente
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      setCloseTimeout(null);
+    }
+  };
+  
+  // Manejar cuando el mouse sale del dropdown
+  const handleDropdownMouseLeave = () => {
+    // Cerrar el dropdown cuando el mouse sale del dropdown
+    if (openDropdown) {
+      const timeout = setTimeout(() => {
+        setOpenDropdown(null);
+      }, 200);
+      setCloseTimeout(timeout);
     }
   };
 
   // Manejar click para abrir/cerrar
   const handleClick = (itemTitle: string) => {
+    // Limpiar cualquier timeout pendiente
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      setCloseTimeout(null);
+    }
+    // Resetear el flag de justClosed cuando se hace click manualmente
+    setJustClosed(false);
     if (openDropdown === itemTitle) {
       setOpenDropdown(null);
     } else {
@@ -169,9 +228,37 @@ export const Navbar = () => {
 
   // Cerrar al hacer clic en un link
   const handleLinkClick = () => {
+    // Limpiar cualquier timeout pendiente para evitar que se vuelva a abrir
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      setCloseTimeout(null);
+    }
+    // Marcar que se acaba de cerrar para prevenir que se vuelva a abrir inmediatamente
+    setJustClosed(true);
     setOpenDropdown(null);
     setIsOpen(false);
+    
+    // Resetear el flag después de 2 segundos
+    setTimeout(() => {
+      setJustClosed(false);
+    }, 2000);
   };
+  
+  // Limpiar timeouts al desmontar
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout);
+      }
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+      }
+    };
+  }, [hoverTimeout, closeTimeout]);
 
   return (
     <header 
@@ -183,26 +270,25 @@ export const Navbar = () => {
       
       <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
         <div className="flex h-16 sm:h-18 md:h-20 lg:h-24 items-center justify-between">
-          {/* Logo - Premium styling */}
+          {/* Logo - Grande, sin animación hover */}
           <Link
             href="/"
-            className="flex items-center space-x-2 sm:space-x-3 group relative transition-all duration-300 ease-out hover:scale-[1.02]"
+            className="flex items-center"
             aria-label="M.J. Newell Homes - Home"
           >
-            <div className="absolute inset-0 bg-primary/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <Image
               src="/img/logo.svg"
               alt="M.J. Newell Homes"
               width={280}
               height={160}
-              className="relative h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain transition-all duration-300 group-hover:brightness-105"
+              className="h-14 sm:h-16 md:h-18 lg:h-20 xl:h-22 w-auto object-contain"
               priority
             />
           </Link>
 
           {/* Desktop Navigation - Premium Design */}
           <nav 
-            className="hidden lg:flex items-center space-x-2" 
+            className="hidden lg:flex items-center gap-1 xl:gap-2" 
             role="navigation" 
             aria-label="Main navigation"
             suppressHydrationWarning
@@ -224,8 +310,8 @@ export const Navbar = () => {
                     <button
                       onClick={() => handleClick(item.title)}
                       className={cn(
-                        "group relative inline-flex h-10 items-center justify-center rounded-lg px-3 py-2",
-                        "text-sm font-semibold tracking-normal transition-all duration-300 ease-out",
+                        "group relative inline-flex h-10 items-center justify-center rounded-lg px-2 xl:px-3 py-2",
+                        "text-xs xl:text-sm font-semibold tracking-normal transition-all duration-300 ease-out whitespace-nowrap",
                         "text-foreground/80 hover:text-foreground",
                         "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
                         "before:transition-all before:duration-300 before:opacity-0",
@@ -241,7 +327,7 @@ export const Navbar = () => {
                       aria-label={`${item.title} menu`}
                       suppressHydrationWarning
                     >
-                      <span className="relative z-10 flex items-center gap-1.5">
+                      <span className="relative z-10 flex items-center gap-1 xl:gap-1.5">
                         {item.title}
                         <ChevronDown
                           className={cn(
@@ -259,6 +345,8 @@ export const Navbar = () => {
                         className="absolute top-full left-0 mt-2 w-[420px] min-w-[420px] max-w-[420px] lg:w-[480px] lg:min-w-[480px] lg:max-w-[480px] rounded-xl border border-border/30 bg-background/98 backdrop-blur-2xl shadow-[0_20px_60px_-12px_rgba(0,0,0,0.15)] overflow-hidden animate-in fade-in-0 zoom-in-95 slide-in-from-top-3 duration-300"
                         role="menu"
                         aria-label={`${item.title} submenu`}
+                        onMouseEnter={handleDropdownMouseEnter}
+                        onMouseLeave={handleDropdownMouseLeave}
                       >
                         {/* Elegant gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
@@ -322,8 +410,8 @@ export const Navbar = () => {
                   key={item.title}
                   href={item.href}
                   className={cn(
-                    "group relative inline-flex h-10 items-center justify-center rounded-lg px-3 py-2",
-                    "text-sm font-semibold tracking-normal transition-all duration-300 ease-out",
+                    "group relative inline-flex h-10 items-center justify-center rounded-lg px-2 xl:px-3 py-2",
+                    "text-xs xl:text-sm font-semibold tracking-normal transition-all duration-300 ease-out whitespace-nowrap",
                     "text-foreground/80 hover:text-foreground",
                     "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
                     "before:transition-all before:duration-300 before:opacity-0",
@@ -341,26 +429,15 @@ export const Navbar = () => {
             })}
           </nav>
 
-          {/* Right Side Actions - Premium Styling */}
-          <div className="flex items-center gap-2 lg:gap-3">
-            <LanguageSelector />
-
-            {/* Premium Phone Link - Solo icono en pantallas grandes */}
-            <a
-              href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-              className="hidden lg:flex items-center justify-center h-9 w-9 rounded-lg text-foreground/70 hover:text-foreground transition-all duration-300 hover:bg-primary/5 cursor-pointer border border-transparent hover:border-primary/10 group/phone"
-              aria-label={`Call us at ${CONTACT_INFO.phone}`}
-            >
-              <Phone className="h-4 w-4 transition-transform duration-300 group-hover/phone:scale-110" />
-            </a>
-
+          {/* Right Side Actions - Orden: Botones → Teléfono → Idioma */}
+          <div className="flex items-center gap-1.5 lg:gap-2 xl:gap-3">
             {/* Schedule Appointment Button - Quick Action */}
             <Button
               asChild
               className={cn(
                 "hidden lg:flex bg-gradient-to-r from-primary via-primary to-primary/95",
                 "hover:from-primary/95 hover:via-primary hover:to-primary",
-                "text-white px-4 xl:px-5 py-2.5 text-sm font-bold tracking-wide",
+                "text-white px-3 xl:px-4 2xl:px-5 py-2 text-xs xl:text-sm font-bold tracking-wide whitespace-nowrap",
                 "shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40",
                 "transition-all duration-300 ease-out",
                 "hover:scale-105 active:scale-100",
@@ -371,10 +448,10 @@ export const Navbar = () => {
               )}
               size="default"
             >
-              <Link href="/schedule-appointment" className="relative z-10 flex items-center gap-1.5 xl:gap-2" suppressHydrationWarning>
-                <Calendar className="h-4 w-4 opacity-90 group-hover/schedule:opacity-100 transition-opacity duration-300" />
-                <span className="hidden xl:inline" suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
-                <span className="xl:hidden" suppressHydrationWarning>Schedule</span>
+              <Link href="/schedule-appointment" className="relative z-10 flex items-center gap-1 xl:gap-1.5" suppressHydrationWarning>
+                <Calendar className="h-3.5 w-3.5 xl:h-4 xl:w-4 opacity-90 group-hover/schedule:opacity-100 transition-opacity duration-300" />
+                <span className="hidden 2xl:inline" suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
+                <span className="2xl:hidden" suppressHydrationWarning>Schedule</span>
               </Link>
             </Button>
 
@@ -384,7 +461,7 @@ export const Navbar = () => {
               className={cn(
                 "hidden lg:flex bg-gradient-to-r from-primary via-primary to-primary/95",
                 "hover:from-primary/95 hover:via-primary hover:to-primary",
-                "text-white px-5 xl:px-6 py-2.5 text-sm font-bold tracking-wide",
+                "text-white px-3 xl:px-4 2xl:px-6 py-2 text-xs xl:text-sm font-bold tracking-wide whitespace-nowrap",
                 "shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40",
                 "transition-all duration-300 ease-out",
                 "hover:scale-105 active:scale-100",
@@ -395,11 +472,22 @@ export const Navbar = () => {
               )}
               size="default"
             >
-              <Link href="/#quick-register-form" className="relative z-10 flex items-center gap-1.5 xl:gap-2" suppressHydrationWarning>
-                <Sparkles className="h-3.5 w-3.5 opacity-80 group-hover/cta:opacity-100 transition-opacity duration-300" />
+              <Link href="/#quick-register-form" className="relative z-10 flex items-center gap-1 xl:gap-1.5" suppressHydrationWarning>
+                <Sparkles className="h-3 w-3 xl:h-3.5 xl:w-3.5 opacity-80 group-hover/cta:opacity-100 transition-opacity duration-300" />
                 <span suppressHydrationWarning>{t("nav.applyNow")}</span>
               </Link>
             </Button>
+
+            {/* Premium Phone Link - Solo icono en pantallas grandes */}
+            <a
+              href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+              className="hidden lg:flex items-center justify-center h-9 w-9 rounded-lg text-foreground/70 hover:text-foreground transition-all duration-300 hover:bg-primary/5 cursor-pointer border border-transparent hover:border-primary/10 group/phone"
+              aria-label={`Call us at ${CONTACT_INFO.phone}`}
+            >
+              <Phone className="h-4 w-4 transition-transform duration-300 group-hover/phone:scale-110" />
+            </a>
+
+            <LanguageSelector />
 
             {/* Mobile Menu - Premium Design */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>

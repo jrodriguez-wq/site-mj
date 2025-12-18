@@ -1,6 +1,5 @@
 "use client";
 
-import { Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -27,10 +26,10 @@ export const LanguageSelector = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="h-9 w-9 rounded-lg hover:bg-primary/10 transition-colors"
+          className="h-9 w-9 rounded-lg hover:bg-primary/10 transition-colors text-xl"
           aria-label="Select language"
         >
-          <Globe className="h-4 w-4" />
+          <span className="text-2xl">{currentLang.flag}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[150px]">

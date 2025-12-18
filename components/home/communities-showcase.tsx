@@ -45,7 +45,7 @@ export const CommunitiesShowcase = () => {
   }));
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/20">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
@@ -62,7 +62,7 @@ export const CommunitiesShowcase = () => {
               key={community.nameKey}
               className="overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-2 p-0"
             >
-              <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 overflow-hidden">
+              <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
                 <Image
                   key={community.image}
                   src={community.image}

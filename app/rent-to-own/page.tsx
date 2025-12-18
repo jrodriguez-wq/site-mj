@@ -23,15 +23,12 @@ import {
   Square,
   Sparkles
 } from "lucide-react";
-import {
-  RTO_SAVINGS_PLANS,
-} from "@/config/rent-to-own-info";
 import { CONTACT_INFO } from "@/config/seo";
 import { getModelData } from "@/lib/models/model-data";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
+import { sortModelsByPrice } from "@/lib/models/model-utils";
 import { ModelData } from "@/types/model";
 import { useTranslation } from "@/hooks/use-translation";
-import { cn } from "@/lib/utils";
 
 // Modelos disponibles para RTO (todos excepto duplex)
 const RTO_MODELS = ["louisiana", "viana", "delanie", "aurora", "langdon", "emelia"];
@@ -77,7 +74,9 @@ export default function RentToOwnPage() {
         })
       );
       
-      setModels(modelsData);
+      // Sort by price (cheapest first)
+      const sortedModels = sortModelsByPrice(modelsData);
+      setModels(sortedModels);
       setIsLoading(false);
     };
 
@@ -86,44 +85,59 @@ export default function RentToOwnPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Image */}
-      <div className="relative w-full h-[400px] sm:h-[450px] md:h-[550px] lg:h-[600px] xl:h-[650px] overflow-hidden">
-        <Image
-          src="/img/hero/1W5A0754 E4.jpg"
-          alt={t("rentToOwn.images.hero")}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-background/50"></div>
-        
-        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16">
-          <PageContent size="lg">
-            <div className="max-w-5xl">
-              <div className="mb-2 sm:mb-3 md:mb-4">
-                <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/90 backdrop-blur-md text-white text-xs sm:text-sm font-bold rounded-full border-2 border-white/50 shadow-xl">
-                  <Sparkles className="inline h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
+      {/* Hero Section with Image - Similar to Home */}
+      <section className="relative w-full h-[500px] sm:h-[550px] md:h-[650px] lg:h-[750px] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/img/hero/1W5A0754 E4.jpg"
+            alt={t("rentToOwn.images.hero")}
+            fill
+            className="object-cover animate-subtle-zoom"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55 z-20" />
+        </div>
+
+        <div className="relative z-30 w-full h-full flex items-center justify-center">
+          <div className="container mx-auto px-4 sm:px-5 md:px-6">
+            <div className="max-w-4xl text-center space-y-4 sm:space-y-5 md:space-y-6 mx-auto">
+              <div className="mb-4 sm:mb-5">
+                <span className="inline-block px-4 sm:px-5 py-2 sm:py-2.5 bg-primary/95 backdrop-blur-md text-white text-xs sm:text-sm font-bold rounded-full border-2 border-white/60 shadow-2xl">
+                  <Sparkles className="inline h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2" />
                   {t("rentToOwn.hero.badge")}
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-foreground drop-shadow-2xl mb-3 sm:mb-4 md:mb-6 leading-tight px-2" suppressHydrationWarning>
+              <h1
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white px-2"
+                style={{
+                  textShadow: "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.4)",
+                  fontWeight: 900,
+                  letterSpacing: "-0.02em",
+                }}
+                suppressHydrationWarning
+              >
                 {t("rentToOwn.hero.title")}
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-foreground/95 drop-shadow-lg font-semibold max-w-3xl px-2" suppressHydrationWarning>
+              <p
+                className="mx-auto max-w-[700px] text-white text-base sm:text-lg md:text-xl lg:text-2xl font-semibold px-4"
+                style={{
+                  textShadow: "0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)",
+                }}
+                suppressHydrationWarning
+              >
                 {t("rentToOwn.hero.subtitle")}
               </p>
             </div>
-          </PageContent>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Main Description Section */}
-      <PageContent size="lg">
-        <div className="py-8 sm:py-10 md:py-12 lg:py-16">
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-            <div className="relative h-56 sm:h-64 md:h-72 lg:h-80 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20">
+      <section className="py-10 md:py-14 lg:py-18 bg-background">
+        <PageContent size="lg">
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
                 src="/img/hero/1W5A1456 E5.jpg"
                 alt={t("rentToOwn.images.newHome")}
@@ -132,50 +146,54 @@ export default function RentToOwnPage() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-primary/5 via-background to-background overflow-hidden relative">
-              <CardContent className="pt-6 sm:pt-8 md:pt-10 p-4 sm:p-6 md:p-8">
-                <div className="space-y-4 sm:space-y-5 md:space-y-6">
-                  <div className="space-y-2 sm:space-y-3">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold" suppressHydrationWarning>
-                      {t("rentToOwn.whatIs.title")}
-                    </h2>
-                    <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
-                  </div>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                    {t("rentToOwn.whatIs.description")}
-                  </p>
-                  <div className="bg-gradient-to-r from-primary/15 via-primary/10 to-primary/15 rounded-xl p-4 sm:p-5 md:p-6 border border-primary/20">
-                    <div className="flex items-start gap-2 sm:gap-3">
-                      <div className="p-2 bg-primary/20 rounded-lg shrink-0">
-                        <PiggyBank className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="text-base sm:text-lg font-bold mb-1" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.title")}</h3>
-                        <p className="text-xs sm:text-sm md:text-base text-foreground" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.description")}</p>
-                      </div>
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight" suppressHydrationWarning>
+                  {t("rentToOwn.whatIs.title")}
+                </h2>
+                <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
+              </div>
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                {t("rentToOwn.whatIs.description")}
+              </p>
+              <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background">
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="p-4 bg-primary/20 rounded-2xl shrink-0">
+                      <PiggyBank className="h-8 w-8 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-black mb-3" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.title")}</h3>
+                      <p className="text-base md:text-lg text-foreground leading-relaxed" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.description")}</p>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-        </div>
-      </PageContent>
+        </PageContent>
+      </section>
 
       {/* Key Features Section */}
-      <section className="py-12 md:py-16 bg-muted/20">
+      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+        </div>
+        
         <PageContent size="lg">
-          <div className="text-center space-y-3 mb-10">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
+          <div className="text-center space-y-4 mb-12 relative z-10">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background" suppressHydrationWarning>
               {t("rentToOwn.keyFeatures.title")}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+            <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
               {t("rentToOwn.keyFeatures.subtitle")}
             </p>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mx-auto"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 relative z-10">
             {[
               { key: "minimumRent" },
               { key: "monthlySavings" },
@@ -183,17 +201,16 @@ export default function RentToOwnPage() {
               { key: "maintenanceIncluded" },
               { key: "petsAllowed" },
               { key: "noCreditCheck" },
-              { key: "easyEntry" },
             ].map((feature, index) => (
-              <Card key={index} className="border-2 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-                <CardContent className="pt-5">
-                  <div className="flex items-start gap-3">
-                    <div className="p-2.5 bg-primary/10 rounded-lg shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <CheckCircle2 className="h-5 w-5 text-primary" />
+              <Card key={index} className="border-2 border-background/20 bg-background/10 backdrop-blur-sm hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                <CardContent className="pt-6 p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/20 rounded-xl shrink-0 group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300">
+                      <CheckCircle2 className="h-6 w-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-base mb-1.5" suppressHydrationWarning>{t(`rentToOwn.keyFeatures.${feature.key}.title`)}</h3>
-                      <p className="text-sm text-muted-foreground" suppressHydrationWarning>{t(`rentToOwn.keyFeatures.${feature.key}.description`)}</p>
+                      <h3 className="font-bold text-lg mb-2 text-background" suppressHydrationWarning>{t(`rentToOwn.keyFeatures.${feature.key}.title`)}</h3>
+                      <p className="text-sm text-background/70 leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.keyFeatures.${feature.key}.description`)}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -203,144 +220,97 @@ export default function RentToOwnPage() {
         </PageContent>
       </section>
 
-      {/* Savings Plans Table Section */}
-      <section className="py-8 sm:py-10 md:py-12 lg:py-16 bg-background">
+      {/* Pioneers & Savings Section */}
+      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl" />
+        </div>
+        
         <PageContent size="lg">
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center mb-6 sm:mb-8 md:mb-10">
-            <div className="relative h-56 sm:h-64 md:h-72 lg:h-80 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20 order-2 md:order-1">
-              <Image
-                src="/img/hero/1W5A1489 E5.jpg"
-                alt={t("rentToOwn.images.savingsPlans")}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="space-y-2 sm:space-y-3 order-1 md:order-2">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
-                {t("rentToOwn.savingsPlans.title")}
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center relative z-10">
+            {/* Left Side - Pioneers */}
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="text-sm sm:text-base font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
+                  {t("rentToOwn.pioneers.badge") || "Industry Leaders"}
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-background leading-tight" suppressHydrationWarning>
+                {t("rentToOwn.pioneers.title") || "Pioneers in Rent to Own"}
               </h2>
-              <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground" suppressHydrationWarning>
-                {t("rentToOwn.savingsPlans.subtitle")}
+              <p className="text-lg sm:text-xl md:text-2xl text-background/80 leading-relaxed" suppressHydrationWarning>
+                {t("rentToOwn.pioneers.description") || "M.J. Newell Homes was and continues to be a pioneer in the Rent to Own program, helping thousands of families achieve their dream of homeownership."}
               </p>
             </div>
-          </div>
 
-          <Card className="border-2 shadow-2xl overflow-hidden">
-            <CardContent className="p-0">
-              {/* Desktop Table View */}
-              <div className="hidden md:block overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gradient-to-r from-primary/20 to-primary/10">
-                    <tr>
-                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.duration")}</th>
-                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.monthlySavings")}</th>
-                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.totalSavings")}</th>
-                      <th className="text-left py-4 sm:py-5 px-4 sm:px-6 font-bold text-foreground text-base sm:text-lg" suppressHydrationWarning>{t("rentToOwn.savingsPlans.table.description")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {RTO_SAVINGS_PLANS.map((plan, index) => {
-                      const planKey = `plan${index + 1}` as "plan1" | "plan2" | "plan3" | "plan4";
-                      return (
-                        <tr 
-                          key={index} 
-                          className={cn(
-                            "border-b border-border/50 transition-colors",
-                            index % 2 === 0 ? "bg-background" : "bg-muted/30",
-                            "hover:bg-primary/5"
-                          )}
-                        >
-                          <td className="py-4 sm:py-5 px-4 sm:px-6 font-bold text-base sm:text-lg" suppressHydrationWarning>{t(`rentToOwn.savingsPlans.table.${planKey}.duration`)}</td>
-                          <td className="py-4 sm:py-5 px-4 sm:px-6 text-primary font-black text-lg sm:text-xl">{plan.monthlySavings}</td>
-                          <td className="py-4 sm:py-5 px-4 sm:px-6 text-primary font-black text-lg sm:text-xl">{plan.totalSavings}</td>
-                          <td className="py-4 sm:py-5 px-4 sm:px-6 text-sm sm:text-base text-muted-foreground" suppressHydrationWarning>{t(`rentToOwn.savingsPlans.table.${planKey}.description`)}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Mobile Card View */}
-              <div className="md:hidden divide-y divide-border/50">
-                {RTO_SAVINGS_PLANS.map((plan, index) => {
-                  const planKey = `plan${index + 1}` as "plan1" | "plan2" | "plan3" | "plan4";
-                  return (
-                    <div
-                      key={index}
-                      className={cn(
-                        "p-4 sm:p-5 transition-colors",
-                        index % 2 === 0 ? "bg-background" : "bg-muted/30"
-                      )}
-                    >
-                      <div className="space-y-3">
-                        <div className="flex items-center justify-between pb-2 border-b border-border/30">
-                          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider" suppressHydrationWarning>
-                            {t("rentToOwn.savingsPlans.table.duration")}
-                          </span>
-                          <span className="font-bold text-base sm:text-lg text-foreground" suppressHydrationWarning>
-                            {t(`rentToOwn.savingsPlans.table.${planKey}.duration`)}
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-3">
-                          <div className="space-y-1">
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block" suppressHydrationWarning>
-                              {t("rentToOwn.savingsPlans.table.monthlySavings")}
-                            </span>
-                            <span className="text-primary font-black text-lg sm:text-xl block">{plan.monthlySavings}</span>
-                          </div>
-                          <div className="space-y-1">
-                            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block" suppressHydrationWarning>
-                              {t("rentToOwn.savingsPlans.table.totalSavings")}
-                            </span>
-                            <span className="text-primary font-black text-lg sm:text-xl block">{plan.totalSavings}</span>
-                          </div>
-                        </div>
-                        <div className="pt-2 border-t border-border/30">
-                          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-1.5" suppressHydrationWarning>
-                            {t("rentToOwn.savingsPlans.table.description")}
-                          </span>
-                          <p className="text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                            {t(`rentToOwn.savingsPlans.table.${planKey}.description`)}
-                          </p>
-                        </div>
-                      </div>
+            {/* Right Side - Savings While Living */}
+            <Card className="border-2 border-background/20 bg-background/10 backdrop-blur-sm shadow-2xl hover:shadow-primary/20 transition-all duration-300">
+              <CardContent className="p-8 md:p-10">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="p-4 bg-primary/20 rounded-2xl">
+                      <PiggyBank className="h-8 w-8 text-primary" />
                     </div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
+                    <h3 className="text-2xl sm:text-3xl font-black text-background" suppressHydrationWarning>
+                      {t("rentToOwn.savingsWhileLiving.title") || "Save While You Live"}
+                    </h3>
+                  </div>
+                  <p className="text-base sm:text-lg text-background/80 leading-relaxed" suppressHydrationWarning>
+                    {t("rentToOwn.savingsWhileLiving.description") || "With our Rent to Own program, you can save money while living in your own home. Build equity and work towards ownership at your own pace."}
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 pt-4">
+                    <div className="text-center p-5 rounded-xl bg-background/10 border border-background/20 hover:bg-background/15 transition-colors">
+                      <div className="text-3xl md:text-4xl font-black text-primary mb-2" suppressHydrationWarning>
+                        {t("rentToOwn.savingsWhileLiving.flexible") || "Flexible"}
+                      </div>
+                      <p className="text-xs sm:text-sm text-background/70" suppressHydrationWarning>
+                        {t("rentToOwn.savingsWhileLiving.flexibleDesc") || "Plans from 1-5 years"}
+                      </p>
+                    </div>
+                    <div className="text-center p-5 rounded-xl bg-background/10 border border-background/20 hover:bg-background/15 transition-colors">
+                      <div className="text-3xl md:text-4xl font-black text-primary mb-2" suppressHydrationWarning>
+                        {t("rentToOwn.savingsWhileLiving.monthly") || "Monthly"}
+                      </div>
+                      <p className="text-xs sm:text-sm text-background/70" suppressHydrationWarning>
+                        {t("rentToOwn.savingsWhileLiving.monthlyDesc") || "Automatic savings"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </PageContent>
       </section>
 
       {/* Available Models Section */}
-      <section className="py-12 md:py-16 bg-muted/20">
+      <section className="py-10 md:py-14 lg:py-18 bg-muted/30">
         <PageContent size="lg">
-          <div className="text-center space-y-3 mb-10">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
               {t("rentToOwn.availableModels.title")}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed" suppressHydrationWarning>
               {t("rentToOwn.availableModels.subtitle")}
             </p>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mx-auto"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
           </div>
 
           {isLoading ? (
-            <div className="flex justify-center items-center py-12">
-              <div className="text-muted-foreground" suppressHydrationWarning>{t("rentToOwn.availableModels.loading")}</div>
+            <div className="flex justify-center items-center py-16">
+              <div className="text-lg text-muted-foreground" suppressHydrationWarning>{t("rentToOwn.availableModels.loading")}</div>
             </div>
           ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
               {models.map((model) => (
                 <Card 
                   key={model.key} 
-                  className="group border-2 hover:border-primary/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                  className="group border-2 border-border/50 hover:border-primary/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-background"
                 >
-                  <div className="relative h-56 overflow-hidden bg-muted">
+                  <div className="relative h-72 sm:h-80 overflow-hidden bg-muted">
                     <Image
                       src={model.image}
                       alt={model.name}
@@ -348,46 +318,46 @@ export default function RentToOwnPage() {
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-                    <div className="absolute top-3 right-3">
-                      <span className="px-2.5 py-1 bg-primary/90 backdrop-blur-sm text-white text-xs font-bold rounded-full border border-white/50 shadow-lg" suppressHydrationWarning>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1.5 bg-primary/95 backdrop-blur-md text-white text-xs font-bold rounded-full border-2 border-white/60 shadow-xl" suppressHydrationWarning>
                         {t("rentToOwn.availableModels.rtoAvailable")}
                       </span>
                     </div>
                   </div>
-                  <CardContent className="pt-5">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                  <CardContent className="pt-6 p-6">
+                    <h3 className="text-xl md:text-2xl font-black mb-3 group-hover:text-primary transition-colors">
                       {model.name}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                    <p className="text-sm md:text-base text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
                       {model.description}
                     </p>
-                    <div className="grid grid-cols-3 gap-3 mb-3 pb-3 border-b">
-                      <div className="text-center">
-                        <Bed className="h-4 w-4 text-primary mx-auto mb-1" />
-                        <p className="text-xs text-muted-foreground" suppressHydrationWarning>{t("homeModels.beds")}</p>
-                        <p className="font-bold text-sm">{model.beds}</p>
+                    <div className="grid grid-cols-3 gap-3 mb-5 pb-5 border-b border-border/50">
+                      <div className="text-center p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                        <Bed className="h-5 w-5 text-primary mx-auto mb-1.5" />
+                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("homeModels.beds")}</p>
+                        <p className="font-black text-base">{model.beds}</p>
                       </div>
-                      <div className="text-center">
-                        <Bath className="h-4 w-4 text-primary mx-auto mb-1" />
-                        <p className="text-xs text-muted-foreground" suppressHydrationWarning>{t("homeModels.baths")}</p>
-                        <p className="font-bold text-sm">{model.baths}</p>
+                      <div className="text-center p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                        <Bath className="h-5 w-5 text-primary mx-auto mb-1.5" />
+                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("homeModels.baths")}</p>
+                        <p className="font-black text-base">{model.baths}</p>
                       </div>
-                      <div className="text-center">
-                        <Square className="h-4 w-4 text-primary mx-auto mb-1" />
-                        <p className="text-xs text-muted-foreground" suppressHydrationWarning>{t("homeModels.sqft")}</p>
-                        <p className="font-bold text-sm">{model.sqft}</p>
+                      <div className="text-center p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                        <Square className="h-5 w-5 text-primary mx-auto mb-1.5" />
+                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("homeModels.sqft")}</p>
+                        <p className="font-black text-sm">{model.sqft}</p>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs text-muted-foreground" suppressHydrationWarning>{t("rentToOwn.availableModels.price")}</p>
-                        <p className="text-lg font-black text-primary">{model.price}</p>
+                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("rentToOwn.availableModels.price")}</p>
+                        <p className="text-xl md:text-2xl font-black text-primary">{model.price}</p>
                       </div>
-                      <Button asChild variant="outline" size="sm" className="group/btn">
-                        <Link href={`/models/${model.key}`}>
+                      <Button asChild variant="outline" size="sm" className="group/btn hover:bg-primary hover:text-white hover:border-primary">
+                        <Link href={`/models/${model.key}`} className="flex items-center gap-2">
                           {t("rentToOwn.availableModels.viewDetails")}
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                          <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Link>
                       </Button>
                     </div>
@@ -400,19 +370,21 @@ export default function RentToOwnPage() {
       </section>
 
       {/* Requirements Section */}
-      <section className="py-12 md:py-16 bg-background">
+      <section className="py-10 md:py-14 lg:py-18 bg-background">
         <PageContent size="lg">
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-10">
-            <div className="space-y-3">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
-                {t("rentToOwn.requirements.title")}
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
-              <p className="text-base md:text-lg text-muted-foreground" suppressHydrationWarning>
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
+                  {t("rentToOwn.requirements.title")}
+                </h2>
+                <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
+              </div>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed" suppressHydrationWarning>
                 {t("rentToOwn.requirements.subtitle")}
               </p>
             </div>
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20">
+            <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
                 src="/img/hero/1W5A1493 E5.jpg"
                 alt={t("rentToOwn.images.requirements")}
@@ -423,23 +395,23 @@ export default function RentToOwnPage() {
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {[
               { key: "minimumIncome" },
               { key: "noEvictions" },
               { key: "immigrationStatus" },
             ].map((req, index) => (
-              <Card key={index} className="border-2 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-3 text-base" suppressHydrationWarning>
-                    <div className="p-2 bg-primary/10 rounded-lg">
-                      <Shield className="h-5 w-5 text-primary" />
+              <Card key={index} className="border-2 border-border/50 hover:border-primary/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group bg-background">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center gap-4 text-lg md:text-xl font-black" suppressHydrationWarning>
+                    <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <Shield className="h-6 w-6 text-primary" />
                     </div>
                     {t(`rentToOwn.requirements.${req.key}.title`)}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground" suppressHydrationWarning>{t(`rentToOwn.requirements.${req.key}.description`)}</p>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.requirements.${req.key}.description`)}</p>
                 </CardContent>
               </Card>
             ))}
@@ -448,35 +420,40 @@ export default function RentToOwnPage() {
       </section>
 
       {/* Documents Section */}
-      <section className="py-12 md:py-16 bg-muted/20">
+      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+        </div>
+        
         <PageContent size="lg">
-          <div className="text-center space-y-3 mb-10">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
+          <div className="text-center space-y-4 mb-12 relative z-10">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background" suppressHydrationWarning>
               {t("rentToOwn.documents.title")}
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+            <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
               {t("rentToOwn.documents.subtitle")}
             </p>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full mx-auto"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 relative z-10">
             {[
               { key: "taxes" },
               { key: "payStubs" },
               { key: "bankStatements" },
               { key: "id" },
-              { key: "ssn" },
             ].map((doc, index) => (
-              <Card key={index} className="border-2 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
-                <CardContent className="pt-5">
-                  <div className="flex items-start gap-3">
-                    <div className="p-2 bg-primary/10 rounded-lg shrink-0">
-                      <FileCheck className="h-5 w-5 text-primary" />
+              <Card key={index} className="border-2 border-background/20 bg-background/10 backdrop-blur-sm hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                <CardContent className="pt-6 p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-primary/20 rounded-xl shrink-0 group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300">
+                      <FileCheck className="h-6 w-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <p className="font-semibold mb-1 text-sm md:text-base" suppressHydrationWarning>{t(`rentToOwn.documents.${doc.key}.name`)}</p>
-                      <p className="text-xs md:text-sm text-muted-foreground" suppressHydrationWarning>{t(`rentToOwn.documents.${doc.key}.description`)}</p>
+                      <p className="font-bold mb-2 text-base md:text-lg text-background" suppressHydrationWarning>{t(`rentToOwn.documents.${doc.key}.name`)}</p>
+                      <p className="text-sm md:text-base text-background/70 leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.documents.${doc.key}.description`)}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -487,10 +464,10 @@ export default function RentToOwnPage() {
       </section>
 
       {/* Process Steps Section */}
-      <section className="py-12 md:py-16 bg-background">
+      <section className="py-10 md:py-14 lg:py-18 bg-background">
         <PageContent size="lg">
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-10">
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20 order-2 md:order-1">
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
+            <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 order-2 md:order-1">
               <Image
                 src="/img/hero/1W5A1505 E5.jpg"
                 alt={t("rentToOwn.images.applicationProcess")}
@@ -499,37 +476,39 @@ export default function RentToOwnPage() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="space-y-3 order-1 md:order-2">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold" suppressHydrationWarning>
-                {t("rentToOwn.process.title")}
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
-              <p className="text-base md:text-lg text-muted-foreground" suppressHydrationWarning>
+            <div className="space-y-6 order-1 md:order-2">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
+                  {t("rentToOwn.process.title")}
+                </h2>
+                <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
+              </div>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed" suppressHydrationWarning>
                 {t("rentToOwn.process.subtitle")}
               </p>
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             {[1, 2, 3, 4, 5].map((stepNum) => {
               const icons = [FileText, FileCheck, Calendar, Handshake, Key];
               const Icon = icons[stepNum - 1] || FileText;
               
               return (
-                <Card key={stepNum} className="border-2 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-                  <CardContent className="pt-5">
-                    <div className="flex flex-col items-center text-center space-y-3">
+                <Card key={stepNum} className="border-2 border-border/50 hover:border-primary/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group bg-background">
+                  <CardContent className="pt-6 p-6">
+                    <div className="flex flex-col items-center text-center space-y-4">
                       <div className="relative">
-                        <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                          <Icon className="w-7 h-7 text-primary" />
+                        <div className="p-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                          <Icon className="w-8 h-8 text-primary" />
                         </div>
-                        <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-black shadow-md">
+                        <div className="absolute -top-2 -right-2 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-black shadow-lg">
                           {stepNum}
                         </div>
                       </div>
-                      <div className="space-y-1.5">
-                        <h3 className="text-base font-bold" suppressHydrationWarning>{t(`rentToOwn.process.step${stepNum}.title`)}</h3>
-                        <p className="text-xs text-muted-foreground" suppressHydrationWarning>{t(`rentToOwn.process.step${stepNum}.description`)}</p>
+                      <div className="space-y-2">
+                        <h3 className="text-base md:text-lg font-black" suppressHydrationWarning>{t(`rentToOwn.process.step${stepNum}.title`)}</h3>
+                        <p className="text-xs md:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.process.step${stepNum}.description`)}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -541,45 +520,48 @@ export default function RentToOwnPage() {
       </section>
 
       {/* Benefits Highlight Section */}
-      <section className="py-12 md:py-16 bg-muted/20">
+      <section className="py-10 md:py-14 lg:py-18 bg-muted/30">
         <PageContent size="lg">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden relative">
-              <CardContent className="pt-8 md:pt-10">
-                <div className="space-y-6">
-                  <h2 className="text-2xl md:text-3xl font-bold" suppressHydrationWarning>
-                    {t("rentToOwn.benefits.title")}
-                  </h2>
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <Card className="border-2 border-primary/20 shadow-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden relative hover:shadow-primary/20 transition-all duration-300">
+              <CardContent className="pt-10 md:pt-12 p-8 md:p-10">
+                <div className="space-y-8">
                   <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="p-3 bg-primary/20 rounded-lg shrink-0">
-                        <PiggyBank className="h-6 w-6 text-primary" />
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
+                      {t("rentToOwn.benefits.title")}
+                    </h2>
+                    <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
+                  </div>
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors">
+                      <div className="p-4 bg-primary/20 rounded-xl shrink-0">
+                        <PiggyBank className="h-7 w-7 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-base mb-1" suppressHydrationWarning>{t("rentToOwn.benefits.saveWhileLiving.title")}</h3>
-                        <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                        <h3 className="font-black text-lg md:text-xl mb-2" suppressHydrationWarning>{t("rentToOwn.benefits.saveWhileLiving.title")}</h3>
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
                           {t("rentToOwn.benefits.saveWhileLiving.description")}
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <div className="p-3 bg-primary/20 rounded-lg shrink-0">
-                        <Lock className="h-6 w-6 text-primary" />
+                    <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors">
+                      <div className="p-4 bg-primary/20 rounded-xl shrink-0">
+                        <Lock className="h-7 w-7 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-base mb-1" suppressHydrationWarning>{t("rentToOwn.benefits.frozenPrices.title")}</h3>
-                        <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                        <h3 className="font-black text-lg md:text-xl mb-2" suppressHydrationWarning>{t("rentToOwn.benefits.frozenPrices.title")}</h3>
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
                           {t("rentToOwn.benefits.frozenPrices.description")}
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <div className="p-3 bg-primary/20 rounded-lg shrink-0">
-                        <TrendingUp className="h-6 w-6 text-primary" />
+                    <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors">
+                      <div className="p-4 bg-primary/20 rounded-xl shrink-0">
+                        <TrendingUp className="h-7 w-7 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-base mb-1" suppressHydrationWarning>{t("rentToOwn.benefits.noCreditCheck.title")}</h3>
-                        <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                        <h3 className="font-black text-lg md:text-xl mb-2" suppressHydrationWarning>{t("rentToOwn.benefits.noCreditCheck.title")}</h3>
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
                           {t("rentToOwn.benefits.noCreditCheck.description")}
                         </p>
                       </div>
@@ -588,7 +570,7 @@ export default function RentToOwnPage() {
                 </div>
               </CardContent>
             </Card>
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-primary/20">
+            <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
                 src="/img/hero/AURORA.png"
                 alt={t("rentToOwn.images.benefits")}
@@ -602,28 +584,32 @@ export default function RentToOwnPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-16 bg-gradient-to-br from-primary via-primary/95 to-primary relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/img/hero/1W5A0814_1.jpg')] bg-cover bg-center opacity-15"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary"></div>
+      <section className="py-12 md:py-16 lg:py-20 bg-foreground text-background relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
+        </div>
+        
         <PageContent size="lg">
-          <Card className="border-2 border-white/20 shadow-2xl bg-white/10 backdrop-blur-md relative z-10">
-            <CardContent className="pt-10 md:pt-12 pb-10 md:pb-12">
-              <div className="text-center space-y-6 max-w-3xl mx-auto text-white">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-black drop-shadow-lg" suppressHydrationWarning>
+          <Card className="border-2 border-background/20 shadow-2xl bg-background/10 backdrop-blur-md relative z-10 hover:bg-background/15 transition-all duration-300">
+            <CardContent className="pt-12 md:pt-14 pb-12 md:pb-14 px-6 md:px-10">
+              <div className="text-center space-y-6 max-w-3xl mx-auto text-background">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
                   {t("rentToOwn.cta.title")}
                 </h2>
-                <p className="text-base md:text-lg text-white/90 drop-shadow-md" suppressHydrationWarning>
+                <p className="text-base md:text-lg lg:text-xl text-background/80 leading-relaxed" suppressHydrationWarning>
                   {t("rentToOwn.cta.description")}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                   <Button
                     asChild
                     size="lg"
-                    className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-base md:text-lg font-black shadow-2xl hover:shadow-white/50 transition-all duration-300 hover:scale-105 relative overflow-hidden group"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base md:text-lg font-black shadow-2xl shadow-primary/30 hover:shadow-primary/40 transition-all duration-300 hover:scale-105 relative overflow-hidden group"
                   >
                     <Link href="/contact" className="relative z-10 flex items-center justify-center gap-2">
                       {t("rentToOwn.cta.applyNow")}
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                       <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                     </Link>
                   </Button>
@@ -631,7 +617,7 @@ export default function RentToOwnPage() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="border-2 border-white/40 text-white bg-white/10 hover:bg-white/20 hover:border-white/60 px-8 py-6 text-base md:text-lg font-bold backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden group"
+                    className="border-2 border-background/40 text-background bg-background/10 hover:bg-background/20 hover:border-background/60 hover:text-background px-8 py-6 text-base md:text-lg font-bold backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden group"
                   >
                     <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`} className="relative z-10 flex items-center justify-center gap-2">
                       {t("rentToOwn.cta.call")}: {CONTACT_INFO.phone}

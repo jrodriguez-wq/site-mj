@@ -42,17 +42,20 @@ export const CONTACT_INFO = {
     longitude: -81.4381,
   },
   
-  // Horario de atención
+  // Horario de atención - Todos los días de 8am a 5pm
   openingHours: {
     weekdays: {
-      opens: "09:00",
-      closes: "18:00",
+      opens: "08:00",
+      closes: "17:00",
     },
     saturday: {
-      opens: "10:00",
-      closes: "16:00",
+      opens: "08:00",
+      closes: "17:00",
     },
-    sunday: false, // Cerrado los domingos
+    sunday: {
+      opens: "08:00",
+      closes: "17:00",
+    },
   },
 } as const;
 

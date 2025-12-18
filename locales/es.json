@@ -25,38 +25,24 @@
     "scheduleAppointment": "Agendar Cita"
   },
   "hero": {
-    "title1": "Estamos construyendo el futuro para",
-    "subtitle1": "familias estadounidenses en el Sur de Florida.",
-    "title2": "Tu casa soñada comienza aquí",
-    "subtitle2": "Nuevas construcciones en LaBelle y Lehigh Acres.",
-    "title3": "Renta con Opción a Compra con $0 de enganche",
-    "subtitle3": "Hacemos accesible la propiedad de vivienda para todos.",
-    "title4": "Casas de calidad en lotes de 1/4 de acre",
-    "subtitle4": "Sin cuotas HOA, más espacio para tu familia.",
-    "title5": "Construyendo Casas Americanas",
-    "subtitle5": "Precios excepcionales para familias del Sur de Florida.",
-    "title6": "Tu familia merece lo mejor",
-    "subtitle6": "Casas modernas diseñadas para tu estilo de vida.",
-    "title7": "Vida espaciosa en hermosas comunidades",
-    "subtitle7": "Experimenta la combinación perfecta de comodidad y estilo.",
-    "title8": "Convierte tus sueños en realidad",
-    "subtitle8": "Desde el concepto hasta las llaves, estamos contigo en cada paso.",
-    "title9": "Calidad premium a precios accesibles",
-    "subtitle9": "Descubre por qué las familias eligen M.J. Newell Homes.",
-    "title10": "Donde se crean los recuerdos",
-    "subtitle10": "Crea momentos duraderos en tu casa perfecta.",
-    "title11": "Comienza tu viaje hoy",
-    "subtitle11": "Contáctanos y construyamos tu futuro juntos.",
-    "title12": "Visita nuestra oficina",
-    "subtitle12": "Estamos aquí para ayudarte a encontrar tu casa perfecta.",
-    "description": "Encontremos la casa de tus sueños. Contacta a un experto y haz realidad tu sueño de ser propietario.",
+    "title1": "Construyendo el Futuro para Familias Estadounidenses",
+    "subtitle1": "Encuentra la casa de tus sueños.",
+    "description1": "Tu casa soñada te está esperando. Hagamos realidad la propiedad de vivienda para tu familia.",
+    "title2": "Renta con Opción a Compra - Casas Nuevas",
+    "subtitle2": "Conviértete en Propietario",
+    "description2": "Vive en tu casa nueva mientras construyes patrimonio. Comienza tu camino hacia la propiedad hoy.",
+    "title3": "$0 de Enganche y $0 de Costos de Cierre",
+    "subtitle3": "Sin Cuotas HOA, Casas Familiares Espaciosas",
+    "description3": "Casas accesibles sin costos ocultos. Más espacio, más ahorros, más valor para tu familia.",
+    "contactUs": "Contáctanos",
     "applyNow": "Aplicar Ahora",
+    "getPreQualified": "Obtén Pre-Calificación",
     "viewCommunities": "Ver Comunidades",
     "quickRegister": "Registro Rápido - Interesado en Nuestros Programas"
   },
   "features": {
-    "title": "Por Qué Las Familias Nos Eligen",
-    "subtitle": "Construyendo casas que las familias pueden pagar y de las que pueden estar orgullosas",
+    "title": "Lo Que Ofrecemos",
+    "subtitle": "Todo lo que necesitas para hacer realidad tu casa soñada",
     "learnMore": "Saber Más",
     "modern": {
       "title": "Construcciones Nuevas y Modernas",
@@ -79,7 +65,7 @@
       "description": "Hermosas casas nuevas en el corazón de LaBelle, Florida",
       "country": {
         "title": "Comunidades",
-        "subtitle": "LaBelle Country"
+        "subtitle": "LaBelle"
       },
       "features": {
         "acreLots": "Lotes de 1/4 de Acre",
@@ -121,7 +107,12 @@
         "button": "Programar tu Visita"
       },
       "gallery": {
-        "title": "Descubre LaBelle"
+        "title": "Descubre LaBelle",
+        "description": "Explora la belleza y el encanto de nuestra comunidad"
+      },
+      "hero": {
+        "badge": "Comunidades",
+        "subtitle": "Descubre tu Casa Soñada en el Suroeste de Florida"
       },
       "cta": {
         "title": "¿Listo para Llamar a LaBelle tu Hogar?",
@@ -134,7 +125,7 @@
       "description": "Casas modernas en la creciente comunidad de Lehigh Acres",
       "country": {
         "title": "Comunidades",
-        "subtitle": "Lehigh Acres Country"
+        "subtitle": "Lehigh Acres"
       },
       "features": {
         "spaciousLots": "Lotes Espaciosos",
@@ -176,7 +167,12 @@
         "button": "Programar tu Visita"
       },
       "gallery": {
-        "title": "Descubre Lehigh Acres"
+        "title": "Descubre Lehigh Acres",
+        "description": "Explora la belleza y el encanto de nuestra comunidad"
+      },
+      "hero": {
+        "badge": "Comunidades",
+        "subtitle": "Tu Casa Perfecta Te Espera en el Suroeste de Florida"
       },
       "cta": {
         "title": "¿Listo para Llamar a Lehigh Acres tu Hogar?",
@@ -188,6 +184,18 @@
   "whyChooseUs": {
     "title": "Por Qué Elegir M.J. Newell Homes",
     "subtitle": "Construyendo casas americanas con calidad, integridad y el futuro de tu familia en mente",
+    "badge": "Por Qué Elegirnos",
+    "highlights": {
+      "downPayment": "$0 de Enganche",
+      "noHOA": "Sin Cuotas HOA",
+      "yearsExperience": "Años de Experiencia",
+      "happyFamilies": "Familias Felices"
+    },
+    "points": {
+      "quality": "Construcción de calidad premium con garantías completas y aseguramiento de calidad",
+      "flexibility": "Opciones de financiamiento flexibles incluyendo nuestro innovador programa de Renta con Opción a Compra",
+      "experience": "Más de 15 años de experiencia construyendo casas para familias americanas"
+    },
     "benefits": {
       "quality": {
         "title": "Calidad Garantizada",
@@ -221,25 +229,41 @@
     "subtitle": "Nuestros números hablan por sí mismos",
     "stats": {
       "homesBuilt": {
-        "value": "500+",
+        "value": "1,500+",
         "label": "Casas Construidas",
         "description": "Casas de calidad entregadas a familias"
       },
       "happyFamilies": {
-        "value": "500+",
+        "value": "1,500+",
         "label": "Familias Felices",
         "description": "Familias viviendo su sueño americano"
       },
       "yearsExperience": {
-        "value": "15+",
-        "label": "Años de Experiencia",
-        "description": "Construyendo confianza y excelencia"
+        "value": "Pioneros",
+        "label": "Renta con Opción a Compra",
+        "description": "Pioneros en el programa de Renta con Opción a Compra"
       },
       "downPayment": {
         "value": "$0",
         "label": "Enganche",
         "description": "Programa de Renta con Opción a Compra disponible"
       }
+    }
+  },
+  "models": {
+    "filters": {
+      "title": "Filtros",
+      "reset": "Restablecer Filtros",
+      "priceRange": "Rango de Precio",
+      "bedrooms": "Recámaras",
+      "bathrooms": "Baños",
+      "sqftRange": "Pies Cuadrados"
+    },
+    "results": {
+      "one": "modelo",
+      "many": "modelos",
+      "found": "encontrado",
+      "sortedBy": "Ordenado por precio: Menor a Mayor"
     }
   },
   "homeModels": {
@@ -522,6 +546,7 @@
   "testimonials": {
     "title": "Lo Que Dicen Nuestras Familias",
     "subtitle": "Historias reales de familias reales que encontraron su casa soñada con nosotros",
+    "moreReviews": "+90 reseñas más en Google Maps",
     "testimonials": {
       "1": {
         "name": "Sarah & Michael Johnson",
@@ -587,6 +612,8 @@
       "location": "Ubicación",
       "address": "Dirección",
       "hours": "Horario de Atención",
+      "everyDay": "Todos los Días",
+      "hoursNote": "Lunes a Domingo",
       "weekdays": "Lunes - Viernes",
       "saturday": "Sábado",
       "sunday": "Domingo",
@@ -601,25 +628,60 @@
       }
     }
   },
+  "homeBuyingGuide": {
+    "title": "Guía para Comprar Casa",
+    "subtitle": "Obtén asesoría gratuita sobre el proceso de compra de tu propiedad. Sigue estos simples pasos para hacer realidad tu sueño de ser propietario.",
+    "description": "Guía completa para comprar tu nueva casa. Obtén asesoría gratuita sobre el proceso de compra de tu propiedad.",
+    "step": "Paso",
+    "steps": {
+      "1": {
+        "number": "01",
+        "title": "Obtén Pre-Aprobación",
+        "description": "Comienza obteniendo pre-aprobación para financiamiento. Esto te ayuda a entender tu presupuesto y muestra a los vendedores que eres serio."
+      },
+      "2": {
+        "number": "02",
+        "title": "Elige tu Ubicación",
+        "description": "Selecciona entre nuestras comunidades en LaBelle o Lehigh Acres, cada una ofreciendo beneficios y comodidades únicas."
+      },
+      "3": {
+        "number": "03",
+        "title": "Selecciona tu Modelo",
+        "description": "Elige entre nuestros modelos disponibles: Louisiana, Viana, Delanie, Aurora, Langdon, Emelia o Duplex."
+      },
+      "4": {
+        "number": "04",
+        "title": "Opciones de Financiamiento",
+        "description": "Explora nuestras opciones de financiamiento incluyendo hipotecas tradicionales y nuestro programa de Renta con Opción a Compra con $0 de enganche."
+      }
+    }
+  },
   "warranty": {
     "title": "Garantía y Servicio",
     "subtitle": "Respaldo a nuestra construcción de calidad",
     "coverage": {
       "title": "Nuestra Cobertura de Garantía",
-      "description": "M.J. Newell Homes proporciona cobertura de garantía completa para todas las casas de nueva construcción."
+      "description": "M.J. Newell Homes proporciona cobertura de garantía completa para todas las casas de nueva construcción.",
+      "structural": {
+        "title": "Garantía Estructural",
+        "duration": "10 Años",
+        "description": "Protección completa para la integridad estructural de tu casa"
+      },
+      "mechanical": {
+        "title": "Garantía Mecánica",
+        "duration": "1 Año",
+        "description": "Cobertura para todos los sistemas mecánicos incluyendo plomería, eléctrico y HVAC"
+      }
     },
     "features": {
-      "comprehensive": {
-        "title": "Cobertura Integral",
-        "description": "Protección completa de garantía para tu nueva casa"
-      },
+      "title": "Por Qué Elegir Nuestra Garantía",
       "timely": {
-        "title": "Respuesta Oportuna",
-        "description": "Respuesta rápida a todas las solicitudes de servicio"
+        "title": "Respuesta Rápida",
+        "description": "Respondemos a todas las solicitudes de servicio en un plazo de 48 horas"
       },
       "support": {
         "title": "Soporte Dedicado",
-        "description": "Equipo experto listo para ayudar"
+        "description": "Equipo experto listo para ayudar con cualquier necesidad de garantía"
       },
       "quality": {
         "title": "Calidad Garantizada",
@@ -628,7 +690,7 @@
     },
     "form": {
       "title": "Enviar Solicitud de Garantía",
-      "description": "Completa el formulario a continuación para enviar una solicitud de garantía o servicio. Nuestro equipo revisará tu solicitud y te contactará pronto."
+      "description": "Completa el formulario a continuación para enviar una solicitud de garantía o servicio. Nuestro equipo revisará tu solicitud y te contactará en un plazo de 48 horas."
     }
   },
   "thankYou": {
@@ -678,8 +740,9 @@
     "leadership": {
       "badge": "Liderazgo",
       "title": "Michael J. Newell",
-      "subtitle": "Fundador y CEO de Standard Land Development y M.J. Newell Homes",
-      "description": "Michael J. Newell aplica un enfoque \"Ganar-Ganar\" en los negocios, creando viviendas asequibles para los estadounidenses comunes. Ha aplicado una estrategia de \"mentalidad de equipo\" tanto en Standard Land Development como en M.J. Newell Homes, resultando en un crecimiento enorme en un período de 5 años.",
+      "role": "Fundador y CEO",
+      "subtitle": "Fundador y CEO de M.J. Newell Homes",
+      "description": "Michael J. Newell aplica un enfoque \"Ganar-Ganar\" en los negocios, creando viviendas asequibles para los estadounidenses comunes. Ha aplicado una estrategia de \"mentalidad de equipo\" en M.J. Newell Homes, resultando en un crecimiento enorme y ayudando a más de 1,500 familias a lograr su sueño de ser propietarios.",
       "quote": "\"El poder de un equipo es crucial. Debes reclutar individuos que sean fuertes y confiables. Sabía que para tener éxito, tendría que reclutar potencias de primera línea.\"",
       "quoteAuthor": "— Michael J. Newell",
       "belief": "Michael cree firmemente que administrar un negocio significa conocer a tus empleados y cultivar una cultura de respeto y aprecio. Ha invertido diligentemente cientos de horas con cada miembro del equipo para lograr un éxito multi-lineal en toda la organización.",
@@ -688,8 +751,8 @@
         "text": "\"Queremos hacer que las casas de valor principal estén disponibles a una tasa económica para todos los estadounidenses. Creemos que la vivienda asequible no debería ser más de un cuarto de sus ingresos.\""
       },
       "vision": {
-        "title": "Visión para 2023",
-        "text": "Para 2023, M.J. Newell Homes construirá más de 1,200 unidades por año. Standard Land Development continuará desarrollando sitios en todo el estado."
+        "title": "Visión para 2026",
+        "text": "Para 2026, M.J. Newell Homes continúa construyendo casas de calidad y expandiendo nuestro programa Rent to Own, ayudando a más familias a lograr su sueño de ser propietarios."
       }
     },
     "values": {
@@ -754,7 +817,7 @@
     },
     "housingCrisis": {
       "title": "Resolviendo la Crisis de Vivienda Asequible",
-      "description": "Como la mayoría de los estadounidenses, Michael Newell ha observado cómo la crisis de vivienda continúa creciendo en los Estados Unidos. Como resultado, ha empleado estratégicamente ambos de sus negocios para ayudar a resolver la situación de nuestro país.",
+      "description": "Como la mayoría de los estadounidenses, Michael Newell ha observado cómo la crisis de vivienda continúa creciendo en los Estados Unidos. Como resultado, ha empleado estratégicamente M.J. Newell Homes para ayudar a resolver la situación de nuestro país.",
       "learnToBuild": {
         "title": "Curso Aprende a Construir",
         "description": "Michael Newell ha creado un curso llamado \"Aprende a Construir\", en el que detalla cada paso del proceso de construcción. Cree que al compartir su conocimiento de construcción con otros, esto puede impactar finalmente el déficit de vivienda en nuestra nación.",
@@ -779,9 +842,33 @@
       "assistanceDesc": "Ofrecemos programas especiales para ayudarte con el enganche y los costos de cierre."
     },
     "team": {
-      "title": "Miembros del equipo",
+      "title": "Nuestro Equipo",
       "subtitle": "Apoyo 360 grados para tus sueños",
-      "description": "Cada familia tiene su propio camino hacia su sueño. Agentes con la mayor experiencia se preparan todos los días para brindarte el apoyo más preciso."
+      "description": "Cada familia tiene su propio camino hacia su sueño. Agentes con la mayor experiencia se preparan todos los días para brindarte el apoyo más preciso.",
+      "juliana": {
+        "name": "Juliana Bonilla",
+        "role": "Administrativa y Ventas",
+        "description": "Juliana Bonilla aporta experiencia en administración y ventas, asegurando operaciones fluidas y un excelente servicio al cliente. Está dedicada a ayudar a las familias a encontrar su casa soñada."
+      }
+    },
+    "responseTimes": {
+      "title": "Tiempos de Respuesta Rápidos",
+      "subtitle": "Valoramos tu tiempo y respondemos rápidamente a todas las consultas",
+      "phone": {
+        "value": "< 24h",
+        "label": "Llamadas Telefónicas",
+        "description": "Respondemos a todas las consultas telefónicas en menos de 24 horas"
+      },
+      "email": {
+        "value": "< 48h",
+        "label": "Consultas por Email",
+        "description": "Respuestas por email en menos de 48 horas"
+      },
+      "appointment": {
+        "value": "Mismo Día",
+        "label": "Citas",
+        "description": "Programa tu visita el mismo día"
+      }
     },
     "future": {
       "title": "El Futuro de Florida",
@@ -840,31 +927,22 @@
         "description": "¡Ingresar con un solo mes!"
       }
     },
+    "pioneers": {
+      "badge": "Líderes de la Industria",
+      "title": "Pioneros en Renta con Opción a Compra",
+      "description": "M.J. Newell Homes fue y continúa siendo pionero en el programa de Renta con Opción a Compra, ayudando a miles de familias a lograr su sueño de ser propietarios."
+    },
+    "savingsWhileLiving": {
+      "title": "Ahorra Mientras Vives",
+      "description": "Con nuestro programa de Renta con Opción a Compra, puedes ahorrar dinero mientras vives en tu propia casa. Construye patrimonio y trabaja hacia la propiedad a tu propio ritmo.",
+      "flexible": "Flexible",
+      "flexibleDesc": "Planes de 1 a 5 años",
+      "monthly": "Mensual",
+      "monthlyDesc": "Ahorro automático"
+    },
     "savingsPlans": {
       "title": "Planes de Ahorro",
-      "subtitle": "Elige el plan que mejor se adapte a tus necesidades y objetivos",
-      "table": {
-        "duration": "Duración del contrato",
-        "monthlySavings": "Ahorro mensual",
-        "totalSavings": "Ahorro total aproximado",
-        "description": "Descripción",
-        "plan1": {
-          "duration": "1 año",
-          "description": "Ideal para quienes planean comprar pronto"
-        },
-        "plan2": {
-          "duration": "2 años",
-          "description": "Plan intermedio con ahorro sólido"
-        },
-        "plan3": {
-          "duration": "3 años",
-          "description": "Opción flexible para familias que se preparan para comprar"
-        },
-        "plan4": {
-          "duration": "4 a 5 años",
-          "description": "Plan de ahorro a largo plazo y mayor estabilidad"
-        }
-      }
+      "subtitle": "Elige el plan que mejor se adapte a tus necesidades y objetivos"
     },
     "availableModels": {
       "title": "Modelos Disponibles para Rent to Own",
