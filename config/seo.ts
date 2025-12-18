@@ -70,22 +70,107 @@ export const SOCIAL_LINKS = {
   website: "https://www.mjnewellhomes.com",
 } as const;
 
+// Keywords principales
 export const KEYWORDS = [
   "M.J. Newell Homes",
   "new homes Florida",
   "rent to own Florida",
+  "rent to own program",
   "new construction homes",
   "LaBelle Florida homes",
   "Lehigh Acres Florida homes",
   "Southwest Florida real estate",
   "South Florida homes",
   "new home construction",
-  "rent to own program",
   "zero down payment",
+  "$0 down payment",
   "affordable homes Florida",
   "family homes Florida",
   "new home builder",
   "Florida real estate",
+  "new homes for sale Florida",
+  "rent to own homes",
+  "rent to own houses",
+  "new construction Florida",
+  "home builder LaBelle",
+  "home builder Lehigh Acres",
+  "custom homes Florida",
+  "pre-built homes Florida",
+  "move-in ready homes",
+] as const;
+
+// Keywords específicos de ubicación para SEO local
+export const LOCATION_KEYWORDS = [
+  // Miami y área metropolitana
+  "new homes near Miami",
+  "rent to own Miami",
+  "homes for sale near Miami",
+  "new construction near Miami",
+  "home builder near Miami",
+  "Miami area homes",
+  "South Miami homes",
+  
+  // Fort Myers y área
+  "new homes Fort Myers",
+  "rent to own Fort Myers",
+  "homes for sale Fort Myers",
+  "new construction Fort Myers",
+  "home builder Fort Myers",
+  "Fort Myers area homes",
+  "near Fort Myers homes",
+  
+  // Cape Coral
+  "new homes Cape Coral",
+  "rent to own Cape Coral",
+  "homes for sale Cape Coral",
+  "new construction Cape Coral",
+  "home builder Cape Coral",
+  
+  // Naples
+  "new homes near Naples",
+  "rent to own near Naples",
+  "homes for sale near Naples",
+  "new construction near Naples",
+  "home builder near Naples",
+  
+  // Lehigh Acres (ya existe pero expandimos)
+  "new homes Lehigh Acres",
+  "rent to own Lehigh Acres",
+  "homes for sale Lehigh Acres",
+  "new construction Lehigh Acres",
+  "home builder Lehigh Acres",
+  
+  // LaBelle (ya existe pero expandimos)
+  "new homes LaBelle",
+  "rent to own LaBelle",
+  "homes for sale LaBelle",
+  "new construction LaBelle",
+  "home builder LaBelle",
+  
+  // Otras áreas cercanas
+  "new homes Clewiston",
+  "new homes Alva",
+  "new homes Immokalee",
+  "homes within 2 hours of Miami",
+  "homes within 2 hours of Fort Myers",
+  "Southwest Florida home builder",
+  "Hendry County homes",
+  "Glades County homes",
+  "Lee County homes",
+] as const;
+
+// Áreas de servicio (ciudades dentro de 2 horas de LaBelle)
+export const SERVICE_AREAS = [
+  { name: "LaBelle", state: "FL", distance: "0 miles" },
+  { name: "Lehigh Acres", state: "FL", distance: "15 miles" },
+  { name: "Fort Myers", state: "FL", distance: "30 miles" },
+  { name: "Cape Coral", state: "FL", distance: "35 miles" },
+  { name: "Naples", state: "FL", distance: "45 miles" },
+  { name: "Clewiston", state: "FL", distance: "20 miles" },
+  { name: "Immokalee", state: "FL", distance: "25 miles" },
+  { name: "Alva", state: "FL", distance: "10 miles" },
+  { name: "Miami", state: "FL", distance: "100 miles" },
+  { name: "Punta Gorda", state: "FL", distance: "50 miles" },
 ] as const;
 
 export const ROBOTS_CONFIG = {
@@ -192,9 +277,15 @@ export const defaultMetadata: Metadata = {
   classification: "Home Builder",
   other: {
     "geo.region": "US-FL",
-    "geo.placename": "LaBelle, Florida",
+    "geo.placename": "LaBelle, Lehigh Acres, Fort Myers, Cape Coral, Naples, Miami, Florida",
     "geo.position": `${CONTACT_INFO.coordinates.latitude};${CONTACT_INFO.coordinates.longitude}`,
     "ICBM": `${CONTACT_INFO.coordinates.latitude}, ${CONTACT_INFO.coordinates.longitude}`,
+    // SEO local para Florida
+    "geo.region.name": "Florida",
+    "geo.region.code": "US-FL",
+    "business.contact_data.locality": "LaBelle",
+    "business.contact_data.region": "FL",
+    "business.contact_data.country_name": "United States",
   },
 };
 
@@ -211,9 +302,14 @@ export const SITEMAP_CONFIG = {
       changeFrequency: "weekly" as const,
     },
     {
-      path: "/about-us",
-      priority: 0.8,
-      changeFrequency: "monthly" as const,
+      path: "/schedule-appointment",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      path: "/models",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
     },
     {
       path: "/communities/labelle",
@@ -226,23 +322,23 @@ export const SITEMAP_CONFIG = {
       changeFrequency: "weekly" as const,
     },
     {
+      path: "/about-us",
+      priority: 0.8,
+      changeFrequency: "monthly" as const,
+    },
+    {
       path: "/home-buying-guide",
       priority: 0.8,
       changeFrequency: "monthly" as const,
     },
     {
-      path: "/models",
-      priority: 0.9,
-      changeFrequency: "weekly" as const,
+      path: "/contact",
+      priority: 0.8,
+      changeFrequency: "monthly" as const,
     },
     {
       path: "/warranty",
       priority: 0.7,
-      changeFrequency: "monthly" as const,
-    },
-    {
-      path: "/contact",
-      priority: 0.8,
       changeFrequency: "monthly" as const,
     },
   ],
@@ -253,6 +349,8 @@ export const SEO = {
   contact: CONTACT_INFO,
   social: SOCIAL_LINKS,
   keywords: KEYWORDS as unknown as string[],
+  locationKeywords: LOCATION_KEYWORDS as unknown as string[],
+  serviceAreas: SERVICE_AREAS,
   robots: ROBOTS_CONFIG,
   sitemap: SITEMAP_CONFIG,
   metadata: defaultMetadata,

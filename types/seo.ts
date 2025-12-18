@@ -1,5 +1,3 @@
-import { Metadata } from "next";
-
 export interface SEOConfig {
   title: string;
   description: string;
@@ -61,8 +59,16 @@ export interface OrganizationStructuredData extends StructuredData {
     telephone?: string;
     contactType?: string;
     email?: string;
-    areaServed?: string;
-  };
+    areaServed?: string | string[];
+    availableLanguage?: string[];
+  } | Array<{
+    "@type": "ContactPoint";
+    telephone?: string;
+    contactType?: string;
+    email?: string;
+    areaServed?: string | string[];
+    availableLanguage?: string[];
+  }>;
   sameAs?: string[];
 }
 
@@ -71,6 +77,8 @@ export interface RealEstateListingStructuredData extends StructuredData {
   name: string;
   description?: string;
   image?: string | string[];
+  url?: string;
+  availability?: string;
   address?: {
     "@type": "PostalAddress";
     streetAddress?: string;
@@ -93,6 +101,13 @@ export interface RealEstateListingStructuredData extends StructuredData {
   };
   numberOfRooms?: number;
   yearBuilt?: number;
+  offers?: {
+    "@type": "Offer";
+    price?: string;
+    priceCurrency?: string;
+    availability?: string;
+    url?: string;
+  };
 }
 
 export interface BreadcrumbStructuredData extends StructuredData {
