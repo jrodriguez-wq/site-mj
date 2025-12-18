@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { useTranslation } from "@/hooks/use-translation";
+import { Button } from "@/components/ui/button";
 import { ModelCard } from "@/components/models/model-card";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
 import { getModelData } from "@/lib/models/model-data";
@@ -205,99 +206,95 @@ export default function ModelsPage() {
   }, [models]);
 
   return (
-    <div className="pt-20 md:pt-24 lg:pt-28 pb-16 md:pb-20 lg:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        {/* Header Section - Mobile & Tablet */}
-        <div className="mb-6 md:mb-8 lg:hidden">
-          <div className="text-center space-y-2 mb-6">
+    <div className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 lg:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 max-w-[1800px]">
+        {/* Header Section - All Screens */}
+        <div className="mb-6 sm:mb-8 lg:mb-10">
+          <div className="text-center space-y-2 sm:space-y-3 mb-6 sm:mb-8">
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-foreground"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-foreground"
               suppressHydrationWarning
             >
               {t("homeModels.allModels")}
             </h1>
             <p
-              className="mx-auto max-w-xl text-muted-foreground text-sm md:text-base leading-relaxed"
+              className="mx-auto max-w-2xl text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed px-2"
               suppressHydrationWarning
             >
               {t("homeModels.allModelsSubtitle")}
             </p>
           </div>
 
-          {/* Mobile Filters */}
+          {/* Mobile Filters - Only visible on mobile/tablet */}
           {!isLoading && (
-            <ModelFilters
-              filters={filters}
-              onFiltersChange={setFilters}
-              maxPrice={maxPrice}
-              maxSqft={maxSqft}
-            />
+            <div className="lg:hidden">
+              <ModelFilters
+                filters={filters}
+                onFiltersChange={setFilters}
+                maxPrice={maxPrice}
+                maxSqft={maxSqft}
+              />
+            </div>
           )}
         </div>
 
-        {/* Main Layout - Desktop: Sidebar + Content */}
-        <div className="flex gap-8 lg:gap-10 xl:gap-12">
-          {/* Sidebar Filters - Desktop */}
+        {/* Main Layout - Desktop: Sidebar Left + Content Right | Mobile: Stacked */}
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 xl:gap-12">
+          {/* Desktop Sidebar Filters - Left Side */}
           {!isLoading && (
-            <ModelFilters
-              filters={filters}
-              onFiltersChange={setFilters}
-              maxPrice={maxPrice}
-              maxSqft={maxSqft}
-            />
+            <aside className="hidden lg:block w-80 xl:w-96 shrink-0">
+              <ModelFilters
+                filters={filters}
+                onFiltersChange={setFilters}
+                maxPrice={maxPrice}
+                maxSqft={maxSqft}
+              />
+            </aside>
           )}
 
-          {/* Main Content Area */}
-          <div className="flex-1 min-w-0">
-            {/* Header - Desktop */}
-            <div className="hidden lg:block mb-8">
-              <div className="space-y-2 mb-6">
-                <h1
-                  className="text-4xl xl:text-5xl font-black tracking-tight text-foreground"
-                  suppressHydrationWarning
-                >
-                  {t("homeModels.allModels")}
-                </h1>
-                <p
-                  className="text-muted-foreground text-base xl:text-lg leading-relaxed max-w-2xl"
-                  suppressHydrationWarning
-                >
-                  {t("homeModels.allModelsSubtitle")}
-                </p>
-              </div>
-
-              {/* Results count and info */}
-              <div className="flex items-center justify-between text-sm pb-4 border-b border-border/30">
-                <span className="text-muted-foreground font-medium">
-                  <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
-                  {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
-                </span>
-                <span className="text-muted-foreground/70 text-xs" suppressHydrationWarning>
-                  {t("models.results.sortedBy") || "Sorted by price: Low to High"}
-                </span>
-              </div>
-            </div>
-
-            {/* Results count - Mobile */}
+          {/* Main Content Area - Right Side (Desktop) */}
+          <div className="flex-1 min-w-0 w-full">
+            {/* Results count and info - All Screens */}
             {!isLoading && (
-              <div className="lg:hidden mb-6 flex items-center justify-between text-sm pb-4 border-b border-border/30">
+              <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 text-sm pb-4 border-b border-border/30">
                 <span className="text-muted-foreground font-medium">
                   <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
                   {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
                 </span>
-                <span className="text-muted-foreground/70 text-xs" suppressHydrationWarning>
+                <span className="text-muted-foreground/70 text-xs sm:text-sm" suppressHydrationWarning>
                   {t("models.results.sortedBy") || "Sorted by price: Low to High"}
                 </span>
               </div>
             )}
 
-            {/* Models Grid - Airbnb Style */}
+            {/* Models Grid - Fully Responsive */}
             {isLoading ? (
-              <div className="flex justify-center items-center py-20">
-                <div className="text-muted-foreground">Loading models...</div>
+              <div className="flex justify-center items-center py-12 sm:py-16 md:py-20">
+                <div className="text-muted-foreground text-sm sm:text-base">Loading models...</div>
+              </div>
+            ) : filteredModels.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 text-center">
+                <p className="text-muted-foreground text-sm sm:text-base mb-4" suppressHydrationWarning>
+                  {t("models.noResults") || "No models found matching your filters."}
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => setFilters({
+                    priceRange: [0, maxPrice],
+                    bedrooms: [],
+                    bathrooms: [],
+                    sqftRange: [0, maxSqft],
+                  })}
+                  className="text-xs sm:text-sm"
+                >
+                  {t("models.filters.reset") || "Reset Filters"}
+                </Button>
               </div>
             ) : (
-              <div className="grid gap-6 sm:gap-7 lg:gap-8 grid-cols-1 md:grid-cols-2" suppressHydrationWarning>
+              <div 
+                className="grid gap-6 sm:gap-7 md:gap-8 lg:gap-10 xl:gap-12 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 w-full" 
+                suppressHydrationWarning
+              >
                 {filteredModels.map((model, index) => {
                   const config = MODEL_CONFIG[model.key as keyof typeof MODEL_CONFIG];
                   const modelImages = getModelImages(model.key);

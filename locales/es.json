@@ -472,6 +472,9 @@
       "noImagesAvailable": "No hay imágenes disponibles",
       "virtualTourTitle": "Recorrido Virtual",
       "floorplanComingSoon": "El plano estará disponible pronto",
+      "expandFloorplan": "Ver plano completo",
+      "floorplanZoomHint": "Haz clic en la imagen para ampliar",
+      "floorplanScrollHint": "Desliza para ver el plano completo",
       "sections": {
         "inside": "Interior",
         "exterior": "Exterior",

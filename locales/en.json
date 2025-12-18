@@ -472,6 +472,9 @@
       "noImagesAvailable": "No images available",
       "virtualTourTitle": "Virtual Tour",
       "floorplanComingSoon": "Floor plan coming soon",
+      "expandFloorplan": "View full floor plan",
+      "floorplanZoomHint": "Click on the image to zoom in",
+      "floorplanScrollHint": "Scroll to see the full floor plan",
       "sections": {
         "inside": "Inside",
         "exterior": "Exterior",
