@@ -99,13 +99,20 @@ export default function ModelsPage() {
       const allModelsWithData: ModelDisplayData[] = [];
 
       if (selectedCommunity === "all") {
-        // Obtener todos los modelos únicos de ambas comunidades
+        // Obtener modelos de cada comunidad por separado
         const labelleModels = getModelsForCommunity("labelle");
         const lehighModels = getModelsForCommunity("lehigh-acres");
-        const modelKeysSet = new Set<string>();
-        [...labelleModels, ...lehighModels].forEach(key => modelKeysSet.add(key));
 
-        const modelKeys = Array.from(modelKeysSet).map((key) => ({
+        // Cargar modelos de LaBelle
+        const labelleModelKeys = labelleModels.map((key) => ({
+          key,
+          nameKey: `homeModels.models.${key}.name`,
+          descriptionKey: `homeModels.models.${key}.description`,
+          priceKey: `homeModels.models.${key}.price`,
+        }));
+
+        // Cargar modelos de Lehigh Acres
+        const lehighModelKeys = lehighModels.map((key) => ({
           key,
           nameKey: `homeModels.models.${key}.name`,
           descriptionKey: `homeModels.models.${key}.description`,
@@ -115,59 +122,66 @@ export default function ModelsPage() {
         // Load models in batches to avoid blocking
         const batchSize = 3;
 
-        for (let i = 0; i < modelKeys.length; i += batchSize) {
+        // Cargar modelos de LaBelle
+        for (let i = 0; i < labelleModelKeys.length; i += batchSize) {
           if (!isMounted) break;
           
-          const batch = modelKeys.slice(i, i + batchSize);
+          const batch = labelleModelKeys.slice(i, i + batchSize);
           const batchData = await Promise.all(
             batch.map(async (model) => {
-              // Cargar el modelo de ambas comunidades y crear entradas separadas
-              const labelleData = await getModelData(model.key, "labelle");
-              const lehighData = await getModelData(model.key, "lehigh-acres");
+              const modelData = await getModelData(model.key, "labelle");
+              if (!modelData) return [];
               
-              const results: ModelDisplayData[] = [];
-              
-              if (labelleData) {
-                results.push({
-                  ...model,
-                  key: `${model.key}-labelle`,
-                  price: labelleData.price,
-                  priceNumber: extractPrice(labelleData.price),
-                  rtoPrice: labelleData.rtoPrice,
-                  beds: labelleData.bedrooms,
-                  bedsNumber: extractNumber(labelleData.bedrooms),
-                  baths: labelleData.bathrooms,
-                  bathsNumber: extractNumber(labelleData.bathrooms),
-                  sqft: labelleData.sqft,
-                  sqftNumber: extractSqft(labelleData.sqft),
-                  modelData: labelleData,
-                  community: "labelle",
-                });
-              }
-              
-              if (lehighData) {
-                results.push({
-                  ...model,
-                  key: `${model.key}-lehigh-acres`,
-                  price: lehighData.price,
-                  priceNumber: extractPrice(lehighData.price),
-                  rtoPrice: lehighData.rtoPrice,
-                  beds: lehighData.bedrooms,
-                  bedsNumber: extractNumber(lehighData.bedrooms),
-                  baths: lehighData.bathrooms,
-                  bathsNumber: extractNumber(lehighData.bathrooms),
-                  sqft: lehighData.sqft,
-                  sqftNumber: extractSqft(lehighData.sqft),
-                  modelData: lehighData,
-                  community: "lehigh-acres",
-                });
-              }
-              
-              return results;
+              return [{
+                ...model,
+                key: `${model.key}-labelle`,
+                price: modelData.price,
+                priceNumber: extractPrice(modelData.price),
+                rtoPrice: modelData.rtoPrice,
+                beds: modelData.bedrooms,
+                bedsNumber: extractNumber(modelData.bedrooms),
+                baths: modelData.bathrooms,
+                bathsNumber: extractNumber(modelData.bathrooms),
+                sqft: modelData.sqft,
+                sqftNumber: extractSqft(modelData.sqft),
+                modelData,
+                community: "labelle" as Community,
+              }];
             })
           );
 
-          // Aplanar los resultados
+          const flattened = batchData.flat();
+          allModelsWithData.push(...flattened);
+        }
+
+        // Cargar modelos de Lehigh Acres
+        for (let i = 0; i < lehighModelKeys.length; i += batchSize) {
+          if (!isMounted) break;
+          
+          const batch = lehighModelKeys.slice(i, i + batchSize);
+          const batchData = await Promise.all(
+            batch.map(async (model) => {
+              const modelData = await getModelData(model.key, "lehigh-acres");
+              if (!modelData) return [];
+              
+              return [{
+                ...model,
+                key: `${model.key}-lehigh-acres`,
+                price: modelData.price,
+                priceNumber: extractPrice(modelData.price),
+                rtoPrice: modelData.rtoPrice,
+                beds: modelData.bedrooms,
+                bedsNumber: extractNumber(modelData.bedrooms),
+                baths: modelData.bathrooms,
+                bathsNumber: extractNumber(modelData.bathrooms),
+                sqft: modelData.sqft,
+                sqftNumber: extractSqft(modelData.sqft),
+                modelData,
+                community: "lehigh-acres" as Community,
+              }];
+            })
+          );
+
           const flattened = batchData.flat();
           allModelsWithData.push(...flattened);
         }

@@ -32,8 +32,13 @@ import { ModelData, Community } from "@/types/model";
 import { useTranslation } from "@/hooks/use-translation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-// Modelos disponibles para RTO (todos excepto duplex)
-const RTO_MODELS = ["louisiana", "viana", "delanie", "aurora", "langdon", "emelia"];
+// Modelos disponibles para RTO por comunidad
+// LaBelle: langdon, emelia, aurora, delanie, viana, louisiana
+// Lehigh Acres: langdon, emelia, delanie (duplex solo para renta, no RTO)
+const RTO_MODELS_BY_COMMUNITY: Record<Community, string[]> = {
+  labelle: ["langdon", "emelia", "aurora", "delanie", "viana", "louisiana"],
+  "lehigh-acres": ["langdon", "emelia", "delanie"],
+};
 
 interface ModelDisplayData {
   key: string;
@@ -67,8 +72,7 @@ export default function RentToOwnPage() {
       const allModelsData: ModelDisplayData[] = [];
 
       for (const community of communities) {
-        const communityModels = getModelsForCommunity(community);
-        const rtoModels = communityModels.filter(key => RTO_MODELS.includes(key));
+        const rtoModels = RTO_MODELS_BY_COMMUNITY[community] || [];
 
         const modelsData = await Promise.all(
           rtoModels.map(async (modelKey) => {
