@@ -10,6 +10,8 @@ const labelleImages = [
   "/recursos/shutterstock_1197062707.jpg",
   "/recursos/shutterstock_2252703911.jpg",
   "/recursos/shutterstock_440999080.jpg",
+  "/recursos/rio.jpg",
+  "/recursos/pai.jpg",
 ];
 
 export default function LaBellePage() {
@@ -26,7 +28,7 @@ export default function LaBellePage() {
       icon: "TreePine",
       title: t("communities.labelle.activities.outdoor walks.title"),
       description: t("communities.labelle.activities.outdoor walks.description"),
-      image: "/recursos/pai.jpg",
+      image: "/recursos/orlandof.png",
     },
     {
       icon: "Sailboat",

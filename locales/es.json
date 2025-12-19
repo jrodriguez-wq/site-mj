@@ -25,6 +25,13 @@
     "scheduleAppointment": "Agendar Cita"
   },
   "hero": {
+    "mainHero": {
+      "subtitle": "Construyendo casas de calidad en el Suroeste de Florida con más de 15 años de experiencia. Tu familia merece lo mejor.",
+      "locations": "Ubicaciones",
+      "locationsValue": "LaBelle y Lehigh Acres, FL",
+      "experience": "Experiencia",
+      "experienceValue": "Más de 15 Años"
+    },
     "title1": "Construyendo el Futuro para Familias Estadounidenses",
     "subtitle1": "Encuentra la casa de tus sueños.",
     "description1": "Tu casa soñada te está esperando. Hagamos realidad la propiedad de vivienda para tu familia.",

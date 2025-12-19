@@ -10,6 +10,8 @@ const lehighAcresImages = [
   "/recursos/shutterstock_2252703911.jpg",
   "/recursos/shutterstock_440999080.jpg",
   "/recursos/shutterstock_1065297917.jpg",
+  "/recursos/playa.jpg",
+  "/recursos/familia_casa.png",
 ];
 
 export default function LehighAcresPage() {
@@ -32,7 +34,7 @@ export default function LehighAcresPage() {
       icon: "TreePine",
       title: t("communities.lehighAcres.activities.nature.title"),
       description: t("communities.lehighAcres.activities.nature.description"),
-      image: "/recursos/pai.jpg",
+      image: "/recursos/familia-conduciendo.png",
     },
   ];
 

@@ -25,6 +25,13 @@
     "scheduleAppointment": "Schedule Appointment"
   },
   "hero": {
+    "mainHero": {
+      "subtitle": "Building quality homes in Southwest Florida with over 15 years of experience. Your family deserves the best.",
+      "locations": "Locations",
+      "locationsValue": "LaBelle & Lehigh Acres, FL",
+      "experience": "Experience",
+      "experienceValue": "15+ Years"
+    },
     "title1": "Building the Future",
     "subtitle1": "For American Familes",
     "description1": "Let's make homeownership a reality for your family.",
