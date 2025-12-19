@@ -456,7 +456,7 @@
       "duplex": {
         "name": "Duplex",
         "description": "Perfect investment opportunity - live in one unit, rent the other",
-        "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living in one and renting the other. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
+        "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living or renting. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
         "price": "$510,000",
         "priceRange": "$510,000",
         "features": [
@@ -470,7 +470,7 @@
           "Rental income potential: $2,000 per unit"
         ],
         "specifications": {
-          "bedrooms": "2 Bedrooms + 1 Den",
+          "bedrooms": "2-3 Bedrooms Den",
           "bathrooms": "2 Bathrooms",
           "squareFeet": "2,060 sq ft",
           "garage": "1-Car Garage",
@@ -531,7 +531,7 @@
     }
   },
   "howItWorks": {
-    "title": "How It Works",
+    "title": "Start Now",
     "subtitle": "Your journey to homeownership in 6 simple steps",
     "step": "Step",
     "next": "Next",
@@ -540,12 +540,12 @@
       "1": {
         "number": "01",
         "title": "Get Pre-Approved",
-        "description": "Start by getting pre-approved for financing. Understand your budget and show sellers you're serious."
+        "description": "Start by getting pre-approved in one of our programs. Meet an advisor who will guide you through the process."
       },
       "2": {
         "number": "02",
         "title": "Choose Your Community",
-        "description": "Select between LaBelle or Lehigh Acres. Each community offers unique benefits and amenities."
+        "description": "Select between LaBelle or Lehigh Acres. Each community offers unique benefits."
       },
       "3": {
         "number": "03",
@@ -656,7 +656,7 @@
   },
   "homeBuyingGuide": {
     "title": "Home Buying Guide",
-    "subtitle": "Get free advice on the buying process of your property. Follow these simple steps to make your homeownership dream a reality.",
+    "subtitle": "Get free guidance while purchasing your property. Follow these simple steps to make your homeownership dream a reality.",
     "description": "Complete guide to buying your new home. Get free advice on the buying process of your property.",
     "step": "Step",
     "steps": {
@@ -678,7 +678,7 @@
       "4": {
         "number": "04",
         "title": "Financing Options",
-        "description": "Explore our financing options including traditional mortgages and our Rent to Own program with $0 down payment."
+        "description": "Explore our financing options including traditional mortgages and our Rent to Own program."
       }
     }
   },
@@ -687,14 +687,14 @@
     "subtitle": "We stand behind our quality construction",
     "coverage": {
       "title": "Our Warranty Coverage",
-      "description": "M.J. Newell Homes provides comprehensive warranty coverage for all new construction homes.",
+      "description": "M.J. Newell Homes provides an extensive warranty coverage for all new construction homes.",
       "structural": {
         "title": "Structural Warranty",
         "duration": "10 Years",
         "description": "Complete protection for the structural integrity of your home"
       },
       "mechanical": {
-        "title": "Mechanical Warranty",
+        "title": "Overall Warranty",
         "duration": "1 Year",
         "description": "Coverage for all mechanical systems including plumbing, electrical, and HVAC"
       }
@@ -703,7 +703,7 @@
       "title": "Why Choose Our Warranty",
       "timely": {
         "title": "Fast Response",
-        "description": "We respond to all service requests within 48 hours"
+        "description": "We respond to all service requests within 48-72 hours"
       },
       "support": {
         "title": "Dedicated Support",
@@ -716,7 +716,7 @@
     },
     "form": {
       "title": "Submit Warranty Request",
-      "description": "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you within 48 hours."
+      "description": "Fill out the form below to submit a warranty or service request. Our team will review your request and contact you within 48-72 hours."
     }
   },
   "thankYou": {
@@ -725,21 +725,21 @@
     "viewWarranty": "View Warranty Info",
     "contact": {
       "title": "Thank You!",
-      "subtitle": "We've received your message",
+      "subtitle": "Your warranty has been submitted.",
       "message": "We'll get back to you as soon as possible.",
-      "nextSteps": "Our team will review your message and get back to you within 24-48 hours."
+      "nextSteps": "Our team will review your message and get back to you within 48 hours."
     },
     "warranty": {
       "title": "Thank You!",
       "subtitle": "We've received your warranty request",
-      "message": "Our warranty team will review your request shortly.",
-      "nextSteps": "Our warranty team will review your request and contact you shortly."
+      "message": "Our warranty team will process your request shortly.",
+      "nextSteps": "Our warranty team will process your request and contact you shortly."
     }
   },
   "aboutUs": {
     "hero": {
       "title": "About Us",
-      "description": "Building American Homes in South Florida with a Win-Win Approach"
+      "description": "Building American Homes in South West Florida with a families in mind."
     },
     "stats": {
       "homesBuilt": {
@@ -851,7 +851,7 @@
       },
       "commitment": {
         "title": "Our Commitment",
-        "text": "\"The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. In a world where most people attempt to suppress others to gain power for themselves, we believe it's a detriment to society if we don't look for a win-win solution in business and help each other along the way.\""
+        "text": "\"The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. We believe it's a detriment to society if we don't look for a win-win solution in business and help each other along the way.\""
       }
     },
     "servicesSection": {
@@ -869,11 +869,11 @@
     },
     "team": {
       "title": "Our Team",
-      "subtitle": "360-degree support for your dreams",
+      "subtitle": "Meet the team dedicated to support for your dreams",
       "description": "Every family has their own path towards their dream. Agents with the most experience prepare every day to provide you with the most accurate support.",
       "juliana": {
         "name": "Juliana Bonilla",
-        "role": "Administrative & Sales",
+        "role": "Administrative & Sales Manager",
         "description": "Juliana Bonilla brings expertise in administration and sales, ensuring smooth operations and excellent customer service. She is dedicated to helping families find their dream home."
       }
     },
@@ -915,42 +915,42 @@
     },
     "whatIs": {
       "title": "What is Rent to Own?",
-      "description": "The Rent to Own (RTO) program allows you to live in a new home right away while a portion of your monthly rent accumulates as savings for your future purchase. We are not a traditional rental. You pay to live in your new home. Part of that monthly payment becomes savings. At the end of your plan, you can use that savings as a down payment or part of the initial payment for your home.",
+      "description": "Our Rent-to-Own Program is designed to turn your goal of homeownership into reality—without the common obstacles that hold buyers back. Credit challenges, down payment concerns, or closing costs do not have to stop you. With this program, you rent your future home at a fixed monthly rate, while automatically saving toward your down payment and closing costs, which are credited back to you at purchase. The home price is locked in from day one, eliminating surprises and rent increases, and you will receive professional guidance throughout the process, plus complimentary lawn care twice per month. It is a simple, secure, and smart path from renting to owning your dream home.",
       "objective": {
         "title": "Program Objective",
-        "description": "Help families save while living in a new home, accumulating funds that they can later use as part of the down payment for their future purchase."
+        "description": "Help families save while living in a new home, accumulating funds that they can later use as part of the purchase process for their future purchase."
       }
     },
     "keyFeatures": {
       "title": "Key Program Features",
       "subtitle": "Benefits designed to help you achieve your dream of homeownership",
       "minimumRent": {
-        "title": "Minimum Rent",
-        "description": "$2,500 USD monthly (Emelia model). The price may vary depending on the model and location."
+        "title": "Starting Rent",
+        "description": "Starting $2,700 USD monthly. The price may vary depending on the model and location."
       },
       "monthlySavings": {
         "title": "Monthly Savings",
-        "description": "Between $300 and $1,000 USD depending on the plan chosen for your future purchase."
+        "description": "Have a personalized plan designed to help you save money, from your rent, while living in your new home."
       },
       "frozenPrices": {
-        "title": "Frozen Prices",
-        "description": "Payments and prices frozen for up to 5 years."
+        "title": "Pay what you Sign",
+        "description": "We will freeze your property purchase price and payments for up to 5 years."
       },
       "maintenanceIncluded": {
-        "title": "Maintenance Included",
-        "description": "Includes free maintenance and landscaping."
+        "title": "Warranty Included",
+        "description": "Includes free warranty and landscaping."
       },
       "petsAllowed": {
         "title": "Pets Allowed",
-        "description": "Pets are accepted."
+        "description": "Pets are more than welcomed."
       },
       "noCreditCheck": {
         "title": "No Credit Check",
-        "description": "No credit or employment verification required."
+        "description": "No credit required for our program"
       },
       "easyEntry": {
-        "title": "Easy Entry",
-        "description": "Move in with just one month!"
+        "title": "Move in-ready",
+        "description": "Move in whenever you are ready! No need to wait for construction."
       }
     },
     "pioneers": {
@@ -959,10 +959,10 @@
       "description": "M.J. Newell Homes was and continues to be a pioneer in the Rent to Own program, helping thousands of families achieve their dream of homeownership."
     },
     "savingsWhileLiving": {
-      "title": "Save While You Live",
+      "title": "Save While You Rent",
       "description": "With our Rent to Own program, you can save money while living in your own home. Build equity and work towards ownership at your own pace.",
       "flexible": "Flexible",
-      "flexibleDesc": "Plans from 1-5 years",
+      "flexibleDesc": "Personalized savings plans",
       "monthly": "Monthly",
       "monthlyDesc": "Automatic savings"
     },
@@ -1038,23 +1038,23 @@
         "description": "Sign the contract and pay the deposit."
       },
       "step5": {
-        "title": "Assignment and Move-in",
-        "description": "Home assignment and move-in date."
+        "title":  "Move-in",
+        "description": "Choose the move-in date and start living in your new home!"
       }
     },
     "benefits": {
       "title": "Why Choose Our Rent to Own Program?",
       "saveWhileLiving": {
-        "title": "Save While You Live",
+        "title": "Save While You Rent",
         "description": "Part of your rent becomes savings for your future purchase"
       },
       "frozenPrices": {
-        "title": "Frozen Prices",
+        "title": "Fixed Prices",
         "description": "Payments and prices frozen for up to 5 years"
       },
       "noCreditCheck": {
         "title": "No Credit Check",
-        "description": "No credit or employment verification required"
+        "description": "No credit required"
       }
     },
     "cta": {
@@ -1129,7 +1129,7 @@
     "callNow": "Call Now"
   },
   "footer": {
-    "description": "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Rent to Own programs with $0 down payment.",
+    "description": "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Flexible options such as rento-to-own and $0 down payment purchases.",
     "address": "Address",
     "phone": "Phone",
     "email": "Email",
