@@ -122,6 +122,7 @@ export default function LaBellePage() {
           modelKeys={labelleModels.map((m) => m.key)}
           title={t("communities.labelle.models.title")}
           subtitle={t("communities.labelle.models.subtitle")}
+          community="labelle"
         />
       </div>
     </div>

@@ -37,10 +37,10 @@ export default function LehighAcresPage() {
   ];
 
   const lehighAcresModels = [
-    { key: "viana" },
-    { key: "delanie" },
     { key: "langdon" },
     { key: "emelia" },
+    { key: "delanie" },
+    { key: "duplex" },
   ];
 
   return (
@@ -120,6 +120,7 @@ export default function LehighAcresPage() {
           modelKeys={lehighAcresModels.map((m) => m.key)}
           title={t("communities.lehighAcres.models.title")}
           subtitle={t("communities.lehighAcres.models.subtitle")}
+          community="lehigh-acres"
         />
       </div>
     </div>

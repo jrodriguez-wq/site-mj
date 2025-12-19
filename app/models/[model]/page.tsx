@@ -4,10 +4,14 @@ import { getModelDataWithImages } from "@/lib/models/model-data";
 import { generatePropertyMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
 import type { Metadata } from "next";
+import type { Community } from "@/types/model";
 
 interface ModelPageProps {
   params: Promise<{
     model: string;
+  }>;
+  searchParams: Promise<{
+    community?: string;
   }>;
 }
 
@@ -33,9 +37,17 @@ export async function generateMetadata({ params }: ModelPageProps): Promise<Meta
   );
 }
 
-export default async function ModelPage({ params }: ModelPageProps) {
+export default async function ModelPage({ params, searchParams }: ModelPageProps) {
   const { model } = await params;
-  const modelData = await getModelDataWithImages(model);
+  const { community } = await searchParams;
+  
+  // Validar que community sea una ciudad válida
+  const validCommunity: Community | undefined = 
+    community === "labelle" || community === "lehigh-acres" 
+      ? (community as Community) 
+      : undefined;
+  
+  const modelData = await getModelDataWithImages(model, validCommunity);
 
   if (!modelData) {
     notFound();

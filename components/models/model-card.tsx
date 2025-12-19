@@ -4,10 +4,11 @@ import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share2, Maximize2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share2, Maximize2, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModelBadge } from "./model-badge";
+import { useTranslation } from "@/hooks/use-translation";
 
 export interface ModelCardProps {
   modelKey: string;
@@ -16,6 +17,7 @@ export interface ModelCardProps {
   image: string;
   images: string[];
   price: string;
+  rtoPrice?: string; // Precio de RTO (Rent to Own) mensual
   beds: string;
   bedsLabel: string;
   baths: string;
@@ -31,9 +33,11 @@ export interface ModelCardProps {
   modelLabel?: string;
   carouselDelay?: number;
   initialDelay?: number;
+  community?: "labelle" | "lehigh-acres"; // Comunidad para pasar como query param
 }
 
 const ModelCardComponent = (props: ModelCardProps) => {
+  const { t } = useTranslation();
   const {
     modelKey,
     name,
@@ -41,6 +45,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
     image,
     images,
     price,
+    rtoPrice,
     beds,
     bedsLabel,
     baths,
@@ -49,12 +54,37 @@ const ModelCardComponent = (props: ModelCardProps) => {
     sqftLabel,
     badges,
     satisfiedFamilies,
-    viewDetailsLabel = "Ver más detalles",
+    viewDetailsLabel,
     viewPhotosLabel,
-    modelLabel = "Modelo",
+    modelLabel,
     carouselDelay = 4000,
     initialDelay = 0,
+    community,
   } = props;
+
+  // Usar traducciones dinámicas con fallback a props si están disponibles
+  const displayViewDetailsLabel = viewDetailsLabel || t("homeModels.viewMoreDetails");
+  const displayViewMoreLabel = t("homeModels.viewMore");
+  const displayModelLabel = modelLabel || t("homeModels.model");
+  const displayPriceFromLabel = t("homeModels.priceFrom");
+  const displayRtoLabel = t("homeModels.rto");
+  const displayFeaturesLabel = t("homeModels.features");
+  const addToFavoritesLabel = t("homeModels.addToFavorites");
+  const removeFromFavoritesLabel = t("homeModels.removeFromFavorites");
+  const shareLabel = t("homeModels.share");
+  
+  // Community labels
+  const communityLabel = community 
+    ? community === "labelle" 
+      ? t("communities.labelle.name")
+      : t("communities.lehighAcres.name")
+    : null;
+  const viewPhotosCountLabel = (count: number) => 
+    t("homeModels.viewPhotosCount").replace("{count}", count.toString());
+  const closeGalleryLabel = t("homeModels.closeGallery");
+  const previousImageLabel = t("homeModels.previousImage");
+  const nextImageLabel = t("homeModels.nextImage");
+  const garageLabel = t("homeModels.garages");
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
@@ -69,8 +99,10 @@ const ModelCardComponent = (props: ModelCardProps) => {
     rootMargin: "50px",
   });
 
-  // Ensure modelKey is available in scope
-  const modelLink = `/models/${modelKey}`;
+  // Ensure modelKey is available in scope - incluir community como query param si está disponible
+  const modelLink = community 
+    ? `/models/${modelKey}?community=${community}`
+    : `/models/${modelKey}`;
 
   // Use all images if available, otherwise fallback to single image
   const displayImages = images.length > 0 ? images : [image];
@@ -167,8 +199,28 @@ const ModelCardComponent = (props: ModelCardProps) => {
             </div>
 
             {/* Top Actions Bar - Left Side: Badges */}
-            <div className="absolute top-3 sm:top-4 md:top-5 left-3 sm:left-4 md:left-5 z-20">
-              {/* Badges */}
+            <div className="absolute top-3 sm:top-4 md:top-5 left-3 sm:left-4 md:left-5 z-20 flex flex-col gap-2">
+              {/* Community Badge - Always visible if community is provided */}
+              {community && communityLabel && (
+                <div
+                  className={cn(
+                    "inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border backdrop-blur-md shadow-lg",
+                    community === "labelle"
+                      ? "bg-white/95 dark:bg-gray-900/95 text-indigo-700 dark:text-indigo-400 border-indigo-200/80 dark:border-indigo-700/50 shadow-indigo-500/10"
+                      : "bg-white/95 dark:bg-gray-900/95 text-fuchsia-700 dark:text-fuchsia-400 border-fuchsia-200/80 dark:border-fuchsia-700/50 shadow-fuchsia-500/10"
+                  )}
+                >
+                  <MapPin className={cn(
+                    "w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 shrink-0",
+                    community === "labelle" 
+                      ? "text-indigo-600 dark:text-indigo-400"
+                      : "text-fuchsia-600 dark:text-fuchsia-400"
+                  )} />
+                  <span className="whitespace-nowrap" suppressHydrationWarning>{communityLabel}</span>
+                </div>
+              )}
+              
+              {/* Model Badges */}
               {badges && badges.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {badges.map((badge, idx) => (
@@ -188,8 +240,9 @@ const ModelCardComponent = (props: ModelCardProps) => {
               <button
                 onClick={() => setIsLiked(!isLiked)}
                 className="bg-background/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/70 shadow-sm"
-                aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
+                aria-label={isLiked ? removeFromFavoritesLabel : addToFavoritesLabel}
                 type="button"
+                suppressHydrationWarning
               >
                 <Heart
                   className={cn(
@@ -200,11 +253,22 @@ const ModelCardComponent = (props: ModelCardProps) => {
               </button>
               <button
                 className="bg-background/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/70 shadow-sm"
-                aria-label="Share"
+                aria-label={shareLabel}
                 type="button"
+                suppressHydrationWarning
               >
                 <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/70" />
               </button>
+            </div>
+
+            {/* Price Badge - Positioned above View Photos button, elegant design */}
+            <div className={cn(
+              "absolute right-3 md:right-4 lg:right-5 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md text-emerald-700 dark:text-emerald-400 px-4 sm:px-4.5 md:px-5 lg:px-6 py-2 sm:py-2.5 md:py-3 lg:py-3.5 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg shadow-lg border border-emerald-200/60 dark:border-emerald-700/50 z-20",
+              hasMultipleImages 
+                ? "bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-28"
+                : "bottom-3 md:bottom-4 lg:bottom-5"
+            )}>
+              {price}
             </div>
 
             {/* View Gallery Button - Hidden on mobile, visible on tablet+ */}
@@ -213,25 +277,15 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 onClick={openGallery}
                 onKeyDown={(e) => handleKeyDown(e, openGallery)}
                 className="hidden sm:flex absolute bottom-3 md:bottom-4 lg:bottom-5 right-3 md:right-4 lg:right-5 bg-background/95 backdrop-blur-md px-2.5 md:px-3 py-1.5 md:py-2 rounded-full items-center gap-1.5 md:gap-2 hover:bg-background transition-all border border-border/70 shadow-md z-20"
-                aria-label={`View ${displayImages.length} photos`}
+                aria-label={viewPhotosCountLabel(displayImages.length)}
                 type="button"
+                suppressHydrationWarning
               >
                 <Eye className="w-4 h-4 md:w-4 md:h-4 text-foreground flex-shrink-0" />
-                <span className="text-foreground text-xs md:text-sm font-medium whitespace-nowrap">
-                  {viewPhotosLabel || `Ver ${displayImages.length} fotos`}
+                <span className="text-foreground text-xs md:text-sm font-medium whitespace-nowrap" suppressHydrationWarning>
+                  {viewPhotosLabel || viewPhotosCountLabel(displayImages.length)}
                 </span>
               </button>
-            )}
-
-            {/* Price Badge - Positioned below badges to avoid overlap, dynamic positioning */}
-            {badges && badges.length > 0 ? (
-              <div className="absolute top-14 sm:top-16 md:top-18 lg:top-20 left-3 sm:left-4 md:left-5 bg-primary/95 backdrop-blur-md text-primary-foreground px-3 sm:px-3.5 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg shadow-xl z-20">
-                {price}
-              </div>
-            ) : (
-              <div className="absolute top-3 sm:top-4 md:top-5 left-3 sm:left-4 md:left-5 bg-primary/95 backdrop-blur-md text-primary-foreground px-3 sm:px-3.5 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg shadow-xl z-20">
-                {price}
-              </div>
             )}
           </div>
 
@@ -243,10 +297,25 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent flex-1 min-w-0 leading-tight sm:leading-normal">
                   {name}
                 </h2>
-                <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0 mt-0.5 sm:mt-0">
-                  {modelLabel}
+                <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0 mt-0.5 sm:mt-0" suppressHydrationWarning>
+                  {displayModelLabel}
                 </span>
               </div>
+              {/* Community Badge in Content Area - Secondary display */}
+              {community && communityLabel && (
+                <div className="flex items-center gap-1.5 mb-1.5 sm:mb-2">
+                  <MapPin className={cn(
+                    "w-3.5 h-3.5 sm:w-4 sm:h-4",
+                    community === "labelle" ? "text-blue-500" : "text-purple-500"
+                  )} />
+                  <span className={cn(
+                    "text-xs sm:text-sm font-semibold",
+                    community === "labelle" ? "text-blue-600 dark:text-blue-400" : "text-purple-600 dark:text-purple-400"
+                  )} suppressHydrationWarning>
+                    {communityLabel}, Florida
+                  </span>
+                </div>
+              )}
               <p className="text-xs sm:text-sm text-muted-foreground font-medium line-clamp-2 mt-1 sm:mt-1.5">{description}</p>
             </div>
 
@@ -256,7 +325,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 { icon: Bed, value: beds, label: bedsLabel },
                 { icon: Bath, value: baths, label: bathsLabel },
                 { icon: Square, value: sqft, label: sqftLabel },
-                { icon: Car, value: "2", label: "Garajes" },
+                { icon: Car, value: garageLabel, label: garageLabel },
               ].map((feature, index) => {
                 const Icon = feature.icon;
                 return (
@@ -277,10 +346,17 @@ const ModelCardComponent = (props: ModelCardProps) => {
             {/* Price and CTA - Better mobile layout */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-2.5 sm:gap-3 md:gap-4 pt-2.5 sm:pt-3 md:pt-4 border-t border-border/50">
               <div className="flex-1 min-w-0 pb-0 sm:pb-0">
-                <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider font-medium mb-0.5 sm:mb-1">Precio desde</p>
+                <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider font-medium mb-0.5 sm:mb-1" suppressHydrationWarning>
+                  {displayPriceFromLabel}
+                </p>
                 <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent leading-tight sm:leading-normal break-words">
                   {price}
                 </p>
+                {rtoPrice && (
+                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground mt-1 sm:mt-1.5 font-semibold" suppressHydrationWarning>
+                    {displayRtoLabel}: <span className="text-primary font-bold">{rtoPrice}</span>
+                  </p>
+                )}
               </div>
               <Button
                 asChild
@@ -288,8 +364,8 @@ const ModelCardComponent = (props: ModelCardProps) => {
               >
                 <Link href={modelLink}>
                   <span className="relative z-10 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
-                    <span className="hidden sm:inline">{viewDetailsLabel}</span>
-                    <span className="sm:hidden">Ver más</span>
+                    <span className="hidden sm:inline" suppressHydrationWarning>{displayViewDetailsLabel}</span>
+                    <span className="sm:hidden" suppressHydrationWarning>{displayViewMoreLabel}</span>
                     <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300 flex-shrink-0" />
                   </span>
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
@@ -324,8 +400,9 @@ const ModelCardComponent = (props: ModelCardProps) => {
               <button
                 onClick={closeGallery}
                 className="ml-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border shrink-0"
-                aria-label="Close gallery"
+                aria-label={closeGalleryLabel}
                 type="button"
+                suppressHydrationWarning
               >
                 <X className="w-5 h-5 text-foreground" />
               </button>
@@ -355,8 +432,9 @@ const ModelCardComponent = (props: ModelCardProps) => {
                       changeGalleryImage(-1);
                     }}
                     className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2.5 rounded-full hover:bg-background transition-colors border border-border z-10 shadow-lg"
-                    aria-label="Previous image"
+                    aria-label={previousImageLabel}
                     type="button"
+                    suppressHydrationWarning
                   >
                     <ChevronLeft className="w-5 h-5 text-foreground" />
                   </button>
@@ -366,8 +444,9 @@ const ModelCardComponent = (props: ModelCardProps) => {
                       changeGalleryImage(1);
                     }}
                     className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2.5 rounded-full hover:bg-background transition-colors border border-border z-10 shadow-lg"
-                    aria-label="Next image"
+                    aria-label={nextImageLabel}
                     type="button"
+                    suppressHydrationWarning
                   >
                     <ChevronRight className="w-5 h-5 text-foreground" />
                   </button>
@@ -438,16 +517,18 @@ const ModelCardComponent = (props: ModelCardProps) => {
                     <button
                       onClick={() => changeGalleryImage(-1)}
                       className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10"
-                      aria-label="Previous image"
+                      aria-label={previousImageLabel}
                       type="button"
+                      suppressHydrationWarning
                     >
                       <ChevronLeft className="w-6 h-6 text-foreground" />
                     </button>
                     <button
                       onClick={() => changeGalleryImage(1)}
                       className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10"
-                      aria-label="Next image"
+                      aria-label={nextImageLabel}
                       type="button"
+                      suppressHydrationWarning
                     >
                       <ChevronRight className="w-6 h-6 text-foreground" />
                     </button>
@@ -499,8 +580,9 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 <button
                   onClick={closeGallery}
                   className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border z-10"
-                  aria-label="Close gallery"
+                  aria-label={closeGalleryLabel}
                   type="button"
+                  suppressHydrationWarning
                 >
                   <X className="w-5 h-5 text-foreground" />
                 </button>
@@ -525,22 +607,31 @@ const ModelCardComponent = (props: ModelCardProps) => {
                   <h1 className="text-4xl font-bold text-foreground mb-2">{name}</h1>
                   <p className="text-muted-foreground font-medium mb-4">{description}</p>
                   <div className="mt-6">
-                    <p className="text-sm text-muted-foreground uppercase tracking-wider">Precio desde</p>
+                    <p className="text-sm text-muted-foreground uppercase tracking-wider" suppressHydrationWarning>
+                      {displayPriceFromLabel}
+                    </p>
                     <p className="text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                       {price}
                     </p>
+                    {rtoPrice && (
+                      <p className="text-base text-muted-foreground mt-2 font-semibold" suppressHydrationWarning>
+                        {displayRtoLabel}: <span className="text-primary font-bold">{rtoPrice}</span>
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 {/* Quick Features */}
                 <div className="mb-8">
-                  <h3 className="text-lg font-bold text-foreground mb-4">Características</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-4" suppressHydrationWarning>
+                    {displayFeaturesLabel}
+                  </h3>
                   <div className="grid grid-cols-2 gap-3">
                     {[
                       { icon: Bed, value: beds, label: bedsLabel },
                       { icon: Bath, value: baths, label: bathsLabel },
                       { icon: Square, value: sqft, label: sqftLabel },
-                      { icon: Car, value: "2", label: "Garajes" },
+                      { icon: Car, value: garageLabel, label: garageLabel },
                     ].map((feature, index) => {
                       const Icon = feature.icon;
                       return (

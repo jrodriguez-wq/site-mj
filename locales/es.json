@@ -257,14 +257,18 @@
       "priceRange": "Rango de Precio",
       "bedrooms": "Recámaras",
       "bathrooms": "Baños",
-      "sqftRange": "Pies Cuadrados"
+      "sqftRange": "Pies Cuadrados",
+      "community": "Zona",
+      "allCommunities": "Todas las Zonas"
     },
     "results": {
       "one": "modelo",
       "many": "modelos",
       "found": "encontrado",
       "sortedBy": "Ordenado por precio: Menor a Mayor"
-    }
+    },
+    "noResults": "No se encontraron modelos que coincidan con tus filtros.",
+    "loading": "Cargando modelos..."
   },
   "homeModels": {
     "title": "Nuestros Modelos de Casas",
@@ -291,6 +295,25 @@
     "image": "imagen",
     "images": "imágenes",
     "available": "disponibles",
+    "priceFrom": "Precio desde",
+    "rto": "RTO",
+    "viewMore": "Ver más",
+    "viewMoreDetails": "Ver más detalles",
+    "addToFavorites": "Agregar a favoritos",
+    "removeFromFavorites": "Quitar de favoritos",
+    "share": "Compartir",
+    "viewPhotosCount": "Ver {count} fotos",
+    "closeGallery": "Cerrar galería",
+    "previousImage": "Imagen anterior",
+    "nextImage": "Imagen siguiente",
+    "garage": "Garaje",
+    "garages": "Garajes",
+    "badges": {
+      "bestseller": "Más Vendido",
+      "favorite": "Modelo Favorito",
+      "satisfied": "Familias Satisfechas",
+      "investment": "Inversión"
+    },
     "models": {
       "louisiana": {
         "name": "Louisiana",

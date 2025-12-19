@@ -1,0 +1,109 @@
+import { Community, ModelPricing } from "@/types/model";
+
+/**
+ * Configuración de precios por ciudad para cada modelo
+ */
+export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
+  labelle: {
+    langdon: {
+      price: "$316,900",
+      rtoPrice: "$2,700 / Mo",
+      sqft: "1,900",
+      bedrooms: "3",
+      bathrooms: "2",
+      garage: "2",
+    },
+    emelia: {
+      price: "$345,000",
+      rtoPrice: "$2,750 / Mo",
+      sqft: "2,060",
+      bedrooms: "3",
+      bathrooms: "2",
+      garage: "2",
+    },
+    aurora: {
+      price: "$359,900",
+      rtoPrice: "$2,900 / Mo",
+      sqft: "2,227",
+      bedrooms: "4",
+      bathrooms: "3",
+      garage: "2",
+    },
+    delanie: {
+      price: "$369,900",
+      rtoPrice: "$2,900 / Mo",
+      sqft: "2,610",
+      bedrooms: "4",
+      bathrooms: "3",
+      garage: "3",
+    },
+    viana: {
+      price: "$449,900",
+      rtoPrice: "$3,400 / Mo",
+      sqft: "2,978",
+      bedrooms: "4",
+      bathrooms: "3",
+      garage: "2",
+    },
+    louisiana: {
+      price: "$469,900",
+      rtoPrice: "$3,400 / Mo",
+      sqft: "3,277",
+      bedrooms: "4",
+      bathrooms: "3",
+      garage: "3",
+    },
+  },
+  "lehigh-acres": {
+    langdon: {
+      price: "$346,900",
+      rtoPrice: "$2,700 / Mo",
+      sqft: "1,900",
+      bedrooms: "3",
+      bathrooms: "2",
+      garage: "2",
+    },
+    emelia: {
+      price: "$374,900",
+      rtoPrice: "$2,750 / Mo",
+      sqft: "2,060",
+      bedrooms: "3",
+      bathrooms: "2",
+      garage: "2",
+    },
+    delanie: {
+      price: "$410,000",
+      rtoPrice: "$2,900 / Mo",
+      sqft: "2,610",
+      bedrooms: "4",
+      bathrooms: "3",
+      garage: "3",
+    },
+    duplex: {
+      price: "$510,000",
+      rtoPrice: "$2,000 ea. / Mo",
+      sqft: "2,898",
+      bedrooms: "6",
+      bathrooms: "4",
+      garage: "2",
+    },
+  },
+};
+
+/**
+ * Obtiene el pricing de un modelo para una ciudad específica
+ */
+export const getModelPricing = (
+  modelKey: string,
+  community: Community
+): ModelPricing | null => {
+  return MODEL_PRICING[community]?.[modelKey] || null;
+};
+
+/**
+ * Obtiene todos los modelos disponibles para una ciudad
+ */
+export const getModelsForCommunity = (community: Community): string[] => {
+  return Object.keys(MODEL_PRICING[community] || {});
+};
+

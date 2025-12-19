@@ -5,16 +5,17 @@ import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
 import { getModelData } from "@/lib/models/model-data";
 import { useTranslation } from "@/hooks/use-translation";
 import { useEffect, useState } from "react";
-import type { ModelData } from "@/types/model";
+import type { ModelData, Community } from "@/types/model";
 import { sortModelsByPrice } from "@/lib/models/model-utils";
 
 interface CommunityModelsSectionProps {
   modelKeys: string[];
   title: string;
   subtitle: string;
+  community: Community;
 }
 
-export const CommunityModelsSection = ({ modelKeys, title, subtitle }: CommunityModelsSectionProps) => {
+export const CommunityModelsSection = ({ modelKeys, title, subtitle, community }: CommunityModelsSectionProps) => {
   const { t } = useTranslation();
   const [modelsData, setModelsData] = useState<(ModelData & { key: string })[]>([]);
   const [loading, setLoading] = useState(true);
@@ -23,7 +24,7 @@ export const CommunityModelsSection = ({ modelKeys, title, subtitle }: Community
     const loadModels = async () => {
       const data = await Promise.all(
         modelKeys.map(async (key) => {
-          const modelData = await getModelData(key);
+          const modelData = await getModelData(key, community);
           return modelData ? { ...modelData, key } : null;
         })
       );
@@ -34,7 +35,7 @@ export const CommunityModelsSection = ({ modelKeys, title, subtitle }: Community
       setLoading(false);
     };
     loadModels();
-  }, [modelKeys]);
+  }, [modelKeys, community]);
 
   if (loading) {
     return (
@@ -79,6 +80,7 @@ export const CommunityModelsSection = ({ modelKeys, title, subtitle }: Community
                   image={mainImage}
                   images={modelImages}
                   price={modelData.price}
+                  rtoPrice={modelData.rtoPrice}
                   beds={modelData.bedrooms}
                   bedsLabel={t("homeModels.beds")}
                   baths={modelData.bathrooms}
@@ -90,6 +92,7 @@ export const CommunityModelsSection = ({ modelKeys, title, subtitle }: Community
                   galleryTitle={`${t("homeModels.gallery")} ${t(`homeModels.models.${modelData.key}.name`)}`}
                   galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
                   modelLabel={t("homeModels.model")}
+                  community={community}
                 />
               );
             })}

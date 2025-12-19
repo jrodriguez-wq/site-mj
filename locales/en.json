@@ -257,14 +257,18 @@
       "priceRange": "Price Range",
       "bedrooms": "Bedrooms",
       "bathrooms": "Bathrooms",
-      "sqftRange": "Square Feet"
+      "sqftRange": "Square Feet",
+      "community": "Community",
+      "allCommunities": "All Communities"
     },
     "results": {
       "one": "model",
       "many": "models",
       "found": "found",
       "sortedBy": "Sorted by price: Low to High"
-    }
+    },
+    "noResults": "No models found matching your filters.",
+    "loading": "Loading models..."
   },
   "homeModels": {
     "title": "Our Models",
@@ -291,6 +295,25 @@
     "image": "image",
     "images": "images",
     "available": "available",
+    "priceFrom": "Price from",
+    "rto": "RTO",
+    "viewMore": "View more",
+    "viewMoreDetails": "View more details",
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites",
+    "share": "Share",
+    "viewPhotosCount": "View {count} photos",
+    "closeGallery": "Close gallery",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "garage": "Garage",
+    "garages": "Garages",
+    "badges": {
+      "bestseller": "Bestseller",
+      "favorite": "Favorite Model",
+      "satisfied": "Satisfied Families",
+      "investment": "Investment"
+    },
     "models": {
       "louisiana": {
         "name": "Louisiana",
