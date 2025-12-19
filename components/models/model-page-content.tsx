@@ -27,7 +27,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
   const [activeTab, setActiveTab] = useState("inside");
   const [isFloorplanExpanded, setIsFloorplanExpanded] = useState(false);
 
-  const { name, sqft, bedrooms, bathrooms, garage, price, description, youtubeUrl, images, sections } = modelData;
+  const { name, sqft, bedrooms, bathrooms, garage, price, rtoPrice, description, youtubeUrl, images, sections } = modelData;
   
   // Get translated model name if available
   const modelName = t(`homeModels.models.${modelData.key}.name`) || name;
@@ -176,76 +176,96 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
         {/* Model Information Section */}
         <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
             {/* Price Card - Featured */}
-            <Card className="md:col-span-2 lg:col-span-1 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardHeader className="p-4 sm:p-6">
-                <CardDescription className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider" suppressHydrationWarning>
+            <Card className="lg:col-span-1 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="p-5 sm:p-6">
+                <CardDescription className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
                   {t("homeModels.modelPage.startingPrice")}
                 </CardDescription>
                 <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   {price}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-4 sm:p-6 pt-0">
-                <p className="text-xs sm:text-sm text-muted-foreground" suppressHydrationWarning>
+              <CardContent className="p-5 sm:p-6 pt-0 space-y-4">
+                {/* RTO Price Section */}
+                {rtoPrice && (
+                  <div className="pt-4 border-t border-border/50">
+                    <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
+                      {t("rentToOwn.hero.title")} {t("homeModels.modelPage.startingPrice")}
+                    </p>
+                    <p className="text-xl sm:text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                      {rtoPrice}
+                    </p>
+                  </div>
+                )}
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
                   {t("homeModels.modelPage.contactForFinancing")}
                 </p>
               </CardContent>
             </Card>
 
-            {/* Features Grid */}
-            <div className="md:col-span-2 lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
-                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
-                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Square className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+            {/* Features Grid - Optimized and Centered */}
+            <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <Square className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <div>
-                      <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{sqft}</p>
-                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium mt-0.5 sm:mt-1" suppressHydrationWarning>{t("homeModels.modelPage.sqft")}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
-                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
-                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Bed className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{bedrooms}</p>
-                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium mt-0.5 sm:mt-1" suppressHydrationWarning>{t("homeModels.modelPage.bedrooms")}</p>
+                    <div className="w-full">
+                      <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{sqft}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
+                        {t("homeModels.modelPage.sqft")}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
-                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
-                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Bath className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <Bed className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <div>
-                      <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">{bathrooms}</p>
-                      <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium mt-0.5 sm:mt-1" suppressHydrationWarning>{t("homeModels.modelPage.bathrooms")}</p>
+                    <div className="w-full">
+                      <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{bedrooms}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
+                        {t("homeModels.modelPage.bedrooms")}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-md">
-                <CardContent className="pt-4 sm:pt-6 p-4 sm:p-6">
-                  <div className="flex flex-col items-center text-center space-y-2 sm:space-y-3">
-                    <div className="p-2 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                      <Car className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <Bath className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <div>
-                      <p className="text-base sm:text-lg md:text-xl font-bold text-foreground leading-tight">{garage}</p>
+                    <div className="w-full">
+                      <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{bathrooms}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
+                        {t("homeModels.modelPage.bathrooms")}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                      <Car className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
+                    </div>
+                    <div className="w-full">
+                      <p className="text-lg sm:text-xl md:text-2xl font-black text-foreground leading-tight mb-1">{garage}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
+                        {t("homeModels.garage")}
+                      </p>
                     </div>
                   </div>
                 </CardContent>

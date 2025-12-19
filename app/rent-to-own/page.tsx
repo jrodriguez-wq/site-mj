@@ -23,12 +23,14 @@ import {
   Square,
   Sparkles
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { CONTACT_INFO } from "@/config/seo";
 import { getModelData } from "@/lib/models/model-data";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
-import { sortModelsByPrice } from "@/lib/models/model-utils";
-import { ModelData } from "@/types/model";
+import { getModelPricing, getModelsForCommunity } from "@/lib/models/model-pricing";
+import { ModelData, Community } from "@/types/model";
 import { useTranslation } from "@/hooks/use-translation";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // Modelos disponibles para RTO (todos excepto duplex)
 const RTO_MODELS = ["louisiana", "viana", "delanie", "aurora", "langdon", "emelia"];
@@ -39,49 +41,75 @@ interface ModelDisplayData {
   description: string;
   image: string;
   images: string[];
-  price: string;
+  price: string; // Precio de compra
+  rtoPrice: string; // Precio mensual RTO
   beds: string;
   baths: string;
   sqft: string;
   modelData: ModelData | null;
+  community: Community;
 }
 
 export default function RentToOwnPage() {
   const { t } = useTranslation();
   const [models, setModels] = useState<ModelDisplayData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCommunity, setSelectedCommunity] = useState<Community | "all">("all");
 
   useEffect(() => {
     const loadModels = async () => {
-      const modelsData = await Promise.all(
-        RTO_MODELS.map(async (modelKey) => {
-          const modelData = await getModelData(modelKey);
-          const modelImages = getModelImages(modelKey);
-          const mainImage = getModelMainImage(modelKey);
-          
-          return {
-            key: modelKey,
-            name: modelData?.name || modelKey,
-            description: modelData?.description || "",
-            image: mainImage,
-            images: modelImages,
-            price: modelData?.price || "",
-            beds: modelData?.bedrooms || "",
-            baths: modelData?.bathrooms || "",
-            sqft: modelData?.sqft || "",
-            modelData,
-          };
-        })
-      );
+      setIsLoading(true);
       
-      // Sort by price (cheapest first)
-      const sortedModels = sortModelsByPrice(modelsData);
+      const communities: Community[] = selectedCommunity === "all" 
+        ? ["labelle", "lehigh-acres"] 
+        : [selectedCommunity];
+
+      const allModelsData: ModelDisplayData[] = [];
+
+      for (const community of communities) {
+        const communityModels = getModelsForCommunity(community);
+        const rtoModels = communityModels.filter(key => RTO_MODELS.includes(key));
+
+        const modelsData = await Promise.all(
+          rtoModels.map(async (modelKey) => {
+            const modelData = await getModelData(modelKey, community);
+            const pricing = getModelPricing(modelKey, community);
+            const modelImages = getModelImages(modelKey);
+            const mainImage = getModelMainImage(modelKey);
+            
+            return {
+              key: selectedCommunity === "all" ? `${modelKey}-${community}` : modelKey,
+              name: modelData?.name || modelKey,
+              description: modelData?.description || "",
+              image: mainImage,
+              images: modelImages,
+              price: modelData?.price || "",
+              rtoPrice: pricing?.rtoPrice || "",
+              beds: pricing?.bedrooms || modelData?.bedrooms || "",
+              baths: pricing?.bathrooms || modelData?.bathrooms || "",
+              sqft: pricing?.sqft || modelData?.sqft || "",
+              modelData,
+              community,
+            };
+          })
+        );
+
+        allModelsData.push(...modelsData);
+      }
+      
+      // Sort by RTO price (cheapest monthly payment first)
+      const sortedModels = allModelsData.sort((a, b) => {
+        const aPrice = parseInt(a.rtoPrice.replace(/[^0-9]/g, "")) || 0;
+        const bPrice = parseInt(b.rtoPrice.replace(/[^0-9]/g, "")) || 0;
+        return aPrice - bPrice;
+      });
+      
       setModels(sortedModels);
       setIsLoading(false);
     };
 
     loadModels();
-  }, []);
+  }, [selectedCommunity]);
 
   return (
     <div className="min-h-screen">
@@ -289,7 +317,7 @@ export default function RentToOwnPage() {
       {/* Available Models Section */}
       <section className="py-10 md:py-14 lg:py-18 bg-muted/30">
         <PageContent size="lg">
-          <div className="text-center space-y-4 mb-12">
+          <div className="text-center space-y-4 mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
               {t("rentToOwn.availableModels.title")}
             </h2>
@@ -299,71 +327,127 @@ export default function RentToOwnPage() {
             <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
           </div>
 
+          {/* Community Selector */}
+          <div className="flex justify-center mb-8">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <label className="text-sm sm:text-base font-semibold text-foreground whitespace-nowrap" suppressHydrationWarning>
+                {t("models.filters.community")}:
+              </label>
+              <Select
+                value={selectedCommunity}
+                onValueChange={(value) => setSelectedCommunity(value as Community | "all")}
+              >
+                <SelectTrigger className="w-full sm:w-auto min-w-[200px]">
+                  <SelectValue suppressHydrationWarning />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all" suppressHydrationWarning>
+                    {t("models.filters.allCommunities")}
+                  </SelectItem>
+                  <SelectItem value="labelle" suppressHydrationWarning>
+                    {t("communities.labelle.name")} - {t("communities.labelle.country.subtitle")}
+                  </SelectItem>
+                  <SelectItem value="lehigh-acres" suppressHydrationWarning>
+                    {t("communities.lehighAcres.name")} - {t("communities.lehighAcres.country.subtitle")}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
           {isLoading ? (
             <div className="flex justify-center items-center py-16">
               <div className="text-lg text-muted-foreground" suppressHydrationWarning>{t("rentToOwn.availableModels.loading")}</div>
             </div>
           ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
-              {models.map((model) => (
-                <Card 
-                  key={model.key} 
-                  className="group border-2 border-border/50 hover:border-primary/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-background"
-                >
-                  <div className="relative h-72 sm:h-80 overflow-hidden bg-muted">
-                    <Image
-                      src={model.image}
-                      alt={model.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1.5 bg-primary/95 backdrop-blur-md text-white text-xs font-bold rounded-full border-2 border-white/60 shadow-xl" suppressHydrationWarning>
-                        {t("rentToOwn.availableModels.rtoAvailable")}
-                      </span>
-                    </div>
-                  </div>
-                  <CardContent className="pt-6 p-6">
-                    <h3 className="text-xl md:text-2xl font-black mb-3 group-hover:text-primary transition-colors">
-                      {model.name}
-                    </h3>
-                    <p className="text-sm md:text-base text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
-                      {model.description}
-                    </p>
-                    <div className="grid grid-cols-3 gap-3 mb-5 pb-5 border-b border-border/50">
-                      <div className="text-center p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
-                        <Bed className="h-5 w-5 text-primary mx-auto mb-1.5" />
-                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("homeModels.beds")}</p>
-                        <p className="font-black text-base">{model.beds}</p>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {models.map((model) => {
+                const baseKey = model.key.split("-")[0];
+                return (
+                  <Card 
+                    key={model.key} 
+                    className="group border-2 border-border/50 hover:border-primary/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden bg-background relative py-0"
+                  >
+                    {/* Community Badge */}
+                    {selectedCommunity === "all" && (
+                      <div className={cn(
+                        "absolute top-4 left-4 z-20 px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-md shadow-lg",
+                        model.community === "labelle"
+                          ? "bg-white/95 dark:bg-gray-900/95 text-indigo-700 dark:text-indigo-400 border-indigo-200/80 dark:border-indigo-700/50"
+                          : "bg-white/95 dark:bg-gray-900/95 text-fuchsia-700 dark:text-fuchsia-400 border-fuchsia-200/80 dark:border-fuchsia-700/50"
+                      )}>
+                        {model.community === "labelle" ? t("communities.labelle.name") : t("communities.lehighAcres.name")}
                       </div>
-                      <div className="text-center p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
-                        <Bath className="h-5 w-5 text-primary mx-auto mb-1.5" />
-                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("homeModels.baths")}</p>
-                        <p className="font-black text-base">{model.baths}</p>
-                      </div>
-                      <div className="text-center p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
-                        <Square className="h-5 w-5 text-primary mx-auto mb-1.5" />
-                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("homeModels.sqft")}</p>
-                        <p className="font-black text-sm">{model.sqft}</p>
+                    )}
+
+                    <div className="relative h-64 sm:h-72 overflow-hidden bg-muted">
+                      <Image
+                        src={model.image}
+                        alt={model.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent"></div>
+                      <div className="absolute top-4 right-4 z-10">
+                        <span className="px-3 py-1.5 bg-emerald-500/95 backdrop-blur-md text-white text-xs font-bold rounded-full border-2 border-white/60 shadow-xl" suppressHydrationWarning>
+                          {t("rentToOwn.availableModels.rtoAvailable")}
+                        </span>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-xs text-muted-foreground mb-1" suppressHydrationWarning>{t("rentToOwn.availableModels.price")}</p>
-                        <p className="text-xl md:text-2xl font-black text-primary">{model.price}</p>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl md:text-2xl font-black mb-2 group-hover:text-primary transition-colors">
+                        {model.name}
+                      </h3>
+                      <p className="text-sm md:text-base text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
+                        {model.description}
+                      </p>
+                      <div className="grid grid-cols-3 gap-2 mb-5 pb-5 border-b border-border/50">
+                        <div className="text-center p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                          <Bed className="h-4 w-4 text-primary mx-auto mb-1" />
+                          <p className="text-[10px] text-muted-foreground mb-0.5" suppressHydrationWarning>{t("homeModels.beds")}</p>
+                          <p className="font-black text-sm">{model.beds}</p>
+                        </div>
+                        <div className="text-center p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                          <Bath className="h-4 w-4 text-primary mx-auto mb-1" />
+                          <p className="text-[10px] text-muted-foreground mb-0.5" suppressHydrationWarning>{t("homeModels.baths")}</p>
+                          <p className="font-black text-sm">{model.baths}</p>
+                        </div>
+                        <div className="text-center p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                          <Square className="h-4 w-4 text-primary mx-auto mb-1" />
+                          <p className="text-[10px] text-muted-foreground mb-0.5" suppressHydrationWarning>{t("homeModels.sqft")}</p>
+                          <p className="font-black text-xs">{model.sqft}</p>
+                        </div>
                       </div>
-                      <Button asChild variant="outline" size="sm" className="group/btn hover:bg-primary hover:text-white hover:border-primary">
-                        <Link href={`/models/${model.key}`} className="flex items-center gap-2">
+                      {/* RTO Price - Prominent Display */}
+                      <div className="mb-5 pb-5 border-b border-border/50">
+                        <div className="bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 rounded-xl p-4 border border-emerald-200/50 dark:border-emerald-800/50">
+                          <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wider font-semibold" suppressHydrationWarning>
+                            {t("homeModels.rto")} {t("rentToOwn.availableModels.price")}
+                          </p>
+                          <p className="text-2xl md:text-3xl font-black text-emerald-700 dark:text-emerald-400 mb-1">
+                            {model.rtoPrice || "N/A"}
+                          </p>
+                          {model.price && (
+                            <p className="text-xs text-muted-foreground line-through opacity-60">
+                              {t("homeModels.priceFrom")} {model.price}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <Button 
+                        asChild 
+                        className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 group/btn"
+                      >
+                        <Link href={`/models/${baseKey}?community=${model.community}`} className="flex items-center justify-center gap-2">
                           {t("rentToOwn.availableModels.viewDetails")}
                           <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Link>
                       </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           )}
         </PageContent>
