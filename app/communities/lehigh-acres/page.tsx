@@ -6,12 +6,12 @@ import { CommunityPageContent } from "@/components/communities/community-page-co
 import { useTranslation } from "@/hooks/use-translation";
 
 const lehighAcresImages = [
-  "/recursos/shutterstock_1197062707.jpg",
-  "/recursos/shutterstock_2252703911.jpg",
-  "/recursos/shutterstock_440999080.jpg",
-  "/recursos/shutterstock_1065297917.jpg",
-  "/recursos/playa.jpg",
-  "/recursos/familia_casa.png",
+  "/recursos/shutterstock-1197062707.webp",
+  "/recursos/shutterstock-2252703911.webp",
+  "/recursos/shutterstock-440999080.webp",
+  "/recursos/shutterstock-1065297917.webp",
+  "/recursos/playa.webp",
+  "/recursos/familia-casa.webp",
 ];
 
 export default function LehighAcresPage() {
@@ -22,19 +22,19 @@ export default function LehighAcresPage() {
       icon: "Droplets",
       title: t("communities.lehighAcres.activities.beaches.title"),
       description: t("communities.lehighAcres.activities.beaches.description"),
-      image: "/recursos/playa.jpg",
+      image: "/recursos/playa.webp",
     },
     {
       icon: "Users",
       title: t("communities.lehighAcres.activities.entertainment.title"),
       description: t("communities.lehighAcres.activities.entertainment.description"),
-      image: "/recursos/shutterstock_2252703911.jpg",
+      image: "/recursos/shutterstock-2252703911.webp",
     },
     {
       icon: "TreePine",
       title: t("communities.lehighAcres.activities.nature.title"),
       description: t("communities.lehighAcres.activities.nature.description"),
-      image: "/recursos/familia-conduciendo.png",
+      image: "/recursos/familia-conduciendo.webp",
     },
   ];
 

@@ -148,7 +148,7 @@ export default function AboutUsPage() {
               {/* Michael's Image */}
               <div className="relative w-full h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
                 <Image
-                  src="/img/michael.jpg"
+                  src="/img/michael.webp"
                   alt="Michael J. Newell - Founder & CEO"
                   fill
                   className="object-cover"
@@ -281,7 +281,7 @@ export default function AboutUsPage() {
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
-                    src="/img/michael.jpg"
+                    src="/img/michael.webp"
                     alt="Michael J. Newell - Founder & CEO"
                     fill
                     className="object-cover object-center"
@@ -308,7 +308,7 @@ export default function AboutUsPage() {
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
-                    src="/img/juliana.jpeg"
+                    src="/img/juliana.webp"
                     alt="Juliana Bonilla - Administrative & Sales"
                     fill
                     className="object-cover object-center"

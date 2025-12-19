@@ -36,7 +36,7 @@ interface HeroSlide {
 
 const heroSlidesConfig: HeroSlideConfig[] = [
   { 
-    image: "/img/hero/1W5A0741_1.jpg", 
+    image: "/img/hero/1w5a0741-1.webp", 
     titleKey: "hero.title1", 
     subtitleKey: "hero.subtitle1",
     descriptionKey: "hero.description1",
@@ -46,7 +46,7 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     secondaryButtonAction: "scroll"
   },
   { 
-    image: "/img/hero/1W5A0814_1.jpg", 
+    image: "/img/hero/1w5a0814-1.webp", 
     titleKey: "hero.title2", 
     subtitleKey: "hero.subtitle2",
     descriptionKey: "hero.description2",
@@ -55,7 +55,7 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     primaryButtonAction: "link"
   },
   { 
-    image: "/img/hero/1W5A1489 E5.jpg", 
+    image: "/img/hero/1w5a1489-e5.webp", 
     titleKey: "hero.title3", 
     subtitleKey: "hero.subtitle3",
     descriptionKey: "hero.description3",

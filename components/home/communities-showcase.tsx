@@ -13,7 +13,7 @@ const COMMUNITIES_CONFIG = [
     nameKey: "labelle",
     alt: "LaBelle community",
     href: "/communities/labelle",
-    image: "/recursos/shutterstock_1065297917.jpg",
+    image: "/recursos/shutterstock-1065297917.webp",
     featureKeys: [
       "communities.labelle.features.acreLots",
       "communities.labelle.features.noHOA",
@@ -24,7 +24,7 @@ const COMMUNITIES_CONFIG = [
     nameKey: "lehighAcres",
     alt: "Lehigh Acres community",
     href: "/communities/lehigh-acres",
-    image: "/recursos/shutterstock_1197062707.jpg",
+    image: "/recursos/shutterstock-1197062707.webp",
     featureKeys: [
       "communities.lehighAcres.features.spaciousLots",
       "communities.lehighAcres.features.greatSchools",

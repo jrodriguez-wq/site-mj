@@ -82,7 +82,7 @@ export const Footer = () => {
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/img/LOGO BLANCO.png"
+                src="/img/logo-blanco.png"
                 alt="M.J. Newell Homes"
                 width={200}
                 height={60}

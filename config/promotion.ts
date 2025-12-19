@@ -55,7 +55,7 @@ export const PROMOTION_CONFIG: PromotionConfig = {
   subtitle: "Limited Time Offer!",
   description: "Take advantage of our special promotion this month. Get exclusive discounts on our models and flexible financing options with $0 down payment.",
   
-  image: "/img/hero/1W5A0754 E4.jpg", // Change this path to your promotional image
+  image: "/img/hero/1w5a0754-e4.webp", // Change this path to your promotional image
   imageAlt: "Monthly special promotion - M.J. Newell Homes",
   
   buttons: {

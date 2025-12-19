@@ -83,7 +83,7 @@ export default function RootLayout({
         {/* Preload de imagen de promoción para mejor rendimiento */}
         <link
           rel="preload"
-          href="/img/hero/1W5A0754 E4.jpg"
+          href="/img/hero/1w5a0754-e4.webp"
           as="image"
           type="image/jpeg"
           fetchPriority="high"

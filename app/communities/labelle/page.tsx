@@ -6,12 +6,12 @@ import { CommunityPageContent } from "@/components/communities/community-page-co
 import { useTranslation } from "@/hooks/use-translation";
 
 const labelleImages = [
-  "/recursos/shutterstock_1065297917.jpg",
-  "/recursos/shutterstock_1197062707.jpg",
-  "/recursos/shutterstock_2252703911.jpg",
-  "/recursos/shutterstock_440999080.jpg",
-  "/recursos/rio.jpg",
-  "/recursos/pai.jpg",
+  "/recursos/shutterstock-1065297917.webp",
+  "/recursos/shutterstock-1197062707.webp",
+  "/recursos/shutterstock-2252703911.webp",
+  "/recursos/shutterstock-440999080.webp",
+  "/recursos/rio.webp",
+  "/recursos/pai.webp",
 ];
 
 export default function LaBellePage() {
@@ -22,19 +22,19 @@ export default function LaBellePage() {
       icon: "Fish",
       title: t("communities.labelle.activities.fishing.title"),
       description: t("communities.labelle.activities.fishing.description"),
-      image: "/recursos/shutterstock_1197062707.jpg",
+      image: "/recursos/shutterstock-1197062707.webp",
     },
     {
       icon: "TreePine",
       title: t("communities.labelle.activities.outdoor walks.title"),
       description: t("communities.labelle.activities.outdoor walks.description"),
-      image: "/recursos/orlandof.png",
+      image: "/recursos/orlandof.webp",
     },
     {
       icon: "Sailboat",
       title: t("communities.labelle.activities.boating.title"),
       description: t("communities.labelle.activities.boating.description"),
-      image: "/recursos/rio.jpg",
+      image: "/recursos/rio.webp",
     },
   ];
 

@@ -12,6 +12,7 @@
     "optimize-images": "node scripts/optimize-images.js",
     "optimize-model-images": "node scripts/optimize-model-images.js",
     "optimize-floorplans": "node scripts/optimize-floorplans.js",
+    "optimize-all": "node scripts/optimize-all-images-complete.js",
     "postinstall": "echo '✅ Dependencies installed successfully'"
   },
   "dependencies": {

@@ -46,7 +46,7 @@ export const WhyChooseUs = () => {
           <div className="relative order-2 lg:order-1">
             <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/img/hero/1W5A0741_1.jpg"
+                src="/img/hero/1w5a0741-1.webp"
                 alt="M.J. Newell Homes - Quality Construction"
                 fill
                 className="object-cover"
