@@ -47,7 +47,7 @@ const nextConfig: NextConfig = {
   compress: true,
 
   // Optimizaciones de producción
-  reactStrictMode: true,
+  reactStrictMode: false,
   
   // Optimización de producción (swcMinify está habilitado por defecto en Next.js 16+)
   productionBrowserSourceMaps: false,

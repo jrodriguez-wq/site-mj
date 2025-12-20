@@ -12,8 +12,17 @@ import { FilterState } from "@/components/models/model-filters";
 import { getModelsForCommunity } from "@/lib/models/model-pricing";
 
 // Lazy load heavy components
-const ModelCard = lazy(() => import("@/components/models/model-card").then(module => ({ default: module.ModelCard })));
-const ModelFilters = lazy(() => import("@/components/models/model-filters").then(module => ({ default: module.ModelFilters })));
+const ModelCard = lazy(() => 
+  import("@/components/models/model-card").then((module) => ({
+    default: module.ModelCard,
+  }))
+);
+
+const ModelFilters = lazy(() => 
+  import("@/components/models/model-filters").then((module) => ({
+    default: module.ModelFilters,
+  }))
+);
 
 // Configuración de badges y datos adicionales por modelo
 // Las etiquetas se obtendrán de las traducciones usando labelKey

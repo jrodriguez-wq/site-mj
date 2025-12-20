@@ -1,34 +1,27 @@
 "use client";
 
-import { useEffect } from "react";
 import { useLanguageStore } from "@/store/language-store";
 
 /**
  * Hook para usar traducciones en componentes
  * @example
- * const { t, language, setLanguage } = useTranslation();
+ * const { t, language, setLanguage, translations } = useTranslation();
  * <h1>{t("hero.title1")}</h1>
+ * 
+ * Para useMemo, usa translations como dependencia:
+ * const data = useMemo(() => ..., [translations]);
  */
 export const useTranslation = () => {
-  const { language, translations, setLanguage, t, isLoading } = useLanguageStore();
-
-  useEffect(() => {
-    // Asegurar que las traducciones se carguen si no están disponibles
-    // Usar inglés por defecto si no hay idioma seleccionado
-    const currentLanguage = language || "en";
-    if (Object.keys(translations).length === 0 && !isLoading) {
-      setLanguage(currentLanguage).catch((err) => {
-        console.error("Error loading translations:", err);
-        // Si falla, intentar cargar inglés
-        if (currentLanguage !== "en") {
-          setLanguage("en").catch(console.error);
-        }
-      });
-    }
-  }, [translations, isLoading, language, setLanguage]);
-
+  // Obtener tanto t como translations para optimizaciones
+  const t = useLanguageStore((state) => state.t);
+  const translations = useLanguageStore((state) => state.translations);
+  const language = useLanguageStore((state) => state.language);
+  const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const isLoading = useLanguageStore((state) => state.isLoading);
+  
   return {
     t,
+    translations, // Exponer translations para usar como dependencia en useMemo
     language: language || "en",
     setLanguage,
     isLoading,

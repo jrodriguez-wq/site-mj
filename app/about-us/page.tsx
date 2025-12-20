@@ -75,23 +75,76 @@ export default function AboutUsPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section with Statistics - Similar to Home */}
-      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl" />
+      {/* Hero Section with Office Background */}
+      <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/img/oficina.webp"
+            alt={t("aboutUs.hero.imageAlt") || "M.J. Newell Homes Office"}
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+            sizes="100vw"
+          />
+          {/* Gradient Overlay - Lighter for more natural look */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
         </div>
-        
-        <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
+
+        {/* Content */}
+        <div className="relative z-20 w-full h-full flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+            <div className="max-w-4xl">
+              <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
+                {/* Badge */}
+                <div className="inline-block">
+                  <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full border border-primary/40" suppressHydrationWarning>
+                    {t("aboutUs.hero.badge") || "About Us"}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h1 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white"
+                  style={{
+                    textShadow: "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
+                  }}
+                  suppressHydrationWarning
+                >
+                  {t("aboutUs.hero.title") || "Building Dreams, One Home at a Time"}
+                </h1>
+
+                {/* Subtitle */}
+                <p 
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 font-medium max-w-3xl leading-relaxed"
+                  style={{
+                    textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
+                  }}
+                  suppressHydrationWarning
+                >
+                  {t("aboutUs.hero.subtitle") || "Over 15 years of experience building quality homes in Southwest Florida. Your family deserves the best."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Natural Fade Out - Smooth transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/80 to-transparent z-10 pointer-events-none" />
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-10 md:py-14 lg:py-18 bg-background">
+        <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-background" suppressHydrationWarning>
-                {t("statistics.title") || "Building Dreams, One Home at a Time"}
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl text-background/80 max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
-                {t("statistics.subtitle") || "Our numbers speak for themselves"}
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+                {t("statistics.title") || "Our Numbers Speak for Themselves"}
+              </h2>
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
+                {t("statistics.subtitle") || "The impact we've made in Southwest Florida"}
               </p>
               <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -103,10 +156,10 @@ export default function AboutUsPage() {
                 return (
                   <div
                     key={index}
-                    className="text-center space-y-3 sm:space-y-4 p-4 sm:p-6 rounded-xl bg-background/10 hover:bg-background/15 backdrop-blur-sm border border-background/20 hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
+                    className="text-center space-y-3 sm:space-y-4 p-4 sm:p-6 rounded-xl bg-muted/50 hover:bg-muted border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20"
                   >
                     <div className="flex justify-center">
-                      <div className="p-3 sm:p-4 bg-primary/30 rounded-full border border-primary/40 shadow-lg shadow-primary/20">
+                      <div className="p-3 sm:p-4 bg-primary/20 rounded-full border border-primary/40 shadow-lg shadow-primary/20">
                         <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                       </div>
                     </div>
@@ -114,8 +167,8 @@ export default function AboutUsPage() {
                       <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary" suppressHydrationWarning>
                         {stat.value}
                       </div>
-                      <h3 className="text-base sm:text-lg md:text-xl font-black text-background" suppressHydrationWarning>{stat.label}</h3>
-                      <p className="text-xs sm:text-sm text-background/70 px-1" suppressHydrationWarning>{stat.description}</p>
+                      <h3 className="text-base sm:text-lg md:text-xl font-black text-foreground" suppressHydrationWarning>{stat.label}</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground px-1" suppressHydrationWarning>{stat.description}</p>
                     </div>
                   </div>
                 );
@@ -262,13 +315,72 @@ export default function AboutUsPage() {
         </div>
       </section>
 
+      {/* Full Team Photo Section */}
+      <section className="py-10 md:py-14 lg:py-18 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-5 md:px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center space-y-4 mb-12">
+              <div className="inline-block">
+                <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
+                  {t("aboutUs.fullTeam.badge") || "Our Team"}
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+                {t("aboutUs.fullTeam.title") || "Building a Legacy Together"}
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+                {t("aboutUs.fullTeam.subtitle") || "Meet the dedicated professionals who make M.J. Newell Homes a trusted name in Southwest Florida"}
+              </p>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+            </div>
+
+            {/* Full Team Image */}
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20 group">
+              <div className="relative w-full aspect-[16/10] sm:aspect-[16/9]">
+                <Image
+                  src="/img/team.webp"
+                  alt={t("aboutUs.fullTeam.imageAlt") || "M.J. Newell Homes Team - Building a Legacy"}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+                  priority
+                />
+                {/* Gradient overlay for better text readability if needed */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+              </div>
+              
+              {/* Optional badge overlay */}
+              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full shadow-lg border border-white/80">
+                  <Users className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-bold text-foreground" suppressHydrationWarning>
+                    {t("aboutUs.fullTeam.memberCount") || "17+ Team Members"}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Description */}
+            <div className="mt-8 md:mt-12">
+              <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
+                <div className="p-6 md:p-8 space-y-4">
+                  <p className="text-base md:text-lg leading-relaxed text-muted-foreground text-center max-w-3xl mx-auto" suppressHydrationWarning>
+                    {t("aboutUs.fullTeam.description") || "Our team is the heart of M.J. Newell Homes. Each member brings expertise, dedication, and a shared commitment to building quality homes and helping families achieve their dreams of homeownership. Together, we're building not just houses, but a legacy of excellence in Southwest Florida."}
+                  </p>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Team Section - Michael & Juliana */}
       <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
-                {t("aboutUs.team.title") || "Our Team"}
+                {t("aboutUs.team.title") || "Leadership Team"}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
                 {t("aboutUs.team.subtitle") || "360-degree support for your dreams"}

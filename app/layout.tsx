@@ -113,15 +113,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         
-        {/* Preload de fuentes críticas */}
-        <link
-          rel="preload"
-          href="/_next/static/media/geist-sans.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        
         {/* Google Search Console Verification */}
         {SEO_CONFIG.googleSearchConsole && (
           <meta

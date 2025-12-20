@@ -1,6 +1,6 @@
-# Optimización Completa de Imágenes
+# Scripts de Optimización y Validación de Imágenes
 
-Este script optimiza todas las imágenes del sitio web de manera automática.
+Este directorio contiene scripts para optimizar y validar todas las imágenes del sitio web.
 
 ## ¿Qué hace el script?
 

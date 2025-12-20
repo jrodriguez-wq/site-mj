@@ -5,17 +5,17 @@
 
 export const MODEL_IMAGES: Record<string, string[]> = {
   louisiana: Array.from({ length: 30 }, (_, i) => 
-    `/modelos-optimized/louisiana/louisiana-${String(i + 1).padStart(3, '0')}.jpg`
+    `/modelos-optimized/louisiana/louisiana-${String(i + 1).padStart(3, '0')}.webp`
   ),
   viana: Array.from({ length: 7 }, (_, i) => 
-    `/modelos-optimized/viana/viana-${String(i + 1).padStart(3, '0')}.jpg`
+    `/modelos-optimized/viana/viana-${String(i + 1).padStart(3, '0')}.webp`
   ),
   delanie: Array.from({ length: 22 }, (_, i) => 
-    `/modelos-optimized/delanie/delanie-${String(i + 1).padStart(3, '0')}.jpg`
+    `/modelos-optimized/delanie/delanie-${String(i + 1).padStart(3, '0')}.webp`
   ),
   aurora: [
     ...Array.from({ length: 15 }, (_, i) => 
-      `/modelos-optimized/aurora/${i + 1}.jpg`
+      `/modelos-optimized/aurora/${i + 1}.webp`
     ),
     `/modelos-optimized/aurora/a6.webp`,
     `/modelos-optimized/aurora/a7.webp`,
@@ -24,10 +24,10 @@ export const MODEL_IMAGES: Record<string, string[]> = {
     `/modelos-optimized/aurora/a10.webp`,
   ],
   langdon: Array.from({ length: 34 }, (_, i) => 
-    `/modelos-optimized/langdon/langdon-${String(i + 1).padStart(3, '0')}.jpg`
+    `/modelos-optimized/langdon/langdon-${String(i + 1).padStart(3, '0')}.webp`
   ),
   emelia: Array.from({ length: 35 }, (_, i) => 
-    `/modelos-optimized/emelia/emelia-${String(i + 1).padStart(3, '0')}.jpg`
+    `/modelos-optimized/emelia/emelia-${String(i + 1).padStart(3, '0')}.webp`
   ),
   duplex: [
     `/modelos-optimized/duplex/1.webp`,
@@ -47,7 +47,7 @@ export const getModelMainImage = (modelKey: string): string => {
  * Obtiene la ruta del plano optimizado para un modelo
  */
 export const getModelFloorplan = (modelKey: string): string | null => {
-  const floorplanPath = `/modelos-optimized/planos/${modelKey.toLowerCase()}-floorplan.jpg`;
+  const floorplanPath = `/modelos-optimized/planos/${modelKey.toLowerCase()}-floorplan.webp`;
   // Retornamos la ruta, el componente verificará si existe
   return floorplanPath;
 };
