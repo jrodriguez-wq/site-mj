@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
@@ -8,6 +9,7 @@ import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Calendar } from "lucid
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SEO_CONFIG, SOCIAL_LINKS } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
+import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 
@@ -20,28 +22,71 @@ export const ContactPageContent = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section - Dark Background */}
-      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 rounded-full blur-3xl" />
+      {/* Hero Section with Logo - Elegant Design */}
+      <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/img/hero/1w5a0754-e4.webp"
+            alt={t("contactForm.hero.imageAlt") || "Contact M.J. Newell Homes"}
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+            sizes="100vw"
+          />
+          {/* Gradient Overlay - Lighter for more natural look */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
         </div>
-        
-        <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 sm:space-y-5 md:space-y-6">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-background" suppressHydrationWarning>
-                {t("contactForm.title") || "Contact Us"}
-              </h1>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-background/80 max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
-                {t("contactForm.subtitle") || "Get in touch with our team for questions about our homes, Rent to Own program, or to schedule a viewing."}
-              </p>
+
+        {/* Content */}
+        <div className="relative z-20 w-full h-full flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+            <div className="max-w-4xl mx-auto">
+              <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center">
+                {/* Logo */}
+                <div className="flex justify-center mb-4">
+                  <div className="relative">
+                    <Image
+                      src="/img/logo-blanco.png"
+                      alt="M.J. Newell Homes"
+                      width={320}
+                      height={120}
+                      className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain drop-shadow-2xl"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h1 
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white"
+                  style={{
+                    textShadow: "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
+                  }}
+                  suppressHydrationWarning
+                >
+                  {t("contactForm.title") || "Contact Us"}
+                </h1>
+
+                {/* Subtitle */}
+                <p 
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 font-medium max-w-3xl mx-auto leading-relaxed"
+                  style={{
+                    textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
+                  }}
+                  suppressHydrationWarning
+                >
+                  {t("contactForm.subtitle") || "Get in touch with our team for questions about our homes, Rent to Own program, or to schedule a viewing."}
+                </p>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Natural Fade Out - Smooth transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/80 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Main Content Section */}
@@ -262,6 +307,9 @@ export const ContactPageContent = () => {
           </div>
         </div>
       </section>
+
+      {/* Happy Families Gallery Section - Same gallery as home page */}
+      <HappyFamiliesGallery />
 
       {/* Response Times Section - Dark Background */}
       <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">

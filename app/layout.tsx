@@ -12,6 +12,7 @@ import {
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { LanguageProvider } from "@/components/layout/language-provider";
+import { TranslationLoader } from "@/components/layout/translation-loader";
 import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -83,7 +84,7 @@ export default function RootLayout({
         {/* Preload de imagen de promoción para mejor rendimiento */}
         <link
           rel="preload"
-          href="/img/hero/1W5A0754 E4.jpg"
+          href="/img/hero/1w5a0754-e4.webp"
           as="image"
           type="image/jpeg"
           fetchPriority="high"
@@ -110,15 +111,6 @@ export default function RootLayout({
         <link
           rel="preconnect"
           href="https://www.googletagmanager.com"
-          crossOrigin="anonymous"
-        />
-        
-        {/* Preload de fuentes críticas */}
-        <link
-          rel="preload"
-          href="/_next/static/media/geist-sans.woff2"
-          as="font"
-          type="font/woff2"
           crossOrigin="anonymous"
         />
         
@@ -155,11 +147,13 @@ export default function RootLayout({
       >
         <StructuredDataComponent data={structuredData} />
         <LanguageProvider />
-        <div className="flex min-h-screen flex-col">
-          <Navbar />
-          <main className="flex-1" id="main-content">{children}</main>
-          <Footer />
-        </div>
+        <TranslationLoader>
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1" id="main-content">{children}</main>
+            <Footer />
+          </div>
+        </TranslationLoader>
         <Analytics />
         <SpeedInsights />
         

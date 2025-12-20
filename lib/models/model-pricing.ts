@@ -3,6 +3,13 @@ import { Community, ModelPricing } from "@/types/model";
 /**
  * Configuración de precios por ciudad para cada modelo
  */
+/**
+ * Configuración de precios por ciudad para cada modelo
+ * Solo incluir modelos que realmente existen en cada comunidad
+ * 
+ * LaBelle: Langdon, Emelia, Aurora, Delanie, Viana, Louisiana
+ * Lehigh Acres: Langdon, Emelia, Delanie, Duplex
+ */
 export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
   labelle: {
     langdon: {

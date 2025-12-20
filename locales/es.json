@@ -24,6 +24,18 @@
     "applyNow": "Aplicar Ahora",
     "scheduleAppointment": "Agendar Cita"
   },
+  "home": {
+    "happyFamilies": {
+      "badge": "Familias Reales, Casas Reales",
+      "title": "Familias Felices, Casas Soñadas",
+      "subtitle": "Ve la alegría y felicidad de las familias que hicieron realidad su sueño de ser propietarios con M.J. Newell Homes.",
+      "newHome": "Casa Nueva",
+      "cta": "Únete a cientos de familias felices que eligieron M.J. Newell Homes",
+      "rating": "Calificación 4.9/5",
+      "homesBuilt": "1,500+ Casas Construidas",
+      "families": "1,500+ Familias Felices"
+    }
+  },
   "hero": {
     "mainHero": {
       "subtitle": "Construyendo casas de calidad en el Suroeste de Florida con más de 15 años de experiencia. Tu familia merece lo mejor.",
@@ -32,14 +44,14 @@
       "experience": "Experiencia",
       "experienceValue": "Más de 15 Años"
     },
-    "title1": "Construyendo el Futuro para Familias Estadounidenses",
+    "title1": "Construyendo el Futuro para Familias",
     "subtitle1": "Encuentra la casa de tus sueños.",
     "description1": "Tu casa soñada te está esperando. Hagamos realidad la propiedad de vivienda para tu familia.",
     "title2": "Renta con Opción a Compra - Casas Nuevas",
     "subtitle2": "Conviértete en Propietario",
     "description2": "Vive en tu casa nueva mientras construyes patrimonio. Comienza tu camino hacia la propiedad hoy.",
     "title3": "$0 de Enganche y $0 de Costos de Cierre",
-    "subtitle3": "Sin Cuotas HOA, Casas Familiares Espaciosas",
+    "subtitle3": "Casas Familiares Espaciosas",
     "description3": "Casas accesibles sin costos ocultos. Más espacio, más ahorros, más valor para tu familia.",
     "contactUs": "Contáctanos",
     "applyNow": "Aplicar Ahora",
@@ -119,7 +131,9 @@
       },
       "hero": {
         "badge": "Comunidades",
-        "subtitle": "Descubre tu Casa Soñada en el Suroeste de Florida"
+        "subtitle": "Descubre tu Casa Soñada en el Suroeste de Florida",
+        "imageAlt": "LaBelle, Florida - Hermosa comunidad",
+        "cta": "Ver Modelos Disponibles"
       },
       "cta": {
         "title": "¿Listo para Llamar a LaBelle tu Hogar?",
@@ -179,7 +193,9 @@
       },
       "hero": {
         "badge": "Comunidades",
-        "subtitle": "Tu Casa Perfecta Te Espera en el Suroeste de Florida"
+        "subtitle": "Tu Casa Perfecta Te Espera en el Suroeste de Florida",
+        "imageAlt": "Lehigh Acres, Florida - Hermosa comunidad",
+        "cta": "Ver Modelos Disponibles"
       },
       "cta": {
         "title": "¿Listo para Llamar a Lehigh Acres tu Hogar?",
@@ -636,6 +652,13 @@
   "contactForm": {
     "title": "Contáctanos",
     "subtitle": "Estamos aquí para ayudarte. Ponte en contacto con nuestro equipo y descubre cómo podemos hacer realidad tu sueño de ser propietario.",
+    "hero": {
+      "imageAlt": "Contacta a M.J. Newell Homes"
+    },
+    "testimonialsGallery": {
+      "title": "Nuestros Clientes Felices",
+      "subtitle": "Mira lo que nuestros clientes dicen sobre su experiencia con M.J. Newell Homes"
+    },
     "formTitle": "Envíanos un Mensaje",
     "formDescription": "Completa el formulario a continuación y nos pondremos en contacto contigo lo antes posible.",
     "contactInfo": {
@@ -745,8 +768,10 @@
   },
   "aboutUs": {
     "hero": {
-      "title": "Sobre Nosotros",
-      "description": "Construyendo Casas Americanas en el Sur de Florida con un Enfoque Ganar-Ganar"
+      "badge": "Sobre Nosotros",
+      "title": "Construyendo Sueños, Una Casa a la Vez",
+      "subtitle": "Más de 15 años de experiencia construyendo casas de calidad en el Suroeste de Florida. Tu familia merece lo mejor.",
+      "imageAlt": "Oficina de M.J. Newell Homes"
     },
     "stats": {
       "homesBuilt": {
@@ -874,8 +899,16 @@
       "assistance": "Asistencia para enganche y costos de cierre",
       "assistanceDesc": "Ofrecemos programas especiales para ayudarte con el enganche y los costos de cierre."
     },
+    "fullTeam": {
+      "badge": "Nuestro Equipo",
+      "title": "Construyendo un Legado Juntos",
+      "subtitle": "Conoce a los profesionales dedicados que hacen de M.J. Newell Homes un nombre confiable en el Suroeste de Florida",
+      "imageAlt": "Equipo de M.J. Newell Homes - Construyendo un Legado",
+      "memberCount": "17+ Miembros del Equipo",
+      "description": "Nuestro equipo es el corazón de M.J. Newell Homes. Cada miembro aporta experiencia, dedicación y un compromiso compartido para construir casas de calidad y ayudar a las familias a lograr sus sueños de ser propietarios. Juntos, estamos construyendo no solo casas, sino un legado de excelencia en el Suroeste de Florida."
+    },
     "team": {
-      "title": "Nuestro Equipo",
+      "title": "Equipo de Liderazgo",
       "subtitle": "Apoyo 360 grados para tus sueños",
       "description": "Cada familia tiene su propio camino hacia su sueño. Agentes con la mayor experiencia se preparan todos los días para brindarte el apoyo más preciso.",
       "juliana": {
@@ -918,7 +951,12 @@
     "hero": {
       "badge": "Programa Rent to Own",
       "title": "Rent to Own",
-      "subtitle": "Vive en tu casa nueva mientras ahorras para tu futura compra"
+      "subtitle": "Vive en tu casa nueva mientras ahorras para tu futura compra. $0 de enganche, sin verificación de crédito, planes flexibles de 1 a 5 años.",
+      "imageAlt": "Programa Rent to Own - M.J. Newell Homes",
+      "cta": {
+        "primary": "Ver Modelos Disponibles",
+        "secondary": "Llamar Ahora"
+      }
     },
     "whatIs": {
       "title": "¿Qué es Rent to Own?",

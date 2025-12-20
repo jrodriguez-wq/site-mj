@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# El archivo de lock de pnpm no debe ir a github (por lo general)
+pnpm-lock.yaml

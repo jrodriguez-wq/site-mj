@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/hooks/use-translation";
-import { useLanguageStore } from "@/store/language-store";
 
 interface HeroSlideConfig {
   image: string;
@@ -21,22 +20,9 @@ interface HeroSlideConfig {
   secondaryButtonAction?: "link" | "scroll" | "none";
 }
 
-interface HeroSlide {
-  image: string;
-  title: string;
-  subtitle?: string;
-  description?: string;
-  primaryButton?: string;
-  primaryButtonLink?: string;
-  primaryButtonAction?: "link" | "scroll" | "none";
-  secondaryButton?: string;
-  secondaryButtonLink?: string;
-  secondaryButtonAction?: "link" | "scroll" | "none";
-}
-
 const heroSlidesConfig: HeroSlideConfig[] = [
   { 
-    image: "/img/hero/1W5A0741_1.jpg", 
+    image: "/img/hero/1w5a0741-1.webp", 
     titleKey: "hero.title1", 
     subtitleKey: "hero.subtitle1",
     descriptionKey: "hero.description1",
@@ -46,7 +32,7 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     secondaryButtonAction: "scroll"
   },
   { 
-    image: "/img/hero/1W5A0814_1.jpg", 
+    image: "/img/hero/1w5a0814-1.webp", 
     titleKey: "hero.title2", 
     subtitleKey: "hero.subtitle2",
     descriptionKey: "hero.description2",
@@ -55,7 +41,7 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     primaryButtonAction: "link"
   },
   { 
-    image: "/img/hero/1W5A1489 E5.jpg", 
+    image: "/img/hero/1w5a1489-e5.webp", 
     titleKey: "hero.title3", 
     subtitleKey: "hero.subtitle3",
     descriptionKey: "hero.description3",
@@ -68,13 +54,12 @@ const heroSlidesConfig: HeroSlideConfig[] = [
 ];
 
 export const HeroSlider = () => {
-  const { t } = useTranslation();
-  const translations = useLanguageStore((state) => state.translations);
+  const { t, translations } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   const heroSlides = useMemo(() => {
-    // Re-calcular cuando las traducciones cambien
+    // Re-calcular solo cuando las traducciones cambien
     return heroSlidesConfig.map((slide) => ({
       image: slide.image,
       title: t(slide.titleKey),
@@ -112,7 +97,8 @@ export const HeroSlider = () => {
   const currentSlide = heroSlides[currentIndex];
 
   return (
-    <section className="relative w-full h-[500px] sm:h-[550px] md:h-[650px] lg:h-[750px] overflow-hidden">
+    <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden pb-16">
+      {/* Background Images - Slider */}
       <div className="absolute inset-0 z-0">
         {heroSlides.map((slide, index) => (
           <div
@@ -126,190 +112,205 @@ export const HeroSlider = () => {
               src={slide.image}
               alt={heroSlidesConfig[index].titleKey}
               fill
-              className={cn(
-                "object-cover",
-                index === currentIndex && "animate-subtle-zoom"
-              )}
+              className="object-cover"
               priority={index === 0}
-              quality={75}
+              quality={90}
               sizes="100vw"
               suppressHydrationWarning
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55 z-20" />
+        {/* Gradient Overlay - Lighter for more natural look */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
       </div>
 
-      <div className="relative z-30 w-full h-full flex items-center justify-center">
-        <div className="container mx-auto px-4 sm:px-5 md:px-6">
-          <div className="max-w-4xl text-center space-y-4 sm:space-y-5 md:space-y-6 mx-auto">
-          <div
-            className={cn(
-              "space-y-3 sm:space-y-4",
-              "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              isTransitioning ? "opacity-0" : "opacity-100"
-            )}
-            style={{
-              transitionDelay: isTransitioning ? "0ms" : "100ms",
-            }}
-          >
-            <h1
+      {/* Content */}
+      <div className="relative z-20 w-full h-full flex items-center">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="max-w-4xl">
+            <div
               className={cn(
-                "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white px-2",
-                "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                isTransitioning
-                  ? "translate-y-4 opacity-0"
-                  : "translate-y-0 opacity-100"
+                "space-y-6 sm:space-y-8",
+                "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                isTransitioning ? "opacity-0" : "opacity-100"
               )}
               style={{
-                textShadow: "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.4)",
-                transitionDelay: isTransitioning ? "0ms" : "150ms",
-                fontWeight: 900,
-                letterSpacing: "-0.02em",
+                transitionDelay: isTransitioning ? "0ms" : "100ms",
               }}
-              suppressHydrationWarning
             >
-              {currentSlide.title}
-              {currentSlide.subtitle && (
-                <span
-                  className={cn(
-                    "block text-primary mt-1 sm:mt-2 font-black",
-                    "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                    isTransitioning
-                      ? "translate-x-4 opacity-0"
-                      : "translate-x-0 opacity-100"
-                  )}
-                  style={{
-                    textShadow: "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6), 0 0 30px rgba(3,106,255,0.3)",
-                    transitionDelay: isTransitioning ? "0ms" : "250ms",
-                    fontWeight: 900,
-                  }}
-                  suppressHydrationWarning
-                >
-                  {currentSlide.subtitle}
-                </span>
-              )}
-            </h1>
-            {currentSlide.description && (
-              <p
+              {/* Title */}
+              <h1
                 className={cn(
-                  "mx-auto max-w-[700px] text-white text-sm sm:text-base md:text-lg lg:text-xl font-semibold px-4",
+                  "text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white",
                   "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
                   isTransitioning
                     ? "translate-y-4 opacity-0"
                     : "translate-y-0 opacity-100"
                 )}
                 style={{
-                  textShadow: "0 2px 12px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.7)",
-                  transitionDelay: isTransitioning ? "0ms" : "300ms",
+                  textShadow: "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
+                  transitionDelay: isTransitioning ? "0ms" : "150ms",
                 }}
                 suppressHydrationWarning
               >
-                {currentSlide.description}
-              </p>
-            )}
-          </div>
+                {currentSlide.title}
+                {currentSlide.subtitle && (
+                  <span
+                    className={cn(
+                      "block text-primary mt-1 sm:mt-2 font-black",
+                      "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      isTransitioning
+                        ? "translate-x-4 opacity-0"
+                        : "translate-x-0 opacity-100"
+                    )}
+                    style={{
+                      textShadow: "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6), 0 0 30px rgba(3,106,255,0.3)",
+                      transitionDelay: isTransitioning ? "0ms" : "250ms",
+                    }}
+                    suppressHydrationWarning
+                  >
+                    {currentSlide.subtitle}
+                  </span>
+                )}
+              </h1>
+              
+              {/* Description */}
+              {currentSlide.description && (
+                <p
+                  className={cn(
+                    "text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 font-medium max-w-3xl leading-relaxed",
+                    "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    isTransitioning
+                      ? "translate-y-4 opacity-0"
+                      : "translate-y-0 opacity-100"
+                  )}
+                  style={{
+                    textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
+                    transitionDelay: isTransitioning ? "0ms" : "300ms",
+                  }}
+                  suppressHydrationWarning
+                >
+                  {currentSlide.description}
+                </p>
+              )}
 
-          <div
-            className={cn(
-              "flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center flex-wrap px-4",
-              "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              isTransitioning
-                ? "opacity-0"
-                : "opacity-100"
-            )}
-            style={{
-              transitionDelay: isTransitioning ? "0ms" : "400ms",
-            }}
-          >
-            {currentSlide.primaryButton && (
-              currentSlide.primaryButtonAction === "scroll" ? (
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const formSection = document.getElementById("quick-register-form");
-                    if (formSection) {
-                      formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                  }}
-                  size="lg"
-                  className={cn(
-                    "bg-primary hover:bg-primary/90 text-white w-full sm:w-auto",
-                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
-                    "shadow-lg hover:shadow-xl hover:shadow-primary/30",
-                    "transition-all duration-300 ease-out",
-                    "hover:scale-105 active:scale-100",
-                    "relative overflow-hidden group"
-                  )}
-                >
-                  <span className="relative z-10" suppressHydrationWarning>{currentSlide.primaryButton}</span>
-                  <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-                </Button>
-              ) : currentSlide.primaryButtonLink ? (
-                <Button
-                  asChild
-                  size="lg"
-                  className={cn(
-                    "bg-primary hover:bg-primary/90 text-white w-full sm:w-auto",
-                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
-                    "shadow-lg hover:shadow-xl hover:shadow-primary/30",
-                    "transition-all duration-300 ease-out",
-                    "hover:scale-105 active:scale-100",
-                    "relative overflow-hidden group"
-                  )}
-                >
-                  <Link href={currentSlide.primaryButtonLink} suppressHydrationWarning>
-                    <span className="relative z-10">{currentSlide.primaryButton}</span>
-                    <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-                  </Link>
-                </Button>
-              ) : null
-            )}
-            {currentSlide.secondaryButton && (
-              currentSlide.secondaryButtonAction === "scroll" ? (
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const formSection = document.getElementById("quick-register-form");
-                    if (formSection) {
-                      formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                  }}
-                  variant="outline"
-                  size="lg"
-                  className={cn(
-                    "bg-white/15 border-2 border-white/40 text-white w-full sm:w-auto",
-                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
-                    "hover:bg-white/25 hover:border-white/60",
-                    "shadow-lg hover:shadow-xl",
-                    "transition-all duration-300 ease-out",
-                    "hover:scale-105 active:scale-100"
-                  )}
-                >
-                  <span suppressHydrationWarning>{currentSlide.secondaryButton}</span>
-                </Button>
-              ) : currentSlide.secondaryButtonLink ? (
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className={cn(
-                    "bg-white/15 border-2 border-white/40 text-white w-full sm:w-auto",
-                    "px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold",
-                    "hover:bg-white/25 hover:border-white/60",
-                    "shadow-lg hover:shadow-xl",
-                    "transition-all duration-300 ease-out",
-                    "hover:scale-105 active:scale-100"
-                  )}
-                >
-                  <Link href={currentSlide.secondaryButtonLink} suppressHydrationWarning>{currentSlide.secondaryButton}</Link>
-                </Button>
-              ) : null
-            )}
-          </div>
+              {/* CTA Buttons */}
+              <div
+                className={cn(
+                  "flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2",
+                  "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  isTransitioning
+                    ? "opacity-0"
+                    : "opacity-100"
+                )}
+                style={{
+                  transitionDelay: isTransitioning ? "0ms" : "400ms",
+                }}
+              >
+                {currentSlide.primaryButton && (
+                  currentSlide.primaryButtonAction === "scroll" ? (
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const formSection = document.getElementById("quick-register-form");
+                        if (formSection) {
+                          formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }
+                      }}
+                      size="lg"
+                      className={cn(
+                        "bg-primary hover:bg-primary/90 text-white",
+                        "px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6",
+                        "text-base sm:text-lg font-bold",
+                        "shadow-2xl hover:shadow-primary/40",
+                        "transition-all duration-300 ease-out",
+                        "hover:scale-105 active:scale-100",
+                        "relative overflow-hidden group",
+                        "border-2 border-primary/50"
+                      )}
+                    >
+                      <span className="relative z-10" suppressHydrationWarning>{currentSlide.primaryButton}</span>
+                      <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                    </Button>
+                  ) : currentSlide.primaryButtonLink ? (
+                    <Button
+                      asChild
+                      size="lg"
+                      className={cn(
+                        "bg-primary hover:bg-primary/90 text-white",
+                        "px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6",
+                        "text-base sm:text-lg font-bold",
+                        "shadow-2xl hover:shadow-primary/40",
+                        "transition-all duration-300 ease-out",
+                        "hover:scale-105 active:scale-100",
+                        "relative overflow-hidden group",
+                        "border-2 border-primary/50"
+                      )}
+                    >
+                      <Link href={currentSlide.primaryButtonLink} suppressHydrationWarning>
+                        <span className="relative z-10">{currentSlide.primaryButton}</span>
+                        <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                      </Link>
+                    </Button>
+                  ) : null
+                )}
+                {currentSlide.secondaryButton && (
+                  currentSlide.secondaryButtonAction === "scroll" ? (
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const formSection = document.getElementById("quick-register-form");
+                        if (formSection) {
+                          formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }
+                      }}
+                      variant="outline"
+                      size="lg"
+                      className={cn(
+                        "bg-white/10 backdrop-blur-md border-2 border-white/40 text-white",
+                        "px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6",
+                        "text-base sm:text-lg font-bold",
+                        "hover:bg-white/20 hover:border-white/60",
+                        "shadow-xl hover:shadow-2xl",
+                        "transition-all duration-300 ease-out",
+                        "hover:scale-105 active:scale-100"
+                      )}
+                    >
+                      <span suppressHydrationWarning>{currentSlide.secondaryButton}</span>
+                    </Button>
+                  ) : currentSlide.secondaryButtonLink ? (
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="lg"
+                      className={cn(
+                        "bg-white/10 backdrop-blur-md border-2 border-white/40 text-white",
+                        "px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6",
+                        "text-base sm:text-lg font-bold",
+                        "hover:bg-white/20 hover:border-white/60",
+                        "shadow-xl hover:shadow-2xl",
+                        "transition-all duration-300 ease-out",
+                        "hover:scale-105 active:scale-100"
+                      )}
+                    >
+                      <Link href={currentSlide.secondaryButtonLink} suppressHydrationWarning>{currentSlide.secondaryButton}</Link>
+                    </Button>
+                  ) : null
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Natural Fade Out - Very smooth and subtle transition */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 sm:h-40 md:h-48 z-10 pointer-events-none" 
+        style={{ 
+          background: 'linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background) / 0.4) 20%, hsl(var(--background) / 0.2) 40%, hsl(var(--background) / 0.08) 60%, hsl(var(--background) / 0.03) 80%, transparent 100%)' 
+        }} 
+      />
 
       <div
         className={cn(

@@ -1,57 +1,58 @@
 "use client";
 
+import { useMemo } from "react";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote, MapPin } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 
 export const Testimonials = () => {
-  const { t } = useTranslation();
+  const { t, translations } = useTranslation();
 
-  const testimonials = [
+  const testimonials = useMemo(() => [
     {
       name: t("testimonials.testimonials.1.name"),
       location: t("testimonials.testimonials.1.location"),
       text: t("testimonials.testimonials.1.text"),
       rating: 5,
-      image: "/img/testimonios/t1.webp",
+      image: "/recursos/clientes/testimonio-6.webp", // was t1
     },
     {
       name: t("testimonials.testimonials.2.name"),
       location: t("testimonials.testimonials.2.location"),
       text: t("testimonials.testimonials.2.text"),
       rating: 5,
-      image: "/img/testimonios/t2.jpg",
+      image: "/recursos/clientes/testimonio-5.webp", // was t2
     },
     {
       name: t("testimonials.testimonials.3.name"),
       location: t("testimonials.testimonials.3.location"),
       text: t("testimonials.testimonials.3.text"),
       rating: 5,
-      image: "/img/testimonios/t3.jpg",
+      image: "/recursos/clientes/testimonio-4.webp", // was t3
     },
     {
       name: t("testimonials.testimonials.4.name"),
       location: t("testimonials.testimonials.4.location"),
       text: t("testimonials.testimonials.4.text"),
       rating: 5,
-      image: "/img/testimonios/t4.jpg",
+      image: "/recursos/clientes/testimonio-3.webp", // was t4
     },
     {
       name: t("testimonials.testimonials.5.name"),
       location: t("testimonials.testimonials.5.location"),
       text: t("testimonials.testimonials.5.text"),
       rating: 5,
-      image: "/img/testimonios/t5.jpg",
+      image: "/recursos/clientes/testimonio-2.webp", // was t5
     },
     {
       name: t("testimonials.testimonials.6.name"),
       location: t("testimonials.testimonials.6.location"),
       text: t("testimonials.testimonials.6.text"),
       rating: 5,
-      image: "/img/testimonios/t6.jpg",
+      image: "/recursos/clientes/testimonio-1.webp", // was t6
     },
-  ];
+  ], [t, translations]);
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-gradient-to-b from-background via-background to-muted/20 relative overflow-hidden">

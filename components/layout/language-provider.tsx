@@ -1,57 +1,64 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useLanguageStore } from "@/store/language-store";
 
+/**
+ * LanguageProvider: Asegura que las traducciones estén cargadas inmediatamente
+ * 
+ * Se ejecuta en el primer render del cliente para garantizar que las traducciones
+ * estén disponibles antes de que otros componentes se rendericen
+ */
 export function LanguageProvider() {
-  const language = useLanguageStore((state) => state.language);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
-  const translations = useLanguageStore((state) => state.translations);
-  const isLoading = useLanguageStore((state) => state.isLoading);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const hasInitializedRef = useRef(false);
 
-  // Cargar traducciones inmediatamente al montar si no están disponibles
   useEffect(() => {
+    // Solo ejecutar en cliente
     if (typeof window === "undefined") return;
     
-    const hasTranslations = Object.keys(translations).length > 0;
-    
-    // Si ya está inicializado, no hacer nada más
-    if (isInitialized && hasTranslations) {
-      return;
-    }
-    
-    // Si no hay traducciones y no está cargando, cargar el idioma seleccionado o inglés por defecto
-    if (!hasTranslations && !isLoading) {
-      const defaultLanguage = language || "en";
-      setLanguage(defaultLanguage)
-        .then(() => {
-          setIsInitialized(true);
-        })
-        .catch((err) => {
-          console.error("Error loading default language:", err);
-          // Si falla, intentar cargar inglés directamente
-          if (defaultLanguage !== "en") {
-            setLanguage("en")
-              .then(() => setIsInitialized(true))
-              .catch(console.error);
-          } else {
-            setIsInitialized(true);
-          }
-        });
-    } else if (hasTranslations) {
-      setIsInitialized(true);
-    }
-    
-    // Actualizar el atributo lang del documento
-    if (hasTranslations) {
-      document.documentElement.lang = language || "en";
-    } else if (!isLoading) {
-      // Si no hay traducciones pero tampoco está cargando, establecer inglés por defecto
-      document.documentElement.lang = "en";
-    }
-  }, [language, translations, isLoading, setLanguage, isInitialized]);
+    // Prevenir múltiples ejecuciones
+    if (hasInitializedRef.current) return;
+    hasInitializedRef.current = true;
+
+    const initializeTranslations = async () => {
+      // Verificar inmediatamente el estado actual
+      let currentState = useLanguageStore.getState();
+      
+      // Verificar si hay traducciones válidas
+      const hasValidTranslations = 
+        currentState.translations &&
+        typeof currentState.translations === "object" &&
+        !Array.isArray(currentState.translations) &&
+        Object.keys(currentState.translations).length > 0;
+
+      // Si ya hay traducciones válidas, solo asegurar que el lang esté correcto
+      if (hasValidTranslations) {
+        const lang = currentState.language || "en";
+        document.documentElement.lang = lang;
+        return;
+      }
+
+      // Si no hay traducciones, cargar inglés por defecto inmediatamente
+      // No esperamos nada, cargamos directamente de forma síncrona si es posible
+      try {
+        // Usar setLanguage que maneja la carga de traducciones
+        await currentState.setLanguage("en");
+        
+        // Verificar nuevamente después de la carga
+        currentState = useLanguageStore.getState();
+        if (currentState.language) {
+          document.documentElement.lang = currentState.language;
+        }
+      } catch (error) {
+        console.error("[LanguageProvider] Error loading default language:", error);
+      }
+    };
+
+    // Ejecutar inmediatamente sin delay
+    void initializeTranslations();
+  }, []);
 
   return null;
 }
+
 

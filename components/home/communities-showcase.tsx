@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,7 @@ const COMMUNITIES_CONFIG = [
     nameKey: "labelle",
     alt: "LaBelle community",
     href: "/communities/labelle",
-    image: "/recursos/shutterstock_1065297917.jpg",
+    image: "/recursos/shutterstock-1065297917.webp",
     featureKeys: [
       "communities.labelle.features.acreLots",
       "communities.labelle.features.noHOA",
@@ -24,7 +25,7 @@ const COMMUNITIES_CONFIG = [
     nameKey: "lehighAcres",
     alt: "Lehigh Acres community",
     href: "/communities/lehigh-acres",
-    image: "/recursos/shutterstock_1197062707.jpg",
+    image: "/recursos/shutterstock-1197062707.webp",
     featureKeys: [
       "communities.lehighAcres.features.spaciousLots",
       "communities.lehighAcres.features.greatSchools",
@@ -34,15 +35,18 @@ const COMMUNITIES_CONFIG = [
 ] as const;
 
 export const CommunitiesShowcase = () => {
-  const { t } = useTranslation();
+  const { t, translations } = useTranslation();
 
-  const communities = COMMUNITIES_CONFIG.map((config) => ({
-    ...config,
-    name: t(`communities.${config.nameKey}.name`),
-    description: t(`communities.${config.nameKey}.description`),
-    features: config.featureKeys.map((key) => t(key)),
-    exploreText: t(`communities.${config.nameKey}.explore`),
-  }));
+  const communities = useMemo(() => 
+    COMMUNITIES_CONFIG.map((config) => ({
+      ...config,
+      name: t(`communities.${config.nameKey}.name`),
+      description: t(`communities.${config.nameKey}.description`),
+      features: config.featureKeys.map((key) => t(key)),
+      exploreText: t(`communities.${config.nameKey}.explore`),
+    })), 
+    [t, translations]
+  );
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/20">

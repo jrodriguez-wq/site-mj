@@ -142,7 +142,7 @@ export const ScheduleAppointmentContent = () => {
                   <CardContent className="p-0">
                     <div className="relative w-full h-64 md:h-80">
                       <Image
-                        src="/img/hero/1W5A0741_1.jpg"
+                        src="/img/hero/1w5a0741-1.webp"
                         alt="M.J. Newell Homes Office - 45 Bridge St, LaBelle, FL"
                         fill
                         className="object-cover"

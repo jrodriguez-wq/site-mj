@@ -13,6 +13,7 @@ import { LocationMap } from "@/components/home/location-map";
 import { CTASection } from "@/components/home/cta-section";
 import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
 import { PromotionModal } from "@/components/promotion/promotion-modal";
+import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { useScrollAnimation } from "@/lib/utils/animations";
 
 const AnimatedSection = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
@@ -36,47 +37,66 @@ const AnimatedSection = ({ children, delay = 0 }: { children: React.ReactNode; d
 export const HomePageContent = () => {
   return (
     <div className="flex flex-col">
+      {/* 1. Hero Section - First impression with call to action */}
       <HeroSlider />
-      
-      <InfiniteTextCarousel />
 
-      <AnimatedSection>
+      {/* 2. Infinite Text Carousel - Brand message right after hero */}
+      <AnimatedSection delay={50}>
+        <InfiniteTextCarousel />
+      </AnimatedSection>
+
+      {/* 3. Happy Families Gallery - Real families, real trust (builds confidence) */}
+      <AnimatedSection delay={100}>
+        <HappyFamiliesGallery />
+      </AnimatedSection>
+
+      {/* 4. Home Models - Showcase available models immediately (main product) */}
+      <AnimatedSection delay={150}>
+        <HomeModels />
+      </AnimatedSection>
+
+      {/* 5. Features - Key benefits and what we offer */}
+      <AnimatedSection delay={200}>
         <Features />
       </AnimatedSection>
 
+      {/* 6. Communities Showcase - Where we build (locations) */}
       <AnimatedSection delay={100}>
         <CommunitiesShowcase />
       </AnimatedSection>
 
-      <AnimatedSection delay={200}>
+      {/* 7. Why Choose Us - Trust and credibility building */}
+      <AnimatedSection delay={150}>
         <WhyChooseUs />
       </AnimatedSection>
 
-      <AnimatedSection delay={100}>
-        <HubSpotFormSection />
-      </AnimatedSection>
-
+      {/* 8. Statistics - Social proof with numbers and achievements */}
       <AnimatedSection delay={200}>
         <Statistics />
       </AnimatedSection>
 
-      <AnimatedSection delay={100}>
-        <HomeModels />
-      </AnimatedSection>
-
-      <AnimatedSection delay={200}>
-        <HowItWorks />
-      </AnimatedSection>
-
+      {/* 9. Testimonials - Customer stories and reviews */}
       <AnimatedSection delay={100}>
         <Testimonials />
       </AnimatedSection>
 
+      {/* 10. How It Works - Process explanation (educational) */}
+      <AnimatedSection delay={150}>
+        <HowItWorks />
+      </AnimatedSection>
+
+      {/* 11. HubSpot Form - Lead capture (conversion point) */}
       <AnimatedSection delay={200}>
+        <HubSpotFormSection />
+      </AnimatedSection>
+
+      {/* 12. Location Map - Physical presence and contact info */}
+      <AnimatedSection delay={100}>
         <LocationMap />
       </AnimatedSection>
 
-      <AnimatedSection delay={100}>
+      {/* 13. Final CTA - Last call to action before footer */}
+      <AnimatedSection delay={150}>
         <CTASection />
       </AnimatedSection>
 

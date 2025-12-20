@@ -24,6 +24,18 @@
     "applyNow": "Apply Now",
     "scheduleAppointment": "Schedule Appointment"
   },
+  "home": {
+    "happyFamilies": {
+      "badge": "Real Families, Real Homes",
+      "title": "Happy Families, Dream Homes",
+      "subtitle": "See the joy and happiness of families who made their dream of homeownership come true with M.J. Newell Homes.",
+      "newHome": "New Home",
+      "cta": "Join hundreds of happy families who chose M.J. Newell Homes",
+      "rating": "4.9/5 Rating",
+      "homesBuilt": "1,500+ Homes Built",
+      "families": "1,500+ Happy Families"
+    }
+  },
   "hero": {
     "mainHero": {
       "subtitle": "Building quality homes in Southwest Florida with over 15 years of experience. Your family deserves the best.",
@@ -39,7 +51,7 @@
     "subtitle2": "Become a Home Owner",
     "description2": "Live in your new home while building equity. Start your journey to homeownership today.",
     "title3": "$0 Down Payment & $0 Closing Cost",
-    "subtitle3": "No HOA Fees, Spacious Family Homes",
+    "subtitle3": "Family Homes",
     "description3": "Affordable homes with no hidden fees. More space, more savings, more value for your family.",
     "contactUs": "Contact Us",
     "applyNow": "Apply Now",
@@ -119,7 +131,9 @@
       },
       "hero": {
         "badge": "Communities",
-        "subtitle": "Discover Your Dream Home in Southwest Florida"
+        "subtitle": "Discover Your Dream Home in Southwest Florida",
+        "imageAlt": "LaBelle, Florida - Beautiful community",
+        "cta": "View Available Models"
       },
       "cta": {
         "title": "Ready to Call LaBelle Home?",
@@ -179,7 +193,9 @@
       },
       "hero": {
         "badge": "Communities",
-        "subtitle": "Your Perfect Home Awaits in Southwest Florida"
+        "subtitle": "Your Perfect Home Awaits in Southwest Florida",
+        "imageAlt": "Lehigh Acres, Florida - Beautiful community",
+        "cta": "View Available Models"
       },
       "cta": {
         "title": "Ready to Call Lehigh Acres Home?",
@@ -636,6 +652,13 @@
   "contactForm": {
     "title": "Contact Us",
     "subtitle": "We're here to help. Get in touch with our team and discover how we can make your homeownership dream come true.",
+    "hero": {
+      "imageAlt": "Contact M.J. Newell Homes"
+    },
+    "testimonialsGallery": {
+      "title": "Our Happy Customers",
+      "subtitle": "See what our customers are saying about their experience with M.J. Newell Homes"
+    },
     "formTitle": "Send us a Message",
     "formDescription": "Fill out the form below and we'll get back to you as soon as possible.",
     "contactInfo": {
@@ -745,8 +768,10 @@
   },
   "aboutUs": {
     "hero": {
-      "title": "About Us",
-      "description": "Building American Homes in South West Florida with a families in mind."
+      "badge": "About Us",
+      "title": "Building Dreams, One Home at a Time",
+      "subtitle": "Over 15 years of experience building quality homes in Southwest Florida. Your family deserves the best.",
+      "imageAlt": "M.J. Newell Homes Office"
     },
     "stats": {
       "homesBuilt": {
@@ -874,8 +899,16 @@
       "assistance": "Down payment and closing cost assistance",
       "assistanceDesc": "We offer special programs to help you with down payment and closing costs."
     },
+    "fullTeam": {
+      "badge": "Our Team",
+      "title": "Building a Legacy Together",
+      "subtitle": "Meet the dedicated professionals who make M.J. Newell Homes a trusted name in Southwest Florida",
+      "imageAlt": "M.J. Newell Homes Team - Building a Legacy",
+      "memberCount": "17+ Team Members",
+      "description": "Our team is the heart of M.J. Newell Homes. Each member brings expertise, dedication, and a shared commitment to building quality homes and helping families achieve their dreams of homeownership. Together, we're building not just houses, but a legacy of excellence in Southwest Florida."
+    },
     "team": {
-      "title": "Our Team",
+      "title": "Leadership Team",
       "subtitle": "Meet the team dedicated to support for your dreams",
       "description": "Every family has their own path towards their dream. Agents with the most experience prepare every day to provide you with the most accurate support.",
       "juliana": {
@@ -918,7 +951,12 @@
     "hero": {
       "badge": "Rent to Own Program",
       "title": "Rent to Own",
-      "subtitle": "Live in your new home while saving for your future purchase"
+      "subtitle": "Live in your new home while saving for your future purchase. $0 down payment, no credit check, flexible 1-5 year plans.",
+      "imageAlt": "Rent to Own Program - M.J. Newell Homes",
+      "cta": {
+        "primary": "View Available Models",
+        "secondary": "Call Now"
+      }
     },
     "whatIs": {
       "title": "What is Rent to Own?",

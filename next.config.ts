@@ -1,153 +1,231 @@
 import type { NextConfig } from "next";
 
+// ============================================================================
+// CONSTANTS - Configuración centralizada para fácil mantenimiento
+// ============================================================================
+
+/**
+ * Constantes de tiempo para cache (en segundos)
+ */
+const CACHE_TTL = {
+  ONE_YEAR: 60 * 60 * 24 * 365, // 31536000 segundos
+  ONE_DAY: 60 * 60 * 24,
+  ONE_HOUR: 60 * 60,
+} as const;
+
+/**
+ * Configuración de imágenes
+ */
+const IMAGE_CONFIG = {
+  FORMATS: ["image/avif", "image/webp"] as ("image/avif" | "image/webp")[],
+  DEVICE_SIZES: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+  IMAGE_SIZES: [16, 32, 48, 64, 96, 128, 256, 384],
+  QUALITY: 75,
+  MIN_CACHE_TTL: CACHE_TTL.ONE_YEAR,
+};
+
+/**
+ * Dominios remotos permitidos para imágenes
+ */
+const REMOTE_IMAGE_PATTERNS = [
+  // HubSpot Forms & Scripts
+  {
+    protocol: "https" as const,
+    hostname: "js.hsforms.net",
+  },
+  {
+    protocol: "https" as const,
+    hostname: "js.hs-scripts.com",
+  },
+  // YouTube (imágenes de videos)
+  {
+    protocol: "https" as const,
+    hostname: "img.youtube.com",
+    pathname: "/**",
+  },
+  {
+    protocol: "https" as const,
+    hostname: "youtube.com",
+    pathname: "/**",
+  },
+  {
+    protocol: "https" as const,
+    hostname: "i.ytimg.com",
+    pathname: "/**",
+  },
+];
+
+/**
+ * Rutas estáticas que deben tener cache agresivo
+ */
+const STATIC_ASSET_PATHS = [
+  "/img/:path*",
+  "/recursos/:path*",
+  "/modelos-optimized/:path*",
+  "/_next/static/:path*",
+  "/_next/image",
+  "/favicon.ico",
+  "/favicon.png",
+  "/favicon-16x16.png",
+  "/favicon-32x32.png",
+  "/site.webmanifest",
+  "/android-chrome-192x192.png",
+  "/android-chrome-512x512.png",
+  "/apple-touch-icon.png",
+];
+
+/**
+ * Paquetes para optimización de imports (tree-shaking)
+ */
+const OPTIMIZED_PACKAGES = [
+  "@radix-ui/react-accordion",
+  "@radix-ui/react-dialog",
+  "@radix-ui/react-dropdown-menu",
+  "@radix-ui/react-select",
+  "@radix-ui/react-tabs",
+  "@radix-ui/react-navigation-menu",
+  "lucide-react",
+  "framer-motion",
+];
+
+// ============================================================================
+// HELPER FUNCTIONS - Funciones auxiliares para configuración
+// ============================================================================
+
+/**
+ * Genera headers de seguridad estándar para todas las rutas
+ */
+const getSecurityHeaders = () => [
+  {
+    key: "X-DNS-Prefetch-Control",
+    value: "on",
+  },
+  {
+    key: "X-Frame-Options",
+    value: "SAMEORIGIN",
+  },
+  {
+    key: "X-Content-Type-Options",
+    value: "nosniff",
+  },
+  {
+    key: "X-XSS-Protection",
+    value: "1; mode=block",
+  },
+  {
+    key: "Referrer-Policy",
+    value: "origin-when-cross-origin",
+  },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=()",
+  },
+];
+
+/**
+ * Genera header de cache inmutable para assets estáticos
+ */
+const getImmutableCacheHeader = () => ({
+  key: "Cache-Control",
+  value: `public, max-age=${CACHE_TTL.ONE_YEAR}, immutable`,
+});
+
+/**
+ * Genera configuración de headers para todas las rutas
+ */
+const getHeadersConfig = () => {
+  const headers = [
+    // Headers de seguridad para todas las rutas
+    {
+      source: "/:path*",
+      headers: getSecurityHeaders(),
+    },
+    // Cache agresivo para assets estáticos
+    ...STATIC_ASSET_PATHS.map((path) => ({
+      source: path,
+      headers: [getImmutableCacheHeader()],
+    })),
+  ];
+
+  return headers;
+};
+  
+// ============================================================================
+// NEXT.JS CONFIG - Configuración principal
+// ============================================================================
+
 const nextConfig: NextConfig = {
-  // Optimización de imágenes
+  // ========================================================================
+  // IMAGE OPTIMIZATION - Optimización de imágenes
+  // ========================================================================
   images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Calidad optimizada: más alta para móvil (mejor experiencia), más baja para desktop (mejor rendimiento)
-    qualities: [75],
-    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 año
+    // Formatos modernos para mejor compresión
+    formats: IMAGE_CONFIG.FORMATS,
+    
+    // Tamaños de dispositivos para responsive images
+    deviceSizes: IMAGE_CONFIG.DEVICE_SIZES,
+    
+    // Tamaños de imágenes para diferentes contextos
+    imageSizes: IMAGE_CONFIG.IMAGE_SIZES,
+    
+    // Calidad optimizada (balance entre calidad y tamaño)
+    qualities: [IMAGE_CONFIG.QUALITY],
+    
+    // Cache de imágenes optimizadas (1 año)
+    minimumCacheTTL: IMAGE_CONFIG.MIN_CACHE_TTL,
+    
+    // Permitir SVGs con política de seguridad estricta
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Optimización para móvil
+    
+    // Mantener optimización habilitada
     unoptimized: false,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "js.hsforms.net",
-      },
-      {
-        protocol: "https",
-        hostname: "js.hs-scripts.com",
-      },
-      {
-        protocol: "https",
-        hostname: "img.youtube.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "youtube.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "i.ytimg.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    
+    // Dominios remotos permitidos para imágenes
+    remotePatterns: REMOTE_IMAGE_PATTERNS,
   },
 
-  // Compresión
+  // ========================================================================
+  // COMPRESSION - Compresión de respuestas
+  // ========================================================================
   compress: true,
 
-  // Optimizaciones de producción
-  reactStrictMode: true,
-  
-  // Optimización de producción (swcMinify está habilitado por defecto en Next.js 16+)
-  productionBrowserSourceMaps: false,
+  // ========================================================================
+  // REACT CONFIGURATION - Configuración de React
+  // ========================================================================
+  // Strict Mode deshabilitado para evitar double-rendering en desarrollo
+  // (no necesario para un sitio inmobiliario estático)
+  reactStrictMode: false,
 
-  // Optimización de bundle
-  experimental: {
-    optimizePackageImports: [
-      "@radix-ui/react-accordion",
-      "@radix-ui/react-dialog",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-select",
-      "@radix-ui/react-tabs",
-      "@radix-ui/react-navigation-menu",
-      "lucide-react",
-      "framer-motion",
-    ],
-  },
+  // ========================================================================
+  // PRODUCTION OPTIMIZATIONS - Optimizaciones de producción
+  // ========================================================================
+  // Deshabilitar source maps en producción para mejor seguridad y rendimiento
+  productionBrowserSourceMaps: false,
   
-  // Power optimizations
+  // Remover header "X-Powered-By" por seguridad
   poweredByHeader: false,
 
-  // Permitir solicitudes cross-origin en desarrollo desde IPs de red local
-  allowedDevOrigins: [
-    "localhost",
-    "127.0.0.1",
-    "192.168.40.4",
-  ],
-
-
-  // Headers de seguridad y performance
-  async headers() {
-    return [
-      {
-        // Headers generales para todas las rutas
-        source: "/:path*",
-        headers: [
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
-          },
-        ],
-      },
-      {
-        // Caché para imágenes estáticas
-        source: "/img/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        // Caché para modelos optimizados
-        source: "/modelos-optimized/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        // Caché para assets estáticos de Next.js
-        source: "/_next/static/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        // Caché para imágenes optimizadas de Next.js
-        source: "/_next/image",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
+  // ========================================================================
+  // BUNDLE OPTIMIZATION - Optimización de bundle
+  // ========================================================================
+  experimental: {
+    // Tree-shaking optimizado para paquetes específicos
+    optimizePackageImports: OPTIMIZED_PACKAGES,
   },
+
+  // ========================================================================
+  // SECURITY & PERFORMANCE HEADERS - Headers de seguridad y rendimiento
+  // ========================================================================
+  async headers() {
+    return getHeadersConfig();
+  },
+
+  // ========================================================================
+  // DEVELOPMENT CONFIG - Configuración de desarrollo
+  // ========================================================================
+  // Para desarrollo, Next.js maneja automáticamente hot-reload y Fast Refresh
+  // No se requiere configuración adicional para desarrollo local
 };
 
 export default nextConfig;
