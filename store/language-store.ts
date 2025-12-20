@@ -2,9 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type Language = "en" | "es";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Translations = Record<string, any>;
+type Translations = Record<string, unknown>;
 
 interface LanguageState {
   language: Language;
@@ -14,89 +12,126 @@ interface LanguageState {
   isLoading: boolean;
 }
 
-// Cache para traducciones cargadas (evita recargar si ya están en memoria)
+// Cache en memoria para acceso ultra-rápido (evita imports repetidos)
 const translationsCache: Record<Language, Translations | null> = {
   en: null,
   es: null,
 };
 
+// Flag para prevenir múltiples cargas simultáneas
+const loadingPromises: Record<Language, Promise<Translations> | null> = {
+  en: null,
+  es: null,
+};
+
+/**
+ * Carga traducciones de forma optimizada con cache y prevención de duplicados
+ */
 const loadTranslations = async (lang: Language): Promise<Translations> => {
-  // Si ya están en cache, devolverlas inmediatamente
+  // 1. Verificar cache en memoria (más rápido)
   if (translationsCache[lang]) {
     return translationsCache[lang]!;
   }
 
-  try {
-    let data: Translations;
-    if (lang === "es") {
-      const esModule = await import("@/locales/es.json");
-      data = (esModule.default || esModule) as Translations;
-    } else {
-      const enModule = await import("@/locales/en.json");
-      data = (enModule.default || enModule) as Translations;
-    }
-    
-    // Guardar en cache
-    translationsCache[lang] = data;
-    return data;
-  } catch (error) {
-    console.error(`Error loading translations for ${lang}:`, error);
-    // Si falla, intentar devolver inglés desde cache si está disponible
-    if (lang !== "en" && translationsCache.en) {
-      return translationsCache.en;
-    }
-    return {};
+  // 2. Si ya hay una carga en progreso, reutilizar esa promesa
+  if (loadingPromises[lang]) {
+    return loadingPromises[lang]!;
   }
+
+  // 3. Crear nueva promesa de carga
+  const loadPromise = (async () => {
+    try {
+      // Dynamic import optimizado por Next.js
+      const translationModule = lang === "es" 
+        ? await import("@/locales/es.json")
+        : await import("@/locales/en.json");
+      
+      const data = (translationModule.default || translationModule) as Translations;
+      
+      // Guardar en cache inmediatamente
+      translationsCache[lang] = data;
+      loadingPromises[lang] = null; // Limpiar promesa de carga
+      
+      return data;
+    } catch (error) {
+      console.error(`[LanguageStore] Error loading ${lang} translations:`, error);
+      loadingPromises[lang] = null; // Limpiar promesa de carga en caso de error
+      
+      // Fallback: intentar inglés si falla otro idioma
+      if (lang !== "en" && translationsCache.en) {
+        return translationsCache.en;
+      }
+      
+      // Último recurso: objeto vacío
+      return {};
+    }
+  })();
+
+  loadingPromises[lang] = loadPromise;
+  return loadPromise;
 };
 
-// Pre-cargar traducciones en inglés inmediatamente (síncrono si es posible)
-const preloadEnglishTranslations = async (): Promise<Translations> => {
-  if (translationsCache.en) {
-    return translationsCache.en;
-  }
-  return loadTranslations("en");
-};
-
+/**
+ * Función optimizada para obtener traducciones con path notation
+ * Usa early returns y acceso directo para máximo rendimiento
+ */
 const getTranslation = (translations: Translations, key: string): string => {
-  const keys = key.split(".");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let value: any = translations;
+  // Early return si no hay traducciones válidas
+  if (!translations || typeof translations !== "object" || Array.isArray(translations)) {
+    return key;
+  }
 
-  for (const k of keys) {
-    if (value && typeof value === "object") {
-      // Si es un array y la clave es un número, acceder por índice
-      if (Array.isArray(value)) {
-        const index = parseInt(k, 10);
-        if (!isNaN(index) && index >= 0 && index < value.length) {
-          value = value[index];
-        } else {
-          return key;
-        }
-      } else if (k in value) {
-        value = value[k] as string | Translations;
-      } else {
+  // Split una sola vez
+  const keys = key.split(".");
+  let current: unknown = translations;
+  const keysLength = keys.length;
+
+  // Loop optimizado con early returns
+  for (let i = 0; i < keysLength; i++) {
+    const k = keys[i];
+    
+    if (!current || typeof current !== "object") {
+      return key;
+    }
+
+    // Manejo eficiente de arrays
+    if (Array.isArray(current)) {
+      const index = Number.parseInt(k, 10);
+      if (Number.isNaN(index) || index < 0 || index >= current.length) {
         return key;
       }
+      current = current[index];
+      continue;
+    }
+
+    // Acceso directo a objeto
+    if (k in current) {
+      current = (current as Record<string, unknown>)[k];
     } else {
       return key;
     }
   }
 
-  return typeof value === "string" ? value : key;
+  // Retornar string o clave si no es string
+  return typeof current === "string" ? current : key;
 };
 
-// Pre-cargar inglés inmediatamente al importar el módulo
-let defaultTranslations: Translations = {};
-if (typeof window !== "undefined") {
-  // En el cliente, pre-cargar de forma asíncrona
-  preloadEnglishTranslations().then((translations) => {
-    defaultTranslations = translations;
-  });
-}
+/**
+ * Verifica si las traducciones son válidas
+ */
+const isValidTranslations = (translations: unknown): translations is Translations => {
+  return (
+    translations !== null &&
+    translations !== undefined &&
+    typeof translations === "object" &&
+    !Array.isArray(translations) &&
+    Object.keys(translations).length > 0
+  );
+};
 
 const initialState: Omit<LanguageState, "setLanguage" | "t"> = {
   language: "en",
-  translations: defaultTranslations,
+  translations: {}, // Se llenará en onRehydrateStorage
   isLoading: false,
 };
 
@@ -105,76 +140,215 @@ export const useLanguageStore = create<LanguageState>()(
     (set, get) => ({
       ...initialState,
 
+      /**
+       * Cambia el idioma y carga las traducciones
+       * Optimizado para evitar cargas duplicadas
+       */
       setLanguage: async (lang: Language) => {
+        const currentState = get();
+        
+        // Si ya está cargando ese idioma o ya lo tiene cargado, no hacer nada
+        if (currentState.language === lang && isValidTranslations(currentState.translations)) {
+          return;
+        }
+
         set({ isLoading: true });
-        const translations = await loadTranslations(lang);
-        set({ language: lang, translations, isLoading: false });
-        if (typeof document !== "undefined") {
-          document.documentElement.lang = lang;
+
+        try {
+          const translations = await loadTranslations(lang);
+          
+          set({ 
+            language: lang, 
+            translations, 
+            isLoading: false 
+          });
+
+          // Actualizar atributo lang del documento
+          if (typeof document !== "undefined") {
+            document.documentElement.lang = lang;
+          }
+        } catch (error) {
+          console.error(`[LanguageStore] Error setting language to ${lang}:`, error);
+          set({ isLoading: false });
+          
+          // Fallback a inglés si falla
+          if (lang !== "en") {
+            try {
+              const enTranslations = await loadTranslations("en");
+              set({ 
+                language: "en", 
+                translations: enTranslations, 
+                isLoading: false 
+              });
+              if (typeof document !== "undefined") {
+                document.documentElement.lang = "en";
+              }
+            } catch (fallbackError) {
+              console.error("[LanguageStore] Fallback to English failed:", fallbackError);
+              set({ isLoading: false });
+            }
+          }
         }
       },
 
-      t: (key: string) => {
+      /**
+       * Función de traducción optimizada
+       * Acceso directo al cache para máximo rendimiento
+       */
+      t: (key: string): string => {
         const { translations } = get();
         
-        // Si hay traducciones disponibles, usarlas
-        if (Object.keys(translations).length > 0) {
+        // Early return con validación optimizada
+        if (isValidTranslations(translations)) {
           return getTranslation(translations, key);
         }
         
-        // Si no hay traducciones, devolver la clave (no cargar aquí para evitar loops)
-        // La carga se maneja en LanguageProvider y onRehydrateStorage
+        // Si no hay traducciones, devolver la clave
         return key;
       },
     }),
     {
       name: "language-storage",
-      // Guardar tanto el idioma como las traducciones en localStorage
-      partialize: (state) => ({ 
-        language: state.language,
-        // Guardar traducciones también para acceso rápido
-        translations: state.translations,
-      }),
-      onRehydrateStorage: () => {
-        // Cargar traducciones durante la rehidratación para que estén disponibles inmediatamente
-        return async (state) => {
-          if (typeof document === "undefined") return;
-          
-          const lang = state?.language || "en";
-          
-          // Actualizar el lang del documento
-          document.documentElement.lang = lang;
-          
-          // Si no hay traducciones en el estado rehidratado, cargarlas
-          if (!state?.translations || Object.keys(state.translations).length === 0) {
-            try {
-              const translations = await loadTranslations(lang);
-              useLanguageStore.setState({ 
-                translations, 
-                language: lang,
-                isLoading: false 
-              });
-            } catch (err) {
-              console.error("Error loading translations during rehydration:", err);
-              // Si falla, cargar inglés por defecto
-              try {
-                const enTranslations = await loadTranslations("en");
-                useLanguageStore.setState({ 
-                  translations: enTranslations, 
-                  language: "en",
-                  isLoading: false 
-                });
-                document.documentElement.lang = "en";
-              } catch (defaultErr) {
-                console.error("Error loading default translations:", defaultErr);
-                useLanguageStore.setState({ isLoading: false });
-              }
-            }
-          }
+      
+      /**
+       * Guarda solo lo esencial para reducir tamaño de localStorage
+       * Siempre guarda traducciones válidas para disponibilidad inmediata en próxima carga
+       */
+      partialize: (state) => {
+        // Si hay traducciones válidas, guardarlas
+        if (isValidTranslations(state.translations)) {
+          return {
+            language: state.language,
+            translations: state.translations,
+          };
+        }
+        
+        // Si no hay traducciones pero inglés está en cache, guardarlo como fallback
+        if (translationsCache.en) {
+          return {
+            language: "en",
+            translations: translationsCache.en,
+          };
+        }
+        
+        // Último recurso: solo guardar idioma
+        return {
+          language: state.language || "en",
+          translations: {},
         };
       },
+
+      /**
+       * Rehidratación optimizada: carga traducciones inmediatamente
+       * Asegura que inglés esté disponible por defecto en la primera carga
+       * Esta función se ejecuta ANTES del primer render, así que es crítico que funcione
+       */
+      onRehydrateStorage: () => {
+        return (state) => {
+          // Solo ejecutar en cliente
+          if (typeof window === "undefined") return;
+
+          // Determinar idioma: usar el de localStorage o inglés por defecto
+          const lang = (state?.language as Language) || "en";
+          
+          // Actualizar lang del documento inmediatamente
+          document.documentElement.lang = lang;
+
+          // Verificar si hay traducciones válidas desde localStorage
+          if (state?.translations && isValidTranslations(state.translations)) {
+            // Sincronizar cache en memoria
+            if (!translationsCache[lang]) {
+              translationsCache[lang] = state.translations;
+            }
+            
+            // El estado ya tiene traducciones válidas, todo listo
+            // IMPORTANTE: El estado ya está rehidratado con las traducciones
+            return;
+          }
+
+          // Si no hay traducciones válidas, cargar INMEDIATAMENTE de forma síncrona si es posible
+          // Priorizar inglés para primera carga
+          const targetLang = lang === "en" || !state?.language ? "en" : lang;
+          
+          // Intentar cargar traducciones de forma asíncrona pero lo más rápido posible
+          loadTranslations(targetLang)
+            .then((translations) => {
+              // Actualizar estado con traducciones cargadas
+              useLanguageStore.setState({
+                translations,
+                language: targetLang,
+                isLoading: false,
+              });
+              
+              // Actualizar lang del documento
+              document.documentElement.lang = targetLang;
+            })
+            .catch((error) => {
+              console.error("[LanguageStore] Error loading translations during rehydration:", error);
+              
+              // Fallback: cargar inglés por defecto (siempre debe funcionar)
+              loadTranslations("en")
+                .then((enTranslations) => {
+                  useLanguageStore.setState({
+                    translations: enTranslations,
+                    language: "en",
+                    isLoading: false,
+                  });
+                  document.documentElement.lang = "en";
+                })
+                .catch((fallbackError) => {
+                  console.error("[LanguageStore] Fallback to English failed during rehydration:", fallbackError);
+                  useLanguageStore.setState({ isLoading: false });
+                });
+            });
+        };
+      },
+      
       skipHydration: false,
     }
   )
 );
 
+/**
+ * Pre-carga agresiva de inglés para disponibilidad inmediata
+ * Se ejecuta cuando el módulo se carga (antes del primer render)
+ */
+if (typeof window !== "undefined") {
+  // Verificar si ya hay traducciones en localStorage y cargarlas inmediatamente
+  try {
+    const stored = localStorage.getItem("language-storage");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed?.state?.translations && isValidTranslations(parsed.state.translations)) {
+        // Sincronizar cache inmediatamente
+        const lang = parsed.state.language || "en";
+        translationsCache[lang as Language] = parsed.state.translations;
+      }
+    }
+  } catch (error) {
+    // Continuar con precarga asíncrona si hay error
+  }
+  
+  // Precargar inglés inmediatamente y guardar en cache
+  // Esto asegura que esté disponible antes de cualquier render
+  loadTranslations("en")
+    .then((translations) => {
+      // Asegurar que el cache esté poblado
+      translationsCache.en = translations;
+      
+      // Si el store aún no tiene traducciones válidas, inicializarlo con inglés
+      const currentState = useLanguageStore.getState();
+      if (!isValidTranslations(currentState.translations)) {
+        useLanguageStore.setState({
+          translations,
+          language: "en",
+          isLoading: false,
+        });
+        document.documentElement.lang = "en";
+      }
+    })
+    .catch(() => {
+      // Silenciar error, se intentará cargar nuevamente cuando se necesite
+      // El error ya se maneja en loadTranslations
+    });
+}

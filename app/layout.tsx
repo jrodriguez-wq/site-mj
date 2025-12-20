@@ -12,6 +12,7 @@ import {
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { LanguageProvider } from "@/components/layout/language-provider";
+import { TranslationLoader } from "@/components/layout/translation-loader";
 import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -146,11 +147,13 @@ export default function RootLayout({
       >
         <StructuredDataComponent data={structuredData} />
         <LanguageProvider />
-        <div className="flex min-h-screen flex-col">
-          <Navbar />
-          <main className="flex-1" id="main-content">{children}</main>
-          <Footer />
-        </div>
+        <TranslationLoader>
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <main className="flex-1" id="main-content">{children}</main>
+            <Footer />
+          </div>
+        </TranslationLoader>
         <Analytics />
         <SpeedInsights />
         

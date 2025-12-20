@@ -44,10 +44,11 @@ const ImageHeader = ({ src, isLogo = false }: { src: string; isLogo?: boolean })
 );
 
 export const HappyFamiliesGallery = () => {
-  const { t, translations } = useTranslation();
+  const { t, language, translations } = useTranslation();
 
-  const title = useMemo(() => t("home.happyFamilies.title"), [t, translations]);
-  const subtitle = useMemo(() => t("home.happyFamilies.subtitle"), [t, translations]);
+  // Usar translations como dependencia para que se re-renderice cuando se carguen
+  const title = useMemo(() => t("home.happyFamilies.title"), [t, language, translations]);
+  const subtitle = useMemo(() => t("home.happyFamilies.subtitle"), [t, language, translations]);
 
   return (
     <section className="py-10 md:py-14 lg:py-18 bg-background">
