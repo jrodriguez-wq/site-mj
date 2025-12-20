@@ -342,8 +342,6 @@
         "name": "Louisiana",
         "description": "Our biggest model yet. A family home with modern amenities",
         "fullDescription": "The Louisiana model offers 4 grand bedrooms and 3 full bathrooms and 2 dens. This home spans 3,277 sq/ft of meticulously designed flow space to satisfy the needs of the most discerning of clients. Light placement and high ceilings have been engineered and thought through at the highest level to provide an energy efficient yet luxurious level of comfort to this home. The kitchen space was designed with your family in mind, prepare to fall in love with our high end finishes! Feel the quality of the countertops, enjoy the soft close cabinetry and the sleek design of our all stainless modern appliances.",
-        "price": "$469,900",
-        "priceRange": "$469,900 - $510,000",
         "features": [
           "Open concept living area",
           "Modern kitchen with stainless steel appliances",
@@ -365,8 +363,6 @@
         "name": "Viana",
         "description": "Elegant design perfect for growing families",
         "fullDescription": "With 4 bedrooms and 3 full bathrooms and 2 dens, it spans 2,978 square feet. Prepare to fall in love. Its open concept offers a spacious living area, complemented by high ceilings and ample lighting, complete with a modern kitchen design that includes: custom cabinets, granite countertops and stainless-steel appliances.",
-        "price": "$449,900",
-        "priceRange": "$449,900 - $510,000",
         "features": [
           "Spacious family room",
           "Gourmet kitchen with high end countertops",
@@ -387,9 +383,7 @@
       "delanie": {
         "name": "Delanie",
         "description": "Contemporary style with an open floor concept",
-        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Delanie is one of our most sophisticated models. With 3 bedrooms, 1 den/4th bedroom optional, and 2 full bathrooms, it spans 2,610 square feet. Prepare to fall in love with the Delanie. Its special features include an open concept floor plan, spacious living area, high ceilings, ample lighting, custom cabinets, quality countertops, and stainless-steel appliances. The Delanie model is a stunning family home with a diverse, spacious and modern design.",
-        "price": "$369,900",
-        "priceRange": "$369,900 - $410,00",
+        "fullDescription": "Experience contemporary living at its finest with the Delanie model. Featuring 3 bedrooms (with optional 4th bedroom/den) and 2 full bathrooms across 2,610 square feet, this home combines style and functionality effortlessly. Step into an open concept floor plan that flows beautifully from spacious living areas to a modern kitchen equipped with custom cabinets, quality countertops, and stainless-steel appliances. High ceilings and ample natural lighting create an inviting atmosphere throughout. Perfect for families seeking a modern, spacious home with thoughtful design.",
         "features": [
           "Open floor concept",
           "Upgraded kitchen with island",
@@ -410,9 +404,7 @@
       "aurora": {
         "name": "Aurora",
         "description": "Luxury features in an affordable package",
-        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Aurora is one of our most sophisticated models. With 4 bedrooms and 3 full bathrooms, it spans over 2,227 square feet. Prepare to fall in love with the Aurora. Its special features include an open concept floor plan, spacious living area, vaulted ceilings, ample lighting, custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. The Aurora model is a stunning family home with a diverse, spacious and modern design.",
-        "price": "$345,000",
-        "priceRange": "$345,000 - $389,900",
+        "fullDescription": "Discover exceptional value without compromising on luxury. The Aurora model delivers premium features at an unbeatable price point, spanning over 2,227 square feet with 4 bedrooms and 3 full bathrooms. Designed for families who appreciate quality, this home features an open concept layout with vaulted ceilings that create an impressive sense of space. The modern kitchen showcases custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. Every detail has been carefully selected to provide luxury living that's both beautiful and practical.",
         "features": [
           "Luxury flooring",
           "Spacious kitchen with premium appliances",
@@ -433,9 +425,7 @@
       "langdon": {
         "name": "Langdon",
         "description": "Premium finishes and exceptional space",
-        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family while keeping it affordable. Its special features and remarkable price will exceed your expectations. The Langdon model is one of our most elegant models. With 3 bedrooms and 2 full bathrooms, it spans 1,900 square feet. Prepare to fall in love with the Langdon. Its special features include an open concept floor plan, spacious living area, high ceilings, ample lighting, custom cabinets, granite countertops, and hurraicane imapact roofs, windows & doors. The Langdon model is a lovely family home with a diverse and modern design.",
-        "price": "$316,900",
-        "priceRange": "$316,900 - $345,900",
+        "fullDescription": "Premium quality meets exceptional value in the Langdon model. At 1,900 square feet with 3 bedrooms and 2 full bathrooms, this home proves that affordable doesn't mean compromising on quality. Designed with your family's comfort in mind, the open concept floor plan maximizes space while high ceilings and abundant natural light create a bright, welcoming atmosphere. Enjoy peace of mind with hurricane impact roofs, windows, and doors, plus modern amenities including custom cabinets, granite countertops, and premium finishes throughout. The perfect entry point to homeownership without sacrificing style.",
         "features": [
           "High ceilings throughout",
           "Chef's kitchen with large island",
@@ -456,9 +446,7 @@
       "emelia": {
         "name": "Emelia",
         "description": "Our most popular model with luxury throughout",
-        "fullDescription": "This spectacular home offers a multitude of benefits for you and your family. Its special features and remarkable price will exceed your expectations. The Emelia model is one of our most beautiful models yet. With 3 bedrooms and 2 full bathrooms, it spans 2,060 square feet. Prepare to fall in love with the Emelia. Its special features include a spacious living area, high ceilings, ample lighting, custom cabinets, quality countertops, and hurricaine impact roof, windows & doors. The Emelia model is a lovely family home with a diverse and spacious design.",
-        "price": "$345,000",
-        "priceRange": "$345,000 - $374,900",
+        "fullDescription": "As our most popular model, the Emelia has won the hearts of countless families for good reason. Spanning 2,060 square feet with 3 bedrooms and 2 full bathrooms, this home perfectly balances spaciousness with thoughtful design. The generous living areas flow seamlessly, enhanced by high ceilings and abundant natural light. You'll appreciate the attention to detail in every corner, from custom cabinets and quality countertops to hurricane impact roof, windows, and doors. A testament to why families consistently choose the Emelia for their dream home.",
         "features": [
           "Luxury finishes throughout",
           "Gourmet kitchen with stainless steel appliances",
@@ -480,8 +468,6 @@
         "name": "Duplex",
         "description": "Perfect investment opportunity - live in one unit, rent the other",
         "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living or renting. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
-        "price": "$510,000",
-        "priceRange": "$510,000",
         "features": [
           "Two independent units",
           "Perfect for living and renting",

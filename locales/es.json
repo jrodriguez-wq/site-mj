@@ -342,8 +342,6 @@
         "name": "Louisiana",
         "description": "Casa familiar espaciosa con amenidades modernas",
         "fullDescription": "El modelo Louisiana ofrece 4 amplias habitaciones y 3 baños completos. Esta imponente casa abarca 3,277 pies cuadrados de espacio meticulosamente diseñado para satisfacer las necesidades de los clientes más exigentes. La colocación de luz y los techos abovedados han sido diseñados y pensados al más alto nivel para proporcionar un nivel de comodidad energéticamente eficiente pero lujoso a esta propiedad. El espacio de la cocina fue diseñado pensando en tu familia, ¡prepárate para enamorarte de nuestros acabados de alta gama! Siente la calidad de las encimeras de piedra, disfruta la sensación suave de los gabinetes de cierre suave. Deja que tus ojos disfruten del diseño elegante de nuestros electrodomésticos modernos totalmente de acero inoxidable.",
-        "price": "$189,900",
-        "priceRange": "$189,900 - $219,900",
         "features": [
           "Área de estar de concepto abierto",
           "Cocina moderna con electrodomésticos de acero inoxidable",
@@ -365,8 +363,6 @@
         "name": "Viana",
         "description": "Diseño elegante perfecto para familias en crecimiento",
         "fullDescription": "Con 4 habitaciones y 3 baños completos, abarca más de 2,978 pies cuadrados. Prepárate para enamorarte. Su concepto abierto ofrece una amplia área de estar, complementada con techos abovedados e iluminación abundante, completa con un diseño de cocina moderna que incluye: gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía.",
-        "price": "$199,900",
-        "priceRange": "$199,900 - $229,900",
         "features": [
           "Sala familiar espaciosa",
           "Cocina gourmet con encimeras de granito",
@@ -388,8 +384,6 @@
         "name": "Delanie",
         "description": "Estilo contemporáneo con planos abiertos",
         "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El Delanie es uno de nuestros modelos más sofisticados. Con 3 habitaciones, 1 estudio/4ta habitación opcional, y 2 baños completos, abarca más de 2,610 pies cuadrados. Prepárate para enamorarte del Delanie. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Delanie es una impresionante casa familiar con un diseño diverso, espacioso y moderno.",
-        "price": "$229,900",
-        "priceRange": "$229,900 - $259,900",
         "features": [
           "Diseño de planta abierta",
           "Cocina mejorada con isla",
@@ -411,8 +405,6 @@
         "name": "Aurora",
         "description": "Características de lujo en un paquete accesible",
         "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El Aurora es uno de nuestros modelos más sofisticados. Con 4 habitaciones y 3 baños completos, abarca más de 2,227 pies cuadrados. Prepárate para enamorarte del Aurora. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Aurora es una impresionante casa familiar con un diseño diverso, espacioso y moderno.",
-        "price": "$259,900",
-        "priceRange": "$259,900 - $289,900",
         "features": [
           "Pisos de vinilo de lujo",
           "Cocina gourmet con electrodomésticos premium",
@@ -434,8 +426,6 @@
         "name": "Langdon",
         "description": "Acabados premium y espacio excepcional",
         "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El modelo Langdon es uno de nuestros modelos más elegantes. Con 3 habitaciones y 2 baños completos, abarca más de 1,900 pies cuadrados. Prepárate para enamorarte del Langdon. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Langdon es una encantadora casa familiar con un diseño diverso y moderno.",
-        "price": "$289,900",
-        "priceRange": "$289,900 - $319,900",
         "features": [
           "Pisos estilo madera premium",
           "Cocina de chef con isla grande",
@@ -457,8 +447,6 @@
         "name": "Emelia",
         "description": "Nuestro modelo más grande con lujo en todas partes",
         "fullDescription": "Esta espectacular casa ofrece una multitud de beneficios para ti y tu familia. Sus características especiales y precio notable superarán tus expectativas. El modelo Emelia es uno de nuestros modelos más espaciosos. Con 3 habitaciones y 2 baños completos, abarca más de 2,060 pies cuadrados. Prepárate para enamorarte del Emelia. Sus características especiales incluyen un plano de planta de concepto abierto, área de estar espaciosa, techos abovedados, iluminación abundante, gabinetes personalizados, encimeras de granito y electrodomésticos de acero inoxidable eficientes en energía. El modelo Emelia es una encantadora casa familiar con un diseño diverso y espacioso.",
-        "price": "$319,900",
-        "priceRange": "$319,900 - $349,900",
         "features": [
           "Acabados de lujo en toda la casa",
           "Cocina gourmet con electrodomésticos de primera línea",
@@ -480,8 +468,6 @@
         "name": "Duplex",
         "description": "Oportunidad de inversión perfecta - vive en una unidad, renta la otra",
         "fullDescription": "Descubre el modelo Duplex, una propiedad impresionante que cuenta con dos unidades independientes, perfectas para vivir en una y rentar la otra. Cada unidad incluye 3 habitaciones, 2 baños y un garaje privado. Con su diseño moderno, espacios abiertos y brillantes, y acabados de alta gama, este duplex es una inversión ideal que combina comodidad, estilo y rentabilidad.",
-        "price": "$510,000",
-        "priceRange": "$510,000",
         "features": [
           "Dos unidades independientes",
           "Perfecto para vivir y rentar",

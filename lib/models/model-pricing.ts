@@ -13,7 +13,7 @@ import { Community, ModelPricing } from "@/types/model";
 export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
   labelle: {
     langdon: {
-      price: "$316,900",
+      price: "$317,900",
       rtoPrice: "$2,700 / Mo",
       sqft: "1,900",
       bedrooms: "3",
@@ -64,7 +64,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
   "lehigh-acres": {
     langdon: {
       price: "$346,900",
-      rtoPrice: "$2,700 / Mo",
+      rtoPrice: "$2,750 / Mo",
       sqft: "1,900",
       bedrooms: "3",
       bathrooms: "2",
@@ -72,7 +72,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     emelia: {
       price: "$374,900",
-      rtoPrice: "$2,750 / Mo",
+      rtoPrice: "$2,850 / Mo",
       sqft: "2,060",
       bedrooms: "3",
       bathrooms: "2",
@@ -80,7 +80,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     delanie: {
       price: "$410,000",
-      rtoPrice: "$2,900 / Mo",
+      rtoPrice: "$3,150 / Mo",
       sqft: "2,610",
       bedrooms: "4",
       bathrooms: "3",
@@ -88,7 +88,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     duplex: {
       price: "$510,000",
-      rtoPrice: "$2,000 ea. / Mo",
+      rtoPrice: "$2,000 / Mo",
       sqft: "2,898",
       bedrooms: "6",
       bathrooms: "4",

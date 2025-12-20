@@ -21,7 +21,7 @@ export const MODELS_PRICING: ModelPricing[] = [
     bedrooms: "3",
     bathrooms: "2",
     garage: "2",
-    labelle: "$316,900",
+    labelle: "$317,900",
     lehighAcres: "$346,900",
   },
   {
