@@ -124,7 +124,7 @@ export default function AboutUsPage() {
                   }}
                   suppressHydrationWarning
                 >
-                  {t("aboutUs.hero.subtitle") || "Over 15 years of experience building quality homes in Southwest Florida. Your family deserves the best."}
+                  {t("aboutUs.hero.subtitle")}
                 </p>
               </div>
             </div>
@@ -322,14 +322,14 @@ export default function AboutUsPage() {
             <div className="text-center space-y-4 mb-12">
               <div className="inline-block">
                 <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
-                  {t("aboutUs.fullTeam.badge") || "Our Team"}
+                  {t("aboutUs.fullTeam.badge")}
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
-                {t("aboutUs.fullTeam.title") || "Building a Legacy Together"}
+                {t("aboutUs.fullTeam.title")}
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
-                {t("aboutUs.fullTeam.subtitle") || "Meet the dedicated professionals who make M.J. Newell Homes a trusted name in Southwest Florida"}
+                {t("aboutUs.fullTeam.subtitle")}
               </p>
               <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>

@@ -194,7 +194,7 @@ export default function RentToOwnPage() {
                   >
                     <span className="relative z-10 flex items-center gap-2" suppressHydrationWarning>
                       <Sparkles className="w-5 h-5" />
-                      {t("rentToOwn.hero.cta.primary") || "View Available Models"}
+                      {t("rentToOwn.hero.cta.primary")}
                     </span>
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   </Button>
@@ -213,7 +213,7 @@ export default function RentToOwnPage() {
                     )}
                   >
                     <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`} className="flex items-center gap-2" suppressHydrationWarning>
-                      {t("rentToOwn.hero.cta.secondary") || "Call Now"}
+                      {t("rentToOwn.hero.cta.secondary")}
                     </a>
                   </Button>
                 </div>
