@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono, Outfit, DM_Sans } from "next/font/google";
+import { Geist, Geist_Mono, Outfit, DM_Sans, Pacifico } from "next/font/google";
 import "./globals.css";
 import { defaultMetadata, SEO_CONFIG } from "@/config/seo";
 import { StructuredDataComponent } from "@/components/seo/structured-data";
@@ -14,6 +14,8 @@ import { Footer } from "@/components/layout/footer";
 import { LanguageProvider } from "@/components/layout/language-provider";
 import { TranslationLoader } from "@/components/layout/translation-loader";
 import { PromotionModal } from "@/components/promotion/promotion-modal";
+import { GlobalSnow } from "@/components/promotion/global-snow";
+import { GlobalStars } from "@/components/promotion/global-stars";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -49,6 +51,15 @@ const dmSans = DM_Sans({
   display: "swap",
   preload: true,
   fallback: ["system-ui", "arial"],
+});
+
+const pacifico = Pacifico({
+  variable: "--font-pacifico",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: false,
+  fallback: ["cursive"],
 });
 
 export const metadata: Metadata = defaultMetadata;
@@ -142,7 +153,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} ${pacifico.variable} antialiased`}
         suppressHydrationWarning
       >
         <StructuredDataComponent data={structuredData} />
@@ -156,6 +167,10 @@ export default function RootLayout({
         </TranslationLoader>
         <Analytics />
         <SpeedInsights />
+        
+        {/* Efectos navideños globales */}
+        <GlobalSnow />
+        <GlobalStars />
         
         {/* HubSpot Embed Code - Tracking - Defer para mejor rendimiento */}
         <Script
