@@ -18,6 +18,9 @@ import {
   Award,
   TrendingUp
 } from "lucide-react";
+import { motion } from "framer-motion";
+import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+import { AnimatedSection } from "@/components/ui/animated-section";
 
 export default function AboutUsPage() {
   const { t } = useTranslation();
@@ -97,46 +100,66 @@ export default function AboutUsPage() {
         <div className="relative z-20 w-full h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
             <div className="max-w-4xl">
-              <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
+              <motion.div 
+                className="space-y-6 sm:space-y-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
                 {/* Badge */}
-                <div className="inline-block">
+                <motion.div 
+                  className="inline-block"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                >
                   <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full border border-primary/40" suppressHydrationWarning>
                     {t("aboutUs.hero.badge") || "About Us"}
                   </span>
-                </div>
+                </motion.div>
 
                 {/* Title */}
-                <h1 
+                <motion.h1 
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white"
                   style={{
                     textShadow: "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
                   }}
                   suppressHydrationWarning
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 >
                   {t("aboutUs.hero.title") || "Building Dreams, One Home at a Time"}
-                </h1>
+                </motion.h1>
 
                 {/* Subtitle */}
-                <p 
+                <motion.p 
                   className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 font-medium max-w-3xl leading-relaxed"
                   style={{
                     textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
                   }}
                   suppressHydrationWarning
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
                   {t("aboutUs.hero.subtitle")}
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
             </div>
           </div>
         </div>
 
+        {/* Scroll Indicator */}
+        <ScrollIndicator />
+
         {/* Natural Fade Out - Smooth transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/40 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Statistics Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-background">
+      <AnimatedSection delay={0.1}>
+        <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
@@ -176,10 +199,12 @@ export default function AboutUsPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Michael J. Newell Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-background">
+      <AnimatedSection delay={0.1}>
+        <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto space-y-12">
             <div className="text-center space-y-4">
@@ -268,10 +293,12 @@ export default function AboutUsPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Our Values Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+      <AnimatedSection delay={0.1} direction="fade">
+        <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -313,10 +340,12 @@ export default function AboutUsPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Full Team Photo Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
+      <AnimatedSection delay={0.1}>
+        <section className="py-10 md:py-14 lg:py-18 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
@@ -372,10 +401,12 @@ export default function AboutUsPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Team Section - Michael & Juliana */}
-      <section className="py-10 md:py-14 lg:py-18 bg-background">
+      <AnimatedSection delay={0.1}>
+        <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
@@ -444,10 +475,12 @@ export default function AboutUsPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Response Times Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+      <AnimatedSection delay={0.1} direction="fade">
+        <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -503,10 +536,12 @@ export default function AboutUsPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Housing Crisis Commitment Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-background">
+      <AnimatedSection delay={0.1}>
+        <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <Card className="border-2 border-primary/20 shadow-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden">
@@ -549,10 +584,12 @@ export default function AboutUsPage() {
             </Card>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Call to Action Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+      <AnimatedSection delay={0.1} direction="fade">
+        <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -585,7 +622,8 @@ export default function AboutUsPage() {
             </Card>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export const PageSection = ({
   className?: string;
 }) => {
   return (
-    <section className={cn("w-full pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-24", className)}>
+    <section className={cn("w-full pt-14 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-30 pb-12 sm:pb-14 md:pb-16 lg:pb-20 xl:pb-24", className)}>
       {children}
     </section>
   );

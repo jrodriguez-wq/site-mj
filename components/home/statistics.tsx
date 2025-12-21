@@ -2,6 +2,8 @@
 
 import { Home, Users, Award, TrendingUp } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
+import { AnimatedCard } from "@/components/ui/animated-card";
+import { motion } from "framer-motion";
 
 export const Statistics = () => {
   const { t } = useTranslation();
@@ -43,23 +45,30 @@ export const Statistics = () => {
       </div>
       
       <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
-        <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+        <motion.div 
+          className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
             {t("statistics.title")}
           </h2>
           <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
             {t("statistics.subtitle")}
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat) => {
+          {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div
-                key={stat.labelKey}
-                className="text-center space-y-3 sm:space-y-4 p-4 sm:p-6 rounded-xl bg-background/10 hover:bg-background/15 backdrop-blur-sm border border-background/20 hover:border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20"
-              >
+              <AnimatedCard key={stat.labelKey} index={index}>
+                <motion.div
+                  className="text-center space-y-3 sm:space-y-4 p-4 sm:p-6 rounded-xl bg-background/10 hover:bg-background/15 backdrop-blur-sm border border-background/20 hover:border-primary/30 transition-all duration-200 hover:shadow-lg hover:shadow-primary/20"
+                  whileHover={{ scale: 1.05, y: -4, transition: { duration: 0.2 } }}
+                >
                 <div className="flex justify-center">
                   <div className="p-3 sm:p-4 bg-primary/30 rounded-full border border-primary/40 shadow-lg shadow-primary/20">
                     <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
@@ -72,7 +81,8 @@ export const Statistics = () => {
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-background" suppressHydrationWarning>{t(stat.labelKey)}</h3>
                   <p className="text-xs sm:text-sm text-background/70 px-1" suppressHydrationWarning>{t(stat.descriptionKey)}</p>
                 </div>
-              </div>
+                </motion.div>
+              </AnimatedCard>
             );
           })}
         </div>

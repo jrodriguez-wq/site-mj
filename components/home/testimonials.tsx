@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote, MapPin } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
+import { AnimatedCard } from "@/components/ui/animated-card";
+import { motion } from "framer-motion";
 
 export const Testimonials = () => {
   const { t, translations } = useTranslation();
@@ -60,7 +62,13 @@ export const Testimonials = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(3,106,255,0.02),transparent_60%)] pointer-events-none" />
       
       <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
-        <div className="text-center space-y-4 sm:space-y-5 md:space-y-6 mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+        <motion.div 
+          className="text-center space-y-4 sm:space-y-5 md:space-y-6 mb-12 sm:mb-16 md:mb-20 lg:mb-24"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <div className="inline-block">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight bg-gradient-to-r from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent px-2" suppressHydrationWarning>
               {t("testimonials.title")}
@@ -76,14 +84,12 @@ export const Testimonials = () => {
               {t("testimonials.moreReviews") || "+90 more reviews on Google Maps"}
             </span>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid gap-6 sm:gap-8 md:gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
-            <Card
-              key={index}
-              className="group relative overflow-hidden border-2 bg-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 p-0 flex flex-col"
-            >
+            <AnimatedCard key={index} index={index}>
+              <Card className="group relative overflow-hidden border-2 bg-card hover:shadow-2xl transition-all duration-200 p-0 flex flex-col h-full">
               {/* Image Section - Principal */}
               <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 bg-muted/30 overflow-hidden">
                 <Image
@@ -113,7 +119,7 @@ export const Testimonials = () => {
                 {/* Quote Icon and Text */}
                 <div className="flex items-start gap-2 sm:gap-3 flex-1">
                   <div className="shrink-0 mt-1">
-                    <Quote className="h-4 w-4 sm:h-5 sm:w-5 text-primary/40 group-hover:text-primary/60 transition-colors duration-300" />
+                    <Quote className="h-4 w-4 sm:h-5 sm:w-5 text-primary/40 group-hover:text-primary/60 transition-colors duration-150" />
                   </div>
                   <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed italic flex-1" suppressHydrationWarning>
                     &quot;{testimonial.text}&quot;
@@ -125,7 +131,7 @@ export const Testimonials = () => {
 
                 {/* Author Info */}
                 <div className="space-y-1 sm:space-y-1.5">
-                  <div className="font-bold text-sm sm:text-base md:text-lg text-foreground group-hover:text-primary transition-colors duration-300" suppressHydrationWarning>
+                  <div className="font-bold text-sm sm:text-base md:text-lg text-foreground group-hover:text-primary transition-colors duration-150" suppressHydrationWarning>
                     {testimonial.name}
                   </div>
                   <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
@@ -134,7 +140,8 @@ export const Testimonials = () => {
                   </div>
                 </div>
               </CardContent>
-            </Card>
+              </Card>
+            </AnimatedCard>
           ))}
         </div>
       </div>

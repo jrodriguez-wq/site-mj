@@ -17,6 +17,8 @@ import emeliaData from "@/data/models/emelia.json";
 import duplexData from "@/data/models/duplex.json";
 import { cn } from "@/lib/utils";
 import { sortModelsByPrice } from "@/lib/models/model-utils";
+import { AnimatedCard } from "@/components/ui/animated-card";
+import { motion } from "framer-motion";
 
 const modelsData = sortModelsByPrice([
   louisianaData,
@@ -35,27 +37,32 @@ export const HomeModels = () => {
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
-        <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+        <motion.div 
+          className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
             {t("homeModels.title")}
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
             {t("homeModels.subtitle")}
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {modelsData.map((model, index) => {
             const mainImage = getModelMainImage(model.key);
             
             return (
-              <div
-                key={model.key}
-                className={cn(
-                  "group relative overflow-hidden border-2 rounded-xl bg-card hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col animate-fade-in-up will-change-transform"
-                )}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+              <AnimatedCard key={model.key} index={index}>
+                <div
+                  className={cn(
+                    "group relative overflow-hidden border-2 rounded-xl bg-card hover:shadow-2xl transition-all duration-200 flex flex-col h-full"
+                  )}
+                >
                 {/* Image Section - Principal - Más espacio */}
                 <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 bg-muted/30 overflow-hidden">
                   <Image
@@ -81,7 +88,7 @@ export const HomeModels = () => {
                 <div className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 flex-1 flex flex-col">
                   {/* Title and Description */}
                   <div className="space-y-2 sm:space-y-3">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-300" suppressHydrationWarning>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-150" suppressHydrationWarning>
                       {model.name}
                     </h3>
                     <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed line-clamp-3" suppressHydrationWarning>
@@ -161,12 +168,13 @@ export const HomeModels = () => {
                     <Link href={`/models/${model.key}`}>
                       <span className="flex items-center justify-center gap-2" suppressHydrationWarning>
                         {t("homeModels.viewDetails")}
-                        <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+                        <span className="group-hover/btn:translate-x-1 transition-transform duration-150">→</span>
                       </span>
                     </Link>
                   </Button>
                 </div>
-              </div>
+                </div>
+              </AnimatedCard>
             );
           })}
         </div>

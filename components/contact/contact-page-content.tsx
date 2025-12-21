@@ -10,6 +10,9 @@ import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SEO_CONFIG, SOCIAL_LINKS } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
+import { motion } from "framer-motion";
+import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+import { AnimatedSection } from "@/components/ui/animated-section";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 
@@ -44,9 +47,19 @@ export const ContactPageContent = () => {
         <div className="relative z-20 w-full h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
             <div className="max-w-4xl mx-auto">
-              <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center">
+              <motion.div 
+                className="space-y-6 sm:space-y-8 text-center"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
                 {/* Logo */}
-                <div className="flex justify-center mb-4">
+                <motion.div 
+                  className="flex justify-center mb-4"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                >
                   <div className="relative">
                     <Image
                       src="/img/logo-blanco.png"
@@ -57,42 +70,52 @@ export const ContactPageContent = () => {
                       priority
                     />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Title */}
-                <h1 
+                <motion.h1 
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white"
                   style={{
                     textShadow: "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
                   }}
                   suppressHydrationWarning
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 >
                   {t("contactForm.title") || "Contact Us"}
-                </h1>
+                </motion.h1>
 
                 {/* Subtitle */}
-                <p 
+                <motion.p 
                   className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 font-medium max-w-3xl mx-auto leading-relaxed"
                   style={{
                     textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
                   }}
                   suppressHydrationWarning
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
                   {t("contactForm.subtitle") || "Get in touch with our team for questions about our homes, Rent to Own program, or to schedule a viewing."}
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
             </div>
           </div>
         </div>
 
+        {/* Scroll Indicator */}
+        <ScrollIndicator />
+
         {/* Natural Fade Out - Smooth transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/40 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* Main Content Section */}
-      <section className="py-10 md:py-14 lg:py-18 bg-background">
-        <div className="container mx-auto px-4 sm:px-5 md:px-6">
-          <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
+      <AnimatedSection delay={0.1}>
+        <section className="py-10 md:py-14 lg:py-18 bg-background">
+          <div className="container mx-auto px-4 sm:px-5 md:px-6">
+            <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
             {/* Title */}
             <div className="text-center">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-2" suppressHydrationWarning>
@@ -306,13 +329,17 @@ export const ContactPageContent = () => {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Happy Families Gallery Section - Same gallery as home page */}
-      <HappyFamiliesGallery />
+      <AnimatedSection delay={0.1}>
+        <HappyFamiliesGallery />
+      </AnimatedSection>
 
       {/* Response Times Section - Dark Background */}
-      <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
+      <AnimatedSection delay={0.1} direction="fade">
+        <section className="py-10 md:py-14 lg:py-18 bg-foreground text-background relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -368,7 +395,8 @@ export const ContactPageContent = () => {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </div>
   );
 };

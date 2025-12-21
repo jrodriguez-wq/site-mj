@@ -2,6 +2,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "@/hooks/use-translation";
+import { motion } from "framer-motion";
+import { AnimatedCard } from "@/components/ui/animated-card";
 
 export const HowItWorks = () => {
   const { t } = useTranslation();
@@ -42,14 +44,20 @@ export const HowItWorks = () => {
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-foreground text-background">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
-        <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+        <motion.div 
+          className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
             {t("howItWorks.title")}
           </h2>
           <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
             {t("howItWorks.subtitle")}
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, index) => {
@@ -58,21 +66,19 @@ export const HowItWorks = () => {
             const nextTitle = index < steps.length - 1 ? t(steps[index + 1].titleKey) : t("howItWorks.complete");
             
             return (
-              <Card
-                key={step.number}
-                className="group relative overflow-hidden border-2 border-background/20 hover:border-primary/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 bg-background/10 hover:bg-background/15 backdrop-blur-sm h-full flex flex-col"
-              >
-                <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <AnimatedCard key={step.number} index={index}>
+                <Card className="group relative overflow-hidden border-2 border-background/20 hover:border-primary/50 transition-all duration-200 hover:shadow-xl bg-background/10 hover:bg-background/15 backdrop-blur-sm h-full flex flex-col">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 <CardHeader className="relative pb-3 sm:pb-4 p-4 sm:p-6">
                   <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
-                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground flex items-center justify-center font-black text-base sm:text-lg md:text-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground flex items-center justify-center font-black text-base sm:text-lg md:text-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-200">
                       {step.number}
                     </div>
                     <div className="flex-1 pt-1 min-w-0">
                       <div className="text-[10px] sm:text-xs font-bold text-primary/60 uppercase tracking-wider mb-1" suppressHydrationWarning>
                         {t("howItWorks.step")} {step.number}
                       </div>
-                      <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl group-hover:text-primary transition-colors duration-300 leading-tight text-background" suppressHydrationWarning>
+                      <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl group-hover:text-primary transition-colors duration-150 leading-tight text-background" suppressHydrationWarning>
                         {title}
                       </CardTitle>
                     </div>
@@ -89,7 +95,8 @@ export const HowItWorks = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
+                </Card>
+              </AnimatedCard>
             );
           })}
         </div>

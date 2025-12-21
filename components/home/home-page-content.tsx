@@ -14,25 +14,7 @@ import { CTASection } from "@/components/home/cta-section";
 import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
 import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
-import { useScrollAnimation } from "@/lib/utils/animations";
-
-const AnimatedSection = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
-  const { ref, isVisible } = useScrollAnimation();
-  
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out will-change-transform ${
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-8"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
+import { AnimatedSection } from "@/components/ui/animated-section";
 
 export const HomePageContent = () => {
   return (

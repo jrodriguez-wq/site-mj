@@ -8,6 +8,8 @@ import { CheckCircle2, Home, Mail, FileText } from "lucide-react";
 import Link from "next/link";
 import { PageContent } from "@/components/layout/page-container";
 import { useTranslation } from "@/hooks/use-translation";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { motion } from "framer-motion";
 
 function ThankYouContent() {
   const { t } = useTranslation();
@@ -34,22 +36,34 @@ function ThankYouContent() {
 
   return (
     <PageContent size="md">
-      <div className="space-y-8">
-        <div className="text-center space-y-4">
-          <div className="flex justify-center mb-6">
-            <div className="p-4 bg-primary/10 rounded-full">
-              <CheckCircle2 className="h-16 w-16 text-primary" />
-            </div>
-          </div>
+      <AnimatedSection delay={0}>
+        <div className="space-y-8">
+          <motion.div 
+            className="text-center space-y-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <motion.div 
+              className="flex justify-center mb-6"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+            >
+              <div className="p-4 bg-primary/10 rounded-full">
+                <CheckCircle2 className="h-16 w-16 text-primary" />
+              </div>
+            </motion.div>
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
             {t(config.titleKey) || "Thank You!"}
           </h1>
           <p className="text-xl text-muted-foreground" suppressHydrationWarning>
             {t(config.subtitleKey) || "We've received your message"}
           </p>
-        </div>
+          </motion.div>
 
-        <Card className="max-w-2xl mx-auto">
+          <AnimatedSection delay={0.15}>
+            <Card className="max-w-2xl mx-auto">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
               <div className="p-3 bg-primary/10 rounded-lg">
@@ -96,7 +110,9 @@ function ThankYouContent() {
             </div>
           </CardContent>
         </Card>
+        </AnimatedSection>
       </div>
+      </AnimatedSection>
     </PageContent>
   );
 }

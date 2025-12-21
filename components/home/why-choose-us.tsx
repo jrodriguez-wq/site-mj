@@ -4,6 +4,7 @@ import Image from "next/image";
 import { TrendingUp, Home, DollarSign, Award, CheckCircle2 } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
@@ -43,7 +44,13 @@ export const WhyChooseUs = () => {
         {/* Main Layout - Split Design */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Image with Integrated Stats */}
-          <div className="relative order-2 lg:order-1">
+          <motion.div 
+            className="relative order-2 lg:order-1"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/img/hero/1w5a0741-1.webp"
@@ -104,10 +111,16 @@ export const WhyChooseUs = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Content */}
-          <div className="space-y-8 order-1 lg:order-2">
+          <motion.div 
+            className="space-y-8 order-1 lg:order-2"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
             <div className="space-y-6">
               <div>
                 <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.1] mb-6" suppressHydrationWarning>
@@ -149,7 +162,7 @@ export const WhyChooseUs = () => {
                 <span suppressHydrationWarning>{t("hero.applyNow")}</span>
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

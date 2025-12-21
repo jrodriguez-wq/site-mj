@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModelBadge } from "./model-badge";
 import { useTranslation } from "@/hooks/use-translation";
+import { motion } from "framer-motion";
+import { AnimatedCard } from "@/components/ui/animated-card";
 
 export interface ModelCardProps {
   modelKey: string;
@@ -158,16 +160,20 @@ const ModelCardComponent = (props: ModelCardProps) => {
   return (
     <>
       {/* Main Card Container */}
-      <div ref={ref} className="relative w-full group">
-        {/* Gradient Border Effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
+      <AnimatedCard index={initialDelay / 100} className="relative w-full">
+        <div ref={ref} className="relative w-full group">
+          {/* Gradient Border Effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-200" />
 
-        <div className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 sm:hover:-translate-y-2">
+          <motion.div 
+            className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-200 hover:shadow-2xl"
+            whileHover={{ y: -6, transition: { duration: 0.2 } }}
+          >
           {/* Image Carousel */}
           <div className="relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div
               className={cn(
-                "flex transition-transform duration-700 ease-out h-full",
+                "flex transition-transform duration-300 ease-out h-full",
                 hasMultipleImages && "transform"
               )}
               style={
@@ -360,21 +366,22 @@ const ModelCardComponent = (props: ModelCardProps) => {
               </div>
               <Button
                 asChild
-                className="relative w-full sm:w-auto bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm md:text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden shrink-0"
+                className="relative w-full sm:w-auto bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm md:text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-200 flex items-center justify-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden shrink-0"
               >
                 <Link href={modelLink}>
                   <span className="relative z-10 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
                     <span className="hidden sm:inline" suppressHydrationWarning>{displayViewDetailsLabel}</span>
                     <span className="sm:hidden" suppressHydrationWarning>{displayViewMoreLabel}</span>
-                    <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300 flex-shrink-0" />
+                    <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-150 flex-shrink-0" />
                   </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
                 </Link>
               </Button>
             </div>
           </div>
+        </motion.div>
         </div>
-      </div>
+      </AnimatedCard>
 
       {/* Gallery Modal - Simplified for mobile, full for desktop */}
       {isGalleryOpen && (
@@ -656,14 +663,14 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 <div className="flex flex-col gap-3 pt-6 border-t border-border">
                   <Button
                     asChild
-                    className="relative w-full bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground py-4 px-8 rounded-2xl font-bold text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 group hover:scale-105 border-2 border-primary/20 hover:border-primary/50 overflow-hidden"
+                    className="relative w-full bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground py-4 px-8 rounded-2xl font-bold text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-200 group hover:scale-105 border-2 border-primary/20 hover:border-primary/50 overflow-hidden"
                   >
                     <Link href={modelLink} onClick={closeGallery}>
                       <span className="relative z-10 flex items-center justify-center gap-2">
                         {viewDetailsLabel}
-                        <Maximize2 className="w-5 h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-300" />
+                        <Maximize2 className="w-5 h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-150" />
                       </span>
-                      <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                      <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
                     </Link>
                   </Button>
                 </div>

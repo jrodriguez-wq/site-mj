@@ -6,6 +6,9 @@ import { CommunityModelsSection } from "@/components/communities/community-model
 import { CommunityPageContent } from "@/components/communities/community-page-content";
 import { useTranslation } from "@/hooks/use-translation";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { ScrollIndicator } from "@/components/ui/scroll-indicator";
+import { AnimatedSection } from "@/components/ui/animated-section";
 
 const lehighAcresImages = [
   "/recursos/shutterstock-1197062707.webp",
@@ -71,38 +74,59 @@ export default function LehighAcresPage() {
         <div className="relative z-20 w-full h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
             <div className="max-w-4xl">
-              <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
+              <motion.div 
+                className="space-y-6 sm:space-y-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
                 {/* Badge */}
-                <div className="inline-block">
+                <motion.div 
+                  className="inline-block"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                >
                   <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full border border-primary/40" suppressHydrationWarning>
                     {t("communities.lehighAcres.hero.badge") || t("communities.lehighAcres.country.title")}
                   </span>
-                </div>
+                </motion.div>
 
                 {/* Title */}
-                <h1 
+                <motion.h1 
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white"
                   style={{
                     textShadow: "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
                   }}
                   suppressHydrationWarning
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 >
                   {t("communities.lehighAcres.country.subtitle") || "Lehigh Acres"}
-                </h1>
+                </motion.h1>
 
                 {/* Subtitle */}
-                <p 
+                <motion.p 
                   className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 font-medium max-w-3xl leading-relaxed"
                   style={{
                     textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
                   }}
                   suppressHydrationWarning
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
                   {t("communities.lehighAcres.hero.subtitle") || "Your Perfect Home Awaits in Southwest Florida"}
-                </p>
+                </motion.p>
 
                 {/* CTA Button */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
+                <motion.div 
+                  className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                >
                   <Button
                     onClick={(e) => {
                       e.preventDefault();
@@ -128,47 +152,61 @@ export default function LehighAcresPage() {
                     </span>
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   </Button>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
 
+        {/* Scroll Indicator */}
+        <ScrollIndicator 
+          onClick={() => {
+            const modelsSection = document.getElementById("models-section");
+            if (modelsSection) {
+              modelsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }}
+        />
+
         {/* Natural Fade Out - Smooth transition */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 sm:h-48 md:h-56 bg-gradient-to-t from-background via-background/40 to-transparent z-10 pointer-events-none" />
       </section>
 
-      <CommunityPageContent
-        aboutTitle={t("communities.lehighAcres.about.title")}
-        aboutDescription={t("communities.lehighAcres.about.fullDescription")}
-        activitiesTitle={t("communities.lehighAcres.activities.title")}
-        activities={lehighAcresActivities}
-        features={[
-          { icon: "Square", label: t("communities.lehighAcres.features.spaciousLots") },
-          { icon: "Home", label: t("communities.lehighAcres.features.greatSchools") },
-          { icon: "Car", label: t("communities.lehighAcres.features.primeLocation") },
-        ]}
-        futureTitle={t("communities.lehighAcres.future.title")}
-        futureDescription={t("communities.lehighAcres.future.description")}
-        scheduleTitle={t("communities.lehighAcres.schedule.title")}
-        scheduleDescription={t("communities.lehighAcres.schedule.description")}
-        scheduleButton={t("communities.lehighAcres.schedule.button")}
-        galleryTitle={t("communities.lehighAcres.gallery.title")}
-        galleryDescription={t("communities.lehighAcres.gallery.description")}
-        galleryImages={lehighAcresImages}
-        ctaTitle={t("communities.lehighAcres.cta.title")}
-        ctaDescription={t("communities.lehighAcres.cta.description")}
-        ctaButton={t("communities.lehighAcres.cta.button")}
-      />
+      <AnimatedSection delay={0.1}>
+        <CommunityPageContent
+          aboutTitle={t("communities.lehighAcres.about.title")}
+          aboutDescription={t("communities.lehighAcres.about.fullDescription")}
+          activitiesTitle={t("communities.lehighAcres.activities.title")}
+          activities={lehighAcresActivities}
+          features={[
+            { icon: "Square", label: t("communities.lehighAcres.features.spaciousLots") },
+            { icon: "Home", label: t("communities.lehighAcres.features.greatSchools") },
+            { icon: "Car", label: t("communities.lehighAcres.features.primeLocation") },
+          ]}
+          futureTitle={t("communities.lehighAcres.future.title")}
+          futureDescription={t("communities.lehighAcres.future.description")}
+          scheduleTitle={t("communities.lehighAcres.schedule.title")}
+          scheduleDescription={t("communities.lehighAcres.schedule.description")}
+          scheduleButton={t("communities.lehighAcres.schedule.button")}
+          galleryTitle={t("communities.lehighAcres.gallery.title")}
+          galleryDescription={t("communities.lehighAcres.gallery.description")}
+          galleryImages={lehighAcresImages}
+          ctaTitle={t("communities.lehighAcres.cta.title")}
+          ctaDescription={t("communities.lehighAcres.cta.description")}
+          ctaButton={t("communities.lehighAcres.cta.button")}
+        />
+      </AnimatedSection>
 
-      <div id="models-section" className="py-10 md:py-14 lg:py-18">
+      <AnimatedSection delay={0.1}>
+        <div id="models-section" className="py-10 md:py-14 lg:py-18">
         <CommunityModelsSection
           modelKeys={lehighAcresModels.map((m) => m.key)}
           title={t("communities.lehighAcres.models.title")}
           subtitle={t("communities.lehighAcres.models.subtitle")}
           community="lehigh-acres"
         />
-      </div>
+        </div>
+      </AnimatedSection>
     </div>
   );
 }

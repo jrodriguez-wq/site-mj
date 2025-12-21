@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
 import { MODEL_FLOORPLANS } from "@/lib/models/model-images";
+import { AnimatedSection } from "@/components/ui/animated-section";
 
 interface ModelPageContentProps {
   modelData: ModelData & { images: string[] };
@@ -81,8 +82,9 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
     <PageContent size="xl">
       <div className="space-y-8 sm:space-y-10 md:space-y-12">
           {/* Hero Section */}
-          <div className="relative animate-fade-in-scale">
-          <div className="relative h-[50vh] sm:h-[55vh] md:h-[60vh] min-h-[400px] sm:min-h-[450px] md:min-h-[500px] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          <AnimatedSection delay={0}>
+            <div className="relative">
+              <div className="relative h-[50vh] sm:h-[55vh] md:h-[60vh] min-h-[400px] sm:min-h-[450px] md:min-h-[500px] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             {images.length > 0 ? (
               <>
                 <Image
@@ -171,14 +173,16 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+            </div>
+            </div>
+          </AnimatedSection>
 
         {/* Model Information Section */}
-        <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+        <AnimatedSection delay={0.1}>
+          <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12">
           <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
             {/* Price Card - Featured */}
-            <Card className="lg:col-span-1 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+            <Card className="lg:col-span-1 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-200">
               <CardHeader className="p-5 sm:p-6">
                 <CardDescription className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
                   {t("homeModels.modelPage.startingPrice")}
@@ -207,10 +211,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Features Grid - Optimized and Centered */}
             <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Square className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
                     <div className="w-full">
@@ -223,10 +227,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Bed className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
                     <div className="w-full">
@@ -239,10 +243,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Bath className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
                     <div className="w-full">
@@ -255,10 +259,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Car className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
                     <div className="w-full">
@@ -272,10 +276,12 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
               </Card>
             </div>
           </div>
-        </section>
+          </section>
+        </AnimatedSection>
 
         {/* Description Section */}
-        <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+        <AnimatedSection delay={0.15}>
+          <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-16">
           <div className="space-y-4 sm:space-y-6">
             <div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" suppressHydrationWarning>{t("homeModels.modelPage.aboutThisModel")}</h2>
@@ -287,10 +293,12 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
               </CardContent>
             </Card>
           </div>
-        </section>
+          </section>
+        </AnimatedSection>
 
         {/* Tabs Section */}
-        <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+        <AnimatedSection delay={0.15}>
+          <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <div className="mb-6 sm:mb-8 md:mb-12">
               <TabsList className="inline-flex h-auto p-1 sm:p-1.5 bg-muted/50 rounded-xl border border-border/50 shadow-sm w-full md:w-auto">
@@ -357,7 +365,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       key={index}
                       onClick={() => openGallery(index)}
                       onKeyDown={(e) => handleKeyDown(e, () => openGallery(index))}
-                      className="relative aspect-video rounded-lg overflow-hidden group hover:scale-105 transition-transform duration-300"
+                      className="relative aspect-video rounded-lg overflow-hidden group hover:scale-105 transition-transform duration-200"
                       aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
                       type="button"
                     >
@@ -388,7 +396,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       key={index}
                       onClick={() => openGallery(insideImages.length + index)}
                       onKeyDown={(e) => handleKeyDown(e, () => openGallery(insideImages.length + index))}
-                      className="relative aspect-video rounded-lg overflow-hidden group hover:scale-105 transition-transform duration-300"
+                      className="relative aspect-video rounded-lg overflow-hidden group hover:scale-105 transition-transform duration-200"
                       aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
                       type="button"
                     >
@@ -561,10 +569,12 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
               </TabsContent>
             )}
           </Tabs>
-        </section>
+          </section>
+        </AnimatedSection>
 
         {/* Request Info Section */}
-        <section className="py-8 sm:py-10 md:py-12 lg:py-16 mt-10 sm:mt-12 md:mt-16 lg:mt-20 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+        <AnimatedSection delay={0.2}>
+          <section className="py-8 sm:py-10 md:py-12 lg:py-16 mt-10 sm:mt-12 md:mt-16 lg:mt-20">
           <Card className="max-w-2xl mx-auto">
             <CardHeader className="p-4 sm:p-6">
               <CardTitle className="text-2xl sm:text-3xl text-center" suppressHydrationWarning>{t("homeModels.modelPage.requestInfo.title")}</CardTitle>
@@ -585,7 +595,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
               />
             </CardContent>
           </Card>
-        </section>
+          </section>
+        </AnimatedSection>
       </div>
     </PageContent>
 

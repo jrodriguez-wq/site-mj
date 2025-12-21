@@ -7,6 +7,8 @@ import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { MapPin, Phone, ExternalLink, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map } from "lucide-react";
 import { CONTACT_INFO } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { motion } from "framer-motion";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 const googleMapsUrl = "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8";
@@ -25,10 +27,11 @@ export const ScheduleAppointmentContent = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
       {/* Hero Section - Moderno y llamativo */}
-      <section className="relative py-16 md:py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
+      <AnimatedSection delay={0}>
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent" />
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <div className="text-center space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
               <Calendar className="h-4 w-4" />
               <span suppressHydrationWarning>{t("scheduleAppointment.title")}</span>
@@ -39,12 +42,14 @@ export const ScheduleAppointmentContent = () => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
               {t("scheduleAppointment.heroSubtitle")}
             </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Main Content - Formulario como elemento principal */}
-      <section className="py-8 md:py-12 pb-16 md:pb-24">
+      <AnimatedSection delay={0.1}>
+        <section className="py-8 md:py-12 pb-16 md:pb-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid gap-8 lg:grid-cols-3">
@@ -265,7 +270,8 @@ export const ScheduleAppointmentContent = () => {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </div>
   );
 };

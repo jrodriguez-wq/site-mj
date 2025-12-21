@@ -427,7 +427,7 @@ export default function ModelsPage() {
                 className="grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 grid-cols-1 md:grid-cols-2 w-full" 
                 suppressHydrationWarning
               >
-                {filteredModels.map((model) => {
+                {filteredModels.map((model, index) => {
                   // Extraer el key base del modelo (sin el sufijo de comunidad)
                   const baseKey = model.key.split("-")[0] as keyof typeof MODEL_CONFIG;
                   const config = MODEL_CONFIG[baseKey];
@@ -435,7 +435,7 @@ export default function ModelsPage() {
                   const mainImage = getModelMainImage(baseKey);
                   // Disable auto carousel for better performance
                   const carouselInterval = 0; // Disabled
-                  const initialDelay = 0;
+                  const initialDelay = index * 80; // Stagger delay for animations
 
                   // Convertir badges con labelKey a badges con label traducida
                   const translatedBadges = config?.badges?.map(badge => ({
