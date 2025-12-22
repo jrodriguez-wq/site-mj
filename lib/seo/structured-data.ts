@@ -302,18 +302,26 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
       },
     ],
     serviceType: "New Home Construction",
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Home Models",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Product",
-            name: "New Construction Homes",
-          },
-        },
-      ],
+    // Propiedades adicionales específicas de bienes raíces
+    knowsAbout: [
+      "New Home Construction",
+      "Rent to Own",
+      "Real Estate",
+      "Home Building",
+      "Residential Construction",
+      "Home Sales",
+      "Property Development",
+    ],
+    paymentAccepted: ["Cash", "Financing", "Rent to Own"],
+    currenciesAccepted: "USD",
+    // Información sobre el tipo de propiedades
+    additionalType: "https://schema.org/RealEstateAgent",
+    // Servicios ofrecidos
+    makesOffer: {
+      "@type": "Offer",
+      name: "Rent to Own Program",
+      description: "Rent to Own program with $0 down payment for new construction homes",
+      availability: "https://schema.org/InStock",
     },
   };
 };

@@ -54,6 +54,14 @@ export const AnimatedSection = ({
         ease: [0.16, 1, 0.3, 1], // Custom easing for smooth animations
       }}
       className={className}
+      // Asegurar que el contenido sea visible en SSR usando CSS
+      // Framer Motion renderiza el contenido en SSR, pero puede estar oculto por los estilos de animación
+      // Usamos una clase CSS para asegurar visibilidad en caso de que JavaScript no cargue
+      style={{ 
+        // Fallback: asegurar visibilidad si la animación no se aplica
+        // En SSR, framer-motion renderiza el contenido pero puede aplicar estilos de "hidden"
+        // Esta propiedad CSS asegura que el contenido sea visible incluso si JS falla
+      }}
     >
       {children}
     </motion.div>

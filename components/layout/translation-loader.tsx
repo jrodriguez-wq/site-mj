@@ -6,15 +6,22 @@ import { useLanguageStore } from "@/store/language-store";
 /**
  * TranslationLoader: Asegura que las traducciones estén cargadas antes de renderizar hijos
  * Esto previene que los componentes se rendericen con claves sin traducir
+ * 
+ * IMPORTANTE: Siempre renderiza el contenido para bots de búsqueda (SSR)
+ * Solo espera traducciones en el cliente para evitar mostrar claves sin traducir
  */
 export function TranslationLoader({ children }: { children: React.ReactNode }) {
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(true); // Iniciar como true para SSR
+  const [isClient, setIsClient] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const translations = useLanguageStore((state) => state.translations);
   const isLoading = useLanguageStore((state) => state.isLoading);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
 
   useEffect(() => {
+    // Marcar que estamos en el cliente
+    setIsClient(true);
+
     // Limpiar timeout si existe
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -55,13 +62,19 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
     };
   }, [translations, isLoading, setLanguage]);
 
-  // Renderizar cuando esté listo
+  // CRÍTICO: Siempre renderizar en SSR (cuando no estamos en el cliente)
+  // Esto permite que Googlebot y otros crawlers vean el contenido
+  if (!isClient) {
+    return <>{children}</>;
+  }
+
+  // En el cliente, renderizar cuando esté listo
   if (isReady || (!isLoading && translations && Object.keys(translations).length > 0)) {
     return <>{children}</>;
   }
 
-  // Mientras se cargan, no renderizar nada para evitar mostrar claves sin traducir
+  // Mientras se cargan en el cliente, renderizar de todos modos para evitar página vacía
   // El timeout asegura que eventualmente se renderice
-  return null;
+  return <>{children}</>;
 }
 

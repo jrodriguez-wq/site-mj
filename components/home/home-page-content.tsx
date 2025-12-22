@@ -1,5 +1,3 @@
-"use client";
-
 import { HeroSlider } from "@/components/home/hero-slider";
 import { InfiniteTextCarousel } from "@/components/home/infinite-text-carousel";
 import { Features } from "@/components/home/features";

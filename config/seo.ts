@@ -70,34 +70,12 @@ export const SOCIAL_LINKS = {
   website: "https://www.mjnewellhomes.com",
 } as const;
 
-// Keywords principales
-export const KEYWORDS = [
-  "M.J. Newell Homes",
-  "new homes Florida",
-  "rent to own Florida",
-  "rent to own program",
-  "new construction homes",
-  "LaBelle Florida homes",
-  "Lehigh Acres Florida homes",
-  "Southwest Florida real estate",
-  "South Florida homes",
-  "new home construction",
-  "zero down payment",
-  "$0 down payment",
-  "affordable homes Florida",
-  "family homes Florida",
-  "new home builder",
-  "Florida real estate",
-  "new homes for sale Florida",
-  "rent to own homes",
-  "rent to own houses",
-  "new construction Florida",
-  "home builder LaBelle",
-  "home builder Lehigh Acres",
-  "custom homes Florida",
-  "pre-built homes Florida",
-  "move-in ready homes",
-] as const;
+// Importar keywords estratégicas del sistema completo
+import { getAllKeywords, getPriorityKeywords } from "./keywords";
+
+// Keywords principales (compatibilidad con código existente)
+// Ahora usa el sistema completo de 200+ keywords
+export const KEYWORDS = getAllKeywords();
 
 // Keywords específicos de ubicación para SEO local
 export const LOCATION_KEYWORDS = [
