@@ -51,7 +51,7 @@ export const HolidayOverlay = () => {
   return (
     <DialogPrimitive.Overlay
       className={cn(
-        "fixed inset-0 z-50",
+        "fixed inset-0 z-[150]",
         "bg-gradient-to-b from-black/80 via-black/70 to-black/80",
         "backdrop-blur-sm",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",

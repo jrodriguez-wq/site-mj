@@ -118,6 +118,8 @@ export const PromotionModal = memo(() => {
           "min-h-[320px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] xl:min-h-[550px]",
           // Posicionamiento
           "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+          // Z-index para estar por encima del navbar
+          "z-[160]",
           // Estilo
           "p-0 m-0 gap-0",
           "border-0 rounded-xl sm:rounded-2xl",

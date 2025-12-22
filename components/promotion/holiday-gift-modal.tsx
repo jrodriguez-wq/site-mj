@@ -364,7 +364,7 @@ export const HolidayGiftModal = ({
 
       {/* Overlay de premio (para three-gifts) */}
       {showPrize && variant === "three-gifts" && (
-        <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
+        <div className="absolute inset-0 z-[170] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
           <div className="bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl border-2 sm:border-4 border-yellow-300 animate-prizeIn max-w-[90%] sm:max-w-md">
             <div className="text-center space-y-2 sm:space-y-3 md:space-y-4">
               <p className="text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-3">🎉</p>

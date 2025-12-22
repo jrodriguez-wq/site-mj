@@ -8,6 +8,43 @@ export const useConfetti = (trigger: boolean) => {
   const previousTriggerRef = useRef<boolean | undefined>(undefined);
 
   useEffect(() => {
+    // Configurar z-index alto para todos los canvas de confeti
+    // canvas-confetti crea canvas directamente en el body
+    const setConfettiCanvasZIndex = () => {
+      // Buscar todos los canvas en el body que sean de confeti
+      const allCanvases = document.querySelectorAll('body > canvas');
+      allCanvases.forEach((canvas) => {
+        const htmlCanvas = canvas as HTMLCanvasElement;
+        // Aplicar estilos para que el confeti esté por encima de todo
+        htmlCanvas.style.position = 'fixed';
+        htmlCanvas.style.top = '0';
+        htmlCanvas.style.left = '0';
+        htmlCanvas.style.width = '100%';
+        htmlCanvas.style.height = '100%';
+        htmlCanvas.style.pointerEvents = 'none';
+        htmlCanvas.style.zIndex = '200';
+      });
+    };
+
+    // Configurar z-index para canvas existentes
+    setConfettiCanvasZIndex();
+
+    // Usar MutationObserver para detectar nuevos canvas añadidos al DOM
+    const observer = new MutationObserver(() => {
+      setConfettiCanvasZIndex();
+    });
+
+    // Observar cambios en el body (donde canvas-confetti añade los canvas)
+    if (typeof window !== 'undefined' && document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: false,
+      });
+    }
+
+    // También usar un intervalo como respaldo para asegurar que se aplique
+    const zIndexInterval = setInterval(setConfettiCanvasZIndex, 200);
+
     // Solo disparar cuando el trigger cambia de false a true
     const wasFalse = previousTriggerRef.current === false;
     const isNowTrue = trigger === true;
@@ -21,6 +58,8 @@ export const useConfetti = (trigger: boolean) => {
 
       // Pequeño delay para asegurar que el DOM esté listo
       setTimeout(() => {
+        // Configurar z-index antes de disparar confeti
+        setConfettiCanvasZIndex();
         // Colores navideños vibrantes
         const colors = ["#FFD700", "#FFA500", "#FF6347", "#FF1493", "#00CED1", "#32CD32", "#FF69B4", "#FF4500"];
 
@@ -93,6 +132,11 @@ export const useConfetti = (trigger: boolean) => {
       // Permitir que se dispare de nuevo cuando vuelva a true
       hasFiredRef.current = false;
     }
+
+    return () => {
+      observer.disconnect();
+      clearInterval(zIndexInterval);
+    };
   }, [trigger]);
 };
 

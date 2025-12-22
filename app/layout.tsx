@@ -161,7 +161,7 @@ export default function RootLayout({
         <TranslationLoader>
           <div className="flex min-h-screen flex-col w-full max-w-full">
             <Navbar />
-            <main className="flex-1 w-full max-w-full" id="main-content">{children}</main>
+            <main className="flex-1 w-full max-w-full pt-16 sm:pt-[4.5rem] md:pt-20 lg:pt-24" id="main-content">{children}</main>
             <Footer />
           </div>
         </TranslationLoader>

@@ -395,7 +395,7 @@ export const HolidayLeverModal = ({
 
       {/* Overlay de premio ganado - Muy llamativo y promocional */}
       {showResult && (
-        <div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md animate-fadeIn">
+        <div className="absolute inset-0 z-[170] flex items-center justify-center bg-black/70 backdrop-blur-md animate-fadeIn">
           {/* Efectos de brillo de fondo */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-400/20 rounded-full blur-3xl animate-pulse" />
