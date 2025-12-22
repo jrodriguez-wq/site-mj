@@ -222,7 +222,7 @@ const GiantGift = ({
 export const HolidayGiftModal = ({
   onClose,
   variant = "three-gifts",
-  houseImage = "/img/LouisiNav.jpeg",
+  houseImage = "/img/louisinav.webp",
 }: HolidayGiftModalProps) => {
   const [selectedGift, setSelectedGift] = useState<number | null>(null);
   const [positions, setPositions] = useState([0, 1, 2]);

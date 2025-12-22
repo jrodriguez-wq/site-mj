@@ -20,10 +20,10 @@ const preloadModalImages = (modalType: ModalType, giftVariant?: GiftVariant) => 
   
   if (modalType === "gift") {
     if (giftVariant === "giant-gift") {
-      imagesToPreload.push("/img/LouisiNav.jpeg");
+      imagesToPreload.push("/img/louisinav.webp");
     }
   } else if (modalType === "lever") {
-    imagesToPreload.push("/img/Navidad.jpeg");
+    imagesToPreload.push("/img/navidad.webp");
   }
   
   return Promise.all(

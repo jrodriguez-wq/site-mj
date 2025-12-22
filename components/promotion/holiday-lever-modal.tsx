@@ -216,7 +216,7 @@ const Lever = ({
 
 export const HolidayLeverModal = ({
   onClose,
-  houseImage = "/img/Navidad.jpeg",
+  houseImage = "/img/navidad.webp",
 }: HolidayLeverModalProps) => {
   const [leverPulled, setLeverPulled] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
