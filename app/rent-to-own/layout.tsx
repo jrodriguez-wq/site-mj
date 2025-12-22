@@ -4,7 +4,7 @@ import { SEO_CONFIG } from "@/config/seo";
 
 export const metadata: Metadata = generateSEOMetadata({
   title: "Rent to Own Program | $0 Down Payment | M.J. Newell Homes",
-  description: "Rent to Own program with $0 down payment. Build equity while you live. Flexible 1-5 year plans. No credit check required. Available in LaBelle and Lehigh Acres, Florida.",
+  description: "An exclusive program designed to help YOU become a homeowner. Rent to Own with $0 down payment. Build equity while you live. Flexible 1-5 year plans. No credit check required. Available in LaBelle and Lehigh Acres, Florida.",
   canonical: `${SEO_CONFIG.siteUrl}/rent-to-own`,
   keywords: [
     "rent to own",
@@ -25,7 +25,7 @@ export const metadata: Metadata = generateSEOMetadata({
   ],
   openGraph: {
     title: "Rent to Own Program | $0 Down Payment | M.J. Newell Homes",
-    description: "Rent to Own program with $0 down payment. Build equity while you live. Flexible 1-5 year plans. No credit check required.",
+    description: "An exclusive program designed to help YOU become a homeowner. Rent to Own with $0 down payment. Build equity while you live. Flexible 1-5 year plans. No credit check required.",
     url: `${SEO_CONFIG.siteUrl}/rent-to-own`,
     type: "website",
   },

@@ -237,9 +237,9 @@ export default function RentToOwnPage() {
                       "hover:scale-105 active:scale-100"
                     )}
                   >
-                    <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`} className="flex items-center gap-2" suppressHydrationWarning>
+                    <Link href="/contact" className="flex items-center gap-2" suppressHydrationWarning>
                       {t("rentToOwn.hero.cta.secondary")}
-                    </a>
+                    </Link>
                   </Button>
                 </motion.div>
               </motion.div>

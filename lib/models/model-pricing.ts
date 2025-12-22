@@ -13,8 +13,8 @@ import { Community, ModelPricing } from "@/types/model";
 export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
   labelle: {
     langdon: {
-      price: "$317,900",
-      rtoPrice: "$2,700 / Mo",
+      price: "$316,900",
+      rtoPrice: "$2,700/mo",
       sqft: "1,900",
       bedrooms: "3",
       bathrooms: "2",
@@ -22,7 +22,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     emelia: {
       price: "$345,000",
-      rtoPrice: "$2,750 / Mo",
+      rtoPrice: "$2,750/mo",
       sqft: "2,060",
       bedrooms: "3",
       bathrooms: "2",
@@ -30,7 +30,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     aurora: {
       price: "$359,900",
-      rtoPrice: "$2,900 / Mo",
+      rtoPrice: "$2,900/mo",
       sqft: "2,227",
       bedrooms: "4",
       bathrooms: "3",
@@ -38,7 +38,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     delanie: {
       price: "$369,900",
-      rtoPrice: "$2,900 / Mo",
+      rtoPrice: "$2,900/mo",
       sqft: "2,610",
       bedrooms: "4",
       bathrooms: "3",
@@ -46,7 +46,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     viana: {
       price: "$449,900",
-      rtoPrice: "$3,400 / Mo",
+      rtoPrice: "$3,400/mo",
       sqft: "2,978",
       bedrooms: "4",
       bathrooms: "3",
@@ -54,7 +54,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     louisiana: {
       price: "$469,900",
-      rtoPrice: "$3,400 / Mo",
+      rtoPrice: "$3,400/mo",
       sqft: "3,277",
       bedrooms: "4",
       bathrooms: "3",
@@ -64,7 +64,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
   "lehigh-acres": {
     langdon: {
       price: "$346,900",
-      rtoPrice: "$2,750 / Mo",
+      rtoPrice: "$2,750/mo",
       sqft: "1,900",
       bedrooms: "3",
       bathrooms: "2",
@@ -72,7 +72,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     emelia: {
       price: "$374,900",
-      rtoPrice: "$2,850 / Mo",
+      rtoPrice: "$2,850/mo",
       sqft: "2,060",
       bedrooms: "3",
       bathrooms: "2",
@@ -80,7 +80,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     delanie: {
       price: "$410,000",
-      rtoPrice: "$3,150 / Mo",
+      rtoPrice: "$3,150/mo",
       sqft: "2,610",
       bedrooms: "4",
       bathrooms: "3",
@@ -88,7 +88,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     duplex: {
       price: "$510,000",
-      rtoPrice: "$2,000 / Mo",
+      rtoPrice: "$2,000/mo",
       sqft: "2,898",
       bedrooms: "6",
       bathrooms: "4",
