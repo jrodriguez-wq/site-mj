@@ -18,7 +18,7 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 
 export const HomePageContent = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full max-w-full">
       {/* 1. Hero Section - First impression with call to action */}
       <HeroSlider />
 

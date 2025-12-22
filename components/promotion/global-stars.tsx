@@ -11,6 +11,7 @@ const generateStars = (count: number) => {
     size: Math.random() * 4 + 2,
     delay: Math.random() * 2,
     opacity: Math.random() * 0.5 + 0.3,
+    duration: Math.random() * 2 + 2,
   }));
 };
 
@@ -25,10 +26,21 @@ const StarIcon = () => (
 );
 
 export const GlobalStars = () => {
-  const stars = useMemo(() => generateStars(30), []);
+  // Solo generar estrellas en el cliente usando lazy initialization
+  const stars = useMemo(() => {
+    if (typeof window === "undefined") {
+      return [];
+    }
+    return generateStars(30);
+  }, []);
+
+  // Si no hay estrellas (servidor), no renderizar nada
+  if (stars.length === 0) {
+    return null;
+  }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-40" suppressHydrationWarning>
       {stars.map((star) => (
         <div
           key={star.id}
@@ -40,7 +52,7 @@ export const GlobalStars = () => {
             height: `${star.size}px`,
             opacity: star.opacity,
             animationDelay: `${star.delay}s`,
-            animationDuration: `${2 + Math.random() * 2}s`,
+            animationDuration: `${star.duration}s`,
           }}
         >
           <StarIcon />

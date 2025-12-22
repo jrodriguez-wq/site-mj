@@ -40,7 +40,9 @@ export const Navbar = () => {
 
   // Track mount state to prevent hydration mismatches
   useEffect(() => {
-    setIsMounted(true);
+    setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
   }, []);
 
   // Memoize navigation items to prevent hydration mismatches
@@ -342,11 +344,12 @@ export const Navbar = () => {
                     {/* Premium Dropdown Menu */}
                     {isOpen && (
                       <div 
-                        className="absolute top-full left-0 mt-2 w-[420px] min-w-[420px] max-w-[420px] lg:w-[480px] lg:min-w-[480px] lg:max-w-[480px] rounded-xl border border-border/30 bg-background/98 backdrop-blur-2xl shadow-[0_20px_60px_-12px_rgba(0,0,0,0.15)] overflow-hidden animate-in fade-in-0 zoom-in-95 slide-in-from-top-3 duration-300"
+                        className="absolute top-full left-0 mt-2 w-[420px] min-w-[280px] lg:w-[480px] lg:min-w-[480px] rounded-xl border border-border/30 bg-background/98 backdrop-blur-2xl shadow-[0_20px_60px_-12px_rgba(0,0,0,0.15)] overflow-hidden animate-in fade-in-0 zoom-in-95 slide-in-from-top-3 duration-300"
                         role="menu"
                         aria-label={`${item.title} submenu`}
                         onMouseEnter={handleDropdownMouseEnter}
                         onMouseLeave={handleDropdownMouseLeave}
+                        style={{ maxWidth: 'min(480px, calc(100vw - 2rem))' }}
                       >
                         {/* Elegant gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />

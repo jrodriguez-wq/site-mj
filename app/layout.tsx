@@ -153,15 +153,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} ${pacifico.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} ${pacifico.variable}`}
         suppressHydrationWarning
       >
         <StructuredDataComponent data={structuredData} />
         <LanguageProvider />
         <TranslationLoader>
-          <div className="flex min-h-screen flex-col">
+          <div className="flex min-h-screen flex-col w-full max-w-full">
             <Navbar />
-            <main className="flex-1" id="main-content">{children}</main>
+            <main className="flex-1 w-full max-w-full" id="main-content">{children}</main>
             <Footer />
           </div>
         </TranslationLoader>

@@ -57,7 +57,7 @@ const SlotMachine = ({
 
         {/* Ventana del slot con mejor diseño */}
         <div 
-          className="relative w-64 sm:w-72 md:w-80 h-24 sm:h-28 md:h-32 bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-2xl overflow-hidden border-2 border-yellow-500/50"
+          className="relative w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-20 sm:h-24 md:h-28 lg:h-32 bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-yellow-500/50"
           style={{
             boxShadow: 'inset 0 4px 8px rgba(0,0,0,0.8), inset 0 -4px 8px rgba(0,0,0,0.8)',
           }}
@@ -99,7 +99,7 @@ const SlotMachine = ({
               >
                 <p
                   className={`
-                    text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-center leading-tight px-2
+                    text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-black text-center leading-tight px-1 sm:px-2
                     transition-all duration-300
                     ${showWin && index === 0 
                       ? "text-yellow-300 drop-shadow-[0_0_20px_rgba(250,204,21,1),0_0_40px_rgba(250,204,21,0.6)] scale-105" 
@@ -150,7 +150,7 @@ const Lever = ({
   onPull: () => void;
 }) => {
   return (
-    <div className="relative h-36 sm:h-44 flex items-center">
+    <div className="relative h-28 sm:h-32 md:h-36 lg:h-40 xl:h-44 flex items-center">
       {/* Base de la palanca con diseño mejorado */}
       <div className="relative">
         {/* Sombra de la base */}
@@ -172,9 +172,9 @@ const Lever = ({
           type="button"
           onClick={onPull}
           disabled={isPulled}
-          className={`
+            className={`
             absolute left-1/2 -translate-x-1/2 
-            w-12 sm:w-14 h-12 sm:h-14 
+            w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14
             bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-700 
             rounded-full border-4 border-yellow-200
             shadow-2xl cursor-pointer
@@ -297,11 +297,11 @@ export const HolidayLeverModal = ({
     <div className="relative w-full h-full bg-gradient-to-br from-red-700 via-red-800 to-red-900 rounded-2xl overflow-hidden">
 
       {/* Contenido principal */}
-      <div className="relative z-20 flex flex-col h-full p-5 sm:p-6 md:p-8">
-        {/* Título - Más grande y llamativo */}
-        <div className="text-center mb-4 sm:mb-6">
+      <div className="relative z-20 flex flex-col h-full p-3 sm:p-4 md:p-6 lg:p-8">
+        {/* Título - Responsive optimizado */}
+        <div className="text-center mb-3 sm:mb-4 md:mb-6">
           <h2
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white drop-shadow-2xl animate-title-pulse"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white drop-shadow-2xl animate-title-pulse"
             style={{
               fontFamily: "'Pacifico', 'Brush Script MT', cursive",
               textShadow: "0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(255,215,0,0.4), 0 4px 12px rgba(0,0,0,0.5)",
@@ -337,7 +337,7 @@ export const HolidayLeverModal = ({
 
           {/* Imagen navideña - Mostrar solo cuando no hay resultado para darle más foco */}
           {!showResult && (
-            <div className="relative w-full max-w-[400px] sm:max-w-[480px] md:max-w-[520px] h-48 sm:h-56 md:h-64 mx-auto">
+            <div className="relative w-full max-w-[240px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[480px] xl:max-w-[520px] h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 mx-auto">
               {houseImage ? (
                 <Image
                   src={houseImage}
@@ -370,15 +370,15 @@ export const HolidayLeverModal = ({
 
         {/* Botón - Solo mostrar cuando NO hay resultado */}
         {!showResult && (
-          <div className="flex justify-center pt-3 sm:pt-4">
+          <div className="flex justify-center pt-2 sm:pt-3 md:pt-4">
             <Button
               asChild
               size="lg"
               className="
                 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
                 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800
-                text-white font-bold text-base sm:text-lg
-                px-8 sm:px-12 py-5 sm:py-6
+                text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg
+                px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6
                 rounded-full shadow-xl
                 hover:shadow-blue-500/30 hover:scale-105
                 transition-all duration-300
@@ -403,38 +403,38 @@ export const HolidayLeverModal = ({
           </div>
           
           <div 
-            className="relative bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 rounded-3xl p-8 sm:p-12 shadow-2xl border-4 border-yellow-200 animate-prizeIn max-w-[90%] sm:max-w-lg"
+            className="relative bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl border-2 sm:border-4 border-yellow-200 animate-prizeIn max-w-[90%] sm:max-w-md lg:max-w-lg"
             style={{
               boxShadow: '0 0 60px rgba(250, 204, 21, 0.9), 0 0 120px rgba(250, 204, 21, 0.6), 0 0 180px rgba(250, 204, 21, 0.3)',
             }}
           >
-            <div className="text-center space-y-6">
+            <div className="text-center space-y-3 sm:space-y-4 md:space-y-6">
               {/* Emoji grande animado */}
               <div className="flex justify-center">
-                <p className="text-7xl sm:text-8xl md:text-9xl animate-bounce">🎉</p>
+                <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl animate-bounce">🎉</p>
               </div>
               
               {/* Título ganador con efecto brillante */}
               <div>
-                <h3 className="text-4xl sm:text-5xl md:text-6xl font-black text-red-900 mb-3 animate-glow-pulse" style={{
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-red-900 mb-2 sm:mb-3 animate-glow-pulse" style={{
                   textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(250, 204, 21, 0.6), 4px 4px 8px rgba(0,0,0,0.3)',
                 }}>
                   🎰 YOU WON! 🎰
                 </h3>
                 
                 {/* Premio destacado */}
-                <div className="bg-white/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border-2 border-white/50">
-                  <p className="text-3xl sm:text-4xl md:text-5xl font-black text-red-800 mb-2">
+                <div className="bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border-2 border-white/50">
+                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-red-800 mb-1 sm:mb-2">
                     50% OFF
                   </p>
-                  <p className="text-xl sm:text-2xl md:text-3xl font-bold text-red-900">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-red-900">
                     Your Moving Cost
                   </p>
                 </div>
               </div>
               
-              {/* Botón de agendar cita - Más grande y llamativo */}
-              <div className="pt-4">
+              {/* Botón de agendar cita - Responsive */}
+              <div className="pt-2 sm:pt-3 md:pt-4">
                 <Button
                   asChild
                   size="lg"
@@ -442,12 +442,12 @@ export const HolidayLeverModal = ({
                   className="
                     bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
                     hover:from-blue-600 hover:via-blue-700 hover:to-blue-800
-                    text-white font-black text-lg sm:text-xl md:text-2xl
-                    px-12 sm:px-16 py-6 sm:py-8
+                    text-white font-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl
+                    px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-3 sm:py-4 md:py-5 lg:py-6 xl:py-8
                     rounded-full shadow-2xl
                     hover:shadow-blue-500/50 hover:scale-110
                     transition-all duration-300
-                    border-4 border-blue-300/70
+                    border-2 sm:border-4 border-blue-300/70
                     animate-pulse
                   "
                   style={{

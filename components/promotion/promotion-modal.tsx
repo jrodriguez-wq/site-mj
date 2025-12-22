@@ -107,15 +107,20 @@ export const PromotionModal = memo(() => {
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent
         className={cn(
-          // Tamaño responsive
-          "w-[92vw] max-w-[700px]",
-          "h-auto max-h-[85vh]",
-          "min-h-[500px] sm:min-h-[550px] md:min-h-[600px]",
+          // Tamaño responsive optimizado por tipo de pantalla
+          // Mobile (iPhone): 90vw, max 360px
+          // Tablet: 85vw, max 500px
+          // Desktop (Mac 14"): 600px fijo
+          // Large Desktop: 650px fijo
+          "w-[90vw] sm:w-[85vw] md:w-[80vw] lg:w-[600px] xl:w-[650px]",
+          "max-w-[360px] sm:max-w-[500px] md:max-w-[550px] lg:max-w-[600px] xl:max-w-[650px]",
+          "h-auto max-h-[92vh] sm:max-h-[88vh] md:max-h-[85vh] lg:max-h-[80vh]",
+          "min-h-[320px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] xl:min-h-[550px]",
           // Posicionamiento
           "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
           // Estilo
           "p-0 m-0 gap-0",
-          "border-0 rounded-2xl",
+          "border-0 rounded-xl sm:rounded-2xl",
           "bg-transparent",
           "shadow-2xl shadow-black/50",
           "overflow-hidden",
@@ -137,7 +142,7 @@ export const PromotionModal = memo(() => {
         </DialogDescription>
 
         {/* Contenido del modal */}
-        <div className="w-full h-full min-h-[500px] sm:min-h-[550px] md:min-h-[600px] overflow-hidden rounded-2xl relative">
+        <div className="w-full h-full min-h-[320px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] xl:min-h-[550px] overflow-hidden rounded-xl sm:rounded-2xl relative">
           {modalType === "gift" ? (
             <HolidayGiftModal onClose={handleClose} variant={giftVariant} />
           ) : (
