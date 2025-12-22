@@ -242,7 +242,7 @@ export const ContactPageContent = () => {
                       </p>
                       <div className="space-y-1.5 text-xs sm:text-sm">
                         <p className="font-semibold text-foreground break-words">
-                          {t("contactForm.contactInfo.everyDay") || "Every Day"}: {CONTACT_INFO.openingHours.weekdays.opens} - {CONTACT_INFO.openingHours.weekdays.closes}
+                          {t("contactForm.contactInfo.everyDay") || "Every Day"}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                         </p>
                         <p className="text-xs text-muted-foreground break-words">
                           {t("contactForm.contactInfo.hoursNote") || "Monday through Sunday"}

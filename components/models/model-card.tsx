@@ -4,13 +4,14 @@ import React, { useState, useEffect, useRef, memo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share2, Maximize2, MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share2, Maximize2, MapPin, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModelBadge } from "./model-badge";
 import { useTranslation } from "@/hooks/use-translation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
+import { SEO_CONFIG } from "@/config/seo";
 
 export interface ModelCardProps {
   modelKey: string;
@@ -74,6 +75,8 @@ const ModelCardComponent = (props: ModelCardProps) => {
   const addToFavoritesLabel = t("homeModels.addToFavorites");
   const removeFromFavoritesLabel = t("homeModels.removeFromFavorites");
   const shareLabel = t("homeModels.share");
+  const linkCopiedLabel = t("homeModels.linkCopied") || "Link copied!";
+  const shareModelLabel = t("homeModels.shareModel") || `Share ${name}`;
   
   // Community labels
   const communityLabel = community 
@@ -92,7 +95,9 @@ const ModelCardComponent = (props: ModelCardProps) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryImageIndex, setGalleryImageIndex] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const [isLinkCopied, setIsLinkCopied] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const copyTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Intersection Observer para lazy loading
   const { ref, inView } = useInView({
@@ -105,6 +110,9 @@ const ModelCardComponent = (props: ModelCardProps) => {
   const modelLink = community 
     ? `/models/${modelKey}?community=${community}`
     : `/models/${modelKey}`;
+  
+  // URL completa para compartir
+  const fullModelUrl = `${SEO_CONFIG.siteUrl}${modelLink}`;
 
   // Use all images if available, otherwise fallback to single image
   const displayImages = images.length > 0 ? images : [image];
@@ -155,6 +163,76 @@ const ModelCardComponent = (props: ModelCardProps) => {
       e.preventDefault();
       callback();
     }
+  }, []);
+
+  // Función para compartir el modelo
+  const handleShare = useCallback(async () => {
+    // Limpiar timeout anterior si existe
+    if (copyTimeoutRef.current) {
+      clearTimeout(copyTimeoutRef.current);
+    }
+
+    const shareData = {
+      title: shareModelLabel,
+      text: `${name} - ${description}`,
+      url: fullModelUrl,
+    };
+
+    // Intentar usar Web Share API si está disponible (móvil principalmente)
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        await navigator.share(shareData);
+        // Si se comparte exitosamente, mostrar confirmación
+        setIsLinkCopied(true);
+        copyTimeoutRef.current = setTimeout(() => {
+          setIsLinkCopied(false);
+        }, 3000);
+        return;
+      } catch (error) {
+        // Si el usuario cancela, no hacer nada
+        if ((error as Error).name === "AbortError") {
+          return;
+        }
+        // Si hay otro error, continuar con copiar al portapapeles
+      }
+    }
+
+    // Fallback: Copiar al portapapeles
+    try {
+      await navigator.clipboard.writeText(fullModelUrl);
+      setIsLinkCopied(true);
+      copyTimeoutRef.current = setTimeout(() => {
+        setIsLinkCopied(false);
+      }, 3000);
+    } catch (error) {
+      // Si falla clipboard API, usar método alternativo
+      const textArea = document.createElement("textarea");
+      textArea.value = fullModelUrl;
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        setIsLinkCopied(true);
+        copyTimeoutRef.current = setTimeout(() => {
+          setIsLinkCopied(false);
+        }, 3000);
+      } catch (err) {
+        console.error("Failed to copy link:", err);
+      } finally {
+        document.body.removeChild(textArea);
+      }
+    }
+  }, [fullModelUrl, name, description, shareModelLabel]);
+
+  // Limpiar timeout al desmontar
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -258,12 +336,54 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 />
               </button>
               <button
-                className="bg-background/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/70 shadow-sm"
-                aria-label={shareLabel}
+                onClick={handleShare}
+                onKeyDown={(e) => handleKeyDown(e, handleShare)}
+                className={cn(
+                  "bg-background/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full hover:bg-background transition-all border border-border/70 shadow-sm relative",
+                  isLinkCopied && "bg-primary/20 border-primary/50"
+                )}
+                aria-label={isLinkCopied ? linkCopiedLabel : shareLabel}
                 type="button"
                 suppressHydrationWarning
               >
-                <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/70" />
+                <AnimatePresence mode="wait">
+                  {isLinkCopied ? (
+                    <motion.div
+                      key="check"
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      exit={{ scale: 0, rotate: 180 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="share"
+                      initial={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                      transition={{ duration: 0.1 }}
+                    >
+                      <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground/70" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                {/* Toast de confirmación */}
+                <AnimatePresence>
+                  {isLinkCopied && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 mt-2 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap shadow-lg z-50 pointer-events-none"
+                    >
+                      {linkCopiedLabel}
+                      <div className="absolute -top-1 right-3 w-2 h-2 bg-primary rotate-45" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </button>
             </div>
 

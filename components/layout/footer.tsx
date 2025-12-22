@@ -43,7 +43,7 @@ export const Footer = () => {
         title: safeT("footer.sections.properties", "Properties"),
         links: [
           { label: safeT("nav.models", "Models"), href: "/models" },
-          { label: safeT("footer.links.duplex", "Duplex"), href: "/duplex" },
+          { label: safeT("footer.links.duplex", "Duplex"), href: "/models/duplex" },
           { label: safeT("nav.rentToOwn", "Rent to Own"), href: "/rent-to-own" },
           { label: safeT("footer.links.rentalApplication", "Rental Application"), href: "/rental-application" },
         ],
@@ -61,6 +61,7 @@ export const Footer = () => {
           { label: safeT("nav.warranty", "Warranty"), href: "/warranty" },
           { label: safeT("nav.homeBuyingGuide", "Home Buying Guide"), href: "/home-buying-guide" },
           { label: safeT("footer.links.scheduleAppointment", "Schedule Appointment"), href: "/schedule-appointment" },
+          { label: safeT("footer.links.faq", "FAQ"), href: "/faq" },
         ],
       },
       {

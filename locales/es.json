@@ -325,6 +325,8 @@
     "addToFavorites": "Agregar a favoritos",
     "removeFromFavorites": "Quitar de favoritos",
     "share": "Compartir",
+    "linkCopied": "¡Enlace copiado!",
+    "shareModel": "Compartir modelo",
     "viewPhotosCount": "Ver {count} fotos",
     "closeGallery": "Cerrar galería",
     "previousImage": "Imagen anterior",
@@ -340,7 +342,7 @@
     "models": {
       "louisiana": {
         "name": "Louisiana",
-        "description": "Casa familiar espaciosa con amenidades modernas",
+        "description": "Nuestro modelo más grande hasta ahora. Una casa familiar con características modernas",
         "fullDescription": "El modelo Louisiana ofrece 4 amplias habitaciones y 3 baños completos. Esta imponente casa abarca 3,277 pies cuadrados de espacio meticulosamente diseñado para satisfacer las necesidades de los clientes más exigentes. La colocación de luz y los techos abovedados han sido diseñados y pensados al más alto nivel para proporcionar un nivel de comodidad energéticamente eficiente pero lujoso a esta propiedad. El espacio de la cocina fue diseñado pensando en tu familia, ¡prepárate para enamorarte de nuestros acabados de alta gama! Siente la calidad de las encimeras de piedra, disfruta la sensación suave de los gabinetes de cierre suave. Deja que tus ojos disfruten del diseño elegante de nuestros electrodomésticos modernos totalmente de acero inoxidable.",
         "features": [
           "Área de estar de concepto abierto",
@@ -1177,7 +1179,327 @@
       "rentalApplication": "Aplicación de Renta",
       "scheduleAppointment": "Agendar Cita",
       "privacyPolicy": "Política de Privacidad",
-      "terms": "Términos y Condiciones"
+      "terms": "Términos y Condiciones",
+      "faq": "Preguntas Frecuentes"
+    }
+  },
+  "notFound": {
+    "title": "Página No Encontrada",
+    "description": "¡Ups! La página que buscas no existe o ha sido movida.",
+    "goToHomepage": "Ir a la Página Principal",
+    "browseModels": "Ver Modelos",
+    "popularPages": "Páginas populares:",
+    "rentToOwn": "Renta con Opción a Compra",
+    "labelle": "LaBelle",
+    "lehighAcres": "Lehigh Acres",
+    "contactUs": "Contáctanos"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Encuentra respuestas a preguntas comunes sobre nuestras casas, programas y servicios",
+    "stillHaveQuestions": "¿Aún tienes preguntas?",
+    "stillHaveQuestionsDesc": "¡Nuestro equipo está aquí para ayudarte! Contáctanos hoy y estaremos encantados de responder cualquier pregunta que tengas.",
+    "contactUs": "Contáctanos",
+    "scheduleAppointment": "Agendar Cita",
+    "categories": {
+      "general": {
+        "title": "Preguntas Generales",
+        "items": {
+          "areas": {
+            "question": "¿En qué áreas construyen?",
+            "answer": "Construimos casas nuevas en LaBelle y Lehigh Acres, Florida. Ambas comunidades ofrecen lotes espaciosos de 1/4 de acre sin cuotas de HOA."
+          },
+          "homesBuilt": {
+            "question": "¿Cuántas casas han construido?",
+            "answer": "Hemos construido más de 1,500 casas en el Suroeste de Florida, ayudando a más de 1,500 familias a lograr su sueño de ser propietarios."
+          },
+          "different": {
+            "question": "¿Qué hace diferente a M.J. Newell Homes?",
+            "answer": "Somos pioneros en el programa de Renta con Opción a Compra con $0 de enganche. Ofrecemos casas nuevas de calidad en lotes de 1/4 de acre sin cuotas de HOA, haciendo la propiedad de vivienda accesible para más familias."
+          }
+        }
+      },
+      "rentToOwn": {
+        "title": "Programa de Renta con Opción a Compra",
+        "items": {
+          "whatIs": {
+            "question": "¿Qué es el programa de Renta con Opción a Compra?",
+            "answer": "Nuestro programa de Renta con Opción a Compra te permite mudarte a tu nueva casa inmediatamente con $0 de enganche y $0 de costos de cierre. Alquilas la casa mientras construyes patrimonio, con la opción de comprar en cualquier momento durante el período de alquiler."
+          },
+          "downPayment": {
+            "question": "¿Cómo funciona el $0 de enganche?",
+            "answer": "Con nuestro programa de Renta con Opción a Compra, puedes comenzar a vivir en tu nueva casa sin ningún enganche inicial. Tus pagos mensuales de alquiler ayudan a construir patrimonio, y puedes comprar la casa cuando estés listo."
+          },
+          "purchaseAnytime": {
+            "question": "¿Puedo comprar la casa en cualquier momento?",
+            "answer": "¡Sí! Durante tu período de alquiler, puedes comprar la casa en cualquier momento. El patrimonio que has construido a través de tus pagos de alquiler se aplicará hacia tu compra."
+          },
+          "notPurchase": {
+            "question": "¿Qué pasa si decido no comprar?",
+            "answer": "Si decides no comprar la casa, puedes continuar alquilando o mudarte según los términos de tu acuerdo de alquiler. El patrimonio que has construido puede aplicarse hacia una casa diferente o devolverse según tu contrato."
+          }
+        }
+      },
+      "models": {
+        "title": "Modelos y Características",
+        "items": {
+          "whatModels": {
+            "question": "¿Qué modelos ofrecen?",
+            "answer": "Ofrecemos varios modelos hermosos incluyendo Louisiana, Viana, Delanie, Langdon, Emelia y Duplex. Cada modelo cuenta con diseños modernos, acabados de calidad y distribuciones espaciosas perfectas para familias."
+          },
+          "standardFeatures": {
+            "question": "¿Cuáles son las características estándar?",
+            "answer": "Todas nuestras casas incluyen cocinas modernas con electrodomésticos de acero inoxidable, sistemas HVAC eficientes en energía, ventanas resistentes a huracanes, suites principales espaciosas y patios hermosamente ajardinados. Cada casa se construye en un lote de 1/4 de acre."
+          },
+          "customize": {
+            "question": "¿Puedo personalizar mi casa?",
+            "answer": "Sí, ofrecemos varias opciones de personalización para acabados, colores y características. Contáctanos para discutir tus preferencias y opciones disponibles para tu modelo elegido."
+          }
+        }
+      },
+      "communities": {
+        "title": "Comunidades y Ubicación",
+        "items": {
+          "whereLocated": {
+            "question": "¿Dónde están ubicadas LaBelle y Lehigh Acres?",
+            "answer": "LaBelle y Lehigh Acres están ubicadas en el Suroeste de Florida, ofreciendo fácil acceso a ciudades importantes como Fort Myers, Cape Coral y Naples. Ambas comunidades proporcionan un ambiente tranquilo y familiar con excelentes escuelas y comodidades cercanas."
+          },
+          "amenities": {
+            "question": "¿Qué comodidades hay cerca?",
+            "answer": "Ambas comunidades ofrecen acceso a excelentes escuelas, centros comerciales, restaurantes, parques y actividades recreativas. El área es conocida por su belleza natural, actividades al aire libre y ambiente familiar."
+          },
+          "hoaFees": {
+            "question": "¿Hay cuotas de HOA?",
+            "answer": "¡No! Uno de los grandes beneficios de nuestras comunidades es que no hay cuotas de HOA (Asociación de Propietarios), ahorrándote cientos de dólares cada mes."
+          }
+        }
+      },
+      "application": {
+        "title": "Aplicación y Proceso",
+        "items": {
+          "howApply": {
+            "question": "¿Cómo aplico?",
+            "answer": "Puedes aplicar en línea a través de nuestro formulario de aplicación de alquiler, o contáctanos directamente por teléfono o correo electrónico. Nuestro equipo te guiará a través del proceso de aplicación y responderá cualquier pregunta que tengas."
+          },
+          "requirements": {
+            "question": "¿Cuáles son los requisitos?",
+            "answer": "Los requisitos incluyen comprobante de ingresos, verificación de crédito y verificación de antecedentes. Trabajamos con familias para encontrar soluciones que funcionen para todos. Contáctanos para obtener más información sobre requisitos específicos."
+          },
+          "howLong": {
+            "question": "¿Cuánto tiempo toma el proceso?",
+            "answer": "El proceso de aplicación típicamente toma unos días a una semana. Una vez aprobado, puedes mudarte a tu nueva casa rápidamente. El tiempo de construcción varía según el modelo y las opciones de personalización."
+          },
+          "scheduleTour": {
+            "question": "¿Puedo agendar una visita?",
+            "answer": "¡Absolutamente! Te animamos a agendar una cita para visitar nuestras casas modelo y comunidades. Visita nuestra página de Agendar Cita o contáctanos directamente para programar una visita."
+          }
+        }
+      },
+      "warranty": {
+        "title": "Garantía y Soporte",
+        "items": {
+          "warrantyOffer": {
+            "question": "¿Ofrecen garantía?",
+            "answer": "Sí, todas nuestras casas vienen con una garantía integral. Respalda nuestro trabajo y estamos comprometidos a asegurar tu satisfacción. Visita nuestra página de Garantía para información detallada."
+          },
+          "issuesAfter": {
+            "question": "¿Qué pasa si tengo problemas después de mudarme?",
+            "answer": "Nuestro equipo de servicio al cliente está aquí para ayudar. Proporcionamos soporte continuo y servicios de mantenimiento. Contáctanos en cualquier momento si tienes preguntas o inquietudes sobre tu casa."
+          }
+        }
+      }
+    }
+  },
+  "privacyPolicy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización:",
+    "intro": "En M.J. Newell Homes, estamos comprometidos a proteger tu privacidad y garantizar la seguridad de tu información personal. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos tu información cuando visitas nuestro sitio web o usas nuestros servicios.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Información que Recopilamos",
+        "content": [
+          "Recopilamos información que nos proporcionas directamente, incluyendo:",
+          "• Información personal (nombre, dirección de correo electrónico, número de teléfono, dirección postal)",
+          "• Información financiera (para aplicaciones de alquiler y compras de casas)",
+          "• Preferencias y requisitos de propiedades",
+          "• Preferencias de comunicación",
+          "• Información que proporcionas al contactarnos o usar nuestros servicios"
+        ]
+      },
+      "howWeUse": {
+        "title": "Cómo Usamos Tu Información",
+        "content": [
+          "Usamos la información que recopilamos para:",
+          "• Procesar tus aplicaciones de alquiler y solicitudes de compra de casas",
+          "• Comunicarnos contigo sobre nuestros servicios, propiedades y programas",
+          "• Proporcionar soporte al cliente y responder a tus consultas",
+          "• Enviarte comunicaciones de marketing (con tu consentimiento)",
+          "• Mejorar nuestro sitio web y servicios",
+          "• Cumplir con obligaciones legales"
+        ]
+      },
+      "informationSharing": {
+        "title": "Compartir Información",
+        "content": [
+          "No vendemos tu información personal. Podemos compartir tu información con:",
+          "• Proveedores de servicios que nos ayudan a operar nuestro negocio (por ejemplo, procesadores de pagos, servicios de correo electrónico)",
+          "• Autoridades legales y regulatorias cuando lo requiera la ley",
+          "• Socios comerciales involucrados en tu proceso de compra o alquiler de casa (con tu consentimiento)",
+          "• Otras partes según sea necesario para proporcionar nuestros servicios"
+        ]
+      },
+      "dataSecurity": {
+        "title": "Seguridad de Datos",
+        "content": [
+          "Implementamos medidas de seguridad apropiadas para proteger tu información personal:",
+          "• Cifrado de datos sensibles",
+          "• Servidores y bases de datos seguros",
+          "• Evaluaciones de seguridad regulares",
+          "• Acceso limitado a información personal según necesidad",
+          "Sin embargo, ningún método de transmisión por internet es 100% seguro, y no podemos garantizar seguridad absoluta."
+        ]
+      },
+      "yourRights": {
+        "title": "Tus Derechos",
+        "description": "Tienes derecho a:",
+        "rights": [
+          "Acceder y revisar tu información personal",
+          "Solicitar correcciones a información inexacta",
+          "Solicitar la eliminación de tu información personal",
+          "Optar por no recibir comunicaciones de marketing",
+          "Solicitar una copia de tus datos"
+        ],
+        "contact": "Para ejercer estos derechos, por favor contáctanos usando la información proporcionada a continuación."
+      },
+      "cookies": {
+        "title": "Cookies y Seguimiento",
+        "description": "Usamos cookies y tecnologías de seguimiento similares para mejorar tu experiencia de navegación, analizar el tráfico del sitio web y entender las preferencias del usuario. Puedes controlar las preferencias de cookies a través de la configuración de tu navegador."
+      },
+      "changes": {
+        "title": "Cambios a Esta Política",
+        "description": "Podemos actualizar esta Política de Privacidad de vez en cuando. Te notificaremos de cualquier cambio publicando la nueva Política de Privacidad en esta página y actualizando la fecha de \"Última actualización\". Te animamos a revisar esta Política de Privacidad periódicamente."
+      },
+      "contact": {
+        "title": "Contáctanos",
+        "description": "Si tienes alguna pregunta sobre esta Política de Privacidad o nuestras prácticas de datos, por favor contáctanos:"
+      }
+    }
+  },
+  "termsConditions": {
+    "title": "Términos y Condiciones",
+    "lastUpdated": "Última actualización:",
+    "intro": "Por favor lee estos Términos y Condiciones cuidadosamente antes de usar nuestro sitio web o servicios. Estos términos rigen tu uso del sitio web y servicios de M.J. Newell Homes.",
+    "sections": {
+      "acceptance": {
+        "title": "Aceptación de Términos",
+        "content": [
+          "Al acceder y usar el sitio web y servicios de M.J. Newell Homes, aceptas y acuerdas estar sujeto a estos Términos y Condiciones. Si no estás de acuerdo con alguna parte de estos términos, no debes usar nuestro sitio web o servicios.",
+          "Nos reservamos el derecho de modificar estos términos en cualquier momento. Tu uso continuo de nuestros servicios después de cualquier cambio constituye la aceptación de los términos modificados."
+        ]
+      },
+      "useOfWebsite": {
+        "title": "Uso del Sitio Web",
+        "content": [
+          "Aceptas usar nuestro sitio web solo para fines legales y de acuerdo con estos Términos y Condiciones. Aceptas no:",
+          "• Usar el sitio web de cualquier manera que viole leyes o regulaciones aplicables",
+          "• Intentar obtener acceso no autorizado a cualquier parte del sitio web",
+          "• Transmitir cualquier virus, malware o código dañino",
+          "• Usar sistemas automatizados para acceder al sitio web sin permiso",
+          "• Reproducir, duplicar o copiar cualquier contenido sin autorización"
+        ]
+      },
+      "propertyInformation": {
+        "title": "Información de Propiedades",
+        "content": [
+          "Toda la información de propiedades, incluyendo precios, características y disponibilidad, está sujeta a cambios sin previo aviso. Nos esforzamos por proporcionar información precisa, pero no garantizamos que toda la información sea actual, completa o libre de errores.",
+          "Los precios, especificaciones y disponibilidad de propiedades están sujetos a cambios. El precio final y los términos se especificarán en tu acuerdo de compra o alquiler.",
+          "Nos reservamos el derecho de modificar o discontinuar cualquier propiedad, modelo o programa en cualquier momento sin previo aviso."
+        ]
+      },
+      "rentToOwn": {
+        "title": "Programa de Renta con Opción a Compra",
+        "content": [
+          "La participación en nuestro programa de Renta con Opción a Compra está sujeta a aprobación y calificación. Los términos y condiciones del programa se detallarán en tu acuerdo de alquiler.",
+          "Los pagos de alquiler pueden aplicarse al precio de compra según se especifique en tu acuerdo. La aplicación del alquiler hacia la compra está sujeta a los términos de tu contrato específico.",
+          "Nos reservamos el derecho de modificar los términos del programa, requisitos de elegibilidad y disponibilidad en cualquier momento."
+        ]
+      },
+      "limitation": {
+        "title": "Limitación de Responsabilidad",
+        "description": "En la máxima medida permitida por la ley, M.J. Newell Homes no será responsable de ningún daño indirecto, incidental, especial, consecuente o punitivo, o cualquier pérdida de ganancias o ingresos, ya sea incurrido directa o indirectamente, o cualquier pérdida de datos, uso, buena voluntad u otras pérdidas intangibles resultantes de tu uso de nuestro sitio web o servicios."
+      },
+      "intellectualProperty": {
+        "title": "Propiedad Intelectual",
+        "description": "Todo el contenido en este sitio web, incluyendo texto, gráficos, logos, imágenes y software, es propiedad de M.J. Newell Homes o sus proveedores de contenido y está protegido por leyes de derechos de autor y otras leyes de propiedad intelectual. No puedes reproducir, distribuir o crear obras derivadas de cualquier contenido sin nuestro permiso expreso por escrito."
+      },
+      "governingLaw": {
+        "title": "Ley Aplicable",
+        "description": "Estos Términos y Condiciones se regirán e interpretarán de acuerdo con las leyes del Estado de Florida, sin tener en cuenta sus disposiciones de conflicto de leyes. Cualquier disputa que surja de estos términos se resolverá en los tribunales de Florida."
+      },
+      "changes": {
+        "title": "Cambios a los Términos",
+        "description": "Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Notificaremos a los usuarios de cualquier cambio material publicando los términos actualizados en esta página y actualizando la fecha de \"Última actualización\". Tu uso continuo de nuestros servicios después de que se publiquen los cambios constituye la aceptación de los términos modificados."
+      },
+      "contact": {
+        "title": "¿Preguntas Sobre Estos Términos?",
+        "description": "Si tienes alguna pregunta sobre estos Términos y Condiciones, por favor contáctanos:"
+      }
+    }
+  },
+  "rentalApplication": {
+    "title": "Aplicación de Alquiler",
+    "heroTitle": "Aplica para tu Casa Soñada",
+    "heroSubtitle": "Comienza tu viaje hacia la propiedad de vivienda con nuestro programa de Renta con Opción a Compra. No se requiere enganche. ¡Aplica hoy!",
+    "formTitle": "Formulario de Aplicación de Alquiler",
+    "formDescription": "Completa el formulario a continuación para aplicar a nuestro programa de Renta con Opción a Compra. Nuestro equipo revisará tu aplicación y te contactará en 1-2 días hábiles.",
+    "whyApply": "¿Por Qué Aplicar?",
+    "benefits": {
+      "downPayment": {
+        "title": "$0 de Enganche",
+        "description": "Comienza tu viaje hacia la propiedad de vivienda sin costos iniciales"
+      },
+      "moveInFast": {
+        "title": "Mudanza Rápida",
+        "description": "Obtén aprobación y muévete a tu nueva casa rápidamente"
+      },
+      "buildEquity": {
+        "title": "Construye Patrimonio",
+        "description": "Tus pagos de alquiler ayudan a construir patrimonio hacia la propiedad"
+      },
+      "familyFriendly": {
+        "title": "Familiar",
+        "description": "Casas perfectas para familias en crecimiento en grandes comunidades"
+      }
+    },
+    "requirements": {
+      "title": "Requisitos de Aplicación",
+      "description": "Para completar tu aplicación, por favor ten los siguientes documentos listos:",
+      "items": [
+        "Comprobante de ingresos (recibos de pago, declaraciones de impuestos o estados de cuenta bancarios)",
+        "Identificación válida emitida por el gobierno",
+        "Verificación de crédito y antecedentes",
+        "Formulario de aplicación de alquiler completado",
+        "Referencias (opcional pero recomendado)"
+      ]
+    },
+    "process": {
+      "title": "Proceso de Aplicación",
+      "step1": {
+        "title": "Enviar Aplicación",
+        "description": "Completa y envía tu formulario de aplicación de alquiler"
+      },
+      "step2": {
+        "title": "Proceso de Revisión",
+        "description": "Nuestro equipo revisa tu aplicación (1-2 días hábiles)"
+      },
+      "step3": {
+        "title": "Aprobación y Mudanza",
+        "description": "¡Obtén aprobación y muévete a tu nueva casa!"
+      }
+    },
+    "needHelp": {
+      "title": "¿Necesitas Ayuda?",
+      "description": "Nuestro equipo está aquí para asistirte con tu aplicación."
     }
   }
 }

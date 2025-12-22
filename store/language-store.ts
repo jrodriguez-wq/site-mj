@@ -42,26 +42,26 @@ const loadTranslations = async (lang: Language): Promise<Translations> => {
   const loadPromise = (async () => {
     try {
       // Dynamic import optimizado por Next.js
-      const translationModule = lang === "es" 
+      const translationModule = lang === "es"
         ? await import("@/locales/es.json")
         : await import("@/locales/en.json");
-      
+
       const data = (translationModule.default || translationModule) as Translations;
-      
+
       // Guardar en cache inmediatamente
       translationsCache[lang] = data;
       loadingPromises[lang] = null; // Limpiar promesa de carga
-      
+
       return data;
     } catch (error) {
       console.error(`[LanguageStore] Error loading ${lang} translations:`, error);
       loadingPromises[lang] = null; // Limpiar promesa de carga en caso de error
-      
+
       // Fallback: intentar inglés si falla otro idioma
       if (lang !== "en" && translationsCache.en) {
         return translationsCache.en;
       }
-      
+
       // Último recurso: objeto vacío
       return {};
     }
@@ -89,7 +89,7 @@ const getTranslation = (translations: Translations, key: string): string => {
   // Loop optimizado con early returns
   for (let i = 0; i < keysLength; i++) {
     const k = keys[i];
-    
+
     if (!current || typeof current !== "object") {
       return key;
     }
@@ -117,16 +117,56 @@ const getTranslation = (translations: Translations, key: string): string => {
 };
 
 /**
- * Verifica si las traducciones son válidas
+ * Versión del schema de traducciones - incrementar cuando cambie la estructura
+ * Esto permite invalidar cache antiguo automáticamente
+ */
+const TRANSLATIONS_VERSION = "2.0.0";
+
+/**
+ * Verifica si las traducciones son válidas y completas
  */
 const isValidTranslations = (translations: unknown): translations is Translations => {
-  return (
-    translations !== null &&
-    translations !== undefined &&
-    typeof translations === "object" &&
-    !Array.isArray(translations) &&
-    Object.keys(translations).length > 0
-  );
+  if (
+    !translations ||
+    translations === null ||
+    translations === undefined ||
+    typeof translations !== "object" ||
+    Array.isArray(translations)
+  ) {
+    return false;
+  }
+
+  const keys = Object.keys(translations);
+
+  // Debe tener al menos algunas claves básicas
+  if (keys.length === 0) {
+    return false;
+  }
+
+  // Verificar que tenga claves esenciales (home, nav, etc.)
+  const essentialKeys = ["home", "nav", "faq", "privacyPolicy", "termsConditions"];
+  const hasEssentialKeys = essentialKeys.some(key => key in translations);
+
+  if (!hasEssentialKeys) {
+    return false;
+  }
+
+  // Verificar que no sea un objeto vacío o corrupto
+  // Si todas las claves tienen valores vacíos o son objetos vacíos, es inválido
+  let hasValidContent = false;
+  for (const key of keys.slice(0, 10)) { // Verificar solo las primeras 10 claves para performance
+    const value = (translations as Record<string, unknown>)[key];
+    if (value && typeof value === "object" && Object.keys(value).length > 0) {
+      hasValidContent = true;
+      break;
+    }
+    if (typeof value === "string" && value.length > 0) {
+      hasValidContent = true;
+      break;
+    }
+  }
+
+  return hasValidContent;
 };
 
 const initialState: Omit<LanguageState, "setLanguage" | "t"> = {
@@ -146,21 +186,35 @@ export const useLanguageStore = create<LanguageState>()(
        */
       setLanguage: async (lang: Language) => {
         const currentState = get();
-        
-        // Si ya está cargando ese idioma o ya lo tiene cargado, no hacer nada
+
+        // Si ya está cargando ese idioma o ya lo tiene cargado Y es válido, no hacer nada
         if (currentState.language === lang && isValidTranslations(currentState.translations)) {
-          return;
+          // Verificar que las traducciones no estén corruptas
+          const testKey = lang === "en" ? "home.title" : "home.title";
+          const testTranslation = getTranslation(currentState.translations, testKey);
+          if (testTranslation !== testKey) {
+            // Las traducciones funcionan correctamente
+            return;
+          }
+          // Si las traducciones no funcionan, forzar recarga
+          console.warn(`[LanguageStore] Translations for ${lang} appear corrupted, forcing reload...`);
         }
 
         set({ isLoading: true });
 
         try {
           const translations = await loadTranslations(lang);
-          
-          set({ 
-            language: lang, 
-            translations, 
-            isLoading: false 
+
+          // Verificar que las traducciones cargadas sean válidas
+          if (!isValidTranslations(translations)) {
+            console.error(`[LanguageStore] Loaded translations for ${lang} are invalid`);
+            throw new Error(`Invalid translations for ${lang}`);
+          }
+
+          set({
+            language: lang,
+            translations,
+            isLoading: false
           });
 
           // Actualizar atributo lang del documento
@@ -170,18 +224,22 @@ export const useLanguageStore = create<LanguageState>()(
         } catch (error) {
           console.error(`[LanguageStore] Error setting language to ${lang}:`, error);
           set({ isLoading: false });
-          
+
           // Fallback a inglés si falla
           if (lang !== "en") {
             try {
               const enTranslations = await loadTranslations("en");
-              set({ 
-                language: "en", 
-                translations: enTranslations, 
-                isLoading: false 
-              });
-              if (typeof document !== "undefined") {
-                document.documentElement.lang = "en";
+              if (isValidTranslations(enTranslations)) {
+                set({
+                  language: "en",
+                  translations: enTranslations,
+                  isLoading: false
+                });
+                if (typeof document !== "undefined") {
+                  document.documentElement.lang = "en";
+                }
+              } else {
+                throw new Error("English translations are also invalid");
               }
             } catch (fallbackError) {
               console.error("[LanguageStore] Fallback to English failed:", fallbackError);
@@ -197,42 +255,45 @@ export const useLanguageStore = create<LanguageState>()(
        */
       t: (key: string): string => {
         const { translations } = get();
-        
+
         // Early return con validación optimizada
         if (isValidTranslations(translations)) {
           return getTranslation(translations, key);
         }
-        
+
         // Si no hay traducciones, devolver la clave
         return key;
       },
     }),
     {
       name: "language-storage",
-      
+
       /**
        * Guarda solo lo esencial para reducir tamaño de localStorage
        * Siempre guarda traducciones válidas para disponibilidad inmediata en próxima carga
        */
       partialize: (state) => {
-        // Si hay traducciones válidas, guardarlas
+        // Si hay traducciones válidas, guardarlas con versión
         if (isValidTranslations(state.translations)) {
           return {
+            _version: TRANSLATIONS_VERSION,
             language: state.language,
             translations: state.translations,
           };
         }
-        
+
         // Si no hay traducciones pero inglés está en cache, guardarlo como fallback
-        if (translationsCache.en) {
+        if (translationsCache.en && isValidTranslations(translationsCache.en)) {
           return {
+            _version: TRANSLATIONS_VERSION,
             language: "en",
             translations: translationsCache.en,
           };
         }
-        
-        // Último recurso: solo guardar idioma
+
+        // Último recurso: solo guardar idioma (sin traducciones corruptas)
         return {
+          _version: TRANSLATIONS_VERSION,
           language: state.language || "en",
           translations: {},
         };
@@ -248,30 +309,68 @@ export const useLanguageStore = create<LanguageState>()(
           // Solo ejecutar en cliente
           if (typeof window === "undefined") return;
 
+          // Verificar versión del cache - si es antigua, limpiar y recargar
+          const storedVersion = (state as unknown as { _version?: string })?._version;
+          let shouldReload = false;
+
+          if (storedVersion !== TRANSLATIONS_VERSION) {
+            console.warn("[LanguageStore] Cache version mismatch, clearing and reloading...");
+            // Limpiar cache corrupto
+            if (typeof window !== "undefined") {
+              try {
+                localStorage.removeItem("language-storage");
+              } catch (e) {
+                console.error("[LanguageStore] Error clearing cache:", e);
+              }
+            }
+            // Forzar recarga
+            shouldReload = true;
+            state = undefined;
+          }
+
           // Determinar idioma: usar el de localStorage o inglés por defecto
           const lang = (state?.language as Language) || "en";
-          
+
           // Actualizar lang del documento inmediatamente
           document.documentElement.lang = lang;
 
           // Verificar si hay traducciones válidas desde localStorage
-          if (state?.translations && isValidTranslations(state.translations)) {
+          if (state?.translations && isValidTranslations(state.translations) && !shouldReload) {
             // Sincronizar cache en memoria
             if (!translationsCache[lang]) {
               translationsCache[lang] = state.translations;
             }
-            
+
             // El estado ya tiene traducciones válidas, todo listo
             // IMPORTANTE: El estado ya está rehidratado con las traducciones
             return;
           }
 
+          // Si no hay traducciones válidas o están corruptas, limpiar y recargar
+          if (!state?.translations || !isValidTranslations(state.translations) || shouldReload) {
+            console.warn("[LanguageStore] Invalid or missing translations, reloading...");
+
+            // Limpiar traducciones corruptas del estado
+            useLanguageStore.setState({
+              translations: {},
+              isLoading: true,
+            });
+          }
+
           // Si no hay traducciones válidas, cargar INMEDIATAMENTE de forma síncrona si es posible
           // Priorizar inglés para primera carga
           const targetLang = lang === "en" || !state?.language ? "en" : lang;
-          
+
           // Intentar cargar traducciones de forma asíncrona pero lo más rápido posible
           loadTranslations(targetLang)
+            .then((translations) => {
+              // Verificar que las traducciones cargadas sean válidas
+              if (!isValidTranslations(translations)) {
+                console.error("[LanguageStore] Loaded translations are invalid, forcing English reload");
+                return loadTranslations("en");
+              }
+              return translations;
+            })
             .then((translations) => {
               // Actualizar estado con traducciones cargadas
               useLanguageStore.setState({
@@ -279,13 +378,13 @@ export const useLanguageStore = create<LanguageState>()(
                 language: targetLang,
                 isLoading: false,
               });
-              
+
               // Actualizar lang del documento
               document.documentElement.lang = targetLang;
             })
             .catch((error) => {
               console.error("[LanguageStore] Error loading translations during rehydration:", error);
-              
+
               // Fallback: cargar inglés por defecto (siempre debe funcionar)
               loadTranslations("en")
                 .then((enTranslations) => {
@@ -303,7 +402,7 @@ export const useLanguageStore = create<LanguageState>()(
             });
         };
       },
-      
+
       skipHydration: false,
     }
   )
@@ -319,23 +418,40 @@ if (typeof window !== "undefined") {
     const stored = localStorage.getItem("language-storage");
     if (stored) {
       const parsed = JSON.parse(stored);
-      if (parsed?.state?.translations && isValidTranslations(parsed.state.translations)) {
-        // Sincronizar cache inmediatamente
+
+      // Verificar versión del cache
+      const storedVersion = parsed?.state?._version;
+      if (storedVersion !== TRANSLATIONS_VERSION) {
+        // Versión antigua, limpiar cache
+        console.warn("[LanguageStore] Old cache version detected, clearing...");
+        localStorage.removeItem("language-storage");
+      } else if (parsed?.state?.translations && isValidTranslations(parsed.state.translations)) {
+        // Sincronizar cache inmediatamente solo si es válido
         const lang = parsed.state.language || "en";
         translationsCache[lang as Language] = parsed.state.translations;
+      } else {
+        // Traducciones corruptas, limpiar
+        console.warn("[LanguageStore] Corrupted translations detected, clearing cache...");
+        localStorage.removeItem("language-storage");
       }
     }
   } catch (error) {
-    // Continuar con precarga asíncrona si hay error
+    // Error al parsear, limpiar cache corrupto
+    console.error("[LanguageStore] Error parsing cache, clearing...", error);
+    try {
+      localStorage.removeItem("language-storage");
+    } catch (e) {
+      // Ignorar errores al limpiar
+    }
   }
-  
+
   // Precargar inglés inmediatamente y guardar en cache
   // Esto asegura que esté disponible antes de cualquier render
   loadTranslations("en")
     .then((translations) => {
       // Asegurar que el cache esté poblado
       translationsCache.en = translations;
-      
+
       // Si el store aún no tiene traducciones válidas, inicializarlo con inglés
       const currentState = useLanguageStore.getState();
       if (!isValidTranslations(currentState.translations)) {

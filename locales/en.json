@@ -325,6 +325,8 @@
     "addToFavorites": "Add to favorites",
     "removeFromFavorites": "Remove from favorites",
     "share": "Share",
+    "linkCopied": "Link copied!",
+    "shareModel": "Share model",
     "viewPhotosCount": "View {count} photos",
     "closeGallery": "Close gallery",
     "previousImage": "Previous image",
@@ -340,7 +342,7 @@
     "models": {
       "louisiana": {
         "name": "Louisiana",
-        "description": "Our biggest model yet. A family home with modern amenities",
+        "description": "Our biggest model yet. A family home with modern features",
         "fullDescription": "The Louisiana model offers 4 grand bedrooms and 3 full bathrooms and 2 dens. This home spans 3,277 sq/ft of meticulously designed flow space to satisfy the needs of the most discerning of clients. Light placement and high ceilings have been engineered and thought through at the highest level to provide an energy efficient yet luxurious level of comfort to this home. The kitchen space was designed with your family in mind, prepare to fall in love with our high end finishes! Feel the quality of the countertops, enjoy the soft close cabinetry and the sleek design of our all stainless modern appliances.",
         "features": [
           "Open concept living area",
@@ -1177,7 +1179,327 @@
       "rentalApplication": "Rental Application",
       "scheduleAppointment": "Schedule Appointment",
       "privacyPolicy": "Privacy Policy",
-      "terms": "Terms & Conditions"
+      "terms": "Terms & Conditions",
+      "faq": "FAQ"
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Oops! The page you're looking for doesn't exist or has been moved.",
+    "goToHomepage": "Go to Homepage",
+    "browseModels": "Browse Models",
+    "popularPages": "Popular pages:",
+    "rentToOwn": "Rent to Own",
+    "labelle": "LaBelle",
+    "lehighAcres": "Lehigh Acres",
+    "contactUs": "Contact Us"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our homes, programs, and services",
+    "stillHaveQuestions": "Still have questions?",
+    "stillHaveQuestionsDesc": "Our team is here to help! Contact us today and we'll be happy to answer any questions you may have.",
+    "contactUs": "Contact Us",
+    "scheduleAppointment": "Schedule Appointment",
+    "categories": {
+      "general": {
+        "title": "General Questions",
+        "items": {
+          "areas": {
+            "question": "What areas do you build in?",
+            "answer": "We build new construction homes in LaBelle and Lehigh Acres, Florida. Both communities offer spacious 1/4 acre lots with no HOA fees."
+          },
+          "homesBuilt": {
+            "question": "How many homes have you built?",
+            "answer": "We have built over 1,500 homes in Southwest Florida, helping more than 1,500 families achieve their dream of homeownership."
+          },
+          "different": {
+            "question": "What makes M.J. Newell Homes different?",
+            "answer": "We are pioneers in the Rent to Own program with $0 down payment. We offer quality new construction homes on 1/4 acre lots with no HOA fees, making homeownership accessible to more families."
+          }
+        }
+      },
+      "rentToOwn": {
+        "title": "Rent to Own Program",
+        "items": {
+          "whatIs": {
+            "question": "What is the Rent to Own program?",
+            "answer": "Our Rent to Own program allows you to move into your new home immediately with $0 down payment and $0 closing costs. You rent the home while building equity, with the option to purchase at any time during the rental period."
+          },
+          "downPayment": {
+            "question": "How does the $0 down payment work?",
+            "answer": "With our Rent to Own program, you can start living in your new home without any upfront down payment. Your monthly rent payments help build equity, and you can purchase the home when you're ready."
+          },
+          "purchaseAnytime": {
+            "question": "Can I purchase the home at any time?",
+            "answer": "Yes! During your rental period, you can purchase the home at any time. The equity you've built through your rent payments will be applied toward your purchase."
+          },
+          "notPurchase": {
+            "question": "What happens if I decide not to purchase?",
+            "answer": "If you decide not to purchase the home, you can continue renting or move out according to your rental agreement terms. The equity you've built may be applied toward a different home or returned based on your contract."
+          }
+        }
+      },
+      "models": {
+        "title": "Home Models & Features",
+        "items": {
+          "whatModels": {
+            "question": "What models do you offer?",
+            "answer": "We offer several beautiful models including Louisiana, Viana, Delanie, Langdon, Emelia, and Duplex. Each model features modern designs, quality finishes, and spacious layouts perfect for families."
+          },
+          "standardFeatures": {
+            "question": "What are the standard features?",
+            "answer": "All our homes include modern kitchens with stainless steel appliances, energy-efficient HVAC systems, hurricane impact windows, spacious master suites, and beautifully landscaped yards. Each home is built on a 1/4 acre lot."
+          },
+          "customize": {
+            "question": "Can I customize my home?",
+            "answer": "Yes, we offer various customization options for finishes, colors, and features. Contact us to discuss your preferences and available options for your chosen model."
+          }
+        }
+      },
+      "communities": {
+        "title": "Communities & Location",
+        "items": {
+          "whereLocated": {
+            "question": "Where are LaBelle and Lehigh Acres located?",
+            "answer": "LaBelle and Lehigh Acres are located in Southwest Florida, offering easy access to major cities like Fort Myers, Cape Coral, and Naples. Both communities provide a peaceful, family-friendly environment with excellent schools and amenities nearby."
+          },
+          "amenities": {
+            "question": "What amenities are nearby?",
+            "answer": "Both communities offer access to excellent schools, shopping centers, restaurants, parks, and recreational activities. The area is known for its natural beauty, outdoor activities, and family-friendly atmosphere."
+          },
+          "hoaFees": {
+            "question": "Are there HOA fees?",
+            "answer": "No! One of the great benefits of our communities is that there are no HOA (Homeowners Association) fees, saving you hundreds of dollars every month."
+          }
+        }
+      },
+      "application": {
+        "title": "Application & Process",
+        "items": {
+          "howApply": {
+            "question": "How do I apply?",
+            "answer": "You can apply online through our rental application form, or contact us directly by phone or email. Our team will guide you through the application process and answer any questions you may have."
+          },
+          "requirements": {
+            "question": "What are the requirements?",
+            "answer": "Requirements include proof of income, credit check, and background verification. We work with families to find solutions that work for everyone. Contact us to learn more about specific requirements."
+          },
+          "howLong": {
+            "question": "How long does the process take?",
+            "answer": "The application process typically takes a few days to a week. Once approved, you can move into your new home quickly. Construction time varies by model and customization options."
+          },
+          "scheduleTour": {
+            "question": "Can I schedule a tour?",
+            "answer": "Absolutely! We encourage you to schedule an appointment to tour our model homes and communities. Visit our Schedule Appointment page or contact us directly to set up a tour."
+          }
+        }
+      },
+      "warranty": {
+        "title": "Warranty & Support",
+        "items": {
+          "warrantyOffer": {
+            "question": "Do you offer a warranty?",
+            "answer": "Yes, all our homes come with a comprehensive warranty. We stand behind our work and are committed to ensuring your satisfaction. Visit our Warranty page for detailed information."
+          },
+          "issuesAfter": {
+            "question": "What if I have issues after moving in?",
+            "answer": "Our customer service team is here to help. We provide ongoing support and maintenance services. Contact us anytime if you have questions or concerns about your home."
+          }
+        }
+      }
+    }
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated:",
+    "intro": "At M.J. Newell Homes, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or use our services.",
+    "sections": {
+      "informationWeCollect": {
+        "title": "Information We Collect",
+        "content": [
+          "We collect information that you provide directly to us, including:",
+          "• Personal information (name, email address, phone number, mailing address)",
+          "• Financial information (for rental applications and home purchases)",
+          "• Property preferences and requirements",
+          "• Communication preferences",
+          "• Information you provide when contacting us or using our services"
+        ]
+      },
+      "howWeUse": {
+        "title": "How We Use Your Information",
+        "content": [
+          "We use the information we collect to:",
+          "• Process your rental applications and home purchase requests",
+          "• Communicate with you about our services, properties, and programs",
+          "• Provide customer support and respond to your inquiries",
+          "• Send you marketing communications (with your consent)",
+          "• Improve our website and services",
+          "• Comply with legal obligations"
+        ]
+      },
+      "informationSharing": {
+        "title": "Information Sharing",
+        "content": [
+          "We do not sell your personal information. We may share your information with:",
+          "• Service providers who assist us in operating our business (e.g., payment processors, email services)",
+          "• Legal and regulatory authorities when required by law",
+          "• Business partners involved in your home purchase or rental process (with your consent)",
+          "• Other parties as necessary to provide our services"
+        ]
+      },
+      "dataSecurity": {
+        "title": "Data Security",
+        "content": [
+          "We implement appropriate security measures to protect your personal information:",
+          "• Encryption of sensitive data",
+          "• Secure servers and databases",
+          "• Regular security assessments",
+          "• Limited access to personal information on a need-to-know basis",
+          "However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security."
+        ]
+      },
+      "yourRights": {
+        "title": "Your Rights",
+        "description": "You have the right to:",
+        "rights": [
+          "Access and review your personal information",
+          "Request corrections to inaccurate information",
+          "Request deletion of your personal information",
+          "Opt-out of marketing communications",
+          "Request a copy of your data"
+        ],
+        "contact": "To exercise these rights, please contact us using the information provided below."
+      },
+      "cookies": {
+        "title": "Cookies and Tracking",
+        "description": "We use cookies and similar tracking technologies to enhance your browsing experience, analyze website traffic, and understand user preferences. You can control cookie preferences through your browser settings."
+      },
+      "changes": {
+        "title": "Changes to This Policy",
+        "description": "We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the \"Last updated\" date. We encourage you to review this Privacy Policy periodically."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "description": "If you have any questions about this Privacy Policy or our data practices, please contact us:"
+      }
+    }
+  },
+  "termsConditions": {
+    "title": "Terms & Conditions",
+    "lastUpdated": "Last updated:",
+    "intro": "Please read these Terms and Conditions carefully before using our website or services. These terms govern your use of M.J. Newell Homes' website and services.",
+    "sections": {
+      "acceptance": {
+        "title": "Acceptance of Terms",
+        "content": [
+          "By accessing and using the M.J. Newell Homes website and services, you accept and agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use our website or services.",
+          "We reserve the right to modify these terms at any time. Your continued use of our services after any changes constitutes acceptance of the modified terms."
+        ]
+      },
+      "useOfWebsite": {
+        "title": "Use of Website",
+        "content": [
+          "You agree to use our website only for lawful purposes and in accordance with these Terms and Conditions. You agree not to:",
+          "• Use the website in any way that violates any applicable laws or regulations",
+          "• Attempt to gain unauthorized access to any portion of the website",
+          "• Transmit any viruses, malware, or harmful code",
+          "• Use automated systems to access the website without permission",
+          "• Reproduce, duplicate, or copy any content without authorization"
+        ]
+      },
+      "propertyInformation": {
+        "title": "Property Information",
+        "content": [
+          "All property information, including prices, features, and availability, is subject to change without notice. We strive to provide accurate information, but we do not warrant that all information is current, complete, or error-free.",
+          "Property prices, specifications, and availability are subject to change. Final pricing and terms will be specified in your purchase or rental agreement.",
+          "We reserve the right to modify or discontinue any property, model, or program at any time without prior notice."
+        ]
+      },
+      "rentToOwn": {
+        "title": "Rent to Own Program",
+        "content": [
+          "Participation in our Rent to Own program is subject to approval and qualification. Terms and conditions of the program will be detailed in your rental agreement.",
+          "Rent payments may be applied toward the purchase price as specified in your agreement. The application of rent toward purchase is subject to the terms of your specific contract.",
+          "We reserve the right to modify program terms, eligibility requirements, and availability at any time."
+        ]
+      },
+      "limitation": {
+        "title": "Limitation of Liability",
+        "description": "To the maximum extent permitted by law, M.J. Newell Homes shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from your use of our website or services."
+      },
+      "intellectualProperty": {
+        "title": "Intellectual Property",
+        "description": "All content on this website, including text, graphics, logos, images, and software, is the property of M.J. Newell Homes or its content suppliers and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or create derivative works from any content without our express written permission."
+      },
+      "governingLaw": {
+        "title": "Governing Law",
+        "description": "These Terms and Conditions shall be governed by and construed in accordance with the laws of the State of Florida, without regard to its conflict of law provisions. Any disputes arising from these terms shall be resolved in the courts of Florida."
+      },
+      "changes": {
+        "title": "Changes to Terms",
+        "description": "We reserve the right to modify these Terms and Conditions at any time. We will notify users of any material changes by posting the updated terms on this page and updating the \"Last updated\" date. Your continued use of our services after changes are posted constitutes acceptance of the modified terms."
+      },
+      "contact": {
+        "title": "Questions About These Terms?",
+        "description": "If you have any questions about these Terms and Conditions, please contact us:"
+      }
+    }
+  },
+  "rentalApplication": {
+    "title": "Rental Application",
+    "heroTitle": "Apply for Your Dream Home",
+    "heroSubtitle": "Start your journey to homeownership with our Rent to Own program. No down payment required. Apply today!",
+    "formTitle": "Rental Application Form",
+    "formDescription": "Fill out the form below to apply for our Rent to Own program. Our team will review your application and contact you within 1-2 business days.",
+    "whyApply": "Why Apply?",
+    "benefits": {
+      "downPayment": {
+        "title": "$0 Down Payment",
+        "description": "Start your journey to homeownership with no upfront costs"
+      },
+      "moveInFast": {
+        "title": "Move In Fast",
+        "description": "Get approved and move into your new home quickly"
+      },
+      "buildEquity": {
+        "title": "Build Equity",
+        "description": "Your rent payments help build equity toward ownership"
+      },
+      "familyFriendly": {
+        "title": "Family Friendly",
+        "description": "Perfect homes for growing families in great communities"
+      }
+    },
+    "requirements": {
+      "title": "Application Requirements",
+      "description": "To complete your application, please have the following documents ready:",
+      "items": [
+        "Proof of income (pay stubs, tax returns, or bank statements)",
+        "Valid government-issued ID",
+        "Credit check and background verification",
+        "Completed rental application form",
+        "References (optional but recommended)"
+      ]
+    },
+    "process": {
+      "title": "Application Process",
+      "step1": {
+        "title": "Submit Application",
+        "description": "Fill out and submit your rental application form"
+      },
+      "step2": {
+        "title": "Review Process",
+        "description": "Our team reviews your application (1-2 business days)"
+      },
+      "step3": {
+        "title": "Approval & Move In",
+        "description": "Get approved and move into your new home!"
+      }
+    },
+    "needHelp": {
+      "title": "Need Help?",
+      "description": "Our team is here to assist you with your application."
     }
   }
 }

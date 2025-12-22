@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,12 +8,14 @@ import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { MapPin, Phone, ExternalLink, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map } from "lucide-react";
 import { CONTACT_INFO } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
+import { useLanguageStore } from "@/store/language-store";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { motion } from "framer-motion";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 const googleMapsUrl = "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8";
-const googleMapsEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d515.3257077253446!2d-81.43737737748471!3d26.762324092310248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db856a8ff9fc6b%3A0xce6810c83740a1d4!2sMJ%20Newell%20Homes!5e0!3m2!1ses!2sco!4v1765941661174!5m2!1ses!2sco";
+// Base URL sin parámetros de idioma - los agregaremos dinámicamente
+const googleMapsEmbedBaseUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d515.3257077253446!2d-81.43737737748471!3d26.762324092310248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db856a8ff9fc6b%3A0xce6810c83740a1d4!2sMJ%20Newell%20Homes!5e0!4v1765941661174";
 
 // Configuración del formulario de HubSpot para agendamiento
 const HUBSPOT_FORM_CONFIG = {
@@ -23,6 +26,14 @@ const HUBSPOT_FORM_CONFIG = {
 
 export const ScheduleAppointmentContent = () => {
   const { t } = useTranslation();
+  const language = useLanguageStore((state) => state.language);
+  
+  // Construir URL del embed con el idioma correcto
+  const googleMapsEmbedUrl = useMemo(() => {
+    const lang = language === "es" ? "es" : "en";
+    const region = language === "es" ? "US" : "US"; // Mantener US como región
+    return `${googleMapsEmbedBaseUrl}&hl=${lang}&gl=${region}`;
+  }, [language]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
@@ -201,13 +212,13 @@ export const ScheduleAppointmentContent = () => {
                         </h4>
                         <div className="text-xs text-muted-foreground space-y-1">
                           <p suppressHydrationWarning>
-                            {t("scheduleAppointment.officeInfo.weekdays")}: {CONTACT_INFO.openingHours.weekdays.opens} - {CONTACT_INFO.openingHours.weekdays.closes}
+                            {t("scheduleAppointment.officeInfo.weekdays")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                           </p>
                           <p suppressHydrationWarning>
-                            {t("scheduleAppointment.officeInfo.saturday")}: {CONTACT_INFO.openingHours.saturday.opens} - {CONTACT_INFO.openingHours.saturday.closes}
+                            {t("scheduleAppointment.officeInfo.saturday")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                           </p>
                           <p suppressHydrationWarning>
-                            {t("scheduleAppointment.officeInfo.sunday")}: {t("scheduleAppointment.officeInfo.closed")}
+                            {t("scheduleAppointment.officeInfo.sunday")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                           </p>
                         </div>
                       </div>

@@ -42,20 +42,27 @@ export const CONTACT_INFO = {
     longitude: -81.4381,
   },
   
-  // Horario de atención - Todos los días de 8am a 5pm
+  // Horario de atención - Todos los días de 9:00am a 6:00pm
+  // Formato 24 horas para structured data (Schema.org)
   openingHours: {
     weekdays: {
-      opens: "08:00",
-      closes: "17:00",
+      opens: "09:00",
+      closes: "18:00",
     },
     saturday: {
-      opens: "08:00",
-      closes: "17:00",
+      opens: "09:00",
+      closes: "18:00",
     },
     sunday: {
-      opens: "08:00",
-      closes: "17:00",
+      opens: "09:00",
+      closes: "18:00",
     },
+  },
+  
+  // Horarios en formato 12 horas para mostrar al usuario
+  openingHoursDisplay: {
+    opens: "9:00am",
+    closes: "6:00pm",
   },
 } as const;
 
