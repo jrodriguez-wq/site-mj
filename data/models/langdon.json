@@ -1,12 +1,12 @@
 {
   "key": "langdon",
   "name": "LANGDON",
-  "sqft": "1,900",
+  "sqft": "1,918",
   "bedrooms": "3",
   "bathrooms": "2",
   "garage": "2-Car Garage",
   "price": "$316,900",
-  "description": "Introducing the Langdon—where smart design meets attainable luxury. This 1,900 sq. ft. home offers 3 bedrooms, 2 bathrooms, and a 2-car garage on a generous quarter-acre lot. Built with hurricane-impact protection and modern, energy-efficient features, it's engineered for both comfort and security. The Langdon's open layout, elegant finishes, and abundant natural light elevate everyday living. It's the ideal choice for buyers seeking a new construction home that delivers style and durability without the premium price tag.",
+  "description": "Introducing the Langdon where smart design meets attainable luxury. This 1,900 sq. ft. home offers 3 bedrooms, 2 bathrooms, and a 2-car garage on a generous quarter-acre lot. Built with hurricane-impact protection and modern, energy-efficient features, it's engineered for both comfort and security. The Langdon's open layout, elegant finishes, and abundant natural light elevate everyday living. It's the ideal choice for buyers seeking a new construction home that delivers style and durability without the premium price tag.",
   "youtubeUrl": "https://www.youtube.com/watch?v=sy13SHdR3Sk",
   "imagesFolder": "langdon",
   "sections": {
@@ -24,7 +24,13 @@
     },
     "floorplan": {
       "title": "Floorplan",
-      "description": "View the detailed floor plan layout."
+      "description": "View the detailed floor plan layout.",
+      "measures": {
+        "livingArea": "1,420 SQ. FT.",
+        "entry": "72 SQ. FT.",
+        "garage": "426 SQ. FT.",
+        "totalArea": "1,918 SQ. FT."
+      }
     },
     "standardFeatures": {
       "title": "Standard Features",
@@ -65,9 +71,7 @@
         "warranty": {
           "title": "Warranty",
           "items": [
-            "10-year structural warranty",
-            "2-year systems warranty",
-            "1-year workmanship warranty"
+            "Standard Features"
           ]
         },
         "windows": {

@@ -17,6 +17,8 @@ const lehighAcresImages = [
   "/recursos/shutterstock-1065297917.webp",
   "/recursos/playa.webp",
   "/recursos/familia-casa.webp",
+  "/recursos/familia-cocina.webp",
+  "/recursos/familia-conduciendo.webp",
 ];
 
 export default function LehighAcresPage() {

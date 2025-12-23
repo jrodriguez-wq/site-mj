@@ -12,21 +12,16 @@ const familyImages = [
   { src: "/recursos/clientes/testimonio-1.webp" },
   { src: "/recursos/clientes/testimonio-14.webp" },
   { src: "/recursos/clientes/testimonio-2.webp" },
-  { src: "/recursos/clientes/testimonio-4.webp" },
   { src: "/recursos/clientes/testimonio-7.webp" },
   { src: "/recursos/clientes/testimonio-27.webp" },
 
-  { src: "/recursos/clientes/testimonio-9.webp" },
-  { src: "/recursos/clientes/testimonio-10.webp" },
   { src: "/recursos/clientes/testimonio-16.webp" },
+  { src: "/recursos/clientes/testimonio-9.webp" },
   { src: "/recursos/clientes/testimonio-3.webp" },
-  { src: "/recursos/clientes/testimonio-12.webp" },
-  { src: "/recursos/clientes/testimonio-13.webp" },
-  { src: "/recursos/clientes/testimonio-15.webp" },
   { src: "/recursos/clientes/testimonio-32.webp" },
-  { src: "/recursos/clientes/testimonio-18.webp" },
-  { src: "/recursos/clientes/testimonio-24.webp" },
+  { src: "/recursos/clientes/testimonio-15.webp" },
   { src: "/recursos/clientes/testimonio-25.webp" },
+  { src: "/recursos/clientes/testimonio-13.webp" },
   { src: "/recursos/clientes/testimonio-8.webp" },
 
   { src: "/img/logo.svg", isLogo: true },
@@ -114,31 +109,32 @@ export const HappyFamiliesGallery = () => {
           <div className="hidden md:block">
             <BentoGrid className="max-w-7xl mx-auto">
               {familyImages.map((item, i) => {
-                // Distribución optimizada para llenar el grid sin espacios vacíos
+                // Distribución optimizada para 17 elementos (16 imágenes + 1 logo)
                 // Grid de 3 columnas - Patrón balanceado que llena todos los espacios
-                // Combinación de tamaños: 1x1, 1x2, 2x1, 2x2, 3x1, 3x2
+                // El logo al final tiene un tamaño destacado (3x2)
                 const sizeConfig = [
-                  "md:col-span-1 md:row-span-2",    
-                  "md:col-span-2 md:row-span-2",    
-                  "md:col-span-1 md:row-span-1",                      
-                  "md:col-span-1 md:row-span-1",      
-                  "md:col-span-1 md:row-span-1",    
-                  "md:col-span-1 md:row-span-2",      
-                  "md:col-span-2 md:row-span-1",     
-                  "md:col-span-1 md:row-span-2",      
-                  "md:col-span-1 md:row-span-2",     
-                  "md:col-span-1 md:row-span-2",     
-                  "md:col-span-2 md:row-span-2",     
-                  "md:col-span-1 md:row-span-1",     
-                  "md:col-span-2 md:row-span-2",     
-                  "md:col-span-1 md:row-span-1",     
-                  "md:col-span-1 md:row-span-1",     
-                  "md:col-span-3 md:row-span-2",      
-                  "md:col-span-1 md:row-span-1",     
-                  "md:col-span-2 md:row-span-1",     
-                  "md:col-span-2 md:row-span-1",     
-                  "md:col-span-1 md:row-span-1",     
-                  "md:col-span-3 md:row-span-1",     
+                  "md:col-span-1 md:row-span-2",      // 1: Grande (2x2)
+                  "md:col-span-2 md:row-span-2",     // 2: Alto (1x2)
+
+                  "md:col-span-1 md:row-span-1",      // 3: Pequeño (1x1)
+                  "md:col-span-1 md:row-span-1",      // 4: Pequeño (1x1)
+                  "md:col-span-1 md:row-span-1",      // 5: Alto (1x2)
+
+                  "md:col-span-3 md:row-span-2",      // 6: Ancho (2x1)
+
+                  "md:col-span-1 md:row-span-2",      // 7: Pequeño (1x1)
+                  "md:col-span-1 md:row-span-2",      // 8: Alto (1x2)
+                  "md:col-span-1 md:row-span-2",      // 9: Grande (2x2)
+
+                  "md:col-span-1 md:row-span-2",      // 10: Pequeño (1x1)
+                  "md:col-span-1 md:row-span-2",      // 11: Pequeño (1x1)
+                  "md:col-span-1 md:row-span-2",      // 12: Alto (1x2)
+                  
+                  "md:col-span-1 md:row-span-1",      // 13: Ancho (2x1)
+                  "md:col-span-1 md:row-span-1",      // 14: Pequeño (1x1)
+                  "md:col-span-1 md:row-span-1",      // 15: Alto (1x2)
+
+                  "md:col-span-3 md:row-span-1",      // 17: Logo destacado (3x2)
                 ];
 
                 return (

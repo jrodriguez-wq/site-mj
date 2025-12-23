@@ -15,6 +15,7 @@ import { SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
 import { MODEL_FLOORPLANS } from "@/lib/models/model-images";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { FloorplanMeasures } from "./floorplan-measures";
 
 interface ModelPageContentProps {
   modelData: ModelData & { images: string[] };
@@ -190,13 +191,16 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   {price}
                 </CardTitle>
+                <p className="text-sm sm:text-base md:text-lg font-semibold text-emerald-600 dark:text-emerald-400 mt-2">
+                  $0 Down
+                </p>
               </CardHeader>
               <CardContent className="p-5 sm:p-6 pt-0 space-y-4">
                 {/* RTO Price Section */}
                 {rtoPrice && (
                   <div className="pt-4 border-t border-border/50">
                     <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
-                      {t("rentToOwn.hero.title")} {t("homeModels.modelPage.startingPrice")}
+                      {t("rentToOwn.hero.title")} Program
                     </p>
                     <p className="text-xl sm:text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">
                       {rtoPrice}
@@ -211,13 +215,13 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Features Grid - Optimized and Centered */}
             <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
-                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
-                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
+                    <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Square className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <div className="w-full">
+                    <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{sqft}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
                         {t("homeModels.modelPage.sqft")}
@@ -227,13 +231,13 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
-                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
-                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
+                    <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Bed className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <div className="w-full">
+                    <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{bedrooms}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
                         {t("homeModels.modelPage.bedrooms")}
@@ -243,13 +247,13 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
-                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
-                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
+                    <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Bath className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <div className="w-full">
+                    <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{bathrooms}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
                         {t("homeModels.modelPage.bathrooms")}
@@ -259,13 +263,13 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
-                <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] md:min-h-[180px]">
-                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full">
-                    <div className="p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+                <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
+                  <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
+                    <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
                       <Car className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                     </div>
-                    <div className="w-full">
+                    <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-lg sm:text-xl md:text-2xl font-black text-foreground leading-tight mb-1">{garage}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
                         {t("homeModels.garage")}
@@ -457,8 +461,38 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                                     priority={false}
                                     loading="lazy"
                                   />
+                                  
+                                  {/* Floorplan Measures Component - Desktop: absolute, Mobile: hidden (shown below) */}
+                                  {sections.floorplan.measures && (
+                                    <div className="hidden md:block">
+                                      <FloorplanMeasures
+                                        livingArea={sections.floorplan.measures.livingArea}
+                                        entry={sections.floorplan.measures.entry}
+                                        garage={sections.floorplan.measures.garage}
+                                        garageLabel={garage}
+                                        lanai={sections.floorplan.measures.lanai}
+                                        totalArea={sections.floorplan.measures.totalArea}
+                                      />
+                                    </div>
+                                  )}
                                 </div>
                               </div>
+                              
+                              {/* Floorplan Measures Component - Mobile: shown below floorplan */}
+                              {sections.floorplan.measures && (
+                                <div className="md:hidden mt-4">
+                                  <FloorplanMeasures
+                                    livingArea={sections.floorplan.measures.livingArea}
+                                    entry={sections.floorplan.measures.entry}
+                                    garage={sections.floorplan.measures.garage}
+                                    garageLabel={garage}
+                                    lanai={sections.floorplan.measures.lanai}
+                                    totalArea={sections.floorplan.measures.totalArea}
+                                    className="relative bottom-0 right-0 w-full"
+                                  />
+                                </div>
+                              )}
+                              
                               {/* Expand button for mobile */}
                               <div className="md:hidden mt-3 flex items-center justify-center gap-2">
                                 <button
@@ -483,25 +517,25 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                         {/* Expanded Floorplan Modal for Mobile */}
                         {isFloorplanExpanded && (
                           <div
-                            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-background/95 backdrop-blur-sm md:hidden"
+                            className="fixed inset-0 z-[110] flex flex-col items-center justify-center p-0 bg-background/95 backdrop-blur-sm md:hidden"
                             onClick={() => setIsFloorplanExpanded(false)}
                           >
                             <div
-                              className="bg-card rounded-2xl max-w-full w-full max-h-[95vh] overflow-hidden shadow-2xl border-2 border-border relative"
+                              className="bg-card rounded-t-2xl max-w-full w-full h-full flex flex-col overflow-hidden shadow-2xl border-2 border-border relative"
                               onClick={(e) => e.stopPropagation()}
                             >
-                              {/* Close Button */}
+                              {/* Close Button - Above navbar */}
                               <button
                                 onClick={() => setIsFloorplanExpanded(false)}
-                                className="absolute top-3 right-3 z-10 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border"
+                                className="absolute top-4 right-4 z-[120] bg-background/95 backdrop-blur-md p-2.5 rounded-full hover:bg-background transition-colors border-2 border-border shadow-lg"
                                 aria-label="Close"
                                 type="button"
                               >
                                 <X className="w-5 h-5 text-foreground" />
                               </button>
 
-                              {/* Expanded Image */}
-                              <div className="relative w-full h-[95vh] overflow-auto bg-background">
+                              {/* Expanded Image Container */}
+                              <div className="relative flex-1 w-full overflow-auto bg-background pt-20 pb-24">
                                 <div className="relative w-full min-h-full p-4 flex items-center justify-center">
                                   <Image
                                     src={floorplanImage}
@@ -515,12 +549,29 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                                 </div>
                               </div>
 
+                              {/* Floorplan Measures Component - Fixed at bottom (subido para evitar chat) */}
+                              {sections.floorplan.measures && (
+                                <div className="absolute bottom-20 left-0 right-0 z-[115] p-3 bg-background/95 backdrop-blur-md border-t-2 border-border rounded-t-xl">
+                                  <FloorplanMeasures
+                                    livingArea={sections.floorplan.measures.livingArea}
+                                    entry={sections.floorplan.measures.entry}
+                                    garage={sections.floorplan.measures.garage}
+                                    garageLabel={garage}
+                                    lanai={sections.floorplan.measures.lanai}
+                                    totalArea={sections.floorplan.measures.totalArea}
+                                    className="relative bottom-0 right-0 w-full"
+                                  />
+                                </div>
+                              )}
+
                               {/* Helper text */}
-                              <div className="absolute bottom-4 left-4 right-4 text-center">
-                                <p className="text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-2 rounded-lg inline-block" suppressHydrationWarning>
-                                  {t("homeModels.modelPage.floorplanScrollHint") || "Desliza para ver el plano completo"}
-                                </p>
-                              </div>
+                              {!sections.floorplan.measures && (
+                                <div className="absolute bottom-4 left-4 right-4 text-center z-[115]">
+                                  <p className="text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-2 rounded-lg inline-block" suppressHydrationWarning>
+                                    {t("homeModels.modelPage.floorplanScrollHint") || "Desliza para ver el plano completo"}
+                                  </p>
+                                </div>
+                              )}
                             </div>
                           </div>
                         )}
@@ -649,7 +700,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     key={index}
                     onClick={() => setGalleryImageIndex(index)}
                     className={cn(
-                      "w-16 h-12 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0",
+                      "w-16 h-12 rounded-lg overflow-hidden border-2 transition-all shrink-0",
                       index === galleryImageIndex
                         ? "border-primary scale-105"
                         : "border-transparent opacity-70 hover:opacity-100"

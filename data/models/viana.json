@@ -6,7 +6,7 @@
   "bathrooms": "3",
   "garage": "2-Car Garage",
   "price": "$449,900",
-  "description": "Meet the Viana—engineered for homeowners who want space without compromise. Boasting 2,978 sq. ft., 4 bedrooms, 3 bathrooms, and 2 dens, this model offers exceptional flexibility and privacy. The open layout seamlessly connects expansive living areas, enhanced by high ceilings and abundant natural light. The gourmet kitchen features custom cabinets, quartz countertops, and stainless-steel appliances—making it the centerpiece of the home. With its impressive footprint and elegant design, the Viana is a dream home for families who value comfort and sophistication.",
+  "description": "Meet the Viana engineered for homeowners who want space without compromise. Boasting 2,978 sq. ft., 4 bedrooms, 3 bathrooms, and 2 dens, this model offers exceptional flexibility and privacy. The open layout seamlessly connects expansive living areas, enhanced by high ceilings and abundant natural light. The gourmet kitchen features custom cabinets, quartz countertops, and stainless-steel appliances making it the centerpiece of the home. With its impressive footprint and elegant design, the Viana is a dream home for families who value comfort and sophistication.",
   "youtubeUrl": "https://www.youtube.com/watch?v=OqARAq2u0Cs",
   "imagesFolder": "viana",
   "sections": {
@@ -24,7 +24,14 @@
     },
     "floorplan": {
       "title": "Floorplan",
-      "description": "View the detailed floor plan layout."
+      "description": "View the detailed floor plan layout.",
+      "measures": {
+        "livingArea": "2,316 SQ. FT.",
+        "entry": "113 SQ. FT.",
+        "garage": "390 SQ. FT.",
+        "lanai": "159 SQ. FT.",
+        "totalArea": "2,978 SQ. FT."
+      }
     },
     "standardFeatures": {
       "title": "Standard Features",
@@ -65,9 +72,7 @@
         "warranty": {
           "title": "Warranty",
           "items": [
-            "10-year structural warranty",
-            "2-year systems warranty",
-            "1-year workmanship warranty"
+            "Standard Features"
           ]
         },
         "windows": {

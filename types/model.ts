@@ -27,6 +27,13 @@ export interface ModelData {
       title: string;
       description?: string;
       image?: string;
+      measures?: {
+        livingArea?: string; // Ejemplo: "2,316 SQ. FT."
+        entry?: string; // Ejemplo: "113 SQ. FT."
+        garage?: string; // Ejemplo: "689 SQ. FT."
+        lanai?: string; // Ejemplo: "159 SQ. FT."
+        totalArea: string; // Ejemplo: "3,277 SQ. FT."
+      };
     };
     standardFeatures?: {
       title: string;

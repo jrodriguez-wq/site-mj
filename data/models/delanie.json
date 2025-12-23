@@ -6,7 +6,7 @@
   "bathrooms": "2",
   "garage": "3-Car Garage",
   "price": "$369,900",
-  "description": "The Delanie elevates modern living with thoughtful design and room to grow. Boasting 2,610 sq. ft., 3 bedrooms, 2 baths, and a 3-car garage—with the option for a 4th bedroom or den—this home offers both function and flexibility. Its open concept layout brings together expansive living areas and a contemporary kitchen enhanced by custom cabinets and sleek countertops. High ceilings and generous windows fill the space with natural light, creating a warm and inviting atmosphere. Whether you need more room for family, work, or hobbies, the Delanie delivers.",
+  "description": "The Delanie elevates modern living with thoughtful design and room to grow. Boasting 2,610 sq. ft., 3 bedrooms, 2 baths, and a 3-car garage with the option for a 4th bedroom or den this home offers both function and flexibility. Its open concept layout brings together expansive living areas and a contemporary kitchen enhanced by custom cabinets and sleek countertops. High ceilings and generous windows fill the space with natural light, creating a warm and inviting atmosphere. Whether you need more room for family, work, or hobbies, the Delanie delivers.",
   "youtubeUrl": "https://www.youtube.com/watch?v=IXASzq9SzKM",
   "imagesFolder": "delanie",
   "sections": {
@@ -24,7 +24,14 @@
     },
     "floorplan": {
       "title": "Floorplan",
-      "description": "View the detailed floor plan layout."
+      "description": "View the detailed floor plan layout.",
+      "measures": {
+        "livingArea": "1,749 SQ. FT.",
+        "entry": "84 SQ. FT.",
+        "garage": "618 SQ. FT.",
+        "lanai": "159 SQ. FT.",
+        "totalArea": "2,610 SQ. FT."
+      }
     },
     "standardFeatures": {
       "title": "Standard Features",
@@ -65,9 +72,7 @@
         "warranty": {
           "title": "Warranty",
           "items": [
-            "10-year structural warranty",
-            "2-year systems warranty",
-            "1-year workmanship warranty"
+            "Standard Features"
           ]
         },
         "windows": {

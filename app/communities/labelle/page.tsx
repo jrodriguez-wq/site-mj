@@ -17,6 +17,8 @@ const labelleImages = [
   "/recursos/shutterstock-440999080.webp",
   "/recursos/rio.webp",
   "/recursos/pai.webp",
+  "/recursos/familia-casa.webp",
+  "/recursos/orlandof.webp",
 ];
 
 export default function LaBellePage() {
