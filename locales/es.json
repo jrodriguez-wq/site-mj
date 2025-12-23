@@ -1090,6 +1090,12 @@
         "description": "No se requiere crédito ni verificación de empleo"
       }
     },
+    "form": {
+      "title": "Aplicar para Rent to Own",
+      "subtitle": "Completa el formulario a continuación para comenzar tu camino hacia la propiedad. Nuestro equipo se pondrá en contacto contigo pronto.",
+      "formTitle": "Aplicación Rent to Own",
+      "formDescription": "Completa el formulario a continuación y revisaremos tu aplicación. No se requiere verificación de crédito para la aplicación inicial."
+    },
     "cta": {
       "title": "¿Listo para comenzar?",
       "description": "Contáctanos hoy y descubre cómo puedes vivir en tu casa nueva mientras ahorras para tu futura compra",

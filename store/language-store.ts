@@ -120,10 +120,34 @@ const getTranslation = (translations: Translations, key: string): string => {
  * Versión del schema de traducciones - incrementar cuando cambie la estructura
  * Esto permite invalidar cache antiguo automáticamente
  */
-const TRANSLATIONS_VERSION = "2.0.0";
+const TRANSLATIONS_VERSION = "2.1.0";
+
+/**
+ * Claves esenciales que deben existir en las traducciones
+ * Si alguna de estas claves falta, las traducciones se consideran incompletas
+ */
+const ESSENTIAL_KEYS = [
+  "home",
+  "nav",
+  "faq",
+  "privacyPolicy",
+  "termsConditions",
+  "rentToOwn",
+] as const;
+
+/**
+ * Claves específicas dentro de secciones importantes que deben existir
+ * Esto ayuda a detectar traducciones parcialmente cargadas o corruptas
+ */
+const REQUIRED_NESTED_KEYS = [
+  "rentToOwn.form",
+  "rentToOwn.hero",
+  "rentToOwn.cta",
+] as const;
 
 /**
  * Verifica si las traducciones son válidas y completas
+ * Ahora incluye verificación de claves anidadas para detectar traducciones incompletas
  */
 const isValidTranslations = (translations: unknown): translations is Translations => {
   if (
@@ -143,19 +167,42 @@ const isValidTranslations = (translations: unknown): translations is Translation
     return false;
   }
 
-  // Verificar que tenga claves esenciales (home, nav, etc.)
-  const essentialKeys = ["home", "nav", "faq", "privacyPolicy", "termsConditions"];
-  const hasEssentialKeys = essentialKeys.some(key => key in translations);
+  // Verificar que tenga TODAS las claves esenciales (no solo algunas)
+  const hasAllEssentialKeys = ESSENTIAL_KEYS.every(key => key in translations);
 
-  if (!hasEssentialKeys) {
+  if (!hasAllEssentialKeys) {
+    console.warn("[LanguageStore] Missing essential keys:", 
+      ESSENTIAL_KEYS.filter(key => !(key in translations))
+    );
     return false;
+  }
+
+  // Verificar claves anidadas importantes
+  const translationsObj = translations as Record<string, unknown>;
+  for (const nestedKey of REQUIRED_NESTED_KEYS) {
+    const keyParts = nestedKey.split(".");
+    let current: unknown = translationsObj;
+    
+    for (const part of keyParts) {
+      if (!current || typeof current !== "object" || Array.isArray(current)) {
+        console.warn(`[LanguageStore] Missing nested key: ${nestedKey}`);
+        return false;
+      }
+      current = (current as Record<string, unknown>)[part];
+    }
+    
+    // Verificar que el valor final no esté vacío
+    if (!current || (typeof current === "object" && Object.keys(current).length === 0)) {
+      console.warn(`[LanguageStore] Empty nested key: ${nestedKey}`);
+      return false;
+    }
   }
 
   // Verificar que no sea un objeto vacío o corrupto
   // Si todas las claves tienen valores vacíos o son objetos vacíos, es inválido
   let hasValidContent = false;
   for (const key of keys.slice(0, 10)) { // Verificar solo las primeras 10 claves para performance
-    const value = (translations as Record<string, unknown>)[key];
+    const value = translationsObj[key];
     if (value && typeof value === "object" && Object.keys(value).length > 0) {
       hasValidContent = true;
       break;
@@ -166,7 +213,31 @@ const isValidTranslations = (translations: unknown): translations is Translation
     }
   }
 
-  return hasValidContent;
+  if (!hasValidContent) {
+    console.warn("[LanguageStore] Translations appear to have no valid content");
+    return false;
+  }
+
+  return true;
+};
+
+/**
+ * Limpia el storage de idioma de forma segura
+ * Útil cuando se detectan traducciones corruptas o desactualizadas
+ */
+const clearLanguageStorage = (): void => {
+  if (typeof window === "undefined") return;
+  
+  try {
+    localStorage.removeItem("language-storage");
+    console.info("[LanguageStore] Language storage cleared successfully");
+    
+    // También limpiar el cache en memoria
+    translationsCache.en = null;
+    translationsCache.es = null;
+  } catch (error) {
+    console.error("[LanguageStore] Error clearing language storage:", error);
+  }
 };
 
 const initialState: Omit<LanguageState, "setLanguage" | "t"> = {
@@ -183,21 +254,34 @@ export const useLanguageStore = create<LanguageState>()(
       /**
        * Cambia el idioma y carga las traducciones
        * Optimizado para evitar cargas duplicadas
+       * Incluye auto-limpieza cuando detecta traducciones corruptas
        */
       setLanguage: async (lang: Language) => {
         const currentState = get();
 
         // Si ya está cargando ese idioma o ya lo tiene cargado Y es válido, no hacer nada
         if (currentState.language === lang && isValidTranslations(currentState.translations)) {
-          // Verificar que las traducciones no estén corruptas
-          const testKey = lang === "en" ? "home.title" : "home.title";
-          const testTranslation = getTranslation(currentState.translations, testKey);
-          if (testTranslation !== testKey) {
+          // Verificar que las traducciones funcionen correctamente con una prueba real
+          const testKeys = ["nav.home", "rentToOwn.hero.title"];
+          let allTestsPass = true;
+          
+          for (const testKey of testKeys) {
+            const testTranslation = getTranslation(currentState.translations, testKey);
+            // Si devuelve la misma clave, significa que no encontró la traducción
+            if (testTranslation === testKey) {
+              allTestsPass = false;
+              break;
+            }
+          }
+          
+          if (allTestsPass) {
             // Las traducciones funcionan correctamente
             return;
           }
-          // Si las traducciones no funcionan, forzar recarga
-          console.warn(`[LanguageStore] Translations for ${lang} appear corrupted, forcing reload...`);
+          
+          // Si las traducciones no funcionan, limpiar y forzar recarga
+          console.warn(`[LanguageStore] Translations for ${lang} appear corrupted or incomplete, clearing storage and reloading...`);
+          clearLanguageStorage();
         }
 
         set({ isLoading: true });
@@ -314,16 +398,17 @@ export const useLanguageStore = create<LanguageState>()(
           let shouldReload = false;
 
           if (storedVersion !== TRANSLATIONS_VERSION) {
-            console.warn("[LanguageStore] Cache version mismatch, clearing and reloading...");
-            // Limpiar cache corrupto
-            if (typeof window !== "undefined") {
-              try {
-                localStorage.removeItem("language-storage");
-              } catch (e) {
-                console.error("[LanguageStore] Error clearing cache:", e);
-              }
-            }
+            console.warn(`[LanguageStore] Cache version mismatch (stored: ${storedVersion}, current: ${TRANSLATIONS_VERSION}), clearing and reloading...`);
+            clearLanguageStorage();
             // Forzar recarga
+            shouldReload = true;
+            state = undefined;
+          }
+          
+          // Verificar que las traducciones almacenadas sean válidas incluso si la versión coincide
+          if (state?.translations && !isValidTranslations(state.translations)) {
+            console.warn("[LanguageStore] Stored translations are invalid, clearing and reloading...");
+            clearLanguageStorage();
             shouldReload = true;
             state = undefined;
           }
@@ -348,7 +433,12 @@ export const useLanguageStore = create<LanguageState>()(
 
           // Si no hay traducciones válidas o están corruptas, limpiar y recargar
           if (!state?.translations || !isValidTranslations(state.translations) || shouldReload) {
-            console.warn("[LanguageStore] Invalid or missing translations, reloading...");
+            console.warn("[LanguageStore] Invalid or missing translations, clearing storage and reloading...");
+            
+            // Limpiar storage si hay problemas
+            if (shouldReload || !state?.translations) {
+              clearLanguageStorage();
+            }
 
             // Limpiar traducciones corruptas del estado
             useLanguageStore.setState({
@@ -423,26 +513,22 @@ if (typeof window !== "undefined") {
       const storedVersion = parsed?.state?._version;
       if (storedVersion !== TRANSLATIONS_VERSION) {
         // Versión antigua, limpiar cache
-        console.warn("[LanguageStore] Old cache version detected, clearing...");
-        localStorage.removeItem("language-storage");
+        console.warn(`[LanguageStore] Old cache version detected (${storedVersion} vs ${TRANSLATIONS_VERSION}), clearing...`);
+        clearLanguageStorage();
       } else if (parsed?.state?.translations && isValidTranslations(parsed.state.translations)) {
         // Sincronizar cache inmediatamente solo si es válido
         const lang = parsed.state.language || "en";
         translationsCache[lang as Language] = parsed.state.translations;
       } else {
-        // Traducciones corruptas, limpiar
-        console.warn("[LanguageStore] Corrupted translations detected, clearing cache...");
-        localStorage.removeItem("language-storage");
+        // Traducciones corruptas o incompletas, limpiar
+        console.warn("[LanguageStore] Corrupted or incomplete translations detected, clearing cache...");
+        clearLanguageStorage();
       }
     }
   } catch (error) {
     // Error al parsear, limpiar cache corrupto
     console.error("[LanguageStore] Error parsing cache, clearing...", error);
-    try {
-      localStorage.removeItem("language-storage");
-    } catch (e) {
-      // Ignorar errores al limpiar
-    }
+    clearLanguageStorage();
   }
 
   // Precargar inglés inmediatamente y guardar en cache

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { PageContent } from "@/components/layout/page-container";
 import Image from "next/image";
@@ -24,7 +24,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CONTACT_INFO } from "@/config/seo";
+import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
 import { getModelData } from "@/lib/models/model-data";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
 import { getModelPricing } from "@/lib/models/model-pricing";
@@ -35,6 +35,8 @@ import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { AnimatedCard } from "@/components/ui/animated-card";
+import { HubSpotForm } from "@/components/ui/hubspot-form";
+import { HUBSPOT_FORMS } from "@/lib/constants";
 
 // Modelos disponibles para RTO por comunidad
 // LaBelle: langdon, emelia, aurora, delanie, viana, louisiana
@@ -64,6 +66,41 @@ export default function RentToOwnPage() {
   const [models, setModels] = useState<ModelDisplayData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCommunity, setSelectedCommunity] = useState<Community | "all">("all");
+
+  const redirectUrl = useMemo(() => {
+    const baseUrl = typeof window !== 'undefined' 
+      ? window.location.origin 
+      : SEO_CONFIG.siteUrl;
+    return `${baseUrl}/thank-you?type=rent-to-own`;
+  }, []);
+
+  // Scroll automático al formulario cuando hay hash en la URL
+  useEffect(() => {
+    const handleHashScroll = () => {
+      if (typeof window === 'undefined') return;
+      
+      // Verificar si hay hash en la URL
+      if (window.location.hash === '#rto-application-form') {
+        // Pequeño delay para asegurar que el DOM esté completamente renderizado
+        setTimeout(() => {
+          const formSection = document.getElementById('rto-application-form');
+          if (formSection) {
+            formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      }
+    };
+
+    // Ejecutar inmediatamente
+    handleHashScroll();
+
+    // También escuchar cambios en el hash (navegación dentro de la misma página)
+    window.addEventListener('hashchange', handleHashScroll);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const loadModels = async () => {
@@ -224,7 +261,13 @@ export default function RentToOwnPage() {
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   </Button>
                   <Button
-                    asChild
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const formSection = document.getElementById("rto-application-form");
+                      if (formSection) {
+                        formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }
+                    }}
                     variant="outline"
                     size="lg"
                     className={cn(
@@ -237,9 +280,9 @@ export default function RentToOwnPage() {
                       "hover:scale-105 active:scale-100"
                     )}
                   >
-                    <Link href="/contact" className="flex items-center gap-2" suppressHydrationWarning>
+                    <span className="flex items-center gap-2" suppressHydrationWarning>
                       {t("rentToOwn.hero.cta.secondary")}
-                    </Link>
+                    </span>
                   </Button>
                 </motion.div>
               </motion.div>
@@ -781,6 +824,46 @@ export default function RentToOwnPage() {
             </div>
           </div>
         </PageContent>
+        </section>
+      </AnimatedSection>
+
+      {/* Application Form Section */}
+      <AnimatedSection delay={0.1} direction="fade">
+        <section id="rto-application-form" className="py-12 md:py-16 lg:py-20 bg-background scroll-mt-20">
+          <PageContent size="lg">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center space-y-4 mb-8">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+                  {t("rentToOwn.form.title") || "Apply for Rent to Own"}
+                </h2>
+                <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed" suppressHydrationWarning>
+                  {t("rentToOwn.form.subtitle") || "Fill out the form below to start your journey to homeownership. Our team will contact you soon."}
+                </p>
+                <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              </div>
+
+              <Card className="shadow-2xl border-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
+                <CardHeader className="text-center space-y-3 pb-6 p-6 sm:p-8">
+                  <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-black" suppressHydrationWarning>
+                    {t("rentToOwn.form.formTitle") || "Rent to Own Application"}
+                  </CardTitle>
+                  <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+                  <CardDescription className="text-sm sm:text-base md:text-lg pt-2 text-muted-foreground" suppressHydrationWarning>
+                    {t("rentToOwn.form.formDescription") || "Complete the form below and we'll review your application. No credit check required for initial application."}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="px-6 sm:px-8 md:px-10 pb-8 sm:pb-10">
+                  <HubSpotForm
+                    portalId={HUBSPOT_FORMS.RENT_TO_OWN.portalId}
+                    formId={HUBSPOT_FORMS.RENT_TO_OWN.formId}
+                    region={HUBSPOT_FORMS.RENT_TO_OWN.region}
+                    redirectUrl={redirectUrl}
+                    className="w-full"
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          </PageContent>
         </section>
       </AnimatedSection>
 

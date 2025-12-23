@@ -5,24 +5,17 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
-import { MapPin, Phone, ExternalLink, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map } from "lucide-react";
-import { CONTACT_INFO } from "@/config/seo";
+import { MapPin, Phone, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map } from "lucide-react";
+import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
 import { useLanguageStore } from "@/store/language-store";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { motion } from "framer-motion";
+import { HUBSPOT_FORMS } from "@/lib/constants";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 const googleMapsUrl = "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8";
 // Base URL sin parámetros de idioma - los agregaremos dinámicamente
 const googleMapsEmbedBaseUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d515.3257077253446!2d-81.43737737748471!3d26.762324092310248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db856a8ff9fc6b%3A0xce6810c83740a1d4!2sMJ%20Newell%20Homes!5e0!4v1765941661174";
-
-// Configuración del formulario de HubSpot para agendamiento
-const HUBSPOT_FORM_CONFIG = {
-  portalId: "50215941",
-  formId: "77bc0a99-fc8a-4509-8eb5-1b457f3452df",
-  region: "na1" as const,
-};
 
 export const ScheduleAppointmentContent = () => {
   const { t } = useTranslation();
@@ -34,6 +27,14 @@ export const ScheduleAppointmentContent = () => {
     const region = language === "es" ? "US" : "US"; // Mantener US como región
     return `${googleMapsEmbedBaseUrl}&hl=${lang}&gl=${region}`;
   }, [language]);
+
+  // URL de redirección después de enviar el formulario
+  const redirectUrl = useMemo(() => {
+    const baseUrl = typeof window !== 'undefined' 
+      ? window.location.origin 
+      : SEO_CONFIG.siteUrl;
+    return `${baseUrl}/thank-you?type=schedule-appointment`;
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
@@ -89,9 +90,10 @@ export const ScheduleAppointmentContent = () => {
                       {/* Formulario de HubSpot */}
                       <div className=" rounded-xl p-6">
                         <HubSpotForm
-                          portalId={HUBSPOT_FORM_CONFIG.portalId}
-                          formId={HUBSPOT_FORM_CONFIG.formId}
-                          region={HUBSPOT_FORM_CONFIG.region}
+                          portalId={HUBSPOT_FORMS.SCHEDULE_APPOINTMENT.portalId}
+                          formId={HUBSPOT_FORMS.SCHEDULE_APPOINTMENT.formId}
+                          region={HUBSPOT_FORMS.SCHEDULE_APPOINTMENT.region}
+                          redirectUrl={redirectUrl}
                           className="w-full"
                         />
                       </div>

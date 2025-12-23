@@ -37,7 +37,7 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     subtitleKey: "hero.subtitle2",
     descriptionKey: "hero.description2",
     primaryButtonKey: "hero.getPreQualified",
-    primaryButtonLink: "/rent-to-own",
+    primaryButtonLink: "/rent-to-own#rto-application-form",
     primaryButtonAction: "link"
   },
   { 

@@ -1090,6 +1090,12 @@
         "description": "No credit required"
       }
     },
+    "form": {
+      "title": "Apply for Rent to Own",
+      "subtitle": "Fill out the form below to start your journey to homeownership. Our team will contact you soon.",
+      "formTitle": "Rent to Own Application",
+      "formDescription": "Complete the form below and we'll review your application. No credit check required for initial application."
+    },
     "cta": {
       "title": "Ready to Get Started?",
       "description": "Contact us today and discover how you can live in your new home while saving for your future purchase",

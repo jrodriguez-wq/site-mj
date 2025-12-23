@@ -26,12 +26,17 @@ export const HUBSPOT_FORMS = {
   },
   SCHEDULE_APPOINTMENT: {
     portalId: "50215941",
-    formId: "77bc0a99-fc8a-4509-8eb5-1b457f3452df",
+    formId: "cde5f2ab-dd73-49f1-be0d-e7fa20bfbd23",
     region: "na1" as const,
   },
   WARRANTY: {
     portalId: "50215941",
     formId: "warranty-form-id", // Actualizar con el ID real
+    region: "na1" as const,
+  },
+  RENT_TO_OWN: {
+    portalId: "50215941",
+    formId: "260b5e42-6035-4dc3-af93-d6cb83b8a254",
     region: "na1" as const,
   },
 } as const;
