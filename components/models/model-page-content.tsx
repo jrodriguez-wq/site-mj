@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { Bed, Bath, Square, Car, ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,7 +13,7 @@ import { ModelData } from "@/types/model";
 import { cn } from "@/lib/utils";
 import { SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
-import { MODEL_FLOORPLANS } from "@/lib/models/model-images";
+import { MODEL_FLOORPLANS, getModelInteriorImages, getModelExteriorImages } from "@/lib/models/model-images";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { FloorplanMeasures } from "./floorplan-measures";
 
@@ -54,18 +54,36 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
     setIsGalleryOpen(true);
   };
 
-  const closeGallery = () => {
+  const closeGallery = useCallback(() => {
     setIsGalleryOpen(false);
-  };
+  }, []);
 
-  const changeGalleryImage = (direction: number) => {
+  const changeGalleryImage = useCallback((direction: number) => {
     setGalleryImageIndex((prev) => {
       const newIndex = prev + direction;
       if (newIndex < 0) return images.length - 1;
       if (newIndex >= images.length) return 0;
       return newIndex;
     });
-  };
+  }, [images.length]);
+
+  // Navegación con teclado en la galería
+  useEffect(() => {
+    if (!isGalleryOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeGallery();
+      } else if (e.key === "ArrowLeft") {
+        changeGalleryImage(-1);
+      } else if (e.key === "ArrowRight") {
+        changeGalleryImage(1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isGalleryOpen, changeGalleryImage, closeGallery]);
 
   const handleKeyDown = (e: React.KeyboardEvent, callback: () => void) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -74,9 +92,20 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
     }
   };
 
-  // Separar imágenes en categorías (si hay más de 10, asumimos que hay inside y exterior)
-  const insideImages = images.length > 0 ? images.slice(0, Math.ceil(images.length / 2)) : [];
-  const exteriorImages = images.length > 0 ? images.slice(Math.ceil(images.length / 2)) : [];
+  // Obtener imágenes de interior y exterior usando las funciones del módulo
+  // La primera imagen (mainImage) se mantiene en el hero
+  const insideImages = useMemo(() => {
+    return getModelInteriorImages(modelData.key);
+  }, [modelData.key]);
+  
+  const exteriorImages = useMemo(() => {
+    return getModelExteriorImages(modelData.key);
+  }, [modelData.key]);
+  
+  // Función helper para encontrar el índice real de una imagen en el array completo
+  const findImageIndex = (imagePath: string): number => {
+    return images.findIndex((img) => img === imagePath);
+  };
 
   return (
     <>
@@ -363,26 +392,28 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.inside")}</h3>
                   <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.inside")}</p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                  {insideImages.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => openGallery(index)}
-                      onKeyDown={(e) => handleKeyDown(e, () => openGallery(index))}
-                      className="relative aspect-video rounded-lg overflow-hidden group hover:scale-105 transition-transform duration-200"
-                      aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
-                      type="button"
-                    >
-                      <Image
-                        src={image}
-                        alt={`${modelName} inside - ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                    </button>
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 px-2 sm:px-4 md:px-6">
+                  {insideImages.map((image, index) => {
+                    const realIndex = findImageIndex(image);
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => openGallery(realIndex)}
+                        onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex))}
+                        className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
+                        aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
+                        type="button"
+                      >
+                        <Image
+                          src={image}
+                          alt={`${modelName} inside - ${index + 1}`}
+                          fill
+                          className="object-cover rounded-xl"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </button>
+                    );
+                  })}
                 </div>
               </TabsContent>
             )}
@@ -394,26 +425,28 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.exterior")}</h3>
                   <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.exterior")}</p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                  {exteriorImages.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => openGallery(insideImages.length + index)}
-                      onKeyDown={(e) => handleKeyDown(e, () => openGallery(insideImages.length + index))}
-                      className="relative aspect-video rounded-lg overflow-hidden group hover:scale-105 transition-transform duration-200"
-                      aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
-                      type="button"
-                    >
-                      <Image
-                        src={image}
-                        alt={`${modelName} exterior - ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                    </button>
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 px-2 sm:px-4 md:px-6">
+                  {exteriorImages.map((image, index) => {
+                    const realIndex = findImageIndex(image);
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => openGallery(realIndex)}
+                        onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex))}
+                        className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
+                        aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
+                        type="button"
+                      >
+                        <Image
+                          src={image}
+                          alt={`${modelName} exterior - ${index + 1}`}
+                          fill
+                          className="object-cover rounded-xl"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </button>
+                    );
+                  })}
                 </div>
               </TabsContent>
             )}
@@ -651,96 +684,108 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
       </div>
     </PageContent>
 
-    {/* Gallery Modal */}
+    {/* Gallery Modal - Simplificado */}
     {isGalleryOpen && (
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/95 backdrop-blur-sm"
+        className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/80 backdrop-blur-sm"
         onClick={closeGallery}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t("homeModels.modelPage.gallery") || "Image Gallery"}
       >
         <div
-          className="bg-card rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl border-2 border-border"
+          className="relative bg-background rounded-xl sm:rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-xl border border-border"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="relative bg-muted h-[90vh]">
-            <Image
-                src={images[galleryImageIndex]}
-                alt={`${modelName} - ${galleryImageIndex + 1}`}
-              fill
-              className="object-contain"
-              sizes="(max-width: 1024px) 100vw, 80vw"
-            />
-
-            {/* Gallery Controls */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={() => changeGalleryImage(-1)}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10"
-                  aria-label={t("homeModels.modelPage.previousImage")}
-                  type="button"
-                >
-                  <ChevronLeft className="w-6 h-6 text-foreground" />
-                </button>
-                <button
-                  onClick={() => changeGalleryImage(1)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10"
-                  aria-label={t("homeModels.modelPage.nextImage")}
-                  type="button"
-                >
-                  <ChevronRight className="w-6 h-6 text-foreground" />
-                </button>
-              </>
-            )}
-
-            {/* Thumbnail Strip */}
-            {images.length > 1 && (
-              <div className="absolute bottom-4 left-4 right-4 flex gap-2 justify-center z-10 overflow-x-auto pb-2">
-                {images.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setGalleryImageIndex(index)}
-                    className={cn(
-                      "w-16 h-12 rounded-lg overflow-hidden border-2 transition-all shrink-0",
-                      index === galleryImageIndex
-                        ? "border-primary scale-105"
-                        : "border-transparent opacity-70 hover:opacity-100"
-                    )}
-                    aria-label={`View image ${index + 1}`}
-                    type="button"
-                  >
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={img}
-                        alt={`Thumbnail ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="64px"
-                      />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Image Counter */}
-            {images.length > 1 && (
-              <div className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full border border-border">
-                <span className="text-foreground text-sm font-medium">
+          {/* Header simplificado */}
+          <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 sm:p-5 bg-background/95 backdrop-blur-sm border-b border-border">
+            <div className="flex items-center gap-3">
+              <h2 className="text-base sm:text-lg font-semibold text-foreground">
+                {modelName}
+              </h2>
+              {images.length > 1 && (
+                <span className="text-sm text-muted-foreground">
                   {galleryImageIndex + 1} / {images.length}
                 </span>
-              </div>
-            )}
-
-            {/* Close Button */}
+              )}
+            </div>
             <button
               onClick={closeGallery}
-              className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border z-10"
+              className="p-2 rounded-lg hover:bg-muted transition-colors"
               aria-label={t("homeModels.modelPage.closeGallery")}
               type="button"
             >
               <X className="w-5 h-5 text-foreground" />
             </button>
           </div>
+
+          {/* Imagen Principal */}
+          <div className="relative bg-muted h-[75vh] sm:h-[80vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-20 pb-20 sm:pb-24">
+            <Image
+              src={images[galleryImageIndex]}
+              alt={`${modelName} - Image ${galleryImageIndex + 1} of ${images.length}`}
+              fill
+              className="object-contain p-6 sm:p-8 md:p-10"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+              priority
+            />
+
+            {/* Navigation Arrows - Simplificados */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={() => changeGalleryImage(-1)}
+                  onKeyDown={(e) => handleKeyDown(e, () => changeGalleryImage(-1))}
+                  className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border shadow-lg z-20"
+                  aria-label={t("homeModels.modelPage.previousImage")}
+                  type="button"
+                >
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
+                </button>
+                <button
+                  onClick={() => changeGalleryImage(1)}
+                  onKeyDown={(e) => handleKeyDown(e, () => changeGalleryImage(1))}
+                  className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border shadow-lg z-20"
+                  aria-label={t("homeModels.modelPage.nextImage")}
+                  type="button"
+                >
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Thumbnail Strip - Simplificado */}
+          {images.length > 1 && (
+            <div className="absolute bottom-0 left-0 right-0 z-20 p-4 sm:p-5 bg-background/95 backdrop-blur-sm border-t border-border">
+              <div className="flex gap-3 sm:gap-4 justify-center overflow-x-auto scrollbar-hide px-4 sm:px-6 scroll-smooth">
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setGalleryImageIndex(index)}
+                    onKeyDown={(e) => handleKeyDown(e, () => setGalleryImageIndex(index))}
+                    className={cn(
+                      "relative w-16 h-12 sm:w-20 sm:h-14 rounded-lg overflow-hidden border-2 transition-opacity shrink-0",
+                      index === galleryImageIndex
+                        ? "border-primary opacity-100"
+                        : "border-transparent opacity-50 hover:opacity-75"
+                    )}
+                    aria-label={`View image ${index + 1}`}
+                    aria-current={index === galleryImageIndex ? "true" : "false"}
+                    type="button"
+                  >
+                    <Image
+                      src={img}
+                      alt={`Thumbnail ${index + 1}`}
+                      fill
+                      className="object-cover rounded-lg"
+                      sizes="(max-width: 640px) 64px, 80px"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     )}
