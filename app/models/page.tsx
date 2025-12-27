@@ -272,14 +272,26 @@ export default function ModelsPage() {
         return false;
       }
 
-      // Bedrooms filter
-      if (filters.bedrooms.length > 0 && !filters.bedrooms.includes(model.bedsNumber)) {
-        return false;
+      // Bedrooms filter - "2+" means 2 or more, "3+" means 3 or more, etc.
+      // If multiple filters are selected, model must match at least one (OR logic)
+      if (filters.bedrooms.length > 0) {
+        const matchesBedroomFilter = filters.bedrooms.some(minBedrooms => 
+          model.bedsNumber >= minBedrooms
+        );
+        if (!matchesBedroomFilter) {
+          return false;
+        }
       }
 
-      // Bathrooms filter
-      if (filters.bathrooms.length > 0 && !filters.bathrooms.includes(model.bathsNumber)) {
-        return false;
+      // Bathrooms filter - "1+" means 1 or more, "2+" means 2 or more, etc.
+      // If multiple filters are selected, model must match at least one (OR logic)
+      if (filters.bathrooms.length > 0) {
+        const matchesBathroomFilter = filters.bathrooms.some(minBathrooms => 
+          model.bathsNumber >= minBathrooms
+        );
+        if (!matchesBathroomFilter) {
+          return false;
+        }
       }
 
       // Sqft filter
