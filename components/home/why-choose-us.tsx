@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { TrendingUp, Home, DollarSign, Award, CheckCircle2 } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
@@ -149,17 +150,13 @@ export const WhyChooseUs = () => {
             {/* CTA Button */}
             <div className="pt-4">
               <Button
-                onClick={(e) => {
-                  e.preventDefault();
-                  const formSection = document.getElementById("quick-register-form");
-                  if (formSection) {
-                    formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
+                asChild
                 size="lg"
                 className="px-8 py-6 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
               >
-                <span suppressHydrationWarning>{t("hero.applyNow")}</span>
+                <Link href="/rent-to-own#rto-application-form">
+                  <span suppressHydrationWarning>{t("hero.applyNow")}</span>
+                </Link>
               </Button>
             </div>
           </motion.div>

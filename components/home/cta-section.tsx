@@ -19,17 +19,13 @@ export const CTASection = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 w-full sm:w-auto px-4 sm:px-0">
             <Button
-              onClick={(e) => {
-                e.preventDefault();
-                const formSection = document.getElementById("quick-register-form");
-                if (formSection) {
-                  formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-              }}
+              asChild
               size="lg"
               className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-xl"
             >
-              <span suppressHydrationWarning>{t("cta.applyNow")}</span>
+              <Link href="/rent-to-own#rto-application-form">
+                <span suppressHydrationWarning>{t("cta.applyNow")}</span>
+              </Link>
             </Button>
             <Button 
               asChild 
@@ -37,7 +33,7 @@ export const CTASection = () => {
               size="lg" 
               className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold border-2 border-background/40 bg-transparent text-white hover:text-white hover:bg-background/10 hover:border-background/60 transition-all duration-300 rounded-xl backdrop-blur-sm"
             >
-              <Link href="/contact" suppressHydrationWarning>{t("cta.schedule")}</Link>
+              <Link href="/schedule-appointment" suppressHydrationWarning>{t("cta.schedule")}</Link>
             </Button>
           </div>
         </div>

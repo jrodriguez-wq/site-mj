@@ -92,7 +92,7 @@ export const HomeModels = () => {
                       {model.name}
                     </h3>
                     <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed line-clamp-3" suppressHydrationWarning>
-                      {model.description}
+                      {t(`homeModels.descriptions.${model.key}`)}
                     </p>
                   </div>
 

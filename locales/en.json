@@ -55,7 +55,7 @@
     "description3": "Affordable homes with no hidden fees. More space, more savings, more value for your family.",
     "contactUs": "Contact Us",
     "applyNow": "Apply Now",
-    "getPreQualified": "Get Pre-Qualified",
+    "getPreQualified": "Get Pre Qualified",
     "viewCommunities": "View Communities",
     "quickRegister": "Quick Register - Interested in Our Programs"
   },
@@ -406,7 +406,7 @@
       "aurora": {
         "name": "Aurora",
         "description": "Luxury features in an affordable package",
-        "fullDescription": "Discover exceptional value without compromising on luxury. The Aurora model delivers premium features at an unbeatable price point, spanning over 2,227 square feet with 4 bedrooms and 3 full bathrooms. Designed for families who appreciate quality, this home features an open concept layout with vaulted ceilings that create an impressive sense of space. The modern kitchen showcases custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. Every detail has been carefully selected to provide luxury living that's both beautiful and practical.",
+        "fullDescription": "Discover exceptional value without compromising on luxury. The Aurora model delivers premium features at an unbeatable price point, spanning over 2,077 square feet with 4 bedrooms and 3 full bathrooms. Designed for families who appreciate quality, this home features an open concept layout with vaulted ceilings that create an impressive sense of space. The modern kitchen showcases custom cabinets, granite countertops, and energy-efficient stainless-steel appliances. Every detail has been carefully selected to provide luxury living that's both beautiful and practical.",
         "features": [
           "Luxury flooring",
           "Spacious kitchen with premium appliances",
@@ -469,7 +469,7 @@
       "duplex": {
         "name": "Duplex",
         "description": "Perfect investment opportunity - live in one unit, rent the other",
-        "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living or renting. Each unit includes 3 bedrooms, 2 bathrooms, and a private garage. With its modern design, bright open spaces, and high-end finishes, this duplex is an ideal investment that combines comfort, style, and profitability.",
+        "fullDescription": "Discover the Duplex model, a stunning property featuring two independent units, perfect for living or renting. Each unit includes 3 bedrooms, 2 bathrooms, and a dedicated garage. With a total of 2,898 sq. ft., 6 bedrooms, and 4 bathrooms, this duplex offers exceptional flexibility and profitability. Each unit features 1,150 sq. ft. of living area with modern design, bright open spaces, and high-end finishes. This duplex is an ideal investment that combines comfort, style, and profitability.",
         "features": [
           "Two independent units",
           "Perfect for living and renting",
@@ -477,18 +477,27 @@
           "Modern design",
           "Bright open spaces",
           "High-end finishes",
-          "1-car garage per unit",
+          "2-car garage total",
           "Rental income potential: $2,000 per unit"
         ],
         "specifications": {
-          "bedrooms": "2-3 Bedrooms Den",
-          "bathrooms": "2 Bathrooms",
-          "squareFeet": "2,060 sq ft",
-          "garage": "1-Car Garage",
+          "bedrooms": "6 Bedrooms (3 per unit)",
+          "bathrooms": "4 Bathrooms (2 per unit)",
+          "squareFeet": "2,898 sq ft",
+          "garage": "2-Car Garage",
           "stories": "1 Story",
           "lotSize": "Standard Lot"
         }
       }
+    },
+    "descriptions": {
+      "louisiana": "Experience grandeur at its finest in the Louisiana our largest and most prestigious model. Featuring 4 spacious bedrooms, 3 full bathrooms, a 3-car garage, and 2 versatile dens, this 3,277 sq. ft. residence is crafted for those who demand excellence. High ceilings and intentionally placed lighting create an airy, elegant atmosphere while maximizing energy efficiency. The gourmet kitchen is a showpiece featuring soft-close cabinetry, premium countertops, and sleek stainless-steel appliances. The Louisiana isn't just a home it's a statement of luxury, comfort, and superior craftsmanship.",
+      "viana": "Meet the Viana engineered for homeowners who want space without compromise. Boasting 2,978 sq. ft., 4 bedrooms, 3 bathrooms, and 2 dens, this model offers exceptional flexibility and privacy. The open layout seamlessly connects expansive living areas, enhanced by high ceilings and abundant natural light. The gourmet kitchen features custom cabinets, quartz countertops, and stainless-steel appliances making it the centerpiece of the home. With its impressive footprint and elegant design, the Viana is a dream home for families who value comfort and sophistication.",
+      "delanie": "The Delanie elevates modern living with thoughtful design and room to grow. Boasting 2,610 sq. ft., 3 bedrooms, 2 baths, and a 3-car garage with the option for a 4th bedroom or den this home offers both function and flexibility. Its open concept layout brings together expansive living areas and a contemporary kitchen enhanced by custom cabinets and sleek countertops. High ceilings and generous windows fill the space with natural light, creating a warm and inviting atmosphere. Whether you need more room for family, work, or hobbies, the Delanie delivers.",
+      "aurora": "Meet the Aurora where exceptional value meets thoughtful design. With 2,077 square feet, 4 bedrooms, and 3 full bathrooms, this spacious model is one of the most affordable ways to step into a four-bedroom home without sacrificing quality. Enjoy a private master suite with its own bathroom, a guest bedroom with a dedicated bath, and two additional bedrooms served by a stylish guest bath. The open concept layout, high ceilings, and modern kitchen with custom cabinets and quartz countertops create a bright and welcoming space. The Aurora delivers premium living at a price that makes sense.",
+      "langdon": "Introducing the Langdon where smart design meets attainable luxury. This 1,900 sq. ft. home offers 3 bedrooms, 2 bathrooms, and a 2-car garage on a generous quarter-acre lot. Built with hurricane-impact protection and modern, energy-efficient features, it's engineered for both comfort and security. The Langdon's open layout, elegant finishes, and abundant natural light elevate everyday living. It's the ideal choice for buyers seeking a new construction home that delivers style and durability without the premium price tag.",
+      "emelia": "Discover why the Emelia continues to be our most popular model. Offering 2,060 square feet of thoughtfully designed space, this 3-bed, 2-bath home features a desirable closed-concept layout that creates distinct, cozy living areas. Natural light, high ceilings, and premium craftsmanship enhance every corner, while hurricane-impact materials provide long-lasting security. From custom cabinetry to modern finishes, the Emelia delivers the perfect blend of warmth, style, and quality making it a top choice for families designing their forever home.",
+      "duplex": "The Duplex model offers exceptional flexibility and profitability. Comprised of two independent units, each with 3 bedrooms, 2 bathrooms, and a dedicated garage, this 2,898 sq. ft. property is perfect for families, investors, or those seeking rental income. Each unit features 1,150 sq. ft. of living area with modern finishes and thoughtful design. The modern floor plan features bright open spaces, upgraded finishes, and thoughtful design throughout. Buy the entire duplex or choose to rent one or both units. With comfort, durability, and strong earning potential, this model is a compelling choice for smart buyers."
     },
     "modelPage": {
       "startingPrice": "Starting Price",
@@ -943,7 +952,7 @@
       "imageAlt": "Rent to Own Program - M.J. Newell Homes",
       "cta": {
         "primary": "View Available Models",
-        "secondary": "Get Pre-Qualified"
+        "secondary": "Get Pre Qualified"
       }
     },
     "whatIs": {

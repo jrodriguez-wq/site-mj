@@ -1,7 +1,7 @@
 {
   "key": "langdon",
   "name": "LANGDON",
-  "sqft": "1,918",
+  "sqft": "1,900",
   "bedrooms": "3",
   "bathrooms": "2",
   "garage": "2-Car Garage",
@@ -26,10 +26,10 @@
       "title": "Floorplan",
       "description": "View the detailed floor plan layout.",
       "measures": {
-        "livingArea": "1,420 SQ. FT.",
+        "livingArea": "1,402 SQ. FT.",
         "entry": "72 SQ. FT.",
         "garage": "426 SQ. FT.",
-        "totalArea": "1,918 SQ. FT."
+        "totalArea": "1,900 SQ. FT."
       }
     },
     "standardFeatures": {

@@ -55,7 +55,7 @@
     "description3": "Casas accesibles sin costos ocultos. Más espacio, más ahorros, más valor para tu familia.",
     "contactUs": "Contáctanos",
     "applyNow": "Aplicar Ahora",
-    "getPreQualified": "Obtén Pre-Calificación",
+    "getPreQualified": "Solicita Precalificación",
     "viewCommunities": "Ver Comunidades",
     "quickRegister": "Registro Rápido - Interesado en Nuestros Programas"
   },
@@ -406,7 +406,7 @@
       "aurora": {
         "name": "Aurora",
         "description": "Características de lujo en un paquete accesible",
-        "fullDescription": "Eleva tu estilo de vida con el modelo Aurora, donde el lujo se encuentra con la vida práctica en perfecta armonía. Esta sofisticada casa de 2,227 pies cuadrados cuenta con 4 habitaciones y 3 baños completos, diseñada para familias que aprecian tanto la elegancia como la funcionalidad. El diseño de concepto abierto con techos abovedados crea una impresionante sensación de espacio, mientras que la cocina gourmet con gabinetes personalizados y encimeras de granito se convierte en el corazón de tu hogar. Cada selección—desde electrodomésticos eficientes hasta iluminación cuidadosa—ha sido hecha pensando en la comodidad de tu familia. El Aurora no solo cumple expectativas; crea una experiencia de vida que verdaderamente se siente como hogar.",
+        "fullDescription": "Eleva tu estilo de vida con el modelo Aurora, donde el lujo se encuentra con la vida práctica en perfecta armonía. Esta sofisticada casa de 2,077 pies cuadrados cuenta con 4 habitaciones y 3 baños completos, diseñada para familias que aprecian tanto la elegancia como la funcionalidad. El diseño de concepto abierto con techos abovedados crea una impresionante sensación de espacio, mientras que la cocina gourmet con gabinetes personalizados y encimeras de granito se convierte en el corazón de tu hogar. Cada selección—desde electrodomésticos eficientes hasta iluminación cuidadosa—ha sido hecha pensando en la comodidad de tu familia. El Aurora no solo cumple expectativas; crea una experiencia de vida que verdaderamente se siente como hogar.",
         "features": [
           "Pisos de vinilo de lujo",
           "Cocina gourmet con electrodomésticos premium",
@@ -469,7 +469,7 @@
       "duplex": {
         "name": "Duplex",
         "description": "Oportunidad de inversión perfecta - vive en una unidad, renta la otra",
-        "fullDescription": "Descubre el modelo Duplex, una propiedad impresionante que cuenta con dos unidades independientes, perfectas para vivir en una y rentar la otra. Cada unidad incluye 3 habitaciones, 2 baños y un garaje privado. Con su diseño moderno, espacios abiertos y brillantes, y acabados de alta gama, este duplex es una inversión ideal que combina comodidad, estilo y rentabilidad.",
+        "fullDescription": "Descubre el modelo Duplex, una propiedad impresionante que cuenta con dos unidades independientes, perfectas para vivir en una y rentar la otra. Cada unidad incluye 3 habitaciones, 2 baños y un garaje dedicado. Con un total de 2,898 pies cuadrados, 6 habitaciones y 4 baños, este duplex ofrece flexibilidad y rentabilidad excepcionales. Cada unidad cuenta con 1,150 pies cuadrados de área habitable con diseño moderno, espacios abiertos y brillantes, y acabados de alta gama. Este duplex es una inversión ideal que combina comodidad, estilo y rentabilidad.",
         "features": [
           "Dos unidades independientes",
           "Perfecto para vivir y rentar",
@@ -477,18 +477,27 @@
           "Diseño moderno",
           "Espacios abiertos y brillantes",
           "Acabados de alta gama",
-          "Garaje para 1 auto por unidad",
+          "Garaje para 2 autos total",
           "Potencial de ingreso por renta: $2,000 por unidad"
         ],
         "specifications": {
-          "bedrooms": "2 Habitaciones + 1 Estudio",
-          "bathrooms": "2 Baños",
-          "squareFeet": "2,060 pies cuadrados",
-          "garage": "Garaje para 1 Auto",
+          "bedrooms": "6 Habitaciones (3 por unidad)",
+          "bathrooms": "4 Baños (2 por unidad)",
+          "squareFeet": "2,898 pies cuadrados",
+          "garage": "Garaje para 2 Autos",
           "stories": "1 Piso",
           "lotSize": "Lote Estándar"
         }
       }
+    },
+    "descriptions": {
+      "louisiana": "Experimenta la grandeza en su máxima expresión con el Louisiana, nuestro modelo más grande y prestigioso. Con 4 amplias habitaciones, 3 baños completos, un garaje para 3 autos y 2 estudios versátiles, esta residencia de 3,277 pies cuadrados está diseñada para aquellos que exigen excelencia. Los techos altos y la iluminación estratégicamente colocada crean una atmósfera aireada y elegante mientras maximizan la eficiencia energética. La cocina gourmet es una obra maestra con gabinetes de cierre suave, encimeras premium y electrodomésticos de acero inoxidable elegantes. El Louisiana no es solo una casa, es una declaración de lujo, comodidad y artesanía superior.",
+      "viana": "Conoce el Viana, diseñado para propietarios que desean espacio sin compromisos. Con 2,978 pies cuadrados, 4 habitaciones, 3 baños y 2 estudios, este modelo ofrece una flexibilidad y privacidad excepcionales. El diseño abierto conecta perfectamente áreas de vida espaciosas, realzadas por techos altos y abundante luz natural. La cocina gourmet cuenta con gabinetes personalizados, encimeras de cuarzo y electrodomésticos de acero inoxidable, convirtiéndola en el centro de atención del hogar. Con su impresionante espacio y diseño elegante, el Viana es la casa de ensueño para familias que valoran la comodidad y la sofisticación.",
+      "delanie": "El Delanie eleva la vida moderna con un diseño cuidadoso y espacio para crecer. Con 2,610 pies cuadrados, 3 habitaciones, 2 baños y un garaje para 3 autos con la opción de una 4ta habitación o estudio, este hogar ofrece tanto función como flexibilidad. Su diseño de concepto abierto une áreas de vida espaciosas y una cocina contemporánea mejorada con gabinetes personalizados y encimeras elegantes. Los techos altos y las ventanas generosas llenan el espacio con luz natural, creando una atmósfera cálida y acogedora. Ya sea que necesites más espacio para la familia, el trabajo o los pasatiempos, el Delanie lo entrega.",
+      "aurora": "Conoce el Aurora, donde el valor excepcional se encuentra con el diseño cuidadoso. Con 2,077 pies cuadrados, 4 habitaciones y 3 baños completos, este modelo espacioso es una de las formas más asequibles de entrar a una casa de cuatro habitaciones sin sacrificar calidad. Disfruta de una suite principal privada con su propio baño, una habitación de invitados con un baño dedicado y dos habitaciones adicionales servidas por un baño de invitados elegante. El diseño de concepto abierto, los techos altos y la cocina moderna con gabinetes personalizados y encimeras de cuarzo crean un espacio brillante y acogedor. El Aurora ofrece una vida premium a un precio que tiene sentido.",
+      "langdon": "Presentamos el Langdon, donde el diseño inteligente se encuentra con el lujo alcanzable. Esta casa de 1,900 pies cuadrados ofrece 3 habitaciones, 2 baños y un garaje para 2 autos en un lote generoso de un cuarto de acre. Construido con protección contra huracanes y características modernas y eficientes en energía, está diseñado tanto para comodidad como para seguridad. El diseño abierto del Langdon, los acabados elegantes y la abundante luz natural elevan la vida cotidiana. Es la elección ideal para compradores que buscan una casa de construcción nueva que ofrezca estilo y durabilidad sin la etiqueta de precio premium.",
+      "emelia": "Descubre por qué el Emelia continúa siendo nuestro modelo más popular. Con 2,060 pies cuadrados de espacio cuidadosamente diseñado, esta casa de 3 habitaciones y 2 baños presenta un diseño de concepto cerrado deseable que crea áreas de vida distintas y acogedoras. La luz natural, los techos altos y la artesanía premium mejoran cada rincón, mientras que los materiales resistentes a huracanes proporcionan seguridad duradera. Desde gabinetes personalizados hasta acabados modernos, el Emelia ofrece la combinación perfecta de calidez, estilo y calidad, convirtiéndolo en la primera opción para familias que diseñan su hogar para siempre.",
+      "duplex": "El modelo Duplex ofrece flexibilidad y rentabilidad excepcionales. Compuesto por dos unidades independientes, cada una con 3 habitaciones, 2 baños y un garaje dedicado, esta propiedad de 2,898 pies cuadrados es perfecta para familias, inversionistas o aquellos que buscan ingresos por alquiler. Cada unidad cuenta con 1,150 pies cuadrados de área habitable con acabados modernos y diseño cuidadoso. El diseño moderno presenta espacios abiertos brillantes, acabados mejorados y un diseño cuidadoso en todas partes. Compra el dúplex completo o elige alquilar una o ambas unidades. Con comodidad, durabilidad y un fuerte potencial de ganancias, este modelo es una elección convincente para compradores inteligentes."
     },
     "modelPage": {
       "startingPrice": "Precio Inicial",
@@ -943,7 +952,7 @@
       "imageAlt": "Programa Rent to Own - M.J. Newell Homes",
       "cta": {
         "primary": "Ver Modelos Disponibles",
-        "secondary": "Obtén Pre-Calificación"
+        "secondary": "Solicita Precalificación"
       }
     },
     "whatIs": {

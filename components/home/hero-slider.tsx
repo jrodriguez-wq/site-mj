@@ -15,9 +15,11 @@ interface HeroSlideConfig {
   primaryButtonKey?: string;
   primaryButtonLink?: string;
   primaryButtonAction?: "link" | "scroll" | "none";
+  primaryButtonScrollTarget?: string;
   secondaryButtonKey?: string;
   secondaryButtonLink?: string;
   secondaryButtonAction?: "link" | "scroll" | "none";
+  secondaryButtonScrollTarget?: string;
 }
 
 const heroSlidesConfig: HeroSlideConfig[] = [
@@ -28,8 +30,10 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     descriptionKey: "hero.description1",
     primaryButtonKey: "hero.contactUs",
     primaryButtonAction: "scroll",
+    primaryButtonScrollTarget: "quick-register-form",
     secondaryButtonKey: "hero.applyNow",
-    secondaryButtonAction: "scroll"
+    secondaryButtonLink: "/schedule-appointment",
+    secondaryButtonAction: "link"
   },
   { 
     image: "/img/hero/1w5a0814-1.webp", 
@@ -46,7 +50,8 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     subtitleKey: "hero.subtitle3",
     descriptionKey: "hero.description3",
     primaryButtonKey: "hero.applyNow",
-    primaryButtonAction: "scroll",
+    primaryButtonLink: "/schedule-appointment",
+    primaryButtonAction: "link",
     secondaryButtonKey: "hero.viewCommunities",
     secondaryButtonLink: "/communities/labelle",
     secondaryButtonAction: "link"
@@ -68,9 +73,11 @@ export const HeroSlider = () => {
       primaryButton: slide.primaryButtonKey ? t(slide.primaryButtonKey) : undefined,
       primaryButtonLink: slide.primaryButtonLink,
       primaryButtonAction: slide.primaryButtonAction || "link",
+      primaryButtonScrollTarget: slide.primaryButtonScrollTarget || "quick-register-form",
       secondaryButton: slide.secondaryButtonKey ? t(slide.secondaryButtonKey) : undefined,
       secondaryButtonLink: slide.secondaryButtonLink,
       secondaryButtonAction: slide.secondaryButtonAction || "link",
+      secondaryButtonScrollTarget: slide.secondaryButtonScrollTarget || "quick-register-form",
     }));
   }, [t, translations]);
 
@@ -213,7 +220,7 @@ export const HeroSlider = () => {
                     <Button
                       onClick={(e) => {
                         e.preventDefault();
-                        const formSection = document.getElementById("quick-register-form");
+                        const formSection = document.getElementById(currentSlide.primaryButtonScrollTarget || "quick-register-form");
                         if (formSection) {
                           formSection.scrollIntoView({ behavior: "smooth", block: "start" });
                         }
@@ -260,7 +267,7 @@ export const HeroSlider = () => {
                     <Button
                       onClick={(e) => {
                         e.preventDefault();
-                        const formSection = document.getElementById("quick-register-form");
+                        const formSection = document.getElementById(currentSlide.secondaryButtonScrollTarget || "quick-register-form");
                         if (formSection) {
                           formSection.scrollIntoView({ behavior: "smooth", block: "start" });
                         }

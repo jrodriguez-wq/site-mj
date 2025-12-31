@@ -549,8 +549,8 @@ export default function RentToOwnPage() {
                       <h3 className="text-xl md:text-2xl font-black mb-2 group-hover:text-primary transition-colors duration-150">
                         {model.name}
                       </h3>
-                      <p className="text-sm md:text-base text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
-                        {model.description}
+                      <p className="text-sm md:text-base text-muted-foreground mb-5 line-clamp-2 leading-relaxed" suppressHydrationWarning>
+                        {t(`homeModels.descriptions.${baseKey}`)}
                       </p>
                       <div className="grid grid-cols-3 gap-2 mb-5 pb-5 border-b border-border/50">
                         <div className="text-center p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors duration-150">
