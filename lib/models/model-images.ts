@@ -136,6 +136,8 @@ export const MODEL_INTERIOR_IMAGES: Record<string, string[]> = {
     `/modelos-optimized/emelia/interior/emelia-027.webp`,
     `/modelos-optimized/emelia/interior/emelia-028.webp`,
     `/modelos-optimized/emelia/interior/emelia-029.webp`,
+    `/modelos-optimized/emelia/interior/emelia-031.webp`,
+    `/modelos-optimized/emelia/interior/emelia-032.webp`,
   ],
   duplex: [
     `/modelos-optimized/duplex/interior/1.webp`,
@@ -186,6 +188,8 @@ export const MODEL_EXTERIOR_IMAGES: Record<string, string[]> = {
     `/modelos-optimized/langdon/exterior/ex34.webp`,
   ],
   emelia: [
+    `/modelos-optimized/emelia/exterior/ex36.webp`,
+    `/modelos-optimized/emelia/exterior/ex37.webp`,
     `/modelos-optimized/emelia/exterior/ex1.webp`,
     `/modelos-optimized/emelia/exterior/ex12.webp`,
     `/modelos-optimized/emelia/exterior/ex23.webp`,

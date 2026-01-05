@@ -245,7 +245,6 @@ const ModelCardComponent = (props: ModelCardProps) => {
 
           <motion.div 
             className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-200 hover:shadow-2xl"
-            whileHover={{ y: -6, transition: { duration: 0.2 } }}
           >
           {/* Image Carousel */}
           <div className="relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">

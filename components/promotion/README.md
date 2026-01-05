@@ -13,7 +13,7 @@ Estos componentes implementan modales promocionales navideños profesionales y a
 ├── promotion-modal.tsx      # Componente principal del modal
 ├── holiday-gift-modal.tsx   # Modal de regalos (2 variantes)
 ├── holiday-lever-modal.tsx  # Modal de slot machine
-├── holiday-overlay.tsx      # Overlay con efecto de nieve
+├── holiday-overlay.tsx      # Overlay del modal
 └── holiday-animations.css   # Animaciones CSS globales
 ```
 
@@ -109,7 +109,6 @@ interface HolidayLeverModalProps {
 
 ### Efectos Visuales
 - Estrellas titilantes en el fondo
-- Nieve cayendo en el overlay
 - Título pulsante con efecto de brillo
 - Transiciones suaves entre estados
 

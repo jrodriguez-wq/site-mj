@@ -516,7 +516,7 @@ export default function RentToOwnPage() {
                 return (
                   <AnimatedCard key={model.key} index={index}>
                     <Card 
-                      className="group border-2 border-border/50 hover:border-primary/50 hover:shadow-2xl transition-all duration-200 hover:-translate-y-2 overflow-hidden bg-background relative py-0 h-full"
+                      className="group border-2 border-border/50 hover:border-primary/50 hover:shadow-2xl transition-all duration-200 overflow-hidden bg-background relative py-0 h-full"
                     >
                     {/* Community Badge */}
                     {selectedCommunity === "all" && (

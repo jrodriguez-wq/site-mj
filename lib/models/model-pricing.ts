@@ -40,8 +40,8 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
       price: "$369,900",
       rtoPrice: "$2,900/mo",
       sqft: "2,610",
-      bedrooms: "4",
-      bathrooms: "3",
+      bedrooms: "3",
+      bathrooms: "2",
       garage: "3",
     },
     viana: {
@@ -82,8 +82,8 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
       price: "$410,000",
       rtoPrice: "$3,150/mo",
       sqft: "2,610",
-      bedrooms: "4",
-      bathrooms: "3",
+      bedrooms: "3",
+      bathrooms: "2",
       garage: "3",
     },
     duplex: {

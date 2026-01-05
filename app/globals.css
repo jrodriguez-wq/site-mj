@@ -565,53 +565,6 @@
     animation: badgeFloat 2s ease-in-out infinite;
   }
 
-  /* Snowfall animation */
-  @keyframes snowfall {
-    0% {
-      transform: translateY(-100vh) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100vh) translateX(var(--snow-drift)) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  .snowflake {
-    position: fixed;
-    top: -10px;
-    left: var(--snow-left);
-    width: var(--snow-size);
-    height: var(--snow-size);
-    background: rgba(255, 255, 255, var(--snow-opacity));
-    border-radius: 50%;
-    pointer-events: none;
-    animation: snowfall var(--snow-duration) linear infinite;
-    animation-delay: var(--snow-delay);
-  }
-
-  .snowflake::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 
-      -1px 0 0 rgba(255, 255, 255, 0.6),
-      1px 0 0 rgba(255, 255, 255, 0.6),
-      0 -1px 0 rgba(255, 255, 255, 0.6),
-      0 1px 0 rgba(255, 255, 255, 0.6);
-  }
 
   /* ===========================================
      Holiday Promotion Modal Animations
@@ -723,32 +676,6 @@
     animation: shimmer-slot 0.4s linear infinite;
   }
 
-  /* Snowflake fall animation (updated from snowfall) */
-  .snowflake-fall {
-    animation: snowfall linear infinite;
-  }
-
-  /* Snowfall animation for modal container (relative to container, not viewport) */
-  @keyframes snowfall-modal {
-    0% {
-      transform: translateY(-100%) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100%) translateX(var(--drift, 0px)) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  .snowflake-modal {
-    animation: snowfall-modal linear infinite;
-  }
 
   /* Glow pulse for winning text */
   @keyframes glow-pulse {
