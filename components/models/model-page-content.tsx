@@ -244,7 +244,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
             {/* Features Grid - Optimized and Centered */}
             <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg h-full flex flex-col">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
                     <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
@@ -260,7 +260,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg h-full flex flex-col">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
                     <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
@@ -276,7 +276,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg h-full flex flex-col">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
                     <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
@@ -292,7 +292,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </CardContent>
               </Card>
 
-              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
+              <Card className="group hover:border-primary/50 transition-all duration-200 hover:shadow-lg h-full flex flex-col">
                 <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[180px] sm:min-h-[200px] md:min-h-[220px]">
                   <div className="flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4 w-full h-full">
                     <div className="shrink-0 p-3 sm:p-3.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200">
