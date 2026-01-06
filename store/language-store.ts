@@ -241,7 +241,10 @@ const clearLanguageStorage = (): void => {
 };
 
 // Función para obtener el idioma guardado o inglés por defecto
+// IMPORTANTE: Esta función se ejecuta durante la inicialización del store
+// En el servidor siempre retorna "en" para evitar problemas de hidratación
 const getInitialLanguage = (): Language => {
+  // En el servidor, siempre usar inglés por defecto
   if (typeof window === "undefined") return "en";
   
   try {
@@ -249,14 +252,16 @@ const getInitialLanguage = (): Language => {
     if (stored) {
       const parsed = JSON.parse(stored);
       const lang = parsed?.state?.language;
+      // Validar que el idioma sea válido
       if (lang === "en" || lang === "es") {
         return lang;
       }
     }
-  } catch (error) {
-    // Si hay error, usar inglés por defecto
+  } catch {
+    // Si hay error leyendo localStorage, usar inglés por defecto
   }
   
+  // Por defecto, siempre usar inglés
   return "en";
 };
 

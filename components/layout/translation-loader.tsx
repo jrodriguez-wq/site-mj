@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useLanguageStore } from "@/store/language-store";
 
 /**
@@ -13,7 +13,6 @@ import { useLanguageStore } from "@/store/language-store";
  * MEJORADO: Carga inglés por defecto inmediatamente si no hay traducciones
  */
 export function TranslationLoader({ children }: { children: React.ReactNode }) {
-  const [isClient, setIsClient] = useState(false);
   const hasInitializedRef = useRef(false);
   const translations = useLanguageStore((state) => state.translations);
   const isLoading = useLanguageStore((state) => state.isLoading);
@@ -21,8 +20,8 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
   const language = useLanguageStore((state) => state.language);
 
   useEffect(() => {
-    // Marcar que estamos en el cliente
-    setIsClient(true);
+    // Solo ejecutar en cliente
+    if (typeof window === "undefined") return;
 
     // Prevenir múltiples inicializaciones
     if (hasInitializedRef.current) return;
@@ -56,7 +55,7 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
             targetLang = storedLang;
           }
         }
-      } catch (error) {
+      } catch {
         // Si hay error, usar inglés por defecto
       }
 
@@ -70,13 +69,7 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
     }
   }, [translations, isLoading, setLanguage, language]);
 
-  // CRÍTICO: Siempre renderizar en SSR (cuando no estamos en el cliente)
-  // Esto permite que Googlebot y otros crawlers vean el contenido
-  if (!isClient) {
-    return <>{children}</>;
-  }
-
-  // En el cliente, siempre renderizar (las traducciones se cargarán en background)
+  // Siempre renderizar (las traducciones se cargarán en background)
   // Esto evita mostrar una página vacía mientras se cargan las traducciones
   return <>{children}</>;
 }
