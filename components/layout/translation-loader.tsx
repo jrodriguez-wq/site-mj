@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguageStore } from "@/store/language-store";
 
 /**
@@ -8,11 +8,11 @@ import { useLanguageStore } from "@/store/language-store";
  * Esto previene que los componentes se rendericen con claves sin traducir
  * 
  * IMPORTANTE: Siempre renderiza el contenido para bots de búsqueda (SSR)
- * Solo espera traducciones en el cliente para evitar mostrar claves sin traducir
- * 
- * MEJORADO: Carga inglés por defecto inmediatamente si no hay traducciones
+ * En el cliente, espera a que las traducciones estén disponibles antes de renderizar
  */
 export function TranslationLoader({ children }: { children: React.ReactNode }) {
+  const [isClient, setIsClient] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const hasInitializedRef = useRef(false);
   const translations = useLanguageStore((state) => state.translations);
   const isLoading = useLanguageStore((state) => state.isLoading);
@@ -20,12 +20,13 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
   const language = useLanguageStore((state) => state.language);
 
   useEffect(() => {
+    // Marcar que estamos en el cliente
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
     // Solo ejecutar en cliente
     if (typeof window === "undefined") return;
-
-    // Prevenir múltiples inicializaciones
-    if (hasInitializedRef.current) return;
-    hasInitializedRef.current = true;
 
     // Verificar si las traducciones están disponibles y son válidas
     const hasValidTranslations = 
@@ -34,15 +35,19 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
       !Array.isArray(translations) &&
       Object.keys(translations).length > 0 &&
       "home" in translations &&
-      "nav" in translations;
+      "nav" in translations &&
+      "rentToOwn" in translations;
 
-    // Si ya hay traducciones válidas, no hacer nada
+    // Si hay traducciones válidas y no está cargando, marcar como listo
     if (hasValidTranslations && !isLoading) {
+      setIsReady(true);
       return;
     }
 
-    // Si no hay traducciones válidas, cargar el idioma guardado o inglés por defecto
-    if (!hasValidTranslations && !isLoading) {
+    // Si no hay traducciones válidas y no está cargando, cargar el idioma
+    if (!hasValidTranslations && !isLoading && !hasInitializedRef.current) {
+      hasInitializedRef.current = true;
+      
       let targetLang: "en" | "es" = "en";
       
       // Intentar obtener idioma guardado
@@ -60,17 +65,48 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
       }
 
       // Cargar el idioma seleccionado
-      setLanguage(targetLang).catch(() => {
-        // Si falla, intentar inglés como fallback
-        setLanguage("en").catch(() => {
-          console.error("[TranslationLoader] Failed to load any language");
+      setLanguage(targetLang)
+        .then(() => {
+          setIsReady(true);
+        })
+        .catch(() => {
+          // Si falla, intentar inglés como fallback
+          setLanguage("en")
+            .then(() => {
+              setIsReady(true);
+            })
+            .catch(() => {
+              console.error("[TranslationLoader] Failed to load any language");
+              // Aún así marcar como listo para evitar bloqueo infinito
+              setIsReady(true);
+            });
         });
-      });
     }
   }, [translations, isLoading, setLanguage, language]);
 
-  // Siempre renderizar (las traducciones se cargarán en background)
-  // Esto evita mostrar una página vacía mientras se cargan las traducciones
-  return <>{children}</>;
+  // CRÍTICO: Siempre renderizar en SSR (cuando no estamos en el cliente)
+  // Esto permite que Googlebot y otros crawlers vean el contenido
+  if (!isClient) {
+    return <>{children}</>;
+  }
+
+  // En el cliente, esperar a que las traducciones estén listas
+  // Timeout de seguridad: después de 500ms, renderizar de todos modos
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsReady(true);
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Renderizar cuando esté listo o después del timeout
+  if (isReady || (!isLoading && translations && Object.keys(translations).length > 0)) {
+    return <>{children}</>;
+  }
+
+  // Mientras se cargan, mostrar un loader mínimo o nada (evita mostrar claves sin traducir)
+  // Usar un pequeño delay para dar tiempo a que las traducciones se carguen desde localStorage
+  return null;
 }
 
