@@ -240,8 +240,28 @@ const clearLanguageStorage = (): void => {
   }
 };
 
+// Función para obtener el idioma guardado o inglés por defecto
+const getInitialLanguage = (): Language => {
+  if (typeof window === "undefined") return "en";
+  
+  try {
+    const stored = localStorage.getItem("language-storage");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      const lang = parsed?.state?.language;
+      if (lang === "en" || lang === "es") {
+        return lang;
+      }
+    }
+  } catch (error) {
+    // Si hay error, usar inglés por defecto
+  }
+  
+  return "en";
+};
+
 const initialState: Omit<LanguageState, "setLanguage" | "t"> = {
-  language: "en",
+  language: getInitialLanguage(),
   translations: {}, // Se llenará en onRehydrateStorage
   isLoading: false,
 };

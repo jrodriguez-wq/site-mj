@@ -8,6 +8,8 @@ import { useLanguageStore } from "@/store/language-store";
  * 
  * Se ejecuta en el primer render del cliente para garantizar que las traducciones
  * estén disponibles antes de que otros componentes se rendericen
+ * 
+ * PRIORIDAD: Cargar inglés por defecto si no hay traducciones válidas
  */
 export function LanguageProvider() {
   const hasInitializedRef = useRef(false);
@@ -24,26 +26,23 @@ export function LanguageProvider() {
       // Verificar inmediatamente el estado actual
       let currentState = useLanguageStore.getState();
       
-      // Verificar si hay traducciones válidas usando la misma lógica del store
-      // Importar la función de validación (o duplicar la lógica simple)
+      // Verificar si hay traducciones válidas
       const hasValidTranslations = 
         currentState.translations &&
         typeof currentState.translations === "object" &&
         !Array.isArray(currentState.translations) &&
         Object.keys(currentState.translations).length > 0 &&
-        // Verificar que tenga al menos las claves esenciales
         "home" in currentState.translations &&
         "nav" in currentState.translations &&
         "rentToOwn" in currentState.translations;
 
-      // Si ya hay traducciones válidas, solo asegurar que el lang esté correcto
+      // Si ya hay traducciones válidas, verificar que funcionen
       if (hasValidTranslations) {
         const lang = currentState.language || "en";
         document.documentElement.lang = lang;
         
-        // Verificación adicional: probar que las traducciones funcionen
-        // Si no funcionan, forzar recarga
-        const testKey = "rentToOwn.form.title";
+        // Verificar que las traducciones funcionen correctamente
+        const testKey = "nav.home";
         const testResult = currentState.t(testKey);
         if (testResult === testKey) {
           // La traducción no funciona, forzar recarga
@@ -52,16 +51,32 @@ export function LanguageProvider() {
             await currentState.setLanguage(lang);
           } catch (error) {
             console.error("[LanguageProvider] Error reloading language:", error);
+            // Fallback a inglés si falla
+            await currentState.setLanguage("en");
           }
         }
         return;
       }
 
-      // Si no hay traducciones válidas, cargar inglés por defecto inmediatamente
-      // No esperamos nada, cargamos directamente de forma síncrona si es posible
+      // Si no hay traducciones válidas, cargar el idioma guardado o inglés por defecto
       try {
-        // Usar setLanguage que maneja la carga de traducciones y auto-limpieza
-        await currentState.setLanguage("en");
+        // Obtener idioma guardado o usar inglés por defecto
+        let targetLang: "en" | "es" = "en";
+        try {
+          const stored = localStorage.getItem("language-storage");
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            const storedLang = parsed?.state?.language;
+            if (storedLang === "en" || storedLang === "es") {
+              targetLang = storedLang;
+            }
+          }
+        } catch (error) {
+          // Si hay error leyendo localStorage, usar inglés por defecto
+        }
+
+        // Cargar el idioma seleccionado (o inglés por defecto)
+        await currentState.setLanguage(targetLang);
         
         // Verificar nuevamente después de la carga
         currentState = useLanguageStore.getState();
@@ -70,6 +85,13 @@ export function LanguageProvider() {
         }
       } catch (error) {
         console.error("[LanguageProvider] Error loading default language:", error);
+        // Último recurso: intentar cargar inglés directamente
+        try {
+          await currentState.setLanguage("en");
+          document.documentElement.lang = "en";
+        } catch (fallbackError) {
+          console.error("[LanguageProvider] Fallback to English also failed:", fallbackError);
+        }
       }
     };
 

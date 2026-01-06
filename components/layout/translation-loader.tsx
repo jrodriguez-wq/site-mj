@@ -9,58 +9,66 @@ import { useLanguageStore } from "@/store/language-store";
  * 
  * IMPORTANTE: Siempre renderiza el contenido para bots de búsqueda (SSR)
  * Solo espera traducciones en el cliente para evitar mostrar claves sin traducir
+ * 
+ * MEJORADO: Carga inglés por defecto inmediatamente si no hay traducciones
  */
 export function TranslationLoader({ children }: { children: React.ReactNode }) {
-  const [isReady, setIsReady] = useState(true); // Iniciar como true para SSR
   const [isClient, setIsClient] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const hasInitializedRef = useRef(false);
   const translations = useLanguageStore((state) => state.translations);
   const isLoading = useLanguageStore((state) => state.isLoading);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const language = useLanguageStore((state) => state.language);
 
   useEffect(() => {
     // Marcar que estamos en el cliente
     setIsClient(true);
 
-    // Limpiar timeout si existe
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    // Prevenir múltiples inicializaciones
+    if (hasInitializedRef.current) return;
+    hasInitializedRef.current = true;
 
-    // Verificar si las traducciones están disponibles
-    const hasTranslations = 
+    // Verificar si las traducciones están disponibles y son válidas
+    const hasValidTranslations = 
       translations &&
       typeof translations === "object" &&
       !Array.isArray(translations) &&
-      Object.keys(translations).length > 0;
+      Object.keys(translations).length > 0 &&
+      "home" in translations &&
+      "nav" in translations;
 
-    if (hasTranslations && !isLoading) {
-      setIsReady(true);
+    // Si ya hay traducciones válidas, no hacer nada
+    if (hasValidTranslations && !isLoading) {
       return;
     }
 
-    // Si no hay traducciones y no está cargando, cargar inglés
-    if (!hasTranslations && !isLoading) {
-      setLanguage("en").then(() => {
-        setIsReady(true);
-      }).catch(() => {
-        // Aún así permitir render después de un delay para evitar bloqueo infinito
-        timeoutRef.current = setTimeout(() => setIsReady(true), 100);
+    // Si no hay traducciones válidas, cargar el idioma guardado o inglés por defecto
+    if (!hasValidTranslations && !isLoading) {
+      let targetLang: "en" | "es" = "en";
+      
+      // Intentar obtener idioma guardado
+      try {
+        const stored = localStorage.getItem("language-storage");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          const storedLang = parsed?.state?.language;
+          if (storedLang === "en" || storedLang === "es") {
+            targetLang = storedLang;
+          }
+        }
+      } catch (error) {
+        // Si hay error, usar inglés por defecto
+      }
+
+      // Cargar el idioma seleccionado
+      setLanguage(targetLang).catch(() => {
+        // Si falla, intentar inglés como fallback
+        setLanguage("en").catch(() => {
+          console.error("[TranslationLoader] Failed to load any language");
+        });
       });
     }
-
-    // Timeout de seguridad: permitir render después de 500ms máximo
-    // Esto evita bloqueos infinitos si hay algún problema
-    timeoutRef.current = setTimeout(() => {
-      setIsReady(true);
-    }, 500);
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [translations, isLoading, setLanguage]);
+  }, [translations, isLoading, setLanguage, language]);
 
   // CRÍTICO: Siempre renderizar en SSR (cuando no estamos en el cliente)
   // Esto permite que Googlebot y otros crawlers vean el contenido
@@ -68,13 +76,8 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
     return <>{children}</>;
   }
 
-  // En el cliente, renderizar cuando esté listo
-  if (isReady || (!isLoading && translations && Object.keys(translations).length > 0)) {
-    return <>{children}</>;
-  }
-
-  // Mientras se cargan en el cliente, renderizar de todos modos para evitar página vacía
-  // El timeout asegura que eventualmente se renderice
+  // En el cliente, siempre renderizar (las traducciones se cargarán en background)
+  // Esto evita mostrar una página vacía mientras se cargan las traducciones
   return <>{children}</>;
 }
 
