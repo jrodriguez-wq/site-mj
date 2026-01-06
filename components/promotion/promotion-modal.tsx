@@ -23,7 +23,7 @@ const preloadModalImages = (modalType: ModalType, giftVariant?: GiftVariant) => 
       imagesToPreload.push("/img/louisinav.webp");
     }
   } else if (modalType === "lever") {
-    imagesToPreload.push("/img/navidad.webp");
+    imagesToPreload.push("/img/navidad.webp"); // Imagen de año nuevo
   }
   
   return Promise.all(
@@ -138,9 +138,9 @@ export const PromotionModal = memo(() => {
         customOverlay={<HolidayOverlay />}
       >
         {/* Accesibilidad */}
-        <DialogTitle className="sr-only">Holiday Promotion</DialogTitle>
+        <DialogTitle className="sr-only">New Year Promotion</DialogTitle>
         <DialogDescription className="sr-only">
-          Special holiday promotion - 50% off your moving cost
+          Special New Year promotion - 50% off your moving cost
         </DialogDescription>
 
         {/* Contenido del modal */}

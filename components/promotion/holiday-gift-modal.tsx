@@ -308,7 +308,7 @@ export const HolidayGiftModal = ({
               letterSpacing: "0.05em",
             }}
           >
-            Holiday Promo
+            New Year Promo
           </h2>
         </div>
 

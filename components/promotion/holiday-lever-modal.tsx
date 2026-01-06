@@ -216,7 +216,7 @@ const Lever = ({
 
 export const HolidayLeverModal = ({
   onClose,
-  houseImage = "/img/navidad.webp",
+  houseImage = "/img/navidad.webp", // Imagen de año nuevo
 }: HolidayLeverModalProps) => {
   const [leverPulled, setLeverPulled] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -308,7 +308,7 @@ export const HolidayLeverModal = ({
               letterSpacing: "0.05em",
             }}
           >
-            Holiday Promo
+            New Year Promo
           </h2>
         </div>
 
@@ -341,7 +341,7 @@ export const HolidayLeverModal = ({
               {houseImage ? (
                 <Image
                   src={houseImage}
-                  alt="Holiday home"
+                  alt="New Year home"
                   fill
                   className="object-cover rounded-2xl drop-shadow-2xl border-4 border-white/20"
                 />
