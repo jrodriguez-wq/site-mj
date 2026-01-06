@@ -13,10 +13,16 @@ interface LanguageState {
 }
 
 // Cache en memoria para acceso ultra-rápido (evita imports repetidos)
+// También expuesto en window para precarga desde script inline
 const translationsCache: Record<Language, Translations | null> = {
   en: null,
   es: null,
 };
+
+// Exponer cache en window para precarga desde script inline
+if (typeof window !== "undefined") {
+  (window as unknown as { __TRANSLATIONS_CACHE__?: typeof translationsCache }).__TRANSLATIONS_CACHE__ = translationsCache;
+}
 
 // Flag para prevenir múltiples cargas simultáneas
 const loadingPromises: Record<Language, Promise<Translations> | null> = {
@@ -26,11 +32,21 @@ const loadingPromises: Record<Language, Promise<Translations> | null> = {
 
 /**
  * Carga traducciones de forma optimizada con cache y prevención de duplicados
+ * PRIORIDAD: Cargar inglés de forma inmediata para primera carga
  */
 const loadTranslations = async (lang: Language): Promise<Translations> => {
   // 1. Verificar cache en memoria (más rápido)
   if (translationsCache[lang]) {
     return translationsCache[lang]!;
+  }
+
+  // 1.5. Verificar si hay traducciones precargadas desde script inline
+  if (typeof window !== "undefined") {
+    const precached = (window as unknown as { __TRANSLATIONS_CACHE__?: typeof translationsCache }).__TRANSLATIONS_CACHE__;
+    if (precached?.[lang] && isValidTranslations(precached[lang])) {
+      translationsCache[lang] = precached[lang];
+      return precached[lang]!;
+    }
   }
 
   // 2. Si ya hay una carga en progreso, reutilizar esa promesa
@@ -42,6 +58,7 @@ const loadTranslations = async (lang: Language): Promise<Translations> => {
   const loadPromise = (async () => {
     try {
       // Dynamic import optimizado por Next.js
+      // Para inglés, usar import() con prioridad alta
       const translationModule = lang === "es"
         ? await import("@/locales/es.json")
         : await import("@/locales/en.json");
@@ -293,7 +310,7 @@ const getInitialTranslations = (): Translations => {
 const initialState: Omit<LanguageState, "setLanguage" | "t"> = {
   language: getInitialLanguage(),
   translations: getInitialTranslations(), // Cargar traducciones desde localStorage de forma síncrona
-  isLoading: false,
+  isLoading: !isValidTranslations(getInitialTranslations()), // Marcar como cargando si no hay traducciones válidas
 };
 
 export const useLanguageStore = create<LanguageState>()(
@@ -386,13 +403,31 @@ export const useLanguageStore = create<LanguageState>()(
       /**
        * Función de traducción optimizada
        * Acceso directo al cache para máximo rendimiento
+       * CRÍTICO: Si no hay traducciones en el store pero hay en cache, usarlas inmediatamente
        */
       t: (key: string): string => {
-        const { translations } = get();
+        const state = get();
 
         // Early return con validación optimizada
-        if (isValidTranslations(translations)) {
-          return getTranslation(translations, key);
+        if (isValidTranslations(state.translations)) {
+          return getTranslation(state.translations, key);
+        }
+
+        // Si no hay traducciones en el store, verificar cache
+        // Esto es crítico para primera carga cuando las traducciones aún se están cargando
+        const lang = state.language || "en";
+        const cached = translationsCache[lang];
+        if (cached && isValidTranslations(cached)) {
+          // Actualizar store de forma síncrona si es posible (sin causar re-renders innecesarios)
+          // Solo actualizar si realmente no hay traducciones válidas
+          if (!isValidTranslations(state.translations)) {
+            // Usar setState de forma condicional para evitar loops
+            const currentState = useLanguageStore.getState();
+            if (!isValidTranslations(currentState.translations)) {
+              useLanguageStore.setState({ translations: cached, isLoading: false });
+            }
+          }
+          return getTranslation(cached, key);
         }
 
         // Si no hay traducciones, devolver la clave
@@ -607,32 +642,36 @@ if (typeof window !== "undefined") {
       clearLanguageStorage();
     }
 
-  // Precargar inglés inmediatamente y guardar en cache
-  // Esto asegura que esté disponible antes de cualquier render
-  // Cargar de forma inmediata si no hay traducciones válidas
-  const currentState = useLanguageStore.getState();
-  if (!isValidTranslations(currentState.translations)) {
-    // Cargar inglés inmediatamente sin delay
-    loadTranslations("en")
-      .then((translations) => {
-        // Asegurar que el cache esté poblado
-        translationsCache.en = translations;
+    // Precargar inglés inmediatamente y guardar en cache
+    // Esto asegura que esté disponible antes de cualquier render
+    // Cargar de forma inmediata si no hay traducciones válidas
+    const currentState = useLanguageStore.getState();
+    if (!isValidTranslations(currentState.translations)) {
+      // Cargar inglés inmediatamente sin delay
+      // Usar microtask para ejecutar lo más rápido posible
+      // Esto se ejecuta antes del siguiente render pero después de la inicialización del store
+      queueMicrotask(() => {
+        loadTranslations("en")
+          .then((translations) => {
+            // Asegurar que el cache esté poblado
+            translationsCache.en = translations;
 
-        // Inicializar el store con inglés si aún no tiene traducciones válidas
-        const updatedState = useLanguageStore.getState();
-        if (!isValidTranslations(updatedState.translations)) {
-          useLanguageStore.setState({
-            translations,
-            language: "en",
-            isLoading: false,
+            // Inicializar el store con inglés si aún no tiene traducciones válidas
+            const updatedState = useLanguageStore.getState();
+            if (!isValidTranslations(updatedState.translations)) {
+              useLanguageStore.setState({
+                translations,
+                language: "en",
+                isLoading: false,
+              });
+              document.documentElement.lang = "en";
+            }
+          })
+          .catch(() => {
+            // Silenciar error, se intentará cargar nuevamente cuando se necesite
+            // El error ya se maneja en loadTranslations
           });
-          document.documentElement.lang = "en";
-        }
-      })
-      .catch(() => {
-        // Silenciar error, se intentará cargar nuevamente cuando se necesite
-        // El error ya se maneja en loadTranslations
       });
-  }
+    }
   })();
 }

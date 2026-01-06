@@ -52,7 +52,11 @@ export function LanguageProvider() {
           } catch (error) {
             console.error("[LanguageProvider] Error reloading language:", error);
             // Fallback a inglés si falla
-            await currentState.setLanguage("en");
+            try {
+              await currentState.setLanguage("en");
+            } catch {
+              // Silenciar error de fallback
+            }
           }
         }
         return;
@@ -71,7 +75,7 @@ export function LanguageProvider() {
               targetLang = storedLang;
             }
           }
-        } catch (error) {
+        } catch {
           // Si hay error leyendo localStorage, usar inglés por defecto
         }
 
@@ -89,14 +93,17 @@ export function LanguageProvider() {
         try {
           await currentState.setLanguage("en");
           document.documentElement.lang = "en";
-        } catch (fallbackError) {
-          console.error("[LanguageProvider] Fallback to English also failed:", fallbackError);
+        } catch {
+          // Silenciar error de fallback
         }
       }
     };
 
     // Ejecutar inmediatamente sin delay
-    void initializeTranslations();
+    // Usar microtask para ejecutar lo más rápido posible, antes del siguiente render
+    Promise.resolve().then(() => {
+      void initializeTranslations();
+    });
   }, []);
 
   return null;
