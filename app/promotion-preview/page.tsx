@@ -16,11 +16,11 @@ export default function PromotionPreviewPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background p-8">
       <div className="max-w-6xl mx-auto space-y-8">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-black bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+        <div className="text-center space-y-3 sm:space-y-4 px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent leading-tight">
             Holiday Promotion Modals Preview
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
             Previsualiza los modales promocionales navideños - Selecciona uno para verlo
           </p>
         </div>
@@ -68,14 +68,14 @@ export default function PromotionPreviewPage() {
         {/* Descripción de características */}
         <div className="grid md:grid-cols-3 gap-6">
           {/* Modal Verde - Tres Regalos */}
-          <div className="bg-card rounded-xl p-6 border border-border/50 shadow-lg">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-green-700 rounded-xl flex items-center justify-center">
-                <Gift className="w-6 h-6 text-white" />
+          <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 border border-border/50 shadow-lg">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-green-700 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0">
+                <Gift className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <h2 className="text-xl font-bold">Verde - 3 Regalos</h2>
+              <h2 className="text-lg sm:text-xl font-bold leading-tight min-w-0">Verde - 3 Regalos</h2>
             </div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
               <li>✓ Tres cajas de regalo animadas</li>
               <li>✓ Cambian de posición automáticamente</li>
               <li>✓ Una caja se abre revelando premio</li>
@@ -86,14 +86,14 @@ export default function PromotionPreviewPage() {
           </div>
 
           {/* Modal Verde - Regalo Gigante */}
-          <div className="bg-card rounded-xl p-6 border border-border/50 shadow-lg">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-emerald-700 rounded-xl flex items-center justify-center">
-                <Gift className="w-6 h-6 text-white" />
+          <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 border border-border/50 shadow-lg">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-emerald-700 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0">
+                <Gift className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <h2 className="text-xl font-bold">Verde - Regalo Gigante</h2>
+              <h2 className="text-lg sm:text-xl font-bold leading-tight min-w-0">Verde - Regalo Gigante</h2>
             </div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
               <li>✓ Regalo grande CSS animado</li>
               <li>✓ Se abre mostrando casa/imagen</li>
               <li>✓ Muestra &quot;50% OFF&quot;</li>
@@ -104,14 +104,14 @@ export default function PromotionPreviewPage() {
           </div>
 
           {/* Modal Rojo */}
-          <div className="bg-card rounded-xl p-6 border border-border/50 shadow-lg">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-red-700 rounded-xl flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-white" />
+          <div className="bg-card rounded-xl p-4 sm:p-5 md:p-6 border border-border/50 shadow-lg">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-red-700 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0">
+                <Sparkles className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <h2 className="text-xl font-bold">Rojo - Slot Machine</h2>
+              <h2 className="text-lg sm:text-xl font-bold leading-tight min-w-0">Rojo - Slot Machine</h2>
             </div>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
               <li>✓ Slot machine interactivo</li>
               <li>✓ Palanca que se jala automáticamente</li>
               <li>✓ Gira mostrando promociones</li>
@@ -123,10 +123,10 @@ export default function PromotionPreviewPage() {
         </div>
 
         {/* Información adicional */}
-        <div className="bg-primary/10 rounded-xl p-6 border border-primary/20">
-          <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary" />
-            Características Comunes
+        <div className="bg-primary/10 rounded-xl p-4 sm:p-5 md:p-6 border border-primary/20">
+          <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 flex items-center gap-2 leading-tight">
+            <Sparkles className="w-4 w-4 sm:w-5 sm:h-5 text-primary shrink-0" />
+            <span className="min-w-0">Características Comunes</span>
           </h3>
           <div className="grid md:grid-cols-2 gap-4 text-muted-foreground">
             <div>

@@ -17,7 +17,6 @@ import emeliaData from "@/data/models/emelia.json";
 import duplexData from "@/data/models/duplex.json";
 import { cn } from "@/lib/utils";
 import { sortModelsByPrice } from "@/lib/models/model-utils";
-import { AnimatedCard } from "@/components/ui/animated-card";
 import { motion } from "framer-motion";
 
 const modelsData = sortModelsByPrice([
@@ -57,14 +56,24 @@ export const HomeModels = () => {
             const mainImage = getModelMainImage(model.key);
             
             return (
-              <AnimatedCard key={model.key} index={index}>
+              <motion.div
+                key={model.key}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
                 <div
                   className={cn(
-                    "group relative overflow-hidden border-2 rounded-xl bg-card hover:shadow-2xl transition-all duration-200 flex flex-col h-full"
+                    "relative overflow-hidden border border-border/60 rounded-xl bg-card shadow-sm flex flex-col h-full"
                   )}
                 >
                 {/* Image Section - Principal - Más espacio */}
-                <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 bg-muted/30 overflow-hidden">
+                <div className="relative h-64 sm:h-72 md:h-80 lg:h-96">
                   <Image
                     src={mainImage}
                     alt={model.name}
@@ -75,9 +84,9 @@ export const HomeModels = () => {
                   />
                   
                   {/* Price Badge */}
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/95 backdrop-blur-sm rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 shadow-lg border border-white/80 z-10">
-                    <div className="text-[10px] sm:text-xs text-muted-foreground font-medium">Starting at</div>
-                    <div className="text-base sm:text-lg font-bold text-primary">{model.price}</div>
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 shadow-xl border border-slate-700/50 z-10">
+                    <div className="text-[10px] sm:text-xs text-slate-300 dark:text-slate-400 font-medium">Starting at</div>
+                    <div className="text-base sm:text-lg font-bold text-white">{model.price}</div>
                   </div>
                   
                   {/* Gradient Overlay */}
@@ -88,7 +97,7 @@ export const HomeModels = () => {
                 <div className="p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6 flex-1 flex flex-col">
                   {/* Title and Description */}
                   <div className="space-y-2 sm:space-y-3">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-150" suppressHydrationWarning>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground" suppressHydrationWarning>
                       {model.name}
                     </h3>
                     <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed line-clamp-3" suppressHydrationWarning>
@@ -161,20 +170,20 @@ export const HomeModels = () => {
                   {/* View Details Button */}
                   <Button
                     variant="default"
-                    className="w-full group/btn mt-auto text-sm sm:text-base"
+                    className="w-full mt-auto text-sm sm:text-base"
                     size="lg"
                     asChild
                   >
                     <Link href={`/models/${model.key}`}>
                       <span className="flex items-center justify-center gap-2" suppressHydrationWarning>
                         {t("homeModels.viewDetails")}
-                        <span className="group-hover/btn:translate-x-1 transition-transform duration-150">→</span>
+                        <span>→</span>
                       </span>
                     </Link>
                   </Button>
                 </div>
                 </div>
-              </AnimatedCard>
+              </motion.div>
             );
           })}
         </div>

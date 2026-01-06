@@ -69,23 +69,23 @@ export const TermsConditionsContent = () => {
       <div className="space-y-12 py-8 md:py-12">
         {/* Header */}
         <AnimatedSection delay={0}>
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-              <Scale className="w-8 h-8 text-primary" />
+          <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto px-4">
+            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-primary/10 mb-3 sm:mb-4">
+              <Scale className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
             </div>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight"
               suppressHydrationWarning
             >
               {t("termsConditions.title")}
             </h1>
             <p
-              className="text-lg md:text-xl text-muted-foreground"
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed"
               suppressHydrationWarning
             >
               {t("termsConditions.lastUpdated")} {lastUpdated}
             </p>
-            <p className="text-muted-foreground" suppressHydrationWarning>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
               {t("termsConditions.intro")}
             </p>
           </div>
@@ -97,12 +97,12 @@ export const TermsConditionsContent = () => {
             const Icon = section.icon;
             return (
               <AnimatedSection key={section.title} delay={index * 50}>
-                <div className="bg-card border rounded-xl p-6 md:p-8 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-primary/10">
-                      <Icon className="w-6 h-6 text-primary" />
+                <div className="bg-card border rounded-xl p-4 sm:p-5 md:p-6 lg:p-8 space-y-3 sm:space-y-4">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10 shrink-0">
+                      <Icon className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" />
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground leading-tight min-w-0">
                       {section.title}
                     </h2>
                   </div>
@@ -189,14 +189,14 @@ export const TermsConditionsContent = () => {
 
         {/* Contact Information */}
         <AnimatedSection delay={250}>
-          <div className="bg-primary/5 rounded-xl p-8 md:p-12 text-center space-y-4 border border-primary/10">
+          <div className="bg-primary/5 rounded-xl p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-3 sm:space-y-4 border border-primary/10">
             <h3
-              className="text-2xl font-bold text-foreground"
+              className="text-xl sm:text-2xl font-bold text-foreground leading-tight px-4"
               suppressHydrationWarning
             >
               {t("termsConditions.sections.contact.title")}
             </h3>
-            <p className="text-muted-foreground" suppressHydrationWarning>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed px-4" suppressHydrationWarning>
               {t("termsConditions.sections.contact.description")}
             </p>
             <div className="space-y-2 text-muted-foreground">

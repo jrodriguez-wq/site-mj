@@ -47,11 +47,11 @@ export default function HomeBuyingGuidePage() {
   return (
     <PageContent size="md">
       <div className="space-y-12">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
+        <div className="text-center space-y-3 sm:space-y-4 px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter leading-tight" suppressHydrationWarning>
             {t("homeBuyingGuide.title")}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed" suppressHydrationWarning>
             {t("homeBuyingGuide.subtitle")}
           </p>
         </div>
@@ -68,22 +68,22 @@ export default function HomeBuyingGuidePage() {
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <CardHeader className="relative">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                      <Icon className="h-7 w-7" />
+                  <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
                     </div>
-                    <div className="flex-1">
-                      <div className="text-sm font-bold text-primary/60 mb-1" suppressHydrationWarning>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-xs sm:text-sm font-bold text-primary/60 mb-1" suppressHydrationWarning>
                         {t("homeBuyingGuide.step")} {t(`homeBuyingGuide.steps.${step.number}.number`)}
                       </div>
-                      <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors duration-300" suppressHydrationWarning>
+                      <CardTitle className="text-lg sm:text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 leading-tight" suppressHydrationWarning>
                         {step.title}
                       </CardTitle>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="relative">
-                  <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
                     {step.description}
                   </p>
                 </CardContent>

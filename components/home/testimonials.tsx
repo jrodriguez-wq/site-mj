@@ -94,10 +94,11 @@ export const Testimonials = () => {
               <div className="relative h-64 sm:h-72 md:h-80 lg:h-96 bg-muted/30 overflow-hidden">
                 <Image
                   src={testimonial.image}
-                  alt={`${testimonial.name} - ${testimonial.location}`}
+                  alt={`${testimonial.name || `Testimonial ${index + 1}`} - ${testimonial.location || "Florida"}`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  suppressHydrationWarning
                 />
                 
                 {/* Rating Badge */}

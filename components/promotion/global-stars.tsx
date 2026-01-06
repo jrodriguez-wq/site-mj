@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 
 // Genera posiciones aleatorias para las estrellas
 const generateStars = (count: number) => {
@@ -26,16 +26,23 @@ const StarIcon = () => (
 );
 
 export const GlobalStars = () => {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  // Solo generar estrellas después de que el componente se monte en el cliente
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Solo generar estrellas en el cliente usando lazy initialization
   const stars = useMemo(() => {
-    if (typeof window === "undefined") {
+    if (!isMounted || typeof window === "undefined") {
       return [];
     }
     return generateStars(30);
-  }, []);
+  }, [isMounted]);
 
-  // Si no hay estrellas (servidor), no renderizar nada
-  if (stars.length === 0) {
+  // Si no está montado o no hay estrellas, no renderizar nada
+  if (!isMounted || stars.length === 0) {
     return null;
   }
 

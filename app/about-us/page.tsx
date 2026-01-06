@@ -113,7 +113,7 @@ export default function AboutUsPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 >
-                  <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full border border-primary/40" suppressHydrationWarning>
+                  <span className="text-sm font-semibold text-white uppercase tracking-wider px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
                     {t("aboutUs.hero.badge") || "About Us"}
                   </span>
                 </motion.div>
@@ -162,14 +162,14 @@ export default function AboutUsPage() {
         <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
                 {t("statistics.title") || "Our Numbers Speak for Themselves"}
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
                 {t("statistics.subtitle") || "The impact we've made in Southwest Florida"}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             {/* Stats Section */}
@@ -207,19 +207,19 @@ export default function AboutUsPage() {
         <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-3 sm:space-y-4">
               <div className="inline-block">
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
+                <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
                   {t("aboutUs.leadership.badge") || "Leadership"}
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
                 {t("aboutUs.leadership.title") || "Michael J. Newell"}
               </h2>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
                 {t("aboutUs.leadership.subtitle") || "Founder & CEO of M.J. Newell Homes"}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -236,21 +236,21 @@ export default function AboutUsPage() {
               </div>
 
               {/* Description Text */}
-              <div className="space-y-6">
-                <div className="space-y-4">
-                  <p className="text-base md:text-lg leading-relaxed text-muted-foreground" suppressHydrationWarning>
+              <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                <div className="space-y-3 sm:space-y-4">
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground" suppressHydrationWarning>
                     {t("aboutUs.leadership.description") || "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth."}
                   </p>
                   
                   <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-background">
-                    <div className="p-6 space-y-4">
-                      <div className="flex items-start gap-3">
-                        <Quote className="h-6 w-6 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base italic text-foreground leading-relaxed" suppressHydrationWarning>
+                    <div className="p-4 sm:p-5 md:p-6 space-y-3 sm:space-y-4">
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <Quote className="h-5 w-5 sm:h-6 sm:w-6 text-primary shrink-0 mt-1" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm sm:text-base italic text-foreground leading-relaxed" suppressHydrationWarning>
                             {t("aboutUs.leadership.quote") || "\"The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I'd have to enlist first-line powerhouses.\""}
                           </p>
-                          <p className="text-sm text-muted-foreground mt-2" suppressHydrationWarning>
+                          <p className="text-xs sm:text-sm text-muted-foreground mt-2" suppressHydrationWarning>
                             {t("aboutUs.leadership.quoteAuthor") || "— Michael J. Newell"}
                           </p>
                         </div>
@@ -259,31 +259,31 @@ export default function AboutUsPage() {
                   </Card>
                 </div>
 
-                <p className="text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
                   {t("aboutUs.leadership.belief") || "Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization."}
                 </p>
 
                 {/* Mission and Vision Cards */}
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                   <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
-                    <div className="p-5 space-y-3">
-                      <h3 className="text-lg font-black flex items-center gap-2" suppressHydrationWarning>
-                        <Award className="h-5 w-5 text-primary" />
-                        {t("aboutUs.leadership.mission.title") || "Our Mission"}
+                    <div className="p-4 sm:p-5 space-y-2 sm:space-y-3">
+                      <h3 className="text-base sm:text-lg font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                        <Award className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                        <span className="min-w-0">{t("aboutUs.leadership.mission.title") || "Our Mission"}</span>
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
                         {t("aboutUs.leadership.mission.text") || "\"We want to make prime-value homes available at an economical rate to all Americans. We believe that affordable housing should be no more than a quarter of their income.\""}
                       </p>
                     </div>
                   </Card>
 
                   <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
-                    <div className="p-5 space-y-3">
-                      <h3 className="text-lg font-black flex items-center gap-2" suppressHydrationWarning>
-                        <TrendingUp className="h-5 w-5 text-primary" />
-                        {t("aboutUs.leadership.vision.title") || "Vision for 2026"}
+                    <div className="p-4 sm:p-5 space-y-2 sm:space-y-3">
+                      <h3 className="text-base sm:text-lg font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                        <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                        <span className="min-w-0">{t("aboutUs.leadership.vision.title") || "Vision for 2026"}</span>
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
                         {t("aboutUs.leadership.vision.text") || "By 2026, M.J. Newell Homes continues to build quality homes and expand our Rent to Own program, helping more families achieve their dream of homeownership."}
                       </p>
                     </div>
@@ -307,14 +307,14 @@ export default function AboutUsPage() {
         
         <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
                 {t("aboutUs.values.title") || "Our Core Values"}
               </h2>
-              <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
+              <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
                 {t("aboutUs.values.subtitle") || "The principles that guide everything we do"}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -323,15 +323,15 @@ export default function AboutUsPage() {
                 return (
                   <div
                     key={index}
-                    className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+                    className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
-                        <Icon className="w-6 h-6 text-primary" />
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="p-2 sm:p-2.5 md:p-3 bg-primary/20 rounded-lg sm:rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
+                        <Icon className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" />
                       </div>
-                      <div className="space-y-2">
-                        <h3 className="text-xl font-black text-background">{value.title}</h3>
-                        <p className="text-background/80 leading-relaxed">{value.description}</p>
+                      <div className="flex-1 min-w-0 space-y-1.5 sm:space-y-2">
+                        <h3 className="text-base sm:text-lg md:text-xl font-black text-background leading-tight">{value.title}</h3>
+                        <p className="text-sm sm:text-base text-background/80 leading-relaxed">{value.description}</p>
                       </div>
                     </div>
                   </div>
@@ -348,19 +348,19 @@ export default function AboutUsPage() {
         <section className="py-10 md:py-14 lg:py-18 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <div className="inline-block">
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
+                <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
                   {t("aboutUs.fullTeam.badge")}
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
                 {t("aboutUs.fullTeam.title")}
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
                 {t("aboutUs.fullTeam.subtitle")}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             {/* Full Team Image */}
@@ -380,9 +380,9 @@ export default function AboutUsPage() {
               
               {/* Optional badge overlay */}
               <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full shadow-lg border border-white/80">
-                  <Users className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-bold text-foreground" suppressHydrationWarning>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full shadow-xl border border-slate-700/50">
+                  <Users className="h-4 w-4 text-white" />
+                  <span className="text-sm font-bold text-white" suppressHydrationWarning>
                     {t("aboutUs.fullTeam.memberCount") || "17+ Team Members"}
                   </span>
                 </div>
@@ -409,14 +409,14 @@ export default function AboutUsPage() {
         <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
                 {t("aboutUs.team.title") || "Leadership Team"}
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
                 {t("aboutUs.team.subtitle") || "360-degree support for your dreams"}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
@@ -432,16 +432,16 @@ export default function AboutUsPage() {
                     priority
                   />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-black mb-2" suppressHydrationWarning>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                       {t("aboutUs.leadership.title") || "Michael J. Newell"}
                     </h3>
-                    <p className="text-lg font-semibold text-primary" suppressHydrationWarning>
+                    <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
                       {t("aboutUs.leadership.role") || "Founder & CEO"}
                     </p>
                   </div>
-                  <p className="text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
                     {t("aboutUs.leadership.description") || "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth."}
                   </p>
                 </div>
@@ -458,16 +458,16 @@ export default function AboutUsPage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-black mb-2" suppressHydrationWarning>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                       {t("aboutUs.team.juliana.name") || "Juliana Bonilla"}
                     </h3>
-                    <p className="text-lg font-semibold text-primary" suppressHydrationWarning>
+                    <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
                       {t("aboutUs.team.juliana.role") || "Administrative & Sales"}
                     </p>
                   </div>
-                  <p className="text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
                     {t("aboutUs.team.juliana.description") || "Juliana Bonilla brings expertise in administration and sales, ensuring smooth operations and excellent customer service. She is dedicated to helping families find their dream home."}
                   </p>
                 </div>
@@ -489,47 +489,47 @@ export default function AboutUsPage() {
         
         <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
                 {t("aboutUs.responseTimes.title") || "Fast Response Times"}
               </h2>
-              <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
+              <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
                 {t("aboutUs.responseTimes.subtitle") || "We value your time and respond quickly to all inquiries"}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.phone.value") || "< 24h"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.phone.label") || "Phone Calls"}
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.phone.description") || "We respond to all phone inquiries within 24 hours"}
                 </p>
               </div>
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.email.value") || "< 48h"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.email.label") || "Email Inquiries"}
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.email.description") || "Email responses within 48 hours"}
                 </p>
               </div>
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.appointment.value") || "Same Day"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.appointment.label") || "Appointments"}
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.appointment.description") || "Schedule your visit the same day"}
                 </p>
               </div>
@@ -545,37 +545,37 @@ export default function AboutUsPage() {
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <Card className="border-2 border-primary/20 shadow-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden">
-              <div className="p-8 md:p-12 space-y-6">
-                <div className="text-center space-y-4">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
+              <div className="p-4 sm:p-6 md:p-8 lg:p-12 space-y-4 sm:space-y-5 md:space-y-6">
+                <div className="text-center space-y-3 sm:space-y-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
                     {t("aboutUs.housingCrisis.title") || "Solving the Affordable Housing Crisis"}
                   </h2>
-                  <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
                     {t("aboutUs.housingCrisis.description") || "Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed M.J. Newell Homes to help solve our country's predicament."}
                   </p>
-                  <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+                  <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6 mt-8">
-                  <div className="space-y-4">
-                    <h3 className="text-xl md:text-2xl font-black flex items-center gap-2" suppressHydrationWarning>
-                      <FileText className="h-5 w-5 text-primary" />
-                      {t("aboutUs.housingCrisis.learnToBuild.title") || "Learn to Build Course"}
+                <div className="grid md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mt-6 sm:mt-8">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                      <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                      <span className="min-w-0">{t("aboutUs.housingCrisis.learnToBuild.title") || "Learn to Build Course"}</span>
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
                       {t("aboutUs.housingCrisis.learnToBuild.description") || "Michael Newell has created a course called \"Learn to Build,\" in which he details every building process step. He believes that by sharing his construction knowledge with others, this can ultimately impact the housing deficit in our nation."}
                     </p>
-                    <p className="text-muted-foreground leading-relaxed italic" suppressHydrationWarning>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed italic" suppressHydrationWarning>
                       {t("aboutUs.housingCrisis.learnToBuild.quote") || "\"I feel that a new builder who comes into this industry will only strengthen the market. Our country needs good builders who can supply the growing demand for new construction.\""}
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-xl md:text-2xl font-black flex items-center gap-2" suppressHydrationWarning>
-                      <Target className="h-5 w-5 text-primary" />
-                      {t("aboutUs.housingCrisis.commitment.title") || "Our Commitment"}
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                      <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                      <span className="min-w-0">{t("aboutUs.housingCrisis.commitment.title") || "Our Commitment"}</span>
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
                       {t("aboutUs.housingCrisis.commitment.text") || "\"The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. In a world where most people attempt to suppress others to gain power for themselves, we believe it's a detriment to society if we don't look for a win-win solution in business and help each other along the way.\""}
                     </p>
                   </div>
@@ -599,11 +599,11 @@ export default function AboutUsPage() {
         <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             <Card className="border-2 border-background/20 shadow-2xl bg-background/10 backdrop-blur-md">
-              <div className="p-8 md:p-12 text-center space-y-6 max-w-3xl mx-auto">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
+              <div className="p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-4 sm:space-y-5 md:space-y-6 max-w-3xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
                   {t("aboutUs.cta.title") || "Ready to Find Your Dream Home?"}
                 </h2>
-                <p className="text-base md:text-lg lg:text-xl text-background/80" suppressHydrationWarning>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-background/80 leading-relaxed px-4" suppressHydrationWarning>
                   {t("aboutUs.cta.description") || "Let us guide you through the entire process of buying your new home."}
                 </p>
                 <div className="pt-4">

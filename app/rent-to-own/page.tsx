@@ -193,7 +193,7 @@ export default function RentToOwnPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
                 >
-                  <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full border border-primary/40" suppressHydrationWarning>
+                  <span className="text-sm font-semibold text-white uppercase tracking-wider px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
                     <Sparkles className="inline h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2" />
                     {t("rentToOwn.hero.badge")}
                   </span>
@@ -540,7 +540,7 @@ export default function RentToOwnPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent"></div>
                       <div className="absolute top-4 right-4 z-10">
-                        <span className="px-3 py-1.5 bg-emerald-500/95 backdrop-blur-md text-white text-xs font-bold rounded-full border-2 border-white/60 shadow-xl" suppressHydrationWarning>
+                        <span className="px-3 py-1.5 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md text-white text-xs font-bold rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
                           {t("rentToOwn.availableModels.rtoAvailable")}
                         </span>
                       </div>

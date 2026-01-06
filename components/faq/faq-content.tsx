@@ -125,14 +125,14 @@ export const FAQContent = () => {
       <div className="space-y-12 py-8 md:py-12">
         {/* Header */}
         <AnimatedSection delay={0}>
-          <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-              <HelpCircle className="w-8 h-8 text-primary" />
+          <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto px-4">
+            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-primary/10 mb-3 sm:mb-4">
+              <HelpCircle className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground" suppressHydrationWarning>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight" suppressHydrationWarning>
               {t("faq.title")}
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground" suppressHydrationWarning>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed" suppressHydrationWarning>
               {t("faq.subtitle")}
             </p>
           </div>
@@ -142,8 +142,8 @@ export const FAQContent = () => {
         <div className="space-y-8">
           {faqCategories.map((category, categoryIndex) => (
             <AnimatedSection key={category.title} delay={categoryIndex * 50}>
-              <div className="space-y-4">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground border-b border-border pb-2">
+              <div className="space-y-3 sm:space-y-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground border-b border-border pb-2 leading-tight">
                   {category.title}
                 </h2>
                 <Accordion type="single" collapsible className="w-full">
@@ -168,11 +168,11 @@ export const FAQContent = () => {
 
         {/* CTA Section */}
         <AnimatedSection delay={300}>
-          <div className="bg-primary/5 rounded-2xl p-8 md:p-12 text-center space-y-4 border border-primary/10">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground" suppressHydrationWarning>
+          <div className="bg-primary/5 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-3 sm:space-y-4 border border-primary/10">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground leading-tight px-4" suppressHydrationWarning>
               {t("faq.stillHaveQuestions")}
             </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
               {t("faq.stillHaveQuestionsDesc")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">

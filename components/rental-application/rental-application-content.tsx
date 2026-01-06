@@ -74,10 +74,10 @@ export const RentalApplicationContent = () => {
                 <FileText className="h-4 w-4" />
                 <span suppressHydrationWarning>{t("rentalApplication.title")}</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent" suppressHydrationWarning>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent leading-tight px-4" suppressHydrationWarning>
                 {t("rentalApplication.heroTitle")}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
                 {t("rentalApplication.heroSubtitle")}
               </p>
             </div>
@@ -102,11 +102,11 @@ export const RentalApplicationContent = () => {
                             <div className="p-2 bg-primary/10 rounded-lg">
                               <FileText className="h-6 w-6 text-primary" />
                             </div>
-                            <div>
-                              <h2 className="text-2xl md:text-3xl font-bold text-foreground" suppressHydrationWarning>
+                            <div className="flex-1 min-w-0">
+                              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground leading-tight" suppressHydrationWarning>
                                 {t("rentalApplication.formTitle")}
                               </h2>
-                              <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
                                 {t("rentalApplication.formDescription")}
                               </p>
                             </div>
@@ -129,9 +129,9 @@ export const RentalApplicationContent = () => {
                   {/* Requirements Card */}
                   <Card>
                     <CardContent className="p-6 md:p-8">
-                      <h3 className="text-xl font-bold mb-6 flex items-center gap-2" suppressHydrationWarning>
-                        <CheckCircle2 className="h-5 w-5 text-primary" />
-                        {t("rentalApplication.requirements.title")}
+                      <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                        <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                        <span className="min-w-0">{t("rentalApplication.requirements.title")}</span>
                       </h3>
                       <div className="space-y-3">
                         <p className="text-muted-foreground" suppressHydrationWarning>
@@ -155,7 +155,7 @@ export const RentalApplicationContent = () => {
                   {/* Benefits Card */}
                   <Card>
                     <CardContent className="p-6 md:p-8">
-                      <h3 className="text-xl font-bold mb-6" suppressHydrationWarning>
+                      <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight" suppressHydrationWarning>
                         {t("rentalApplication.whyApply")}
                       </h3>
                       <div className="space-y-4">
@@ -184,9 +184,9 @@ export const RentalApplicationContent = () => {
                   {/* Process Timeline */}
                   <Card>
                     <CardContent className="p-6 md:p-8">
-                      <h3 className="text-xl font-bold mb-6 flex items-center gap-2" suppressHydrationWarning>
-                        <Clock className="h-5 w-5 text-primary" />
-                        {t("rentalApplication.process.title")}
+                      <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-5 md:mb-6 flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                        <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                        <span className="min-w-0">{t("rentalApplication.process.title")}</span>
                       </h3>
                       <div className="space-y-4">
                         <div className="flex gap-4">
@@ -243,10 +243,10 @@ export const RentalApplicationContent = () => {
                   {/* Contact Card */}
                   <Card>
                     <CardContent className="p-6 md:p-8">
-                      <h3 className="text-xl font-bold mb-4" suppressHydrationWarning>
+                      <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 leading-tight" suppressHydrationWarning>
                         {t("rentalApplication.needHelp.title")}
                       </h3>
-                      <p className="text-sm text-muted-foreground mb-4" suppressHydrationWarning>
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed" suppressHydrationWarning>
                         {t("rentalApplication.needHelp.description")}
                       </p>
                       <div className="space-y-3">

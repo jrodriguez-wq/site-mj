@@ -118,10 +118,10 @@ export const ContactPageContent = () => {
             <div className="max-w-7xl mx-auto space-y-8 md:space-y-12">
             {/* Title */}
             <div className="text-center">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-2" suppressHydrationWarning>
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black mb-2 leading-tight px-4" suppressHydrationWarning>
                 {t("contactForm.contactInfo.title") || "Contact Information"}
               </h2>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             {/* Top 3 Cards */}
@@ -206,16 +206,16 @@ export const ContactPageContent = () => {
             {/* Contact Form */}
             <div className="max-w-4xl mx-auto">
               <Card className="shadow-2xl border-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
-                <CardHeader className="text-center space-y-3 pb-6 p-6 sm:p-8">
-                  <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-black" suppressHydrationWarning>
+                <CardHeader className="text-center space-y-2 sm:space-y-3 pb-4 sm:pb-5 md:pb-6 p-4 sm:p-6 md:p-8">
+                  <CardTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black leading-tight px-4" suppressHydrationWarning>
                     {t("contactForm.formTitle") || "Send Us a Message"}
                   </CardTitle>
-                  <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
-                  <CardDescription className="text-sm sm:text-base md:text-lg pt-2 text-muted-foreground" suppressHydrationWarning>
+                  <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+                  <CardDescription className="text-xs sm:text-sm md:text-base lg:text-lg pt-2 text-muted-foreground px-4 leading-relaxed" suppressHydrationWarning>
                     {t("contactForm.formDescription") || "Fill out the form below and we'll get back to you as soon as possible."}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="px-6 sm:px-8 md:px-10 pb-8 sm:pb-10">
+                <CardContent className="px-4 sm:px-6 md:px-8 lg:px-10 pb-6 sm:pb-8 md:pb-10">
                   <HubSpotForm
                     portalId="50215941"
                     formId="93068cd5-cb63-461a-b7a6-00a3ca4fcd0a"
@@ -348,47 +348,47 @@ export const ContactPageContent = () => {
         
         <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
                 {t("aboutUs.responseTimes.title") || "Fast Response Times"}
               </h2>
-              <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
+              <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
                 {t("aboutUs.responseTimes.subtitle") || "We value your time and respond quickly to all inquiries"}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.phone.value") || "< 24h"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.phone.label") || "Phone Calls"}
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.phone.description") || "We respond to all phone inquiries within 24 hours"}
                 </p>
               </div>
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.email.value") || "< 48h"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.email.label") || "Email Inquiries"}
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.email.description") || "Email responses within 48 hours"}
                 </p>
               </div>
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.appointment.value") || "Same Day"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.appointment.label") || "Appointments"}
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
                   {t("aboutUs.responseTimes.appointment.description") || "Schedule your visit the same day"}
                 </p>
               </div>
