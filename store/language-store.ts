@@ -648,30 +648,28 @@ if (typeof window !== "undefined") {
     const currentState = useLanguageStore.getState();
     if (!isValidTranslations(currentState.translations)) {
       // Cargar inglés inmediatamente sin delay
-      // Usar microtask para ejecutar lo más rápido posible
-      // Esto se ejecuta antes del siguiente render pero después de la inicialización del store
-      queueMicrotask(() => {
-        loadTranslations("en")
-          .then((translations) => {
-            // Asegurar que el cache esté poblado
-            translationsCache.en = translations;
+      // Iniciar la carga de forma inmediata (no esperar microtask)
+      // Esto es crítico para la primera carga de la HOME page
+      loadTranslations("en")
+        .then((translations) => {
+          // Asegurar que el cache esté poblado
+          translationsCache.en = translations;
 
-            // Inicializar el store con inglés si aún no tiene traducciones válidas
-            const updatedState = useLanguageStore.getState();
-            if (!isValidTranslations(updatedState.translations)) {
-              useLanguageStore.setState({
-                translations,
-                language: "en",
-                isLoading: false,
-              });
-              document.documentElement.lang = "en";
-            }
-          })
-          .catch(() => {
-            // Silenciar error, se intentará cargar nuevamente cuando se necesite
-            // El error ya se maneja en loadTranslations
-          });
-      });
+          // Inicializar el store con inglés si aún no tiene traducciones válidas
+          const updatedState = useLanguageStore.getState();
+          if (!isValidTranslations(updatedState.translations)) {
+            useLanguageStore.setState({
+              translations,
+              language: "en",
+              isLoading: false,
+            });
+            document.documentElement.lang = "en";
+          }
+        })
+        .catch(() => {
+          // Silenciar error, se intentará cargar nuevamente cuando se necesite
+          // El error ya se maneja en loadTranslations
+        });
     }
   })();
 }
