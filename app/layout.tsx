@@ -109,8 +109,21 @@ export default function RootLayout({
           href="https://js.hsforms.net"
         />
         <link
+          rel="dns-prefetch"
+          href="https://static.hsappstatic.net"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://meetings.hubspot.com"
+        />
+        <link
           rel="preconnect"
           href="https://js.hs-scripts.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://static.hsappstatic.net"
           crossOrigin="anonymous"
         />
         <link
@@ -174,6 +187,13 @@ export default function RootLayout({
           id="hs-script-loader"
           strategy="lazyOnload"
           src="https://js.hs-scripts.com/50215941.js"
+        />
+        
+        {/* HubSpot Meetings Embed Script - Precargar para mejor rendimiento */}
+        <Script
+          id="hs-meetings-embed"
+          strategy="afterInteractive"
+          src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"
         />
       </body>
     </html>

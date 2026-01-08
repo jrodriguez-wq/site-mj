@@ -4,13 +4,12 @@ import { useMemo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { HubSpotForm } from "@/components/ui/hubspot-form";
+import { HubSpotMeetings } from "@/components/ui/hubspot-meetings";
 import { MapPin, Phone, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map } from "lucide-react";
 import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
 import { useLanguageStore } from "@/store/language-store";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { HUBSPOT_FORMS } from "@/lib/constants";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 const googleMapsUrl = "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8";
@@ -28,13 +27,8 @@ export const ScheduleAppointmentContent = () => {
     return `${googleMapsEmbedBaseUrl}&hl=${lang}&gl=${region}`;
   }, [language]);
 
-  // URL de redirección después de enviar el formulario
-  const redirectUrl = useMemo(() => {
-    const baseUrl = typeof window !== 'undefined' 
-      ? window.location.origin 
-      : SEO_CONFIG.siteUrl;
-    return `${baseUrl}/thank-you?type=schedule-appointment`;
-  }, []);
+  // URL del embed de HubSpot Meetings
+  const meetingsEmbedUrl = "https://meetings.hubspot.com/jrodriguez134/meeting-web?embed=true";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
@@ -87,16 +81,10 @@ export const ScheduleAppointmentContent = () => {
                         </div>
                       </div>
                       
-                      {/* Formulario de HubSpot */}
-                      <div className=" rounded-xl p-6">
-                        <HubSpotForm
-                          portalId={HUBSPOT_FORMS.SCHEDULE_APPOINTMENT.portalId}
-                          formId={HUBSPOT_FORMS.SCHEDULE_APPOINTMENT.formId}
-                          region={HUBSPOT_FORMS.SCHEDULE_APPOINTMENT.region}
-                          redirectUrl={redirectUrl}
-                          className="w-full"
+                        <HubSpotMeetings
+                          embedUrl={meetingsEmbedUrl}
+                          className="w-full h-full"
                         />
-                      </div>
                     </div>
                   </CardContent>
                 </Card>
