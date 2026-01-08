@@ -3,13 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { useConfetti } from "@/hooks/use-confetti";
+import { Home, Sparkles, Key, Gift } from "lucide-react";
 
 interface HolidayGiftModalProps {
   onClose?: () => void;
   variant?: "three-gifts" | "giant-gift";
-  houseImage?: string;
 }
 
 // Componente de caja de regalo con diseño mejorado
@@ -38,9 +37,11 @@ const GiftBox = ({
       onClick={onClick}
       disabled={disabled}
       className={`
-        relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36
+        relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32
+        min-w-[64px] min-h-[64px]
         transition-all duration-300 
-        ${!disabled && !isOpen ? "hover:scale-110 cursor-pointer" : "cursor-default"}
+        touch-manipulation
+        ${!disabled && !isOpen ? "hover:scale-110 active:scale-95 cursor-pointer" : "cursor-default"}
         ${!isOpen ? "animate-gift-bounce" : ""}
       `}
       style={{
@@ -104,14 +105,12 @@ const GiftBox = ({
   );
 };
 
-// Regalo gigante con casa adentro
+// Regalo gigante con diseño moderno sin imágenes
 const GiantGift = ({ 
   isOpen, 
-  houseImage,
   onAnimationComplete 
 }: { 
   isOpen: boolean; 
-  houseImage?: string;
   onAnimationComplete?: () => void;
 }) => {
   const [showContent, setShowContent] = useState(false);
@@ -127,7 +126,7 @@ const GiantGift = ({
   }, [isOpen, onAnimationComplete]);
 
   return (
-    <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72">
+    <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64">
       {/* Sombra */}
       <div 
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-black/40 rounded-[50%] blur-md"
@@ -138,48 +137,49 @@ const GiantGift = ({
         }}
       />
 
-      {/* Contenido que emerge */}
+      {/* Contenido que emerge - Diseño profesional con iconos */}
       {showContent && (
         <div 
-          className="absolute inset-0 flex flex-col items-center justify-center animate-contentRise"
+          className="absolute inset-0 flex flex-col items-center justify-center gap-4 sm:gap-5 md:gap-6 animate-contentRise px-2"
         >
-          {/* Casa */}
-          <div className="relative w-full max-w-[200px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[380px] xl:max-w-[420px] h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 mb-2 sm:mb-3 mx-auto">
-            {houseImage ? (
-              <Image
-                src={houseImage}
-                alt="Your new home"
-                fill
-                className="object-cover rounded-2xl drop-shadow-2xl border-4 border-white/20"
-              />
-            ) : (
-              /* Casa CSS fallback */
-              <div className="relative w-full h-full">
-                {/* Techo */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 
-                  border-l-[60px] border-l-transparent 
-                  border-r-[60px] border-r-transparent 
-                  border-b-[35px] border-b-amber-700
-                  drop-shadow-lg" 
-                />
-                {/* Cuerpo */}
-                <div className="absolute top-[30px] left-1/2 -translate-x-1/2 w-28 h-20 bg-gradient-to-b from-amber-100 to-amber-200 rounded-b shadow-lg">
-                  {/* Ventanas */}
-                  <div className="absolute top-2 left-2 w-5 h-5 bg-sky-300 border-2 border-sky-400 rounded-sm" />
-                  <div className="absolute top-2 right-2 w-5 h-5 bg-sky-300 border-2 border-sky-400 rounded-sm" />
-                  {/* Puerta */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-7 h-10 bg-amber-800 rounded-t" />
-                </div>
+          {/* Contenedor de icono profesional con gradiente moderno */}
+          <div className="relative">
+            {/* Efecto de brillo de fondo animado - Colores profesionales */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-cyan-500/20 rounded-full blur-2xl animate-pulse" />
+            
+            {/* Círculo de fondo con gradiente elegante */}
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 shadow-2xl border-2 border-white/50 backdrop-blur-sm">
+              {/* Icono de casa profesional */}
+              <Home className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-22 lg:h-22 text-emerald-600 drop-shadow-lg" strokeWidth={2} />
+              
+              {/* Iconos decorativos pequeños */}
+              <div className="absolute -top-2 -right-2">
+                <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 animate-pulse" style={{ animationDelay: '0s' }} />
               </div>
-            )}
+              <div className="absolute -bottom-2 -left-2">
+                <Key className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
+              </div>
+              <div className="absolute top-1/2 -left-3">
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-teal-400 animate-pulse" style={{ animationDelay: '1s' }} />
+              </div>
+            </div>
+            
+            {/* Partículas decorativas flotantes - Colores profesionales */}
+            <div className="absolute -top-2 -right-2 w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" style={{ animationDelay: '0s' }} />
+            <div className="absolute -bottom-2 -left-2 w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse shadow-lg shadow-teal-400/50" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute top-1/2 -left-3 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse shadow-lg shadow-cyan-400/50" style={{ animationDelay: '1s' }} />
           </div>
-          {/* Texto promocional */}
-          <div className="text-center px-2 sm:px-4">
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black text-yellow-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+          
+          {/* Texto promocional destacado - Mobile-first con mejor tipografía */}
+          <div className="text-center space-y-2 sm:space-y-2.5 md:space-y-3 px-2">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8),0_0_20px_rgba(16,185,129,0.6)] leading-tight">
               50% OFF
             </p>
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-white drop-shadow-md">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-emerald-100 drop-shadow-md leading-tight">
               Your Moving Cost
+            </p>
+            <p className="text-xs sm:text-sm md:text-base text-white/80 drop-shadow-sm mt-1 font-medium">
+              Your dream home awaits
             </p>
           </div>
         </div>
@@ -222,7 +222,6 @@ const GiantGift = ({
 export const HolidayGiftModal = ({
   onClose,
   variant = "three-gifts",
-  houseImage = "/img/louisinav.webp",
 }: HolidayGiftModalProps) => {
   const [selectedGift, setSelectedGift] = useState<number | null>(null);
   const [positions, setPositions] = useState([0, 1, 2]);
@@ -294,28 +293,27 @@ export const HolidayGiftModal = ({
   }, [selectedGift, isShuffling, autoSelectDone]);
 
   return (
-    <div className="relative w-full h-full bg-gradient-to-br from-green-800 via-green-900 to-green-950 rounded-2xl overflow-hidden">
+    <div className="relative w-full h-full bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 rounded-2xl overflow-hidden">
 
-      {/* Contenido principal */}
-      <div className="relative z-20 flex flex-col h-full p-3 sm:p-4 md:p-6 lg:p-8">
-        {/* Título - Responsive optimizado */}
-        <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+      {/* Contenido principal - Mobile-first optimizado */}
+      <div className="relative z-20 flex flex-col h-full p-2.5 sm:p-4 md:p-6 lg:p-8">
+        {/* Título - Mobile-first responsive con diseño profesional */}
+        <div className="text-center mb-3 sm:mb-4 md:mb-5 lg:mb-6">
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white drop-shadow-2xl animate-title-pulse"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
             style={{
-              fontFamily: "'Pacifico', 'Brush Script MT', cursive",
-              textShadow: "0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(255,215,0,0.4), 0 4px 12px rgba(0,0,0,0.5)",
-              letterSpacing: "0.05em",
+              textShadow: "0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.3), 0 4px 12px rgba(0,0,0,0.6)",
+              letterSpacing: "-0.02em",
             }}
           >
             New Year Promo
           </h2>
         </div>
 
-        {/* Área de regalos */}
-        <div className="flex-1 flex items-center justify-center">
+        {/* Área de regalos - Mobile-first */}
+        <div className="flex-1 flex items-center justify-center min-h-0">
           {variant === "three-gifts" ? (
-            <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 lg:gap-8">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-5 xl:gap-8 flex-wrap">
               {positions.map((originalIndex, displayIndex) => (
                 <div
                   key={originalIndex}
@@ -335,65 +333,81 @@ export const HolidayGiftModal = ({
               ))}
             </div>
           ) : (
-            <GiantGift isOpen={giantOpen} houseImage={houseImage} />
+            <GiantGift isOpen={giantOpen} onAnimationComplete={() => setGiantContentVisible(true)} />
           )}
         </div>
 
-        {/* Botón */}
-        <div className="flex justify-center pt-2 sm:pt-3 md:pt-4">
-          <Button
-            asChild
-            size="lg"
-            className="
-              bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
-              hover:from-blue-600 hover:via-blue-700 hover:to-blue-800
-              text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg
-              px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6
-              rounded-full shadow-xl
-              hover:shadow-blue-500/30 hover:scale-105
-              transition-all duration-300
-              border-2 border-blue-400/50
-            "
-          >
-            <Link href="/schedule-appointment">
+        {/* Botón - Mobile-first con tamaño táctil */}
+        <div className="flex justify-center pt-2 sm:pt-3 md:pt-4 w-full px-2">
+            <Button
+              asChild
+              size="lg"
+              className="
+                bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700
+                hover:from-emerald-700 hover:via-emerald-800 hover:to-teal-800
+                active:scale-95
+                text-white font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base
+                px-5 sm:px-7 md:px-9 lg:px-12 
+                py-2.5 sm:py-3 md:py-4 lg:py-5
+                min-h-[44px] sm:min-h-[48px]
+                rounded-xl shadow-xl shadow-emerald-500/20
+                hover:shadow-emerald-500/40 hover:scale-105
+                transition-all duration-300
+                border border-emerald-400/30
+                w-full max-w-[280px] sm:max-w-none
+                touch-manipulation
+              "
+            >
+            <Link href="/schedule-appointment" className="block text-center">
               Schedule Your Appointment
             </Link>
           </Button>
         </div>
       </div>
 
-      {/* Overlay de premio (para three-gifts) */}
+      {/* Overlay de premio (para three-gifts) - Mobile-first */}
       {showPrize && variant === "three-gifts" && (
-        <div className="absolute inset-0 z-[170] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-2xl border-2 sm:border-4 border-yellow-300 animate-prizeIn max-w-[90%] sm:max-w-md">
-            <div className="text-center space-y-2 sm:space-y-3 md:space-y-4">
-              <p className="text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-3">🎉</p>
-              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-green-900 mb-1 sm:mb-2">
+        <div className="absolute inset-0 z-[170] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in p-2">
+          <div className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 shadow-2xl border border-emerald-400/30 animate-prizeIn max-w-[92%] sm:max-w-md w-full backdrop-blur-sm" style={{
+            boxShadow: '0 0 40px rgba(16, 185, 129, 0.6), 0 0 80px rgba(16, 185, 129, 0.4), 0 0 120px rgba(16, 185, 129, 0.2), 0 20px 60px rgba(0,0,0,0.5)',
+          }}>
+            <div className="text-center space-y-2 sm:space-y-2.5 md:space-y-3 lg:space-y-4">
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-1.5 sm:mb-2 md:mb-3">🎉</p>
+              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-1.5 sm:mb-2 md:mb-2.5 leading-tight" style={{
+                textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(16, 185, 129, 0.6), 2px 2px 8px rgba(0,0,0,0.5)',
+              }}>
                 You Won!
               </h3>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-green-800 mb-4 sm:mb-6">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-emerald-100 mb-3 sm:mb-4 md:mb-6 leading-tight drop-shadow-md">
                 50% Off Your Moving Cost
               </p>
-              {/* Botón de agendar cita en el overlay de premio */}
-              <Button
-                asChild
-                size="lg"
-                onClick={onClose}
-                className="
-                  bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
-                  hover:from-blue-600 hover:via-blue-700 hover:to-blue-800
-                  text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg
-                  px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6
-                  rounded-full shadow-xl
-                  hover:shadow-blue-500/30 hover:scale-105
-                  transition-all duration-300
-                  border-2 border-blue-400/50
-                "
-              >
-                <Link href="/schedule-appointment" onClick={onClose}>
-                  Schedule Your Appointment
-                </Link>
-              </Button>
+              {/* Botón de agendar cita - Mobile-first */}
+              <div className="w-full px-1">
+                <Button
+                  asChild
+                  size="lg"
+                  onClick={onClose}
+                  className="
+                    bg-gradient-to-r from-white via-emerald-50 to-white
+                    hover:from-emerald-50 hover:via-emerald-100 hover:to-emerald-50
+                    active:scale-95
+                    text-emerald-900 font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base
+                    px-5 sm:px-7 md:px-9 lg:px-12 
+                    py-2.5 sm:py-3 md:py-4 lg:py-5
+                    min-h-[44px] sm:min-h-[48px]
+                    rounded-xl shadow-2xl shadow-emerald-500/30
+                    hover:shadow-emerald-500/50 hover:scale-105
+                    transition-all duration-300
+                    border border-emerald-200/50
+                    w-full max-w-[260px] sm:max-w-none
+                    touch-manipulation
+                  "
+                >
+                  <Link href="/schedule-appointment" onClick={onClose} className="block text-center">
+                    Schedule Your Appointment
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

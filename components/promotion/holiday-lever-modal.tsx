@@ -3,12 +3,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { useConfetti } from "@/hooks/use-confetti";
+import { Home, Sparkles, Key } from "lucide-react";
 
 interface HolidayLeverModalProps {
   onClose?: () => void;
-  houseImage?: string;
 }
 
 const promotions = [
@@ -36,9 +35,9 @@ const SlotMachine = ({
         <div className="absolute -inset-2 bg-yellow-400/40 rounded-3xl blur-xl animate-pulse" />
       )}
       
-      {/* Marco exterior del slot con efecto 3D mejorado */}
+      {/* Marco exterior del slot - Mobile-first */}
       <div 
-        className="relative bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 rounded-3xl p-4 sm:p-5 shadow-2xl border-4 border-yellow-400/60"
+        className="relative bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 rounded-2xl sm:rounded-3xl p-2.5 sm:p-3 md:p-4 lg:p-5 shadow-2xl border-2 sm:border-2 md:border-4 border-yellow-400/60"
         style={{
           boxShadow: showWin 
             ? '0 0 30px rgba(250, 204, 21, 0.6), 0 0 60px rgba(250, 204, 21, 0.4), 0 20px 40px rgba(0,0,0,0.5)' 
@@ -55,9 +54,9 @@ const SlotMachine = ({
         <div className="absolute -top-3 right-1/4 w-3 h-3 rounded-full bg-amber-500 shadow-lg shadow-amber-500/70 animate-pulse" style={{ animationDelay: "0.6s" }} />
         <div className="absolute -top-3 right-8 w-4 h-4 rounded-full bg-green-500 shadow-lg shadow-green-500/70 animate-pulse" style={{ animationDelay: "0.8s" }} />
 
-        {/* Ventana del slot con mejor diseño */}
+        {/* Ventana del slot - Mobile-first responsive */}
         <div 
-          className="relative w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-20 sm:h-24 md:h-28 lg:h-32 bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-yellow-500/50"
+          className="relative w-[200px] sm:w-56 md:w-64 lg:w-72 xl:w-80 h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border-2 border-yellow-500/50"
           style={{
             boxShadow: 'inset 0 4px 8px rgba(0,0,0,0.8), inset 0 -4px 8px rgba(0,0,0,0.8)',
           }}
@@ -99,10 +98,10 @@ const SlotMachine = ({
               >
                 <p
                   className={`
-                    text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-black text-center leading-tight px-1 sm:px-2
+                    text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-black text-center leading-tight px-1 sm:px-2
                     transition-all duration-300
                     ${showWin && index === 0 
-                      ? "text-yellow-300 drop-shadow-[0_0_20px_rgba(250,204,21,1),0_0_40px_rgba(250,204,21,0.6)] scale-105" 
+                      ? "text-yellow-300 drop-shadow-[0_0_15px_rgba(250,204,21,1),0_0_30px_rgba(250,204,21,0.6)] scale-105" 
                       : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                     }
                   `}
@@ -141,7 +140,7 @@ const SlotMachine = ({
   );
 };
 
-// Palanca del slot machine - Mejorada con más detalles
+// Palanca del slot machine - Mobile-first optimizada
 const Lever = ({
   isPulled,
   onPull,
@@ -150,7 +149,7 @@ const Lever = ({
   onPull: () => void;
 }) => {
   return (
-    <div className="relative h-28 sm:h-32 md:h-36 lg:h-40 xl:h-44 flex items-center">
+    <div className="relative h-24 sm:h-28 md:h-32 lg:h-36 xl:h-40 flex items-center">
       {/* Base de la palanca con diseño mejorado */}
       <div className="relative">
         {/* Sombra de la base */}
@@ -167,18 +166,20 @@ const Lever = ({
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-white/20 rounded-l-full" />
         </div>
         
-        {/* Mango mejorado con más detalles */}
+        {/* Mango - Mobile-first con tamaño táctil */}
         <button
           type="button"
           onClick={onPull}
           disabled={isPulled}
-            className={`
+          className={`
             absolute left-1/2 -translate-x-1/2 
-            w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14
+            w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16
+            min-w-[48px] min-h-[48px]
             bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-700 
-            rounded-full border-4 border-yellow-200
+            rounded-full border-2 sm:border-2 md:border-4 border-yellow-200
             shadow-2xl cursor-pointer
             transition-all duration-500 ease-out
+            touch-manipulation
             ${!isPulled 
               ? "hover:scale-115 hover:shadow-yellow-400/60 active:scale-105" 
               : "cursor-not-allowed"
@@ -216,7 +217,6 @@ const Lever = ({
 
 export const HolidayLeverModal = ({
   onClose,
-  houseImage = "/img/navidad.webp", // Imagen de año nuevo
 }: HolidayLeverModalProps) => {
   const [leverPulled, setLeverPulled] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -294,28 +294,27 @@ export const HolidayLeverModal = ({
   }, [isSpinning]);
 
   return (
-    <div className="relative w-full h-full bg-gradient-to-br from-red-700 via-red-800 to-red-900 rounded-2xl overflow-hidden">
+    <div className="relative w-full h-full bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 rounded-2xl overflow-hidden">
 
-      {/* Contenido principal */}
-      <div className="relative z-20 flex flex-col h-full p-3 sm:p-4 md:p-6 lg:p-8">
-        {/* Título - Responsive optimizado */}
-        <div className="text-center mb-3 sm:mb-4 md:mb-6">
+      {/* Contenido principal - Mobile-first optimizado */}
+      <div className="relative z-20 flex flex-col h-full p-2.5 sm:p-4 md:p-6 lg:p-8">
+        {/* Título - Mobile-first responsive con diseño profesional */}
+        <div className="text-center mb-3 sm:mb-4 md:mb-5 lg:mb-6">
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white drop-shadow-2xl animate-title-pulse"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
             style={{
-              fontFamily: "'Pacifico', 'Brush Script MT', cursive",
-              textShadow: "0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(255,215,0,0.4), 0 4px 12px rgba(0,0,0,0.5)",
-              letterSpacing: "0.05em",
+              textShadow: "0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(99, 102, 241, 0.3), 0 4px 12px rgba(0,0,0,0.6)",
+              letterSpacing: "-0.02em",
             }}
           >
             New Year Promo
           </h2>
         </div>
 
-        {/* Área del slot machine */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-6">
-          {/* Slot machine con palanca - Más prominente */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        {/* Área del slot machine - Mobile-first */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 min-h-0">
+          {/* Slot machine con palanca - Mobile-first layout */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full">
             <div className="relative">
               {/* Efecto de brillo cuando gana */}
               {showResult && (
@@ -335,57 +334,73 @@ export const HolidayLeverModal = ({
             </div>
           </div>
 
-          {/* Imagen navideña - Mostrar solo cuando no hay resultado para darle más foco */}
+          {/* Diseño profesional con iconos - Mobile-first optimizado */}
           {!showResult && (
-            <div className="relative w-full max-w-[240px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[480px] xl:max-w-[520px] h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 mx-auto">
-              {houseImage ? (
-                <Image
-                  src={houseImage}
-                  alt="New Year home"
-                  fill
-                  className="object-cover rounded-2xl drop-shadow-2xl border-4 border-white/20"
-                />
-              ) : (
-                /* Casa CSS fallback */
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="relative w-32 h-24">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 
-                      border-l-[50px] border-l-transparent 
-                      border-r-[50px] border-r-transparent 
-                      border-b-[30px] border-b-gray-600
-                      drop-shadow-lg" 
-                    />
-                    <div className="absolute top-[25px] left-1/2 -translate-x-1/2 w-24 h-16 bg-gradient-to-b from-amber-100 to-amber-200 rounded-b shadow-lg">
-                      <div className="absolute top-1 left-1 w-4 h-4 bg-sky-300 border border-sky-400 rounded-sm" />
-                      <div className="absolute top-1 right-1 w-4 h-4 bg-sky-300 border border-sky-400 rounded-sm" />
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-8 bg-amber-700 rounded-t" />
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] mx-auto">
+              <div className="relative flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-5 p-4 sm:p-5 md:p-6">
+                {/* Contenedor de icono profesional con gradiente moderno */}
+                <div className="relative">
+                  {/* Efecto de brillo de fondo animado - Colores profesionales */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-indigo-500/15 to-purple-500/20 rounded-full blur-2xl animate-pulse" />
+                  
+                  {/* Círculo de fondo con gradiente elegante */}
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 shadow-2xl border-2 border-white/50 backdrop-blur-sm">
+                    {/* Icono de casa profesional */}
+                    <Home className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 text-indigo-600 drop-shadow-lg" strokeWidth={2} />
+                    
+                    {/* Iconos decorativos pequeños */}
+                    <div className="absolute -top-1 -right-1">
+                      <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 animate-pulse" style={{ animationDelay: '0s' }} />
+                    </div>
+                    <div className="absolute -bottom-1 -left-1">
+                      <Key className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
                     </div>
                   </div>
+                  
+                  {/* Partículas decorativas flotantes - Colores profesionales */}
+                  <div className="absolute -top-2 -right-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse shadow-lg shadow-blue-400/50" style={{ animationDelay: '0s' }} />
+                  <div className="absolute -bottom-2 -left-2 w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse shadow-lg shadow-indigo-400/50" style={{ animationDelay: '0.5s' }} />
+                  <div className="absolute top-1/2 -left-3 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50" style={{ animationDelay: '1s' }} />
                 </div>
-              )}
+                
+                {/* Texto promocional destacado - Mobile-first con mejor tipografía */}
+                <div className="text-center space-y-2 sm:space-y-2.5 md:space-y-3">
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white drop-shadow-lg leading-tight tracking-tight">
+                    Your Dream Home Awaits
+                  </p>
+                  <p className="text-xs sm:text-sm md:text-base text-white/80 drop-shadow-md font-medium">
+                    Start your journey today
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
         </div>
 
-        {/* Botón - Solo mostrar cuando NO hay resultado */}
+        {/* Botón - Mobile-first con tamaño táctil mínimo */}
         {!showResult && (
-          <div className="flex justify-center pt-2 sm:pt-3 md:pt-4">
+          <div className="flex justify-center pt-2 sm:pt-3 md:pt-4 w-full px-2">
             <Button
               asChild
               size="lg"
               className="
-                bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
-                hover:from-blue-600 hover:via-blue-700 hover:to-blue-800
-                text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg
-                px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6
-                rounded-full shadow-xl
-                hover:shadow-blue-500/30 hover:scale-105
+                bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-800
+                hover:from-indigo-700 hover:via-indigo-800 hover:to-indigo-900
+                active:scale-95
+                text-white font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base
+                px-5 sm:px-7 md:px-9 lg:px-12 
+                py-2.5 sm:py-3 md:py-4 lg:py-5
+                min-h-[44px] sm:min-h-[48px]
+                rounded-xl shadow-xl shadow-indigo-500/20
+                hover:shadow-indigo-500/40 hover:scale-105
                 transition-all duration-300
-                border-2 border-blue-400/50
+                border border-indigo-400/30
+                w-full max-w-[280px] sm:max-w-none
+                touch-manipulation
               "
             >
-              <Link href="/schedule-appointment" onClick={onClose}>
+              <Link href="/schedule-appointment" onClick={onClose} className="block text-center">
                 Schedule Your Appointment
               </Link>
             </Button>
@@ -403,58 +418,62 @@ export const HolidayLeverModal = ({
           </div>
           
           <div 
-            className="relative bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-500 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl border-2 sm:border-4 border-yellow-200 animate-prizeIn max-w-[90%] sm:max-w-md lg:max-w-lg"
+            className="relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-slate-800 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 xl:p-12 shadow-2xl border border-indigo-400/30 animate-prizeIn max-w-[92%] sm:max-w-md lg:max-w-lg mx-2 backdrop-blur-sm"
             style={{
-              boxShadow: '0 0 60px rgba(250, 204, 21, 0.9), 0 0 120px rgba(250, 204, 21, 0.6), 0 0 180px rgba(250, 204, 21, 0.3)',
+              boxShadow: '0 0 40px rgba(99, 102, 241, 0.6), 0 0 80px rgba(99, 102, 241, 0.4), 0 0 120px rgba(99, 102, 241, 0.2), 0 20px 60px rgba(0,0,0,0.5)',
             }}
           >
-            <div className="text-center space-y-3 sm:space-y-4 md:space-y-6">
-              {/* Emoji grande animado */}
+            <div className="text-center space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
+              {/* Emoji grande animado - Mobile-first */}
               <div className="flex justify-center">
-                <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl animate-bounce">🎉</p>
+                <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-bounce">🎉</p>
               </div>
               
-              {/* Título ganador con efecto brillante */}
+              {/* Título ganador con efecto brillante - Mobile-first */}
               <div>
-                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-red-900 mb-2 sm:mb-3 animate-glow-pulse" style={{
-                  textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(250, 204, 21, 0.6), 4px 4px 8px rgba(0,0,0,0.3)',
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-white mb-2 sm:mb-2.5 md:mb-3 animate-glow-pulse leading-tight px-1" style={{
+                  textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(99, 102, 241, 0.6), 2px 2px 8px rgba(0,0,0,0.5)',
                 }}>
                   🎰 YOU WON! 🎰
                 </h3>
                 
-                {/* Premio destacado */}
-                <div className="bg-white/30 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border-2 border-white/50">
-                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-red-800 mb-1 sm:mb-2">
+                {/* Premio destacado - Mobile-first con diseño profesional */}
+                <div className="bg-white/10 backdrop-blur-md rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 border border-white/20 shadow-inner">
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-white mb-1.5 sm:mb-2 md:mb-2.5 leading-tight drop-shadow-lg">
                     50% OFF
                   </p>
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-red-900">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold text-indigo-100 leading-tight drop-shadow-md">
                     Your Moving Cost
                   </p>
                 </div>
               </div>
               
-              {/* Botón de agendar cita - Responsive */}
-              <div className="pt-2 sm:pt-3 md:pt-4">
+              {/* Botón de agendar cita - Mobile-first con tamaño táctil */}
+              <div className="pt-2 sm:pt-3 md:pt-4 w-full px-1">
                 <Button
                   asChild
                   size="lg"
                   onClick={onClose}
                   className="
-                    bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
-                    hover:from-blue-600 hover:via-blue-700 hover:to-blue-800
-                    text-white font-black text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl
-                    px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-3 sm:py-4 md:py-5 lg:py-6 xl:py-8
-                    rounded-full shadow-2xl
-                    hover:shadow-blue-500/50 hover:scale-110
+                    bg-gradient-to-r from-white via-indigo-50 to-white
+                    hover:from-indigo-50 hover:via-indigo-100 hover:to-indigo-50
+                    active:scale-95
+                    text-indigo-900 font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base xl:text-lg
+                    px-5 sm:px-7 md:px-9 lg:px-12 xl:px-14
+                    py-2.5 sm:py-3 md:py-4 lg:py-5 xl:py-6
+                    min-h-[44px] sm:min-h-[48px] md:min-h-[52px]
+                    rounded-xl shadow-2xl shadow-indigo-500/30
+                    hover:shadow-indigo-500/50 hover:scale-110
                     transition-all duration-300
-                    border-2 sm:border-4 border-blue-300/70
-                    animate-pulse
+                    border border-indigo-200/50
+                    w-full max-w-[260px] sm:max-w-none
+                    touch-manipulation
                   "
                   style={{
                     textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                   }}
                 >
-                  <Link href="/schedule-appointment" onClick={onClose}>
+                  <Link href="/schedule-appointment" onClick={onClose} className="block text-center">
                     Schedule Your Appointment
                   </Link>
                 </Button>

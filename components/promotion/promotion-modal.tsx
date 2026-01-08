@@ -12,35 +12,8 @@ import { cn } from "@/lib/utils";
 type ModalType = "gift" | "lever";
 type GiftVariant = "three-gifts" | "giant-gift";
 
-// Precargar imágenes del modal
-const preloadModalImages = (modalType: ModalType, giftVariant?: GiftVariant) => {
-  if (typeof window === "undefined") return Promise.resolve();
-  
-  const imagesToPreload: string[] = [];
-  
-  if (modalType === "gift") {
-    if (giftVariant === "giant-gift") {
-      imagesToPreload.push("/img/louisinav.webp");
-    }
-  } else if (modalType === "lever") {
-    imagesToPreload.push("/img/navidad.webp"); // Imagen de año nuevo
-  }
-  
-  return Promise.all(
-    imagesToPreload.map((src) => {
-      return new Promise<void>((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve();
-        img.onerror = () => resolve(); // Continuar aunque falle
-        img.src = src;
-      });
-    })
-  );
-};
-
 export const PromotionModal = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [mounted] = useState(() => typeof window !== "undefined");
   const pathname = usePathname();
 
@@ -61,19 +34,9 @@ export const PromotionModal = memo(() => {
     return "three-gifts";
   });
 
-  // Precargar imágenes inmediatamente cuando el componente se monta
+  // Controlar apertura del modal
   useEffect(() => {
-    if (!mounted || !modalType) return;
-    
-    // Precargar imágenes en segundo plano
-    preloadModalImages(modalType, giftVariant).then(() => {
-      setImagesLoaded(true);
-    });
-  }, [mounted, modalType, giftVariant]);
-
-  // Controlar apertura del modal - solo cuando las imágenes estén cargadas
-  useEffect(() => {
-    if (!mounted || !PROMOTION_CONFIG.enabled || !isHomePage || !modalType || !imagesLoaded) {
+    if (!mounted || !PROMOTION_CONFIG.enabled || !isHomePage || !modalType) {
       return;
     }
 
@@ -83,7 +46,7 @@ export const PromotionModal = memo(() => {
     }, delayMs);
 
     return () => clearTimeout(timer);
-  }, [mounted, isHomePage, modalType, imagesLoaded]);
+  }, [mounted, isHomePage, modalType]);
 
   const handleClose = useCallback(() => {
     setIsOpen(false);
