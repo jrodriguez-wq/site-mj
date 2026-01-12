@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { SEO_CONFIG, SITEMAP_CONFIG } from "@/config/seo";
 import { getAllModelKeys } from "@/lib/models/model-data";
+import { getAllPosts } from "@/lib/blog/blog-utils";
 
 /**
  * Professional Sitemap Generator for M.J. Newell Homes
@@ -175,6 +176,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // ============================================
+  // SECTION 6: BLOG PAGES
+  // Priority: 0.8 - Medium-High importance for SEO
+  // Frequency: Weekly - Blog content may be updated
+  // Blog listing page and individual articles
+  // ============================================
+  
+  let blogPages: MetadataRoute.Sitemap = [];
+  
+  try {
+    const posts = getAllPosts();
+    
+    // Blog listing page
+    blogPages.push({
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    });
+    
+    // Individual blog articles
+    const articlePages = posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+    
+    blogPages = [...blogPages, ...articlePages];
+  } catch (error) {
+    // Si hay error obteniendo artículos, continuar sin ellos
+    if (process.env.NODE_ENV === "development") {
+      console.error("⚠️ Error getting blog posts for sitemap:", error);
+    }
+  }
+
+  // ============================================
   // FINAL SITEMAP ASSEMBLY
   // Organized by priority: Highest to Lowest
   // This helps Google understand page importance
@@ -193,11 +230,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Individual product pages for each home model
     ...modelPages,
     
-    // 4. Information Pages (Medium-High Priority - 0.8)
+    // 4. Blog Pages (Medium-High Priority - 0.8)
+    // Blog listing and individual articles for SEO
+    ...blogPages,
+    
+    // 5. Information Pages (Medium-High Priority - 0.8)
     // About Us, Home Buying Guide, Contact
     ...informationPages,
     
-    // 5. Support Pages (Medium Priority - 0.7)
+    // 6. Support Pages (Medium Priority - 0.7)
     // Warranty, Terms, etc.
     ...supportPages,
   ];
@@ -214,6 +255,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.log(`   🏠 Homepage: ${homepage.length}`);
     console.log(`   💼 Primary Business: ${primaryBusinessPages.length}`);
     console.log(`   🏗️  Models: ${modelPages.length}`);
+    console.log(`   📝 Blog: ${blogPages.length}`);
     console.log(`   📚 Information: ${informationPages.length}`);
     console.log(`   🛠️  Support: ${supportPages.length}`);
     console.log(`   🌐 Base URL: ${baseUrl}\n`);

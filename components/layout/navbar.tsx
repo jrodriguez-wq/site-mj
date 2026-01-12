@@ -95,6 +95,11 @@ export const Navbar = () => {
         href: "#",
         children: [
           {
+            title: "Blog",
+            href: "/blog",
+            description: "Expert guides and resources about real estate, taxes, and homeownership",
+          },
+          {
             title: t("nav.homeBuyingGuide"),
             href: "/home-buying-guide",
             description: t("nav.homeBuyingGuideDesc"),
