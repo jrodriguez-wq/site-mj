@@ -1085,6 +1085,20 @@
         "description": "Choose the move-in date and start living in your new home!"
       }
     },
+    "gallery": {
+      "badge": "Happy Families",
+      "title": "Happy Families in Rent to Own",
+      "subtitle": "Discover the success stories of families who have achieved their dream of homeownership",
+      "description": "Hundreds of families have trusted our Rent to Own program to make their dream of owning a home come true. See how our families are building their future.",
+      "stats": {
+        "homeowners": "Homeowner Families",
+        "homeownersDesc": "Over 1,500 families have achieved homeownership through our program",
+        "satisfaction": "High Satisfaction",
+        "satisfactionDesc": "Our clients recommend our program with confidence",
+        "growth": "Constant Growth",
+        "growthDesc": "Every month more families join our Rent to Own program"
+      }
+    },
     "benefits": {
       "title": "Why Choose Our Rent to Own Program?",
       "saveWhileLiving": {

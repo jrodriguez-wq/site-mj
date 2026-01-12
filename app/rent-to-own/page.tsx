@@ -37,6 +37,7 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { HUBSPOT_FORMS } from "@/lib/constants";
+import { RTOGallery } from "@/components/rent-to-own/rto-gallery";
 
 // Modelos disponibles para RTO por comunidad
 // LaBelle: langdon, emelia, aurora, delanie, viana, louisiana
@@ -394,6 +395,10 @@ export default function RentToOwnPage() {
         </PageContent>
         </section>
       </AnimatedSection>
+
+      {/* RTO Gallery Section */}
+      <RTOGallery />
+
 
       {/* Pioneers & Savings Section */}
       <AnimatedSection delay={0.1}>

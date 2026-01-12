@@ -1085,6 +1085,20 @@
         "description": "Asignación de vivienda y fecha de mudanza."
       }
     },
+    "gallery": {
+      "badge": "Familias Felices",
+      "title": "Familias Felices en Rent to Own",
+      "subtitle": "Descubre las historias de éxito de familias que han logrado su sueño de ser propietarios",
+      "description": "Cientos de familias han confiado en nuestro programa Rent to Own para hacer realidad su sueño de tener una casa propia. Mira cómo nuestras familias están construyendo su futuro.",
+      "stats": {
+        "homeowners": "Familias Propietarias",
+        "homeownersDesc": "Más de 1,500 familias han logrado ser propietarios a través de nuestro programa",
+        "satisfaction": "Alta Satisfacción",
+        "satisfactionDesc": "Nuestros clientes recomiendan nuestro programa con confianza",
+        "growth": "Crecimiento Constante",
+        "growthDesc": "Cada mes más familias se unen a nuestro programa Rent to Own"
+      }
+    },
     "benefits": {
       "title": "¿Por qué elegir nuestro programa Rent to Own?",
       "saveWhileLiving": {

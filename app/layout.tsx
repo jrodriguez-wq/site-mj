@@ -14,6 +14,7 @@ import { Footer } from "@/components/layout/footer";
 import { LanguageProvider } from "@/components/layout/language-provider";
 import { TranslationLoader } from "@/components/layout/translation-loader";
 import { GlobalStars } from "@/components/promotion/global-stars";
+import { CacheBuster } from "@/components/layout/cache-buster";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -167,6 +168,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} ${pacifico.variable}`}
         suppressHydrationWarning
       >
+        <CacheBuster />
         <StructuredDataComponent data={structuredData} />
         <LanguageProvider />
         <TranslationLoader>
