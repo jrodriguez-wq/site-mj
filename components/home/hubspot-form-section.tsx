@@ -5,6 +5,7 @@ import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "@/hooks/use-translation";
 import { SEO_CONFIG } from "@/config/seo";
+import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 export const HubSpotFormSection = () => {
   const { t } = useTranslation();
@@ -37,6 +38,9 @@ export const HubSpotFormSection = () => {
               <CardDescription className="text-center" suppressHydrationWarning>
                 {t("contactForm.formDescription") || "We're here to help you find your dream home."}
               </CardDescription>
+              <div className="flex justify-center pt-2">
+                <GoogleReviewsLink variant="outline" className="text-sm" />
+              </div>
             </CardHeader>
             <CardContent>
               <HubSpotForm

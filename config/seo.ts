@@ -75,6 +75,16 @@ export const SOCIAL_LINKS = {
   youtube: "", // Opcional
   tiktok: "https://www.tiktok.com/@mjnhomesofficial?_r=1&_t=ZM-92HUBTS1UFP",
   website: "https://www.mjnewellhomes.com",
+  googleBusiness: "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8", // Google Business Profile
+} as const;
+
+// Google Reviews Configuration
+// Updated from Google Business Profile
+export const GOOGLE_REVIEWS = {
+  reviewCount: 96,
+  ratingValue: "4.4", // Average rating from Google Business Profile
+  googleBusinessProfileUrl: "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8",
+  googleMapsUrl: "https://www.google.com/maps/place/MJ+Newell+Homes/@26.7623241,-81.4373774,17z/data=!3m1!4b1!4m6!3m5!1s0x88db856a8ff9fc6b:0xce6810c83740a1d4!8m2!3d26.7623241!4d-81.4373774!16s%2Fg%2F11fxw3s97f?entry=ttu",
 } as const;
 
 // Importar keywords estratégicas del sistema completo

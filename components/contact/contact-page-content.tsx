@@ -13,6 +13,7 @@ import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 
@@ -214,6 +215,9 @@ export const ContactPageContent = () => {
                   <CardDescription className="text-xs sm:text-sm md:text-base lg:text-lg pt-2 text-muted-foreground px-4 leading-relaxed" suppressHydrationWarning>
                     {t("contactForm.formDescription") || "Fill out the form below and we'll get back to you as soon as possible."}
                   </CardDescription>
+                  <div className="flex justify-center pt-2">
+                    <GoogleReviewsLink variant="outline" className="text-sm" />
+                  </div>
                 </CardHeader>
                 <CardContent className="px-4 sm:px-6 md:px-8 lg:px-10 pb-6 sm:pb-8 md:pb-10">
                   <HubSpotForm

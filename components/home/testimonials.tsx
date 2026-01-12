@@ -7,6 +7,7 @@ import { Star, Quote, MapPin } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { motion } from "framer-motion";
+import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 export const Testimonials = () => {
   const { t, translations } = useTranslation();
@@ -78,11 +79,8 @@ export const Testimonials = () => {
           <p className="mx-auto max-w-[750px] text-muted-foreground/80 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-light tracking-wide px-4" suppressHydrationWarning>
             {t("testimonials.subtitle")}
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm sm:text-base text-muted-foreground/70">
-            <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-            <span suppressHydrationWarning>
-              {t("testimonials.moreReviews") || "+90 more reviews on Google Maps"}
-            </span>
+          <div className="flex justify-center pt-2">
+            <GoogleReviewsLink variant="outline" />
           </div>
         </motion.div>
 

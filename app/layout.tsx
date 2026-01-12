@@ -9,6 +9,7 @@ import {
   generateWebSiteStructuredData,
   generateLocalBusinessStructuredData,
 } from "@/lib/seo/structured-data";
+import { generateAllServiceSchemas } from "@/lib/seo/service-structured-data";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { LanguageProvider } from "@/components/layout/language-provider";
@@ -72,6 +73,7 @@ export default function RootLayout({
     generateOrganizationStructuredData(),
     generateWebSiteStructuredData(),
     generateLocalBusinessStructuredData(),
+    ...generateAllServiceSchemas(),
   ];
 
   return (

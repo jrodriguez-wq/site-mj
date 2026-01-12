@@ -5,7 +5,10 @@ import { SEO_CONFIG } from "@/config/seo";
 import { getPost, getAllPostSlugs } from "@/lib/blog/blog-utils";
 import { ArticleContent } from "@/components/blog/article-content";
 import { ArticleCTA } from "@/components/blog/article-cta";
+import { RelatedArticles } from "@/components/blog/related-articles";
 import { generateArticleStructuredData } from "@/lib/seo/article-structured-data";
+import { getAllPosts } from "@/lib/blog/blog-utils";
+import { getRelatedArticles } from "@/lib/blog/internal-linking";
 import { StructuredDataComponent } from "@/components/seo/structured-data";
 import { PageContent } from "@/components/layout/page-container";
 import Link from "next/link";
@@ -91,6 +94,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     post.content
   );
 
+  // Get related articles (server-side)
+  const relatedArticles = getRelatedArticles(
+    post.frontmatter.slug,
+    post.frontmatter.category,
+    3
+  );
+
   return (
     <>
       <StructuredDataComponent data={structuredData} />
@@ -106,7 +116,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <ArticleContent post={post} />
 
-        <ArticleCTA />
+        <ArticleCTA 
+          category={post.frontmatter.category} 
+          keywords={post.frontmatter.keywords || []}
+        />
+
+        <RelatedArticles relatedArticles={relatedArticles} />
       </PageContent>
     </>
   );

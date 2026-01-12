@@ -7,6 +7,7 @@ import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
+import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 
@@ -58,6 +59,7 @@ export const Footer = () => {
       {
         title: safeT("footer.sections.resources", "Resources"),
         links: [
+          { label: "Blog", href: "/blog" },
           { label: safeT("nav.warranty", "Warranty"), href: "/warranty" },
           { label: safeT("nav.homeBuyingGuide", "Home Buying Guide"), href: "/home-buying-guide" },
           { label: safeT("footer.links.scheduleAppointment", "Schedule Appointment"), href: "/schedule-appointment" },
@@ -190,6 +192,12 @@ export const Footer = () => {
                     <Linkedin className="h-4 w-4" />
                   </a>
                 )}
+              </div>
+              <div className="mt-4">
+                <GoogleReviewsLink 
+                  variant="outline" 
+                  className="border-background/30 bg-background/10 text-background hover:text-background hover:border-background/50 hover:bg-background/20 [&_span]:text-background/90 [&_span.text-muted-foreground]:text-background/70"
+                />
               </div>
             </div>
           </div>

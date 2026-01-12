@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useTranslation } from "@/hooks/use-translation";
+import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 export const CTASection = () => {
   const { t } = useTranslation();
@@ -17,24 +18,30 @@ export const CTASection = () => {
           <p className="text-base sm:text-lg md:text-xl text-background/80 px-4" suppressHydrationWarning>
             {t("cta.subtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 w-full sm:w-auto px-4 sm:px-0">
-            <Button
-              asChild
-              size="lg"
-              className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-xl"
-            >
-              <Link href="/rent-to-own#rto-application-form">
-                <span suppressHydrationWarning>{t("cta.applyNow")}</span>
-              </Link>
-            </Button>
-            <Button 
-              asChild 
-              variant="outline" 
-              size="lg" 
-              className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold border-2 border-background/40 bg-transparent text-white hover:text-white hover:bg-background/10 hover:border-background/60 transition-all duration-300 rounded-xl backdrop-blur-sm"
-            >
-              <Link href="/schedule-appointment" suppressHydrationWarning>{t("cta.schedule")}</Link>
-            </Button>
+          <div className="flex flex-col items-center gap-4 sm:gap-5 pt-2 sm:pt-4 w-full px-4 sm:px-0">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+              <Button
+                asChild
+                size="lg"
+                className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-xl"
+              >
+                <Link href="/rent-to-own#rto-application-form">
+                  <span suppressHydrationWarning>{t("cta.applyNow")}</span>
+                </Link>
+              </Button>
+              <Button 
+                asChild 
+                variant="outline" 
+                size="lg" 
+                className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold border-2 border-background/40 bg-transparent text-white hover:text-white hover:bg-background/10 hover:border-background/60 transition-all duration-300 rounded-xl backdrop-blur-sm"
+              >
+                <Link href="/schedule-appointment" suppressHydrationWarning>{t("cta.schedule")}</Link>
+              </Button>
+            </div>
+            <GoogleReviewsLink 
+              variant="ghost" 
+              className="text-background/90 hover:text-background border-background/30 hover:border-background/50"
+            />
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import {
   RealEstateListingStructuredData,
   BreadcrumbStructuredData,
 } from "@/types/seo";
-import { SEO_CONFIG, CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
+import { SEO_CONFIG, CONTACT_INFO, SOCIAL_LINKS, GOOGLE_REVIEWS } from "@/config/seo";
 
 export const generateOrganizationStructuredData =
   (): OrganizationStructuredData & Record<string, unknown> => {
@@ -47,6 +47,7 @@ export const generateOrganizationStructuredData =
         SOCIAL_LINKS.linkedin,
         SOCIAL_LINKS.youtube,
         SOCIAL_LINKS.tiktok,
+        SOCIAL_LINKS.googleBusiness,
       ].filter(Boolean),
     } as OrganizationStructuredData & Record<string, unknown>;
   };
@@ -230,6 +231,15 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
     email: CONTACT_INFO.email,
     priceRange: "$$",
     openingHoursSpecification: openingHours,
+    // Aggregate Rating - Reviews and ratings from Google Business Profile
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: GOOGLE_REVIEWS.ratingValue,
+      reviewCount: String(GOOGLE_REVIEWS.reviewCount),
+      bestRating: "5",
+      worstRating: "1",
+      url: GOOGLE_REVIEWS.googleBusinessProfileUrl,
+    },
     geo: CONTACT_INFO.coordinates ? {
       "@type": "GeoCoordinates",
       latitude: CONTACT_INFO.coordinates.latitude,
