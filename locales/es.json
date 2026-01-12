@@ -1175,7 +1175,20 @@
       "closed": "Cerrado"
     },
     "getDirections": "Cómo Llegar",
-    "callNow": "Llamar Ahora"
+    "callNow": "Llamar Ahora",
+    "options": {
+      "onlineBooking": {
+        "title": "Agendar en Línea",
+        "description": "Elige tu fecha y hora preferida directamente en nuestro calendario. ¡Es rápido y fácil!",
+        "button": "Abrir Calendario",
+        "benefit": "Elige tu horario al instante"
+      },
+      "form": {
+        "title": "Programar Cita Rápida",
+        "description": "Completa este breve formulario para agendar tu visita a nuestra oficina. Nosotros te contactaremos para confirmar",
+        "benefit": "Agenda tu visita"
+      }
+    }
   },
   "footer": {
     "description": "Construyendo Casas Americanas en el Sur de Florida. Nuevas construcciones en LaBelle y Lehigh Acres. Programas de Renta con Opción a Compra con $0 de enganche.",

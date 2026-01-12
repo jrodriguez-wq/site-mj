@@ -19,13 +19,11 @@ function ThankYouContent() {
   const formConfig = {
     contact: {
       titleKey: "thankYou.contact.title",
-      subtitleKey: "thankYou.contact.subtitle",
       messageKey: "thankYou.contact.message",
       icon: Mail,
     },
     warranty: {
       titleKey: "thankYou.warranty.title",
-      subtitleKey: "thankYou.warranty.subtitle",
       messageKey: "thankYou.warranty.message",
       icon: FileText,
     },
@@ -57,9 +55,6 @@ function ThankYouContent() {
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
             {t(config.titleKey) || "Thank You!"}
           </h1>
-          <p className="text-xl text-muted-foreground" suppressHydrationWarning>
-            {t(config.subtitleKey) || "We've received your message"}
-          </p>
           </motion.div>
 
           <AnimatedSection delay={0.15}>

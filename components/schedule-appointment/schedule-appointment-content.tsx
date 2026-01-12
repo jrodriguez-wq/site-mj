@@ -4,8 +4,9 @@ import { useMemo } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { HubSpotMeetings } from "@/components/ui/hubspot-meetings";
-import { MapPin, Phone, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { HubSpotForm } from "@/components/ui/hubspot-form";
+import { MapPin, Phone, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map, ExternalLink, Zap, MessageSquare } from "lucide-react";
 import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
 import { useLanguageStore } from "@/store/language-store";
@@ -27,8 +28,16 @@ export const ScheduleAppointmentContent = () => {
     return `${googleMapsEmbedBaseUrl}&hl=${lang}&gl=${region}`;
   }, [language]);
 
-  // URL del embed de HubSpot Meetings
-  const meetingsEmbedUrl = "https://meetings.hubspot.com/jrodriguez134/meeting-web?embed=true";
+  // URL de HubSpot Meetings para redirección
+  const meetingsUrl = "https://meetings.hubspot.com/jrodriguez134/meeting-web";
+
+  // URL de redirección después de enviar el formulario
+  const redirectUrl = useMemo(() => {
+    const baseUrl = typeof window !== 'undefined' 
+      ? window.location.origin 
+      : SEO_CONFIG.siteUrl;
+    return `${baseUrl}/thank-you?type=contact`;
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/20 to-background">
@@ -59,33 +68,124 @@ export const ScheduleAppointmentContent = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid gap-8 lg:grid-cols-3">
-              {/* Columna Principal - Formulario (2/3 del espacio) */}
+              {/* Columna Principal - Opciones de Agendamiento (2/3 del espacio) */}
               <div className="lg:col-span-2 space-y-6">
-                {/* Formulario destacado */}
-                <Card className="border-2 border-primary/20 shadow-2xl">
-                  <CardContent className="p-6 md:p-8">
-                    <div className="space-y-6">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="p-2 bg-primary/10 rounded-lg">
-                            <Calendar className="h-6 w-6 text-primary" />
+                {/* Opciones destacadas */}
+                <Card className="border-2 border-primary/20 shadow-2xl bg-gradient-to-br from-background via-background to-primary/5">
+                  <CardContent className="p-6 md:p-8 lg:p-10">
+                    <div className="mb-8 text-center space-y-3">
+                      <h2 className="text-2xl md:text-3xl font-bold" suppressHydrationWarning>
+                        {t("scheduleAppointment.formTitle")}
+                      </h2>
+                      <div className="w-20 h-1 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+                      <p className="text-muted-foreground text-sm md:text-base pt-2 max-w-2xl mx-auto" suppressHydrationWarning>
+                        {t("scheduleAppointment.formDescription")}
+                      </p>
+                    </div>
+                    
+                    <Tabs defaultValue="online" className="w-full">
+                      <TabsList className="grid w-full grid-cols-2 mb-8 h-auto p-1.5 bg-muted/50 gap-2">
+                        <TabsTrigger 
+                          value="online" 
+                          className="flex flex-col items-center justify-center gap-2 py-4 px-4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all rounded-lg"
+                        >
+                          <Zap className="h-5 w-5" />
+                          <span className="text-sm font-semibold" suppressHydrationWarning>
+                            {t("scheduleAppointment.options.onlineBooking.title")}
+                          </span>
+                        </TabsTrigger>
+                        <TabsTrigger 
+                          value="form" 
+                          className="flex flex-col items-center justify-center gap-2 py-4 px-4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg transition-all rounded-lg"
+                        >
+                          <MessageSquare className="h-5 w-5" />
+                          <span className="text-sm font-semibold" suppressHydrationWarning>
+                            {t("scheduleAppointment.options.form.title")}
+                          </span>
+                        </TabsTrigger>
+                      </TabsList>
+                      
+                      <TabsContent value="online" className="space-y-6 mt-0">
+                        <div className="space-y-6">
+                          <div className="bg-primary/5 rounded-xl p-6 md:p-8 border border-primary/20">
+                            <div className="text-center space-y-4">
+                              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/20 mb-2">
+                                <Calendar className="h-10 w-10 text-primary" />
+                              </div>
+                              <div className="space-y-2">
+                                <h3 className="text-xl md:text-2xl font-bold" suppressHydrationWarning>
+                                  {t("scheduleAppointment.options.onlineBooking.title")}
+                                </h3>
+                                <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full">
+                                  <Zap className="h-4 w-4 text-primary" />
+                                  <span className="text-sm font-medium text-primary" suppressHydrationWarning>
+                                    {t("scheduleAppointment.options.onlineBooking.benefit")}
+                                  </span>
+                                </div>
+                                <p className="text-muted-foreground max-w-lg mx-auto text-base leading-relaxed" suppressHydrationWarning>
+                                  {t("scheduleAppointment.options.onlineBooking.description")}
+                                </p>
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-foreground" suppressHydrationWarning>
-                              {t("scheduleAppointment.formTitle")}
-                            </h2>
-                            <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                              {t("scheduleAppointment.formDescription")}
-                            </p>
+                          <div className="flex justify-center pt-2">
+                            <Button
+                              asChild
+                              size="lg"
+                              className="gap-3 text-base px-10 py-7 h-auto hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
+                            >
+                              <a
+                                href={meetingsUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2"
+                              >
+                                <Calendar className="h-5 w-5" />
+                                <span suppressHydrationWarning>
+                                  {t("scheduleAppointment.options.onlineBooking.button")}
+                                </span>
+                                <ExternalLink className="h-4 w-4" />
+                              </a>
+                            </Button>
                           </div>
                         </div>
-                      </div>
+                      </TabsContent>
                       
-                        <HubSpotMeetings
-                          embedUrl={meetingsEmbedUrl}
-                          className="w-full h-full"
-                        />
-                    </div>
+                      <TabsContent value="form" className="space-y-6 mt-0">
+                        <div className="space-y-6">
+                          <div className="bg-primary/5 rounded-xl p-6 md:p-8 border border-primary/20">
+                            <div className="text-center space-y-4">
+                              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/20 mb-2">
+                                <MessageSquare className="h-10 w-10 text-primary" />
+                              </div>
+                              <div className="space-y-2">
+                                <h3 className="text-xl md:text-2xl font-bold" suppressHydrationWarning>
+                                  {t("scheduleAppointment.options.form.title")}
+                                </h3>
+                                <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full">
+                                  <Users className="h-4 w-4 text-primary" />
+                                  <span className="text-sm font-medium text-primary" suppressHydrationWarning>
+                                    {t("scheduleAppointment.options.form.benefit")}
+                                  </span>
+                                </div>
+                                <p className="text-muted-foreground max-w-lg mx-auto text-base leading-relaxed" suppressHydrationWarning>
+                                  {t("scheduleAppointment.options.form.description")}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="pt-2">
+                            <HubSpotForm
+                              portalId="50215941"
+                              formId="cde5f2ab-dd73-49f1-be0d-e7fa20bfbd23"
+                              region="na1"
+                              redirectUrl={redirectUrl}
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                      </TabsContent>
+                    </Tabs>
                   </CardContent>
                 </Card>
 

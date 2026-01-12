@@ -1175,7 +1175,20 @@
       "closed": "Closed"
     },
     "getDirections": "Get Directions",
-    "callNow": "Call Now"
+    "callNow": "Call Now",
+    "options": {
+      "onlineBooking": {
+        "title": "Online Booking",
+        "description": "Choose your preferred date and time directly in our calendar. Quick and easy!",
+        "button": "Open Calendar",
+        "benefit": "Choose your time instantly"
+      },
+      "form": {
+        "title": "Schedule Quick Visit",
+        "description": "Fill out this short form to schedule your office visit. We'll contact you to confirm",
+        "benefit": "Schedule your visit"
+      }
+    }
   },
   "footer": {
     "description": "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Flexible options such as rento-to-own and $0 down payment purchases.",
