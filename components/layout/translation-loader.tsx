@@ -38,30 +38,13 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Si no hay traducciones válidas, cargar el idioma guardado o inglés por defecto
+    // Si no hay traducciones válidas, cargar inglés por defecto
+    // (El persist middleware ya maneja la persistencia y recuperación del idioma guardado)
     if (!hasValidTranslations && !isLoading) {
-      let targetLang: "en" | "es" = "en";
-      
-      // Intentar obtener idioma guardado
-      try {
-        const stored = localStorage.getItem("language-storage");
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          const storedLang = parsed?.state?.language;
-          if (storedLang === "en" || storedLang === "es") {
-            targetLang = storedLang;
-          }
-        }
-      } catch {
-        // Si hay error, usar inglés por defecto
-      }
-
-      // Cargar el idioma seleccionado
-      setLanguage(targetLang).catch(() => {
-        // Si falla, intentar inglés como fallback
-        setLanguage("en").catch(() => {
-          console.error("[TranslationLoader] Failed to load any language");
-        });
+      // Siempre cargar inglés por defecto
+      // Si el usuario había seleccionado otro idioma, el persist middleware lo restaurará
+      setLanguage("en").catch(() => {
+        console.error("[TranslationLoader] Failed to load default language (en)");
       });
     }
   }, [translations, isLoading, setLanguage]);

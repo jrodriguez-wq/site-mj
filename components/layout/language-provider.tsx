@@ -26,7 +26,7 @@ export function LanguageProvider() {
       // Verificar inmediatamente el estado actual
       let currentState = useLanguageStore.getState();
       
-      // Verificar si hay traducciones válidas
+      // Verificar si hay traducciones válidas en el store
       const hasValidTranslations = 
         currentState.translations &&
         typeof currentState.translations === "object" &&
@@ -39,7 +39,9 @@ export function LanguageProvider() {
       // Si ya hay traducciones válidas, verificar que funcionen
       if (hasValidTranslations) {
         const lang = currentState.language || "en";
-        document.documentElement.lang = lang;
+        if (typeof document !== "undefined") {
+          document.documentElement.lang = lang;
+        }
         
         // Verificar que las traducciones funcionen correctamente
         const testKey = "nav.home";
@@ -54,6 +56,9 @@ export function LanguageProvider() {
             // Fallback a inglés si falla
             try {
               await currentState.setLanguage("en");
+              if (typeof document !== "undefined") {
+                document.documentElement.lang = "en";
+              }
             } catch {
               // Silenciar error de fallback
             }
@@ -62,39 +67,22 @@ export function LanguageProvider() {
         return;
       }
 
-      // Si no hay traducciones válidas, cargar el idioma guardado o inglés por defecto
+      // Si no hay traducciones válidas, cargar inglés por defecto
+      // (El persist middleware ya maneja la persistencia en localStorage)
       try {
-        // Obtener idioma guardado o usar inglés por defecto
-        let targetLang: "en" | "es" = "en";
-        try {
-          const stored = localStorage.getItem("language-storage");
-          if (stored) {
-            const parsed = JSON.parse(stored);
-            const storedLang = parsed?.state?.language;
-            if (storedLang === "en" || storedLang === "es") {
-              targetLang = storedLang;
-            }
-          }
-        } catch {
-          // Si hay error leyendo localStorage, usar inglés por defecto
-        }
-
-        // Cargar el idioma seleccionado (o inglés por defecto)
-        await currentState.setLanguage(targetLang);
+        // Siempre cargar inglés por defecto si no hay traducciones válidas
+        await currentState.setLanguage("en");
         
         // Verificar nuevamente después de la carga
         currentState = useLanguageStore.getState();
-        if (currentState.language) {
+        if (currentState.language && typeof document !== "undefined") {
           document.documentElement.lang = currentState.language;
         }
       } catch (error) {
-        console.error("[LanguageProvider] Error loading default language:", error);
-        // Último recurso: intentar cargar inglés directamente
-        try {
-          await currentState.setLanguage("en");
+        console.error("[LanguageProvider] Error loading default language (en):", error);
+        // El error ya está manejado en setLanguage, pero intentamos asegurar el lang del documento
+        if (typeof document !== "undefined") {
           document.documentElement.lang = "en";
-        } catch {
-          // Silenciar error de fallback
         }
       }
     };
