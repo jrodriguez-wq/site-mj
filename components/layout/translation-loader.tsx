@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { useLanguageStore } from "@/store/language-store";
+import { TranslationLoadingScreen } from "./translation-loading-screen";
 
 /**
  * TranslationLoader: Asegura que las traducciones estén cargadas
@@ -15,6 +16,19 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
   const isLoading = useLanguageStore((state) => state.isLoading);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
 
+  // Verificar si las traducciones están disponibles y son válidas
+  const hasValidTranslations = useMemo(() => {
+    return (
+      translations &&
+      typeof translations === "object" &&
+      !Array.isArray(translations) &&
+      Object.keys(translations).length > 0 &&
+      "home" in translations &&
+      "nav" in translations &&
+      "rentToOwn" in translations
+    );
+  }, [translations]);
+
   useEffect(() => {
     // Solo ejecutar en cliente
     if (typeof window === "undefined") return;
@@ -22,16 +36,6 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
     // Prevenir múltiples inicializaciones
     if (hasInitializedRef.current) return;
     hasInitializedRef.current = true;
-
-    // Verificar si las traducciones están disponibles y son válidas
-    const hasValidTranslations = 
-      translations &&
-      typeof translations === "object" &&
-      !Array.isArray(translations) &&
-      Object.keys(translations).length > 0 &&
-      "home" in translations &&
-      "nav" in translations &&
-      "rentToOwn" in translations;
 
     // Si ya hay traducciones válidas, no hacer nada
     if (hasValidTranslations && !isLoading) {
@@ -47,10 +51,18 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
         console.error("[TranslationLoader] Failed to load default language (en)");
       });
     }
-  }, [translations, isLoading, setLanguage]);
+  }, [hasValidTranslations, isLoading, setLanguage]);
 
   // CRÍTICO: Siempre renderizar para evitar problemas de hidratación
   // Las traducciones se actualizarán cuando estén disponibles
-  return <>{children}</>;
+  return (
+    <>
+      <TranslationLoadingScreen 
+        isLoading={isLoading} 
+        hasValidTranslations={hasValidTranslations}
+      />
+      {children}
+    </>
+  );
 }
 
