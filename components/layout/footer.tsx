@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo } from "react";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
@@ -12,24 +12,15 @@ import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 const address = "45 Bridge St, LaBelle, FL 33935";
 
 export const Footer = () => {
-  const { t: translationFn, isLoading } = useTranslation();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      setIsMounted(true);
-    });
-  }, []);
+  const { t: translationFn } = useTranslation();
 
   const t = useMemo(() => {
     return translationFn || ((key: string) => key);
   }, [translationFn]);
 
   const footerSections = useMemo(() => {
-    if (!isMounted || isLoading || !t) {
-      return [];
-    }
-    
+    // Siempre renderizar contenido para evitar discrepancias SSR/client
+    // Las traducciones se actualizarán cuando estén disponibles
     const safeT = (key: string, fallback?: string) => {
       try {
         const result = t(key);
@@ -75,7 +66,7 @@ export const Footer = () => {
         ],
       },
     ];
-  }, [t, isLoading, isMounted]);
+  }, [t]);
 
   return (
     <footer className="border-t border-border/40 bg-foreground text-background animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
@@ -203,7 +194,7 @@ export const Footer = () => {
           </div>
 
           {/* Footer Sections */}
-          {footerSections.length > 0 && footerSections.map((section) => (
+          {footerSections.map((section) => (
             <div key={section.title} className="space-y-3">
               <h4 className="font-bold text-background text-sm uppercase tracking-wider" suppressHydrationWarning>
                 {section.title}
