@@ -16,6 +16,7 @@ export const generateOrganizationStructuredData =
       description: SEO_CONFIG.siteDescription,
       logo: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
       image: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
+      inLanguage: "en-US",
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -156,7 +157,7 @@ export const generateWebSiteStructuredData = (): StructuredData => {
     name: SEO_CONFIG.siteName,
     url: SEO_CONFIG.siteUrl,
     description: SEO_CONFIG.siteDescription,
-    inLanguage: ["en", "es"],
+    inLanguage: "en-US",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -223,6 +224,7 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
     logo: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
     image: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
     description: SEO_CONFIG.siteDescription,
+    inLanguage: "en-US",
     address: {
       "@type": "PostalAddress",
       ...CONTACT_INFO.address,

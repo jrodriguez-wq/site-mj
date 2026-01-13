@@ -35,10 +35,7 @@ export const GoogleReviewsLink = ({
               <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span className="font-semibold">{GOOGLE_REVIEWS.ratingValue}</span>
             </div>
-            <span className={cn(
-              "text-muted-foreground",
-              className?.includes("text-background") && "text-background/70"
-            )}>
+            <span className="text-muted-foreground">
               ({GOOGLE_REVIEWS.reviewCount} reviews)
             </span>
           </>

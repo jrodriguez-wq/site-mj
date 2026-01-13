@@ -14,7 +14,6 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
   const translations = useLanguageStore((state) => state.translations);
   const isLoading = useLanguageStore((state) => state.isLoading);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
-  const language = useLanguageStore((state) => state.language);
 
   useEffect(() => {
     // Solo ejecutar en cliente
@@ -65,7 +64,7 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
         });
       });
     }
-  }, [translations, isLoading, setLanguage, language]);
+  }, [translations, isLoading, setLanguage]);
 
   // CRÍTICO: Siempre renderizar para evitar problemas de hidratación
   // Las traducciones se actualizarán cuando estén disponibles

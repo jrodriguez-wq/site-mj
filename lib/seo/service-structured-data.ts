@@ -9,6 +9,7 @@ export const generateRentToOwnServiceSchema = (): StructuredData => {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Rent to Own Program",
+    inLanguage: "en-US",
     provider: {
       "@type": "RealEstateAgent",
       name: SEO_CONFIG.siteName,
@@ -62,6 +63,7 @@ export const generateNewHomeConstructionServiceSchema = (): StructuredData => {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "New Home Construction",
+    inLanguage: "en-US",
     provider: {
       "@type": "RealEstateAgent",
       name: SEO_CONFIG.siteName,
@@ -121,6 +123,7 @@ export const generateHomeSalesServiceSchema = (): StructuredData => {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Home Sales",
+    inLanguage: "en-US",
     provider: {
       "@type": "RealEstateAgent",
       name: SEO_CONFIG.siteName,
@@ -172,6 +175,7 @@ export const generatePropertyDevelopmentServiceSchema = (): StructuredData => {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Property Development",
+    inLanguage: "en-US",
     provider: {
       "@type": "RealEstateAgent",
       name: SEO_CONFIG.siteName,

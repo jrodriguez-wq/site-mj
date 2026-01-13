@@ -54,6 +54,7 @@ export const generateArticleStructuredData = (
     "@type": "Article",
     headline: post.title,
     description: post.description,
+    inLanguage: "en-US",
     image: imageUrl,
     datePublished: new Date(post.date).toISOString(),
     dateModified: new Date(post.date).toISOString(),

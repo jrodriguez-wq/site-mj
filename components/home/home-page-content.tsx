@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useLanguageStore } from "@/store/language-store";
 import { HeroSlider } from "@/components/home/hero-slider";
 import { InfiniteTextCarousel } from "@/components/home/infinite-text-carousel";
 import { Features } from "@/components/home/features";
@@ -18,112 +16,12 @@ import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { AnimatedSection } from "@/components/ui/animated-section";
 
-/**
- * Verifica si las traducciones son válidas
- */
-const isValidTranslations = (translations: unknown): translations is Record<string, unknown> => {
-  return (
-    !!translations &&
-    typeof translations === "object" &&
-    !Array.isArray(translations) &&
-    Object.keys(translations).length > 0 &&
-    "home" in translations &&
-    "nav" in translations &&
-    "rentToOwn" in translations
-  );
-};
-
 export const HomePageContent = () => {
-  const translations = useLanguageStore((state) => state.translations);
-  const isLoading = useLanguageStore((state) => state.isLoading);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
-  const [isReady, setIsReady] = useState(() => {
-    // Inicializar estado basado en traducciones actuales
-    if (typeof window !== "undefined") {
-      return isValidTranslations(translations);
-    }
-    return false;
-  });
-  const [hasTimedOut, setHasTimedOut] = useState(false);
-
-  useEffect(() => {
-    // Verificar si las traducciones están disponibles y son válidas
-    const hasValidTranslations = isValidTranslations(translations);
-
-    if (hasValidTranslations && !isLoading) {
-      // Usar setTimeout para evitar llamar setState directamente en el efecto
-      setTimeout(() => {
-        setIsReady(true);
-      }, 0);
-      return;
-    }
-
-    // Timeout de seguridad: después de 100ms, renderizar de todos modos
-    // Esto previene un flash de loading muy largo
-    const timeout = setTimeout(() => {
-      setHasTimedOut(true);
-      setIsReady(true);
-    }, 100);
-
-    // Si no hay traducciones válidas y no está cargando, cargar el idioma guardado o inglés por defecto
-    if (!hasValidTranslations && !isLoading) {
-      let targetLang: "en" | "es" = "en";
-      
-      // Intentar obtener idioma guardado
-      try {
-        const stored = localStorage.getItem("language-storage");
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          const storedLang = parsed?.state?.language;
-          if (storedLang === "en" || storedLang === "es") {
-            targetLang = storedLang;
-          }
-        }
-      } catch {
-        // Si hay error, usar inglés por defecto
-      }
-
-      // Cargar el idioma seleccionado
-      setLanguage(targetLang)
-        .then(() => {
-          clearTimeout(timeout);
-          setTimeout(() => {
-            setIsReady(true);
-          }, 0);
-        })
-        .catch(() => {
-          // Si falla, intentar inglés como fallback
-          setLanguage("en")
-            .then(() => {
-              clearTimeout(timeout);
-              setTimeout(() => {
-                setIsReady(true);
-              }, 0);
-            })
-            .catch(() => {
-              // Aún así marcar como listo después del timeout
-              clearTimeout(timeout);
-              setTimeout(() => {
-                setIsReady(true);
-              }, 0);
-            });
-        });
-    }
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [translations, isLoading, setLanguage]);
-
-  // Esperar a que las traducciones estén listas antes de renderizar
-  // Esto previene que se muestren claves sin traducir en la primera carga
-  // Pero con un timeout muy corto (100ms) para evitar flash de loading
-  // Si las traducciones no están listas después de 100ms, renderizar de todos modos
-  // (la función t() usará el cache si está disponible)
-  if (!isReady && !hasTimedOut) {
-    return null; // Renderizar null brevemente mientras se cargan las traducciones
-  }
-
+  // TranslationLoader en el layout maneja la carga de traducciones globalmente
+  // Los componentes hijos usan useTranslation() que automáticamente muestra
+  // las traducciones cuando están disponibles, o la key como fallback
+  // Esto evita errores de hidratación mientras mantiene la funcionalidad
+  
   return (
     <div className="flex flex-col w-full max-w-full">
       {/* 1. Hero Section - First impression with call to action */}
@@ -194,4 +92,3 @@ export const HomePageContent = () => {
     </div>
   );
 };
-

@@ -196,7 +196,7 @@ export const Footer = () => {
               <div className="mt-4">
                 <GoogleReviewsLink 
                   variant="outline" 
-                  className="border-background/30 bg-background/10 text-background hover:text-background hover:border-background/50 hover:bg-background/20 [&_span]:text-background/90 [&_span.text-muted-foreground]:text-background/70"
+                  className="border-background/30 bg-background/10 text-background hover:text-background hover:border-background/50 hover:bg-background/20 [&_span]:!text-background/90 [&_*]:!text-background/90"
                 />
               </div>
             </div>
