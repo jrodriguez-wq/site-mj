@@ -23,6 +23,10 @@ export function LanguageProvider() {
     hasInitializedRef.current = true;
 
     const initializeTranslations = async () => {
+      // Esperar un momento para que onRehydrateStorage complete
+      // Esto evita condiciones de carrera entre LanguageProvider y onRehydrateStorage
+      await new Promise(resolve => setTimeout(resolve, 10));
+      
       // Verificar inmediatamente el estado actual
       let currentState = useLanguageStore.getState();
       
@@ -36,14 +40,14 @@ export function LanguageProvider() {
         "nav" in currentState.translations &&
         "rentToOwn" in currentState.translations;
 
-      // Si ya hay traducciones válidas, verificar que funcionen
+      // Si ya hay traducciones válidas, verificar que funcionen correctamente
       if (hasValidTranslations) {
         const lang = currentState.language || "en";
         if (typeof document !== "undefined") {
           document.documentElement.lang = lang;
         }
         
-        // Verificar que las traducciones funcionen correctamente
+        // Verificar que las traducciones funcionen correctamente con una prueba real
         const testKey = "nav.home";
         const testResult = currentState.t(testKey);
         if (testResult === testKey) {
@@ -67,22 +71,24 @@ export function LanguageProvider() {
         return;
       }
 
-      // Si no hay traducciones válidas, cargar inglés por defecto
-      // (El persist middleware ya maneja la persistencia en localStorage)
-      try {
-        // Siempre cargar inglés por defecto si no hay traducciones válidas
-        await currentState.setLanguage("en");
-        
-        // Verificar nuevamente después de la carga
-        currentState = useLanguageStore.getState();
-        if (currentState.language && typeof document !== "undefined") {
-          document.documentElement.lang = currentState.language;
-        }
-      } catch (error) {
-        console.error("[LanguageProvider] Error loading default language (en):", error);
-        // El error ya está manejado en setLanguage, pero intentamos asegurar el lang del documento
-        if (typeof document !== "undefined") {
-          document.documentElement.lang = "en";
+      // Si no hay traducciones válidas Y no está cargando, cargar inglés por defecto
+      // (Si isLoading es true, onRehydrateStorage ya está cargando, no interferir)
+      if (!currentState.isLoading) {
+        try {
+          // Siempre cargar inglés por defecto si no hay traducciones válidas
+          await currentState.setLanguage("en");
+          
+          // Verificar nuevamente después de la carga
+          currentState = useLanguageStore.getState();
+          if (currentState.language && typeof document !== "undefined") {
+            document.documentElement.lang = currentState.language;
+          }
+        } catch (error) {
+          console.error("[LanguageProvider] Error loading default language (en):", error);
+          // El error ya está manejado en setLanguage, pero intentamos asegurar el lang del documento
+          if (typeof document !== "undefined") {
+            document.documentElement.lang = "en";
+          }
         }
       }
     };

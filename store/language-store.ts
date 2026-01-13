@@ -516,27 +516,22 @@ export const useLanguageStore = create<LanguageState>()(
             return;
           }
 
-          // Si no hay traducciones válidas o están corruptas, limpiar y recargar
-          if (!state?.translations || !isValidTranslations(state.translations) || shouldReload) {
-            console.warn("[LanguageStore] Invalid or missing translations, clearing storage and reloading...");
-            
-            // Limpiar storage si hay problemas
-            if (shouldReload || !state?.translations) {
-              clearLanguageStorage();
-            }
-
-            // Limpiar traducciones corruptas del estado
-            useLanguageStore.setState({
-              translations: {},
-              isLoading: true,
-            });
-          }
-
-          // Si no hay traducciones válidas, cargar INMEDIATAMENTE
+          // Si no hay traducciones válidas o están corruptas, cargar INMEDIATAMENTE
           // Priorizar inglés para primera carga
           const targetLang = lang === "en" || !state?.language ? "en" : lang;
 
-          // Si inglés ya está en cache, usarlo inmediatamente
+          // Limpiar storage si hay problemas (pero solo después de determinar targetLang)
+          if (shouldReload || (!state?.translations && !isValidTranslations(state?.translations))) {
+            clearLanguageStorage();
+          }
+
+          // Limpiar traducciones corruptas del estado y marcar como cargando
+          useLanguageStore.setState({
+            translations: {},
+            isLoading: true,
+          });
+
+          // Si inglés ya está en cache, usarlo inmediatamente (síncrono)
           if (targetLang === "en" && translationsCache.en && isValidTranslations(translationsCache.en)) {
             useLanguageStore.setState({
               translations: translationsCache.en,
@@ -547,8 +542,9 @@ export const useLanguageStore = create<LanguageState>()(
             return;
           }
 
-          // Intentar cargar traducciones de forma asíncrona pero lo más rápido posible
-          loadTranslations(targetLang)
+          // Cargar traducciones de forma asíncrona pero lo más rápido posible
+          // Usar void para evitar que el return espere la promesa
+          void loadTranslations(targetLang)
             .then((translations) => {
               // Verificar que las traducciones cargadas sean válidas
               if (!isValidTranslations(translations)) {
