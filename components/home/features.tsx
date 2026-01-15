@@ -82,6 +82,13 @@ export const Features = () => {
                   <Link
                     href={feature.href}
                     className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all duration-150 group-hover:underline cursor-pointer text-sm sm:text-base"
+                    aria-label={
+                      feature.href === "/models"
+                        ? "View new home models in Florida - Home builder models Miami, LaBelle, Lehigh Acres"
+                        : feature.href === "/rent-to-own"
+                        ? "Learn about Rent to Own program - $0 down payment Florida homes"
+                        : "Learn more about M.J. Newell Homes - Best home builder in Florida"
+                    }
                   >
                     <span suppressHydrationWarning>{t("features.learnMore")}</span>
                     <span className="group-hover:translate-x-1 transition-transform duration-150">→</span>

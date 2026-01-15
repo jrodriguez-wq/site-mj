@@ -14,7 +14,7 @@ import { AnimatedCard } from "@/components/ui/animated-card";
 const COMMUNITIES_CONFIG = [
   {
     nameKey: "labelle",
-    alt: "LaBelle community",
+    alt: "New homes in LaBelle, Florida - Home builder LaBelle - New construction homes by M.J. Newell Homes",
     href: "/communities/labelle",
     image: "/recursos/shutterstock-1065297917.webp",
     featureKeys: [
@@ -25,7 +25,7 @@ const COMMUNITIES_CONFIG = [
   },
   {
     nameKey: "lehighAcres",
-    alt: "Lehigh Acres community",
+    alt: "New homes in Lehigh Acres, Florida - Home builder Lehigh Acres - New construction homes by M.J. Newell Homes",
     href: "/communities/lehigh-acres",
     image: "/recursos/shutterstock-1197062707.webp",
     featureKeys: [
@@ -111,7 +111,15 @@ export const CommunitiesShowcase = () => {
                   ))}
                 </div>
                 <Button asChild size="lg" className="w-full sm:w-auto group/btn text-sm sm:text-base">
-                  <Link href={community.href} className="flex items-center gap-2">
+                  <Link 
+                    href={community.href} 
+                    className="flex items-center gap-2"
+                    aria-label={
+                      community.nameKey === "labelle"
+                        ? "Explore new homes in LaBelle, Florida - Home builder LaBelle"
+                        : "Explore new homes in Lehigh Acres, Florida - Home builder Lehigh Acres"
+                    }
+                  >
                     <span suppressHydrationWarning>{community.exploreText}</span>
                     <span className="group-hover/btn:translate-x-1 transition-transform duration-150">→</span>
                   </Link>

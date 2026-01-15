@@ -120,9 +120,10 @@ export const KEYWORDS = {
   ],
 
   // ============================================
-  // LALABELLE, FLORIDA (Prioridad Alta - Ubicación Principal)
+  // LALABELLE, FLORIDA (Prioridad MÁXIMA - Ubicación Principal)
   // ============================================
   labelle: [
+    // Búsquedas básicas
     "new homes LaBelle Florida",
     "homes for sale LaBelle",
     "homes for sale LaBelle Florida",
@@ -147,6 +148,47 @@ export const KEYWORDS = {
     "affordable homes LaBelle",
     "family homes LaBelle",
     "LaBelle Florida housing",
+    // Home Builder / Constructora
+    "LaBelle home builder",
+    "LaBelle home builders",
+    "home builder LaBelle FL",
+    "home builders LaBelle",
+    "home builders LaBelle Florida",
+    "construction company LaBelle",
+    "home construction LaBelle",
+    "new home builder LaBelle",
+    "custom home builder LaBelle",
+    "residential builder LaBelle",
+    "home construction company LaBelle",
+    "LaBelle construction company",
+    "LaBelle home construction",
+    "best home builder LaBelle",
+    "top home builder LaBelle",
+    // Real Estate
+    "LaBelle real estate",
+    "LaBelle real estate new homes",
+    "LaBelle real estate construction",
+    "LaBelle realtor new homes",
+    "LaBelle real estate builder",
+    "LaBelle property for sale",
+    "LaBelle properties for sale",
+    "LaBelle real estate listings",
+    // Buy House / Comprar Casa
+    "buy house LaBelle",
+    "buy home LaBelle",
+    "buy house LaBelle Florida",
+    "buy home LaBelle Florida",
+    "houses for sale LaBelle",
+    "homes for sale LaBelle",
+    "buy new house LaBelle",
+    "buy new home LaBelle",
+    "purchase home LaBelle",
+    "purchase house LaBelle",
+    "buy property LaBelle",
+    "comprar casa LaBelle",
+    "comprar casa en LaBelle",
+    "casas en venta LaBelle",
+    "comprar casa nueva LaBelle",
   ],
 
   // ============================================
@@ -271,9 +313,10 @@ export const KEYWORDS = {
   ],
 
   // ============================================
-  // MIAMI AREA (Prioridad Media-Alta)
+  // MIAMI AREA (Prioridad ALTA - Expansión Masiva)
   // ============================================
   miami: [
+    // Búsquedas básicas
     "new homes Miami",
     "new homes Miami Florida",
     "homes for sale Miami",
@@ -301,6 +344,55 @@ export const KEYWORDS = {
     "Miami home builders",
     "affordable homes Miami",
     "family homes Miami",
+    // Home Builder / Constructora
+    "Miami home builder",
+    "Miami home builders",
+    "home builder Miami FL",
+    "home builders Miami",
+    "home builders Miami Florida",
+    "construction company Miami",
+    "home construction Miami",
+    "new home builder Miami",
+    "custom home builder Miami",
+    "residential builder Miami",
+    "home construction company Miami",
+    "Miami construction company",
+    "Miami home construction",
+    // Real Estate
+    "Miami real estate",
+    "Miami real estate new homes",
+    "Miami real estate construction",
+    "Miami realtor new homes",
+    "Miami real estate builder",
+    "Miami property for sale",
+    "Miami properties for sale",
+    "Miami real estate listings",
+    // Buy House / Comprar Casa
+    "buy house Miami",
+    "buy home Miami",
+    "buy house Miami Florida",
+    "buy home Miami Florida",
+    "houses for sale Miami",
+    "homes for sale Miami",
+    "buy new house Miami",
+    "buy new home Miami",
+    "purchase home Miami",
+    "purchase house Miami",
+    "buy property Miami",
+    "comprar casa Miami",
+    "comprar casa en Miami",
+    "casas en venta Miami",
+    "comprar casa nueva Miami",
+    // Long-tail específicas
+    "best home builder Miami",
+    "top home builder Miami",
+    "affordable new homes Miami",
+    "new construction homes Miami",
+    "Miami new home construction",
+    "Miami residential construction",
+    "Miami home development",
+    "Miami housing market",
+    "Miami new home communities",
   ],
 
   // ============================================
@@ -542,6 +634,222 @@ export const KEYWORDS = {
     "available homes",
     "available homes Florida",
   ],
+
+  // ============================================
+  // HOME BUILDER / CONSTRUCTORA (Prioridad MÁXIMA)
+  // ============================================
+  homeBuilder: [
+    // Florida General
+    "home builder Florida",
+    "home builders Florida",
+    "Florida home builder",
+    "Florida home builders",
+    "construction company Florida",
+    "home construction Florida",
+    "new home builder Florida",
+    "custom home builder Florida",
+    "residential builder Florida",
+    "home construction company Florida",
+    "Florida construction company",
+    "Florida home construction",
+    "best home builder Florida",
+    "top home builder Florida",
+    "reputable home builder Florida",
+    "trusted home builder Florida",
+    // Southwest Florida
+    "home builder Southwest Florida",
+    "home builders Southwest Florida",
+    "Southwest Florida home builder",
+    "Southwest Florida home builders",
+    "construction company Southwest Florida",
+    "best home builder Southwest Florida",
+    "top home builder Southwest Florida",
+    // South Florida
+    "home builder South Florida",
+    "home builders South Florida",
+    "South Florida home builder",
+    "South Florida home builders",
+    "construction company South Florida",
+    "best home builder South Florida",
+    "top home builder South Florida",
+    // Constructora (Español)
+    "constructora Florida",
+    "constructora Miami",
+    "constructora LaBelle",
+    "constructora de casas Florida",
+    "constructora de casas Miami",
+    "constructora de casas LaBelle",
+    "empresa constructora Florida",
+    "constructora residencial Florida",
+  ],
+
+  // ============================================
+  // REAL ESTATE (Prioridad Alta)
+  // ============================================
+  realEstate: [
+    // Florida General
+    "real estate Florida",
+    "Florida real estate",
+    "real estate new homes Florida",
+    "real estate construction Florida",
+    "realtor new homes Florida",
+    "real estate builder Florida",
+    "property for sale Florida",
+    "properties for sale Florida",
+    "real estate listings Florida",
+    "Florida real estate new construction",
+    "Florida real estate builder",
+    // Miami
+    "real estate Miami",
+    "Miami real estate",
+    "Miami real estate new homes",
+    "Miami real estate construction",
+    "Miami realtor new homes",
+    "Miami real estate builder",
+    "Miami property for sale",
+    "Miami properties for sale",
+    "Miami real estate listings",
+    // LaBelle
+    "real estate LaBelle",
+    "LaBelle real estate",
+    "LaBelle real estate new homes",
+    "LaBelle real estate construction",
+    "LaBelle realtor new homes",
+    "LaBelle real estate builder",
+    "LaBelle property for sale",
+    "LaBelle properties for sale",
+    "LaBelle real estate listings",
+    // Southwest Florida
+    "real estate Southwest Florida",
+    "Southwest Florida real estate",
+    "Southwest Florida real estate new homes",
+    "Southwest Florida real estate construction",
+  ],
+
+  // ============================================
+  // BUY HOUSE / COMPRAR CASA (Prioridad MÁXIMA)
+  // ============================================
+  buyHouse: [
+    // Florida General
+    "buy house Florida",
+    "buy home Florida",
+    "buy house Florida",
+    "buy home Florida",
+    "houses for sale Florida",
+    "homes for sale Florida",
+    "buy new house Florida",
+    "buy new home Florida",
+    "purchase home Florida",
+    "purchase house Florida",
+    "buy property Florida",
+    "comprar casa Florida",
+    "comprar casa en Florida",
+    "casas en venta Florida",
+    "comprar casa nueva Florida",
+    "comprar casa nueva en Florida",
+    // Miami
+    "buy house Miami",
+    "buy home Miami",
+    "buy house Miami Florida",
+    "buy home Miami Florida",
+    "houses for sale Miami",
+    "homes for sale Miami",
+    "buy new house Miami",
+    "buy new home Miami",
+    "purchase home Miami",
+    "purchase house Miami",
+    "buy property Miami",
+    "comprar casa Miami",
+    "comprar casa en Miami",
+    "casas en venta Miami",
+    "comprar casa nueva Miami",
+    // LaBelle
+    "buy house LaBelle",
+    "buy home LaBelle",
+    "buy house LaBelle Florida",
+    "buy home LaBelle Florida",
+    "houses for sale LaBelle",
+    "homes for sale LaBelle",
+    "buy new house LaBelle",
+    "buy new home LaBelle",
+    "purchase home LaBelle",
+    "purchase house LaBelle",
+    "buy property LaBelle",
+    "comprar casa LaBelle",
+    "comprar casa en LaBelle",
+    "casas en venta LaBelle",
+    "comprar casa nueva LaBelle",
+    // Southwest Florida
+    "buy house Southwest Florida",
+    "buy home Southwest Florida",
+    "houses for sale Southwest Florida",
+    "homes for sale Southwest Florida",
+    "buy new house Southwest Florida",
+    "buy new home Southwest Florida",
+    // Long-tail
+    "how to buy a house in Florida",
+    "how to buy a home in Florida",
+    "buying a house in Florida",
+    "buying a home in Florida",
+    "como comprar casa en Florida",
+    "como comprar casa en Miami",
+    "como comprar casa en LaBelle",
+  ],
+
+  // ============================================
+  // FLORIDA GENERAL (Prioridad MÁXIMA)
+  // ============================================
+  floridaGeneral: [
+    // New Homes
+    "new homes Florida",
+    "Florida new homes",
+    "new homes for sale Florida",
+    "Florida new homes for sale",
+    "new construction Florida",
+    "Florida new construction",
+    "new construction homes Florida",
+    "Florida new construction homes",
+    // Homes for Sale
+    "homes for sale Florida",
+    "Florida homes for sale",
+    "houses for sale Florida",
+    "Florida houses for sale",
+    "homes for sale in Florida",
+    "houses for sale in Florida",
+    // Home Builder
+    "home builder Florida",
+    "Florida home builder",
+    "home builders Florida",
+    "Florida home builders",
+    "best home builder Florida",
+    "top home builder Florida",
+    // Real Estate
+    "real estate Florida",
+    "Florida real estate",
+    "Florida real estate new homes",
+    // Rent to Own
+    "rent to own Florida",
+    "Florida rent to own",
+    "rent to own homes Florida",
+    "Florida rent to own homes",
+    // Affordable
+    "affordable homes Florida",
+    "Florida affordable homes",
+    "affordable new homes Florida",
+    "Florida affordable new homes",
+    // Family Homes
+    "family homes Florida",
+    "Florida family homes",
+    "single family homes Florida",
+    "Florida single family homes",
+    // Long-tail específicas
+    "best new homes Florida",
+    "top new homes Florida",
+    "quality new homes Florida",
+    "reputable home builder Florida",
+    "trusted home builder Florida",
+    "experienced home builder Florida",
+  ],
 } as const;
 
 /**
@@ -561,41 +869,55 @@ export const getKeywordsByCategory = (category: keyof typeof KEYWORDS): string[]
 
 /**
  * Obtiene keywords prioritarias (más importantes para SEO)
+ * Optimizado para Top 5 en Google
  */
 export const getPriorityKeywords = (): string[] => {
   return [
     ...KEYWORDS.brand,
-    ...KEYWORDS.rentToOwn.slice(0, 15), // Primeras 15 de rent to own
-    ...KEYWORDS.zeroDown.slice(0, 10), // Primeras 10 de zero down
-    ...KEYWORDS.newConstruction.slice(0, 15), // Primeras 15 de new construction
-    ...KEYWORDS.labelle.slice(0, 10), // Primeras 10 de LaBelle
+    ...KEYWORDS.rentToOwn.slice(0, 20), // Primeras 20 de rent to own
+    ...KEYWORDS.zeroDown.slice(0, 15), // Primeras 15 de zero down
+    ...KEYWORDS.newConstruction.slice(0, 20), // Primeras 20 de new construction
+    ...KEYWORDS.labelle.slice(0, 15), // Primeras 15 de LaBelle
+    ...KEYWORDS.miami.slice(0, 20), // Primeras 20 de Miami
+    ...KEYWORDS.homeBuilder.slice(0, 20), // Primeras 20 de home builder
+    ...KEYWORDS.realEstate.slice(0, 15), // Primeras 15 de real estate
+    ...KEYWORDS.buyHouse.slice(0, 20), // Primeras 20 de buy house
+    ...KEYWORDS.floridaGeneral.slice(0, 20), // Primeras 20 de Florida general
     ...KEYWORDS.lehighAcres.slice(0, 10), // Primeras 10 de Lehigh Acres
-    ...KEYWORDS.southwestFlorida.slice(0, 8), // Primeras 8 de Southwest Florida
+    ...KEYWORDS.southwestFlorida.slice(0, 10), // Primeras 10 de Southwest Florida
   ];
 };
 
 /**
  * Obtiene keywords locales (todas las ubicaciones)
+ * Incluye Florida general, Miami, LaBelle y todas las ciudades
  */
 export const getLocalKeywords = (): string[] => {
   return [
+    ...KEYWORDS.floridaGeneral,
+    ...KEYWORDS.miami,
     ...KEYWORDS.labelle,
     ...KEYWORDS.lehighAcres,
     ...KEYWORDS.fortMyers,
     ...KEYWORDS.capeCoral,
     ...KEYWORDS.naples,
-    ...KEYWORDS.miami,
+    ...KEYWORDS.southwestFlorida,
+    ...KEYWORDS.southFlorida,
   ];
 };
 
 /**
  * Obtiene keywords de servicios principales
+ * Incluye rent to own, home builder, real estate, buy house
  */
 export const getServiceKeywords = (): string[] => {
   return [
     ...KEYWORDS.rentToOwn,
     ...KEYWORDS.zeroDown,
     ...KEYWORDS.newConstruction,
+    ...KEYWORDS.homeBuilder,
+    ...KEYWORDS.realEstate,
+    ...KEYWORDS.buyHouse,
   ];
 };
 

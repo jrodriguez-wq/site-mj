@@ -180,11 +180,15 @@ export const ROBOTS_CONFIG = {
   },
   
   // Rutas a excluir del sitemap y robots.txt
+  // IMPORTANTE: NO bloquear /_next/static/ ya que contiene CSS y JS necesarios para Googlebot
   disallowPaths: [
     "/api/",
     "/admin/",
     "/private/",
-    "/_next/",
+    // NO bloquear /_next/static/ - contiene CSS y JS críticos
+    // Solo bloquear rutas internas de Next.js que no son necesarias
+    "/_next/static/chunks/pages/_error",
+    "/_next/static/chunks/pages/_app",
   ],
 } as const;
 

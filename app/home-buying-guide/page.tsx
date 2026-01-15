@@ -1,6 +1,5 @@
 "use client";
 
-import { generateMetadata } from "@/lib/seo/metadata";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageContent } from "@/components/layout/page-container";
 import { FileCheck, MapPin, Home, DollarSign } from "lucide-react";

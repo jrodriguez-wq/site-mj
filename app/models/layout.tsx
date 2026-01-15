@@ -1,28 +1,26 @@
-import { Metadata } from "next";
-import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
+import { generateMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
-import { getPageKeywords } from "@/lib/seo/keyword-utils";
+import { getLocalKeywords, getServiceKeywords } from "@/config/keywords";
 
-export const metadata: Metadata = generateSEOMetadata({
-  title: "Home Models | Browse All Floor Plans | M.J. Newell Homes",
-  description: "Browse all our home models and floor plans. Louisiana, Viana, Delanie, Aurora, Langdon, Emelia, and Duplex models. Prices, square footage, bedrooms, and bathrooms. Rent to Own available. New construction homes in Florida.",
+export const metadata = generateMetadata({
+  title: "Home Models | New Construction Homes | M.J. Newell Homes",
+  description: "Browse our complete collection of new construction home models in LaBelle and Lehigh Acres, Florida. From 2 to 5 bedrooms, find your perfect home. Starting from $200,000. View floor plans, photos, and pricing.",
   canonical: `${SEO_CONFIG.siteUrl}/models`,
   keywords: [
-    ...getPageKeywords("models"),
+    ...getLocalKeywords().slice(0, 20),
+    ...getServiceKeywords().slice(0, 15),
     "home models",
-    "floor plans",
-    "home designs",
-    "house plans",
-    "new home models",
-    "home floor plans Florida",
-    "home designs Florida",
-    "3 bedroom homes Florida",
-    "4 bedroom homes Florida",
-    "new construction floor plans",
+    "new construction models",
+    "home floor plans",
+    "house models Florida",
+    "new home designs",
+    "home builder models",
+    "custom home models",
+    "affordable home models",
   ],
   openGraph: {
     title: "Home Models | M.J. Newell Homes",
-    description: "Browse all our home models and floor plans. Multiple models available with Rent to Own program. New construction homes in Florida.",
+    description: "Browse our complete collection of new construction home models in LaBelle and Lehigh Acres, Florida.",
     url: `${SEO_CONFIG.siteUrl}/models`,
     type: "website",
   },

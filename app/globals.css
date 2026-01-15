@@ -792,4 +792,27 @@
     color: hsl(var(--destructive)) !important;
   }
 
+  /* ===========================================
+     Badge Hover Effect - Simple and Smooth
+     =========================================== */
+  
+  .badge-3d-container {
+    transition: transform 0.3s ease-out;
+  }
+  
+  .badge-3d-container:hover {
+    transform: scale(1.05) translateY(-4px);
+  }
+  
+  .badge-image {
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5)) 
+            drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+    transition: filter 0.3s ease-out;
+  }
+  
+  .badge-3d-container:hover .badge-image {
+    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.6)) 
+            drop-shadow(0 8px 20px rgba(0, 0, 0, 0.4));
+  }
+
 }

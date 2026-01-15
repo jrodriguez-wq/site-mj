@@ -76,7 +76,7 @@ export const HomeModels = () => {
                 <div className="relative h-64 sm:h-72 md:h-80 lg:h-96">
                   <Image
                     src={mainImage}
-                    alt={model.name}
+                    alt={`${model.name} model home in Florida - New construction home by M.J. Newell Homes - Home builder Florida, Miami, LaBelle`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

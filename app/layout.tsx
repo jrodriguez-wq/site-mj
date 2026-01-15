@@ -79,11 +79,46 @@ export default function RootLayout({
   return (
     <html lang={SEO_CONFIG.defaultLocale} suppressHydrationWarning>
       <head>
+        {/* Google Search Console Verification */}
+        {SEO_CONFIG.googleSearchConsole && (
+          <meta
+            name="google-site-verification"
+            content={SEO_CONFIG.googleSearchConsole}
+          />
+        )}
+        
         {/* Viewport optimizado para móvil */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
         />
+        
+        {/* Preconnect crítico para CSS y fuentes - Mejora renderizado en Googlebot */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* CSS crítico inline para Googlebot - CRÍTICO para indexación */}
+        {/* Esto asegura que Googlebot vea el sitio con estilos básicos */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* CSS crítico inline para Googlebot - Evita FOUC y mejora indexación */
+            html { 
+              font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+            }
+            body { 
+              margin: 0; 
+              padding: 0;
+              font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            }
+            * { 
+              box-sizing: border-box;
+            }
+            /* Asegurar que el contenido sea visible mientras carga el CSS completo */
+            body { visibility: visible; }
+          `
+        }} />
         
         {/* Preload de recursos críticos */}
         <link
@@ -138,14 +173,6 @@ export default function RootLayout({
           href="https://www.googletagmanager.com"
           crossOrigin="anonymous"
         />
-        
-        {/* Google Search Console Verification */}
-        {SEO_CONFIG.googleSearchConsole && (
-          <meta
-            name="google-site-verification"
-            content={SEO_CONFIG.googleSearchConsole}
-          />
-        )}
         
         {/* Google Analytics - Google tag (gtag.js) */}
         <Script

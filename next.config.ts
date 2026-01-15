@@ -212,6 +212,9 @@ const nextConfig: NextConfig = {
   experimental: {
     // Tree-shaking optimizado para paquetes específicos
     optimizePackageImports: OPTIMIZED_PACKAGES,
+    // Asegurar que el CSS se procesa correctamente en SSR para Googlebot
+    // Esto es crítico para que Googlebot vea el sitio con estilos
+    optimizeCss: true,
   },
 
   // ========================================================================

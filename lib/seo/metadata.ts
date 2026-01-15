@@ -77,31 +77,38 @@ export const generatePropertyMetadata = (
   price?: string,
   location?: string
 ): Metadata => {
-  const title = `${propertyName} | ${SEO_CONFIG.siteName}`;
-  const fullDescription = `${description} ${location ? `Ubicado en ${location}.` : ""} ${price ? `Precio: ${price}.` : ""}`;
+  const title = `${propertyName} Home Model | ${SEO_CONFIG.siteName}`;
+  const fullDescription = `${description} ${location ? `Available in ${location}.` : ""} ${price ? `Starting from ${price}.` : ""} View floor plans, photos, and pricing.`;
 
   return generateMetadata({
     title,
     description: fullDescription,
     keywords: [
       propertyName,
-      "propiedad",
-      "inmueble",
-      "venta",
-      "alquiler",
-      ...(location ? [location] : []),
+      `${propertyName} home model`,
+      `${propertyName} floor plan`,
+      "home model",
+      "new construction home",
+      "home floor plan",
+      "new home design",
+      "custom home",
+      "home builder",
+      ...(location ? [`${propertyName} ${location}`, `homes in ${location}`] : []),
+      ...(price ? [`homes from ${price}`, `affordable homes`] : []),
     ],
+    canonical: `${SEO_CONFIG.siteUrl}/models/${propertyName.toLowerCase()}`,
     openGraph: {
       title,
       description: fullDescription,
       type: "website",
+      url: `${SEO_CONFIG.siteUrl}/models/${propertyName.toLowerCase()}`,
       images: image
         ? [
             {
               url: image,
               width: 1200,
               height: 630,
-              alt: propertyName,
+              alt: `${propertyName} Home Model`,
             },
           ]
         : undefined,

@@ -264,7 +264,11 @@ const ModelCardComponent = (props: ModelCardProps) => {
                   {inView || index === 0 ? (
                     <Image
                       src={img}
-                      alt={`${name} - ${index + 1}`}
+                      alt={
+                        index === 0
+                          ? `${name} model home in Florida - New construction home by M.J. Newell Homes - Home builder Florida`
+                          : `${name} model home interior ${index + 1} - New home construction Florida`
+                      }
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
@@ -487,7 +491,10 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 asChild
                 className="relative w-full sm:w-auto bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm md:text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-200 flex items-center justify-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden shrink-0"
               >
-                <Link href={modelLink}>
+                <Link 
+                  href={modelLink}
+                  aria-label={`View ${name} model home details - New construction home in Florida by M.J. Newell Homes`}
+                >
                   <span className="relative z-10 flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
                     <span className="hidden sm:inline" suppressHydrationWarning>{displayViewDetailsLabel}</span>
                     <span className="sm:hidden" suppressHydrationWarning>{displayViewMoreLabel}</span>

@@ -55,7 +55,7 @@ export const WhyChooseUs = () => {
             <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/img/hero/1w5a0741-1.webp"
-                alt="M.J. Newell Homes - Quality Construction"
+                alt="M.J. Newell Homes - Quality new construction homes in Florida - Best home builder Miami, LaBelle, Lehigh Acres"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

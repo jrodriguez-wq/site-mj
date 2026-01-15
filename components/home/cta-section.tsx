@@ -25,7 +25,10 @@ export const CTASection = () => {
                 size="lg"
                 className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-xl"
               >
-                <Link href="/rent-to-own#rto-application-form">
+                <Link 
+                  href="/rent-to-own#rto-application-form"
+                  aria-label="Apply for Rent to Own program - $0 down payment new homes Florida"
+                >
                   <span suppressHydrationWarning>{t("cta.applyNow")}</span>
                 </Link>
               </Button>
@@ -35,7 +38,13 @@ export const CTASection = () => {
                 size="lg" 
                 className="w-full sm:w-auto px-8 sm:px-10 py-6 sm:py-7 text-base sm:text-lg font-semibold border-2 border-background/40 bg-transparent text-white hover:text-white hover:bg-background/10 hover:border-background/60 transition-all duration-300 rounded-xl backdrop-blur-sm"
               >
-                <Link href="/schedule-appointment" suppressHydrationWarning>{t("cta.schedule")}</Link>
+                <Link 
+                  href="/schedule-appointment" 
+                  aria-label="Schedule appointment with home builder - New homes consultation Florida"
+                  suppressHydrationWarning
+                >
+                  {t("cta.schedule")}
+                </Link>
               </Button>
             </div>
             <GoogleReviewsLink 
