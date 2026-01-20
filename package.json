@@ -16,6 +16,7 @@
     "clean": "rm -rf .next node_modules pnpm-lock.yaml",
     "clean:cache": "rm -rf .next",
     "optimize-all": "node scripts/optimize-all-images-complete.js",
+    "optimize-folder": "node scripts/optimize-folder-images.js",
     "validate-images": "node scripts/validate-images.js",
     "validate-translations": "node scripts/validate-translations.js",
     "generate-favicons": "node scripts/generate-favicons.js"

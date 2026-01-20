@@ -146,7 +146,7 @@ export const HeroSlider = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
       </div>
 
-      {/* Badge - Top Right Corner 
+      {/* Badge - Top Right Corner */}
       <div className="absolute top-4 sm:top-6 md:top-8 lg:top-12 right-4 sm:right-6 md:right-8 lg:right-12 z-30 animate-fade-in">
         <Link
           href="/schedule-appointment"
@@ -166,7 +166,7 @@ export const HeroSlider = () => {
           />
         </Link>
       </div>
-*/}
+
       {/* Content */}
       <div className="relative z-20 w-full h-full flex items-center">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">

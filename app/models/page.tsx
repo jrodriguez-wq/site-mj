@@ -445,8 +445,8 @@ export default function ModelsPage() {
                   const config = MODEL_CONFIG[baseKey];
                   const modelImages = getModelImages(baseKey);
                   const mainImage = getModelMainImage(baseKey);
-                  // Disable auto carousel for better performance
-                  const carouselInterval = 0; // Disabled
+                  // Auto carousel interval: 4 seconds (4000ms) - each card will cycle through images
+                  const carouselInterval = 4000; // 4 seconds
                   const initialDelay = index * 80; // Stagger delay for animations
 
                   // Convertir badges con labelKey a badges con label traducida
