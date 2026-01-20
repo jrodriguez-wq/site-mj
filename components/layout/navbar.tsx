@@ -70,6 +70,10 @@ export const Navbar = () => {
         href: "/rent-to-own",
       },
       {
+        title: t("nav.scheduleAppointment"),
+        href: "/schedule-appointment",
+      },
+      {
         title: t("nav.buyHome"),
         href: "#",
         children: [
@@ -456,11 +460,17 @@ export const Navbar = () => {
               )}
               size="default"
             >
-              <Link href="/schedule-appointment" className="relative z-10 flex items-center gap-1 xl:gap-1.5" suppressHydrationWarning>
+              <a 
+                href="https://meetings.hubspot.com/jrodriguez134/meeting-web" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-10 flex items-center gap-1 xl:gap-1.5" 
+                suppressHydrationWarning
+              >
                 <Calendar className="h-3.5 w-3.5 xl:h-4 xl:w-4 opacity-90 group-hover/schedule:opacity-100 transition-opacity duration-300" />
                 <span className="hidden 2xl:inline" suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
                 <span className="2xl:hidden" suppressHydrationWarning>Schedule</span>
-              </Link>
+              </a>
             </Button>
 
             {/* Premium CTA Button */}
@@ -633,15 +643,17 @@ export const Navbar = () => {
                     className="w-full bg-gradient-to-r from-primary via-primary to-primary/95 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold shadow-lg hover:shadow-xl tracking-wide rounded-xl border border-primary/20 relative overflow-hidden group/schedule"
                     size="lg"
                   >
-                    <Link
-                      href="/schedule-appointment"
+                    <a
+                      href="https://meetings.hubspot.com/jrodriguez134/meeting-web"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => setIsOpen(false)}
                       className="relative z-10 flex items-center justify-center gap-2"
                       suppressHydrationWarning
                     >
                       <Calendar className="h-4 w-4 opacity-90" />
                       <span suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
-                    </Link>
+                    </a>
                   </Button>
                   <Button
                     asChild

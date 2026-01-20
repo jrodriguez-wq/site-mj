@@ -727,7 +727,13 @@
   }
 
   .hubspot-form-container .hs-form-field {
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.875rem !important;
+  }
+
+  @media (max-width: 640px) {
+    .hubspot-form-container .hs-form-field {
+      margin-bottom: 0.75rem !important;
+    }
   }
 
   .hubspot-form-container .hs-form-field label {
@@ -736,6 +742,13 @@
     font-size: 0.875rem !important;
     margin-bottom: 0.375rem !important;
     display: block;
+  }
+
+  @media (max-width: 640px) {
+    .hubspot-form-container .hs-form-field label {
+      font-size: 0.8125rem !important;
+      margin-bottom: 0.25rem !important;
+    }
   }
 
   .hubspot-form-container .hs-form-field input[type="text"],
@@ -751,6 +764,19 @@
     color: hsl(var(--foreground)) !important;
     font-size: 0.875rem !important;
     transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+  }
+
+  @media (max-width: 640px) {
+    .hubspot-form-container .hs-form-field input[type="text"],
+    .hubspot-form-container .hs-form-field input[type="email"],
+    .hubspot-form-container .hs-form-field input[type="tel"],
+    .hubspot-form-container .hs-form-field textarea,
+    .hubspot-form-container .hs-form-field select {
+      padding: 0.5rem 0.625rem !important;
+      font-size: 0.8125rem !important;
+      border-radius: 0.375rem !important;
+    }
   }
 
   .hubspot-form-container .hs-form-field input:focus,
@@ -765,6 +791,12 @@
     margin-top: 1rem !important;
   }
 
+  @media (max-width: 640px) {
+    .hubspot-form-container .hs-submit {
+      margin-top: 0.875rem !important;
+    }
+  }
+
   .hubspot-form-container .hs-submit .hs-button {
     width: 100% !important;
     padding: 0.625rem 1.25rem !important;
@@ -776,6 +808,15 @@
     border-radius: 0.5rem !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+  }
+
+  @media (max-width: 640px) {
+    .hubspot-form-container .hs-submit .hs-button {
+      padding: 0.5625rem 1rem !important;
+      font-size: 0.8125rem !important;
+      border-radius: 0.375rem !important;
+    }
   }
 
   .hubspot-form-container .hs-submit .hs-button:hover {
@@ -786,6 +827,12 @@
     color: hsl(var(--destructive)) !important;
     font-size: 0.75rem !important;
     margin-top: 0.25rem !important;
+  }
+
+  @media (max-width: 640px) {
+    .hubspot-form-container .hs-error-msgs {
+      font-size: 0.6875rem !important;
+    }
   }
 
   .hubspot-form-container .hs-error-msgs label {
