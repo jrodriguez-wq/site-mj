@@ -23,13 +23,13 @@ export const WarrantyPageContent = () => {
     return `${baseUrl}/thank-you?type=warranty`;
   }, []);
 
-  const handleCommunitySelect = (community: "labelle" | "lehigh" | "other") => {
+  const handleCommunitySelect = (community: "labelle" | "lehigh" | "sanibel") => {
     if (community === "labelle") {
       window.open("https://meetings.hubspot.com/customercare76/warrantys", "_blank");
     } else if (community === "lehigh") {
       window.open("https://meetings.hubspot.com/customercare76/warrantys-lehigh", "_blank");
-    } else {
-      setFlowStep("form");
+    } else if (community === "sanibel") {
+      window.open("https://meetings.hubspot.com/customercare76/warrantys-sanibel", "_blank");
     }
   };
 
@@ -228,19 +228,19 @@ export const WarrantyPageContent = () => {
                       </span>
                     </Button>
                     
-                    {/* Other - Soft Teal Theme */}
+                    {/* Sanibel - Soft Teal Theme */}
                     <Button
                       size="lg"
                       variant="outline"
-                      onClick={() => handleCommunitySelect("other")}
+                      onClick={() => handleCommunitySelect("sanibel")}
                       className="h-auto py-8 flex flex-col items-center gap-3 border-2 border-teal-100/80 hover:border-teal-300 hover:bg-teal-50/50 hover:text-teal-700 transition-all duration-300 hover:shadow-lg hover:shadow-teal-100/50 hover:scale-[1.02] group"
                     >
                       <div className="p-3 bg-teal-50 group-hover:bg-teal-100 rounded-full transition-colors">
                         <MapPin className="h-6 w-6 text-teal-400 group-hover:text-teal-600 transition-colors" />
                       </div>
-                      <span className="text-lg font-semibold text-foreground group-hover:text-teal-700 transition-colors">Other</span>
+                      <span className="text-lg font-semibold text-foreground group-hover:text-teal-700 transition-colors">Sanibel</span>
                       <span className="text-sm text-muted-foreground group-hover:text-teal-600/80 transition-colors">
-                        Use form below
+                        Click to schedule
                       </span>
                     </Button>
                   </div>

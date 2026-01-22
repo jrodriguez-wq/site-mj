@@ -2,6 +2,7 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { BlogPost } from "@/types/blog";
 import { Clock, Calendar, User, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -60,6 +61,7 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
       <div className="article-content">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
           components={{
             // Headings
             h1: ({ ...props }) => (
@@ -154,11 +156,40 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
             img: ({ alt, ...props }) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                className="rounded-lg my-6 w-full h-auto"
+                className="my-6 w-full h-auto rounded-xl shadow-md object-cover"
                 alt={alt || ""}
+                aria-label={alt || "Article image"}
+                loading="lazy"
+                decoding="async"
                 {...props}
               />
             ),
+            figure: ({ ...props }) => (
+              <figure className="my-8 space-y-3" {...props} />
+            ),
+            figcaption: ({ ...props }) => (
+              <figcaption className="text-sm text-muted-foreground text-center" {...props} />
+            ),
+            iframe: ({ src, title, ...props }) => {
+              if (!src) {
+                return null;
+              }
+              return (
+                <div className="my-8 overflow-hidden rounded-2xl shadow-lg">
+                  <div className="relative aspect-video">
+                    <iframe
+                      src={src as string}
+                      title={title || "Embedded media"}
+                      className="absolute inset-0 h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                      {...props}
+                    />
+                  </div>
+                </div>
+              );
+            },
             
             // Tables
             table: ({ ...props }) => (
