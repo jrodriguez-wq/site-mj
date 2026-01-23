@@ -92,6 +92,11 @@ export const Navbar = () => {
             href: "/communities/lehigh-acres",
             description: t("communities.lehighAcres.description"),
           },
+          {
+            title: t("nav.payments"),
+            href: "/pay-links",
+            description: t("nav.paymentsDesc"),
+          },
         ],
       },
       {
