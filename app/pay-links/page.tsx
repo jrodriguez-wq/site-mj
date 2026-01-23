@@ -144,7 +144,7 @@ export default function PayLinksPage() {
                 className="w-full h-12 text-base font-semibold"
                 size="lg"
               >
-                Proceder al pago
+                Proceed to Payment
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
               
@@ -153,7 +153,7 @@ export default function PayLinksPage() {
                   <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">
                     <div className="flex items-center gap-2">
                       <QrCode className="w-4 h-4" />
-                      Pagar con QR
+                      Pay with QR
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
@@ -161,14 +161,14 @@ export default function PayLinksPage() {
                       <div className="p-4 bg-white rounded-lg border-2 border-border shadow-sm">
                         <Image
                           src="/payments/500.png"
-                          alt="Código QR para pago de $500 USD"
+                          alt="QR Code for $500 USD payment"
                           width={250}
                           height={250}
                           className="w-full h-auto"
                         />
                       </div>
                       <p className="text-xs text-muted-foreground text-center">
-                        Escanea el código QR con tu dispositivo móvil
+                        Scan the QR code with your mobile device
                       </p>
                     </div>
                   </AccordionContent>
@@ -181,7 +181,7 @@ export default function PayLinksPage() {
         {/* Security Notice */}
         <div className="text-center pt-4">
           <p className="text-sm text-muted-foreground">
-            🔒 Tus pagos están protegidos con encriptación SSL
+            🔒 Your payments are protected with SSL encryption
           </p>
         </div>
       </div>
