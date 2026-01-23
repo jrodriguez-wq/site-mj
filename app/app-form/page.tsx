@@ -33,8 +33,8 @@ export default function AppFormPage() {
   }, [])
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-2xl">
+    <div className="w-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-2rem)]">
+      <div className="w-full max-w-3xl mx-auto">
         <div
           id="hubspot-form-container"
           ref={formContainerRef}
