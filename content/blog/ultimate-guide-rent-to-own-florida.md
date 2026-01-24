@@ -206,9 +206,17 @@ We help you identify homes in Florida that match your criteria and facilitate th
 - Multiple communities with different amenities
 - Properties that qualify for our rent-to-own program
 
+![Beautiful New Construction Home Available for Rent-to-Own](/modelos-optimized/louisiana/exterior/louisiana-exterior-01.webp)
+
+*Our Louisiana model is just one example of the quality new construction homes available through our Rent-to-Own program. Modern design, energy efficiency, and the perfect size for growing families.*
+
 ### Step 4: Move In and Build Toward Ownership
 
 You move into your new home, and we support you with resources to help you reach the finish line—closing on your home. We're with you every step of the way, from moving in to closing day.
+
+![Spacious Living Room in Rent-to-Own Home](/modelos-optimized/louisiana/interior/louisiana-interior-01.webp)
+
+*Move into a beautiful new home like this Louisiana model and start building equity immediately. Our Rent-to-Own program lets you live in your future home while you prepare for ownership.*
 
 During your lease term, we provide:
 - Regular check-ins on your progress

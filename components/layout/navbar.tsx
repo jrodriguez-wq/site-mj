@@ -114,6 +114,16 @@ export const Navbar = () => {
             description: t("nav.homeBuyingGuideDesc"),
           },
           {
+            title: "Section 8",
+            href: "/section8",
+            description: "Learn about Section 8 Housing Voucher Program and how to use it for homeownership",
+          },
+          {
+            title: "Rental Application",
+            href: "/rental-application",
+            description: "Apply for rental properties with M.J. Newell Homes",
+          },
+          {
             title: t("nav.warranty"),
             href: "/warranty",
             description: t("nav.warrantyDesc"),

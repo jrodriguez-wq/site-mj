@@ -15,6 +15,8 @@ import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
 import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { LogoSlider } from "@/components/ui/logo-slider";
+import { PARTNER_LOGOS } from "@/config/partner-logos";
 
 export const HomePageContent = () => {
   // TranslationLoader en el layout maneja la carga de traducciones globalmente
@@ -85,6 +87,17 @@ export const HomePageContent = () => {
       {/* 13. Final CTA - Last call to action before footer */}
       <AnimatedSection delay={150}>
         <CTASection />
+      </AnimatedSection>
+
+      {/* 14. Partner Logos Slider */}
+      <AnimatedSection delay={200}>
+        <LogoSlider
+          logos={PARTNER_LOGOS}
+          speed="normal"
+          pauseOnHover={true}
+          showTitle={false}
+          variant="default"
+        />
       </AnimatedSection>
 
       {/* Modal de promoción - solo aparece en home */}

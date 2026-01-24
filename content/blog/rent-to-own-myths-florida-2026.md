@@ -23,9 +23,11 @@ Rent-to-own (lease option) is often misunderstood. You might think you need 740 
 
 We build and finance new homes in LaBelle, Lehigh Acres, and Fort Myers with a clear, 12-month path to ownership—no mystery fees, no bait-and-switch.
 
-## Watch the 90-second explainer
+## See Our Rent-to-Own Homes
 
-<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rent-to-Own in Florida explained"></iframe>
+![Rent-to-Own Home Interior](/modelos-optimized/emelia/interior/emelia-interior-01.webp)
+
+*This is what your future home could look like. Our Rent-to-Own program lets you move into a brand-new home like this Emelia model while you build credit and save for your down payment. No perfect credit required—just stable income and a commitment to your future.*
 
 ## Myth 1: “I need perfect credit”
 

@@ -31,6 +31,12 @@ Lehigh Acres lets you own a new construction home with room to breathe—while s
 <!-- markdownlint-disable-next-line MD033 -->
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112748.51478236147!2d-81.82684305!3d26.6253496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db43b8c2a0b0bb%3A0x5f1e9f7430bf369b!2sLehigh%20Acres%2C%20FL!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" title="Lehigh Acres to Fort Myers map"></iframe>
 
+## New Construction Homes in Lehigh Acres
+
+![New Construction Home in Lehigh Acres](/modelos-optimized/langdon/exterior/langdon-exterior-01.webp)
+
+*Our Langdon model in Lehigh Acres offers modern design, energy efficiency, and the perfect location for Fort Myers commuters. With 1/4 acre lots and no HOA fees, you get more value for your money.*
+
 ## Drive times (realistic ranges)
 
 - Downtown Fort Myers: 25–40 minutes depending on rush hour.
@@ -54,6 +60,10 @@ Tip: Leave 15 minutes earlier on peak school days; eastbound morning traffic sta
 - Energy-efficient HVAC and insulation cut utility costs.
 - Brand-new roof and systems keep insurance competitive.
 - Floor plans with home-office space for hybrid schedules.
+
+![Modern Kitchen in New Construction Home](/modelos-optimized/langdon/interior/langdon-interior-01.webp)
+
+*Modern, energy-efficient homes like our Langdon model feature spacious kitchens perfect for busy commuters. Start your day right in a home designed for your lifestyle.*
 
 See available models: [/models](/models) and community details: [/communities/lehigh-acres](/communities/lehigh-acres).
 

@@ -28,8 +28,9 @@ Your tax refund can be the fastest way to unlock a new construction home. Hereâ€
 
 ## See it in action
 
-<!-- markdownlint-disable-next-line MD033 -->
-<iframe src="https://www.youtube.com/embed/oHg5SJYRHA0" title="How to use your tax refund for a home in Florida"></iframe>
+![New Construction Home in LaBelle, Florida](/modelos-optimized/aurora/exterior/aurora-exterior-01.webp)
+
+*Use your tax refund to secure a beautiful new construction home like this Aurora model in LaBelle, Florida. Our Rent-to-Own program makes it easy to use your refund as an option fee and start building equity immediately.*
 
 ## How much refund do you need?
 

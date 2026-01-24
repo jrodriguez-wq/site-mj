@@ -5,6 +5,9 @@ import { PageContent } from "@/components/layout/page-container";
 import { FileCheck, MapPin, Home, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/hooks/use-translation";
+import { LogoSlider } from "@/components/ui/logo-slider";
+import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { AnimatedSection } from "@/components/ui/animated-section";
 
 const iconMap = {
   "1": FileCheck,
@@ -91,6 +94,17 @@ export default function HomeBuyingGuidePage() {
           })}
         </div>
       </div>
+
+      {/* Partner Logos Slider */}
+      <AnimatedSection delay={200}>
+        <LogoSlider
+          logos={PARTNER_LOGOS}
+          speed="normal"
+          pauseOnHover={true}
+          showTitle={false}
+          variant="default"
+        />
+      </AnimatedSection>
     </PageContent>
   );
 }

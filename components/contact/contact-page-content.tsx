@@ -14,6 +14,8 @@ import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
+import { LogoSlider } from "@/components/ui/logo-slider";
+import { PARTNER_LOGOS } from "@/config/partner-logos";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 
@@ -400,6 +402,17 @@ export const ContactPageContent = () => {
           </div>
         </div>
         </section>
+      </AnimatedSection>
+
+      {/* Partner Logos Slider */}
+      <AnimatedSection delay={200}>
+        <LogoSlider
+          logos={PARTNER_LOGOS}
+          speed="normal"
+          pauseOnHover={true}
+          showTitle={false}
+          variant="default"
+        />
       </AnimatedSection>
     </div>
   );

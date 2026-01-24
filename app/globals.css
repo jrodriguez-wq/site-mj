@@ -362,6 +362,16 @@
     display: inline-flex;
   }
 
+  .animate-scroll-left-slow {
+    animation: scrollLeft 120s linear infinite;
+    display: inline-flex;
+  }
+
+  .animate-scroll-left-fast {
+    animation: scrollLeft 60s linear infinite;
+    display: inline-flex;
+  }
+
   /* Smooth transitions for interactive elements */
   .smooth-hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { LogoSlider } from "@/components/ui/logo-slider";
+import { PARTNER_LOGOS } from "@/config/partner-logos";
 
 const labelleImages = [
   "/recursos/shutterstock-1065297917.webp",
@@ -210,6 +212,17 @@ export default function LaBellePage() {
           community="labelle"
         />
         </div>
+      </AnimatedSection>
+
+      {/* Partner Logos Slider */}
+      <AnimatedSection delay={200}>
+        <LogoSlider
+          logos={PARTNER_LOGOS}
+          speed="normal"
+          pauseOnHover={true}
+          showTitle={false}
+          variant="default"
+        />
       </AnimatedSection>
     </div>
   );
