@@ -47,7 +47,7 @@ export const useScrollAnimation = (
  */
 export const useStaggerAnimation = (
   count: number,
-  delay: number = 100
+  delay: number = 50
 ): boolean[] => {
   const [visibleItems, setVisibleItems] = useState<boolean[]>(
     new Array(count).fill(false)
@@ -89,16 +89,16 @@ export const animationClasses = {
   // Scale animations
   scaleIn: "animate-scale-in",
   
-  // Hover effects
-  hoverLift: "hover-lift transition-all duration-300 ease-out",
+  // Hover effects - Optimizadas para ser más rápidas
+  hoverLift: "hover-lift transition-all duration-200 ease-out",
   smoothHover: "smooth-hover",
   
-  // Stagger delay utilities
-  stagger1: "opacity-0 animate-[fadeInUp_0.6s_ease-out_0.1s_forwards]",
-  stagger2: "opacity-0 animate-[fadeInUp_0.6s_ease-out_0.2s_forwards]",
-  stagger3: "opacity-0 animate-[fadeInUp_0.6s_ease-out_0.3s_forwards]",
-  stagger4: "opacity-0 animate-[fadeInUp_0.6s_ease-out_0.4s_forwards]",
-  stagger5: "opacity-0 animate-[fadeInUp_0.6s_ease-out_0.5s_forwards]",
+  // Stagger delay utilities - Optimizadas para ser más rápidas
+  stagger1: "opacity-1 animate-[fadeInUp_0.3s_ease-out_0.05s_forwards]",
+  stagger2: "opacity-1 animate-[fadeInUp_0.3s_ease-out_0.1s_forwards]",
+  stagger3: "opacity-1 animate-[fadeInUp_0.3s_ease-out_0.15s_forwards]",
+  stagger4: "opacity-1 animate-[fadeInUp_0.3s_ease-out_0.2s_forwards]",
+  stagger5: "opacity-1 animate-[fadeInUp_0.3s_ease-out_0.25s_forwards]",
 } as const;
 
 // AnimateOnScroll component moved to home-page-content.tsx to avoid JSX in .ts file

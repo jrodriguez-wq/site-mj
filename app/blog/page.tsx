@@ -30,7 +30,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <PageContent>
+    <PageContent size="xl">
       <div className="space-y-12 md:space-y-16">
         {/* Header Section */}
         <header className="text-center space-y-6">

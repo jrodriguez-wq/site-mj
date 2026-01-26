@@ -182,7 +182,7 @@ export const RTOGallery = () => {
                       src={src}
                       alt={`Familia feliz en RTO - ${index + 1}`}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
                       sizes="(max-width: 768px) 50vw, 33vw"
                       quality={85}
                     />

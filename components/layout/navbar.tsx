@@ -401,7 +401,7 @@ export const Navbar = () => {
                                 suppressHydrationWarning
                               >
                                 {/* Subtle background glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover/item:from-primary/10 group-hover/item:via-primary/5 group-hover/item:to-transparent transition-all duration-500 rounded-lg opacity-0 group-hover/item:opacity-100" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover/item:from-primary/10 group-hover/item:via-primary/5 group-hover/item:to-transparent transition-all duration-200 rounded-lg opacity-0 group-hover/item:opacity-100" />
                                 
                                 <div className="relative flex items-start justify-between gap-3">
                                   <div className="flex-1 space-y-1.5 min-w-0 pr-2">
@@ -471,7 +471,7 @@ export const Navbar = () => {
                 "rounded-xl border border-primary/20",
                 "relative overflow-hidden group/schedule",
                 "before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0",
-                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
+                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-300"
               )}
               size="default"
             >
@@ -501,7 +501,7 @@ export const Navbar = () => {
                 "rounded-xl border border-primary/20",
                 "relative overflow-hidden group/cta",
                 "before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0",
-                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
+                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-300"
               )}
               size="default"
             >

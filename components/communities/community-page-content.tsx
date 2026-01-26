@@ -372,7 +372,7 @@ const InteractiveGallery = ({
                     src={image}
                     alt={`${galleryTitle} - ${index + 1}`}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     quality={85}
                   />

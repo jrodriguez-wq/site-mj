@@ -17,23 +17,23 @@ export const AnimatedSection = ({
   direction = "up",
 }: AnimatedSectionProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px 100px 0px", amount: 0.1 });
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px", amount: 0.05 });
 
   const variants = {
     up: {
-      hidden: { opacity: 0, y: 60 },
+      hidden: { opacity: 0, y: 30 },
       visible: { opacity: 1, y: 0 },
     },
     down: {
-      hidden: { opacity: 0, y: -60 },
+      hidden: { opacity: 0, y: -30 },
       visible: { opacity: 1, y: 0 },
     },
     left: {
-      hidden: { opacity: 0, x: -60 },
+      hidden: { opacity: 0, x: -30 },
       visible: { opacity: 1, x: 0 },
     },
     right: {
-      hidden: { opacity: 0, x: 60 },
+      hidden: { opacity: 0, x: 30 },
       visible: { opacity: 1, x: 0 },
     },
     fade: {
@@ -46,21 +46,17 @@ export const AnimatedSection = ({
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      animate={isInView ? "visible" : "visible"}
       variants={variants[direction]}
       transition={{
-        duration: 0.6,
-        delay: delay / 1000, // Convert milliseconds to seconds for Framer Motion
-        ease: [0.16, 1, 0.3, 1], // Custom easing for smooth animations
+        duration: 0.3,
+        delay: delay / 1000,
+        ease: [0.25, 0.1, 0.25, 1],
       }}
       className={className}
-      // Asegurar que el contenido sea visible en SSR usando CSS
-      // Framer Motion renderiza el contenido en SSR, pero puede estar oculto por los estilos de animación
-      // Usamos una clase CSS para asegurar visibilidad en caso de que JavaScript no cargue
-      style={{ 
-        // Fallback: asegurar visibilidad si la animación no se aplica
-        // En SSR, framer-motion renderiza el contenido pero puede aplicar estilos de "hidden"
-        // Esta propiedad CSS asegura que el contenido sea visible incluso si JS falla
+      style={{
+        // Asegurar visibilidad del contenido por defecto
+        opacity: isInView ? undefined : 1,
       }}
     >
       {children}

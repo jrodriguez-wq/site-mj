@@ -117,7 +117,7 @@ export const HeroSlider = () => {
           <div
             key={index}
             className={cn(
-              "absolute inset-0 transition-opacity duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "absolute inset-0 transition-opacity duration-400 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
               index === currentIndex
                 ? "opacity-100 z-10"
                 : "opacity-0 z-0 pointer-events-none"
@@ -202,7 +202,7 @@ export const HeroSlider = () => {
                   <span
                     className={cn(
                       "block text-primary mt-1 sm:mt-2 font-black",
-                      "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      "transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
                       isTransitioning
                         ? "translate-x-4 opacity-0"
                         : "translate-x-0 opacity-100"
@@ -244,7 +244,7 @@ export const HeroSlider = () => {
               <div
                 className={cn(
                   "flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2",
-                  "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                  "transition-opacity duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
                   isTransitioning ? "opacity-0" : "opacity-100"
                 )}
                 style={{
@@ -398,7 +398,7 @@ export const HeroSlider = () => {
             key={index}
             onClick={() => handleSlideChange(index)}
             className={cn(
-              "h-1.5 sm:h-2 rounded-full transition-all duration-500 ease-out cursor-pointer",
+              "h-1.5 sm:h-2 rounded-full transition-all duration-200 ease-out cursor-pointer",
               "smooth-hover",
               index === currentIndex
                 ? "w-6 sm:w-8 bg-primary shadow-lg shadow-primary/50"

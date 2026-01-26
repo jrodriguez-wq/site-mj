@@ -500,7 +500,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
                     <span className="sm:hidden" suppressHydrationWarning>{displayViewMoreLabel}</span>
                     <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-150 flex-shrink-0" />
                   </span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-300" />
                 </Link>
               </Button>
             </div>
@@ -796,7 +796,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
                         {viewDetailsLabel}
                         <Maximize2 className="w-5 h-5 group-hover:scale-125 group-hover:rotate-90 transition-all duration-150" />
                       </span>
-                      <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+                      <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-300" />
                     </Link>
                   </Button>
                 </div>
