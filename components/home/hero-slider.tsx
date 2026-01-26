@@ -146,12 +146,12 @@ export const HeroSlider = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
       </div>
 
-      {/* Badge - Top Right Corner */}
-      <div className="absolute top-4 sm:top-6 md:top-8 lg:top-12 right-4 sm:right-6 md:right-8 lg:right-12 z-30 animate-fade-in">
+      {/* Badge - Mobile: Bottom Right, Desktop: Top Right */}
+      <div className="absolute bottom-20 sm:bottom-auto sm:top-6 md:top-8 lg:top-12 right-3 sm:right-6 md:right-8 lg:right-12 z-30 animate-fade-in">
         <Link
           href="/schedule-appointment"
           className={cn(
-            "relative w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto block",
+            "relative w-24 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto block",
             "cursor-pointer badge-3d-container"
           )}
           aria-label="Schedule your appointment - $0 Down Payment"
@@ -170,7 +170,7 @@ export const HeroSlider = () => {
       {/* Content */}
       <div className="relative z-20 w-full h-full flex items-center">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl pb-16 sm:pb-0">
             <div
               className={cn(
                 "space-y-6 sm:space-y-8",
@@ -184,8 +184,9 @@ export const HeroSlider = () => {
               {/* Title */}
               <h1
                 className={cn(
-                  "text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white",
+                  "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black tracking-tight leading-[0.95] sm:leading-[0.9] text-white",
                   "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  "pr-20 sm:pr-0", // Espacio para el badge en móvil
                   isTransitioning
                     ? "translate-y-4 opacity-0"
                     : "translate-y-0 opacity-100"
