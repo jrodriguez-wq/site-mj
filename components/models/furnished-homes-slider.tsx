@@ -75,11 +75,7 @@ export const FurnishedHomesSlider = () => {
     if (furnishedImages.length <= 1) return;
 
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % furnishedImages.length);
-        setIsTransitioning(false);
-      }, 500);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % furnishedImages.length);
     }, 6000); // Cambiar cada 6 segundos
 
     return () => clearInterval(interval);
