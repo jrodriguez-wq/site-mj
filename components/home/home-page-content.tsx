@@ -17,6 +17,7 @@ import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { FurnishedHomesSlider } from "@/components/models/furnished-homes-slider";
 
 export const HomePageContent = () => {
   // TranslationLoader en el layout maneja la carga de traducciones globalmente
@@ -37,6 +38,11 @@ export const HomePageContent = () => {
       {/* 3. Happy Families Gallery - Real families, real trust (builds confidence) */}
       <AnimatedSection delay={100}>
         <HappyFamiliesGallery />
+      </AnimatedSection>
+
+      {/* 3.5. Furnished Homes Slider - Showcase furnished models */}
+      <AnimatedSection delay={125}>
+        <FurnishedHomesSlider />
       </AnimatedSection>
 
       {/* 4. Home Models - Showcase available models immediately (main product) */}
