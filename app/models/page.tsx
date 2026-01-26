@@ -10,6 +10,7 @@ import { extractPrice } from "@/lib/models/model-utils";
 import { ModelData, Community } from "@/types/model";
 import { FilterState } from "@/components/models/model-filters";
 import { getModelsForCommunity } from "@/lib/models/model-pricing";
+import { FurnishedHomesSlider } from "@/components/models/furnished-homes-slider";
 
 // Lazy load heavy components
 const ModelCard = lazy(() => 
@@ -318,6 +319,9 @@ export default function ModelsPage() {
   return (
     <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 max-w-[1800px]">
+        {/* Furnished Homes Slider - Before Header */}
+        <FurnishedHomesSlider />
+
         {/* Header Section - All Screens */}
         <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10">
           <div className="text-center space-y-1.5 sm:space-y-2 md:space-y-3 mb-4 sm:mb-6 md:mb-8">

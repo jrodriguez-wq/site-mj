@@ -295,7 +295,13 @@
       "sortedBy": "Ordenado por precio: Menor a Mayor"
     },
     "noResults": "No se encontraron modelos que coincidan con tus filtros.",
-    "loading": "Cargando modelos..."
+    "loading": "Cargando modelos...",
+    "furnishedHomes": {
+      "title": "Casas Amobladas",
+      "subtitle": "Ve cómo se ven nuestros modelos cuando están completamente amoblados",
+      "model": "Modelo",
+      "viewModel": "Ver Modelo"
+    }
   },
   "homeModels": {
     "title": "Nuestros Modelos de Casas",
@@ -526,6 +532,7 @@
       "sections": {
         "inside": "Interior",
         "exterior": "Exterior",
+        "furnished": "Amobladas",
         "virtualTour": "Recorrido Virtual",
         "floorplan": "Plano",
         "standardFeatures": "Características Estándar"
@@ -533,6 +540,7 @@
       "sectionDescriptions": {
         "inside": "Explora los hermosos espacios interiores de este modelo",
         "exterior": "Ve el impresionante diseño exterior y arquitectura",
+        "furnished": "Ve cómo se ve este modelo cuando está completamente amoblado",
         "virtualTour": "Realiza un recorrido virtual de esta hermosa casa",
         "floorplan": "Ver el diseño detallado del plano",
         "standardFeatures": "Todas las características estándar incluidas en este modelo"

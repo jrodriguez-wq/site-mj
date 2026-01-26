@@ -13,21 +13,28 @@ import { ModelData } from "@/types/model";
 import { cn } from "@/lib/utils";
 import { SEO_CONFIG } from "@/config/seo";
 import { useTranslation } from "@/hooks/use-translation";
-import { MODEL_FLOORPLANS, getModelInteriorImages, getModelExteriorImages } from "@/lib/models/model-images";
+import { MODEL_FLOORPLANS, getModelInteriorImages, getModelExteriorImages, getModelAmoImages } from "@/lib/models/model-images";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { FloorplanMeasures } from "./floorplan-measures";
+
+const FURNISHED_EN = {
+  section: "Furnished",
+  description: "See how this model looks when fully furnished",
+} as const;
 
 interface ModelPageContentProps {
   modelData: ModelData & { images: string[] };
 }
 
 export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const isEn = language === "en";
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryImageIndex, setGalleryImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("inside");
   const [isFloorplanExpanded, setIsFloorplanExpanded] = useState(false);
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
 
   const { name, sqft, bedrooms, bathrooms, garage, price, rtoPrice, description, youtubeUrl, images, sections } = modelData;
   
@@ -49,7 +56,9 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
-  const openGallery = (index: number) => {
+  const openGallery = (index: number, imagesToShow?: string[]) => {
+    const imagesForGallery = imagesToShow || images;
+    setGalleryImages(imagesForGallery);
     setGalleryImageIndex(index);
     setIsGalleryOpen(true);
   };
@@ -60,12 +69,13 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
 
   const changeGalleryImage = useCallback((direction: number) => {
     setGalleryImageIndex((prev) => {
+      const imagesToUse = galleryImages.length > 0 ? galleryImages : images;
       const newIndex = prev + direction;
-      if (newIndex < 0) return images.length - 1;
-      if (newIndex >= images.length) return 0;
+      if (newIndex < 0) return imagesToUse.length - 1;
+      if (newIndex >= imagesToUse.length) return 0;
       return newIndex;
     });
-  }, [images.length]);
+  }, [images, galleryImages]);
 
   // Navegación con teclado en la galería
   useEffect(() => {
@@ -100,6 +110,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
   
   const exteriorImages = useMemo(() => {
     return getModelExteriorImages(modelData.key);
+  }, [modelData.key]);
+  
+  const amoImages = useMemo(() => {
+    return getModelAmoImages(modelData.key);
   }, [modelData.key]);
   
   // Función helper para encontrar el índice real de una imagen en el array completo
@@ -354,6 +368,15 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       {t("homeModels.modelPage.sections.exterior")}
                     </TabsTrigger>
                   )}
+                  {amoImages.length > 0 && (
+                    <TabsTrigger 
+                      value="furnished"
+                      className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
+                      suppressHydrationWarning
+                    >
+                      {isEn ? FURNISHED_EN.section : (t("homeModels.modelPage.sections.furnished") !== "homeModels.modelPage.sections.furnished" ? t("homeModels.modelPage.sections.furnished") : "Amobladas")}
+                    </TabsTrigger>
+                  )}
                   {sections.virtualTour && (
                     <TabsTrigger 
                       value="virtualTour"
@@ -398,8 +421,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     return (
                       <button
                         key={index}
-                        onClick={() => openGallery(realIndex)}
-                        onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex))}
+                        onClick={() => openGallery(realIndex, images)}
+                        onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex, images))}
                         className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
                         aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
                         type="button"
@@ -431,8 +454,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     return (
                       <button
                         key={index}
-                        onClick={() => openGallery(realIndex)}
-                        onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex))}
+                        onClick={() => openGallery(realIndex, images)}
+                        onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex, images))}
                         className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
                         aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
                         type="button"
@@ -440,6 +463,42 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                         <Image
                           src={image}
                           alt={`${modelName} exterior - ${index + 1}`}
+                          fill
+                          className="object-cover rounded-xl"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              </TabsContent>
+            )}
+
+            {/* Furnished Tab */}
+            {amoImages.length > 0 && (
+              <TabsContent value="furnished" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{isEn ? FURNISHED_EN.section : (t("homeModels.modelPage.sections.furnished") !== "homeModels.modelPage.sections.furnished" ? t("homeModels.modelPage.sections.furnished") : "Amobladas")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{isEn ? FURNISHED_EN.description : (t("homeModels.modelPage.sectionDescriptions.furnished") !== "homeModels.modelPage.sectionDescriptions.furnished" ? t("homeModels.modelPage.sectionDescriptions.furnished") : "Ve cómo se ve este modelo cuando está completamente amoblado")}</p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 px-2 sm:px-4 md:px-6">
+                  {amoImages.map((image, index) => {
+                    // Combinar todas las imágenes para la galería
+                    const allImagesForGallery = [...images, ...amoImages];
+                    const finalIndex = images.length + index;
+                    
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => openGallery(finalIndex, allImagesForGallery)}
+                        onKeyDown={(e) => handleKeyDown(e, () => openGallery(finalIndex, allImagesForGallery))}
+                        className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
+                        aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
+                        type="button"
+                      >
+                        <Image
+                          src={image}
+                          alt={`${modelName} furnished - ${index + 1}`}
                           fill
                           className="object-cover rounded-xl"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -703,9 +762,9 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
               <h2 className="text-base sm:text-lg font-semibold text-foreground">
                 {modelName}
               </h2>
-              {images.length > 1 && (
+              {(galleryImages.length > 0 ? galleryImages.length : images.length) > 1 && (
                 <span className="text-sm text-muted-foreground">
-                  {galleryImageIndex + 1} / {images.length}
+                  {galleryImageIndex + 1} / {galleryImages.length > 0 ? galleryImages.length : images.length}
                 </span>
               )}
             </div>
@@ -722,8 +781,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
           {/* Imagen Principal */}
           <div className="relative bg-muted h-[75vh] sm:h-[80vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-20 pb-20 sm:pb-24">
             <Image
-              src={images[galleryImageIndex]}
-              alt={`${modelName} - Image ${galleryImageIndex + 1} of ${images.length}`}
+              src={(galleryImages.length > 0 ? galleryImages : images)[galleryImageIndex]}
+              alt={`${modelName} - Image ${galleryImageIndex + 1} of ${galleryImages.length > 0 ? galleryImages.length : images.length}`}
               fill
               className="object-contain p-6 sm:p-8 md:p-10"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
@@ -731,7 +790,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             />
 
             {/* Navigation Arrows - Simplificados */}
-            {images.length > 1 && (
+            {(galleryImages.length > 0 ? galleryImages.length : images.length) > 1 && (
               <>
                 <button
                   onClick={() => changeGalleryImage(-1)}
@@ -756,10 +815,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
           </div>
 
           {/* Thumbnail Strip - Simplificado */}
-          {images.length > 1 && (
+          {(galleryImages.length > 0 ? galleryImages.length : images.length) > 1 && (
             <div className="absolute bottom-0 left-0 right-0 z-20 p-4 sm:p-5 bg-background/95 backdrop-blur-sm border-t border-border">
               <div className="flex gap-3 sm:gap-4 justify-center overflow-x-auto scrollbar-hide px-4 sm:px-6 scroll-smooth">
-                {images.map((img, index) => (
+                {(galleryImages.length > 0 ? galleryImages : images).map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setGalleryImageIndex(index)}

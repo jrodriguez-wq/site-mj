@@ -295,7 +295,13 @@
       "sortedBy": "Sorted by price: Low to High"
     },
     "noResults": "No models found matching your filters.",
-    "loading": "Loading models..."
+    "loading": "Loading models...",
+    "furnishedHomes": {
+      "title": "Furnished Homes",
+      "subtitle": "See how our models look when fully furnished",
+      "model": "Model",
+      "viewModel": "View Model"
+    }
   },
   "homeModels": {
     "title": "Our Models",
@@ -526,6 +532,7 @@
       "sections": {
         "inside": "Inside",
         "exterior": "Exterior",
+        "furnished": "Furnished",
         "virtualTour": "Virtual tour",
         "floorplan": "Floorplan",
         "standardFeatures": "Standard Features"
@@ -533,6 +540,7 @@
       "sectionDescriptions": {
         "inside": "Explore the beautiful interior spaces of this model",
         "exterior": "See the stunning exterior design and architecture",
+        "furnished": "See how this model looks when fully furnished",
         "virtualTour": "Take a virtual walkthrough of this beautiful home",
         "floorplan": "View the detailed floor plan layout",
         "standardFeatures": "All the standard features included in this model"

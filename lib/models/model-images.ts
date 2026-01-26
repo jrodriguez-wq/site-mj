@@ -39,29 +39,17 @@ export const MODEL_INTERIOR_IMAGES: Record<string, string[]> = {
     `/modelos-optimized/louisiana/interior/louisiana-interior-19.webp`,
     `/modelos-optimized/louisiana/interior/louisiana-interior-20.webp`,
     `/modelos-optimized/louisiana/interior/louisiana-interior-21.webp`,
-    `/modelos-optimized/louisiana/interior/louisiana-interior-22.webp`,
     `/modelos-optimized/louisiana/interior/louisiana-interior-23.webp`,
     `/modelos-optimized/louisiana/interior/louisiana-interior-24.webp`,
-    `/modelos-optimized/louisiana/interior/louisiana-interior-25.webp`,
     `/modelos-optimized/louisiana/interior/louisiana-interior-26.webp`,
     `/modelos-optimized/louisiana/interior/louisiana-interior-27.webp`,
     `/modelos-optimized/louisiana/interior/louisiana-interior-28.webp`,
-    `/modelos-optimized/louisiana/interior/louisiana-interior-29.webp`,
-    `/modelos-optimized/louisiana/interior/louisiana-interior-30.webp`,
   ],
   viana: [
     `/modelos-optimized/viana/interior/viana-interior-01.webp`,
     `/modelos-optimized/viana/interior/viana-interior-02.webp`,
     `/modelos-optimized/viana/interior/viana-interior-03.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-04.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-05.webp`,
     `/modelos-optimized/viana/interior/viana-interior-06.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-07.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-08.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-09.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-10.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-11.webp`,
-    `/modelos-optimized/viana/interior/viana-interior-12.webp`,
     `/modelos-optimized/viana/interior/viana-interior-13.webp`,
     `/modelos-optimized/viana/interior/viana-interior-14.webp`,
     `/modelos-optimized/viana/interior/viana-interior-15.webp`,
@@ -98,13 +86,7 @@ export const MODEL_INTERIOR_IMAGES: Record<string, string[]> = {
   aurora: [
     `/modelos-optimized/aurora/interior/aurora-interior-01.webp`,
     `/modelos-optimized/aurora/interior/aurora-interior-02.webp`,
-    `/modelos-optimized/aurora/interior/aurora-interior-03.webp`,
-    `/modelos-optimized/aurora/interior/aurora-interior-04.webp`,
-    `/modelos-optimized/aurora/interior/aurora-interior-05.webp`,
     `/modelos-optimized/aurora/interior/aurora-interior-06.webp`,
-    `/modelos-optimized/aurora/interior/aurora-interior-07.webp`,
-    `/modelos-optimized/aurora/interior/aurora-interior-08.webp`,
-    `/modelos-optimized/aurora/interior/aurora-interior-09.webp`,
     `/modelos-optimized/aurora/interior/aurora-interior-10.webp`,
     `/modelos-optimized/aurora/interior/aurora-interior-11.webp`,
     `/modelos-optimized/aurora/interior/aurora-interior-12.webp`,
@@ -243,6 +225,14 @@ export const MODEL_EXTERIOR_IMAGES: Record<string, string[]> = {
   ],
 };
 
+
+/**
+ * Obtiene solo las imágenes amobladas de un modelo
+ */
+export const getModelAmoImages = (modelKey: string): string[] => {
+  return MODEL_AMO_IMAGES[modelKey.toLowerCase()] || [];
+};
+
 /**
  * Obtiene todas las imágenes de un modelo (principal + interior + exterior)
  */
@@ -294,4 +284,54 @@ export const MODEL_FLOORPLANS: Record<string, string> = {
   emelia: "/modelos-optimized/planos/emelia-floorplan.webp",
   duplex: "/modelos-optimized/planos/duplex-floorplan.webp",
   delanie: "/modelos-optimized/planos/delanie-floorplan.webp",
+};
+
+// Imágenes amobladas para cada modelo
+export const MODEL_AMO_IMAGES: Record<string, string[]> = {
+  louisiana: [
+    `/modelos-optimized/louisiana/amo/louisiana-amo-01.webp`,
+    `/modelos-optimized/louisiana/amo/louisiana-amo-02.webp`,
+    `/modelos-optimized/louisiana/amo/louisiana-amo-03.webp`,
+    `/modelos-optimized/louisiana/amo/louisiana-amo-04.webp`,
+    `/modelos-optimized/louisiana/amo/louisiana-amo-05.webp`,
+  ],
+  viana: [
+    `/modelos-optimized/viana/amo/viana-amo-01.webp`,
+    `/modelos-optimized/viana/amo/viana-amo-02.webp`,
+    `/modelos-optimized/viana/amo/viana-amo-03.webp`,
+    `/modelos-optimized/viana/amo/viana-amo-04.webp`,
+    `/modelos-optimized/viana/amo/viana-amo-05.webp`,
+    `/modelos-optimized/viana/amo/viana-amo-06.webp`,
+    `/modelos-optimized/viana/amo/viana-amo-07.webp`,
+  ],
+  delanie: [
+    `/modelos-optimized/delanie/amo/delanie-amo-01.webp`,
+    `/modelos-optimized/delanie/amo/delanie-amo-02.webp`,
+    `/modelos-optimized/delanie/amo/delanie-amo-03.webp`,
+    `/modelos-optimized/delanie/amo/delanie-amo-04.webp`,
+  ],
+  aurora: [
+    `/modelos-optimized/aurora/amo/aurora-amo-01.webp`,
+    `/modelos-optimized/aurora/amo/aurora-amo-02.webp`,
+    `/modelos-optimized/aurora/amo/aurora-amo-03.webp`,
+  ],
+  langdon: [
+    `/modelos-optimized/langdon/amo/langdon-amo-01.webp`,
+    `/modelos-optimized/langdon/amo/langdon-amo-02.webp`,
+    `/modelos-optimized/langdon/amo/langdon-amo-03.webp`,
+    `/modelos-optimized/langdon/amo/langdon-amo-04.webp`,
+  ],
+  emelia: [
+    `/modelos-optimized/emelia/amo/emelia-amo-01.webp`,
+    `/modelos-optimized/emelia/amo/emelia-amo-02.webp`,
+    `/modelos-optimized/emelia/amo/emelia-amo-03.webp`,
+    `/modelos-optimized/emelia/amo/emelia-amo-04.webp`,
+    `/modelos-optimized/emelia/amo/emelia-amo-05.webp`,
+    `/modelos-optimized/emelia/amo/emelia-amo-06.webp`,
+  ],
+  duplex: [
+    `/modelos-optimized/duplex/amo/duplex-amo-01.webp`,
+    `/modelos-optimized/duplex/amo/duplex-amo-02.webp`,
+    `/modelos-optimized/duplex/amo/duplex-amo-03.webp`,
+  ],
 };

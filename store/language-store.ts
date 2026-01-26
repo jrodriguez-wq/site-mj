@@ -137,7 +137,7 @@ const getTranslation = (translations: Translations, key: string): string => {
  * Versión del schema de traducciones - incrementar cuando cambie la estructura
  * Esto permite invalidar cache antiguo automáticamente
  */
-const TRANSLATIONS_VERSION = "2.1.0";
+const TRANSLATIONS_VERSION = "2.2.0";
 
 /**
  * Claves esenciales que deben existir en las traducciones
