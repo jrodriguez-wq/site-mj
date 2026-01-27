@@ -923,8 +923,13 @@
       "description": "Cada familia tiene su propio camino hacia su sueño. Agentes con la mayor experiencia se preparan todos los días para brindarte el apoyo más preciso.",
       "juliana": {
         "name": "Juliana Bonilla",
-        "role": "Administrativa y Ventas",
-        "description": "Juliana Bonilla aporta experiencia en administración y ventas, asegurando operaciones fluidas y un excelente servicio al cliente. Está dedicada a ayudar a las familias a encontrar su casa soñada."
+        "role": "Accionista Principal, Socia y Líder Financiera",
+        "description": "Juliana Bonilla es accionista principal, socia y líder financiera de M.J. Newell Homes. Aporta visión estratégica y excelencia operativa a cada decisión, asegurando que nuestras finanzas y operaciones diarias estén alineadas con nuestra misión de servir a las familias. Juliana se dedica a construir valor perdurable—tanto para nuestra empresa como para las familias a las que ayudamos a hacer de una casa su hogar."
+      },
+      "nader": {
+        "name": "Nader Hack",
+        "role": "COO — Operaciones y Finanzas",
+        "description": "Nader Hack se desempeña como Director de Operaciones, supervisando operaciones y finanzas en M.J. Newell Homes. Con un enfoque disciplinado y amplia experiencia en la gestión financiera, asegura que la compañía opere con precisión e integridad. Nader está comprometido con impulsar un crecimiento sostenible manteniendo el foco en ayudar a las familias a alcanzar la propiedad de su vivienda."
       }
     },
     "responseTimes": {

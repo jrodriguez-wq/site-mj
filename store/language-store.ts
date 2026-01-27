@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { APP_VERSION } from "@/config/version";
 
 type Language = "en" | "es";
 type Translations = Record<string, unknown>;
@@ -134,10 +135,10 @@ const getTranslation = (translations: Translations, key: string): string => {
 };
 
 /**
- * Versión del schema de traducciones - incrementar cuando cambie la estructura
- * Esto permite invalidar cache antiguo automáticamente
+ * Usa la misma versión que CacheBuster para invalidar traducciones
+ * cuando se actualiza el sitio. Definida en @/config/version.
  */
-const TRANSLATIONS_VERSION = "2.2.0";
+const TRANSLATIONS_VERSION = APP_VERSION;
 
 /**
  * Claves esenciales que deben existir en las traducciones

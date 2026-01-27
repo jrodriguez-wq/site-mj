@@ -24,8 +24,45 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
 
+const TEAM_FALLBACKS_EN = {
+  title: "Leadership Team",
+  subtitle: "360-degree support for your dreams",
+  juliana: {
+    name: "Juliana Bonilla",
+    role: "Principal Shareholder, Partner & Financial Leader",
+    description: "Juliana Bonilla is a principal shareholder, partner, and financial leader at M.J. Newell Homes. She brings strategic vision and operational excellence to every decision, ensuring our finances and day-to-day operations align with our mission to serve families. Juliana is dedicated to building lasting value—both for our company and for the families we help call a house their home.",
+  },
+  nader: {
+    name: "Nader Hack",
+    role: "COO — Operations & Finance",
+    description: "Nader Hack serves as Chief Operating Officer, overseeing operations and finance at M.J. Newell Homes. With a disciplined approach and deep expertise in financial stewardship, he ensures our company runs with precision and integrity. Nader is committed to building sustainable growth while keeping our focus on helping families achieve homeownership.",
+  },
+} as const;
+
+const TEAM_FALLBACKS_ES = {
+  title: "Equipo de Liderazgo",
+  subtitle: "Apoyo 360 grados para tus sueños",
+  juliana: {
+    name: "Juliana Bonilla",
+    role: "Accionista Principal, Socia y Líder Financiera",
+    description: "Juliana Bonilla es accionista principal, socia y líder financiera de M.J. Newell Homes. Aporta visión estratégica y excelencia operativa a cada decisión, asegurando que nuestras finanzas y operaciones diarias estén alineadas con nuestra misión de servir a las familias. Juliana se dedica a construir valor perdurable—tanto para nuestra empresa como para las familias a las que ayudamos a hacer de una casa su hogar.",
+  },
+  nader: {
+    name: "Nader Hack",
+    role: "COO — Operaciones y Finanzas",
+    description: "Nader Hack se desempeña como Director de Operaciones, supervisando operaciones y finanzas en M.J. Newell Homes. Con un enfoque disciplinado y amplia experiencia en la gestión financiera, asegura que la compañía opere con precisión e integridad. Nader está comprometido con impulsar un crecimiento sostenible manteniendo el foco en ayudar a las familias a alcanzar la propiedad de su vivienda.",
+  },
+} as const;
+
 export default function AboutUsPage() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const isEn = language === "en";
+  const fb = isEn ? TEAM_FALLBACKS_EN : TEAM_FALLBACKS_ES;
+
+  const safeT = (key: string, fallback: string) => {
+    const v = t(key);
+    return v && v !== key ? v : fallback;
+  };
 
   const stats = [
     {
@@ -406,22 +443,22 @@ export default function AboutUsPage() {
         </section>
       </AnimatedSection>
 
-      {/* Team Section - Michael & Juliana */}
+      {/* Team Section - Michael, Juliana & Nader */}
       <AnimatedSection delay={0.1}>
         <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {t("aboutUs.team.title") || "Leadership Team"}
+                {safeT("aboutUs.team.title", fb.title)}
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-                {t("aboutUs.team.subtitle") || "360-degree support for your dreams"}
+                {safeT("aboutUs.team.subtitle", fb.subtitle)}
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {/* Michael J. Newell */}
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
@@ -430,7 +467,7 @@ export default function AboutUsPage() {
                     alt="Michael J. Newell - Founder & CEO"
                     fill
                     className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     priority
                   />
                 </div>
@@ -454,23 +491,49 @@ export default function AboutUsPage() {
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
                     src="/img/juliana.webp"
-                    alt="Juliana Bonilla - Administrative & Sales"
+                    alt={`${safeT("aboutUs.team.juliana.name", fb.juliana.name)} — ${safeT("aboutUs.team.juliana.role", fb.juliana.role)}`}
                     fill
                     className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
                 <div className="space-y-3 sm:space-y-4">
                   <div>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                      {t("aboutUs.team.juliana.name") || "Juliana Bonilla"}
+                      {safeT("aboutUs.team.juliana.name", fb.juliana.name)}
                     </h3>
                     <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
-                      {t("aboutUs.team.juliana.role") || "Administrative & Sales"}
+                      {safeT("aboutUs.team.juliana.role", fb.juliana.role)}
                     </p>
                   </div>
                   <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {t("aboutUs.team.juliana.description") || "Juliana Bonilla brings expertise in administration and sales, ensuring smooth operations and excellent customer service. She is dedicated to helping families find their dream home."}
+                    {safeT("aboutUs.team.juliana.description", fb.juliana.description)}
+                  </p>
+                </div>
+              </div>
+
+              {/* Nader Hack */}
+              <div className="space-y-6">
+                <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
+                  <Image
+                    src="/img/nader.jpg"
+                    alt={`${safeT("aboutUs.team.nader.name", fb.nader.name)} — ${safeT("aboutUs.team.nader.role", fb.nader.role)}`}
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="space-y-3 sm:space-y-4">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
+                      {safeT("aboutUs.team.nader.name", fb.nader.name)}
+                    </h3>
+                    <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
+                      {safeT("aboutUs.team.nader.role", fb.nader.role)}
+                    </p>
+                  </div>
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                    {safeT("aboutUs.team.nader.description", fb.nader.description)}
                   </p>
                 </div>
               </div>
