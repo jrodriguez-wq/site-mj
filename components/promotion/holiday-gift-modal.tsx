@@ -37,8 +37,8 @@ const GiftBox = ({
       onClick={onClick}
       disabled={disabled}
       className={`
-        relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32
-        min-w-[64px] min-h-[64px]
+        relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
+        min-w-[48px] min-h-[48px]
         transition-all duration-300 
         touch-manipulation
         ${!disabled && !isOpen ? "hover:scale-110 active:scale-95 cursor-pointer" : "cursor-default"}
@@ -126,7 +126,7 @@ const GiantGift = ({
   }, [isOpen, onAnimationComplete]);
 
   return (
-    <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64">
+    <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36">
       {/* Sombra */}
       <div 
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-black/40 rounded-[50%] blur-md"
@@ -148,9 +148,9 @@ const GiantGift = ({
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-cyan-500/20 rounded-full blur-2xl animate-pulse" />
             
             {/* Círculo de fondo con gradiente elegante */}
-            <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 shadow-2xl border-2 border-white/50 backdrop-blur-sm">
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 shadow-2xl border-2 border-white/50 backdrop-blur-sm">
               {/* Icono de casa profesional */}
-              <Home className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-22 lg:h-22 text-emerald-600 drop-shadow-lg" strokeWidth={2} />
+              <Home className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-emerald-600 drop-shadow-lg" strokeWidth={2} />
               
               {/* Iconos decorativos pequeños */}
               <div className="absolute -top-2 -right-2">
@@ -170,15 +170,15 @@ const GiantGift = ({
             <div className="absolute top-1/2 -left-3 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse shadow-lg shadow-cyan-400/50" style={{ animationDelay: '1s' }} />
           </div>
           
-          {/* Texto promocional destacado - Mobile-first con mejor tipografía */}
-          <div className="text-center space-y-2 sm:space-y-2.5 md:space-y-3 px-2">
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8),0_0_20px_rgba(16,185,129,0.6)] leading-tight">
+          {/* Texto promocional destacado - Compacto */}
+          <div className="text-center space-y-1 sm:space-y-1.5 px-1">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8),0_0_20px_rgba(16,185,129,0.6)] leading-tight">
               50% OFF
             </p>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-emerald-100 drop-shadow-md leading-tight">
+            <p className="text-xs sm:text-sm md:text-base font-semibold text-emerald-100 drop-shadow-md leading-tight">
               Your Moving Cost
             </p>
-            <p className="text-xs sm:text-sm md:text-base text-white/80 drop-shadow-sm mt-1 font-medium">
+            <p className="text-[10px] sm:text-xs text-white/80 drop-shadow-sm font-medium">
               Your dream home awaits
             </p>
           </div>
@@ -295,12 +295,12 @@ export const HolidayGiftModal = ({
   return (
     <div className="relative w-full h-full bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 rounded-2xl overflow-hidden">
 
-      {/* Contenido principal - Mobile-first optimizado */}
-      <div className="relative z-20 flex flex-col h-full p-2.5 sm:p-4 md:p-6 lg:p-8">
-        {/* Título - Mobile-first responsive con diseño profesional */}
-        <div className="text-center mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+      {/* Contenido principal - Compacto para evitar corte en desktop */}
+      <div className="relative z-20 flex flex-col h-full p-2 sm:p-3 md:p-4 lg:p-4">
+        {/* Título - Tamaños reducidos */}
+        <div className="text-center mb-2 sm:mb-3 md:mb-3">
           <h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
+            className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
             style={{
               textShadow: "0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.3), 0 4px 12px rgba(0,0,0,0.6)",
               letterSpacing: "-0.02em",
@@ -310,10 +310,10 @@ export const HolidayGiftModal = ({
           </h2>
         </div>
 
-        {/* Área de regalos - Mobile-first */}
+        {/* Área de regalos - Compacta */}
         <div className="flex-1 flex items-center justify-center min-h-0">
           {variant === "three-gifts" ? (
-            <div className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-3 lg:gap-5 xl:gap-8 flex-wrap">
+            <div className="flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-3 flex-wrap">
               {positions.map((originalIndex, displayIndex) => (
                 <div
                   key={originalIndex}
@@ -337,8 +337,8 @@ export const HolidayGiftModal = ({
           )}
         </div>
 
-        {/* Botón - Mobile-first con tamaño táctil */}
-        <div className="flex justify-center pt-2 sm:pt-3 md:pt-4 w-full px-2">
+        {/* Botón - Compacto */}
+        <div className="flex justify-center pt-1.5 sm:pt-2 md:pt-2 w-full px-1">
             <Button
               asChild
               size="lg"
@@ -346,15 +346,15 @@ export const HolidayGiftModal = ({
                 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700
                 hover:from-emerald-700 hover:via-emerald-800 hover:to-teal-800
                 active:scale-95
-                text-white font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base
-                px-5 sm:px-7 md:px-9 lg:px-12 
-                py-2.5 sm:py-3 md:py-4 lg:py-5
-                min-h-[44px] sm:min-h-[48px]
-                rounded-xl shadow-xl shadow-emerald-500/20
+                text-white font-semibold text-[11px] sm:text-xs md:text-sm
+                px-4 sm:px-5 md:px-6
+                py-2 sm:py-2.5 md:py-3
+                min-h-[40px] sm:min-h-[44px]
+                rounded-lg shadow-xl shadow-emerald-500/20
                 hover:shadow-emerald-500/40 hover:scale-105
                 transition-all duration-300
                 border border-emerald-400/30
-                w-full max-w-[280px] sm:max-w-none
+                w-full max-w-[240px] sm:max-w-[260px]
                 touch-manipulation
               "
             >
@@ -368,20 +368,19 @@ export const HolidayGiftModal = ({
       {/* Overlay de premio (para three-gifts) - Mobile-first */}
       {showPrize && variant === "three-gifts" && (
         <div className="absolute inset-0 z-[170] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in p-2">
-          <div className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-slate-800 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 shadow-2xl border border-emerald-400/30 animate-prizeIn max-w-[92%] sm:max-w-md w-full backdrop-blur-sm" style={{
+          <div className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-slate-800 rounded-xl p-3 sm:p-4 md:p-4 shadow-2xl border border-emerald-400/30 animate-prizeIn max-w-[92%] sm:max-w-xs w-full backdrop-blur-sm" style={{
             boxShadow: '0 0 40px rgba(16, 185, 129, 0.6), 0 0 80px rgba(16, 185, 129, 0.4), 0 0 120px rgba(16, 185, 129, 0.2), 0 20px 60px rgba(0,0,0,0.5)',
           }}>
-            <div className="text-center space-y-2 sm:space-y-2.5 md:space-y-3 lg:space-y-4">
-              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-1.5 sm:mb-2 md:mb-3">🎉</p>
-              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-1.5 sm:mb-2 md:mb-2.5 leading-tight" style={{
+            <div className="text-center space-y-1.5 sm:space-y-2">
+              <p className="text-xl sm:text-2xl md:text-2xl mb-1">🎉</p>
+              <h3 className="text-sm sm:text-base md:text-lg font-bold text-white mb-1 leading-tight" style={{
                 textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(16, 185, 129, 0.6), 2px 2px 8px rgba(0,0,0,0.5)',
               }}>
                 You Won!
               </h3>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-emerald-100 mb-3 sm:mb-4 md:mb-6 leading-tight drop-shadow-md">
+              <p className="text-xs sm:text-sm md:text-base font-semibold text-emerald-100 mb-2 leading-tight drop-shadow-md">
                 50% Off Your Moving Cost
               </p>
-              {/* Botón de agendar cita - Mobile-first */}
               <div className="w-full px-1">
                 <Button
                   asChild
@@ -391,15 +390,15 @@ export const HolidayGiftModal = ({
                     bg-gradient-to-r from-white via-emerald-50 to-white
                     hover:from-emerald-50 hover:via-emerald-100 hover:to-emerald-50
                     active:scale-95
-                    text-emerald-900 font-semibold text-[11px] sm:text-xs md:text-sm lg:text-base
-                    px-5 sm:px-7 md:px-9 lg:px-12 
-                    py-2.5 sm:py-3 md:py-4 lg:py-5
-                    min-h-[44px] sm:min-h-[48px]
-                    rounded-xl shadow-2xl shadow-emerald-500/30
+                    text-emerald-900 font-semibold text-[11px] sm:text-xs md:text-sm
+                    px-4 sm:px-5 md:px-6
+                    py-2 sm:py-2.5 md:py-3
+                    min-h-[40px] sm:min-h-[44px]
+                    rounded-lg shadow-2xl shadow-emerald-500/30
                     hover:shadow-emerald-500/50 hover:scale-105
                     transition-all duration-300
                     border border-emerald-200/50
-                    w-full max-w-[260px] sm:max-w-none
+                    w-full max-w-[220px] sm:max-w-[240px]
                     touch-manipulation
                   "
                 >

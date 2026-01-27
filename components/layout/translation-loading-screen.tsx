@@ -9,83 +9,109 @@ interface TranslationLoadingScreenProps {
   hasValidTranslations: boolean;
 }
 
-export function TranslationLoadingScreen({ 
-  isLoading, 
-  hasValidTranslations 
+/** Retraso antes de mostrar el loader para dar tiempo a rehidratar desde localStorage */
+const SHOW_DELAY_MS = 120;
+
+export function TranslationLoadingScreen({
+  isLoading,
+  hasValidTranslations,
 }: TranslationLoadingScreenProps) {
-  // Mostrar pantalla de carga si está cargando O no hay traducciones válidas
-  const shouldShow = isLoading || !hasValidTranslations;
+  const shouldNeedLoad = isLoading || !hasValidTranslations;
+  const [canShow, setCanShow] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
-  const prevShouldShowRef = useRef(shouldShow);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const prevShouldShowRef = useRef(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const showDelayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Solo mostrar tras un breve delay: si ya hay traducciones en cache, no mostramos nada
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if (shouldNeedLoad && !canShow) {
+      showDelayRef.current = setTimeout(() => {
+        setCanShow(true);
+      }, SHOW_DELAY_MS);
+    } else {
+      if (showDelayRef.current) {
+        clearTimeout(showDelayRef.current);
+        showDelayRef.current = null;
+      }
+    }
+
+    return () => {
+      if (showDelayRef.current) {
+        clearTimeout(showDelayRef.current);
+        showDelayRef.current = null;
+      }
+    };
+  }, [shouldNeedLoad, canShow]);
 
   useEffect(() => {
-    // Limpiar timeout anterior si existe
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
 
-    const prevShouldShow = prevShouldShowRef.current;
-    
-    // Si cambió de mostrar a ocultar, iniciar animación de salida
-    if (prevShouldShow && !shouldShow) {
-      // Usar requestAnimationFrame para evitar setState síncrono en efecto
+    const prev = prevShouldShowRef.current;
+    const actuallyShowing = shouldNeedLoad && canShow;
+
+    if (prev && !actuallyShowing) {
       requestAnimationFrame(() => {
         setIsExiting(true);
         timeoutRef.current = setTimeout(() => {
           setIsExiting(false);
-        }, 500);
+        }, 400);
       });
-    } else if (!prevShouldShow && shouldShow) {
-      // Si cambió de ocultar a mostrar, cancelar animación de salida
-      requestAnimationFrame(() => {
-        setIsExiting(false);
-      });
+    } else if (!prev && actuallyShowing) {
+      requestAnimationFrame(() => setIsExiting(false));
     }
 
-    prevShouldShowRef.current = shouldShow;
+    prevShouldShowRef.current = actuallyShowing;
 
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [shouldShow]);
+  }, [shouldNeedLoad, canShow]);
 
-  // No mostrar si no debe mostrarse y ya terminó la animación de salida
-  if (!shouldShow && !isExiting) {
-    return null;
-  }
+  const visible = (shouldNeedLoad && canShow) || isExiting;
+  if (!visible) return null;
 
   return (
     <div
       className={cn(
-        "fixed inset-0 z-[9999] flex items-center justify-center",
-        "bg-background/95 backdrop-blur-sm",
-        "transition-all duration-500 ease-out",
-        isExiting 
-          ? "opacity-0 pointer-events-none scale-95" 
-          : "opacity-100 scale-100"
+        "fixed inset-0 z-[9999] flex flex-col items-center justify-center",
+        "bg-white dark:bg-slate-950",
+        "transition-all duration-400 ease-out",
+        isExiting
+          ? "opacity-0 pointer-events-none"
+          : "opacity-100"
       )}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading M.J. Newell Homes"
     >
-      <div className="flex flex-col items-center justify-center space-y-12 px-4">
-        {/* Logo */}
-        <div className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56">
+      <div className="flex flex-col items-center justify-center gap-8 px-4">
+        {/* Logo M.J. Newell Homes */}
+        <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 flex-shrink-0">
           <Image
             src="/img/logo.svg"
             alt="M.J. Newell Homes"
             fill
             className="object-contain"
             priority
+            sizes="(max-width: 640px) 112px, (max-width: 768px) 128px, 144px"
           />
         </div>
 
-        {/* Modern loading dots */}
-        <div className="flex flex-row gap-2">
-          <div className="w-4 h-4 rounded-full bg-primary animate-bounce [animation-delay:0ms]" />
-          <div className="w-4 h-4 rounded-full bg-primary animate-bounce [animation-delay:150ms]" />
-          <div className="w-4 h-4 rounded-full bg-primary animate-bounce [animation-delay:300ms]" />
+        {/* Spinner + texto */}
+        <div className="flex flex-col items-center gap-4">
+          <div
+            className="h-8 w-8 sm:h-9 sm:w-9 rounded-full border-2 border-slate-200 dark:border-slate-700 border-t-primary animate-spin"
+            aria-hidden
+          />
+          <span className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
+            Loading…
+          </span>
         </div>
       </div>
     </div>
