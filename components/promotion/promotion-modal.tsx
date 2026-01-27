@@ -70,11 +70,11 @@ export const PromotionModal = memo(() => {
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent
         className={cn(
-          // Tamaño compacto: evita corte en desktop y mejora UX/rendimiento
-          "w-[92vw] sm:w-[85vw] md:w-[75vw] lg:w-[400px] xl:w-[420px]",
-          "max-w-[340px] sm:max-w-[380px] md:max-w-[400px] lg:max-w-[400px] xl:max-w-[420px]",
-          "h-auto max-h-[90vh] sm:max-h-[88vh] md:max-h-[85vh] lg:max-h-[78vh]",
-          "min-h-[280px] sm:min-h-[300px] md:min-h-[320px] lg:min-h-[340px]",
+          // Tamaño equilibrado: no se corta en desktop, interior proporcional
+          "w-[92vw] sm:w-[88vw] md:w-[420px] lg:w-[440px] xl:w-[460px]",
+          "max-w-[360px] sm:max-w-[400px] md:max-w-[420px] lg:max-w-[440px] xl:max-w-[460px]",
+          "h-auto max-h-[90vh] sm:max-h-[88vh] md:max-h-[85vh] lg:max-h-[82vh]",
+          "min-h-[300px] sm:min-h-[320px] md:min-h-[340px] lg:min-h-[360px]",
           // Posicionamiento
           "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
           // Z-index para estar por encima del navbar
@@ -103,7 +103,7 @@ export const PromotionModal = memo(() => {
         </DialogDescription>
 
         {/* Contenido del modal */}
-        <div className="w-full h-full min-h-[280px] sm:min-h-[300px] md:min-h-[320px] lg:min-h-[340px] overflow-hidden rounded-xl sm:rounded-2xl relative">
+        <div className="w-full h-full min-h-[300px] sm:min-h-[320px] md:min-h-[340px] lg:min-h-[360px] overflow-hidden rounded-xl sm:rounded-2xl relative">
           {modalType === "gift" ? (
             <HolidayGiftModal onClose={handleClose} variant={giftVariant} />
           ) : (

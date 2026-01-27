@@ -37,8 +37,8 @@ const GiftBox = ({
       onClick={onClick}
       disabled={disabled}
       className={`
-        relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20
-        min-w-[48px] min-h-[48px]
+        relative w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16
+        min-w-[44px] min-h-[44px]
         transition-all duration-300 
         touch-manipulation
         ${!disabled && !isOpen ? "hover:scale-110 active:scale-95 cursor-pointer" : "cursor-default"}
@@ -48,9 +48,9 @@ const GiftBox = ({
         animationDelay: `${index * 0.15}s`,
       }}
     >
-      {/* Sombra del regalo */}
+      {/* Sombra del regalo - proporcional al tamaño */}
       <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-4 bg-black/30 rounded-[50%] blur-sm"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-2.5 bg-black/30 rounded-[50%] blur-sm"
         style={{
           transform: isOpen ? "translateX(-50%) scale(0.5)" : "translateX(-50%) scale(1)",
           opacity: isOpen ? 0 : 0.5,
@@ -72,11 +72,11 @@ const GiftBox = ({
         }}
       >
         {/* Cinta vertical */}
-        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-4 h-full bg-gradient-to-b ${color.ribbon}`} />
+        <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-full bg-gradient-to-b ${color.ribbon}`} />
         {/* Cinta horizontal */}
-        <div className={`absolute top-1/2 left-0 -translate-y-1/2 w-full h-4 bg-gradient-to-r ${color.ribbon}`} />
+        <div className={`absolute top-1/2 left-0 -translate-y-1/2 w-full h-2.5 bg-gradient-to-r ${color.ribbon}`} />
         {/* Brillo */}
-        <div className="absolute top-2 left-2 w-6 h-6 bg-white/25 rounded-full blur-sm" />
+        <div className="absolute top-1 left-1 w-4 h-4 bg-white/25 rounded-full blur-sm" />
       </div>
 
       {/* Tapa del regalo */}
@@ -93,13 +93,12 @@ const GiftBox = ({
           transition: "all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)",
         }}
       >
-        {/* Lazo superior */}
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex gap-1">
-          <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${color.ribbon} rotate-[-20deg]`} />
-          <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${color.ribbon} rotate-[20deg]`} />
+        {/* Lazo superior - proporcional */}
+        <div className="absolute -top-2 left-1/2 -translate-x-1/2 flex gap-0.5">
+          <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${color.ribbon} rotate-[-20deg]`} />
+          <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${color.ribbon} rotate-[20deg]`} />
         </div>
-        {/* Cinta en tapa */}
-        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-full bg-gradient-to-b ${color.ribbon}`} />
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-full bg-gradient-to-b ${color.ribbon}`} />
       </div>
     </button>
   );
@@ -126,10 +125,10 @@ const GiantGift = ({
   }, [isOpen, onAnimationComplete]);
 
   return (
-    <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36">
-      {/* Sombra */}
+    <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32">
+      {/* Sombra - proporcional */}
       <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-black/40 rounded-[50%] blur-md"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70%] h-4 bg-black/40 rounded-[50%] blur-sm"
         style={{
           opacity: isOpen ? 0.3 : 0.6,
           transform: isOpen ? "translateX(-50%) scale(0.6)" : "translateX(-50%) scale(1)",
@@ -140,45 +139,31 @@ const GiantGift = ({
       {/* Contenido que emerge - Diseño profesional con iconos */}
       {showContent && (
         <div 
-          className="absolute inset-0 flex flex-col items-center justify-center gap-4 sm:gap-5 md:gap-6 animate-contentRise px-2"
+          className="absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-2.5 animate-contentRise px-1"
         >
-          {/* Contenedor de icono profesional con gradiente moderno */}
           <div className="relative">
-            {/* Efecto de brillo de fondo animado - Colores profesionales */}
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-cyan-500/20 rounded-full blur-2xl animate-pulse" />
-            
-            {/* Círculo de fondo con gradiente elegante */}
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 shadow-2xl border-2 border-white/50 backdrop-blur-sm">
-              {/* Icono de casa profesional */}
-              <Home className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 text-emerald-600 drop-shadow-lg" strokeWidth={2} />
-              
-              {/* Iconos decorativos pequeños */}
-              <div className="absolute -top-2 -right-2">
-                <Gift className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 animate-pulse" style={{ animationDelay: '0s' }} />
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-cyan-500/20 rounded-full blur-xl animate-pulse" />
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-[4rem] md:h-[4rem] lg:w-20 lg:h-20 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 shadow-xl border-2 border-white/50 backdrop-blur-sm">
+              <Home className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-emerald-600 drop-shadow-lg" strokeWidth={2} />
+              <div className="absolute -top-1 -right-1">
+                <Gift className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 animate-pulse" style={{ animationDelay: '0s' }} />
               </div>
-              <div className="absolute -bottom-2 -left-2">
-                <Key className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
+              <div className="absolute -bottom-1 -left-1">
+                <Key className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
               </div>
-              <div className="absolute top-1/2 -left-3">
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-teal-400 animate-pulse" style={{ animationDelay: '1s' }} />
+              <div className="absolute top-1/2 -left-2">
+                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-teal-400 animate-pulse" style={{ animationDelay: '1s' }} />
               </div>
             </div>
-            
-            {/* Partículas decorativas flotantes - Colores profesionales */}
-            <div className="absolute -top-2 -right-2 w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" style={{ animationDelay: '0s' }} />
-            <div className="absolute -bottom-2 -left-2 w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse shadow-lg shadow-teal-400/50" style={{ animationDelay: '0.5s' }} />
-            <div className="absolute top-1/2 -left-3 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse shadow-lg shadow-cyan-400/50" style={{ animationDelay: '1s' }} />
           </div>
-          
-          {/* Texto promocional destacado - Compacto */}
-          <div className="text-center space-y-1 sm:space-y-1.5 px-1">
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8),0_0_20px_rgba(16,185,129,0.6)] leading-tight">
+          <div className="text-center space-y-0.5 sm:space-y-1 px-0.5">
+            <p className="text-sm sm:text-base md:text-lg font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8),0_0_20px_rgba(16,185,129,0.6)] leading-tight">
               50% OFF
             </p>
-            <p className="text-xs sm:text-sm md:text-base font-semibold text-emerald-100 drop-shadow-md leading-tight">
+            <p className="text-[10px] sm:text-xs font-semibold text-emerald-100 drop-shadow-md leading-tight">
               Your Moving Cost
             </p>
-            <p className="text-[10px] sm:text-xs text-white/80 drop-shadow-sm font-medium">
+            <p className="text-[9px] sm:text-[10px] text-white/80 drop-shadow-sm font-medium">
               Your dream home awaits
             </p>
           </div>
@@ -295,12 +280,12 @@ export const HolidayGiftModal = ({
   return (
     <div className="relative w-full h-full bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 rounded-2xl overflow-hidden">
 
-      {/* Contenido principal - Compacto para evitar corte en desktop */}
-      <div className="relative z-20 flex flex-col h-full p-2 sm:p-3 md:p-4 lg:p-4">
-        {/* Título - Tamaños reducidos */}
-        <div className="text-center mb-2 sm:mb-3 md:mb-3">
+      {/* Contenido principal - Proporcional al modal para no verse apeñuscado */}
+      <div className="relative z-20 flex flex-col h-full p-2.5 sm:p-3 md:p-4">
+        {/* Título - Escala acorde al contenedor */}
+        <div className="text-center mb-1.5 sm:mb-2 md:mb-2.5">
           <h2
-            className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
+            className="text-lg sm:text-xl md:text-2xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
             style={{
               textShadow: "0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.3), 0 4px 12px rgba(0,0,0,0.6)",
               letterSpacing: "-0.02em",
@@ -310,10 +295,10 @@ export const HolidayGiftModal = ({
           </h2>
         </div>
 
-        {/* Área de regalos - Compacta */}
-        <div className="flex-1 flex items-center justify-center min-h-0">
+        {/* Área de regalos - Proporcional */}
+        <div className="flex-1 flex items-center justify-center min-h-0 overflow-hidden">
           {variant === "three-gifts" ? (
-            <div className="flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-3 flex-wrap">
+            <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-2.5 flex-wrap">
               {positions.map((originalIndex, displayIndex) => (
                 <div
                   key={originalIndex}
@@ -337,8 +322,8 @@ export const HolidayGiftModal = ({
           )}
         </div>
 
-        {/* Botón - Compacto */}
-        <div className="flex justify-center pt-1.5 sm:pt-2 md:pt-2 w-full px-1">
+        {/* Botón - Proporcional */}
+        <div className="flex justify-center pt-2 sm:pt-2.5 w-full px-1 shrink-0">
             <Button
               asChild
               size="lg"

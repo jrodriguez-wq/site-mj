@@ -35,9 +35,9 @@ const SlotMachine = ({
         <div className="absolute -inset-2 bg-yellow-400/40 rounded-3xl blur-xl animate-pulse" />
       )}
       
-      {/* Marco exterior del slot - Mobile-first */}
+      {/* Marco exterior del slot - Proporcional al modal */}
       <div 
-        className="relative bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 rounded-2xl sm:rounded-3xl p-2.5 sm:p-3 md:p-4 lg:p-5 shadow-2xl border-2 sm:border-2 md:border-4 border-yellow-400/60"
+        className="relative bg-gradient-to-b from-gray-600 via-gray-700 to-gray-900 rounded-xl sm:rounded-2xl p-2 sm:p-2.5 md:p-3 shadow-2xl border-2 border-yellow-400/60"
         style={{
           boxShadow: showWin 
             ? '0 0 30px rgba(250, 204, 21, 0.6), 0 0 60px rgba(250, 204, 21, 0.4), 0 20px 40px rgba(0,0,0,0.5)' 
@@ -54,9 +54,9 @@ const SlotMachine = ({
         <div className="absolute -top-3 right-1/4 w-3 h-3 rounded-full bg-amber-500 shadow-lg shadow-amber-500/70 animate-pulse" style={{ animationDelay: "0.6s" }} />
         <div className="absolute -top-3 right-8 w-4 h-4 rounded-full bg-green-500 shadow-lg shadow-green-500/70 animate-pulse" style={{ animationDelay: "0.8s" }} />
 
-        {/* Ventana del slot - Compacta para desktop */}
+        {/* Ventana del slot - Proporcional */}
         <div 
-          className="relative w-[160px] sm:w-44 md:w-52 lg:w-56 h-12 sm:h-14 md:h-16 lg:h-[4.5rem] bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-lg sm:rounded-xl overflow-hidden border-2 border-yellow-500/50"
+          className="relative w-[140px] sm:w-40 md:w-44 lg:w-48 h-11 sm:h-12 md:h-14 lg:h-16 bg-gradient-to-b from-gray-950 via-black to-gray-950 rounded-lg overflow-hidden border-2 border-yellow-500/50"
           style={{
             boxShadow: 'inset 0 4px 8px rgba(0,0,0,0.8), inset 0 -4px 8px rgba(0,0,0,0.8)',
           }}
@@ -149,12 +149,12 @@ const Lever = ({
   onPull: () => void;
 }) => {
   return (
-    <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 flex items-center">
-      {/* Base de la palanca - Compacta */}
+    <div className="relative h-14 sm:h-16 md:h-20 lg:h-24 flex items-center">
+      {/* Base de la palanca - Proporcional al slot */}
       <div className="relative">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-3 bg-black/40 rounded-full blur-md" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-2.5 bg-black/40 rounded-full blur-sm" />
         <div 
-          className="relative w-4 sm:w-5 h-16 sm:h-20 md:h-24 bg-gradient-to-b from-gray-500 via-gray-700 to-gray-900 rounded-full shadow-inner border-2 border-gray-400/50"
+          className="relative w-[14px] sm:w-4 h-14 sm:h-16 md:h-20 bg-gradient-to-b from-gray-500 via-gray-700 to-gray-900 rounded-full shadow-inner border-2 border-gray-400/50"
           style={{
             boxShadow: 'inset 0 4px 8px rgba(255,255,255,0.1), inset 0 -4px 8px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.3)',
           }}
@@ -169,8 +169,8 @@ const Lever = ({
           disabled={isPulled}
           className={`
             absolute left-1/2 -translate-x-1/2 
-            w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12
-            min-w-[40px] min-h-[40px]
+            w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11
+            min-w-[36px] min-h-[36px]
             bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-700 
             rounded-full border-2 sm:border-2 md:border-4 border-yellow-200
             shadow-2xl cursor-pointer
@@ -182,7 +182,7 @@ const Lever = ({
             }
           `}
           style={{
-            top: isPulled ? "calc(100% - 24px)" : "-24px",
+            top: isPulled ? "calc(100% - 20px)" : "-20px",
             transform: `translateX(-50%) ${isPulled ? "rotate(12deg)" : "rotate(0deg)"}`,
             boxShadow: !isPulled
               ? '0 8px 16px rgba(0,0,0,0.4), 0 0 30px rgba(250, 204, 21, 0.5), inset 0 2px 4px rgba(255,255,255,0.3)'
@@ -292,12 +292,12 @@ export const HolidayLeverModal = ({
   return (
     <div className="relative w-full h-full bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900 rounded-2xl overflow-hidden">
 
-      {/* Contenido principal - Compacto para evitar corte en desktop */}
-      <div className="relative z-20 flex flex-col h-full p-2 sm:p-3 md:p-4 lg:p-4">
-        {/* Título - Tamaños reducidos */}
-        <div className="text-center mb-2 sm:mb-3 md:mb-3">
+      {/* Contenido principal - Proporcional al modal para no verse apeñuscado */}
+      <div className="relative z-20 flex flex-col h-full p-2.5 sm:p-3 md:p-4">
+        {/* Título - Escala acorde al contenedor */}
+        <div className="text-center mb-1.5 sm:mb-2 md:mb-2.5">
           <h2
-            className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
+            className="text-lg sm:text-xl md:text-2xl font-bold text-white drop-shadow-2xl animate-title-pulse leading-tight tracking-tight"
             style={{
               textShadow: "0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(99, 102, 241, 0.3), 0 4px 12px rgba(0,0,0,0.6)",
               letterSpacing: "-0.02em",
@@ -307,9 +307,9 @@ export const HolidayLeverModal = ({
           </h2>
         </div>
 
-        {/* Área del slot machine - Compacta */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-2 sm:gap-3 md:gap-3 min-h-0">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 w-full">
+        {/* Área del slot machine - Proporcional */}
+        <div className="flex-1 flex flex-col items-center justify-center gap-2 sm:gap-2.5 min-h-0 overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 w-full">
             <div className="relative">
               {/* Efecto de brillo cuando gana */}
               {showResult && (
@@ -331,16 +331,16 @@ export const HolidayLeverModal = ({
 
           {/* Diseño profesional con iconos - Mobile-first optimizado */}
           {!showResult && (
-            <div className="relative w-full max-w-[220px] sm:max-w-[260px] md:max-w-[280px] mx-auto">
-              <div className="relative flex flex-col items-center justify-center gap-2 sm:gap-3 p-3 sm:p-4">
+            <div className="relative w-full max-w-[200px] sm:max-w-[240px] md:max-w-[260px] mx-auto">
+              <div className="relative flex flex-col items-center justify-center gap-1.5 sm:gap-2 p-2.5 sm:p-3">
                 {/* Contenedor de icono profesional con gradiente moderno */}
                 <div className="relative">
                   {/* Efecto de brillo de fondo animado - Colores profesionales */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-indigo-500/15 to-purple-500/20 rounded-full blur-2xl animate-pulse" />
                   
                   {/* Círculo de fondo con gradiente elegante */}
-                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 shadow-2xl border-2 border-white/50 backdrop-blur-sm">
-                    <Home className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-indigo-600 drop-shadow-lg" strokeWidth={2} />
+                  <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 shadow-xl border-2 border-white/50 backdrop-blur-sm">
+                    <Home className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-indigo-600 drop-shadow-lg" strokeWidth={2} />
                     
                     {/* Iconos decorativos pequeños */}
                     <div className="absolute -top-1 -right-1">
@@ -357,11 +357,11 @@ export const HolidayLeverModal = ({
                   <div className="absolute top-1/2 -left-3 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse shadow-lg shadow-purple-400/50" style={{ animationDelay: '1s' }} />
                 </div>
                 
-                <div className="text-center space-y-1 sm:space-y-1.5">
-                  <p className="text-sm sm:text-base md:text-lg font-bold text-white drop-shadow-lg leading-tight">
+                <div className="text-center space-y-0.5 sm:space-y-1">
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-white drop-shadow-lg leading-tight">
                     Your Dream Home Awaits
                   </p>
-                  <p className="text-[10px] sm:text-xs md:text-sm text-white/80 drop-shadow-md font-medium">
+                  <p className="text-[9px] sm:text-[10px] md:text-xs text-white/80 drop-shadow-md font-medium">
                     Start your journey today
                   </p>
                 </div>
@@ -372,7 +372,7 @@ export const HolidayLeverModal = ({
         </div>
 
         {!showResult && (
-          <div className="flex justify-center pt-1.5 sm:pt-2 md:pt-2 w-full px-1">
+          <div className="flex justify-center pt-2 sm:pt-2.5 w-full px-1 shrink-0">
             <Button
               asChild
               size="lg"
@@ -410,27 +410,27 @@ export const HolidayLeverModal = ({
           </div>
           
           <div 
-            className="relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-slate-800 rounded-xl p-3 sm:p-4 md:p-4 shadow-2xl border border-indigo-400/30 animate-prizeIn max-w-[92%] sm:max-w-xs lg:max-w-sm mx-2 backdrop-blur-sm"
+            className="relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-slate-800 rounded-xl p-3 sm:p-4 shadow-2xl border border-indigo-400/30 animate-prizeIn max-w-[92%] sm:max-w-xs mx-2 backdrop-blur-sm"
             style={{
               boxShadow: '0 0 40px rgba(99, 102, 241, 0.6), 0 0 80px rgba(99, 102, 241, 0.4), 0 0 120px rgba(99, 102, 241, 0.2), 0 20px 60px rgba(0,0,0,0.5)',
             }}
           >
             <div className="text-center space-y-1.5 sm:space-y-2">
               <div className="flex justify-center">
-                <p className="text-2xl sm:text-3xl md:text-3xl animate-bounce">🎉</p>
+                <p className="text-xl sm:text-2xl md:text-2xl animate-bounce">🎉</p>
               </div>
               <div>
-                <h3 className="text-sm sm:text-base md:text-lg font-bold text-white mb-1.5 animate-glow-pulse leading-tight px-1" style={{
+                <h3 className="text-xs sm:text-sm md:text-base font-bold text-white mb-1 animate-glow-pulse leading-tight px-1" style={{
                   textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(99, 102, 241, 0.6), 2px 2px 8px rgba(0,0,0,0.5)',
                 }}>
                   🎰 YOU WON! 🎰
                 </h3>
                 
-                <div className="bg-white/10 backdrop-blur-md rounded-lg p-2.5 sm:p-3 border border-white/20 shadow-inner">
-                  <p className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 leading-tight drop-shadow-lg">
+                <div className="bg-white/10 backdrop-blur-md rounded-lg p-2 sm:p-2.5 border border-white/20 shadow-inner">
+                  <p className="text-sm sm:text-base md:text-lg font-bold text-white mb-0.5 leading-tight drop-shadow-lg">
                     50% OFF
                   </p>
-                  <p className="text-xs sm:text-sm md:text-base font-semibold text-indigo-100 leading-tight drop-shadow-md">
+                  <p className="text-[10px] sm:text-xs md:text-sm font-semibold text-indigo-100 leading-tight drop-shadow-md">
                     Your Moving Cost
                   </p>
                 </div>

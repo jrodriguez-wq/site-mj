@@ -30,23 +30,15 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
   }, [translations]);
 
   useEffect(() => {
-    // Solo ejecutar en cliente
     if (typeof window === "undefined") return;
 
-    // Prevenir múltiples inicializaciones
     if (hasInitializedRef.current) return;
     hasInitializedRef.current = true;
 
-    // Si ya hay traducciones válidas, no hacer nada
-    if (hasValidTranslations && !isLoading) {
-      return;
-    }
+    if (hasValidTranslations && !isLoading) return;
 
-    // Si no hay traducciones válidas, cargar inglés por defecto
-    // (El persist middleware ya maneja la persistencia y recuperación del idioma guardado)
-    if (!hasValidTranslations && !isLoading) {
-      // Siempre cargar inglés por defecto
-      // Si el usuario había seleccionado otro idioma, el persist middleware lo restaurará
+    // Siempre disparar carga cuando faltan traducciones (incl. si isLoading viene true al inicio)
+    if (!hasValidTranslations) {
       setLanguage("en").catch(() => {
         console.error("[TranslationLoader] Failed to load default language (en)");
       });
