@@ -7,9 +7,9 @@ const OPTIONS = [
   {
     id: "certified",
     label: "Montar garantía para casa certificada",
-    href: "https://meetings.hubspot.com/customercare76/warrantys-certified-h",
+    href: "/app-cert",
     icon: Shield,
-    description: "Usa esta opción para agendar garantía en una casa certificada.",
+    description: "Formulario HubSpot para agendar garantía en una casa certificada. Usa esta opción y los datos de la guía.",
     guide: {
       firstName: "Property",
       lastName: "Manager",
