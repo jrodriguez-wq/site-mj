@@ -185,6 +185,7 @@ export const ROBOTS_CONFIG = {
     "/api/",
     "/admin/",
     "/private/",
+    "/internal-team",
     // NO bloquear /_next/static/ - contiene CSS y JS críticos
     // Solo bloquear rutas internas de Next.js que no son necesarias
     "/_next/static/chunks/pages/_error",
