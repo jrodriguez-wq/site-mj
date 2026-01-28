@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react"
 import Script from "next/script"
 
 const HUBSPOT_PORTAL_ID = "50215941"
-const HUBSPOT_FORM_ID = "becf6750-91a0-4a4e-b81c-cc6e1584cf47"
+const HUBSPOT_FORM_ID = "bec27b9a-bcf9-406d-9867-532e1e5dddf3"
 const HUBSPOT_REGION = "na1"
-const FORM_CONTAINER_ID = "hubspot-form-container-app-cert"
+const FORM_CONTAINER_ID = "hubspot-form-container-app-contractor"
 
-export default function AppCertPage() {
+export default function AppContractorPage() {
   const formContainerRef = useRef<HTMLDivElement>(null)
   const formCreatedRef = useRef(false)
 
@@ -25,7 +25,7 @@ export default function AppCertPage() {
         formCreatedRef.current = true
       }
     } catch (error) {
-      console.error("[AppCert] Error al crear el formulario de HubSpot:", error)
+      console.error("[AppContractor] Error al crear el formulario de HubSpot:", error)
     }
   }
 

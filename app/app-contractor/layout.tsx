@@ -1,4 +1,4 @@
-export default function AppFormLayout({
+export default function AppContractorLayout({
   children,
 }: {
   children: React.ReactNode
@@ -12,11 +12,11 @@ export default function AppFormLayout({
             header.fixed {
               display: none !important;
             }
-            #hubspot-form-container-app-cert {
+            #hubspot-form-container-app-contractor {
               min-height: 400px;
             }
-            #hubspot-form-container-app-cert iframe,
-            #hubspot-form-container-app-cert form {
+            #hubspot-form-container-app-contractor iframe,
+            #hubspot-form-container-app-contractor form {
               width: 100% !important;
               max-width: 100% !important;
             }

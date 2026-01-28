@@ -7,7 +7,7 @@ const OPTIONS = [
   {
     id: "certified",
     label: "Montar garantía para casa certificada",
-    href: "/app-cert",
+    href: "https://meetings.hubspot.com/customercare76/warrantys-certified-h",
     icon: Shield,
     description: "Formulario HubSpot para agendar garantía en una casa certificada. Usa esta opción y los datos de la guía.",
     guide: {
@@ -21,7 +21,7 @@ const OPTIONS = [
     label: "Montar garantía con contratistas",
     href: "https://meetings.hubspot.com/customercare76/warrantys-contractor",
     icon: HardHat,
-    description: "Usa esta opción para agendar garantía cuando intervienen contratistas.",
+    description: "Formulario HubSpot para agendar garantía cuando intervienen contratistas. Usa esta opción y los datos de la guía.",
     guide: {
       firstName: "Contractor",
       lastName: "A",
@@ -78,7 +78,11 @@ function CopyableField({ label, value }: { label: string; value: string }) {
 
 export default function InternalTeamPage() {
   const handleOpen = useCallback((href: string) => {
-    window.open(href, "_blank", "noopener,noreferrer");
+    if (href.startsWith("/")) {
+      window.location.href = href;
+    } else {
+      window.open(href, "_blank", "noopener,noreferrer");
+    }
   }, []);
 
   return (
