@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CommunityModelsSection } from "@/components/communities/community-models-section";
 import { CommunityPageContent } from "@/components/communities/community-page-content";
+import { CommunityMap } from "@/components/communities/community-map";
 import { useTranslation } from "@/hooks/use-translation";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -19,7 +20,7 @@ const lehighAcresImages = [
   "/recursos/shutterstock-1065297917.webp",
   "/recursos/playa.webp",
   "/recursos/familia-casa.webp",
-  "/recursos/familia-cocina.webp",
+  "/recursos/rto/familia-cocina.webp",
   "/recursos/familia-conduciendo.webp",
 ];
 
@@ -199,6 +200,11 @@ export default function LehighAcresPage() {
           ctaDescription={t("communities.lehighAcres.cta.description")}
           ctaButton={t("communities.lehighAcres.cta.button")}
         />
+      </AnimatedSection>
+
+      {/* Community Map Section */}
+      <AnimatedSection delay={0.1}>
+        <CommunityMap community="lehighAcres" />
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CommunityModelsSection } from "@/components/communities/community-models-section";
 import { CommunityPageContent } from "@/components/communities/community-page-content";
+import { CommunityMap } from "@/components/communities/community-map";
 import { useTranslation } from "@/hooks/use-translation";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -201,6 +202,11 @@ export default function LaBellePage() {
           ctaDescription={t("communities.labelle.cta.description")}
           ctaButton={t("communities.labelle.cta.button")}
         />
+      </AnimatedSection>
+
+      {/* Community Map Section */}
+      <AnimatedSection delay={0.1}>
+        <CommunityMap community="labelle" />
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
