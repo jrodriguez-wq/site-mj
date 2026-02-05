@@ -27,6 +27,7 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
   const translations = useLanguageStore((state) => state.translations);
   const isLoading = useLanguageStore((state) => state.isLoading);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
+  const syncTranslationsFromDefaultScript = useLanguageStore((state) => state.syncTranslationsFromDefaultScript);
 
   const hasValidTranslations = useMemo(() => {
     return (
@@ -45,7 +46,8 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    setCanShowContent(true);
+    const id = setTimeout(() => setCanShowContent(true), 0);
+    return () => clearTimeout(id);
   }, []);
 
   useEffect(() => {
@@ -55,12 +57,22 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
 
     if (hasValidTranslations && !isLoading) return;
 
-    if (!hasValidTranslations) {
-      setLanguage("en").catch(() => {
-        console.error("[TranslationLoader] Failed to load default language (en)");
-      });
-    }
-  }, [hasValidTranslations, isLoading, setLanguage]);
+    if (syncTranslationsFromDefaultScript()) return;
+
+    setLanguage("en").catch(() => {
+      console.error("[TranslationLoader] Failed to load default language (en)");
+    });
+
+    // Reintentar solo sync tras 100ms (por si el script inline se ejecutó después del store en producción)
+    const timeoutId = setTimeout(() => {
+      const state = useLanguageStore.getState();
+      if (!state.translations || Object.keys(state.translations).length === 0) {
+        syncTranslationsFromDefaultScript();
+      }
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [hasValidTranslations, isLoading, setLanguage, syncTranslationsFromDefaultScript]);
 
   const shouldRenderChildren = canShowContent && hasValidTranslations;
 

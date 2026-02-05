@@ -9,6 +9,8 @@ interface LanguageState {
   language: Language;
   translations: Translations;
   setLanguage: (lang: Language) => Promise<void>;
+  /** Sincroniza el store con window.__DEFAULT_TRANSLATIONS__ si existe (fallback cuando el script inline corre después del store) */
+  syncTranslationsFromDefaultScript: () => boolean;
   t: (key: string) => string;
   isLoading: boolean;
 }
@@ -58,29 +60,39 @@ const loadTranslations = async (lang: Language): Promise<Translations> => {
   // 3. Crear nueva promesa de carga
   const loadPromise = (async () => {
     try {
-      // Dynamic import optimizado por Next.js
-      // Para inglés, usar import() con prioridad alta
       const translationModule = lang === "es"
         ? await import("@/locales/es.json")
         : await import("@/locales/en.json");
 
       const data = (translationModule.default || translationModule) as Translations;
 
-      // Guardar en cache inmediatamente
       translationsCache[lang] = data;
-      loadingPromises[lang] = null; // Limpiar promesa de carga
-
+      loadingPromises[lang] = null;
       return data;
     } catch (error) {
-      console.error(`[LanguageStore] Error loading ${lang} translations:`, error);
-      loadingPromises[lang] = null; // Limpiar promesa de carga en caso de error
+      console.error(`[LanguageStore] Error loading ${lang} translations (import):`, error);
+      loadingPromises[lang] = null;
 
-      // Fallback: intentar inglés si falla otro idioma
+      // Fallback: fetch desde ruta estática (por si el chunk falla en producción)
+      if (typeof window !== "undefined") {
+        try {
+          const res = await fetch(`/locales/${lang}`);
+          if (res.ok) {
+            const data = (await res.json()) as Translations;
+            if (isValidTranslations(data)) {
+              translationsCache[lang] = data;
+              return data;
+            }
+          }
+        } catch (fetchError) {
+          console.warn(`[LanguageStore] Fallback fetch /locales/${lang} failed:`, fetchError);
+        }
+      }
+
       if (lang !== "en" && translationsCache.en) {
         return translationsCache.en;
       }
 
-      // Último recurso: objeto vacío
       return {};
     }
   })();
@@ -326,10 +338,10 @@ const getInitialTranslations = (): Translations => {
   return {};
 };
 
-const initialState: Omit<LanguageState, "setLanguage" | "t"> = {
+const initialState: Omit<LanguageState, "setLanguage" | "syncTranslationsFromDefaultScript" | "t"> = {
   language: getInitialLanguage(),
-  translations: getInitialTranslations(), // Cargar traducciones desde localStorage de forma síncrona
-  isLoading: !isValidTranslations(getInitialTranslations()), // Marcar como cargando si no hay traducciones válidas
+  translations: getInitialTranslations(),
+  isLoading: !isValidTranslations(getInitialTranslations()),
 };
 
 export const useLanguageStore = create<LanguageState>()(
@@ -417,6 +429,27 @@ export const useLanguageStore = create<LanguageState>()(
             }
           }
         }
+      },
+
+      /**
+       * Sincroniza el store con window.__DEFAULT_TRANSLATIONS__ si existe.
+       * Útil cuando el script inline se ejecuta después del store (ej. producción/CSP).
+       * @returns true si se aplicaron traducciones, false si no había nada válido
+       */
+      syncTranslationsFromDefaultScript: (): boolean => {
+        if (typeof window === "undefined") return false;
+        const state = get();
+        if (isValidTranslations(state.translations)) return false;
+        const defaultFromServer = window.__DEFAULT_TRANSLATIONS__;
+        if (!defaultFromServer || !isValidTranslations(defaultFromServer)) return false;
+        translationsCache.en = defaultFromServer;
+        set({
+          translations: defaultFromServer,
+          language: "en",
+          isLoading: false,
+        });
+        if (typeof document !== "undefined") document.documentElement.lang = "en";
+        return true;
       },
 
       /**
