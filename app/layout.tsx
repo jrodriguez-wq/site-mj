@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono, Outfit, DM_Sans, Pacifico } from "next/font/google";
 import "./globals.css";
+import defaultTranslationsEn from "@/locales/en.json";
 import { defaultMetadata, SEO_CONFIG } from "@/config/seo";
 import { StructuredDataComponent } from "@/components/seo/structured-data";
 import {
@@ -197,6 +198,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} ${pacifico.variable}`}
         suppressHydrationWarning
       >
+        {/* Traducciones por defecto (en) inyectadas desde el servidor: evita ver claves (hero.title1, nav.scheduleAppointment, etc.) en el primer frame y en móviles/redes lentas */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__DEFAULT_TRANSLATIONS__=${JSON.stringify(defaultTranslationsEn)};window.__DEFAULT_TRANSLATIONS_LANG__="en";`,
+          }}
+        />
         <CacheBuster />
         <StructuredDataComponent data={structuredData} />
         <LanguageProvider />

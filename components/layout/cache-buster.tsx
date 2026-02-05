@@ -19,9 +19,13 @@ const clearLanguageStorage = (): void => {
 };
 
 /**
- * Componente que limpia automáticamente la caché del navegador
- * cuando hay una nueva APP_VERSION. También invalida las traducciones
- * guardadas (language-storage) para que se recarguen desde en.json / es.json.
+ * Actualiza a todos los usuarios sin pedirles borrar caché.
+ *
+ * Cuando APP_VERSION sube (ej. 2.3.0 → 2.3.1) y el usuario entra al sitio:
+ * 1. Se borra language-storage (traducciones viejas/corruptas).
+ * 2. Se borra la Cache API del navegador.
+ * 3. Se recarga la página con ?_cb=1 (luego se quita la query).
+ * En esa segunda carga ya tienen el HTML/JS nuevo y traducciones frescas (script del servidor).
  *
  * Incrementa APP_VERSION en @/config/version cuando actualices
  * traducciones o contenido crítico.

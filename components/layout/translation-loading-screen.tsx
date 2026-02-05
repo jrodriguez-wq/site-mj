@@ -7,13 +7,16 @@ import { cn } from "@/lib/utils";
 interface TranslationLoadingScreenProps {
   isLoading: boolean;
   hasValidTranslations: boolean;
+  /** true cuando el contenido traducido ya se está mostrando (no mostrar overlay) */
+  isContentReady?: boolean;
 }
 
 export function TranslationLoadingScreen({
   isLoading,
   hasValidTranslations,
+  isContentReady = false,
 }: TranslationLoadingScreenProps) {
-  const shouldShow = isLoading || !hasValidTranslations;
+  const shouldShow = !isContentReady && (isLoading || !hasValidTranslations);
   const [isExiting, setIsExiting] = useState(false);
   const prevShouldShowRef = useRef(shouldShow);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);

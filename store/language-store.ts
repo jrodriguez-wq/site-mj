@@ -141,12 +141,15 @@ const getTranslation = (translations: Translations, key: string): string => {
 const TRANSLATIONS_VERSION = APP_VERSION;
 
 /**
- * Claves esenciales que deben existir en las traducciones
- * Si alguna de estas claves falta, las traducciones se consideran incompletas
+ * Claves esenciales que deben existir en las traducciones.
+ * Incluye secciones reportadas en bugs (hero, communities, carousel, nav).
  */
 const ESSENTIAL_KEYS = [
   "home",
   "nav",
+  "hero",
+  "communities",
+  "carousel",
   "faq",
   "privacyPolicy",
   "termsConditions",
@@ -154,13 +157,15 @@ const ESSENTIAL_KEYS = [
 ] as const;
 
 /**
- * Claves específicas dentro de secciones importantes que deben existir
- * Esto ayuda a detectar traducciones parcialmente cargadas o corruptas
+ * Claves anidadas que deben existir (evita mostrar claves como hero.title1, communities.labelle.features.acreLots).
  */
 const REQUIRED_NESTED_KEYS = [
   "rentToOwn.form",
   "rentToOwn.hero",
   "rentToOwn.cta",
+  "hero.title1",
+  "communities.labelle.features.acreLots",
+  "carousel.message",
 ] as const;
 
 /**
@@ -283,28 +288,41 @@ const getInitialLanguage = (): Language => {
   return "en";
 };
 
-// Función para obtener traducciones iniciales desde localStorage de forma síncrona
+// Tipo para traducciones inyectadas por el servidor (layout)
+declare global {
+  interface Window {
+    __DEFAULT_TRANSLATIONS__?: Translations;
+    __DEFAULT_TRANSLATIONS_LANG__?: string;
+  }
+}
+
+// Función para obtener traducciones iniciales: localStorage (si válido) > servidor (script) > {}
 const getInitialTranslations = (): Translations => {
   if (typeof window === "undefined") return {};
-  
+
   try {
     const stored = localStorage.getItem("language-storage");
     if (stored) {
       const parsed = JSON.parse(stored);
       const storedVersion = parsed?.state?._version;
-      
-      // Solo usar si la versión coincide
+
       if (storedVersion === TRANSLATIONS_VERSION && parsed?.state?.translations && isValidTranslations(parsed.state.translations)) {
-        // Sincronizar cache en memoria
         const lang = parsed.state.language || "en";
         translationsCache[lang as Language] = parsed.state.translations;
         return parsed.state.translations;
       }
     }
   } catch {
-    // Si hay error, retornar objeto vacío
+    // Si hay error, continuar a fallback
   }
-  
+
+  // Fallback: usar traducciones inyectadas por el servidor (evita claves en primer frame y móviles)
+  const defaultFromServer = window.__DEFAULT_TRANSLATIONS__;
+  if (defaultFromServer && isValidTranslations(defaultFromServer)) {
+    translationsCache.en = defaultFromServer;
+    return defaultFromServer;
+  }
+
   return {};
 };
 
