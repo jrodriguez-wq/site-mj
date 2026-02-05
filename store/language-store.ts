@@ -577,13 +577,11 @@ export const useLanguageStore = create<LanguageState>()(
             clearLanguageStorage();
           }
 
-          // Limpiar traducciones corruptas del estado y marcar como cargando
           useLanguageStore.setState({
             translations: {},
             isLoading: true,
           });
 
-          // Si inglés ya está en cache, usarlo inmediatamente (síncrono)
           if (targetLang === "en" && translationsCache.en && isValidTranslations(translationsCache.en)) {
             useLanguageStore.setState({
               translations: translationsCache.en,
@@ -594,7 +592,20 @@ export const useLanguageStore = create<LanguageState>()(
             return;
           }
 
-          // Cargar traducciones de forma asíncrona pero lo más rápido posible
+          // Usar script inline si está disponible (evita depender de import/fetch en rehidratación)
+          const defaultFromServer = window.__DEFAULT_TRANSLATIONS__;
+          if (targetLang === "en" && defaultFromServer && isValidTranslations(defaultFromServer)) {
+            translationsCache.en = defaultFromServer;
+            useLanguageStore.setState({
+              translations: defaultFromServer,
+              language: "en",
+              isLoading: false,
+            });
+            document.documentElement.lang = "en";
+            return;
+          }
+
+          // Cargar traducciones de forma asíncrona
           // Usar void para evitar que el return espere la promesa
           void loadTranslations(targetLang)
             .then((translations) => {

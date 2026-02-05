@@ -4,26 +4,16 @@ import { useEffect, useRef, useMemo, useState } from "react";
 import { useLanguageStore } from "@/store/language-store";
 import { TranslationLoadingScreen } from "./translation-loading-screen";
 
+const LOADING_SAFETY_MS = 2500;
+
 /**
- * TranslationLoader: Asegura que las traducciones estén cargadas antes de mostrar contenido.
- *
- * Por qué se veían claves (title.hero1, nav.home, etc.):
- * 1. En el servidor no hay localStorage ni acceso a JSON de idiomas, así que el store
- *    arranca con translations = {} y t(key) devuelve la clave.
- * 2. Los componentes se montan y renderizan con ese estado, por eso el HTML inicial
- *    (y a veces la primera pintada en cliente) mostraba las claves.
- *
- * Solución: No renderizar el contenido que usa t() hasta tener traducciones válidas.
- * Así nunca se pinta texto sin traducir. Se muestra solo la pantalla de carga hasta
- * que las traducciones estén listas.
- *
- * canShowContent evita hydration mismatch: en el primer render (servidor y cliente)
- * es false; tras el primer useEffect en cliente pasa a true. Así servidor y cliente
- * coinciden en "solo loading" y el contenido solo aparece cuando hay traducciones.
+ * TranslationLoader: Muestra contenido solo cuando hay traducciones válidas.
+ * Incluye timeout de seguridad para que la pantalla de carga nunca se quede colgada.
  */
 export function TranslationLoader({ children }: { children: React.ReactNode }) {
   const hasInitializedRef = useRef(false);
   const [canShowContent, setCanShowContent] = useState(false);
+  const [forceShowContent, setForceShowContent] = useState(false);
   const translations = useLanguageStore((state) => state.translations);
   const isLoading = useLanguageStore((state) => state.isLoading);
   const setLanguage = useLanguageStore((state) => state.setLanguage);
@@ -63,18 +53,33 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
       console.error("[TranslationLoader] Failed to load default language (en)");
     });
 
-    // Reintentar solo sync tras 100ms (por si el script inline se ejecutó después del store en producción)
-    const timeoutId = setTimeout(() => {
+    const t1 = setTimeout(() => {
       const state = useLanguageStore.getState();
       if (!state.translations || Object.keys(state.translations).length === 0) {
         syncTranslationsFromDefaultScript();
       }
     }, 100);
 
-    return () => clearTimeout(timeoutId);
+    return () => clearTimeout(t1);
   }, [hasValidTranslations, isLoading, setLanguage, syncTranslationsFromDefaultScript]);
 
-  const shouldRenderChildren = canShowContent && hasValidTranslations;
+  // Timeout de seguridad: si tras LOADING_SAFETY_MS seguimos sin traducciones, mostrar contenido igual
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (hasValidTranslations) return;
+
+    const safetyId = setTimeout(() => {
+      const state = useLanguageStore.getState();
+      if (!state.translations || Object.keys(state.translations).length === 0) {
+        syncTranslationsFromDefaultScript();
+        setForceShowContent(true);
+      }
+    }, LOADING_SAFETY_MS);
+
+    return () => clearTimeout(safetyId);
+  }, [hasValidTranslations, syncTranslationsFromDefaultScript]);
+
+  const shouldRenderChildren = (canShowContent && hasValidTranslations) || forceShowContent;
 
   return (
     <>
