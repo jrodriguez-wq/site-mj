@@ -1,32 +1,15 @@
 "use client";
 
-import { useLanguageStore } from "@/store/language-store";
+import { getCopy, COPY } from "@/lib/constants/copy";
 
 /**
- * Hook para usar traducciones en componentes
- * @example
- * const { t, language, setLanguage, isLoading } = useTranslation();
- * <h1>{t("hero.title1")}</h1>
- * 
- * Para useMemo, usa language como dependencia (más estable que translations):
- * const data = useMemo(() => t("key"), [t, language]);
+ * Hook para contenido en inglés. Devuelve getCopy como t y COPY como translations.
+ * Todo el sitio usa inglés desde locales/en.json sin carga asíncrona ni store.
  */
-export const useTranslation = () => {
-  // Obtener funciones y estado del store
-  // Usar selectores individuales para mejor rendimiento
-  const t = useLanguageStore((state) => state.t);
-  const language = useLanguageStore((state) => state.language);
-  const setLanguage = useLanguageStore((state) => state.setLanguage);
-  const isLoading = useLanguageStore((state) => state.isLoading);
-  // Obtener translations para verificar si están disponibles
-  const translations = useLanguageStore((state) => state.translations);
-  
-  return {
-    t,
-    translations, // Exponer para casos especiales donde se necesita
-    language: language || "en",
-    setLanguage,
-    isLoading,
-  };
-};
-
+export const useTranslation = () => ({
+  t: getCopy,
+  translations: COPY as Record<string, unknown>,
+  language: "en" as const,
+  setLanguage: async (_lang: "en" | "es") => {},
+  isLoading: false,
+});

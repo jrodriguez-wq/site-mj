@@ -4,14 +4,15 @@ import { useEffect, useRef, useMemo, useState } from "react";
 import { useLanguageStore } from "@/store/language-store";
 import { TranslationLoadingScreen } from "./translation-loading-screen";
 
-const LOADING_SAFETY_MS = 2500;
+const LOADING_SAFETY_MS = 1500;
 
 /**
  * TranslationLoader: Muestra contenido solo cuando hay traducciones válidas.
- * Incluye timeout de seguridad para que la pantalla de carga nunca se quede colgada.
+ * Timeout de seguridad (una sola vez por montaje) para que la carga nunca se quede colgada.
  */
 export function TranslationLoader({ children }: { children: React.ReactNode }) {
   const hasInitializedRef = useRef(false);
+  const safetyTimeoutStartedRef = useRef(false);
   const [canShowContent, setCanShowContent] = useState(false);
   const [forceShowContent, setForceShowContent] = useState(false);
   const translations = useLanguageStore((state) => state.translations);
@@ -63,21 +64,23 @@ export function TranslationLoader({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(t1);
   }, [hasValidTranslations, isLoading, setLanguage, syncTranslationsFromDefaultScript]);
 
-  // Timeout de seguridad: si tras LOADING_SAFETY_MS seguimos sin traducciones, mostrar contenido igual
+  // Timeout de seguridad: una sola vez por montaje; si tras LOADING_SAFETY_MS no hay traducciones, forzar contenido
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (hasValidTranslations) return;
+    if (safetyTimeoutStartedRef.current) return;
+    safetyTimeoutStartedRef.current = true;
 
     const safetyId = setTimeout(() => {
       const state = useLanguageStore.getState();
-      if (!state.translations || Object.keys(state.translations).length === 0) {
+      const hasTranslations = state.translations && Object.keys(state.translations).length > 0;
+      if (!hasTranslations) {
         syncTranslationsFromDefaultScript();
         setForceShowContent(true);
       }
     }, LOADING_SAFETY_MS);
 
     return () => clearTimeout(safetyId);
-  }, [hasValidTranslations, syncTranslationsFromDefaultScript]);
+  }, []);
 
   const shouldRenderChildren = (canShowContent && hasValidTranslations) || forceShowContent;
 

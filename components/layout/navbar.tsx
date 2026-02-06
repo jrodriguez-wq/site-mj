@@ -14,8 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { CONTACT_INFO } from "@/config/seo";
 import { cn } from "@/lib/utils";
-import { LanguageSelector } from "@/components/ui/language-selector";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 
 interface NavigationItem {
   title: string;
@@ -28,126 +27,48 @@ interface NavigationItem {
 }
 
 export const Navbar = () => {
-  const { t, isLoading } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
   const [justClosed, setJustClosed] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Track mount state to prevent hydration mismatches
-  useEffect(() => {
-    setTimeout(() => {
-      setIsMounted(true);
-    }, 0);
-  }, []);
-
-  // Memoize navigation items to prevent hydration mismatches
-  // Only compute when translations are loaded and component is mounted on client
-  const navigationItems: NavigationItem[] = useMemo(() => {
-    // Check if translations are actually loaded by verifying t() doesn't return the key
-    // If t("nav.home") returns "nav.home", translations aren't loaded yet
-    const homeTranslation = t("nav.home");
-    const translationsLoaded = homeTranslation !== "nav.home" && !isLoading;
-
-    // During SSR (isMounted is false), always return empty array to prevent hydration mismatch
-    // On client, only compute navigation items after mount and when translations are loaded
-    // This ensures server and client render the same initial state (empty array)
-    if (!isMounted || !translationsLoaded) {
-      return [];
-    }
-
-    return [
-      {
-        title: t("nav.home"),
-        href: "/",
-      },
-      {
-        title: t("nav.rentToOwn"),
-        href: "/rent-to-own",
-      },
-      {
-        title: t("nav.scheduleAppointment"),
-        href: "/schedule-appointment",
-      },
-      {
-        title: t("nav.buyHome"),
-        href: "#",
-        children: [
-          {
-            title: t("nav.models"),
-            href: "/models",
-            description: t("nav.modelsDesc"),
-          },
-          {
-            title: t("nav.labelle"),
-            href: "/communities/labelle",
-            description: t("communities.labelle.description"),
-          },
-          {
-            title: t("nav.lehighAcres"),
-            href: "/communities/lehigh-acres",
-            description: t("communities.lehighAcres.description"),
-          },
-          {
-            title: "Payments",
-            href: "/pay-links",
-            description: "Make secure payments for your home",
-          },
-        ],
-      },
-      {
-        title: t("nav.resources"),
-        href: "#",
-        children: [
-          {
-            title: "Blog",
-            href: "/blog",
-            description: "Expert guides and resources about real estate, taxes, and homeownership",
-          },
-          {
-            title: t("nav.homeBuyingGuide"),
-            href: "/home-buying-guide",
-            description: t("nav.homeBuyingGuideDesc"),
-          },
-          {
-            title: "Section 8",
-            href: "/section8",
-            description: "Learn about Section 8 Housing Voucher Program and how to use it for homeownership",
-          },
-          {
-            title: "Rental Application",
-            href: "/rental-application",
-            description: "Apply for rental properties with M.J. Newell Homes",
-          },
-          {
-            title: t("nav.warranty"),
-            href: "/warranty",
-            description: t("nav.warrantyDesc"),
-          },
-        ],
-      },
-      {
-        title: t("nav.company"),
-        href: "#",
-        children: [
-          {
-            title: t("nav.aboutUs"),
-            href: "/about-us",
-            description: t("nav.aboutUsDesc"),
-          },
-          {
-            title: t("nav.contact"),
-            href: "/contact",
-            description: t("nav.contactDesc"),
-          },
-        ],
-      },
-    ];
-  }, [t, isLoading, isMounted]);
+  const navigationItems: NavigationItem[] = useMemo(() => [
+    { title: getCopy("nav.home"), href: "/" },
+    { title: getCopy("nav.rentToOwn"), href: "/rent-to-own" },
+    { title: getCopy("nav.scheduleAppointment"), href: "/schedule-appointment" },
+    {
+      title: getCopy("nav.buyHome"),
+      href: "#",
+      children: [
+        { title: getCopy("nav.models"), href: "/models", description: getCopy("nav.modelsDesc") },
+        { title: getCopy("nav.labelle"), href: "/communities/labelle", description: getCopy("communities.labelle.description") },
+        { title: getCopy("nav.lehighAcres"), href: "/communities/lehigh-acres", description: getCopy("communities.lehighAcres.description") },
+        { title: getCopy("nav.payments"), href: "/pay-links", description: getCopy("nav.paymentsDesc") },
+      ],
+    },
+    {
+      title: getCopy("nav.resources"),
+      href: "#",
+      children: [
+        { title: getCopy("nav.blog"), href: "/blog", description: getCopy("nav.blogDesc") },
+        { title: getCopy("nav.homeBuyingGuide"), href: "/home-buying-guide", description: getCopy("nav.homeBuyingGuideDesc") },
+        { title: "Section 8", href: "/section8", description: "Learn about Section 8 Housing Voucher Program and how to use it for homeownership" },
+        { title: "Rental Application", href: "/rental-application", description: "Apply for rental properties with M.J. Newell Homes" },
+        { title: getCopy("nav.warranty"), href: "/warranty", description: getCopy("nav.warrantyDesc") },
+      ],
+    },
+    {
+      title: getCopy("nav.company"),
+      href: "#",
+      children: [
+        { title: getCopy("nav.aboutUs"), href: "/about-us", description: getCopy("nav.aboutUsDesc") },
+        { title: getCopy("nav.contact"), href: "/contact", description: getCopy("nav.contactDesc") },
+      ],
+    },
+  ], []);
 
   // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
@@ -483,7 +404,7 @@ export const Navbar = () => {
                 suppressHydrationWarning
               >
                 <Calendar className="h-3.5 w-3.5 xl:h-4 xl:w-4 opacity-90 group-hover/schedule:opacity-100 transition-opacity duration-300" />
-                <span className="hidden 2xl:inline" suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
+                <span className="hidden 2xl:inline">{getCopy("nav.scheduleAppointment")}</span>
                 <span className="2xl:hidden" suppressHydrationWarning>Schedule</span>
               </a>
             </Button>
@@ -507,7 +428,7 @@ export const Navbar = () => {
             >
               <Link href="/#quick-register-form" className="relative z-10 flex items-center gap-1 xl:gap-1.5" suppressHydrationWarning>
                 <Sparkles className="h-3 w-3 xl:h-3.5 xl:w-3.5 opacity-80 group-hover/cta:opacity-100 transition-opacity duration-300" />
-                <span suppressHydrationWarning>{t("nav.applyNow")}</span>
+                <span>{getCopy("nav.applyNow")}</span>
               </Link>
             </Button>
 
@@ -548,7 +469,7 @@ export const Navbar = () => {
                 <SheetHeader className="px-6 pt-8 pb-6 border-b border-border/20">
                   <div className="flex items-center justify-between">
                     <SheetTitle className="text-left text-2xl font-bold text-foreground tracking-wide" suppressHydrationWarning>
-                      {t("nav.home")}
+                      {getCopy("nav.home")}
                     </SheetTitle>
                     <Image
                       src="/img/logo.svg"
@@ -682,7 +603,7 @@ export const Navbar = () => {
                       suppressHydrationWarning
                     >
                       <Sparkles className="h-4 w-4 opacity-80" />
-                      {t("nav.applyNow")}
+                      {getCopy("nav.applyNow")}
                     </Link>
                   </Button>
                 </div>

@@ -2,21 +2,19 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 export const CTASection = () => {
-  const { t } = useTranslation();
-
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-foreground text-background">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <div className="flex flex-col items-center space-y-4 sm:space-y-5 md:space-y-6 text-center max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
-            {t("cta.title")}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2">
+            {getCopy("cta.title")}
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-background/80 px-4" suppressHydrationWarning>
-            {t("cta.subtitle")}
+          <p className="text-base sm:text-lg md:text-xl text-background/80 px-4">
+            {getCopy("cta.subtitle")}
           </p>
           <div className="flex flex-col items-center gap-4 sm:gap-5 pt-2 sm:pt-4 w-full px-4 sm:px-0">
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
@@ -29,7 +27,7 @@ export const CTASection = () => {
                   href="/rent-to-own#rto-application-form"
                   aria-label="Apply for Rent to Own program - $0 down payment new homes Florida"
                 >
-                  <span suppressHydrationWarning>{t("cta.applyNow")}</span>
+                  <span>{getCopy("cta.applyNow")}</span>
                 </Link>
               </Button>
               <Button 
@@ -41,9 +39,8 @@ export const CTASection = () => {
                 <Link 
                   href="/schedule-appointment" 
                   aria-label="Schedule appointment with home builder - New homes consultation Florida"
-                  suppressHydrationWarning
                 >
-                  {t("cta.schedule")}
+                  {getCopy("cta.schedule")}
                 </Link>
               </Button>
             </div>

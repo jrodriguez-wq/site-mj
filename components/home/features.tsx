@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Home, DollarSign, Shield } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { motion } from "framer-motion";
 
 export const Features = () => {
-  const { t } = useTranslation();
-
   const features = [
     {
       icon: Home,
@@ -48,10 +46,10 @@ export const Features = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
-            {t("features.title") || "What We Offer"}
+            {getCopy("features.title")}
           </h2>
-          <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            {t("features.subtitle")}
+          <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4">
+            {getCopy("features.subtitle")}
           </p>
         </motion.div>
 
@@ -71,11 +69,11 @@ export const Features = () => {
                       {features.indexOf(feature) + 1}
                     </div>
                   </div>
-                  <CardTitle className="text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-4 group-hover:text-primary transition-colors duration-150 text-background" suppressHydrationWarning>
-                    {t(feature.titleKey)}
+                  <CardTitle className="text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-4 group-hover:text-primary transition-colors duration-150 text-background">
+                    {getCopy(feature.titleKey)}
                   </CardTitle>
-                  <CardDescription className="text-sm sm:text-base leading-relaxed text-background/70" suppressHydrationWarning>
-                    {t(feature.descriptionKey)}
+                  <CardDescription className="text-sm sm:text-base leading-relaxed text-background/70">
+                    {getCopy(feature.descriptionKey)}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="relative pt-0 p-6 sm:p-8">
@@ -90,7 +88,7 @@ export const Features = () => {
                         : "Learn more about M.J. Newell Homes - Best home builder in Florida"
                     }
                   >
-                    <span suppressHydrationWarning>{t("features.learnMore")}</span>
+                    <span suppressHydrationWarning>{getCopy("features.learnMore")}</span>
                     <span className="group-hover:translate-x-1 transition-transform duration-150">→</span>
                   </Link>
                 </CardContent>

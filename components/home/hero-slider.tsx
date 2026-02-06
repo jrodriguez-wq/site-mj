@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 
 interface HeroSlideConfig {
   image: string;
@@ -59,33 +59,25 @@ const heroSlidesConfig: HeroSlideConfig[] = [
 ];
 
 export const HeroSlider = () => {
-  const { t, translations } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const heroSlides = useMemo(() => {
-    // Re-calcular solo cuando las traducciones cambien
-    return heroSlidesConfig.map((slide) => ({
+  const heroSlides = useMemo(() =>
+    heroSlidesConfig.map((slide) => ({
       image: slide.image,
-      title: t(slide.titleKey),
-      subtitle: slide.subtitleKey ? t(slide.subtitleKey) : undefined,
-      description: slide.descriptionKey ? t(slide.descriptionKey) : undefined,
-      primaryButton: slide.primaryButtonKey
-        ? t(slide.primaryButtonKey)
-        : undefined,
+      title: getCopy(slide.titleKey),
+      subtitle: slide.subtitleKey ? getCopy(slide.subtitleKey) : undefined,
+      description: slide.descriptionKey ? getCopy(slide.descriptionKey) : undefined,
+      primaryButton: slide.primaryButtonKey ? getCopy(slide.primaryButtonKey) : undefined,
       primaryButtonLink: slide.primaryButtonLink,
       primaryButtonAction: slide.primaryButtonAction || "link",
-      primaryButtonScrollTarget:
-        slide.primaryButtonScrollTarget || "quick-register-form",
-      secondaryButton: slide.secondaryButtonKey
-        ? t(slide.secondaryButtonKey)
-        : undefined,
+      primaryButtonScrollTarget: slide.primaryButtonScrollTarget || "quick-register-form",
+      secondaryButton: slide.secondaryButtonKey ? getCopy(slide.secondaryButtonKey) : undefined,
       secondaryButtonLink: slide.secondaryButtonLink,
       secondaryButtonAction: slide.secondaryButtonAction || "link",
-      secondaryButtonScrollTarget:
-        slide.secondaryButtonScrollTarget || "quick-register-form",
-    }));
-  }, [t, translations]);
+      secondaryButtonScrollTarget: slide.secondaryButtonScrollTarget || "quick-register-form",
+    })),
+  []);
 
   useEffect(() => {
     const interval = setInterval(() => {

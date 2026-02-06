@@ -6,67 +6,48 @@ import { useMemo } from "react";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 
 export const Footer = () => {
-  const { t: translationFn } = useTranslation();
-
-  const t = useMemo(() => {
-    return translationFn || ((key: string) => key);
-  }, [translationFn]);
-
-  const footerSections = useMemo(() => {
-    // Siempre renderizar contenido para evitar discrepancias SSR/client
-    // Las traducciones se actualizarán cuando estén disponibles
-    const safeT = (key: string, fallback?: string) => {
-      try {
-        const result = t(key);
-        return result && result !== key ? result : (fallback || key);
-      } catch {
-        return fallback || key;
-      }
-    };
-    
-    return [
-      {
-        title: safeT("footer.sections.properties", "Properties"),
-        links: [
-          { label: safeT("nav.models", "Models"), href: "/models" },
-          { label: safeT("footer.links.duplex", "Duplex"), href: "/models/duplex" },
-          { label: safeT("nav.rentToOwn", "Rent to Own"), href: "/rent-to-own" },
-          { label: safeT("footer.links.rentalApplication", "Rental Application"), href: "/rental-application" },
-        ],
-      },
-      {
-        title: safeT("footer.sections.communities", "Communities"),
-        links: [
-          { label: safeT("nav.labelle", "LaBelle, FL"), href: "/communities/labelle" },
-          { label: safeT("nav.lehighAcres", "Lehigh Acres, FL"), href: "/communities/lehigh-acres" },
-        ],
-      },
-      {
-        title: safeT("footer.sections.resources", "Resources"),
-        links: [
-          { label: "Blog", href: "/blog" },
-          { label: safeT("nav.warranty", "Warranty"), href: "/warranty" },
-          { label: safeT("nav.homeBuyingGuide", "Home Buying Guide"), href: "/home-buying-guide" },
-          { label: safeT("footer.links.scheduleAppointment", "Schedule Appointment"), href: "/schedule-appointment" },
-          { label: safeT("footer.links.faq", "FAQ"), href: "/faq" },
-        ],
-      },
-      {
-        title: safeT("footer.sections.company", "Company"),
-        links: [
-          { label: safeT("nav.aboutUs", "About Us"), href: "/about-us" },
-          { label: safeT("nav.contact", "Contact"), href: "/contact" },
-          { label: safeT("footer.links.privacyPolicy", "Privacy Policy"), href: "/privacy-policy" },
-        ],
-      },
-    ];
-  }, [t]);
+  const footerSections = useMemo(() => [
+    {
+      title: getCopy("footer.sections.properties"),
+      links: [
+        { label: getCopy("nav.models"), href: "/models" },
+        { label: getCopy("footer.links.duplex"), href: "/models/duplex" },
+        { label: getCopy("nav.rentToOwn"), href: "/rent-to-own" },
+        { label: getCopy("footer.links.rentalApplication"), href: "/rental-application" },
+      ],
+    },
+    {
+      title: getCopy("footer.sections.communities"),
+      links: [
+        { label: getCopy("nav.labelle"), href: "/communities/labelle" },
+        { label: getCopy("nav.lehighAcres"), href: "/communities/lehigh-acres" },
+      ],
+    },
+    {
+      title: getCopy("footer.sections.resources"),
+      links: [
+        { label: getCopy("nav.blog"), href: "/blog" },
+        { label: getCopy("nav.warranty"), href: "/warranty" },
+        { label: getCopy("nav.homeBuyingGuide"), href: "/home-buying-guide" },
+        { label: getCopy("footer.links.scheduleAppointment"), href: "/schedule-appointment" },
+        { label: getCopy("footer.links.faq"), href: "/faq" },
+      ],
+    },
+    {
+      title: getCopy("footer.sections.company"),
+      links: [
+        { label: getCopy("nav.aboutUs"), href: "/about-us" },
+        { label: getCopy("nav.contact"), href: "/contact" },
+        { label: getCopy("footer.links.privacyPolicy"), href: "/privacy-policy" },
+      ],
+    },
+  ], []);
 
   return (
     <footer className="border-t border-border/40 bg-foreground text-background animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
@@ -84,8 +65,8 @@ export const Footer = () => {
                 priority
               />
             </Link>
-            <p className="text-sm text-background/80 leading-relaxed max-w-md" suppressHydrationWarning>
-              {t ? t("footer.description") || "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Rent to Own programs with $0 down payment." : "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Rent to Own programs with $0 down payment."}
+            <p className="text-sm text-background/80 leading-relaxed max-w-md">
+              {getCopy("footer.description")}
             </p>
             
             {/* Contact Information */}
@@ -93,7 +74,7 @@ export const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-xs font-semibold text-background/90 mb-1" suppressHydrationWarning>{t ? t("footer.address") || "Address" : "Address"}</p>
+                  <p className="text-xs font-semibold text-background/90 mb-1">{getCopy("footer.address")}</p>
                   <p className="text-sm text-background/70">{address}</p>
                 </div>
               </div>
@@ -101,7 +82,7 @@ export const Footer = () => {
               <div className="flex items-start gap-3">
                 <Phone className="h-4 w-4 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-xs font-semibold text-background/90 mb-1" suppressHydrationWarning>{t ? t("footer.phone") || "Phone" : "Phone"}</p>
+                  <p className="text-xs font-semibold text-background/90 mb-1">{getCopy("footer.phone")}</p>
                   <div className="space-y-1">
                     <a
                       href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
@@ -124,7 +105,7 @@ export const Footer = () => {
               <div className="flex items-start gap-3">
                 <Mail className="h-4 w-4 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <p className="text-xs font-semibold text-background/90 mb-1" suppressHydrationWarning>{t ? t("footer.email") || "Email" : "Email"}</p>
+                  <p className="text-xs font-semibold text-background/90 mb-1">{getCopy("footer.email")}</p>
                   <a
                     href={`mailto:${CONTACT_INFO.email}`}
                     className="text-sm text-background/70 hover:text-primary transition-colors break-words"
@@ -137,7 +118,7 @@ export const Footer = () => {
 
             {/* Social Media Links */}
             <div className="pt-2">
-              <p className="text-xs font-semibold text-background/90 mb-3" suppressHydrationWarning>{t ? t("footer.followUs") || "Follow Us" : "Follow Us"}</p>
+              <p className="text-xs font-semibold text-background/90 mb-3">{getCopy("footer.followUs")}</p>
               <div className="flex gap-3">
                 {SOCIAL_LINKS.facebook && (
                   <a
@@ -220,14 +201,14 @@ export const Footer = () => {
         <div className="mt-10 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-background/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-background/70">
             <p suppressHydrationWarning>
-                {t ? t("footer.copyright") || "Copyright © 2026 M.J. Newell Homes. All Rights Reserved" : "Copyright © 2026 M.J. Newell Homes. All Rights Reserved"}
+                {getCopy("footer.copyright")}
             </p>
             <div className="flex gap-4">
               <Link href="/privacy-policy" className="hover:text-background transition-colors" suppressHydrationWarning>
-                <span suppressHydrationWarning>{t ? t("footer.links.privacyPolicy") || "Privacy Policy" : "Privacy Policy"}</span>
+                <span suppressHydrationWarning>{getCopy("footer.links.privacyPolicy")}</span>
               </Link>
               <Link href="/terms-conditions" className="hover:text-background transition-colors" suppressHydrationWarning>
-                <span suppressHydrationWarning>{t ? t("footer.links.terms") || "Terms & Conditions" : "Terms & Conditions"}</span>
+                <span suppressHydrationWarning>{getCopy("footer.links.terms")}</span>
               </Link>
             </div>
           </div>
