@@ -441,8 +441,6 @@ export const Navbar = () => {
               <Phone className="h-4 w-4 transition-transform duration-300 group-hover/phone:scale-110" />
             </a>
 
-            <LanguageSelector />
-
             {/* Mobile Menu - Premium Design */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="lg:hidden">
@@ -588,7 +586,7 @@ export const Navbar = () => {
                       suppressHydrationWarning
                     >
                       <Calendar className="h-4 w-4 opacity-90" />
-                      <span suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
+                      <span suppressHydrationWarning>{getCopy("nav.scheduleAppointment")}</span>
                     </a>
                   </Button>
                   <Button
