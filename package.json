@@ -15,11 +15,7 @@
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf .next node_modules pnpm-lock.yaml",
-    "clean:cache": "rm -rf .next",
-    "optimize-all": "node scripts/optimize-all-images-complete.js",
-    "optimize-folder": "node scripts/optimize-folder-images.js",
-    "validate-images": "node scripts/validate-images.js",
-    "generate-favicons": "node scripts/generate-favicons.js"
+    "clean:cache": "rm -rf .next"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

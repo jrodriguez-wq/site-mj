@@ -1,5 +1,5 @@
 import { StructuredData } from "@/types/seo";
-import { SEO_CONFIG, GOOGLE_REVIEWS } from "@/config/seo";
+import { SEO_CONFIG } from "@/config/seo";
 
 /**
  * Generate Service Schema for Rent to Own Program
@@ -8,6 +8,7 @@ export const generateRentToOwnServiceSchema = (): StructuredData => {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    name: "Rent to Own Program",
     serviceType: "Rent to Own Program",
     inLanguage: "en-US",
     provider: {
@@ -44,14 +45,6 @@ export const generateRentToOwnServiceSchema = (): StructuredData => {
       url: `${SEO_CONFIG.siteUrl}/rent-to-own`,
     },
     url: `${SEO_CONFIG.siteUrl}/rent-to-own`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: GOOGLE_REVIEWS.ratingValue,
-      reviewCount: String(GOOGLE_REVIEWS.reviewCount),
-      bestRating: "5",
-      worstRating: "1",
-      url: GOOGLE_REVIEWS.googleBusinessProfileUrl,
-    },
   };
 };
 
@@ -62,6 +55,7 @@ export const generateNewHomeConstructionServiceSchema = (): StructuredData => {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    name: "New Home Construction",
     serviceType: "New Home Construction",
     inLanguage: "en-US",
     provider: {
@@ -104,14 +98,6 @@ export const generateNewHomeConstructionServiceSchema = (): StructuredData => {
       url: `${SEO_CONFIG.siteUrl}/models`,
     },
     url: `${SEO_CONFIG.siteUrl}/models`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: GOOGLE_REVIEWS.ratingValue,
-      reviewCount: String(GOOGLE_REVIEWS.reviewCount),
-      bestRating: "5",
-      worstRating: "1",
-      url: GOOGLE_REVIEWS.googleBusinessProfileUrl,
-    },
   };
 };
 
@@ -122,6 +108,7 @@ export const generateHomeSalesServiceSchema = (): StructuredData => {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    name: "Home Sales",
     serviceType: "Home Sales",
     inLanguage: "en-US",
     provider: {
@@ -156,14 +143,6 @@ export const generateHomeSalesServiceSchema = (): StructuredData => {
       url: `${SEO_CONFIG.siteUrl}/models`,
     },
     url: `${SEO_CONFIG.siteUrl}/models`,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: GOOGLE_REVIEWS.ratingValue,
-      reviewCount: String(GOOGLE_REVIEWS.reviewCount),
-      bestRating: "5",
-      worstRating: "1",
-      url: GOOGLE_REVIEWS.googleBusinessProfileUrl,
-    },
   };
 };
 
@@ -174,6 +153,7 @@ export const generatePropertyDevelopmentServiceSchema = (): StructuredData => {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    name: "Property Development",
     serviceType: "Property Development",
     inLanguage: "en-US",
     provider: {
