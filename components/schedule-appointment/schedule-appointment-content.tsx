@@ -8,8 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { MapPin, Phone, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map, ExternalLink, Zap, MessageSquare } from "lucide-react";
 import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
-import { useTranslation } from "@/hooks/use-translation";
-import { useLanguageStore } from "@/store/language-store";
+import { getCopy } from "@/lib/constants/copy";
 import { AnimatedSection } from "@/components/ui/animated-section";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
@@ -17,16 +16,9 @@ const googleMapsUrl = "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8";
 // Base URL sin parámetros de idioma - los agregaremos dinámicamente
 const googleMapsEmbedBaseUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d515.3257077253446!2d-81.43737737748471!3d26.762324092310248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db856a8ff9fc6b%3A0xce6810c83740a1d4!2sMJ%20Newell%20Homes!5e0!4v1765941661174";
 
+const googleMapsEmbedUrl = `${googleMapsEmbedBaseUrl}&hl=en&gl=US`;
+
 export const ScheduleAppointmentContent = () => {
-  const { t } = useTranslation();
-  const language = useLanguageStore((state) => state.language);
-  
-  // Construir URL del embed con el idioma correcto
-  const googleMapsEmbedUrl = useMemo(() => {
-    const lang = language === "es" ? "es" : "en";
-    const region = language === "es" ? "US" : "US"; // Mantener US como región
-    return `${googleMapsEmbedBaseUrl}&hl=${lang}&gl=${region}`;
-  }, [language]);
 
   // URL de HubSpot Meetings para redirección
   const meetingsUrl = "https://meetings.hubspot.com/jrodriguez134/meeting-web";
@@ -49,13 +41,13 @@ export const ScheduleAppointmentContent = () => {
             <div className="text-center space-y-3 sm:space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
               <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span suppressHydrationWarning>{t("scheduleAppointment.title")}</span>
+              <span suppressHydrationWarning>{getCopy("scheduleAppointment.title")}</span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent leading-tight sm:leading-tight" suppressHydrationWarning>
-              {t("scheduleAppointment.heroTitle")}
+              {getCopy("scheduleAppointment.heroTitle")}
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-2 sm:px-0" suppressHydrationWarning>
-              {t("scheduleAppointment.heroSubtitle")}
+              {getCopy("scheduleAppointment.heroSubtitle")}
             </p>
             </div>
           </div>
@@ -75,11 +67,11 @@ export const ScheduleAppointmentContent = () => {
                   <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
                     <div className="mb-6 sm:mb-8 text-center space-y-2 sm:space-y-3">
                       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold" suppressHydrationWarning>
-                        {t("scheduleAppointment.formTitle")}
+                        {getCopy("scheduleAppointment.formTitle")}
                       </h2>
                       <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
                       <p className="text-muted-foreground text-xs sm:text-sm md:text-base pt-1 sm:pt-2 max-w-2xl mx-auto px-2 sm:px-0" suppressHydrationWarning>
-                        {t("scheduleAppointment.formDescription")}
+                        {getCopy("scheduleAppointment.formDescription")}
                       </p>
                     </div>
                     
@@ -91,7 +83,7 @@ export const ScheduleAppointmentContent = () => {
                         >
                           <Zap className="h-4 w-4 sm:h-5 sm:w-5" />
                           <span className="font-semibold leading-tight text-center" suppressHydrationWarning>
-                            {t("scheduleAppointment.options.onlineBooking.title")}
+                            {getCopy("scheduleAppointment.options.onlineBooking.title")}
                           </span>
                         </TabsTrigger>
                         <TabsTrigger 
@@ -100,7 +92,7 @@ export const ScheduleAppointmentContent = () => {
                         >
                           <MessageSquare className="h-4 w-4 sm:h-5 sm:w-5" />
                           <span className="font-semibold leading-tight text-center" suppressHydrationWarning>
-                            {t("scheduleAppointment.options.form.title")}
+                            {getCopy("scheduleAppointment.options.form.title")}
                           </span>
                         </TabsTrigger>
                       </TabsList>
@@ -114,16 +106,16 @@ export const ScheduleAppointmentContent = () => {
                               </div>
                               <div className="space-y-2">
                                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold" suppressHydrationWarning>
-                                  {t("scheduleAppointment.options.onlineBooking.title")}
+                                  {getCopy("scheduleAppointment.options.onlineBooking.title")}
                                 </h3>
                                 <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 bg-primary/10 rounded-full">
                                   <Zap className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                                   <span className="text-xs sm:text-sm font-medium text-primary" suppressHydrationWarning>
-                                    {t("scheduleAppointment.options.onlineBooking.benefit")}
+                                    {getCopy("scheduleAppointment.options.onlineBooking.benefit")}
                                   </span>
                                 </div>
                                 <p className="text-muted-foreground max-w-lg mx-auto text-sm sm:text-base leading-relaxed px-2 sm:px-0" suppressHydrationWarning>
-                                  {t("scheduleAppointment.options.onlineBooking.description")}
+                                  {getCopy("scheduleAppointment.options.onlineBooking.description")}
                                 </p>
                               </div>
                             </div>
@@ -142,7 +134,7 @@ export const ScheduleAppointmentContent = () => {
                               >
                                 <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
                                 <span suppressHydrationWarning>
-                                  {t("scheduleAppointment.options.onlineBooking.button")}
+                                  {getCopy("scheduleAppointment.options.onlineBooking.button")}
                                 </span>
                                 <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                               </a>
@@ -160,16 +152,16 @@ export const ScheduleAppointmentContent = () => {
                               </div>
                               <div className="space-y-2">
                                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold" suppressHydrationWarning>
-                                  {t("scheduleAppointment.options.form.title")}
+                                  {getCopy("scheduleAppointment.options.form.title")}
                                 </h3>
                                 <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 sm:py-1 bg-primary/10 rounded-full">
                                   <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                                   <span className="text-xs sm:text-sm font-medium text-primary" suppressHydrationWarning>
-                                    {t("scheduleAppointment.options.form.benefit")}
+                                    {getCopy("scheduleAppointment.options.form.benefit")}
                                   </span>
                                 </div>
                                 <p className="text-muted-foreground max-w-lg mx-auto text-sm sm:text-base leading-relaxed px-2 sm:px-0" suppressHydrationWarning>
-                                  {t("scheduleAppointment.options.form.description")}
+                                  {getCopy("scheduleAppointment.options.form.description")}
                                 </p>
                               </div>
                             </div>
@@ -194,7 +186,7 @@ export const ScheduleAppointmentContent = () => {
                   <CardContent className="p-4 sm:p-6 md:p-8">
                     <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 flex items-center gap-2">
                       <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" />
-                      <span suppressHydrationWarning>{t("scheduleAppointment.whatToExpect.title")}</span>
+                      <span suppressHydrationWarning>{getCopy("scheduleAppointment.whatToExpect.title")}</span>
                     </h3>
                     <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                       <div className="space-y-2">
@@ -203,11 +195,11 @@ export const ScheduleAppointmentContent = () => {
                             <DollarSign className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                           </div>
                           <h4 className="font-semibold text-xs sm:text-sm" suppressHydrationWarning>
-                            {t("scheduleAppointment.whatToExpect.financialEvaluation.title")}
+                            {getCopy("scheduleAppointment.whatToExpect.financialEvaluation.title")}
                           </h4>
                         </div>
                         <p className="text-xs text-muted-foreground leading-relaxed pl-7 sm:pl-0" suppressHydrationWarning>
-                          {t("scheduleAppointment.whatToExpect.financialEvaluation.description")}
+                          {getCopy("scheduleAppointment.whatToExpect.financialEvaluation.description")}
                         </p>
                       </div>
                       <div className="space-y-2">
@@ -216,11 +208,11 @@ export const ScheduleAppointmentContent = () => {
                             <Home className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                           </div>
                           <h4 className="font-semibold text-xs sm:text-sm" suppressHydrationWarning>
-                            {t("scheduleAppointment.whatToExpect.viewHomes.title")}
+                            {getCopy("scheduleAppointment.whatToExpect.viewHomes.title")}
                           </h4>
                         </div>
                         <p className="text-xs text-muted-foreground leading-relaxed pl-7 sm:pl-0" suppressHydrationWarning>
-                          {t("scheduleAppointment.whatToExpect.viewHomes.description")}
+                          {getCopy("scheduleAppointment.whatToExpect.viewHomes.description")}
                         </p>
                       </div>
                       <div className="space-y-2 sm:col-span-2 lg:col-span-1">
@@ -229,11 +221,11 @@ export const ScheduleAppointmentContent = () => {
                             <Users className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                           </div>
                           <h4 className="font-semibold text-xs sm:text-sm" suppressHydrationWarning>
-                            {t("scheduleAppointment.whatToExpect.personalConsultation.title")}
+                            {getCopy("scheduleAppointment.whatToExpect.personalConsultation.title")}
                           </h4>
                         </div>
                         <p className="text-xs text-muted-foreground leading-relaxed pl-7 sm:pl-0" suppressHydrationWarning>
-                          {t("scheduleAppointment.whatToExpect.personalConsultation.description")}
+                          {getCopy("scheduleAppointment.whatToExpect.personalConsultation.description")}
                         </p>
                       </div>
                     </div>
@@ -261,7 +253,7 @@ export const ScheduleAppointmentContent = () => {
                           <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
                             <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                             <h3 className="text-xs sm:text-sm font-bold" suppressHydrationWarning>
-                              {t("scheduleAppointment.officeInfo.title")}
+                              {getCopy("scheduleAppointment.officeInfo.title")}
                             </h3>
                           </div>
                           <p className="text-[10px] sm:text-xs text-muted-foreground leading-tight">{address}</p>
@@ -277,7 +269,7 @@ export const ScheduleAppointmentContent = () => {
                     <div className="space-y-4 sm:space-y-5">
                       <div>
                         <h4 className="text-xs sm:text-sm font-semibold mb-1 text-muted-foreground" suppressHydrationWarning>
-                          {t("scheduleAppointment.officeInfo.address")}
+                          {getCopy("scheduleAppointment.officeInfo.address")}
                         </h4>
                         <p className="text-xs sm:text-sm font-medium leading-relaxed">{address}</p>
                       </div>
@@ -285,7 +277,7 @@ export const ScheduleAppointmentContent = () => {
                       <div>
                         <h4 className="text-xs sm:text-sm font-semibold mb-1 text-muted-foreground flex items-center gap-1.5 sm:gap-2">
                           <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
-                          <span suppressHydrationWarning>{t("scheduleAppointment.officeInfo.phone")}</span>
+                          <span suppressHydrationWarning>{getCopy("scheduleAppointment.officeInfo.phone")}</span>
                         </h4>
                         <a
                           href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
@@ -298,17 +290,17 @@ export const ScheduleAppointmentContent = () => {
                       <div>
                         <h4 className="text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-muted-foreground flex items-center gap-1.5 sm:gap-2">
                           <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
-                          <span suppressHydrationWarning>{t("scheduleAppointment.officeInfo.hours")}</span>
+                          <span suppressHydrationWarning>{getCopy("scheduleAppointment.officeInfo.hours")}</span>
                         </h4>
                         <div className="text-[10px] sm:text-xs text-muted-foreground space-y-0.5 sm:space-y-1 leading-relaxed">
                           <p suppressHydrationWarning>
-                            {t("scheduleAppointment.officeInfo.weekdays")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
+                            {getCopy("scheduleAppointment.officeInfo.weekdays")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                           </p>
                           <p suppressHydrationWarning>
-                            {t("scheduleAppointment.officeInfo.saturday")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
+                            {getCopy("scheduleAppointment.officeInfo.saturday")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                           </p>
                           <p suppressHydrationWarning>
-                            {t("scheduleAppointment.officeInfo.sunday")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
+                            {getCopy("scheduleAppointment.officeInfo.sunday")}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                           </p>
                         </div>
                       </div>
@@ -326,7 +318,7 @@ export const ScheduleAppointmentContent = () => {
                             className="flex items-center justify-center gap-1.5 sm:gap-2"
                           >
                             <Map className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                            <span suppressHydrationWarning>{t("scheduleAppointment.getDirections")}</span>
+                            <span suppressHydrationWarning>{getCopy("scheduleAppointment.getDirections")}</span>
                           </a>
                         </Button>
 
@@ -341,7 +333,7 @@ export const ScheduleAppointmentContent = () => {
                             className="flex items-center justify-center gap-1.5 sm:gap-2"
                           >
                             <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                            <span suppressHydrationWarning>{t("scheduleAppointment.callNow")}</span>
+                            <span suppressHydrationWarning>{getCopy("scheduleAppointment.callNow")}</span>
                           </a>
                         </Button>
                       </div>

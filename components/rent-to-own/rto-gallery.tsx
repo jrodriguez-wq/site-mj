@@ -40,7 +40,7 @@ const GalleryModal = ({
       <div className="relative bg-muted h-[90vh]">
         <Image
           src={images[selectedIndex]}
-          alt={`Familia feliz en RTO - ${selectedIndex + 1}`}
+          alt={`Happy family - Rent to Own - ${selectedIndex + 1}`}
           fill
           className="object-contain"
           sizes="(max-width: 1024px) 100vw, 80vw"
@@ -180,7 +180,7 @@ export const RTOGallery = () => {
                   >
                     <Image
                       src={src}
-                      alt={`Familia feliz en RTO - ${index + 1}`}
+                      alt={`Happy family - Rent to Own - ${index + 1}`}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-110"
                       sizes="(max-width: 768px) 50vw, 33vw"

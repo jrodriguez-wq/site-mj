@@ -5,8 +5,8 @@ import { PageContent } from "@/components/layout/page-container";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { FileText, Scale, AlertCircle, CheckCircle } from "lucide-react";
 import { CONTACT_INFO } from "@/config/seo";
-import { useTranslation } from "@/hooks/use-translation";
-import { useLanguageStore } from "@/store/language-store";
+import { CURRENT_YEAR } from "@/config/version";
+import { getCopy, COPY } from "@/lib/constants/copy";
 
 // Helper function to get nested value from translations
 const getNestedValue = (obj: unknown, path: string): unknown => {
@@ -28,41 +28,39 @@ const getNestedValue = (obj: unknown, path: string): unknown => {
 };
 
 export const TermsConditionsContent = () => {
-  const { t } = useTranslation();
-  const translations = useLanguageStore((state) => state.translations);
-  const lastUpdated = "January 2025";
+  const lastUpdated = `January ${CURRENT_YEAR}`;
 
   const sections = useMemo(() => {
     const getArray = (path: string): string[] => {
-      const value = getNestedValue(translations, path);
+      const value = getNestedValue(COPY, path);
       return Array.isArray(value) ? (value as string[]) : [];
     };
 
     return [
       {
         icon: FileText,
-        title: t("termsConditions.sections.acceptance.title"),
+        title: getCopy("termsConditions.sections.acceptance.title"),
         content: getArray("termsConditions.sections.acceptance.content"),
       },
       {
         icon: Scale,
-        title: t("termsConditions.sections.useOfWebsite.title"),
+        title: getCopy("termsConditions.sections.useOfWebsite.title"),
         content: getArray("termsConditions.sections.useOfWebsite.content"),
       },
       {
         icon: AlertCircle,
-        title: t("termsConditions.sections.propertyInformation.title"),
+        title: getCopy("termsConditions.sections.propertyInformation.title"),
         content: getArray(
           "termsConditions.sections.propertyInformation.content"
         ),
       },
       {
         icon: CheckCircle,
-        title: t("termsConditions.sections.rentToOwn.title"),
+        title: getCopy("termsConditions.sections.rentToOwn.title"),
         content: getArray("termsConditions.sections.rentToOwn.content"),
       },
     ];
-  }, [t, translations]);
+  }, []);
 
   return (
     <PageContent size="md">
@@ -77,16 +75,16 @@ export const TermsConditionsContent = () => {
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight"
               suppressHydrationWarning
             >
-              {t("termsConditions.title")}
+              {getCopy("termsConditions.title")}
             </h1>
             <p
               className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed"
               suppressHydrationWarning
             >
-              {t("termsConditions.lastUpdated")} {lastUpdated}
+              {getCopy("termsConditions.lastUpdated")} {lastUpdated}
             </p>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-              {t("termsConditions.intro")}
+              {getCopy("termsConditions.intro")}
             </p>
           </div>
         </AnimatedSection>
@@ -130,13 +128,13 @@ export const TermsConditionsContent = () => {
                 className="text-2xl font-bold text-foreground"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.limitation.title")}
+                {getCopy("termsConditions.sections.limitation.title")}
               </h2>
               <p
                 className="text-muted-foreground leading-relaxed"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.limitation.description")}
+                {getCopy("termsConditions.sections.limitation.description")}
               </p>
             </div>
 
@@ -145,13 +143,13 @@ export const TermsConditionsContent = () => {
                 className="text-2xl font-bold text-foreground"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.intellectualProperty.title")}
+                {getCopy("termsConditions.sections.intellectualProperty.title")}
               </h2>
               <p
                 className="text-muted-foreground leading-relaxed"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.intellectualProperty.description")}
+                {getCopy("termsConditions.sections.intellectualProperty.description")}
               </p>
             </div>
 
@@ -160,13 +158,13 @@ export const TermsConditionsContent = () => {
                 className="text-2xl font-bold text-foreground"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.governingLaw.title")}
+                {getCopy("termsConditions.sections.governingLaw.title")}
               </h2>
               <p
                 className="text-muted-foreground leading-relaxed"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.governingLaw.description")}
+                {getCopy("termsConditions.sections.governingLaw.description")}
               </p>
             </div>
 
@@ -175,13 +173,13 @@ export const TermsConditionsContent = () => {
                 className="text-2xl font-bold text-foreground"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.changes.title")}
+                {getCopy("termsConditions.sections.changes.title")}
               </h2>
               <p
                 className="text-muted-foreground leading-relaxed"
                 suppressHydrationWarning
               >
-                {t("termsConditions.sections.changes.description")}
+                {getCopy("termsConditions.sections.changes.description")}
               </p>
             </div>
           </div>
@@ -194,10 +192,10 @@ export const TermsConditionsContent = () => {
               className="text-xl sm:text-2xl font-bold text-foreground leading-tight px-4"
               suppressHydrationWarning
             >
-              {t("termsConditions.sections.contact.title")}
+              {getCopy("termsConditions.sections.contact.title")}
             </h3>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed px-4" suppressHydrationWarning>
-              {t("termsConditions.sections.contact.description")}
+              {getCopy("termsConditions.sections.contact.description")}
             </p>
             <div className="space-y-2 text-muted-foreground">
               <p>

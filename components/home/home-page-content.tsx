@@ -20,7 +20,7 @@ import { PARTNER_LOGOS } from "@/config/partner-logos";
 import { FurnishedHomesSlider } from "@/components/models/furnished-homes-slider";
 
 export const HomePageContent = () => {
-  // TranslationLoader en el layout maneja la carga de traducciones globalmente
+  // Site is English-only; copy comes from lib/constants/copy.ts
   // Los componentes hijos usan useTranslation() que automáticamente muestra
   // las traducciones cuando están disponibles, o la key como fallback
   // Esto evita errores de hidratación mientras mantiene la funcionalidad

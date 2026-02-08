@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
+import { CURRENT_YEAR } from "@/config/version";
 import { getCopy } from "@/lib/constants/copy";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
@@ -201,7 +202,7 @@ export const Footer = () => {
         <div className="mt-10 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-background/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-background/70">
             <p suppressHydrationWarning>
-                {getCopy("footer.copyright")}
+              {getCopy("footer.copyright").replace("{year}", String(CURRENT_YEAR))}
             </p>
             <div className="flex gap-4">
               <Link href="/privacy-policy" className="hover:text-background transition-colors" suppressHydrationWarning>

@@ -24,7 +24,7 @@ import { getAllPosts } from "@/lib/blog/blog-utils";
  * - Last modified dates (dynamic, updates automatically)
  * - Change frequency (optimized per page type)
  * - Priority (0.0 - 1.0) based on SEO importance
- * - Language alternates (English/Spanish) for international SEO
+ * - English-only (no hreflang alternates)
  * - Automatic model discovery (dynamically includes all models)
  * - Error handling (prevents sitemap failure if models can't be loaded)
  * 
@@ -59,12 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "daily",
       priority: 1.0,
-      alternates: {
-        languages: {
-          en: baseUrl,
-          es: `${baseUrl}/es`,
-        },
-      },
     },
   ];
 
@@ -82,12 +76,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
-      alternates: {
-        languages: {
-          en: `${baseUrl}${route.path}`,
-          es: `${baseUrl}/es${route.path}`,
-        },
-      },
     }));
 
   // ============================================
@@ -104,12 +92,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
-      alternates: {
-        languages: {
-          en: `${baseUrl}${route.path}`,
-          es: `${baseUrl}/es${route.path}`,
-        },
-      },
     }));
 
   // ============================================
@@ -126,12 +108,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
-      alternates: {
-        languages: {
-          en: `${baseUrl}${route.path}`,
-          es: `${baseUrl}/es${route.path}`,
-        },
-      },
     }));
 
   // ============================================
@@ -159,12 +135,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "weekly" as const,
       priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/models/${modelKey}`,
-          es: `${baseUrl}/es/models/${modelKey}`,
-        },
-      },
     }));
   } catch (error) {
     // Si hay error obteniendo modelos, continuar sin ellos

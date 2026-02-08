@@ -1,6 +1,9 @@
 import { generateMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
+import { generateFAQPageStructuredData } from "@/lib/seo/faq-structured-data";
+import { StructuredDataComponent } from "@/components/seo/structured-data";
 import { FAQContent } from "@/components/faq/faq-content";
+import type { StructuredData } from "@/types/seo";
 
 export const metadata = generateMetadata({
   title: "Frequently Asked Questions | M.J. Newell Homes",
@@ -23,6 +26,12 @@ export const metadata = generateMetadata({
 });
 
 export default function FAQPage() {
-  return <FAQContent />;
+  const faqStructuredData = generateFAQPageStructuredData();
+  return (
+    <>
+      <StructuredDataComponent data={faqStructuredData as unknown as StructuredData} />
+      <FAQContent />
+    </>
+  );
 }
 

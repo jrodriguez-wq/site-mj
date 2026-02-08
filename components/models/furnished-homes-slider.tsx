@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MODEL_AMO_IMAGES } from "@/lib/models/model-images";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 
 interface FurnishedImage {
   image: string;
@@ -21,40 +21,13 @@ const FURNISHED_EN = {
   viewModel: "View Model",
 } as const;
 
-// Textos en español hardcodeados como fallback
-const FURNISHED_ES = {
-  title: "Casas Amobladas",
-  subtitle: "Ve cómo se ven nuestros modelos cuando están completamente amoblados",
-  scheduleAppointment: "Agendar Cita",
-  viewModel: "Ver Modelo",
-} as const;
-
-// Nombres de modelos en inglés
-const MODEL_NAMES_EN: Record<string, string> = {
-  louisiana: "Louisiana",
-  viana: "Viana",
-  delanie: "Delanie",
-  aurora: "Aurora",
-  langdon: "Langdon",
-  emelia: "Emelia",
-  duplex: "Duplex",
-};
-
 export const FurnishedHomesSlider = () => {
-  const { t, language } = useTranslation();
-  const isEn = language === "en";
-
-  // Recopilar todas las imágenes amobladas de todos los modelos
   const furnishedImages: FurnishedImage[] = useMemo(() => {
     const images: FurnishedImage[] = [];
     
     Object.entries(MODEL_AMO_IMAGES).forEach(([modelKey, imagePaths]) => {
-      // Obtener nombre del modelo
       const nameKey = `homeModels.models.${modelKey}.name`;
-      const nameT = t(nameKey);
-      const modelName = nameT !== nameKey 
-        ? nameT 
-        : (isEn ? (MODEL_NAMES_EN[modelKey] ?? modelKey) : modelKey);
+      const modelName = getCopy(nameKey) !== nameKey ? getCopy(nameKey) : modelKey;
       
       imagePaths.forEach((image) => {
         images.push({
@@ -66,7 +39,7 @@ export const FurnishedHomesSlider = () => {
     });
     
     return images;
-  }, [t, isEn]);
+  }, []);
 
   // Si no hay imágenes, no mostrar el slider
   if (furnishedImages.length === 0) {
@@ -76,11 +49,10 @@ export const FurnishedHomesSlider = () => {
   // Duplicar imágenes para efecto infinito suave
   const duplicatedImages = [...furnishedImages, ...furnishedImages, ...furnishedImages];
 
-  // Textos traducidos sin depender de cache
-  const title = isEn ? FURNISHED_EN.title : FURNISHED_ES.title;
-  const subtitle = isEn ? FURNISHED_EN.subtitle : FURNISHED_ES.subtitle;
-  const scheduleText = isEn ? FURNISHED_EN.scheduleAppointment : FURNISHED_ES.scheduleAppointment;
-  const viewModelText = isEn ? FURNISHED_EN.viewModel : FURNISHED_ES.viewModel;
+  const title = FURNISHED_EN.title;
+  const subtitle = FURNISHED_EN.subtitle;
+  const scheduleText = FURNISHED_EN.scheduleAppointment;
+  const viewModelText = FURNISHED_EN.viewModel;
 
   return (
     <section className="relative w-full py-8 sm:py-10 md:py-12 lg:py-16 bg-gradient-to-b from-background to-muted/20">
@@ -124,7 +96,7 @@ export const FurnishedHomesSlider = () => {
                 {/* Info Overlay - Solo visible en hover */}
                 <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-background/95 backdrop-blur-md border-t border-border/50">
                   <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                    {isEn ? "Model" : "Modelo"}
+                    {"Model"}
                   </p>
                   <h3 className="text-sm sm:text-base md:text-lg font-bold text-foreground mb-2 sm:mb-3 line-clamp-1">
                     {item.modelName}

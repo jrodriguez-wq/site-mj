@@ -5,8 +5,8 @@ import { PageContent } from "@/components/layout/page-container";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { Shield, Lock, Eye, FileText } from "lucide-react";
 import { CONTACT_INFO } from "@/config/seo";
-import { useTranslation } from "@/hooks/use-translation";
-import { useLanguageStore } from "@/store/language-store";
+import { CURRENT_YEAR } from "@/config/version";
+import { getCopy, COPY } from "@/lib/constants/copy";
 
 // Helper function to get nested value from translations
 const getNestedValue = (obj: unknown, path: string): unknown => {
@@ -23,39 +23,37 @@ const getNestedValue = (obj: unknown, path: string): unknown => {
 };
 
 export const PrivacyPolicyContent = () => {
-  const { t } = useTranslation();
-  const translations = useLanguageStore((state) => state.translations);
-  const lastUpdated = "January 2025";
+  const lastUpdated = `January ${CURRENT_YEAR}`;
 
   const sections = useMemo(() => {
     const getArray = (path: string): string[] => {
-      const value = getNestedValue(translations, path);
+      const value = getNestedValue(COPY, path);
       return Array.isArray(value) ? (value as string[]) : [];
     };
 
     return [
       {
         icon: FileText,
-        title: t("privacyPolicy.sections.informationWeCollect.title"),
+        title: getCopy("privacyPolicy.sections.informationWeCollect.title"),
         content: getArray("privacyPolicy.sections.informationWeCollect.content"),
       },
       {
         icon: Eye,
-        title: t("privacyPolicy.sections.howWeUse.title"),
+        title: getCopy("privacyPolicy.sections.howWeUse.title"),
         content: getArray("privacyPolicy.sections.howWeUse.content"),
       },
       {
         icon: Lock,
-        title: t("privacyPolicy.sections.informationSharing.title"),
+        title: getCopy("privacyPolicy.sections.informationSharing.title"),
         content: getArray("privacyPolicy.sections.informationSharing.content"),
       },
       {
         icon: Shield,
-        title: t("privacyPolicy.sections.dataSecurity.title"),
+        title: getCopy("privacyPolicy.sections.dataSecurity.title"),
         content: getArray("privacyPolicy.sections.dataSecurity.content"),
       },
     ];
-  }, [t, translations]);
+  }, []);
 
   return (
     <PageContent size="md">
@@ -67,13 +65,13 @@ export const PrivacyPolicyContent = () => {
               <Shield className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight" suppressHydrationWarning>
-              {t("privacyPolicy.title")}
+              {getCopy("privacyPolicy.title")}
             </h1>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed" suppressHydrationWarning>
-              {t("privacyPolicy.lastUpdated")} {lastUpdated}
+              {getCopy("privacyPolicy.lastUpdated")} {lastUpdated}
             </p>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-              {t("privacyPolicy.intro")}
+              {getCopy("privacyPolicy.intro")}
             </p>
           </div>
         </AnimatedSection>
@@ -111,39 +109,39 @@ export const PrivacyPolicyContent = () => {
           <div className="space-y-6">
             <div className="bg-card border rounded-xl p-6 md:p-8 space-y-4">
               <h2 className="text-2xl font-bold text-foreground" suppressHydrationWarning>
-                {t("privacyPolicy.sections.yourRights.title")}
+                {getCopy("privacyPolicy.sections.yourRights.title")}
               </h2>
               <div className="space-y-2 text-muted-foreground leading-relaxed">
-                <p suppressHydrationWarning>{t("privacyPolicy.sections.yourRights.description")}</p>
+                <p suppressHydrationWarning>{getCopy("privacyPolicy.sections.yourRights.description")}</p>
                 <ul className="list-disc list-inside space-y-1 pl-4">
                   {(() => {
-                    const rights = getNestedValue(translations, "privacyPolicy.sections.yourRights.rights");
+                    const rights = getNestedValue(COPY, "privacyPolicy.sections.yourRights.rights");
                     return Array.isArray(rights) ? (rights as string[]).map((right, index) => (
                       <li key={index} suppressHydrationWarning>{right}</li>
                     )) : null;
                   })()}
                 </ul>
                 <p className="pt-4" suppressHydrationWarning>
-                  {t("privacyPolicy.sections.yourRights.contact")}
+                  {getCopy("privacyPolicy.sections.yourRights.contact")}
                 </p>
               </div>
             </div>
 
             <div className="bg-card border rounded-xl p-6 md:p-8 space-y-4">
               <h2 className="text-2xl font-bold text-foreground" suppressHydrationWarning>
-                {t("privacyPolicy.sections.cookies.title")}
+                {getCopy("privacyPolicy.sections.cookies.title")}
               </h2>
               <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                {t("privacyPolicy.sections.cookies.description")}
+                {getCopy("privacyPolicy.sections.cookies.description")}
               </p>
             </div>
 
             <div className="bg-card border rounded-xl p-6 md:p-8 space-y-4">
               <h2 className="text-2xl font-bold text-foreground" suppressHydrationWarning>
-                {t("privacyPolicy.sections.changes.title")}
+                {getCopy("privacyPolicy.sections.changes.title")}
               </h2>
               <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                {t("privacyPolicy.sections.changes.description")}
+                {getCopy("privacyPolicy.sections.changes.description")}
               </p>
             </div>
           </div>
@@ -153,10 +151,10 @@ export const PrivacyPolicyContent = () => {
         <AnimatedSection delay={250}>
             <div className="bg-primary/5 rounded-xl p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-3 sm:space-y-4 border border-primary/10">
             <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-tight px-4" suppressHydrationWarning>
-              {t("privacyPolicy.sections.contact.title")}
+              {getCopy("privacyPolicy.sections.contact.title")}
             </h3>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed px-4" suppressHydrationWarning>
-              {t("privacyPolicy.sections.contact.description")}
+              {getCopy("privacyPolicy.sections.contact.description")}
             </p>
             <div className="space-y-2 text-muted-foreground">
               <p>

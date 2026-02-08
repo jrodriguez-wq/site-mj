@@ -62,7 +62,7 @@ const ImageHeader = ({
   >
     <Image
       src={src}
-      alt={isLogo ? "Logo" : "Familia feliz"}
+      alt={isLogo ? "Logo" : "Happy family"}
       fill
       className={cn(
         "object-cover transition-all duration-300",
@@ -72,6 +72,7 @@ const ImageHeader = ({
       )}
       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
       quality={75}
+      suppressHydrationWarning
     />
     {isClickable && !isLogo && (
       <>
@@ -110,12 +111,13 @@ const GalleryModal = ({
       <div className="relative bg-muted h-[90vh]">
         <Image
           src={images[selectedIndex]}
-          alt={`Familia feliz - ${selectedIndex + 1}`}
+          alt={`Happy family - ${selectedIndex + 1}`}
           fill
           className="object-contain"
           sizes="(max-width: 1024px) 100vw, 80vw"
           quality={95}
           priority
+          suppressHydrationWarning
         />
 
         {/* Controles de navegación */}
@@ -192,7 +194,7 @@ const MobileImageCard = ({
   >
     <Image
       src={src}
-      alt={isLogo ? "Logo" : "Familia feliz"}
+      alt={isLogo ? "Logo" : "Happy family"}
       fill
       className={cn(
         "object-cover transition-all duration-300",
@@ -202,6 +204,7 @@ const MobileImageCard = ({
       )}
       sizes="(max-width: 768px) 50vw, 33vw"
       quality={75}
+      suppressHydrationWarning
     />
     {isClickable && !isLogo && (
       <>

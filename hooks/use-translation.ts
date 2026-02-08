@@ -3,8 +3,8 @@
 import { getCopy, COPY } from "@/lib/constants/copy";
 
 /**
- * Hook para contenido en inglés. Devuelve getCopy como t y COPY como translations.
- * Todo el sitio usa inglés desde locales/en.json sin carga asíncrona ni store.
+ * English-only copy. Returns getCopy as t and COPY as translations.
+ * All copy lives in lib/constants/copy.ts (no i18n, no async loading).
  */
 export const useTranslation = () => ({
   t: getCopy,

@@ -12,7 +12,7 @@ import { PageContent } from "@/components/layout/page-container";
 import { ModelData } from "@/types/model";
 import { cn } from "@/lib/utils";
 import { SEO_CONFIG } from "@/config/seo";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 import { MODEL_FLOORPLANS, getModelInteriorImages, getModelExteriorImages, getModelAmoImages } from "@/lib/models/model-images";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { FloorplanMeasures } from "./floorplan-measures";
@@ -27,21 +27,21 @@ interface ModelPageContentProps {
 }
 
 export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
-  const { t, language } = useTranslation();
-  const isEn = language === "en";
+  const isEn = true;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryImageIndex, setGalleryImageIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState("inside");
+  const [activeTab, setActiveTab] = useState(() =>
+    getModelAmoImages(modelData.key).length > 0 ? "furnished" : "inside"
+  );
   const [isFloorplanExpanded, setIsFloorplanExpanded] = useState(false);
   const [galleryImages, setGalleryImages] = useState<string[]>([]);
 
   const { name, sqft, bedrooms, bathrooms, garage, price, rtoPrice, description, youtubeUrl, images, sections } = modelData;
   
   // Get translated model name if available
-  const modelName = t(`homeModels.models.${modelData.key}.name`) || name;
-  // Use full description from translations if available, otherwise use JSON description
-  const modelDescription = t(`homeModels.models.${modelData.key}.fullDescription`) || description;
+  const modelName = getCopy(`homeModels.models.${modelData.key}.name`) || name;
+  const modelDescription = getCopy(`homeModels.models.${modelData.key}.fullDescription`) || description;
 
   const redirectUrl = useMemo(() => {
     // Usar el siteUrl del config para evitar problemas de hidratación
@@ -149,7 +149,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       onClick={handlePreviousImage}
                       onKeyDown={(e) => handleKeyDown(e, handlePreviousImage)}
                       className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2 sm:p-3 rounded-full hover:bg-background transition-all hover:scale-110 border border-border/50 shadow-lg z-20"
-                      aria-label={t("homeModels.modelPage.previousImage")}
+                      aria-label={getCopy("homeModels.modelPage.previousImage")}
                       type="button"
                     >
                       <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-foreground" />
@@ -158,7 +158,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       onClick={handleNextImage}
                       onKeyDown={(e) => handleKeyDown(e, handleNextImage)}
                       className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-md p-2 sm:p-3 rounded-full hover:bg-background transition-all hover:scale-110 border border-border/50 shadow-lg z-20"
-                      aria-label={t("homeModels.modelPage.nextImage")}
+                      aria-label={getCopy("homeModels.modelPage.nextImage")}
                       type="button"
                     >
                       <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-foreground" />
@@ -181,17 +181,17 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     onClick={() => openGallery(currentImageIndex)}
                     onKeyDown={(e) => handleKeyDown(e, () => openGallery(currentImageIndex))}
                     className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-background/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 hover:bg-background transition-all hover:scale-105 border border-border/50 shadow-lg z-20"
-                    aria-label={t("homeModels.modelPage.viewGallery")}
+                    aria-label={getCopy("homeModels.modelPage.viewGallery")}
                     type="button"
                   >
                     <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-foreground" />
-                    <span className="text-foreground text-xs sm:text-sm font-medium hidden sm:inline" suppressHydrationWarning>{t("homeModels.modelPage.viewGallery")}</span>
+                    <span className="text-foreground text-xs sm:text-sm font-medium hidden sm:inline" suppressHydrationWarning>{getCopy("homeModels.modelPage.viewGallery")}</span>
                   </button>
                 )}
               </>
             ) : (
               <div className="absolute inset-0 flex items-center justify-center">
-                <p className="text-muted-foreground text-base sm:text-lg" suppressHydrationWarning>{t("homeModels.modelPage.noImagesAvailable")}</p>
+                <p className="text-muted-foreground text-base sm:text-lg" suppressHydrationWarning>{getCopy("homeModels.modelPage.noImagesAvailable")}</p>
               </div>
             )}
 
@@ -229,7 +229,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             <Card className="lg:col-span-1 bg-gradient-to-br from-primary/10 via-primary/5 to-background border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-200">
               <CardHeader className="p-5 sm:p-6">
                 <CardDescription className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
-                  {t("homeModels.modelPage.startingPrice")}
+                  {getCopy("homeModels.modelPage.startingPrice")}
                 </CardDescription>
                 <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   {price}
@@ -243,7 +243,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 {rtoPrice && (
                   <div className="pt-4 border-t border-border/50">
                     <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
-                      {t("rentToOwn.hero.title")} Program
+                      {getCopy("rentToOwn.hero.title")} Program
                     </p>
                     <p className="text-xl sm:text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">
                       {rtoPrice}
@@ -251,7 +251,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   </div>
                 )}
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                  {t("homeModels.modelPage.contactForFinancing")}
+                  {getCopy("homeModels.modelPage.contactForFinancing")}
                 </p>
               </CardContent>
             </Card>
@@ -267,7 +267,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{sqft}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
-                        {t("homeModels.modelPage.sqft")}
+                        {getCopy("homeModels.modelPage.sqft")}
                       </p>
                     </div>
                   </div>
@@ -283,7 +283,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{bedrooms}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
-                        {t("homeModels.modelPage.bedrooms")}
+                        {getCopy("homeModels.modelPage.bedrooms")}
                       </p>
                     </div>
                   </div>
@@ -299,7 +299,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-2xl sm:text-3xl md:text-4xl font-black text-foreground leading-tight mb-1">{bathrooms}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
-                        {t("homeModels.modelPage.bathrooms")}
+                        {getCopy("homeModels.modelPage.bathrooms")}
                       </p>
                     </div>
                   </div>
@@ -315,7 +315,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     <div className="flex-1 flex flex-col justify-center items-center w-full">
                       <p className="text-lg sm:text-xl md:text-2xl font-black text-foreground leading-tight mb-1">{garage}</p>
                       <p className="text-xs sm:text-sm text-muted-foreground font-medium uppercase tracking-wide" suppressHydrationWarning>
-                        {t("homeModels.garage")}
+                        {getCopy("homeModels.garage")}
                       </p>
                     </div>
                   </div>
@@ -331,7 +331,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
           <section className="mt-8 sm:mt-10 md:mt-12 lg:mt-16">
           <div className="space-y-4 sm:space-y-6">
             <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" suppressHydrationWarning>{t("homeModels.modelPage.aboutThisModel")}</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" suppressHydrationWarning>{getCopy("homeModels.modelPage.aboutThisModel")}</h2>
               <div className="w-16 sm:w-20 h-0.5 sm:h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
             </div>
             <Card className="border-2">
@@ -356,7 +356,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
-                      {t("homeModels.modelPage.sections.inside")}
+                      {getCopy("homeModels.modelPage.sections.inside")}
                     </TabsTrigger>
                   )}
                   {sections.exterior && (
@@ -365,7 +365,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
-                      {t("homeModels.modelPage.sections.exterior")}
+                      {getCopy("homeModels.modelPage.sections.exterior")}
                     </TabsTrigger>
                   )}
                   {amoImages.length > 0 && (
@@ -374,7 +374,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
-                      {isEn ? FURNISHED_EN.section : (t("homeModels.modelPage.sections.furnished") !== "homeModels.modelPage.sections.furnished" ? t("homeModels.modelPage.sections.furnished") : "Amobladas")}
+                      {isEn ? FURNISHED_EN.section : (getCopy("homeModels.modelPage.sections.furnished") !== "homeModels.modelPage.sections.furnished" ? getCopy("homeModels.modelPage.sections.furnished") : "Amobladas")}
                     </TabsTrigger>
                   )}
                   {sections.virtualTour && (
@@ -383,7 +383,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
-                      {t("homeModels.modelPage.sections.virtualTour")}
+                      {getCopy("homeModels.modelPage.sections.virtualTour")}
                     </TabsTrigger>
                   )}
                   {sections.floorplan && (
@@ -392,7 +392,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
-                      {t("homeModels.modelPage.sections.floorplan")}
+                      {getCopy("homeModels.modelPage.sections.floorplan")}
                     </TabsTrigger>
                   )}
                   {sections.standardFeatures && (
@@ -401,7 +401,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                       className="px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base font-semibold rounded-lg transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary border border-transparent data-[state=active]:border-primary/20 flex-1 sm:flex-none"
                       suppressHydrationWarning
                     >
-                      {t("homeModels.modelPage.sections.standardFeatures")}
+                      {getCopy("homeModels.modelPage.sections.standardFeatures")}
                     </TabsTrigger>
                   )}
                 </div>
@@ -412,8 +412,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             {sections.inside && (
               <TabsContent value="inside" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.inside")}</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.inside")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{getCopy("homeModels.modelPage.sections.inside")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{getCopy("homeModels.modelPage.sectionDescriptions.inside")}</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 px-2 sm:px-4 md:px-6">
                   {insideImages.map((image, index) => {
@@ -424,7 +424,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                         onClick={() => openGallery(realIndex, images)}
                         onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex, images))}
                         className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
-                        aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
+                        aria-label={`${getCopy("homeModels.modelPage.viewImage")} ${index + 1}`}
                         type="button"
                       >
                         <Image
@@ -445,8 +445,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             {sections.exterior && (
               <TabsContent value="exterior" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.exterior")}</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.exterior")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{getCopy("homeModels.modelPage.sections.exterior")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{getCopy("homeModels.modelPage.sectionDescriptions.exterior")}</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 px-2 sm:px-4 md:px-6">
                   {exteriorImages.map((image, index) => {
@@ -457,7 +457,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                         onClick={() => openGallery(realIndex, images)}
                         onKeyDown={(e) => handleKeyDown(e, () => openGallery(realIndex, images))}
                         className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
-                        aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
+                        aria-label={`${getCopy("homeModels.modelPage.viewImage")} ${index + 1}`}
                         type="button"
                       >
                         <Image
@@ -478,8 +478,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             {amoImages.length > 0 && (
               <TabsContent value="furnished" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{isEn ? FURNISHED_EN.section : (t("homeModels.modelPage.sections.furnished") !== "homeModels.modelPage.sections.furnished" ? t("homeModels.modelPage.sections.furnished") : "Amobladas")}</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{isEn ? FURNISHED_EN.description : (t("homeModels.modelPage.sectionDescriptions.furnished") !== "homeModels.modelPage.sectionDescriptions.furnished" ? t("homeModels.modelPage.sectionDescriptions.furnished") : "Ve cómo se ve este modelo cuando está completamente amoblado")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{isEn ? FURNISHED_EN.section : (getCopy("homeModels.modelPage.sections.furnished") !== "homeModels.modelPage.sections.furnished" ? getCopy("homeModels.modelPage.sections.furnished") : "Amobladas")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{isEn ? FURNISHED_EN.description : (getCopy("homeModels.modelPage.sectionDescriptions.furnished") !== "homeModels.modelPage.sectionDescriptions.furnished" ? getCopy("homeModels.modelPage.sectionDescriptions.furnished") : "Ve cómo se ve este modelo cuando está completamente amoblado")}</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 px-2 sm:px-4 md:px-6">
                   {amoImages.map((image, index) => {
@@ -493,7 +493,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                         onClick={() => openGallery(finalIndex, allImagesForGallery)}
                         onKeyDown={(e) => handleKeyDown(e, () => openGallery(finalIndex, allImagesForGallery))}
                         className="relative aspect-video rounded-xl overflow-hidden group transition-opacity duration-200 hover:opacity-90"
-                        aria-label={`${t("homeModels.modelPage.viewImage")} ${index + 1}`}
+                        aria-label={`${getCopy("homeModels.modelPage.viewImage")} ${index + 1}`}
                         type="button"
                       >
                         <Image
@@ -514,11 +514,11 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             {sections.virtualTour && youtubeUrl && (
               <TabsContent value="virtualTour" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.virtualTour")}</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.virtualTour")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{getCopy("homeModels.modelPage.sections.virtualTour")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{getCopy("homeModels.modelPage.sectionDescriptions.virtualTour")}</p>
                 </div>
                 <div className="max-w-4xl mx-auto">
-                  <YouTubeVideo url={youtubeUrl} title={`${modelName} ${t("homeModels.modelPage.virtualTourTitle")}`} />
+                  <YouTubeVideo url={youtubeUrl} title={`${modelName} ${getCopy("homeModels.modelPage.virtualTourTitle")}`} />
                 </div>
               </TabsContent>
             )}
@@ -527,8 +527,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             {sections.floorplan && (
               <TabsContent value="floorplan" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.floorplan")}</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.floorplan")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{getCopy("homeModels.modelPage.sections.floorplan")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{getCopy("homeModels.modelPage.sectionDescriptions.floorplan")}</p>
                 </div>
                 {(() => {
                   // Prioridad: 1) Imagen del JSON, 2) Plano optimizado del mapeo, 3) Mensaje de "próximamente"
@@ -545,7 +545,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                                 <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
                                   <Image
                                     src={floorplanImage}
-                                    alt={`${modelName} Floorplan - ${t("homeModels.modelPage.sections.floorplan")}`}
+                                    alt={`${modelName} Floorplan - ${getCopy("homeModels.modelPage.sections.floorplan")}`}
                                     fill
                                     className="object-contain p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8"
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw"
@@ -593,13 +593,13 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                                   type="button"
                                 >
                                   <Maximize2 className="w-4 h-4" />
-                                  <span suppressHydrationWarning>{t("homeModels.modelPage.expandFloorplan") || "Ver plano completo"}</span>
+                                  <span suppressHydrationWarning>{getCopy("homeModels.modelPage.expandFloorplan") || "Ver plano completo"}</span>
                                 </button>
                               </div>
                               {/* Helper text for desktop */}
                               <div className="hidden md:block mt-3 text-center">
                                 <p className="text-xs text-muted-foreground" suppressHydrationWarning>
-                                  {t("homeModels.modelPage.floorplanZoomHint") || "Haz clic en la imagen para ampliar"}
+                                  {getCopy("homeModels.modelPage.floorplanZoomHint") || "Haz clic en la imagen para ampliar"}
                                 </p>
                               </div>
                             </div>
@@ -631,7 +631,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                                 <div className="relative w-full min-h-full p-4 flex items-center justify-center">
                                   <Image
                                     src={floorplanImage}
-                                    alt={`${modelName} Floorplan - ${t("homeModels.modelPage.sections.floorplan")} - Expanded`}
+                                    alt={`${modelName} Floorplan - ${getCopy("homeModels.modelPage.sections.floorplan")} - Expanded`}
                                     width={1200}
                                     height={900}
                                     className="object-contain w-full h-auto max-w-full"
@@ -660,7 +660,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                               {!sections.floorplan.measures && (
                                 <div className="absolute bottom-4 left-4 right-4 text-center z-[115]">
                                   <p className="text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-3 py-2 rounded-lg inline-block" suppressHydrationWarning>
-                                    {t("homeModels.modelPage.floorplanScrollHint") || "Desliza para ver el plano completo"}
+                                    {getCopy("homeModels.modelPage.floorplanScrollHint") || "Desliza para ver el plano completo"}
                                   </p>
                                 </div>
                               )}
@@ -674,7 +674,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   return (
                     <Card>
                       <CardContent className="pt-6 p-4 sm:p-6">
-                        <p className="text-center text-sm sm:text-base text-muted-foreground" suppressHydrationWarning>{t("homeModels.modelPage.floorplanComingSoon")}</p>
+                        <p className="text-center text-sm sm:text-base text-muted-foreground" suppressHydrationWarning>{getCopy("homeModels.modelPage.floorplanComingSoon")}</p>
                       </CardContent>
                     </Card>
                   );
@@ -686,15 +686,15 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             {sections.standardFeatures && (
               <TabsContent value="standardFeatures" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{t("homeModels.modelPage.sections.standardFeatures")}</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{t("homeModels.modelPage.sectionDescriptions.standardFeatures")}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3" suppressHydrationWarning>{getCopy("homeModels.modelPage.sections.standardFeatures")}</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-8" suppressHydrationWarning>{getCopy("homeModels.modelPage.sectionDescriptions.standardFeatures")}</p>
                 </div>
                 {sections.standardFeatures.categories && (
                   <Accordion type="single" collapsible className="w-full">
                     {Object.entries(sections.standardFeatures.categories).map(([key, category]) => (
                       <AccordionItem key={key} value={key}>
                         <AccordionTrigger className="text-left font-semibold" suppressHydrationWarning>
-                          {t(`homeModels.modelPage.standardFeaturesCategories.${key}`) || category.title}
+                          {getCopy(`homeModels.modelPage.standardFeaturesCategories.${key}`) || category.title}
                         </AccordionTrigger>
                         <AccordionContent>
                           <ul className="space-y-2 pl-4">
@@ -720,12 +720,12 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
           <section className="py-8 sm:py-10 md:py-12 lg:py-16 mt-10 sm:mt-12 md:mt-16 lg:mt-20">
           <Card className="max-w-2xl mx-auto">
             <CardHeader className="p-4 sm:p-6">
-              <CardTitle className="text-2xl sm:text-3xl text-center" suppressHydrationWarning>{t("homeModels.modelPage.requestInfo.title")}</CardTitle>
+              <CardTitle className="text-2xl sm:text-3xl text-center" suppressHydrationWarning>{getCopy("homeModels.modelPage.requestInfo.title")}</CardTitle>
               <CardDescription className="text-center text-sm sm:text-base md:text-lg" suppressHydrationWarning>
-                {t("homeModels.modelPage.requestInfo.subtitle")}
+                {getCopy("homeModels.modelPage.requestInfo.subtitle")}
               </CardDescription>
               <CardDescription className="text-center text-xs sm:text-sm" suppressHydrationWarning>
-                {t("homeModels.modelPage.requestInfo.description")}
+                {getCopy("homeModels.modelPage.requestInfo.description")}
               </CardDescription>
             </CardHeader>
             <CardContent className="p-4 sm:p-6">
@@ -750,7 +750,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
         onClick={closeGallery}
         role="dialog"
         aria-modal="true"
-        aria-label={t("homeModels.modelPage.gallery") || "Image Gallery"}
+        aria-label={getCopy("homeModels.modelPage.gallery") || "Image Gallery"}
       >
         <div
           className="relative bg-background rounded-xl sm:rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-xl border border-border"
@@ -771,7 +771,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
             <button
               onClick={closeGallery}
               className="p-2 rounded-lg hover:bg-muted transition-colors"
-              aria-label={t("homeModels.modelPage.closeGallery")}
+              aria-label={getCopy("homeModels.modelPage.closeGallery")}
               type="button"
             >
               <X className="w-5 h-5 text-foreground" />
@@ -796,7 +796,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   onClick={() => changeGalleryImage(-1)}
                   onKeyDown={(e) => handleKeyDown(e, () => changeGalleryImage(-1))}
                   className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border shadow-lg z-20"
-                  aria-label={t("homeModels.modelPage.previousImage")}
+                  aria-label={getCopy("homeModels.modelPage.previousImage")}
                   type="button"
                 >
                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
@@ -805,7 +805,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   onClick={() => changeGalleryImage(1)}
                   onKeyDown={(e) => handleKeyDown(e, () => changeGalleryImage(1))}
                   className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border shadow-lg z-20"
-                  aria-label={t("homeModels.modelPage.nextImage")}
+                  aria-label={getCopy("homeModels.modelPage.nextImage")}
                   type="button"
                 >
                   <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />

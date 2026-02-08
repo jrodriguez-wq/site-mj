@@ -34,7 +34,7 @@ export const generateOrganizationStructuredData =
             "Clewiston",
             "Immokalee",
           ],
-          availableLanguage: ["English", "Spanish"],
+          availableLanguage: ["English"],
         },
       ],
       address: {

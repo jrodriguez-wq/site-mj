@@ -115,7 +115,7 @@ export const KEYWORDS = {
     "new construction family homes",
     "new construction affordable homes",
     "new construction custom homes",
-    "new construction homes 2025",
+    "new construction homes 2026",
     "new construction homes 2024",
   ],
 
