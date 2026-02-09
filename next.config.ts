@@ -65,7 +65,7 @@ const STATIC_ASSET_PATHS = [
   "/recursos/:path*",
   "/modelos-optimized/:path*",
   "/_next/static/:path*",
-  "/_next/image",
+  // "/_next/image" - Removido: no se usa con unoptimized: true
   "/favicon.ico",
   "/favicon.png",
   "/favicon-16x16.png",
