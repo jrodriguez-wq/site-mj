@@ -181,10 +181,9 @@ const getHeadersConfig = () => {
 const nextConfig: NextConfig = {
   // ========================================================================
   // IMAGE OPTIMIZATION
-  // Next.js generates responsive srcsets (multiple widths) and AVIF/WebP on
-  // demand, then caches. Your pre-optimized files are still used as the source;
-  // the server only creates derivatives for different sizes/formats. To serve
-  // images as-is with no server processing, set unoptimized: true.
+  // Las imágenes ya están optimizadas en formato WebP localmente.
+  // Deshabilitamos la optimización de Next.js/Vercel para evitar consumir
+  // Image Transformations y servir las imágenes directamente sin re-optimizarlas.
   // ========================================================================
   images: {
     formats: IMAGE_CONFIG.FORMATS,
@@ -194,7 +193,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: IMAGE_CONFIG.MIN_CACHE_TTL,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    unoptimized: false,
+    unoptimized: true, // Deshabilitado: imágenes ya optimizadas, no re-optimizar en Vercel
     
     // Dominios remotos permitidos para im?genes
     remotePatterns: REMOTE_IMAGE_PATTERNS,
