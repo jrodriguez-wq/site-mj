@@ -138,12 +138,12 @@ export const HeroSlider = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
       </div>
 
-      {/* Badge - Mobile: Bottom Right, Desktop: Top Right */}
-      <div className="absolute bottom-20 sm:bottom-auto sm:top-6 md:top-8 lg:top-12 right-3 sm:right-6 md:right-8 lg:right-12 z-30 animate-fade-in">
+      {/* Badge $0 Down - Móvil: arriba derecha para no tapar texto; desktop: arriba derecha */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 lg:top-12 lg:right-12 z-30 animate-fade-in">
         <Link
           href="/schedule-appointment"
           className={cn(
-            "relative w-24 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto block",
+            "relative w-20 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto block",
             "cursor-pointer badge-3d-container"
           )}
           aria-label="Schedule your appointment - $0 Down Payment"

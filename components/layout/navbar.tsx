@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, Phone, X, ChevronDown, Sparkles, Calendar } from "lucide-react";
+import { Menu, Phone, X, ChevronDown, Sparkles, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,9 +11,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { CONTACT_INFO } from "@/config/seo";
+import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
 import { cn } from "@/lib/utils";
 import { getCopy } from "@/lib/constants/copy";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { TikTokIcon } from "@/components/icons/tiktok-icon";
+
+const OFFICES = [
+  { name: "LaBelle", address: "45 Bridge St, LaBelle, FL 33935", href: "/communities/labelle" },
+  { name: "Lehigh Acres", address: "Lehigh Acres, FL 33936", href: "/communities/lehigh-acres" },
+] as const;
 
 interface NavigationItem {
   title: string;
@@ -207,6 +213,13 @@ export const Navbar = () => {
     };
   }, [hoverTimeout, closeTimeout]);
 
+  const socialIcons = [
+    { key: "facebook", href: SOCIAL_LINKS.facebook, icon: Facebook, label: "Facebook" },
+    { key: "instagram", href: SOCIAL_LINKS.instagram, icon: Instagram, label: "Instagram" },
+    { key: "tiktok", href: SOCIAL_LINKS.tiktok, icon: TikTokIcon, label: "TikTok" },
+    { key: "linkedin", href: SOCIAL_LINKS.linkedin, icon: Linkedin, label: "LinkedIn" },
+  ].filter((s) => s.href);
+
   return (
     <header 
       className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-border/20 bg-background/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_3px_rgba(0,0,0,0.05)] animate-fade-in-down"
@@ -214,22 +227,80 @@ export const Navbar = () => {
     >
       {/* Elegant top accent line */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Top announcement bar: responsiva — móvil solo teléfono + redes; tablet+ direcciones + teléfono + redes */}
+      <div className="border-b border-border/10 bg-muted/30">
+        <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8">
+          <div className="flex h-7 sm:h-8 md:h-9 items-center justify-between gap-2 sm:gap-4 text-xs">
+            {/* Oficinas: oculto en móvil muy estrecho, corto en sm, completo en md+ */}
+            <div className="hidden sm:flex items-center gap-3 md:gap-4 lg:gap-6 min-w-0 flex-1">
+              {/* sm: una sola línea corta; md+: enlaces por oficina */}
+              <span className="sm:inline md:hidden flex items-center gap-1.5 text-muted-foreground truncate">
+                <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                <span className="truncate">LaBelle & Lehigh Acres, FL</span>
+              </span>
+              <div className="hidden md:flex items-center gap-3 lg:gap-6 min-w-0">
+                {OFFICES.map((office) => (
+                  <a
+                    key={office.name}
+                    href={office.href}
+                    className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors shrink-0 max-w-[160px] xl:max-w-none"
+                    title={office.address}
+                  >
+                    <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <span className="truncate font-medium">{office.name}:</span>
+                    <span className="truncate text-muted-foreground/90 hidden xl:inline">{office.address}</span>
+                    <span className="truncate text-muted-foreground/90 xl:hidden">{office.name === "LaBelle" ? "FL 33935" : "FL 33936"}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            {/* Teléfono + redes: número completo visible en todos los tamaños; tap/click para llamar */}
+            <div className="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
+              <a
+                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                className="flex items-center gap-1.5 font-semibold text-foreground/90 hover:text-primary transition-colors whitespace-nowrap"
+                aria-label={`Call ${CONTACT_INFO.phone}`}
+              >
+                <Phone className="h-3.5 w-3.5 shrink-0" />
+                <span>{CONTACT_INFO.phone}</span>
+              </a>
+              <div className="h-3.5 w-px bg-border/60 hidden sm:block" aria-hidden />
+              <div className="flex items-center gap-0.5 sm:gap-1">
+                {socialIcons.map(({ key, href, icon: Icon, label }) => (
+                  <a
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-6 w-6 sm:h-7 sm:w-7 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-200 hover:scale-110"
+                    aria-label={label}
+                  >
+                    {key === "tiktok" ? <TikTokIcon size={12} className="sm:w-3.5 sm:h-3.5" /> : <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
-        <div className="flex h-16 sm:h-18 md:h-20 lg:h-24 items-center justify-between">
-          {/* Logo - Grande, sin animación hover */}
+        <div className="flex h-12 sm:h-14 md:h-16 items-center justify-between">
+          {/* Logo */}
           <Link
             href="/"
             className="flex items-center"
             aria-label="M.J. Newell Homes - Home"
           >
-            <Image
+            {/* img nativo para SVG: nitidez perfecta a cualquier tamaño (next/image puede rasterizar y verse borroso) */}
+            <img
               src="/img/logo.svg"
               alt="M.J. Newell Homes"
+              className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain"
               width={280}
               height={160}
-              className="h-14 sm:h-16 md:h-18 lg:h-20 xl:h-22 w-auto object-contain"
-              priority
+              fetchPriority="high"
             />
           </Link>
 
@@ -257,7 +328,7 @@ export const Navbar = () => {
                     <button
                       onClick={() => handleClick(item.title)}
                       className={cn(
-                        "group relative inline-flex h-10 items-center justify-center rounded-lg px-2 xl:px-3 py-2",
+                        "group relative inline-flex h-9 items-center justify-center rounded-lg px-2 xl:px-3 py-1.5",
                         "text-xs xl:text-sm font-semibold tracking-normal transition-all duration-300 ease-out whitespace-nowrap",
                         "text-foreground/80 hover:text-foreground",
                         "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
@@ -358,7 +429,7 @@ export const Navbar = () => {
                   key={item.title}
                   href={item.href}
                   className={cn(
-                    "group relative inline-flex h-10 items-center justify-center rounded-lg px-2 xl:px-3 py-2",
+                    "group relative inline-flex h-9 items-center justify-center rounded-lg px-2 xl:px-3 py-1.5",
                     "text-xs xl:text-sm font-semibold tracking-normal transition-all duration-300 ease-out whitespace-nowrap",
                     "text-foreground/80 hover:text-foreground",
                     "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
@@ -432,22 +503,13 @@ export const Navbar = () => {
               </Link>
             </Button>
 
-            {/* Premium Phone Link - Solo icono en pantallas grandes */}
-            <a
-              href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-              className="hidden lg:flex items-center justify-center h-9 w-9 rounded-lg text-foreground/70 hover:text-foreground transition-all duration-300 hover:bg-primary/5 cursor-pointer border border-transparent hover:border-primary/10 group/phone"
-              aria-label={`Call us at ${CONTACT_INFO.phone}`}
-            >
-              <Phone className="h-4 w-4 transition-transform duration-300 group-hover/phone:scale-110" />
-            </a>
-
             {/* Mobile Menu - Premium Design */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="lg:hidden">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-11 w-11 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300 border border-transparent hover:border-primary/10"
+                  className="h-10 w-10 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300 border border-transparent hover:border-primary/10"
                   aria-label="Toggle menu"
                 >
                   {isOpen ? (
@@ -469,7 +531,7 @@ export const Navbar = () => {
                     <SheetTitle className="text-left text-2xl font-bold text-foreground tracking-wide" suppressHydrationWarning>
                       {getCopy("nav.home")}
                     </SheetTitle>
-                    <Image
+                    <img
                       src="/img/logo.svg"
                       alt="M.J. Newell Homes"
                       width={200}
