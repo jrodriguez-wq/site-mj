@@ -7,6 +7,8 @@ export interface ModelData {
   garage: string;
   price: string;
   rtoPrice?: string; // Precio de RTO (Rent to Own) mensual
+  /** Si false, el modelo no tiene programa RTO; solo compra o averiguar por renta (ej. duplex) */
+  rtoAvailable?: boolean;
   description: string;
   youtubeUrl?: string;
   imagesFolder: string;

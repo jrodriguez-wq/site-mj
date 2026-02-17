@@ -516,6 +516,7 @@ const COPY = {
       "modelPage": {
         "startingPrice": "Starting Price",
         "contactForFinancing": "Contact us for financing options and special promotions",
+        "purchaseOrRentOnly": "Available for purchase or rent. Contact us to inquire about rental options.",
         "aboutThisModel": "About This Model",
         "bedrooms": "Bedrooms",
         "bathrooms": "Bathrooms",

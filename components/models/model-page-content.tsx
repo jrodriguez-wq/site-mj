@@ -234,12 +234,14 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   {price}
                 </CardTitle>
-                <p className="text-sm sm:text-base md:text-lg font-semibold text-emerald-600 dark:text-emerald-400 mt-2">
-                  $0 Down
-                </p>
+                {modelData.rtoAvailable !== false && (
+                  <p className="text-sm sm:text-base md:text-lg font-semibold text-emerald-600 dark:text-emerald-400 mt-2">
+                    $0 Down
+                  </p>
+                )}
               </CardHeader>
               <CardContent className="p-5 sm:p-6 pt-0 space-y-4">
-                {/* RTO Price Section */}
+                {/* RTO Price Section - solo modelos con programa RTO */}
                 {rtoPrice && (
                   <div className="pt-4 border-t border-border/50">
                     <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
@@ -251,7 +253,9 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                   </div>
                 )}
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                  {getCopy("homeModels.modelPage.contactForFinancing")}
+                  {modelData.rtoAvailable === false
+                    ? getCopy("homeModels.modelPage.purchaseOrRentOnly")
+                    : getCopy("homeModels.modelPage.contactForFinancing")}
                 </p>
               </CardContent>
             </Card>

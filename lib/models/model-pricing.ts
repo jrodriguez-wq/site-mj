@@ -88,7 +88,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     },
     duplex: {
       price: "$510,000",
-      rtoPrice: "$2,000/mo",
+      // Sin RTO: solo compra o averiguar por renta
       sqft: "2,898",
       bedrooms: "6",
       bathrooms: "4",
