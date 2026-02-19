@@ -11,18 +11,18 @@ keywords:
   - itin tax refund home purchase
   - florida new construction down payment
   - rent to own tax refund
-image: /img/hero/1w5a1489-e5.webp
+image: /img/hero/1w5a0754-e4.webp
 readingTime: 8
 ---
 
 <!-- markdownlint-disable-next-line MD025 -->
 # Turn Your Tax Refund into a Down Payment in Florida
 
-Your tax refund can be the fastest way to unlock a new construction home. Here’s the exact way to use it for down payment funds—whether you’re W-2, 1099, or buying with an ITIN.
+Your tax refund can be the fastest way to unlock a new construction home. Here’s how to use it for down payment funds, whether you’re W-2, 1099, or buying with an ITIN.
 
 ## Fast overview (60 seconds)
 
-- Refund timing: January–April is prime—get under contract before inventory moves.
+- Refund timing: January through April is prime. Get under contract before inventory moves.
 - Use refund for: option fee (rent-to-own), earnest money, or closing costs.
 - Pair with credits: combine with rent credits to grow your down payment.
 
@@ -72,13 +72,13 @@ Need an ITIN-specific guide? Read: [Buying a Home with an ITIN in Florida](/blog
 
 - Keep the refund in one traceable account.
 - Avoid cash withdrawals; lenders want a clean paper trail.
-- Don’t open new credit cards—protect your debt-to-income ratio.
+- Don’t open new credit cards. Protect your debt-to-income ratio.
 
 ## Communities where this works best
 
 - LaBelle: larger lots, quieter living, strong value per square foot.
 - Lehigh Acres: commuter-friendly to Fort Myers with newer construction.
-- Fort Myers corridor: fastest appreciation—lock price early to capture upside.
+- Fort Myers corridor: fastest appreciation. Lock in your price early to capture upside.
 
 Compare financing paths: [Rent-to-Own vs. Traditional Mortgage](/blog/rent-to-own-vs-traditional-mortgage-comparison).  
 Planning a full purchase? Read: [Why Buy a Home in 2026: Investment Logic for Florida](/blog/why-buy-home-2026-investment-florida).
@@ -87,7 +87,7 @@ Planning a full purchase? Read: [Why Buy a Home in 2026: Investment Logic for Fl
 
 ### Can I mix refund + assistance programs?
 
-Often yes. FHA and certain ITIN programs allow layered funds—check program rules.
+Often yes. FHA and certain ITIN programs allow layered funds; check program rules for your situation.
 
 ### What if my refund is small?
 
@@ -103,4 +103,4 @@ Before filing. We’ll outline what the lender will ask for so your return align
 - Talk to us: [/schedule-appointment](/schedule-appointment)
 - Explore rent-to-own: [/rent-to-own](/rent-to-own)
 
-Use this season to move from refund to front door—while inventory is still available.
+Use this season to move from refund to front door while inventory is still available.

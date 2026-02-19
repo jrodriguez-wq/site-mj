@@ -1,4 +1,5 @@
 import { LogoItem } from "@/components/ui/logo-slider"
+import { SLD_WEBSITE_URL } from "@/config/seo/contact"
 
 export const PARTNER_LOGOS: LogoItem[] = [
   {
@@ -18,7 +19,7 @@ export const PARTNER_LOGOS: LogoItem[] = [
   {
     src: "/sld.png",
     alt: "SLD Building for America's Future",
-    href: "#",
+    href: SLD_WEBSITE_URL,
     width: 200,
     height: 60,
   },

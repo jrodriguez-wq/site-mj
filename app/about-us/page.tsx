@@ -30,11 +30,11 @@ const TEAM_FALLBACKS_EN = {
   juliana: {
     name: "Juliana Bonilla",
     role: "Principal Shareholder, Partner & Financial Leader",
-    description: "Juliana Bonilla is a principal shareholder, partner, and financial leader at M.J. Newell Homes. She brings strategic vision and operational excellence to every decision, ensuring our finances and day-to-day operations align with our mission to serve families. Juliana is dedicated to building lasting value—both for our company and for the families we help call a house their home.",
+    description: "Juliana Bonilla is a principal shareholder, partner, and financial leader at M.J. Newell Homes. She brings strategic vision and operational excellence to every decision, ensuring our finances and day-to-day operations align with our mission to serve families. Juliana is dedicated to building lasting value, both for our company and for the families we help call a house their home.",
   },
   nader: {
     name: "Nader Hack",
-    role: "COO — Operations & Finance",
+    role: "COO, Operations & Finance",
     description: "Nader Hack serves as Chief Operating Officer, overseeing operations and finance at M.J. Newell Homes. With a disciplined approach and deep expertise in financial stewardship, he ensures our company runs with precision and integrity. Nader is committed to building sustainable growth while keeping our focus on helping families achieve homeownership.",
   },
 } as const;
@@ -45,11 +45,11 @@ const TEAM_FALLBACKS_ES = {
   juliana: {
     name: "Juliana Bonilla",
     role: "Accionista Principal, Socia y Líder Financiera",
-    description: "Juliana Bonilla es accionista principal, socia y líder financiera de M.J. Newell Homes. Aporta visión estratégica y excelencia operativa a cada decisión, asegurando que nuestras finanzas y operaciones diarias estén alineadas con nuestra misión de servir a las familias. Juliana se dedica a construir valor perdurable—tanto para nuestra empresa como para las familias a las que ayudamos a hacer de una casa su hogar.",
+    description: "Juliana Bonilla es accionista principal, socia y líder financiera de M.J. Newell Homes. Aporta visión estratégica y excelencia operativa a cada decisión, asegurando que nuestras finanzas y operaciones diarias estén alineadas con nuestra misión de servir a las familias. Juliana se dedica a construir valor perdurable, tanto para nuestra empresa como para las familias a las que ayudamos a hacer de una casa su hogar.",
   },
   nader: {
     name: "Nader Hack",
-    role: "COO — Operaciones y Finanzas",
+    role: "COO, Operaciones y Finanzas",
     description: "Nader Hack se desempeña como Director de Operaciones, supervisando operaciones y finanzas en M.J. Newell Homes. Con un enfoque disciplinado y amplia experiencia en la gestión financiera, asegura que la compañía opere con precisión e integridad. Nader está comprometido con impulsar un crecimiento sostenible manteniendo el foco en ayudar a las familias a alcanzar la propiedad de su vivienda.",
   },
 } as const;
@@ -290,7 +290,7 @@ export default function AboutUsPage() {
                             {t("aboutUs.leadership.quote") || "\"The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I'd have to enlist first-line powerhouses.\""}
                           </p>
                           <p className="text-xs sm:text-sm text-muted-foreground mt-2" suppressHydrationWarning>
-                            {t("aboutUs.leadership.quoteAuthor") || "— Michael J. Newell"}
+                            {t("aboutUs.leadership.quoteAuthor") || "Michael J. Newell"}
                           </p>
                         </div>
                       </div>
@@ -491,7 +491,7 @@ export default function AboutUsPage() {
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
                     src="/img/juliana.webp"
-                    alt={`${safeT("aboutUs.team.juliana.name", fb.juliana.name)} — ${safeT("aboutUs.team.juliana.role", fb.juliana.role)}`}
+                    alt={`${safeT("aboutUs.team.juliana.name", fb.juliana.name)}, ${safeT("aboutUs.team.juliana.role", fb.juliana.role)}`}
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -517,7 +517,7 @@ export default function AboutUsPage() {
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
                     src="/img/nader.jpg"
-                    alt={`${safeT("aboutUs.team.nader.name", fb.nader.name)} — ${safeT("aboutUs.team.nader.role", fb.nader.role)}`}
+                    alt={`${safeT("aboutUs.team.nader.name", fb.nader.name)}, ${safeT("aboutUs.team.nader.role", fb.nader.role)}`}
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

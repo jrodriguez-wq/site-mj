@@ -43,7 +43,7 @@ Once the contract is signed and processed, you'll receive **$100** as a thank yo
 
 ## Why Refer M.J. Newell Homes?
 
-When you refer someone to M.J. Newell Homes, you're not just earning money—you're helping someone you care about achieve one of life's most important milestones: owning their own home.
+When you refer someone to M.J. Newell Homes, you’re not just earning money. You’re helping someone you care about reach one of life’s biggest milestones: owning their own home.
 
 ### What Makes M.J. Newell Homes Special
 
@@ -129,7 +129,7 @@ No, you don't need to be a current customer. Anyone can participate in our refer
 
 ## The Impact of Your Referral
 
-When you refer someone to M.J. Newell Homes, you're doing more than earning a reward—you're making a meaningful impact:
+When you refer someone to M.J. Newell Homes, you’re doing more than earning a reward. You’re making a real impact:
 
 **You're Helping Someone Achieve Homeownership**
 

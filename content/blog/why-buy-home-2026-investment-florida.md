@@ -19,7 +19,7 @@ keywords:
   - home buying 2026
   - real estate leverage
   - property appreciation florida
-image: /img/hero/1w5a0814-1.webp
+image: /modelos-optimized/langdon/exterior/langdon-exterior-01.webp
 ---
 
 # Why Buying a Home in 2026 is Your Most Critical Financial Move
@@ -98,7 +98,7 @@ For families in Southwest Florida, purchasing a home in 2026 sets the foundation
 
 ## Real Estate as a Hedge Against Inflation
 
-Inflation has been a persistent headline in the 2020s, and 2026 is no exception. In an inflationary environment, the cost of living rises—groceries, fuel, and most importantly, housing costs.
+Inflation has been a persistent headline in the 2020s, and 2026 is no exception. In an inflationary environment, the cost of living rises: groceries, fuel, and most importantly, housing.
 
 ### The Renter's Risk in an Inflationary Environment
 

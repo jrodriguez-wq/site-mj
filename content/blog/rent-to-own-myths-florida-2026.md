@@ -21,13 +21,13 @@ readingTime: 7
 
 Rent-to-own (lease option) is often misunderstood. You might think you need 740 credit, a 20% down payment, or that it costs more than a regular mortgage. None of that is true with the M.J. Newell approach.
 
-We build and finance new homes in LaBelle, Lehigh Acres, and Fort Myers with a clear, 12-month path to ownership—no mystery fees, no bait-and-switch.
+We build and finance new homes in LaBelle, Lehigh Acres, and Fort Myers with a clear, 12-month path to ownership. No hidden fees, no bait-and-switch.
 
 ## See Our Rent-to-Own Homes
 
 ![Rent-to-Own Home Interior](/modelos-optimized/emelia/interior/emelia-interior-01.webp)
 
-*This is what your future home could look like. Our Rent-to-Own program lets you move into a brand-new home like this Emelia model while you build credit and save for your down payment. No perfect credit required—just stable income and a commitment to your future.*
+*This is what your future home could look like. Our Rent-to-Own program lets you move into a brand-new home like this Emelia model while you build credit and save for your down payment. No perfect credit required; just stable income and a commitment to your future.*
 
 ## Myth 1: “I need perfect credit”
 
@@ -104,4 +104,4 @@ We can provide payment history letters and, when eligible, use reporting partner
 - Book a call: [/schedule-appointment](/schedule-appointment)  
 - Prefer Spanish? Escríbenos y te ayudamos en tu idioma.  
 
-Your home is closer than you think—let’s make the plan and execute it this month.
+Your home is closer than you think. Let’s make the plan and get it done this month.

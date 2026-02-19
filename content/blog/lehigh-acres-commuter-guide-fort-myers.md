@@ -18,7 +18,7 @@ readingTime: 7
 <!-- markdownlint-disable-next-line MD025 -->
 # Living in Lehigh Acres: A Commuter’s Guide to Fort Myers
 
-Lehigh Acres lets you own a new construction home with room to breathe—while staying close to Fort Myers jobs, beaches, and amenities. Here’s how to make the commute work and why the math favors Lehigh.
+Lehigh Acres lets you own a new construction home with room to breathe while staying close to Fort Myers jobs, beaches, and amenities. Here’s how to make the commute work and why the numbers favor Lehigh.
 
 ## At-a-glance benefits
 
@@ -81,7 +81,7 @@ If you need 12–18 months to strengthen credit or down payment, lock a Lehigh h
 
 ### Is the traffic manageable?
 
-Yes—plan around peak westbound mornings and eastbound evenings. Gateway and Daniels offer solid alternatives.
+Yes. Plan around peak westbound mornings and eastbound evenings. Gateway and Daniels offer solid alternatives.
 
 ### What about flood risk?
 
@@ -97,4 +97,4 @@ Check our move-in-ready list: [/models](/models) or talk to us for current inven
 - Meet us this week: [/schedule-appointment](/schedule-appointment)
 - Explore rent-to-own: [/rent-to-own](/rent-to-own)
 
-Own near Fort Myers without overpaying—Lehigh Acres keeps the drive (and the budget) under control.
+Own near Fort Myers without overpaying. Lehigh Acres keeps the drive and the budget under control.

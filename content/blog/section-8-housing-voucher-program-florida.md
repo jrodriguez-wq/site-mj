@@ -18,7 +18,7 @@ keywords:
   - lehigh acres section 8
   - section 8 new construction
   - housing voucher florida
-image: /img/hero/1w5a0814-1.webp
+image: /recursos/familia-casa.webp
 ---
 
 # Section 8 Housing Voucher Program: Use Your Government Benefits to Buy Your Own Home with M.J. Newell Homes
@@ -226,7 +226,7 @@ Section 8 Housing Choice Vouchers can be a powerful tool to help you achieve hom
 
 Whether you're looking to use your Section 8 voucher to help with rent-to-own payments or exploring homeownership options, we're committed to helping you achieve your dream of owning your own home.
 
-Don't let your Section 8 voucher go to waste—use it to build equity in your own home and create generational wealth for your family.
+Don’t let your Section 8 voucher go to waste. Use it to build equity in your own home and create generational wealth for your family.
 
 Contact M.J. Newell Homes today to learn more about how we can help you use your Section 8 voucher to become a homeowner!
 

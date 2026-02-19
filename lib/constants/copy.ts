@@ -817,7 +817,7 @@ const COPY = {
         "subtitle": "Founder & CEO of M.J. Newell Homes",
         "description": "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth and helping over 1,500 families achieve their dream of homeownership.",
         "quote": "\"The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I'd have to enlist first-line powerhouses.\"",
-        "quoteAuthor": "— Michael J. Newell",
+        "quoteAuthor": "Michael J. Newell",
         "belief": "Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization.",
         "mission": {
           "title": "Our Mission",
@@ -929,11 +929,11 @@ const COPY = {
         "juliana": {
           "name": "Juliana Bonilla",
           "role": "Principal Shareholder, Partner & Financial Leader",
-          "description": "Juliana Bonilla is a principal shareholder, partner, and financial leader at M.J. Newell Homes. She brings strategic vision and operational excellence to every decision, ensuring our finances and day-to-day operations align with our mission to serve families. Juliana is dedicated to building lasting value—both for our company and for the families we help call a house their home."
+          "description": "Juliana Bonilla is a principal shareholder, partner, and financial leader at M.J. Newell Homes. She brings strategic vision and operational excellence to every decision, ensuring our finances and day-to-day operations align with our mission to serve families. Juliana is dedicated to building lasting value, both for our company and for the families we help call a house their home."
         },
         "nader": {
           "name": "Nader Hack",
-          "role": "COO — Operations & Finance",
+          "role": "COO, Operations & Finance",
           "description": "Nader Hack serves as Chief Operating Officer, overseeing operations and finance at M.J. Newell Homes. With a disciplined approach and deep expertise in financial stewardship, he ensures our company runs with precision and integrity. Nader is committed to building sustainable growth while keeping our focus on helping families achieve homeownership."
         }
       },
@@ -980,7 +980,7 @@ const COPY = {
       },
       "whatIs": {
         "title": "What is Rent to Own?",
-        "description": "Our Rent-to-Own Program is designed to turn your goal of homeownership into reality—without the common obstacles that hold buyers back. Credit challenges, down payment concerns, or closing costs do not have to stop you. With this program, you rent your future home at a fixed monthly rate, while automatically saving toward your down payment and closing costs, which are credited back to you at purchase. The home price is locked in from day one, eliminating surprises and rent increases, and you will receive professional guidance throughout the process, plus complimentary lawn care twice per month. It is a simple, secure, and smart path from renting to owning your dream home.",
+        "description": "Our Rent-to-Own Program is designed to turn your goal of homeownership into reality, without the common obstacles that hold buyers back. Credit challenges, down payment concerns, or closing costs do not have to stop you. With this program, you rent your future home at a fixed monthly rate, while automatically saving toward your down payment and closing costs, which are credited back to you at purchase. The home price is locked in from day one, eliminating surprises and rent increases, and you will receive professional guidance throughout the process, plus complimentary lawn care twice per month. It is a simple, secure, and smart path from renting to owning your dream home.",
         "objective": {
           "title": "Program Objective",
           "description": "Help families save while living in a new home, accumulating funds that they can later use as part of the purchase process for their future purchase."

@@ -105,23 +105,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     <>
       <StructuredDataComponent data={structuredData} />
       <PageContent size="lg">
-        <div className="mb-8">
-          <Button asChild variant="ghost" className="mb-4">
+        <nav className="mb-6 md:mb-8" aria-label="Breadcrumb">
+          <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground -ml-2">
             <Link href="/blog" className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               Back to Blog
             </Link>
           </Button>
-        </div>
+        </nav>
 
         <ArticleContent post={post} />
 
-        <ArticleCTA 
-          category={post.frontmatter.category} 
-          keywords={post.frontmatter.keywords || []}
-        />
+        <div className="mt-14 md:mt-16 pt-10 border-t border-border">
+          <ArticleCTA 
+            category={post.frontmatter.category} 
+            keywords={post.frontmatter.keywords || []}
+          />
+        </div>
 
-        <RelatedArticles relatedArticles={relatedArticles} />
+        <div className="mt-12 md:mt-14">
+          <RelatedArticles relatedArticles={relatedArticles} />
+        </div>
       </PageContent>
     </>
   );

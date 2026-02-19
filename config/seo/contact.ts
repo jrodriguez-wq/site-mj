@@ -28,6 +28,9 @@ export const CONTACT_INFO = {
   },
 } as const;
 
+/** Standard Land Development (parent company) – use for links when we mention SLD. */
+export const SLD_WEBSITE_URL = "https://www.standardlanddevelopment.com/" as const;
+
 export const SOCIAL_LINKS = {
   twitter: "",
   twitterHandle: "",
