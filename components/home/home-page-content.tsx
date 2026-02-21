@@ -12,7 +12,8 @@ import { Testimonials } from "@/components/home/testimonials";
 import { LocationMap } from "@/components/home/location-map";
 import { CTASection } from "@/components/home/cta-section";
 import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
-import { PromotionModal } from "@/components/promotion/promotion-modal";
+// Promoción desactivada por el momento
+// import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { LogoSlider } from "@/components/ui/logo-slider";
@@ -106,8 +107,8 @@ export const HomePageContent = () => {
         />
       </AnimatedSection>
 
-      {/* Modal de promoción - solo aparece en home */}
-      <PromotionModal />
+      {/* Modal de promoción - desactivado por el momento */}
+      {/* <PromotionModal /> */}
     </div>
   );
 };

@@ -13,7 +13,8 @@ import {
 import { generateAllServiceSchemas } from "@/lib/seo/service-structured-data";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { GlobalStars } from "@/components/promotion/global-stars";
+// Promoción desactivada por el momento
+// import { GlobalStars } from "@/components/promotion/global-stars";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { RegisterSw } from "@/components/pwa/register-sw";
@@ -210,8 +211,8 @@ export default function RootLayout({
         <SpeedInsights />
         <RegisterSw />
         
-        {/* Efectos navideños globales */}
-        <GlobalStars />
+        {/* Efectos navideños / promoción - desactivado por el momento */}
+        {/* <GlobalStars /> */}
         
         {/* HubSpot Embed Code - Tracking - Defer para mejor rendimiento */}
         <Script
