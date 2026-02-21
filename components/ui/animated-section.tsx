@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { useRef, ReactNode, useEffect, useState } from "react";
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -10,6 +10,9 @@ interface AnimatedSectionProps {
   direction?: "up" | "down" | "left" | "right" | "fade";
 }
 
+/** Fallback: mostrar contenido tras este tiempo si useInView no dispara (tablets, pantallas táctiles) */
+const FALLBACK_VISIBLE_MS = 600;
+
 export const AnimatedSection = ({
   children,
   className = "",
@@ -17,7 +20,15 @@ export const AnimatedSection = ({
   direction = "up",
 }: AnimatedSectionProps) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px", amount: 0.05 });
+  const [forceVisible, setForceVisible] = useState(false);
+  const isInView = useInView(ref, { once: true, margin: "0px 0px -80px 0px", amount: 0.01 });
+
+  useEffect(() => {
+    const t = setTimeout(() => setForceVisible(true), FALLBACK_VISIBLE_MS);
+    return () => clearTimeout(t);
+  }, []);
+
+  const show = isInView || forceVisible;
 
   const variants = {
     up: {
@@ -46,18 +57,14 @@ export const AnimatedSection = ({
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "visible"}
+      animate={show ? "visible" : "hidden"}
       variants={variants[direction]}
       transition={{
-        duration: 0.3,
-        delay: delay / 1000,
+        duration: 0.35,
+        delay: show ? delay / 1000 : 0,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className={className}
-      style={{
-        // Asegurar visibilidad del contenido por defecto
-        opacity: isInView ? undefined : 1,
-      }}
     >
       {children}
     </motion.div>

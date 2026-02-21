@@ -1,3 +1,5 @@
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
+
 /**
  * Core SEO config and robots. Single source for site URL, locale, and crawl rules.
  */
@@ -8,8 +10,7 @@ export const SEO_CONFIG = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.mjnewellhomes.com",
   defaultLocale: "en",
   locale: "en_US",
-  // Use existing image to avoid 404. For best results add public/og-image.jpg (1200×630) and set to "/og-image.jpg"
-  ogImage: "/img/logo-fondo-azul-01.png",
+  ogImage: getCloudinaryImageUrl("/img/logo-fondo-azul-01.png"),
   logo: "/logo.png",
   favicon: "/favicon.png",
   favicon16: "/favicon-16x16.png",

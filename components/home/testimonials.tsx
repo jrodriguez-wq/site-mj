@@ -8,6 +8,7 @@ import { useTranslation } from "@/hooks/use-translation";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { motion } from "framer-motion";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 export const Testimonials = () => {
   const { t, translations } = useTranslation();
@@ -18,42 +19,42 @@ export const Testimonials = () => {
       location: t("testimonials.testimonials.1.location"),
       text: t("testimonials.testimonials.1.text"),
       rating: 5,
-      image: "/recursos/clientes/testimonio-6.webp", // was t1
+      image: getCloudinaryImageUrl("/recursos/clientes/testimonio-6.webp"),
     },
     {
       name: t("testimonials.testimonials.2.name"),
       location: t("testimonials.testimonials.2.location"),
       text: t("testimonials.testimonials.2.text"),
       rating: 5,
-      image: "/recursos/clientes/testimonio-5.webp", // was t2
+      image: getCloudinaryImageUrl("/recursos/clientes/testimonio-5.webp"),
     },
     {
       name: t("testimonials.testimonials.3.name"),
       location: t("testimonials.testimonials.3.location"),
       text: t("testimonials.testimonials.3.text"),
       rating: 5,
-      image: "/recursos/clientes/testimonio-4.webp", // was t3
+      image: getCloudinaryImageUrl("/recursos/clientes/testimonio-4.webp"),
     },
     {
       name: t("testimonials.testimonials.4.name"),
       location: t("testimonials.testimonials.4.location"),
       text: t("testimonials.testimonials.4.text"),
       rating: 5,
-      image: "/recursos/clientes/testimonio-3.webp", // was t4
+      image: getCloudinaryImageUrl("/recursos/clientes/testimonio-3.webp"),
     },
     {
       name: t("testimonials.testimonials.5.name"),
       location: t("testimonials.testimonials.5.location"),
       text: t("testimonials.testimonials.5.text"),
       rating: 5,
-      image: "/recursos/clientes/testimonio-2.webp", // was t5
+      image: getCloudinaryImageUrl("/recursos/clientes/testimonio-2.webp"),
     },
     {
       name: t("testimonials.testimonials.6.name"),
       location: t("testimonials.testimonials.6.location"),
       text: t("testimonials.testimonials.6.text"),
       rating: 5,
-      image: "/recursos/clientes/testimonio-1.webp", // was t6
+      image: getCloudinaryImageUrl("/recursos/clientes/testimonio-1.webp"),
     },
   ], [t, translations]);
 

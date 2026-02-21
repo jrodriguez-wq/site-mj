@@ -1,0 +1,1344 @@
+{
+  "cloud_name": "dc7mwpvzy",
+  "total_in_cloud": 168,
+  "expected_count": 21,
+  "ok_count": 0,
+  "missing_count": 21,
+  "required": [
+    {
+      "public_id": "img/logo",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/logo-blanco",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/logo-fondo-azul-01",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/1w5a0754-e4",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/1w5a0741-1",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/1w5a0814-1",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/1w5a1489-e5",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/1w5a1456-e5",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/1w5a1493-e5",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/1w5a1505-e5",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/hero/aurora",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/oficina",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/michael",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/team",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/juliana",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/nader",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/blog/mi",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/blog/m",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/blog/michael_help",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/blog/s",
+      "status": "MISSING",
+      "in_cloud": "no"
+    },
+    {
+      "public_id": "img/blog/c",
+      "status": "MISSING",
+      "in_cloud": "no"
+    }
+  ],
+  "missing_list": [
+    "img/logo",
+    "img/logo-blanco",
+    "img/logo-fondo-azul-01",
+    "img/hero/1w5a0754-e4",
+    "img/hero/1w5a0741-1",
+    "img/hero/1w5a0814-1",
+    "img/hero/1w5a1489-e5",
+    "img/hero/1w5a1456-e5",
+    "img/hero/1w5a1493-e5",
+    "img/hero/1w5a1505-e5",
+    "img/hero/aurora",
+    "img/oficina",
+    "img/michael",
+    "img/team",
+    "img/juliana",
+    "img/nader",
+    "img/blog/mi",
+    "img/blog/m",
+    "img/blog/michael_help",
+    "img/blog/s",
+    "img/blog/c"
+  ],
+  "ok_list": [],
+  "rename_suggestions": {
+    "img/logo": "My Brand/logo_skimyh",
+    "img/logo-blanco": "logo-blanco_jzi6ww",
+    "img/logo-fondo-azul-01": "logo-fondo-azul-01_kqkvdk",
+    "img/hero/1w5a0754-e4": "1w5a0754-e4_hyg7cg",
+    "img/hero/1w5a0741-1": "1w5a0741-1_ndc4qt",
+    "img/hero/1w5a0814-1": "1w5a0814-1_ouvt2c",
+    "img/hero/1w5a1489-e5": "1w5a1489-e5_xh7acv",
+    "img/hero/1w5a1456-e5": "1w5a1456-e5_r39rrk",
+    "img/hero/1w5a1493-e5": "1w5a1493-e5_e24o2y",
+    "img/hero/1w5a1505-e5": "1w5a1505-e5_jljkcp",
+    "img/hero/aurora": "aurora_of6oso",
+    "img/oficina": "oficina_qtyeyx",
+    "img/michael": "michael_qpnwl3",
+    "img/team": "team_oh4swe",
+    "img/juliana": "juliana_vg4j7m",
+    "img/blog/mi": "mi_daijzd",
+    "img/blog/m": "m_k65muf",
+    "img/blog/michael_help": "michael_help_vckvcl",
+    "img/blog/s": "s_w3poiy",
+    "img/blog/c": "c_zzblqa"
+  },
+  "in_cloud_by_folder": {
+    "My Brand": [
+      {
+        "public_id": "My Brand/logo_skimyh",
+        "format": "svg",
+        "width": 1366,
+        "height": 768
+      }
+    ],
+    "(raíz)": [
+      {
+        "public_id": "rto-ingles_tzwita",
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "pa_rqbos6",
+        "format": "webp",
+        "width": 3840,
+        "height": 2553
+      },
+      {
+        "public_id": "shutterstock-2252703911_vbsypo",
+        "format": "webp",
+        "width": 1920,
+        "height": 1081
+      },
+      {
+        "public_id": "pai_xy7fln",
+        "format": "webp",
+        "width": 1280,
+        "height": 960
+      },
+      {
+        "public_id": "shutterstock-1197062707_xszrfp",
+        "format": "webp",
+        "width": 1920,
+        "height": 1273
+      },
+      {
+        "public_id": "shutterstock-1065297917_trqmmc",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "familia-conduciendo_zaj2na",
+        "format": "webp",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "public_id": "testimonio-1_k7i7s6",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "testimonio-2_r4bik3",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "testimonio-25_wddozi",
+        "format": "webp",
+        "width": 2560,
+        "height": 1920
+      },
+      {
+        "public_id": "testimonio-14_dtqykp",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-11_j3ajer",
+        "format": "webp",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "public_id": "testimonio-7_gsnqmn",
+        "format": "webp",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "public_id": "testimonio-3_q1mt8c",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "testimonio-13_bqgqej",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-8_wfahb2",
+        "format": "webp",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "public_id": "testimonio-32_wbrkxp",
+        "format": "webp",
+        "width": 2560,
+        "height": 1707
+      },
+      {
+        "public_id": "testimonio-9_glar28",
+        "format": "webp",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "public_id": "testimonio-16_adcec6",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-23_xwrfcc",
+        "format": "webp",
+        "width": 1707,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-24_tuivrv",
+        "format": "webp",
+        "width": 2560,
+        "height": 1920
+      },
+      {
+        "public_id": "testimonio-5_amziqq",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "testimonio-27_ujgt0i",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-4_pmjlbc",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "testimonio-12_dxduap",
+        "format": "webp",
+        "width": 1280,
+        "height": 960
+      },
+      {
+        "public_id": "testimonio-10_xxfdn8",
+        "format": "webp",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "public_id": "testimonio-17_jm2ig5",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-15_rky7ua",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-18_ez3q5j",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "rio_nhyhdx",
+        "format": "webp",
+        "width": 1280,
+        "height": 909
+      },
+      {
+        "public_id": "orlandof_zfzdah",
+        "format": "webp",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "public_id": "shutterstock-440999080_iwbupp",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "familia-casa_u4qhrv",
+        "format": "webp",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "public_id": "testimonio-20_kwaf9z",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-21_cxbbjz",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "playa_snzit5",
+        "format": "webp",
+        "width": 1280,
+        "height": 835
+      },
+      {
+        "public_id": "testimonio-22_esbgdv",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-26_ypxi6j",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "testimonio-19_fx9ito",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "familia-cocina_auphbm",
+        "format": "webp",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "public_id": "delanie-interior-04_vzx5qy",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "delanie-interior-06_bys4tz",
+        "format": "webp",
+        "width": 1920,
+        "height": 1429
+      },
+      {
+        "public_id": "delanie-interior-02_gy46x0",
+        "format": "webp",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "public_id": "delanie-interior-08_whdoxo",
+        "format": "webp",
+        "width": 1919,
+        "height": 2560
+      },
+      {
+        "public_id": "delanie-interior-23_wrusv1",
+        "format": "webp",
+        "width": 1920,
+        "height": 1439
+      },
+      {
+        "public_id": "delanie-interior-22_yn1dkg",
+        "format": "webp",
+        "width": 1920,
+        "height": 1436
+      },
+      {
+        "public_id": "delanie-interior-01_e0yzrn",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "delanie-interior-20_bondmx",
+        "format": "webp",
+        "width": 1920,
+        "height": 1200
+      },
+      {
+        "public_id": "delanie-interior-03_zqk0zn",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "delanie-exterior-03_uubgyp",
+        "format": "webp",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "public_id": "delanie-exterior-02_vtd47a",
+        "format": "webp",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "public_id": "delanie-exterior-04_uy7uxg",
+        "format": "webp",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "public_id": "delanie-exterior-01_khylxf",
+        "format": "webp",
+        "width": 1920,
+        "height": 1200
+      },
+      {
+        "public_id": "viana-amo-01_oyfyy6",
+        "format": "webp",
+        "width": 1024,
+        "height": 1153
+      },
+      {
+        "public_id": "viana-amo-03_vbbjz1",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "viana-amo-04_qjbmfc",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "viana-amo-02_swgzxl",
+        "format": "webp",
+        "width": 1024,
+        "height": 1347
+      },
+      {
+        "public_id": "viana-amo-07_ydgbtk",
+        "format": "webp",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "public_id": "viana-amo-06_qpphmw",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "viana-amo-05_uzygrt",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "viana-interior-03_d5dfnn",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "viana-interior-02_hnjpfu",
+        "format": "webp",
+        "width": 1920,
+        "height": 1440
+      },
+      {
+        "public_id": "viana-interior-01_bqdto9",
+        "format": "webp",
+        "width": 2560,
+        "height": 1920
+      },
+      {
+        "public_id": "viana-interior-15_npg8iy",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "viana-interior-06_cq51p2",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "viana-interior-17_ye77o8",
+        "format": "webp",
+        "width": 1440,
+        "height": 2560
+      },
+      {
+        "public_id": "viana-interior-13_snokuy",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "viana-interior-14_usr1ep",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "viana-exterior-01_mdujbb",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "viana-interior-16_bs13fp",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "viana-interior-19_rtkswx",
+        "format": "webp",
+        "width": 2560,
+        "height": 1920
+      },
+      {
+        "public_id": "viana-exterior-02_bsxs1i",
+        "format": "webp",
+        "width": 1536,
+        "height": 1833
+      },
+      {
+        "public_id": "viana-interior-18_en1mst",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-amo-02_nmyng2",
+        "format": "webp",
+        "width": 864,
+        "height": 1184
+      },
+      {
+        "public_id": "emelia-amo-01_rzsnis",
+        "format": "webp",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "public_id": "emelia-amo-04_bgvefr",
+        "format": "webp",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "public_id": "emelia-amo-05_u1bp8v",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "emelia-amo-03_nhoil8",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "emelia-amo-06_q28fue",
+        "format": "webp",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "public_id": "emelia-interior-30_oqbjko",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-interior-15_kjphj8",
+        "format": "webp",
+        "width": 1920,
+        "height": 1439
+      },
+      {
+        "public_id": "emelia-interior-21_zmfmpc",
+        "format": "webp",
+        "width": 1920,
+        "height": 1200
+      },
+      {
+        "public_id": "emelia-interior-12_s0nnld",
+        "format": "webp",
+        "width": 1920,
+        "height": 1314
+      },
+      {
+        "public_id": "emelia-interior-17_ssvwzp",
+        "format": "webp",
+        "width": 1920,
+        "height": 1509
+      },
+      {
+        "public_id": "emelia-interior-29_ylerpz",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-interior-31_qfh5kb",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-interior-11_bi5pl4",
+        "format": "webp",
+        "width": 1920,
+        "height": 1535
+      },
+      {
+        "public_id": "emelia-interior-24_mvhb7g",
+        "format": "webp",
+        "width": 1920,
+        "height": 1200
+      },
+      {
+        "public_id": "emelia-interior-34_vajfg4",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-interior-18_ja80im",
+        "format": "webp",
+        "width": 1920,
+        "height": 1200
+      },
+      {
+        "public_id": "emelia-interior-06_hnw2gl",
+        "format": "webp",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "public_id": "emelia-interior-13_vi2uoy",
+        "format": "webp",
+        "width": 1920,
+        "height": 1509
+      },
+      {
+        "public_id": "emelia-interior-28_mhqwcx",
+        "format": "webp",
+        "width": 2559,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-interior-14_s9pooe",
+        "format": "webp",
+        "width": 1920,
+        "height": 1439
+      },
+      {
+        "public_id": "emelia-interior-16_fmhouv",
+        "format": "webp",
+        "width": 1920,
+        "height": 1401
+      },
+      {
+        "public_id": "emelia-interior-32_kpbfuh",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-interior-22_wmrw5x",
+        "format": "webp",
+        "width": 1920,
+        "height": 1200
+      },
+      {
+        "public_id": "emelia-interior-26_q6ogvm",
+        "format": "webp",
+        "width": 1920,
+        "height": 1420
+      },
+      {
+        "public_id": "emelia-interior-01_j3iwjn",
+        "format": "webp",
+        "width": 1920,
+        "height": 1432
+      },
+      {
+        "public_id": "emelia-interior-03_aaigrq",
+        "format": "webp",
+        "width": 1920,
+        "height": 1595
+      },
+      {
+        "public_id": "emelia-interior-35_tcq0oq",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "emelia-interior-25_m5tley",
+        "format": "webp",
+        "width": 1920,
+        "height": 1469
+      },
+      {
+        "public_id": "emelia-interior-23_ocay47",
+        "format": "webp",
+        "width": 1897,
+        "height": 2560
+      },
+      {
+        "public_id": "emelia-interior-08_a3t6pj",
+        "format": "webp",
+        "width": 1920,
+        "height": 1446
+      },
+      {
+        "public_id": "emelia-interior-20_luvnsn",
+        "format": "webp",
+        "width": 1920,
+        "height": 1516
+      },
+      {
+        "public_id": "emelia-interior-04_r8exrx",
+        "format": "webp",
+        "width": 1920,
+        "height": 1453
+      },
+      {
+        "public_id": "emelia-interior-07_tyragz",
+        "format": "webp",
+        "width": 1920,
+        "height": 1447
+      },
+      {
+        "public_id": "emelia-interior-09_lg8ejo",
+        "format": "webp",
+        "width": 1920,
+        "height": 1467
+      },
+      {
+        "public_id": "emelia-interior-19_gwnmu5",
+        "format": "webp",
+        "width": 1920,
+        "height": 1568
+      },
+      {
+        "public_id": "emelia-interior-27_zkhmbg",
+        "format": "webp",
+        "width": 2559,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-interior-05_fru27b",
+        "format": "webp",
+        "width": 1920,
+        "height": 1108
+      },
+      {
+        "public_id": "emelia-interior-10_b20hpm",
+        "format": "webp",
+        "width": 1920,
+        "height": 1920
+      },
+      {
+        "public_id": "emelia-interior-02_lfsdis",
+        "format": "webp",
+        "width": 1920,
+        "height": 1487
+      },
+      {
+        "public_id": "emelia-interior-33_yb1brw",
+        "format": "webp",
+        "width": 2560,
+        "height": 1440
+      },
+      {
+        "public_id": "emelia-exterior-04_xrbzvo",
+        "format": "webp",
+        "width": 1920,
+        "height": 1200
+      },
+      {
+        "public_id": "emelia-exterior-02_nzbkg4",
+        "format": "webp",
+        "width": 1920,
+        "height": 1495
+      },
+      {
+        "public_id": "emelia-exterior-06_skmopt",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "emelia-exterior-03_awz1bb",
+        "format": "webp",
+        "width": 1920,
+        "height": 1078
+      },
+      {
+        "public_id": "emelia-exterior-05_hjf84s",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "emelia-exterior-01_fwwbbo",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "duplex-amo-02_zafcee",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "duplex-amo-03_y5omdq",
+        "format": "webp",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "public_id": "duplex-amo-01_ghu2gh",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "duplex-interior-01_zzfuk5",
+        "format": "webp",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "public_id": "duplex-interior-02_b03ok0",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "duplex-interior-04_sddidx",
+        "format": "webp",
+        "width": 1024,
+        "height": 1536
+      },
+      {
+        "public_id": "duplex-plano_kmia8b",
+        "format": "webp",
+        "width": 1869,
+        "height": 1920
+      },
+      {
+        "public_id": "duplex-interior-03_ycbnwd",
+        "format": "webp",
+        "width": 1536,
+        "height": 1024
+      },
+      {
+        "public_id": "duplex-exterior-01_e8rxuk",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "logo_gghqul",
+        "format": "svg",
+        "width": 1366,
+        "height": 768
+      },
+      {
+        "public_id": "t6_zmcnbr",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "t3_g807ws",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "t5_v3mysy",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "t4_q4cmyv",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "t2_iyrtcy",
+        "format": "webp",
+        "width": 1536,
+        "height": 1920
+      },
+      {
+        "public_id": "m_k65muf",
+        "format": "jpg",
+        "width": 1280,
+        "height": 853
+      },
+      {
+        "public_id": "c_zzblqa",
+        "format": "jpg",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "public_id": "s_w3poiy",
+        "format": "jpg",
+        "width": 1280,
+        "height": 853
+      },
+      {
+        "public_id": "michael_help_vckvcl",
+        "format": "jpg",
+        "width": 960,
+        "height": 1280
+      },
+      {
+        "public_id": "mi_daijzd",
+        "format": "jpg",
+        "width": 1280,
+        "height": 960
+      },
+      {
+        "public_id": "1w5a0741-1_ndc4qt",
+        "format": "webp",
+        "width": 1920,
+        "height": 1281
+      },
+      {
+        "public_id": "1w5a1489-e5_xh7acv",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "1w5a1493-e5_e24o2y",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "aurora_of6oso",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "1w5a0754-e4_hyg7cg",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "1w5a1505-e5_jljkcp",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "1w5a0814-1_ouvt2c",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "1w5a1456-e5_r39rrk",
+        "format": "webp",
+        "width": 1920,
+        "height": 1280
+      },
+      {
+        "public_id": "juliana_vg4j7m",
+        "format": "webp",
+        "width": 640,
+        "height": 641
+      },
+      {
+        "public_id": "logo-azul_rifndg",
+        "format": "webp",
+        "width": 256,
+        "height": 71
+      },
+      {
+        "public_id": "louisinav_w8roxx",
+        "format": "webp",
+        "width": 1280,
+        "height": 1600
+      },
+      {
+        "public_id": "delainenav_twqlpj",
+        "format": "webp",
+        "width": 1280,
+        "height": 1600
+      },
+      {
+        "public_id": "oficina_qtyeyx",
+        "format": "webp",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "public_id": "team_oh4swe",
+        "format": "webp",
+        "width": 1920,
+        "height": 2560
+      },
+      {
+        "public_id": "michael_qpnwl3",
+        "format": "webp",
+        "width": 2186,
+        "height": 1715
+      },
+      {
+        "public_id": "contacting_obduz2",
+        "format": "webp",
+        "width": 1440,
+        "height": 820
+      },
+      {
+        "public_id": "logo-blanco_jzi6ww",
+        "format": "png",
+        "width": 1920,
+        "height": 555
+      },
+      {
+        "public_id": "navidad_qox0gg",
+        "format": "webp",
+        "width": 1280,
+        "height": 1600
+      },
+      {
+        "public_id": "logo-fondo-azul-01_kqkvdk",
+        "format": "png",
+        "width": 1920,
+        "height": 1920
+      },
+      {
+        "public_id": "logo-azul_mkdb59",
+        "format": "png",
+        "width": 1920,
+        "height": 532
+      },
+      {
+        "public_id": "cld-sample-5",
+        "format": "jpg",
+        "width": 1870,
+        "height": 1250
+      },
+      {
+        "public_id": "main-sample",
+        "format": "png",
+        "width": 1248,
+        "height": 832
+      },
+      {
+        "public_id": "cld-sample-4",
+        "format": "jpg",
+        "width": 1870,
+        "height": 1250
+      },
+      {
+        "public_id": "cld-sample-3",
+        "format": "jpg",
+        "width": 1870,
+        "height": 1250
+      },
+      {
+        "public_id": "cld-sample-2",
+        "format": "jpg",
+        "width": 1870,
+        "height": 1250
+      },
+      {
+        "public_id": "cld-sample",
+        "format": "jpg",
+        "width": 1870,
+        "height": 1250
+      },
+      {
+        "public_id": "sample",
+        "format": "jpg",
+        "width": 864,
+        "height": 576
+      }
+    ]
+  },
+  "all_public_ids": [
+    "1w5a0741-1_ndc4qt",
+    "1w5a0754-e4_hyg7cg",
+    "1w5a0814-1_ouvt2c",
+    "1w5a1456-e5_r39rrk",
+    "1w5a1489-e5_xh7acv",
+    "1w5a1493-e5_e24o2y",
+    "1w5a1505-e5_jljkcp",
+    "My Brand/logo_skimyh",
+    "aurora_of6oso",
+    "c_zzblqa",
+    "cld-sample",
+    "cld-sample-2",
+    "cld-sample-3",
+    "cld-sample-4",
+    "cld-sample-5",
+    "contacting_obduz2",
+    "delainenav_twqlpj",
+    "delanie-exterior-01_khylxf",
+    "delanie-exterior-02_vtd47a",
+    "delanie-exterior-03_uubgyp",
+    "delanie-exterior-04_uy7uxg",
+    "delanie-interior-01_e0yzrn",
+    "delanie-interior-02_gy46x0",
+    "delanie-interior-03_zqk0zn",
+    "delanie-interior-04_vzx5qy",
+    "delanie-interior-06_bys4tz",
+    "delanie-interior-08_whdoxo",
+    "delanie-interior-20_bondmx",
+    "delanie-interior-22_yn1dkg",
+    "delanie-interior-23_wrusv1",
+    "duplex-amo-01_ghu2gh",
+    "duplex-amo-02_zafcee",
+    "duplex-amo-03_y5omdq",
+    "duplex-exterior-01_e8rxuk",
+    "duplex-interior-01_zzfuk5",
+    "duplex-interior-02_b03ok0",
+    "duplex-interior-03_ycbnwd",
+    "duplex-interior-04_sddidx",
+    "duplex-plano_kmia8b",
+    "emelia-amo-01_rzsnis",
+    "emelia-amo-02_nmyng2",
+    "emelia-amo-03_nhoil8",
+    "emelia-amo-04_bgvefr",
+    "emelia-amo-05_u1bp8v",
+    "emelia-amo-06_q28fue",
+    "emelia-exterior-01_fwwbbo",
+    "emelia-exterior-02_nzbkg4",
+    "emelia-exterior-03_awz1bb",
+    "emelia-exterior-04_xrbzvo",
+    "emelia-exterior-05_hjf84s",
+    "emelia-exterior-06_skmopt",
+    "emelia-interior-01_j3iwjn",
+    "emelia-interior-02_lfsdis",
+    "emelia-interior-03_aaigrq",
+    "emelia-interior-04_r8exrx",
+    "emelia-interior-05_fru27b",
+    "emelia-interior-06_hnw2gl",
+    "emelia-interior-07_tyragz",
+    "emelia-interior-08_a3t6pj",
+    "emelia-interior-09_lg8ejo",
+    "emelia-interior-10_b20hpm",
+    "emelia-interior-11_bi5pl4",
+    "emelia-interior-12_s0nnld",
+    "emelia-interior-13_vi2uoy",
+    "emelia-interior-14_s9pooe",
+    "emelia-interior-15_kjphj8",
+    "emelia-interior-16_fmhouv",
+    "emelia-interior-17_ssvwzp",
+    "emelia-interior-18_ja80im",
+    "emelia-interior-19_gwnmu5",
+    "emelia-interior-20_luvnsn",
+    "emelia-interior-21_zmfmpc",
+    "emelia-interior-22_wmrw5x",
+    "emelia-interior-23_ocay47",
+    "emelia-interior-24_mvhb7g",
+    "emelia-interior-25_m5tley",
+    "emelia-interior-26_q6ogvm",
+    "emelia-interior-27_zkhmbg",
+    "emelia-interior-28_mhqwcx",
+    "emelia-interior-29_ylerpz",
+    "emelia-interior-30_oqbjko",
+    "emelia-interior-31_qfh5kb",
+    "emelia-interior-32_kpbfuh",
+    "emelia-interior-33_yb1brw",
+    "emelia-interior-34_vajfg4",
+    "emelia-interior-35_tcq0oq",
+    "familia-casa_u4qhrv",
+    "familia-cocina_auphbm",
+    "familia-conduciendo_zaj2na",
+    "juliana_vg4j7m",
+    "logo-azul_mkdb59",
+    "logo-azul_rifndg",
+    "logo-blanco_jzi6ww",
+    "logo-fondo-azul-01_kqkvdk",
+    "logo_gghqul",
+    "louisinav_w8roxx",
+    "m_k65muf",
+    "main-sample",
+    "mi_daijzd",
+    "michael_help_vckvcl",
+    "michael_qpnwl3",
+    "navidad_qox0gg",
+    "oficina_qtyeyx",
+    "orlandof_zfzdah",
+    "pa_rqbos6",
+    "pai_xy7fln",
+    "playa_snzit5",
+    "rio_nhyhdx",
+    "rto-ingles_tzwita",
+    "s_w3poiy",
+    "sample",
+    "shutterstock-1065297917_trqmmc",
+    "shutterstock-1197062707_xszrfp",
+    "shutterstock-2252703911_vbsypo",
+    "shutterstock-440999080_iwbupp",
+    "t2_iyrtcy",
+    "t3_g807ws",
+    "t4_q4cmyv",
+    "t5_v3mysy",
+    "t6_zmcnbr",
+    "team_oh4swe",
+    "testimonio-10_xxfdn8",
+    "testimonio-11_j3ajer",
+    "testimonio-12_dxduap",
+    "testimonio-13_bqgqej",
+    "testimonio-14_dtqykp",
+    "testimonio-15_rky7ua",
+    "testimonio-16_adcec6",
+    "testimonio-17_jm2ig5",
+    "testimonio-18_ez3q5j",
+    "testimonio-19_fx9ito",
+    "testimonio-1_k7i7s6",
+    "testimonio-20_kwaf9z",
+    "testimonio-21_cxbbjz",
+    "testimonio-22_esbgdv",
+    "testimonio-23_xwrfcc",
+    "testimonio-24_tuivrv",
+    "testimonio-25_wddozi",
+    "testimonio-26_ypxi6j",
+    "testimonio-27_ujgt0i",
+    "testimonio-2_r4bik3",
+    "testimonio-32_wbrkxp",
+    "testimonio-3_q1mt8c",
+    "testimonio-4_pmjlbc",
+    "testimonio-5_amziqq",
+    "testimonio-7_gsnqmn",
+    "testimonio-8_wfahb2",
+    "testimonio-9_glar28",
+    "viana-amo-01_oyfyy6",
+    "viana-amo-02_swgzxl",
+    "viana-amo-03_vbbjz1",
+    "viana-amo-04_qjbmfc",
+    "viana-amo-05_uzygrt",
+    "viana-amo-06_qpphmw",
+    "viana-amo-07_ydgbtk",
+    "viana-exterior-01_mdujbb",
+    "viana-exterior-02_bsxs1i",
+    "viana-interior-01_bqdto9",
+    "viana-interior-02_hnjpfu",
+    "viana-interior-03_d5dfnn",
+    "viana-interior-06_cq51p2",
+    "viana-interior-13_snokuy",
+    "viana-interior-14_usr1ep",
+    "viana-interior-15_npg8iy",
+    "viana-interior-16_bs13fp",
+    "viana-interior-17_ye77o8",
+    "viana-interior-18_en1mst",
+    "viana-interior-19_rtkswx"
+  ]
+}

@@ -1,5 +1,6 @@
 import { LogoItem } from "@/components/ui/logo-slider"
 import { SLD_WEBSITE_URL } from "@/config/seo/contact"
+import { getCloudinaryImageUrl } from "@/lib/cloudinary"
 
 export const PARTNER_LOGOS: LogoItem[] = [
   {
@@ -10,7 +11,7 @@ export const PARTNER_LOGOS: LogoItem[] = [
     height: 60,
   },
   {
-    src: "/img/logo.svg",
+    src: getCloudinaryImageUrl("/img/logo.svg"),
     alt: "M.J. Newell Homes",
     href: "/",
     width: 200,

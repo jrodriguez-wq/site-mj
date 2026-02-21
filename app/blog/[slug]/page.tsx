@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { getPost, getAllPostSlugs } from "@/lib/blog/blog-utils";
 import { ArticleContent } from "@/components/blog/article-content";
 import { ArticleCTA } from "@/components/blog/article-cta";
@@ -40,8 +41,10 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const imageUrl = frontmatter.image
     ? frontmatter.image.startsWith("http")
       ? frontmatter.image
-      : `${SEO_CONFIG.siteUrl}${frontmatter.image}`
-    : `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`;
+      : frontmatter.image.startsWith("/img/") || frontmatter.image.startsWith("img/")
+        ? getCloudinaryImageUrl(frontmatter.image)
+        : `${SEO_CONFIG.siteUrl}${frontmatter.image}`
+    : SEO_CONFIG.ogImage;
 
   return generateSEOMetadata({
     title: frontmatter.title,

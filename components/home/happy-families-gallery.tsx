@@ -6,40 +6,38 @@ import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
 import { useTranslation } from "@/hooks/use-translation";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 const familyImages = [
-  { src: "/recursos/clientes/testimonio-5.webp" },
-  { src: "/recursos/clientes/testimonio-17.webp" },
-  { src: "/recursos/clientes/testimonio-1.webp" },
-  { src: "/recursos/clientes/testimonio-14.webp" },
-  { src: "/recursos/clientes/testimonio-2.webp" },
-  { src: "/recursos/clientes/testimonio-7.webp" },
-  { src: "/recursos/clientes/testimonio-27.webp" },
-
-  { src: "/recursos/clientes/testimonio-16.webp" },
-  { src: "/recursos/clientes/testimonio-9.webp" },
-  { src: "/recursos/clientes/testimonio-3.webp" },
-  { src: "/recursos/clientes/testimonio-32.webp" },
-  { src: "/recursos/clientes/testimonio-15.webp" },
-  { src: "/recursos/clientes/testimonio-25.webp" },
-  { src: "/recursos/clientes/testimonio-13.webp" },
-  { src: "/recursos/clientes/testimonio-8.webp" },
-
-  { src: "/img/logo.svg", isLogo: true },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-5.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-17.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-1.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-14.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-2.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-7.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-27.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-16.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-9.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-3.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-32.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-15.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-25.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-13.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-8.webp") },
+  { src: getCloudinaryImageUrl("/img/logo.svg"), isLogo: true },
 ];
 
-// Selección optimizada de imágenes para móvil (menos imágenes, mejor visualización)
 const mobileImages: Array<{ src: string; isLogo?: boolean }> = [
-  { src: "/recursos/clientes/testimonio-5.webp" },
-  { src: "/recursos/clientes/testimonio-17.webp" },
-  { src: "/recursos/clientes/testimonio-1.webp" },
-  { src: "/recursos/clientes/testimonio-4.webp" },
-  { src: "/recursos/clientes/testimonio-2.webp" },
-  { src: "/recursos/clientes/testimonio-7.webp" },
-  { src: "/recursos/clientes/testimonio-27.webp" },
-  { src: "/recursos/clientes/testimonio-9.webp" },
-  { src: "/recursos/clientes/testimonio-16.webp" },
-  { src: "/recursos/clientes/testimonio-32.webp" },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-5.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-17.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-1.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-4.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-2.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-7.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-27.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-9.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-16.webp") },
+  { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-32.webp") },
 ];
 
 const ImageHeader = ({ 

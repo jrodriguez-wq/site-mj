@@ -317,22 +317,22 @@ export default function ModelsPage() {
   }, []);
 
   return (
-    <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 max-w-[1800px]">
+    <div className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 pb-6 sm:pb-10 md:pb-12 lg:pb-16 xl:pb-20 min-h-screen bg-gradient-to-b from-background to-muted/20 overflow-x-hidden">
+      <div className="container mx-auto px-2.5 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 max-w-[1800px] w-full min-w-0">
         {/* Furnished Homes Slider - Before Header */}
         <FurnishedHomesSlider />
 
-        {/* Header Section - All Screens */}
-        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10">
-          <div className="text-center space-y-1.5 sm:space-y-2 md:space-y-3 mb-4 sm:mb-6 md:mb-8">
+        {/* Header Section - Responsive typography and spacing */}
+        <div className="mb-3 sm:mb-6 md:mb-8 lg:mb-10">
+          <div className="text-center space-y-1 sm:space-y-1.5 md:space-y-2 lg:space-y-3 mb-3 sm:mb-6 md:mb-8">
             <h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-foreground leading-tight sm:leading-normal"
+              className="text-[clamp(1.25rem,4vw+1rem,3.75rem)] font-black tracking-tight text-foreground leading-tight max-w-full break-words px-1"
               suppressHydrationWarning
             >
               {t("homeModels.allModels")}
             </h1>
             <p
-              className="mx-auto max-w-2xl text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4"
+              className="mx-auto max-w-2xl text-muted-foreground text-[clamp(0.6875rem,2vw+0.5rem,1.125rem)] leading-relaxed px-2 sm:px-4 break-words"
               suppressHydrationWarning
             >
               {t("homeModels.allModelsSubtitle")}
@@ -341,15 +341,15 @@ export default function ModelsPage() {
 
           {/* Community Selector - Visible on all screens */}
           {!isLoading && (
-            <div className="mb-4 sm:mb-6 flex items-center gap-3 sm:gap-4">
-              <label className="text-sm sm:text-base font-semibold text-foreground whitespace-nowrap" suppressHydrationWarning>
+            <div className="mb-3 sm:mb-6 flex flex-wrap items-center gap-2 sm:gap-4">
+              <label className="text-xs sm:text-sm md:text-base font-semibold text-foreground whitespace-nowrap shrink-0" suppressHydrationWarning>
                 {t("models.filters.community")}:
               </label>
               <Select
                 value={selectedCommunity}
                 onValueChange={(value) => setSelectedCommunity(value as Community | "all")}
               >
-                <SelectTrigger className="w-full sm:w-auto min-w-[200px]">
+                <SelectTrigger className="w-full min-w-0 sm:w-auto sm:min-w-[180px] max-w-full text-xs sm:text-sm">
                   <SelectValue suppressHydrationWarning />
                 </SelectTrigger>
                 <SelectContent>
@@ -402,12 +402,12 @@ export default function ModelsPage() {
           <div className="flex-1 min-w-0 w-full">
             {/* Results count and info - All Screens */}
             {!isLoading && (
-              <div className="mb-4 sm:mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm pb-3 sm:pb-4 border-b border-border/30">
-                <span className="text-muted-foreground font-medium">
+              <div className="mb-3 sm:mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3 md:gap-4 text-[10px] sm:text-xs md:text-sm pb-2 sm:pb-4 border-b border-border/30 min-w-0">
+                <span className="text-muted-foreground font-medium break-words">
                   <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
                   {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
                 </span>
-                <span className="text-muted-foreground/70 text-[10px] sm:text-xs md:text-sm" suppressHydrationWarning>
+                <span className="text-muted-foreground/70 text-[10px] sm:text-xs truncate max-w-full" suppressHydrationWarning>
                   {t("models.results.sortedBy") || "Sorted by price: Low to High"}
                 </span>
               </div>
@@ -440,7 +440,7 @@ export default function ModelsPage() {
               </div>
             ) : (
               <div 
-                className="grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 grid-cols-1 md:grid-cols-2 w-full" 
+                className="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 2xl:gap-10 grid-cols-1 md:grid-cols-2 w-full min-w-0" 
                 suppressHydrationWarning
               >
                 {filteredModels.map((model, index) => {

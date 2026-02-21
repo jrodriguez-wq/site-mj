@@ -16,6 +16,7 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
 
@@ -33,7 +34,7 @@ export const ContactPageContent = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/hero/1w5a0754-e4.webp"
+            src={getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp")}
             alt={t("contactForm.hero.imageAlt") || "Contact M.J. Newell Homes"}
             fill
             className="object-cover"
@@ -65,7 +66,7 @@ export const ContactPageContent = () => {
                 >
                   <div className="relative">
                     <Image
-                      src="/img/logo-blanco.png"
+                      src={getCloudinaryImageUrl("/img/logo-blanco.png")}
                       alt="M.J. Newell Homes"
                       width={320}
                       height={120}

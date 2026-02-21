@@ -5,15 +5,16 @@ import Image from "next/image";
 import { useTranslation } from "@/hooks/use-translation";
 import { X, ChevronLeft, ChevronRight, Maximize2, Heart, Home } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
-// Imágenes de la galería RTO
+// Imágenes de la galería RTO (desde Cloudinary)
 const rtoGalleryImages = [
-  "/recursos/rto/familia-cocina.webp",
-  "/recursos/rto/testimonio-19.webp",
-  "/recursos/rto/testimonio-20.webp",
-  "/recursos/rto/testimonio-21.webp",
-  "/recursos/rto/testimonio-22.webp",
-  "/recursos/rto/testimonio-26.webp",
+  getCloudinaryImageUrl("/recursos/rto/familia-cocina.webp"),
+  getCloudinaryImageUrl("/recursos/rto/testimonio-19.webp"),
+  getCloudinaryImageUrl("/recursos/rto/testimonio-20.webp"),
+  getCloudinaryImageUrl("/recursos/rto/testimonio-21.webp"),
+  getCloudinaryImageUrl("/recursos/rto/testimonio-22.webp"),
+  getCloudinaryImageUrl("/recursos/rto/testimonio-26.webp"),
 ];
 
 // Componente Modal de Galería

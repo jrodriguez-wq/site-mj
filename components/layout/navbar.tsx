@@ -12,6 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { cn } from "@/lib/utils";
 import { getCopy } from "@/lib/constants/copy";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
@@ -295,7 +296,7 @@ export const Navbar = () => {
           >
             {/* img nativo para SVG: nitidez perfecta a cualquier tamaño (next/image puede rasterizar y verse borroso) */}
             <img
-              src="/img/logo.svg"
+              src={getCloudinaryImageUrl("/img/logo.svg")}
               alt="M.J. Newell Homes"
               className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain"
               width={280}
@@ -532,7 +533,7 @@ export const Navbar = () => {
                       {getCopy("nav.home")}
                     </SheetTitle>
                     <img
-                      src="/img/logo.svg"
+                      src={getCloudinaryImageUrl("/img/logo.svg")}
                       alt="M.J. Newell Homes"
                       width={200}
                       height={115}

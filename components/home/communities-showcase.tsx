@@ -9,14 +9,14 @@ import { MapPin, Home } from "lucide-react";
 import { useTranslation } from "@/hooks/use-translation";
 import { motion } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
-// Configuración estática de comunidades (fuera del componente para evitar problemas de hidratación)
 const COMMUNITIES_CONFIG = [
   {
     nameKey: "labelle",
     alt: "New homes in LaBelle, Florida - Home builder LaBelle - New construction homes by M.J. Newell Homes",
     href: "/communities/labelle",
-    image: "/recursos/shutterstock-1065297917.webp",
+    image: getCloudinaryImageUrl("/recursos/shutterstock-1065297917.webp"),
     featureKeys: [
       "communities.labelle.features.acreLots",
       "communities.labelle.features.noHOA",
@@ -27,7 +27,7 @@ const COMMUNITIES_CONFIG = [
     nameKey: "lehighAcres",
     alt: "New homes in Lehigh Acres, Florida - Home builder Lehigh Acres - New construction homes by M.J. Newell Homes",
     href: "/communities/lehigh-acres",
-    image: "/recursos/shutterstock-1197062707.webp",
+    image: getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
     featureKeys: [
       "communities.lehighAcres.features.spaciousLots",
       "communities.lehighAcres.features.greatSchools",

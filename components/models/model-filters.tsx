@@ -81,33 +81,33 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
         onClick={() => setIsOpen(!isOpen)}
         variant="outline"
         className={cn(
-          "lg:hidden w-full justify-between h-10 sm:h-11 mb-3 sm:mb-4",
+          "lg:hidden w-full justify-between h-9 sm:h-10 md:h-11 mb-2 sm:mb-3 md:mb-4",
           "border border-border/50 hover:border-primary/50",
           "bg-background hover:bg-muted/50 transition-all",
-          "text-sm sm:text-base"
+          "text-xs sm:text-sm md:text-base"
         )}
       >
-        <span className="flex items-center gap-2">
-          <Filter className="h-4 w-4" />
-          <span className="font-medium" suppressHydrationWarning>
+        <span className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+          <Filter className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+          <span className="font-medium truncate" suppressHydrationWarning>
             {t("models.filters.title") || "Filters"}
           </span>
           {activeFiltersCount > 0 && (
-            <span className="bg-primary text-primary-foreground text-xs font-semibold px-2 py-0.5 rounded-full">
+            <span className="bg-primary text-primary-foreground text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 rounded-full shrink-0">
               {activeFiltersCount}
             </span>
           )}
         </span>
-        <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} />
+        <ChevronDown className={cn("h-3.5 w-3.5 sm:h-4 sm:w-4 transition-transform shrink-0", isOpen && "rotate-180")} />
       </Button>
 
-      {/* Mobile Filter Panel */}
+      {/* Mobile Filter Panel - Compact on small screens */}
       <div className={cn(
-        "lg:hidden mt-3 sm:mt-4 p-4 sm:p-5 rounded-xl border border-border/50 bg-card shadow-lg space-y-4 sm:space-y-5 md:space-y-6",
+        "lg:hidden mt-2 sm:mt-3 md:mt-4 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl border border-border/50 bg-card shadow-lg space-y-3 sm:space-y-4 md:space-y-5 min-w-0",
         isOpen ? "block animate-in fade-in-0 slide-in-from-top-2" : "hidden"
       )}>
-        <div className="flex items-center justify-between pb-4 border-b border-border/30">
-          <h3 className="font-semibold text-lg" suppressHydrationWarning>
+        <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-border/30 min-w-0">
+          <h3 className="font-semibold text-base sm:text-lg truncate" suppressHydrationWarning>
             {t("models.filters.title") || "Filters"}
           </h3>
           {activeFiltersCount > 0 && (
@@ -124,10 +124,10 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
         </div>
 
         {/* Price Range */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm font-semibold" suppressHydrationWarning>
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <DollarSign className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
+            <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
               {t("models.filters.priceRange") || "Price Range"}
             </span>
           </div>
@@ -139,21 +139,21 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
             step={10000}
             className="w-full"
           />
-          <div className="flex justify-between text-xs font-medium text-muted-foreground">
+          <div className="flex justify-between text-[10px] sm:text-xs font-medium text-muted-foreground">
             <span>${(filters.priceRange[0] / 1000).toFixed(0)}k</span>
             <span>${(filters.priceRange[1] / 1000).toFixed(0)}k</span>
           </div>
         </div>
 
         {/* Bedrooms */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Bed className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm font-semibold" suppressHydrationWarning>
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <Bed className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
+            <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
               {t("models.filters.bedrooms") || "Bedrooms"}
             </span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {[2, 3, 4].map((bedrooms) => {
               const isActive = filters.bedrooms.includes(bedrooms);
               return (
@@ -161,7 +161,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
                   key={bedrooms}
                   onClick={() => toggleBedroom(bedrooms)}
                   className={cn(
-                    "px-4 py-2 text-sm font-semibold rounded-lg transition-all",
+                    "px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold rounded-md sm:rounded-lg transition-all",
                     isActive
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50"
@@ -175,14 +175,14 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
         </div>
 
         {/* Bathrooms */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Bath className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm font-semibold" suppressHydrationWarning>
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <Bath className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
+            <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
               {t("models.filters.bathrooms") || "Bathrooms"}
             </span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {[1, 2, 3, 4].map((bathrooms) => {
               const isActive = filters.bathrooms.includes(bathrooms);
               return (
@@ -190,7 +190,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
                   key={bathrooms}
                   onClick={() => toggleBathroom(bathrooms)}
                   className={cn(
-                    "px-4 py-2 text-sm font-semibold rounded-lg transition-all",
+                    "px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold rounded-md sm:rounded-lg transition-all",
                     isActive
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground border border-border/50"
@@ -204,10 +204,10 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
         </div>
 
         {/* Square Feet */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Square className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm font-semibold" suppressHydrationWarning>
+        <div className="space-y-2 sm:space-y-3">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <Square className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
+            <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
               {t("models.filters.sqftRange") || "Square Feet"}
             </span>
           </div>
@@ -219,7 +219,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
             step={100}
             className="w-full"
           />
-          <div className="flex justify-between text-xs font-medium text-muted-foreground">
+          <div className="flex justify-between text-[10px] sm:text-xs font-medium text-muted-foreground">
             <span>{(filters.sqftRange[0] / 1000).toFixed(1)}k</span>
             <span>{(filters.sqftRange[1] / 1000).toFixed(1)}k</span>
           </div>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getCopy } from "@/lib/constants/copy";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 interface HeroSlideConfig {
   image: string;
@@ -24,7 +25,7 @@ interface HeroSlideConfig {
 
 const heroSlidesConfig: HeroSlideConfig[] = [
   {
-    image: "/img/hero/1w5a0741-1.webp",
+    image: getCloudinaryImageUrl("/img/hero/1w5a0741-1.webp"),
     titleKey: "hero.title1",
     subtitleKey: "hero.subtitle1",
     descriptionKey: "hero.description1",
@@ -36,7 +37,7 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     secondaryButtonAction: "link",
   },
   {
-    image: "/img/hero/1w5a0814-1.webp",
+    image: getCloudinaryImageUrl("/img/hero/1w5a0814-1.webp"),
     titleKey: "hero.title2",
     subtitleKey: "hero.subtitle2",
     descriptionKey: "hero.description2",
@@ -45,7 +46,7 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     primaryButtonAction: "link",
   },
   {
-    image: "/img/hero/1w5a1489-e5.webp",
+    image: getCloudinaryImageUrl("/img/hero/1w5a1489-e5.webp"),
     titleKey: "hero.title3",
     subtitleKey: "hero.subtitle3",
     descriptionKey: "hero.description3",

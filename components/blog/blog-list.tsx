@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlogPostMetadata } from "@/types/blog";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock, Calendar, ArrowRight } from "lucide-react";
 import { AnimatedCard } from "@/components/ui/animated-card";
@@ -32,8 +33,8 @@ export const BlogList = ({ posts }: BlogListProps) => {
         
         // Use relative path directly for Next.js Image
         const imageSrc = post.image && !post.image.startsWith("http") 
-          ? post.image 
-          : "/img/hero/1w5a0754-e4.webp";
+          ? getCloudinaryImageUrl(post.image) 
+          : getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp");
 
         return (
           <AnimatedCard key={post.slug} index={index}>

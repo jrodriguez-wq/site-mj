@@ -13,6 +13,43 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { SEO_CONFIG } from "@/config/seo";
 
+const BLUR_PLACEHOLDER = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
+
+function ModelCardImage({
+  src,
+  name,
+  index,
+  priority,
+}: {
+  src: string;
+  name: string;
+  index: number;
+  priority: boolean;
+}) {
+  const [error, setError] = useState(false);
+  const isLocal = src.startsWith("/modelos-optimized");
+  return error ? (
+    <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-xs p-4 text-center">
+      <span>{name} – image {index + 1}</span>
+    </div>
+  ) : (
+    <Image
+      src={src}
+      alt={index === 0 ? `${name} model home in Florida - New construction home by M.J. Newell Homes - Home builder Florida` : `${name} model home interior ${index + 1} - New home construction Florida`}
+      fill
+      className="object-cover"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+      priority={priority}
+      loading={priority ? "eager" : "lazy"}
+      quality={85}
+      placeholder="blur"
+      blurDataURL={BLUR_PLACEHOLDER}
+      unoptimized={isLocal}
+      onError={() => setError(true)}
+    />
+  );
+}
+
 export interface ModelCardProps {
   modelKey: string;
   name: string;
@@ -114,8 +151,8 @@ const ModelCardComponent = (props: ModelCardProps) => {
   // URL completa para compartir
   const fullModelUrl = `${SEO_CONFIG.siteUrl}${modelLink}`;
 
-  // Use all images if available, otherwise fallback to single image
-  const displayImages = images.length > 0 ? images : [image];
+  // Use all images if available, otherwise fallback to single image (filter empty/invalid)
+  const displayImages = (images.length > 0 ? images : [image]).filter((src) => src && typeof src === "string");
   const hasMultipleImages = displayImages.length > 1;
 
   // Auto carousel with staggered delay - Only if carouselDelay > 0
@@ -246,8 +283,8 @@ const ModelCardComponent = (props: ModelCardProps) => {
           <motion.div 
             className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-200 hover:shadow-2xl"
           >
-          {/* Image Carousel */}
-          <div className="relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          {/* Image Carousel - Responsive height, images with fallback */}
+          <div className="relative h-40 min-[400px]:h-48 sm:h-52 md:h-60 lg:h-72 xl:h-80 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
             <div
               className={cn(
                 "flex transition-transform duration-300 ease-out h-full",
@@ -260,23 +297,13 @@ const ModelCardComponent = (props: ModelCardProps) => {
               }
             >
               {displayImages.map((img, index) => (
-                <div key={index} className="min-w-full h-full relative">
+                <div key={index} className="min-w-full h-full relative flex-shrink-0">
                   {inView || index === 0 ? (
-                    <Image
+                    <ModelCardImage
                       src={img}
-                      alt={
-                        index === 0
-                          ? `${name} model home in Florida - New construction home by M.J. Newell Homes - Home builder Florida`
-                          : `${name} model home interior ${index + 1} - New home construction Florida`
-                      }
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                      name={name}
+                      index={index}
                       priority={index === 0 && inView}
-                      loading={index === 0 && inView ? "eager" : "lazy"}
-                      quality={85}
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                   ) : (
                     <div className="w-full h-full bg-muted animate-pulse" />
@@ -286,12 +313,12 @@ const ModelCardComponent = (props: ModelCardProps) => {
             </div>
 
             {/* Top Actions Bar - Left Side: Badges */}
-            <div className="absolute top-3 sm:top-4 md:top-5 left-3 sm:left-4 md:left-5 z-20 flex flex-col gap-2">
+            <div className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 z-20 flex flex-col gap-1.5 sm:gap-2">
               {/* Community Badge - Always visible if community is provided */}
               {community && communityLabel && (
                 <div
                   className={cn(
-                    "inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border backdrop-blur-md shadow-lg",
+                    "inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-semibold border backdrop-blur-md shadow-lg max-w-[45vw] sm:max-w-none",
                     community === "labelle"
                       ? "bg-white/95 dark:bg-gray-900/95 text-indigo-700 dark:text-indigo-400 border-indigo-200/80 dark:border-indigo-700/50 shadow-indigo-500/10"
                       : "bg-white/95 dark:bg-gray-900/95 text-fuchsia-700 dark:text-fuchsia-400 border-fuchsia-200/80 dark:border-fuchsia-700/50 shadow-fuchsia-500/10"
@@ -323,7 +350,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
             </div>
 
             {/* Top Actions Bar - Right Side: Action Buttons */}
-            <div className="absolute top-3 sm:top-4 md:top-5 right-3 sm:right-4 md:right-5 flex gap-1.5 sm:gap-2 z-20">
+            <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 flex gap-1 sm:gap-1.5 z-20">
               <button
                 onClick={() => setIsLiked(!isLiked)}
                 className="bg-background/90 backdrop-blur-md p-1.5 sm:p-2 rounded-full hover:bg-background transition-colors border border-border/70 shadow-sm"
@@ -390,12 +417,12 @@ const ModelCardComponent = (props: ModelCardProps) => {
               </button>
             </div>
 
-            {/* Price Badge - Positioned above View Photos button, elegant design */}
+            {/* Price Badge - Responsive size */}
             <div className={cn(
-              "absolute right-3 md:right-4 lg:right-5 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md text-emerald-700 dark:text-emerald-400 px-4 sm:px-4.5 md:px-5 lg:px-6 py-2 sm:py-2.5 md:py-3 lg:py-3.5 rounded-full font-bold text-xs sm:text-sm md:text-base lg:text-lg shadow-lg border border-emerald-200/60 dark:border-emerald-700/50 z-20",
+              "absolute right-2 sm:right-3 md:right-4 lg:right-5 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md text-emerald-700 dark:text-emerald-400 px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-full font-bold text-[10px] sm:text-xs md:text-sm lg:text-base shadow-lg border border-emerald-200/60 dark:border-emerald-700/50 z-20 max-w-[50%] truncate",
               hasMultipleImages 
-                ? "bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-28"
-                : "bottom-3 md:bottom-4 lg:bottom-5"
+                ? "bottom-12 sm:bottom-16 md:bottom-20 lg:bottom-24"
+                : "bottom-2 sm:bottom-3 md:bottom-4 lg:bottom-5"
             )}>
               {price}
             </div>
@@ -405,7 +432,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
               <button
                 onClick={openGallery}
                 onKeyDown={(e) => handleKeyDown(e, openGallery)}
-                className="hidden sm:flex absolute bottom-3 md:bottom-4 lg:bottom-5 right-3 md:right-4 lg:right-5 bg-background/95 backdrop-blur-md px-2.5 md:px-3 py-1.5 md:py-2 rounded-full items-center gap-1.5 md:gap-2 hover:bg-background transition-all border border-border/70 shadow-md z-20"
+                className="hidden sm:flex absolute bottom-2 sm:bottom-3 md:bottom-4 right-2 sm:right-3 md:right-4 bg-background/95 backdrop-blur-md px-2 md:px-2.5 py-1 md:py-1.5 rounded-full items-center gap-1 md:gap-1.5 hover:bg-background transition-all border border-border/70 shadow-md z-20"
                 aria-label={viewPhotosCountLabel(displayImages.length)}
                 type="button"
                 suppressHydrationWarning
@@ -418,15 +445,15 @@ const ModelCardComponent = (props: ModelCardProps) => {
             )}
           </div>
 
-          {/* Property Info - Optimized padding for mobile */}
-          <div className="p-3 sm:p-4 md:p-5 lg:p-6 space-y-2.5 sm:space-y-3 md:space-y-4 lg:space-y-5">
+          {/* Property Info - Responsive padding and typography */}
+          <div className="p-2.5 sm:p-4 md:p-5 lg:p-6 space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5 min-w-0">
             {/* Title and Location */}
-            <div>
-              <div className="flex items-start sm:items-center justify-between mb-1.5 sm:mb-2 gap-2">
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent flex-1 min-w-0 leading-tight sm:leading-normal">
+            <div className="min-w-0">
+              <div className="flex items-start sm:items-center justify-between gap-1.5 sm:gap-2 mb-1 sm:mb-2 min-w-0">
+                <h2 className="text-[clamp(0.9375rem,2.5vw+0.5rem,1.875rem)] font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent flex-1 min-w-0 leading-tight break-words">
                   {name}
                 </h2>
-                <span className="text-[9px] sm:text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0 mt-0.5 sm:mt-0" suppressHydrationWarning>
+                <span className="text-[8px] sm:text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0 mt-0.5 sm:mt-0" suppressHydrationWarning>
                   {displayModelLabel}
                 </span>
               </div>
@@ -445,51 +472,51 @@ const ModelCardComponent = (props: ModelCardProps) => {
                   </span>
                 </div>
               )}
-              <p className="text-xs sm:text-sm text-muted-foreground font-medium line-clamp-2 mt-1 sm:mt-1.5">{description}</p>
+              <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground font-medium line-clamp-2 mt-1 break-words">{description}</p>
             </div>
 
-            {/* Quick Features - Better spacing for mobile */}
-            <div className="grid grid-cols-4 gap-1 sm:gap-1.5 md:gap-2 lg:gap-3">
+            {/* Quick Features - Responsive grid */}
+            <div className="grid grid-cols-4 gap-1 sm:gap-1.5 md:gap-2 lg:gap-3 min-w-0">
               {[
                 { icon: Bed, value: beds, label: bedsLabel },
                 { icon: Bath, value: baths, label: bathsLabel },
                 { icon: Square, value: sqft, label: sqftLabel },
                 { icon: Car, value: garageLabel, label: garageLabel },
-              ].map((feature, index) => {
+              ].map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
                   <div
-                    key={index}
-                    className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg sm:rounded-xl md:rounded-2xl p-1.5 sm:p-2 md:p-2.5 lg:p-3 text-center hover:from-primary/10 hover:to-primary/20 transition-colors border border-border/50"
+                    key={idx}
+                    className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-md sm:rounded-lg md:rounded-xl p-1 sm:p-1.5 md:p-2 lg:p-2.5 text-center hover:from-primary/10 hover:to-primary/20 transition-colors border border-border/50 min-w-0"
                   >
-                    <div className="text-primary flex justify-center mb-0.5 sm:mb-1 md:mb-2">
-                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                    <div className="text-primary flex justify-center mb-0.5 sm:mb-1">
+                      <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
                     </div>
-                    <div className="font-bold text-foreground text-[10px] sm:text-xs md:text-sm leading-tight">{feature.value}</div>
-                    <div className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground leading-tight mt-0.5">{feature.label}</div>
+                    <div className="font-bold text-foreground text-[9px] sm:text-[10px] md:text-xs leading-tight truncate">{feature.value}</div>
+                    <div className="text-[8px] sm:text-[9px] md:text-[10px] text-muted-foreground leading-tight mt-0.5 truncate">{feature.label}</div>
                   </div>
                 );
               })}
             </div>
 
-            {/* Price and CTA - Better mobile layout */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-2.5 sm:gap-3 md:gap-4 pt-2.5 sm:pt-3 md:pt-4 border-t border-border/50">
-              <div className="flex-1 min-w-0 pb-0 sm:pb-0">
-                <p className="text-[9px] sm:text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider font-medium mb-0.5 sm:mb-1" suppressHydrationWarning>
+            {/* Price and CTA - Responsive layout */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-end justify-between gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-3 md:pt-4 border-t border-border/50 min-w-0">
+              <div className="flex-1 min-w-0 overflow-hidden">
+                <p className="text-[8px] sm:text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider font-medium mb-0.5" suppressHydrationWarning>
                   {displayPriceFromLabel}
                 </p>
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent leading-tight sm:leading-normal break-words">
+                <p className="text-[clamp(0.875rem,2vw+0.5rem,1.875rem)] font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent leading-tight break-words">
                   {price}
                 </p>
                 {rtoPrice && (
-                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground mt-1 sm:mt-1.5 font-semibold" suppressHydrationWarning>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground mt-1 font-semibold break-words" suppressHydrationWarning>
                     {displayRtoLabel}: <span className="text-primary font-bold">{rtoPrice}</span>
                   </p>
                 )}
               </div>
               <Button
                 asChild
-                className="relative w-full sm:w-auto bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-lg sm:rounded-xl md:rounded-2xl font-bold text-xs sm:text-sm md:text-base hover:shadow-2xl hover:shadow-primary/40 transition-all duration-200 flex items-center justify-center gap-2 group hover:scale-105 hover:-translate-y-1 border-2 border-primary/20 hover:border-primary/50 overflow-hidden shrink-0"
+                className="relative w-full sm:w-auto min-w-0 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-3 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl font-bold text-[10px] sm:text-xs md:text-sm hover:shadow-2xl hover:shadow-primary/40 transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 group hover:scale-[1.02] hover:-translate-y-0.5 border-2 border-primary/20 hover:border-primary/50 overflow-hidden shrink-0"
               >
                 <Link 
                   href={modelLink}
@@ -553,6 +580,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
                   quality={90}
                   priority={galleryImageIndex === 0}
                   loading={galleryImageIndex === 0 ? "eager" : "lazy"}
+                  unoptimized={displayImages[galleryImageIndex]?.startsWith("/modelos-optimized") ?? false}
                 />
               </div>
 
@@ -612,6 +640,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
                               sizes="48px"
                               quality={75}
                               loading="lazy"
+                              unoptimized={img.startsWith("/modelos-optimized")}
                             />
                           </div>
                         </button>
@@ -641,6 +670,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
                     quality={90}
                     priority={galleryImageIndex === 0}
                     loading={galleryImageIndex === 0 ? "eager" : "lazy"}
+                    unoptimized={displayImages[galleryImageIndex]?.startsWith("/modelos-optimized") ?? false}
                   />
                 </div>
 
@@ -693,6 +723,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
                             sizes="64px"
                             quality={75}
                             loading="lazy"
+                            unoptimized={img.startsWith("/modelos-optimized")}
                           />
                         </div>
                       </button>

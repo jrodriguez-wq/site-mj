@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { getModelData } from "@/lib/models/model-data";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
 import { getModelPricing } from "@/lib/models/model-pricing";
@@ -166,7 +167,7 @@ export default function RentToOwnPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/hero/1w5a0754-e4.webp"
+            src={getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp")}
             alt={t("rentToOwn.hero.imageAlt") || "Rent to Own Program - M.J. Newell Homes"}
             fill
             className="object-cover"
@@ -314,7 +315,7 @@ export default function RentToOwnPage() {
             <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
-                src="/img/hero/1w5a1456-e5.webp"
+                src={getCloudinaryImageUrl("/img/hero/1w5a1456-e5.webp")}
                 alt={t("rentToOwn.images.newHome")}
                 fill
                 className="object-cover"
@@ -630,7 +631,7 @@ export default function RentToOwnPage() {
             </div>
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
-                src="/img/hero/1w5a1493-e5.webp"
+                src={getCloudinaryImageUrl("/img/hero/1w5a1493-e5.webp")}
                 alt={t("rentToOwn.images.requirements")}
                 fill
                 className="object-cover"
@@ -717,7 +718,7 @@ export default function RentToOwnPage() {
           <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center mb-12">
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 order-2 md:order-1">
               <Image
-                src="/img/hero/1w5a1505-e5.webp"
+                src={getCloudinaryImageUrl("/img/hero/1w5a1505-e5.webp")}
                 alt={t("rentToOwn.images.applicationProcess")}
                 fill
                 className="object-cover"
@@ -822,7 +823,7 @@ export default function RentToOwnPage() {
             </Card>
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
-                src="/img/hero/aurora.webp"
+                src={getCloudinaryImageUrl("/img/hero/aurora.webp")}
                 alt={t("rentToOwn.images.benefits")}
                 fill
                 className="object-cover"

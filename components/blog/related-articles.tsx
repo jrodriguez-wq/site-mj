@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlogPostMetadata } from "@/types/blog";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
 
@@ -35,8 +36,8 @@ export const RelatedArticles = ({ relatedArticles }: RelatedArticlesProps) => {
           });
 
           const imageSrc = article.image && !article.image.startsWith("http")
-            ? article.image
-            : "/img/hero/1w5a0754-e4.webp";
+            ? getCloudinaryImageUrl(article.image)
+            : getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp");
 
           return (
             <Card key={article.slug} className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-2 border-border/50 hover:border-primary/50">

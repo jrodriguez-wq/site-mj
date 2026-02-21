@@ -9,6 +9,7 @@ import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { MapPin, Phone, Calendar, CheckCircle2, Home, DollarSign, Users, Clock, Map, ExternalLink, Zap, MessageSquare } from "lucide-react";
 import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
 import { getCopy } from "@/lib/constants/copy";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { AnimatedSection } from "@/components/ui/animated-section";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
@@ -240,7 +241,7 @@ export const ScheduleAppointmentContent = () => {
                   <CardContent className="p-0">
                     <div className="relative w-full h-56 sm:h-64 md:h-80">
                       <Image
-                        src="/img/hero/1w5a0741-1.webp"
+                        src={getCloudinaryImageUrl("/img/hero/1w5a0741-1.webp")}
                         alt="M.J. Newell Homes Office - 45 Bridge St, LaBelle, FL"
                         fill
                         className="object-cover"

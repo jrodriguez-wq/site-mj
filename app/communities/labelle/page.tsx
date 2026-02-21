@@ -12,16 +12,17 @@ import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 const labelleImages = [
-  "/recursos/shutterstock-1065297917.webp",
-  "/recursos/shutterstock-1197062707.webp",
-  "/recursos/shutterstock-2252703911.webp",
-  "/recursos/shutterstock-440999080.webp",
-  "/recursos/rio.webp",
-  "/recursos/pai.webp",
-  "/recursos/familia-casa.webp",
-  "/recursos/orlandof.webp",
+  getCloudinaryImageUrl("/recursos/shutterstock-1065297917.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-2252703911.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-440999080.webp"),
+  getCloudinaryImageUrl("/recursos/rio.webp"),
+  getCloudinaryImageUrl("/recursos/pai.webp"),
+  getCloudinaryImageUrl("/recursos/familia-casa.webp"),
+  getCloudinaryImageUrl("/recursos/orlandof.webp"),
 ];
 
 export default function LaBellePage() {
@@ -32,19 +33,19 @@ export default function LaBellePage() {
       icon: "Fish",
       title: t("communities.labelle.activities.fishing.title"),
       description: t("communities.labelle.activities.fishing.description"),
-      image: "/recursos/shutterstock-1197062707.webp",
+      image: getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
     },
     {
       icon: "TreePine",
       title: t("communities.labelle.activities.outdoor walks.title"),
       description: t("communities.labelle.activities.outdoor walks.description"),
-      image: "/recursos/orlandof.webp",
+      image: getCloudinaryImageUrl("/recursos/orlandof.webp"),
     },
     {
       icon: "Sailboat",
       title: t("communities.labelle.activities.boating.title"),
       description: t("communities.labelle.activities.boating.description"),
-      image: "/recursos/rio.webp",
+      image: getCloudinaryImageUrl("/recursos/rio.webp"),
     },
   ];
 

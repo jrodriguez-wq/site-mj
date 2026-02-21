@@ -55,6 +55,12 @@ const REMOTE_IMAGE_PATTERNS = [
     hostname: "i.ytimg.com",
     pathname: "/**",
   },
+  // Cloudinary (imágenes del sitio)
+  {
+    protocol: "https" as const,
+    hostname: "res.cloudinary.com",
+    pathname: "/**",
+  },
 ];
 
 /**
@@ -147,6 +153,11 @@ const getHtmlRevalidateHeader = () => ({
  */
 const getHeadersConfig = () => {
   const headers = [
+    // Service Worker: no cachear para que las actualizaciones se propaguen
+    {
+      source: "/sw.js",
+      headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
+    },
     // Headers de seguridad para todas las rutas
     {
       source: "/:path*",
@@ -224,11 +235,12 @@ const nextConfig: NextConfig = {
   // BUNDLE OPTIMIZATION - Optimizaci?n de bundle
   // ========================================================================
   experimental: {
-    // Tree-shaking optimizado para paquetes espec?ficos
+    // Tree-shaking optimizado para paquetes específicos
     optimizePackageImports: OPTIMIZED_PACKAGES,
-    // Asegurar que el CSS se procesa correctamente en SSR para Googlebot
-    // Esto es cr?tico para que Googlebot vea el sitio con estilos
     optimizeCss: true,
+    // Cache de filesystem para builds más rápidos (next dev y next build)
+    turbopackFileSystemCacheForDev: true,
+    turbopackFileSystemCacheForBuild: true,
   },
 
   // ========================================================================

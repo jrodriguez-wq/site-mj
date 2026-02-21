@@ -158,6 +158,17 @@
     width: 100%;
     max-width: 100%;
   }
+
+  /* Pantallas verticales altas (StanbyME, kioscos): ancho reducido, scroll fluido */
+  @media (orientation: portrait) and (min-height: 900px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    main {
+      min-height: 100dvh;
+    }
+  }
   
   /* Prevenir overflow horizontal en secciones sin crear scroll vertical */
   section,
@@ -175,9 +186,25 @@
     max-width: 100%;
     height: auto;
   }
+
+  /* Evitar zoom en inputs en iOS y mejorar legibilidad en tablets */
+  @media (max-width: 1280px) {
+    input, select, textarea, button {
+      font-size: max(1rem, 16px);
+    }
+  }
+
 }
 
 @layer utilities {
+  /* Pantallas verticales altas (ej. StanbyME portrait): layout y touch */
+  @media (orientation: portrait) and (min-height: 800px) {
+    .portrait-touch-container {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0.75rem 1rem;
+    }
+  }
   /* Estilos de scrollbar solo para body y elementos con scroll */
   html,
   body {
@@ -586,12 +613,12 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary) / 0.3);
+    background: oklch(0.55 0.22 255 / 0.4);
     border-radius: 4px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.5);
+    background: oklch(0.55 0.22 255 / 0.6);
   }
 
   /* Estilos para formularios de HubSpot en el modal de promoción - compacto */
@@ -616,7 +643,7 @@
   }
 
   .hubspot-form-container .hs-form-field label {
-    color: hsl(var(--foreground)) !important;
+    color: var(--foreground) !important;
     font-weight: 500 !important;
     font-size: 0.875rem !important;
     margin-bottom: 0.375rem !important;
@@ -637,10 +664,10 @@
   .hubspot-form-container .hs-form-field select {
     width: 100% !important;
     padding: 0.5rem 0.75rem !important;
-    border: 1px solid hsl(var(--border)) !important;
+    border: 1px solid var(--border) !important;
     border-radius: 0.5rem !important;
-    background: hsl(var(--background)) !important;
-    color: hsl(var(--foreground)) !important;
+    background: var(--background) !important;
+    color: var(--foreground) !important;
     font-size: 0.875rem !important;
     transition: all 0.2s ease !important;
     box-sizing: border-box !important;
@@ -662,8 +689,8 @@
   .hubspot-form-container .hs-form-field textarea:focus,
   .hubspot-form-container .hs-form-field select:focus {
     outline: none !important;
-    border-color: hsl(var(--primary)) !important;
-    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.1) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 2px oklch(0.55 0.22 255 / 0.15) !important;
   }
 
   .hubspot-form-container .hs-submit {
@@ -679,8 +706,8 @@
   .hubspot-form-container .hs-submit .hs-button {
     width: 100% !important;
     padding: 0.625rem 1.25rem !important;
-    background: hsl(var(--primary)) !important;
-    color: white !important;
+    background: var(--primary) !important;
+    color: var(--primary-foreground) !important;
     font-weight: 600 !important;
     font-size: 0.875rem !important;
     border: none !important;
@@ -699,11 +726,11 @@
   }
 
   .hubspot-form-container .hs-submit .hs-button:hover {
-    background: hsl(var(--primary) / 0.9) !important;
+    background: oklch(0.5 0.22 255 / 0.95) !important;
   }
 
   .hubspot-form-container .hs-error-msgs {
-    color: hsl(var(--destructive)) !important;
+    color: var(--destructive) !important;
     font-size: 0.75rem !important;
     margin-top: 0.25rem !important;
   }
@@ -715,7 +742,7 @@
   }
 
   .hubspot-form-container .hs-error-msgs label {
-    color: hsl(var(--destructive)) !important;
+    color: var(--destructive) !important;
   }
 
   /* ===========================================

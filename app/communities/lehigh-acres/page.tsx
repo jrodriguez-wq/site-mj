@@ -12,16 +12,17 @@ import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 const lehighAcresImages = [
-  "/recursos/shutterstock-1197062707.webp",
-  "/recursos/shutterstock-2252703911.webp",
-  "/recursos/shutterstock-440999080.webp",
-  "/recursos/shutterstock-1065297917.webp",
-  "/recursos/playa.webp",
-  "/recursos/familia-casa.webp",
-  "/recursos/rto/familia-cocina.webp",
-  "/recursos/familia-conduciendo.webp",
+  getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-2252703911.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-440999080.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-1065297917.webp"),
+  getCloudinaryImageUrl("/recursos/playa.webp"),
+  getCloudinaryImageUrl("/recursos/familia-casa.webp"),
+  getCloudinaryImageUrl("/recursos/rto/familia-cocina.webp"),
+  getCloudinaryImageUrl("/recursos/familia-conduciendo.webp"),
 ];
 
 export default function LehighAcresPage() {
@@ -32,19 +33,19 @@ export default function LehighAcresPage() {
       icon: "Droplets",
       title: t("communities.lehighAcres.activities.beaches.title"),
       description: t("communities.lehighAcres.activities.beaches.description"),
-      image: "/recursos/playa.webp",
+      image: getCloudinaryImageUrl("/recursos/playa.webp"),
     },
     {
       icon: "Users",
       title: t("communities.lehighAcres.activities.entertainment.title"),
       description: t("communities.lehighAcres.activities.entertainment.description"),
-      image: "/recursos/shutterstock-2252703911.webp",
+      image: getCloudinaryImageUrl("/recursos/shutterstock-2252703911.webp"),
     },
     {
       icon: "TreePine",
       title: t("communities.lehighAcres.activities.nature.title"),
       description: t("communities.lehighAcres.activities.nature.description"),
-      image: "/recursos/familia-conduciendo.webp",
+      image: getCloudinaryImageUrl("/recursos/familia-conduciendo.webp"),
     },
   ];
 

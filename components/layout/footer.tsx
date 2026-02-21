@@ -8,6 +8,7 @@ import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
 import { CURRENT_YEAR } from "@/config/version";
 import { getCopy } from "@/lib/constants/copy";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 const address = "45 Bridge St, LaBelle, FL 33935";
@@ -58,7 +59,7 @@ export const Footer = () => {
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/img/logo-blanco.png"
+                src={getCloudinaryImageUrl("/img/logo-blanco.png")}
                 alt="M.J. Newell Homes"
                 width={200}
                 height={60}

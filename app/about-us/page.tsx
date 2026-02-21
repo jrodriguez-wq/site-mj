@@ -23,6 +23,7 @@ import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 const TEAM_FALLBACKS_EN = {
   title: "Leadership Team",
@@ -122,7 +123,7 @@ export default function AboutUsPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/oficina.webp"
+            src={getCloudinaryImageUrl("/img/oficina.webp")}
             alt={t("aboutUs.hero.imageAlt") || "M.J. Newell Homes Office"}
             fill
             className="object-cover"
@@ -265,7 +266,7 @@ export default function AboutUsPage() {
               {/* Michael's Image */}
               <div className="relative w-full h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
                 <Image
-                  src="/img/michael.webp"
+                  src={getCloudinaryImageUrl("/img/michael.webp")}
                   alt="Michael J. Newell - Founder & CEO"
                   fill
                   className="object-cover"
@@ -406,7 +407,7 @@ export default function AboutUsPage() {
             <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20 group">
               <div className="relative w-full aspect-[16/10] sm:aspect-[16/9]">
                 <Image
-                  src="/img/team.webp"
+                  src={getCloudinaryImageUrl("/img/team.webp")}
                   alt={t("aboutUs.fullTeam.imageAlt") || "M.J. Newell Homes Team - Building a Legacy"}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -463,7 +464,7 @@ export default function AboutUsPage() {
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
-                    src="/img/michael.webp"
+                    src={getCloudinaryImageUrl("/img/michael.webp")}
                     alt="Michael J. Newell - Founder & CEO"
                     fill
                     className="object-cover object-center"
@@ -490,7 +491,7 @@ export default function AboutUsPage() {
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
-                    src="/img/juliana.webp"
+                    src={getCloudinaryImageUrl("/img/juliana.webp")}
                     alt={`${safeT("aboutUs.team.juliana.name", fb.juliana.name)}, ${safeT("aboutUs.team.juliana.role", fb.juliana.role)}`}
                     fill
                     className="object-cover object-center"
@@ -516,7 +517,7 @@ export default function AboutUsPage() {
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
-                    src="/img/nader.jpg"
+                    src={getCloudinaryImageUrl("/img/nader.jpg")}
                     alt={`${safeT("aboutUs.team.nader.name", fb.nader.name)}, ${safeT("aboutUs.team.nader.role", fb.nader.role)}`}
                     fill
                     className="object-cover object-center"

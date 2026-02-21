@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono, Outfit, DM_Sans, Pacifico } from "next/font/google";
 import "./globals.css";
 import { defaultMetadata, SEO_CONFIG } from "@/config/seo";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { StructuredDataComponent } from "@/components/seo/structured-data";
 import {
   generateOrganizationStructuredData,
@@ -15,6 +16,7 @@ import { Footer } from "@/components/layout/footer";
 import { GlobalStars } from "@/components/promotion/global-stars";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { RegisterSw } from "@/components/pwa/register-sw";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -89,6 +91,10 @@ export default function RootLayout({
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
         />
+        {/* PWA: color de la barra de estado al instalar la app */}
+        <meta name="theme-color" content="#036aff" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         
         {/* Preconnect crítico para CSS y fuentes - Mejora renderizado en Googlebot */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
@@ -117,10 +123,10 @@ export default function RootLayout({
           `
         }} />
         
-        {/* Preload de recursos críticos */}
+        {/* Preload de recursos críticos (Cloudinary) */}
         <link
           rel="preload"
-          href="/img/logo.svg"
+          href={getCloudinaryImageUrl("/img/logo.svg")}
           as="image"
           type="image/svg+xml"
           fetchPriority="high"
@@ -128,9 +134,9 @@ export default function RootLayout({
         {/* Preload de imagen de promoción para mejor rendimiento */}
         <link
           rel="preload"
-          href="/img/hero/1w5a0754-e4.webp"
+          href={getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp")}
           as="image"
-          type="image/jpeg"
+          type="image/webp"
           fetchPriority="high"
         />
         
@@ -202,6 +208,7 @@ export default function RootLayout({
         </div>
         <Analytics />
         <SpeedInsights />
+        <RegisterSw />
         
         {/* Efectos navideños globales */}
         <GlobalStars />

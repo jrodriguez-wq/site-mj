@@ -6,6 +6,7 @@ import rehypeRaw from "rehype-raw";
 import { BlogPost } from "@/types/blog";
 import { Clock, Calendar, User, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 interface ArticleContentProps {
   post: BlogPost;
@@ -65,7 +66,7 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
           <div className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl shadow-xl bg-muted aspect-[16/10] sm:aspect-[2/1] md:aspect-[21/9]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={frontmatter.image}
+              src={frontmatter.image.startsWith("http") ? frontmatter.image : getCloudinaryImageUrl(frontmatter.image)}
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
               loading="eager"
@@ -167,20 +168,28 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
             ),
 
             /* In-content images: constrained width, rounded, shadow, with space for caption */
-            img: ({ alt, src, ...props }) => (
-              <span className="block my-8">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src}
-                  alt={alt || ""}
-                  aria-label={alt || "Article image"}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full max-w-3xl mx-auto rounded-2xl shadow-lg object-cover border border-border/50"
-                  {...props}
-                />
-              </span>
-            ),
+            img: ({ alt, src, ...props }) => {
+              const resolvedSrc =
+                typeof src === "string"
+                  ? src.startsWith("http")
+                    ? src
+                    : getCloudinaryImageUrl(src)
+                  : "";
+              return (
+                <span className="block my-8">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={resolvedSrc}
+                    alt={alt || ""}
+                    aria-label={alt || "Article image"}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full max-w-3xl mx-auto rounded-2xl shadow-lg object-cover border border-border/50"
+                    {...props}
+                  />
+                </span>
+              );
+            },
             figure: ({ ...props }) => (
               <figure className="my-10 space-y-3 max-w-3xl mx-auto" {...props} />
             ),
