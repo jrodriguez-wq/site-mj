@@ -11,8 +11,7 @@ import {
   generateLocalBusinessStructuredData,
 } from "@/lib/seo/structured-data";
 import { generateAllServiceSchemas } from "@/lib/seo/service-structured-data";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
+import { ConditionalSiteLayout } from "@/components/layout/conditional-site-layout";
 // Promoción desactivada por el momento
 // import { GlobalStars } from "@/components/promotion/global-stars";
 import { Analytics } from "@vercel/analytics/next";
@@ -202,11 +201,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <StructuredDataComponent data={structuredData} />
-        <div className="flex min-h-screen flex-col w-full max-w-full">
-          <Navbar />
-          <main className="flex-1 w-full max-w-full pt-[5rem] sm:pt-[5.5rem] md:pt-24" id="main-content">{children}</main>
-          <Footer />
-        </div>
+        <ConditionalSiteLayout>{children}</ConditionalSiteLayout>
         <Analytics />
         <SpeedInsights />
         <RegisterSw />

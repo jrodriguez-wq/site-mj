@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Bed, Bath, Square, Car } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
 import { YouTubeVideo } from "@/components/ui/youtube-video";
 import { getModelMainImage } from "@/lib/models/model-images";
 import louisianaData from "@/data/models/louisiana.json";
@@ -30,7 +29,6 @@ const modelsData = sortModelsByPrice([
 ]);
 
 export const HomeModels = () => {
-  const { t } = useTranslation();
   const [playingVideos, setPlayingVideos] = useState<Set<string>>(new Set());
 
   return (
@@ -44,10 +42,10 @@ export const HomeModels = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-            {t("homeModels.title")}
+            Our Floor Plans
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            {t("homeModels.subtitle")}
+            Browse our new construction homes in LaBelle and Lehigh Acres. Quality builds and flexible options including Rent to Own.
           </p>
         </motion.div>
 
@@ -101,7 +99,7 @@ export const HomeModels = () => {
                       {model.name}
                     </h3>
                     <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed line-clamp-3" suppressHydrationWarning>
-                      {t(`homeModels.descriptions.${model.key}`)}
+                      {model.description}
                     </p>
                   </div>
 
@@ -112,7 +110,7 @@ export const HomeModels = () => {
                         <Bed className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium" suppressHydrationWarning>{t("homeModels.beds")}</div>
+                        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium" suppressHydrationWarning>Beds</div>
                         <div className="font-bold text-sm sm:text-base">{model.bedrooms}</div>
                       </div>
                     </div>
@@ -121,7 +119,7 @@ export const HomeModels = () => {
                         <Bath className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium" suppressHydrationWarning>{t("homeModels.baths")}</div>
+                        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium" suppressHydrationWarning>Baths</div>
                         <div className="font-bold text-sm sm:text-base">{model.bathrooms}</div>
                       </div>
                     </div>
@@ -130,7 +128,7 @@ export const HomeModels = () => {
                         <Square className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium" suppressHydrationWarning>{t("homeModels.sqft")}</div>
+                        <div className="text-[10px] sm:text-xs text-muted-foreground font-medium" suppressHydrationWarning>Sq ft</div>
                         <div className="font-bold text-xs sm:text-base">{model.sqft} sq ft</div>
                       </div>
                     </div>
@@ -176,7 +174,7 @@ export const HomeModels = () => {
                   >
                     <Link href={`/models/${model.key}`}>
                       <span className="flex items-center justify-center gap-2" suppressHydrationWarning>
-                        {t("homeModels.viewDetails")}
+                        View details
                         <span>→</span>
                       </span>
                     </Link>

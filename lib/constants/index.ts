@@ -7,6 +7,7 @@
 export const ROUTES = {
   HOME: "/",
   RENT_TO_OWN: "/rent-to-own",
+  RTO_APPLICATION: "/rto-application",
   MODELS: "/models",
   SCHEDULE_APPOINTMENT: "/schedule-appointment",
   CONTACT: "/contact",

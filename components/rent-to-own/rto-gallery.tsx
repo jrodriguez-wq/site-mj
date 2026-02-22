@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { useTranslation } from "@/hooks/use-translation";
 import { X, ChevronLeft, ChevronRight, Maximize2, Heart, Home } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
@@ -58,7 +57,7 @@ const GalleryModal = ({
                 onChangeImage(-1);
               }}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10 shadow-lg hover:scale-110"
-              aria-label="Imagen anterior"
+              aria-label="Previous image"
               type="button"
             >
               <ChevronLeft className="w-6 h-6 text-foreground" />
@@ -69,7 +68,7 @@ const GalleryModal = ({
                 onChangeImage(1);
               }}
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/90 backdrop-blur-sm p-3 rounded-full hover:bg-background transition-colors border border-border z-10 shadow-lg hover:scale-110"
-              aria-label="Siguiente imagen"
+              aria-label="Next image"
               type="button"
             >
               <ChevronRight className="w-6 h-6 text-foreground" />
@@ -93,7 +92,7 @@ const GalleryModal = ({
             onClose();
           }}
           className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors border border-border z-10 shadow-lg hover:scale-110"
-          aria-label="Cerrar galería"
+          aria-label="Close gallery"
           type="button"
         >
           <X className="w-5 h-5 text-foreground" />
@@ -104,7 +103,6 @@ const GalleryModal = ({
 );
 
 export const RTOGallery = () => {
-  const { t } = useTranslation();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const openGallery = useCallback((index: number) => {
@@ -155,17 +153,17 @@ export const RTOGallery = () => {
               <div className="text-center space-y-4">
                 <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-2">
                   <Heart className="h-4 w-4" />
-                  <span suppressHydrationWarning>{t("rentToOwn.gallery.badge")}</span>
+                  <span>Families like yours</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-foreground tracking-tight" suppressHydrationWarning>
-                  {t("rentToOwn.gallery.title")}
+                  Real Families, Real Homes
                 </h2>
                 <div className="w-20 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
                 <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto" suppressHydrationWarning>
-                  {t("rentToOwn.gallery.subtitle")}
+                  See how Rent to Own is helping families in Southwest Florida
                 </p>
                 <p className="text-base text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed" suppressHydrationWarning>
-                  {t("rentToOwn.gallery.description")}
+                  Our program lets you move into a new home, save toward your down payment, and work toward ownership—all with flexible terms.
                 </p>
               </div>
 
@@ -176,7 +174,7 @@ export const RTOGallery = () => {
                     key={src}
                     onClick={() => openGallery(index)}
                     className="relative w-full aspect-square rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 border-2 border-border/40 hover:border-primary/60 shadow-lg hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02] active:scale-100"
-                    aria-label={`Ver imagen ${index + 1} de ${rtoGalleryImages.length}`}
+                    aria-label={`View image ${index + 1} of ${rtoGalleryImages.length}`}
                     type="button"
                   >
                     <Image
@@ -206,28 +204,28 @@ export const RTOGallery = () => {
                 <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20 hover:bg-primary/10 transition-colors">
                   <Home className="h-8 w-8 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-lg mb-2" suppressHydrationWarning>
-                    {t("rentToOwn.gallery.stats.homeowners")}
+                    Families helped
                   </h3>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("rentToOwn.gallery.stats.homeownersDesc")}
+                    Thousands of families have started their path to ownership with us.
                   </p>
                 </div>
                 <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20 hover:bg-primary/10 transition-colors">
                   <Heart className="h-8 w-8 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-lg mb-2" suppressHydrationWarning>
-                    {t("rentToOwn.gallery.stats.satisfaction")}
+                    Customer satisfaction
                   </h3>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("rentToOwn.gallery.stats.satisfactionDesc")}
+                    Our residents love their homes and the flexibility of our program.
                   </p>
                 </div>
                 <div className="text-center p-6 rounded-xl bg-primary/5 border border-primary/20 hover:bg-primary/10 transition-colors">
                   <Maximize2 className="h-8 w-8 text-primary mx-auto mb-3" />
                   <h3 className="font-bold text-lg mb-2" suppressHydrationWarning>
-                    {t("rentToOwn.gallery.stats.growth")}
+                    Growing with you
                   </h3>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("rentToOwn.gallery.stats.growthDesc")}
+                    Build equity and credit while you live in your new home.
                   </p>
                 </div>
               </div>

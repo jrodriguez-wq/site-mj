@@ -1,12 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Home } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
 import { motion } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
@@ -14,41 +12,28 @@ import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 const COMMUNITIES_CONFIG = [
   {
     nameKey: "labelle",
-    alt: "New homes in LaBelle, Florida - Home builder LaBelle - New construction homes by M.J. Newell Homes",
+    name: "LaBelle",
+    description: "Rural charm, outdoor recreation, and affordable new construction. Acre+ lots, no HOA.",
     href: "/communities/labelle",
     image: getCloudinaryImageUrl("/recursos/shutterstock-1065297917.webp"),
-    featureKeys: [
-      "communities.labelle.features.acreLots",
-      "communities.labelle.features.noHOA",
-      "communities.labelle.features.familyFriendly",
-    ],
+    features: ["Acre+ lots", "No HOA", "Family-friendly"],
+    exploreText: "Explore LaBelle",
+    alt: "New homes in LaBelle, Florida - Home builder LaBelle - New construction homes by M.J. Newell Homes",
   },
   {
     nameKey: "lehighAcres",
-    alt: "New homes in Lehigh Acres, Florida - Home builder Lehigh Acres - New construction homes by M.J. Newell Homes",
+    name: "Lehigh Acres",
+    description: "Spacious lots, great schools, and a prime location near Fort Myers. New homes and Rent to Own.",
     href: "/communities/lehigh-acres",
     image: getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
-    featureKeys: [
-      "communities.lehighAcres.features.spaciousLots",
-      "communities.lehighAcres.features.greatSchools",
-      "communities.lehighAcres.features.primeLocation",
-    ],
+    features: ["Spacious lots", "Great schools", "Prime location"],
+    exploreText: "Explore Lehigh Acres",
+    alt: "New homes in Lehigh Acres, Florida - Home builder Lehigh Acres - New construction homes by M.J. Newell Homes",
   },
-] as const;
+];
 
 export const CommunitiesShowcase = () => {
-  const { t, translations } = useTranslation();
-
-  const communities = useMemo(() => 
-    COMMUNITIES_CONFIG.map((config) => ({
-      ...config,
-      name: t(`communities.${config.nameKey}.name`),
-      description: t(`communities.${config.nameKey}.description`),
-      features: config.featureKeys.map((key) => t(key)),
-      exploreText: t(`communities.${config.nameKey}.explore`),
-    })), 
-    [t, translations]
-  );
+  const communities = COMMUNITIES_CONFIG;
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/20">
@@ -61,10 +46,10 @@ export const CommunitiesShowcase = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-            {t("communities.title")}
+            Where We Build
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            {t("communities.subtitle")}
+            We build new construction homes in LaBelle and Lehigh Acres. Explore each community and find your perfect fit.
           </p>
         </motion.div>
 

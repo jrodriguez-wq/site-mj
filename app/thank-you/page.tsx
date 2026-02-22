@@ -7,24 +7,22 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Home, Mail, FileText } from "lucide-react";
 import Link from "next/link";
 import { PageContent } from "@/components/layout/page-container";
-import { useTranslation } from "@/hooks/use-translation";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { motion } from "framer-motion";
 
 function ThankYouContent() {
-  const { t } = useTranslation();
   const searchParams = useSearchParams();
   const formType = searchParams.get("type") || "contact";
 
   const formConfig = {
     contact: {
-      titleKey: "thankYou.contact.title",
-      messageKey: "thankYou.contact.message",
+      title: "Thank You!",
+      message: "We'll get back to you as soon as possible.",
       icon: Mail,
     },
     warranty: {
-      titleKey: "thankYou.warranty.title",
-      messageKey: "thankYou.warranty.message",
+      title: "Request Received",
+      message: "We've received your warranty request.",
       icon: FileText,
     },
   };
@@ -53,7 +51,7 @@ function ThankYouContent() {
               </div>
             </motion.div>
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
-            {t(config.titleKey) || "Thank You!"}
+            {config.title}
           </h1>
           </motion.div>
 
@@ -66,18 +64,18 @@ function ThankYouContent() {
               </div>
             </div>
             <CardTitle suppressHydrationWarning>
-              {t(config.titleKey) || "Thank You!"}
+              {config.title}
             </CardTitle>
             <CardDescription className="text-base" suppressHydrationWarning>
-              {t(config.messageKey) || "We'll get back to you as soon as possible."}
+              {config.message}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-center space-y-2">
               <p className="text-muted-foreground" suppressHydrationWarning>
                 {formType === "warranty" 
-                  ? t("thankYou.warranty.nextSteps") || "Our warranty team will review your request and contact you shortly."
-                  : t("thankYou.contact.nextSteps") || "Our team will review your message and get back to you within 24-48 hours."
+                  ? "Our warranty team will review your request and contact you shortly."
+                  : "Our team will review your message and get back to you within 24-48 hours."
                 }
               </p>
             </div>
@@ -86,19 +84,19 @@ function ThankYouContent() {
               <Button asChild size="lg" className="flex-1">
                 <Link href="/" suppressHydrationWarning>
                   <Home className="h-4 w-4 mr-2" />
-                  {t("thankYou.backHome") || "Back to Home"}
+                  Back to Home
                 </Link>
               </Button>
               {formType === "warranty" ? (
                 <Button asChild variant="outline" size="lg" className="flex-1">
                   <Link href="/warranty" suppressHydrationWarning>
-                    {t("thankYou.viewWarranty") || "View Warranty Info"}
+                    View Warranty Info
                   </Link>
                 </Button>
               ) : (
                 <Button asChild variant="outline" size="lg" className="flex-1">
                   <Link href="/contact" suppressHydrationWarning>
-                    {t("thankYou.contactAgain") || "Contact Us Again"}
+                    Contact Us Again
                   </Link>
                 </Button>
               )}

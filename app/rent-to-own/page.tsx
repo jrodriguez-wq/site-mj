@@ -30,7 +30,6 @@ import { getModelData } from "@/lib/models/model-data";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
 import { getModelPricing } from "@/lib/models/model-pricing";
 import { ModelData, Community } from "@/types/model";
-import { useTranslation } from "@/hooks/use-translation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
@@ -66,7 +65,6 @@ interface ModelDisplayData {
 }
 
 export default function RentToOwnPage() {
-  const { t } = useTranslation();
   const [models, setModels] = useState<ModelDisplayData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCommunity, setSelectedCommunity] = useState<Community | "all">("all");
@@ -168,7 +166,7 @@ export default function RentToOwnPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp")}
-            alt={t("rentToOwn.hero.imageAlt") || "Rent to Own Program - M.J. Newell Homes"}
+            alt="Rent to Own Program - M.J. Newell Homes"
             fill
             className="object-cover"
             priority
@@ -199,7 +197,7 @@ export default function RentToOwnPage() {
                 >
                   <span className="text-sm font-semibold text-white uppercase tracking-wider px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
                     <Sparkles className="inline h-3.5 w-3.5 sm:h-4 sm:w-4 mr-2" />
-                    {t("rentToOwn.hero.badge")}
+                    Rent to Own Program
                   </span>
                 </motion.div>
 
@@ -214,7 +212,7 @@ export default function RentToOwnPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                 >
-                  {t("rentToOwn.hero.title")}
+                  Rent to Own Your New Home
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -228,7 +226,7 @@ export default function RentToOwnPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                 >
-                  {t("rentToOwn.hero.subtitle")}
+                  Live in your new home while you save. No bank loan required to get started.
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -260,7 +258,7 @@ export default function RentToOwnPage() {
                   >
                     <span className="relative z-10 flex items-center gap-2" suppressHydrationWarning>
                       <Sparkles className="w-5 h-5" />
-                      {t("rentToOwn.hero.cta.primary")}
+                      See Available Homes
                     </span>
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   </Button>
@@ -285,7 +283,7 @@ export default function RentToOwnPage() {
                     )}
                   >
                     <span className="flex items-center gap-2" suppressHydrationWarning>
-                      {t("rentToOwn.hero.cta.secondary")}
+                      Apply Now
                     </span>
                   </Button>
                 </motion.div>
@@ -316,7 +314,7 @@ export default function RentToOwnPage() {
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
                 src={getCloudinaryImageUrl("/img/hero/1w5a1456-e5.webp")}
-                alt={t("rentToOwn.images.newHome")}
+                alt="New home - Rent to Own"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -325,12 +323,12 @@ export default function RentToOwnPage() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6">
               <div className="space-y-3 sm:space-y-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-tight" suppressHydrationWarning>
-                  {t("rentToOwn.whatIs.title")}
+                  What is Rent to Own?
                 </h2>
                 <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
               </div>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                {t("rentToOwn.whatIs.description")}
+                Rent to Own lets you move into a brand-new M.J. Newell home, pay monthly rent that includes a savings portion, and work toward buying the home at a locked-in price—often with no bank loan needed at the start.
               </p>
               <Card className="border-2 border-primary/20 shadow-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background">
                 <CardContent className="p-4 sm:p-5 md:p-6 lg:p-8">
@@ -339,8 +337,8 @@ export default function RentToOwnPage() {
                       <PiggyBank className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-black mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.title")}</h3>
-                      <p className="text-sm sm:text-base md:text-lg text-foreground leading-relaxed" suppressHydrationWarning>{t("rentToOwn.whatIs.objective.description")}</p>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-black mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>Your goal: own the home</h3>
+                      <p className="text-sm sm:text-base md:text-lg text-foreground leading-relaxed" suppressHydrationWarning>Each month, part of your payment goes toward your future down payment. When you&apos;re ready, you can purchase the home at the agreed price—with the option to use our in-house financing or get a traditional mortgage.</p>
                     </div>
                   </div>
                 </CardContent>
@@ -363,22 +361,22 @@ export default function RentToOwnPage() {
         <PageContent size="lg">
           <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12 relative z-10">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background leading-tight" suppressHydrationWarning>
-              {t("rentToOwn.keyFeatures.title")}
+              Why Choose Our Rent to Own Program
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-              {t("rentToOwn.keyFeatures.subtitle")}
+              Flexible terms, transparent pricing, and a path to ownership designed for real families.
             </p>
             <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 relative z-10">
             {[
-              { key: "minimumRent" },
-              { key: "monthlySavings" },
-              { key: "frozenPrices" },
-              { key: "maintenanceIncluded" },
-              { key: "petsAllowed" },
-              { key: "noCreditCheck" },
+              { title: "Minimum rent", description: "Affordable monthly payments to get you into your new home." },
+              { title: "Monthly savings", description: "Part of your rent goes toward your future down payment." },
+              { title: "Frozen price", description: "Your purchase price is locked in from day one." },
+              { title: "Maintenance included", description: "We take care of repairs during your lease term." },
+              { title: "Pets allowed", description: "Your furry family members are welcome." },
+              { title: "No credit check to start", description: "Apply without a bank loan; we work with you." },
             ].map((feature, index) => (
               <Card key={index} className="border-2 border-background/20 bg-background/10 backdrop-blur-sm hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-200 hover:-translate-y-2 group">
                 <CardContent className="pt-4 sm:pt-5 md:pt-6 p-4 sm:p-5 md:p-6">
@@ -387,8 +385,8 @@ export default function RentToOwnPage() {
                       <CheckCircle2 className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2 text-background leading-tight" suppressHydrationWarning>{t(`rentToOwn.keyFeatures.${feature.key}.title`)}</h3>
-                      <p className="text-xs sm:text-sm text-background/70 leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.keyFeatures.${feature.key}.description`)}</p>
+                      <h3 className="font-bold text-sm sm:text-base md:text-lg mb-1 sm:mb-2 text-background leading-tight">{feature.title}</h3>
+                      <p className="text-xs sm:text-sm text-background/70 leading-relaxed">{feature.description}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -419,14 +417,14 @@ export default function RentToOwnPage() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6">
               <div className="inline-block">
                 <span className="text-xs sm:text-sm md:text-base font-semibold text-primary uppercase tracking-wider px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
-                  {t("rentToOwn.pioneers.badge") || "Industry Leaders"}
+                  Industry Leaders
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-background leading-tight" suppressHydrationWarning>
-                {t("rentToOwn.pioneers.title") || "Pioneers in Rent to Own"}
+                Pioneers in Rent to Own
               </h2>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-background/80 leading-relaxed" suppressHydrationWarning>
-                {t("rentToOwn.pioneers.description") || "M.J. Newell Homes was and continues to be a pioneer in the Rent to Own program, helping thousands of families achieve their dream of homeownership."}
+                M.J. Newell Homes was and continues to be a pioneer in the Rent to Own program, helping thousands of families achieve their dream of homeownership.
               </p>
             </div>
 
@@ -439,27 +437,27 @@ export default function RentToOwnPage() {
                       <PiggyBank className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-primary" />
                     </div>
                     <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-background leading-tight" suppressHydrationWarning>
-                      {t("rentToOwn.savingsWhileLiving.title") || "Save While You Live"}
+                      Save While You Live
                     </h3>
                   </div>
                   <p className="text-sm sm:text-base md:text-lg text-background/80 leading-relaxed" suppressHydrationWarning>
-                    {t("rentToOwn.savingsWhileLiving.description") || "With our Rent to Own program, you can save money while living in your own home. Build equity and work towards ownership at your own pace."}
+                    With our Rent to Own program, you can save money while living in your own home. Build equity and work towards ownership at your own pace.
                   </p>
                   <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-3 sm:pt-4">
                     <div className="text-center p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl bg-background/10 border border-background/20 hover:bg-background/15 transition-colors">
                       <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-primary mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                        {t("rentToOwn.savingsWhileLiving.flexible") || "Flexible"}
+                        Flexible
                       </div>
                       <p className="text-[10px] sm:text-xs md:text-sm text-background/70 leading-tight" suppressHydrationWarning>
-                        {t("rentToOwn.savingsWhileLiving.flexibleDesc") || "Plans from 1-5 years"}
+                        Plans from 1-5 years
                       </p>
                     </div>
                     <div className="text-center p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl bg-background/10 border border-background/20 hover:bg-background/15 transition-colors">
                       <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-primary mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                        {t("rentToOwn.savingsWhileLiving.monthly") || "Monthly"}
+                        Monthly
                       </div>
                       <p className="text-[10px] sm:text-xs md:text-sm text-background/70 leading-tight" suppressHydrationWarning>
-                        {t("rentToOwn.savingsWhileLiving.monthlyDesc") || "Automatic savings"}
+                        Automatic savings
                       </p>
                     </div>
                   </div>
@@ -477,10 +475,10 @@ export default function RentToOwnPage() {
         <PageContent size="lg">
           <div className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-              {t("rentToOwn.availableModels.title")}
+              Homes Available for Rent to Own
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
-              {t("rentToOwn.availableModels.subtitle")}
+              Browse our new construction models in LaBelle and Lehigh Acres. Each can be yours through our Rent to Own program.
             </p>
             <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
           </div>
@@ -489,7 +487,7 @@ export default function RentToOwnPage() {
           <div className="flex justify-center mb-8">
             <div className="flex items-center gap-3 sm:gap-4">
               <label className="text-sm sm:text-base font-semibold text-foreground whitespace-nowrap" suppressHydrationWarning>
-                {t("models.filters.community")}:
+                Community:
               </label>
               <Select
                 value={selectedCommunity}
@@ -500,13 +498,13 @@ export default function RentToOwnPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all" suppressHydrationWarning>
-                    {t("models.filters.allCommunities")}
+                    All communities
                   </SelectItem>
                   <SelectItem value="labelle" suppressHydrationWarning>
-                    {t("communities.labelle.name")} - {t("communities.labelle.country.subtitle")}
+                    LaBelle - Country living
                   </SelectItem>
                   <SelectItem value="lehigh-acres" suppressHydrationWarning>
-                    {t("communities.lehighAcres.name")} - {t("communities.lehighAcres.country.subtitle")}
+                    Lehigh Acres - Near Fort Myers
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -515,7 +513,7 @@ export default function RentToOwnPage() {
 
           {isLoading ? (
             <div className="flex justify-center items-center py-16">
-              <div className="text-lg text-muted-foreground" suppressHydrationWarning>{t("rentToOwn.availableModels.loading")}</div>
+              <div className="text-lg text-muted-foreground" suppressHydrationWarning>Loading homes…</div>
             </div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -534,7 +532,7 @@ export default function RentToOwnPage() {
                           ? "bg-white/95 dark:bg-gray-900/95 text-indigo-700 dark:text-indigo-400 border-indigo-200/80 dark:border-indigo-700/50"
                           : "bg-white/95 dark:bg-gray-900/95 text-fuchsia-700 dark:text-fuchsia-400 border-fuchsia-200/80 dark:border-fuchsia-700/50"
                       )}>
-                        {model.community === "labelle" ? t("communities.labelle.name") : t("communities.lehighAcres.name")}
+                        {model.community === "labelle" ? "LaBelle" : "Lehigh Acres"}
                       </div>
                     )}
 
@@ -549,7 +547,7 @@ export default function RentToOwnPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent"></div>
                       <div className="absolute top-4 right-4 z-10">
                         <span className="px-3 py-1.5 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md text-white text-xs font-bold rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
-                          {t("rentToOwn.availableModels.rtoAvailable")}
+                          RTO Available
                         </span>
                       </div>
                     </div>
@@ -557,23 +555,23 @@ export default function RentToOwnPage() {
                       <h3 className="text-xl md:text-2xl font-black mb-2 group-hover:text-primary transition-colors duration-150">
                         {model.name}
                       </h3>
-                      <p className="text-sm md:text-base text-muted-foreground mb-5 line-clamp-2 leading-relaxed" suppressHydrationWarning>
-                        {t(`homeModels.descriptions.${baseKey}`)}
+                      <p className="text-sm md:text-base text-muted-foreground mb-5 line-clamp-2 leading-relaxed">
+                        {model.description || model.name}
                       </p>
                       <div className="grid grid-cols-3 gap-2 mb-5 pb-5 border-b border-border/50">
                         <div className="text-center p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors duration-150">
                           <Bed className="h-4 w-4 text-primary mx-auto mb-1" />
-                          <p className="text-[10px] text-muted-foreground mb-0.5" suppressHydrationWarning>{t("homeModels.beds")}</p>
+                          <p className="text-[10px] text-muted-foreground mb-0.5">Beds</p>
                           <p className="font-black text-sm">{model.beds}</p>
                         </div>
                         <div className="text-center p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors duration-150">
                           <Bath className="h-4 w-4 text-primary mx-auto mb-1" />
-                          <p className="text-[10px] text-muted-foreground mb-0.5" suppressHydrationWarning>{t("homeModels.baths")}</p>
+                          <p className="text-[10px] text-muted-foreground mb-0.5">Baths</p>
                           <p className="font-black text-sm">{model.baths}</p>
                         </div>
                         <div className="text-center p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors duration-150">
                           <Square className="h-4 w-4 text-primary mx-auto mb-1" />
-                          <p className="text-[10px] text-muted-foreground mb-0.5" suppressHydrationWarning>{t("homeModels.sqft")}</p>
+                          <p className="text-[10px] text-muted-foreground mb-0.5">Sq ft</p>
                           <p className="font-black text-xs">{model.sqft}</p>
                         </div>
                       </div>
@@ -581,14 +579,14 @@ export default function RentToOwnPage() {
                       <div className="mb-5 pb-5 border-b border-border/50">
                         <div className="bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 rounded-xl p-4 border border-emerald-200/50 dark:border-emerald-800/50">
                           <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wider font-semibold" suppressHydrationWarning>
-                            {t("homeModels.rto")} {t("rentToOwn.availableModels.price")}
+                            RTO monthly
                           </p>
                           <p className="text-2xl md:text-3xl font-black text-emerald-700 dark:text-emerald-400 mb-1">
                             {model.rtoPrice || "N/A"}
                           </p>
                           {model.price && (
                             <p className="text-xs text-muted-foreground line-through opacity-60">
-                              {t("homeModels.priceFrom")} {model.price}
+                              From {model.price}
                             </p>
                           )}
                         </div>
@@ -598,7 +596,7 @@ export default function RentToOwnPage() {
                         className="w-full bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground hover:shadow-xl hover:shadow-primary/30 transition-all duration-200 group/btn"
                       >
                         <Link href={`/models/${baseKey}?community=${model.community}`} className="flex items-center justify-center gap-2">
-                          {t("rentToOwn.availableModels.viewDetails")}
+                          View details
                           <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-150" />
                         </Link>
                       </Button>
@@ -621,18 +619,18 @@ export default function RentToOwnPage() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6">
               <div className="space-y-3 sm:space-y-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
-                  {t("rentToOwn.requirements.title")}
+                  What You Need to Apply
                 </h2>
                 <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
               </div>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                {t("rentToOwn.requirements.subtitle")}
+                We keep the process simple. You&apos;ll need steady income and a few documents to get started.
               </p>
             </div>
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
                 src={getCloudinaryImageUrl("/img/hero/1w5a1493-e5.webp")}
-                alt={t("rentToOwn.images.requirements")}
+                alt="Rent to Own requirements"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -642,21 +640,21 @@ export default function RentToOwnPage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {[
-              { key: "minimumIncome" },
-              { key: "noEvictions" },
-              { key: "immigrationStatus" },
+              { title: "Steady income", description: "We need to verify that you have reliable income to cover your monthly rent-to-own payment." },
+              { title: "No recent evictions", description: "A clean rental history helps us approve your application." },
+              { title: "Legal status", description: "You must be able to legally live and work in the United States." },
             ].map((req, index) => (
               <Card key={index} className="border-2 border-border/50 hover:border-primary/50 hover:shadow-xl transition-all duration-200 hover:-translate-y-2 group bg-background">
                 <CardHeader className="pb-3 sm:pb-4">
-                  <CardTitle className="flex items-center gap-3 sm:gap-4 text-base sm:text-lg md:text-xl font-black leading-tight" suppressHydrationWarning>
+                  <CardTitle className="flex items-center gap-3 sm:gap-4 text-base sm:text-lg md:text-xl font-black leading-tight">
                     <div className="p-2 sm:p-2.5 md:p-3 bg-primary/10 rounded-lg sm:rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-200 shrink-0">
                       <Shield className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary" />
                     </div>
-                    <span className="min-w-0">{t(`rentToOwn.requirements.${req.key}.title`)}</span>
+                    <span className="min-w-0">{req.title}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.requirements.${req.key}.description`)}</p>
+                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">{req.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -677,20 +675,20 @@ export default function RentToOwnPage() {
         <PageContent size="lg">
           <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12 relative z-10">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background leading-tight px-4" suppressHydrationWarning>
-              {t("rentToOwn.documents.title")}
+              Documents We&apos;ll Need
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-              {t("rentToOwn.documents.subtitle")}
+              Gather these items to complete your Rent to Own application.
             </p>
             <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 relative z-10">
             {[
-              { key: "taxes" },
-              { key: "payStubs" },
-              { key: "bankStatements" },
-              { key: "id" },
+              { name: "Tax returns", description: "Recent tax returns to verify income." },
+              { name: "Pay stubs", description: "Proof of steady employment and income." },
+              { name: "Bank statements", description: "Recent statements to show financial stability." },
+              { name: "ID", description: "Valid government-issued identification." },
             ].map((doc, index) => (
               <Card key={index} className="border-2 border-background/20 bg-background/10 backdrop-blur-sm hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-200 hover:-translate-y-2 group">
                 <CardContent className="pt-4 sm:pt-5 md:pt-6 p-4 sm:p-5 md:p-6">
@@ -699,8 +697,8 @@ export default function RentToOwnPage() {
                       <FileCheck className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-bold mb-1 sm:mb-2 text-sm sm:text-base md:text-lg text-background leading-tight" suppressHydrationWarning>{t(`rentToOwn.documents.${doc.key}.name`)}</p>
-                      <p className="text-xs sm:text-sm md:text-base text-background/70 leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.documents.${doc.key}.description`)}</p>
+                      <p className="font-bold mb-1 sm:mb-2 text-sm sm:text-base md:text-lg text-background leading-tight">{doc.name}</p>
+                      <p className="text-xs sm:text-sm md:text-base text-background/70 leading-relaxed">{doc.description}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -719,7 +717,7 @@ export default function RentToOwnPage() {
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 order-2 md:order-1">
               <Image
                 src={getCloudinaryImageUrl("/img/hero/1w5a1505-e5.webp")}
-                alt={t("rentToOwn.images.applicationProcess")}
+                alt="Rent to Own application process"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -728,21 +726,26 @@ export default function RentToOwnPage() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 order-1 md:order-2">
               <div className="space-y-3 sm:space-y-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
-                  {t("rentToOwn.process.title")}
+                  How the Application Works
                 </h2>
                 <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
               </div>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                {t("rentToOwn.process.subtitle")}
+                From application to keys, we guide you through each step.
               </p>
             </div>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
-            {[1, 2, 3, 4, 5].map((stepNum) => {
+            {[
+              { title: "Apply", description: "Submit your application and documents online." },
+              { title: "Review", description: "We review your application and income." },
+              { title: "Schedule", description: "Choose a home and sign your agreement." },
+              { title: "Move in", description: "Get keys and start living in your new home." },
+              { title: "Own", description: "Build equity and purchase when you&apos;re ready." },
+            ].map((step, stepNum) => {
               const icons = [FileText, FileCheck, Calendar, Handshake, Key];
-              const Icon = icons[stepNum - 1] || FileText;
-              
+              const Icon = icons[stepNum] || FileText;
               return (
                 <Card key={stepNum} className="border-2 border-border/50 hover:border-primary/50 hover:shadow-xl transition-all duration-200 hover:-translate-y-2 group bg-background">
                   <CardContent className="pt-4 sm:pt-5 md:pt-6 p-4 sm:p-5 md:p-6">
@@ -752,12 +755,12 @@ export default function RentToOwnPage() {
                           <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-primary" />
                         </div>
                         <div className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs sm:text-sm font-black shadow-lg">
-                          {stepNum}
+                          {stepNum + 1}
                         </div>
                       </div>
                       <div className="space-y-1.5 sm:space-y-2">
-                        <h3 className="text-sm sm:text-base md:text-lg font-black leading-tight" suppressHydrationWarning>{t(`rentToOwn.process.step${stepNum}.title`)}</h3>
-                        <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>{t(`rentToOwn.process.step${stepNum}.description`)}</p>
+                        <h3 className="text-sm sm:text-base md:text-lg font-black leading-tight">{step.title}</h3>
+                        <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -779,7 +782,7 @@ export default function RentToOwnPage() {
                 <div className="space-y-5 sm:space-y-6 md:space-y-8">
                   <div className="space-y-3 sm:space-y-4">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
-                      {t("rentToOwn.benefits.title")}
+                      Benefits of Rent to Own
                     </h2>
                     <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full"></div>
                   </div>
@@ -789,9 +792,9 @@ export default function RentToOwnPage() {
                         <PiggyBank className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-black text-base sm:text-lg md:text-xl mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>{t("rentToOwn.benefits.saveWhileLiving.title")}</h3>
+                        <h3 className="font-black text-base sm:text-lg md:text-xl mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>Save while you live</h3>
                         <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                          {t("rentToOwn.benefits.saveWhileLiving.description")}
+                          Part of your monthly payment builds your down payment so you&apos;re ready to buy when the time comes.
                         </p>
                       </div>
                     </div>
@@ -800,9 +803,9 @@ export default function RentToOwnPage() {
                         <Lock className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-black text-base sm:text-lg md:text-xl mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>{t("rentToOwn.benefits.frozenPrices.title")}</h3>
+                        <h3 className="font-black text-base sm:text-lg md:text-xl mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>Frozen purchase price</h3>
                         <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                          {t("rentToOwn.benefits.frozenPrices.description")}
+                          The home price is set from day one, so market changes don&apos;t affect your path to ownership.
                         </p>
                       </div>
                     </div>
@@ -811,9 +814,9 @@ export default function RentToOwnPage() {
                         <TrendingUp className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-black text-base sm:text-lg md:text-xl mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>{t("rentToOwn.benefits.noCreditCheck.title")}</h3>
+                        <h3 className="font-black text-base sm:text-lg md:text-xl mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>No credit check to start</h3>
                         <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                          {t("rentToOwn.benefits.noCreditCheck.description")}
+                          You can apply without a bank loan. We work with you to build toward ownership.
                         </p>
                       </div>
                     </div>
@@ -824,7 +827,7 @@ export default function RentToOwnPage() {
             <div className="relative h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
               <Image
                 src={getCloudinaryImageUrl("/img/hero/aurora.webp")}
-                alt={t("rentToOwn.images.benefits")}
+                alt="Rent to Own benefits"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -842,10 +845,10 @@ export default function RentToOwnPage() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-                  {t("rentToOwn.form.title") || "Apply for Rent to Own"}
+                  Apply for Rent to Own
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
-                  {t("rentToOwn.form.subtitle") || "Fill out the form below to start your journey to homeownership. Our team will contact you soon."}
+                  Fill out the form below to start your journey to homeownership. Our team will contact you soon.
                 </p>
                 <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
               </div>
@@ -853,11 +856,11 @@ export default function RentToOwnPage() {
               <Card className="shadow-2xl border-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
                 <CardHeader className="text-center space-y-3 pb-6 p-6 sm:p-8">
                   <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-black" suppressHydrationWarning>
-                    {t("rentToOwn.form.formTitle") || "Rent to Own Application"}
+                    Rent to Own Application
                   </CardTitle>
                   <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
                   <CardDescription className="text-sm sm:text-base md:text-lg pt-2 text-muted-foreground" suppressHydrationWarning>
-                    {t("rentToOwn.form.formDescription") || "Complete the form below and we'll review your application. No credit check required for initial application."}
+                    Complete the form below and we&apos;ll review your application. No credit check required for initial application.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="px-6 sm:px-8 md:px-10 pb-8 sm:pb-10">
@@ -870,6 +873,36 @@ export default function RentToOwnPage() {
                   />
                 </CardContent>
               </Card>
+            </div>
+          </PageContent>
+        </section>
+      </AnimatedSection>
+
+      {/* Learn more – Blog guides */}
+      <AnimatedSection delay={0.05} direction="fade">
+        <section className="py-8 md:py-12 bg-muted/30 border-t border-border/50">
+          <PageContent size="lg">
+            <div className="text-center mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-foreground mb-2" suppressHydrationWarning>
+                Learn More About Rent-to-Own
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto" suppressHydrationWarning>
+                Read our guides to understand how rent-to-own works and explore your options in Southwest Florida.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center max-w-3xl mx-auto">
+              <Button asChild variant="outline" size="lg" className="flex-1 border-2 hover:bg-primary/10 hover:border-primary/50">
+                <Link href="/blog/how-does-rent-to-own-work-complete-guide" className="flex items-center justify-center gap-2">
+                  <FileText className="w-4 h-4 shrink-0" />
+                  <span className="text-left">How Does Rent-to-Own Work?</span>
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="flex-1 border-2 hover:bg-primary/10 hover:border-primary/50">
+                <Link href="/blog/southwest-florida-rent-to-own-homes-flexible-path-ownership" className="flex items-center justify-center gap-2">
+                  <FileText className="w-4 h-4 shrink-0" />
+                  <span className="text-left">RTO in LaBelle & Lehigh Acres</span>
+                </Link>
+              </Button>
             </div>
           </PageContent>
         </section>
@@ -889,10 +922,10 @@ export default function RentToOwnPage() {
             <CardContent className="pt-12 md:pt-14 pb-12 md:pb-14 px-6 md:px-10">
               <div className="text-center space-y-4 sm:space-y-5 md:space-y-6 max-w-3xl mx-auto text-background px-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight" suppressHydrationWarning>
-                  {t("rentToOwn.cta.title")}
+                  Ready to start your Rent to Own journey?
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-background/80 leading-relaxed" suppressHydrationWarning>
-                  {t("rentToOwn.cta.description")}
+                  Apply online in minutes or give us a call. We&apos;re here to help you get into your new home.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                   <Button
@@ -900,8 +933,8 @@ export default function RentToOwnPage() {
                     size="lg"
                     className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base md:text-lg font-black shadow-2xl shadow-primary/30 hover:shadow-primary/40 transition-all duration-200 hover:scale-105 relative overflow-hidden group"
                   >
-                    <Link href="/contact" className="relative z-10 flex items-center justify-center gap-2">
-                      {t("rentToOwn.cta.applyNow")}
+                    <Link href="/rto-application" className="relative z-10 flex items-center justify-center gap-2">
+                      Apply now
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-150" />
                       <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                     </Link>
@@ -913,7 +946,7 @@ export default function RentToOwnPage() {
                     className="border-2 border-background/40 text-background bg-background/10 hover:bg-background/20 hover:border-background/60 hover:text-background px-8 py-6 text-base md:text-lg font-bold backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105 relative overflow-hidden group"
                   >
                     <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`} className="relative z-10 flex items-center justify-center gap-2">
-                      {t("rentToOwn.cta.call")}: {CONTACT_INFO.phone}
+                      Call us: {CONTACT_INFO.phone}
                     </a>
                   </Button>
                 </div>

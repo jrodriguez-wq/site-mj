@@ -3,13 +3,10 @@
 import { useMemo } from "react";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { useTranslation } from "@/hooks/use-translation";
 import { SEO_CONFIG } from "@/config/seo";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 
 export const HubSpotFormSection = () => {
-  const { t } = useTranslation();
-
   const redirectUrl = useMemo(() => {
     const baseUrl = typeof window !== 'undefined' 
       ? window.location.origin 
@@ -23,20 +20,20 @@ export const HubSpotFormSection = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-              {t("contactForm.title") || "Get in Touch"}
+              Get in Touch
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4" suppressHydrationWarning>
-              {t("contactForm.subtitle") || "Fill out the form below and we'll get back to you as soon as possible."}
+              Fill out the form below and we&apos;ll get back to you as soon as possible.
             </p>
           </div>
 
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="text-center" suppressHydrationWarning>
-                {t("contactForm.formTitle") || "Contact Us"}
+                Contact Us
               </CardTitle>
               <CardDescription className="text-center" suppressHydrationWarning>
-                {t("contactForm.formDescription") || "We're here to help you find your dream home."}
+                We&apos;re here to help you find your dream home.
               </CardDescription>
               <div className="flex justify-center pt-2">
                 <GoogleReviewsLink variant="outline" className="text-sm" />

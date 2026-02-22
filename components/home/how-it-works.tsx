@@ -1,44 +1,17 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useTranslation } from "@/hooks/use-translation";
 import { motion } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
 
 export const HowItWorks = () => {
-  const { t } = useTranslation();
-
   const steps = [
-    {
-      number: "01", // Número estático - no necesita traducción
-      titleKey: "howItWorks.steps.1.title",
-      descriptionKey: "howItWorks.steps.1.description",
-    },
-    {
-      number: "02",
-      titleKey: "howItWorks.steps.2.title",
-      descriptionKey: "howItWorks.steps.2.description",
-    },
-    {
-      number: "03",
-      titleKey: "howItWorks.steps.3.title",
-      descriptionKey: "howItWorks.steps.3.description",
-    },
-    {
-      number: "04",
-      titleKey: "howItWorks.steps.4.title",
-      descriptionKey: "howItWorks.steps.4.description",
-    },
-    {
-      number: "05",
-      titleKey: "howItWorks.steps.5.title",
-      descriptionKey: "howItWorks.steps.5.description",
-    },
-    {
-      number: "06",
-      titleKey: "howItWorks.steps.6.title",
-      descriptionKey: "howItWorks.steps.6.description",
-    },
+    { number: "01", title: "Get in touch", description: "Contact us online or by phone. Tell us what you're looking for and we'll guide you through the next steps." },
+    { number: "02", title: "Choose your home", description: "Browse our floor plans and communities. We'll help you find a home and a path to ownership that fits your situation." },
+    { number: "03", title: "Apply", description: "Submit your application. For Rent to Own, we'll review your income and documents. No bank loan required to get started." },
+    { number: "04", title: "Sign & move in", description: "Sign your agreement and get the keys. You'll move into your new home and start building toward ownership." },
+    { number: "05", title: "Save while you live", description: "Part of your monthly payment goes toward your future down payment. Build equity and credit while you live in your home." },
+    { number: "06", title: "Own your home", description: "When you're ready, purchase the home at the agreed price. Use our in-house financing or get a traditional mortgage." },
   ];
 
   return (
@@ -52,19 +25,16 @@ export const HowItWorks = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
-            {t("howItWorks.title")}
+            How It Works
           </h2>
           <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            {t("howItWorks.subtitle")}
+            From first contact to keys—and beyond. We make the process clear and straightforward.
           </p>
         </motion.div>
 
         <div className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((step, index) => {
-            const title = t(step.titleKey);
-            const description = t(step.descriptionKey);
-            const nextTitle = index < steps.length - 1 ? t(steps[index + 1].titleKey) : t("howItWorks.complete");
-            
+            const nextTitle = index < steps.length - 1 ? steps[index + 1].title : "You're done!";
             return (
               <AnimatedCard key={step.number} index={index}>
                 <Card className="group relative overflow-hidden border-2 border-background/20 hover:border-primary/50 transition-all duration-200 hover:shadow-xl bg-background/10 hover:bg-background/15 backdrop-blur-sm h-full flex flex-col">
@@ -76,22 +46,22 @@ export const HowItWorks = () => {
                     </div>
                     <div className="flex-1 pt-1 min-w-0">
                       <div className="text-[10px] sm:text-xs font-bold text-primary/60 uppercase tracking-wider mb-1" suppressHydrationWarning>
-                        {t("howItWorks.step")} {step.number}
+                        Step {step.number}
                       </div>
                       <CardTitle className="text-lg sm:text-xl md:text-2xl lg:text-3xl group-hover:text-primary transition-colors duration-150 leading-tight text-background" suppressHydrationWarning>
-                        {title}
+                        {step.title}
                       </CardTitle>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="relative flex-1 flex flex-col pt-0 pb-4 sm:pb-6 px-4 sm:px-6">
                   <p className="text-sm sm:text-base md:text-lg text-background/70 leading-relaxed flex-1" suppressHydrationWarning>
-                    {description}
+                    {step.description}
                   </p>
                   <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-background/20">
                     <div className="flex items-center gap-2 text-xs sm:text-sm text-background/60">
                       <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-primary animate-pulse shrink-0" />
-                      <span className="font-medium truncate" suppressHydrationWarning>{t("howItWorks.next")}: {nextTitle}</span>
+                      <span className="font-medium truncate" suppressHydrationWarning>Next: {nextTitle}</span>
                     </div>
                   </div>
                 </CardContent>

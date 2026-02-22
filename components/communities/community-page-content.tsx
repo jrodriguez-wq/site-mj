@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { Calendar, ArrowRight, X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
 import { cn } from "@/lib/utils";
 import { 
   Fish, TreePine, Sailboat, Droplets, Users, 
@@ -75,7 +74,6 @@ export const CommunityPageContent = ({
   ctaDescription,
   ctaButton,
 }: CommunityPageContentProps) => {
-  const { t } = useTranslation();
   return (
     <>
       {/* About Section */}

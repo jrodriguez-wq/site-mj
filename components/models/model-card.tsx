@@ -8,7 +8,6 @@ import { ChevronLeft, ChevronRight, X, Bed, Bath, Square, Car, Eye, Heart, Share
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ModelBadge } from "./model-badge";
-import { useTranslation } from "@/hooks/use-translation";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { SEO_CONFIG } from "@/config/seo";
@@ -77,7 +76,6 @@ export interface ModelCardProps {
 }
 
 const ModelCardComponent = (props: ModelCardProps) => {
-  const { t } = useTranslation();
   const {
     modelKey,
     name,
@@ -102,31 +100,23 @@ const ModelCardComponent = (props: ModelCardProps) => {
     community,
   } = props;
 
-  // Usar traducciones dinámicas con fallback a props si están disponibles
-  const displayViewDetailsLabel = viewDetailsLabel || t("homeModels.viewMoreDetails");
-  const displayViewMoreLabel = t("homeModels.viewMore");
-  const displayModelLabel = modelLabel || t("homeModels.model");
-  const displayPriceFromLabel = t("homeModels.priceFrom");
-  const displayRtoLabel = t("homeModels.rto");
-  const displayFeaturesLabel = t("homeModels.features");
-  const addToFavoritesLabel = t("homeModels.addToFavorites");
-  const removeFromFavoritesLabel = t("homeModels.removeFromFavorites");
-  const shareLabel = t("homeModels.share");
-  const linkCopiedLabel = t("homeModels.linkCopied") || "Link copied!";
-  const shareModelLabel = t("homeModels.shareModel") || `Share ${name}`;
-  
-  // Community labels
-  const communityLabel = community 
-    ? community === "labelle" 
-      ? t("communities.labelle.name")
-      : t("communities.lehighAcres.name")
-    : null;
-  const viewPhotosCountLabel = (count: number) => 
-    t("homeModels.viewPhotosCount").replace("{count}", count.toString());
-  const closeGalleryLabel = t("homeModels.closeGallery");
-  const previousImageLabel = t("homeModels.previousImage");
-  const nextImageLabel = t("homeModels.nextImage");
-  const garageLabel = t("homeModels.garages");
+  const displayViewDetailsLabel = viewDetailsLabel || "View more details";
+  const displayViewMoreLabel = "View more";
+  const displayModelLabel = modelLabel || "Model";
+  const displayPriceFromLabel = "From";
+  const displayRtoLabel = "RTO";
+  const displayFeaturesLabel = "Features";
+  const addToFavoritesLabel = "Add to favorites";
+  const removeFromFavoritesLabel = "Remove from favorites";
+  const shareLabel = "Share";
+  const linkCopiedLabel = "Link copied!";
+  const shareModelLabel = `Share ${name}`;
+  const communityLabel = community === "labelle" ? "LaBelle" : community === "lehigh-acres" ? "Lehigh Acres" : null;
+  const viewPhotosCountLabel = (count: number) => `${count} photo${count !== 1 ? "s" : ""}`;
+  const closeGalleryLabel = "Close gallery";
+  const previousImageLabel = "Previous image";
+  const nextImageLabel = "Next image";
+  const garageLabel = "Garage";
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);

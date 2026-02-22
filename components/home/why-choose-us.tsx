@@ -3,41 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, Home, DollarSign, Award, CheckCircle2 } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 export const WhyChooseUs = () => {
-  const { t } = useTranslation();
-
   const stats = [
-    {
-      number: "$0",
-      labelKey: "whyChooseUs.highlights.downPayment",
-      icon: DollarSign,
-    },
-    {
-      number: "100%",
-      labelKey: "whyChooseUs.highlights.noHOA",
-      icon: Home,
-    },
-    {
-      number: "15+",
-      labelKey: "whyChooseUs.highlights.yearsExperience",
-      icon: Award,
-    },
-    {
-      number: "500+",
-      labelKey: "whyChooseUs.highlights.happyFamilies",
-      icon: TrendingUp,
-    },
+    { number: "$0", label: "Down payment with RTO", icon: DollarSign },
+    { number: "100%", label: "No HOA in our communities", icon: Home },
+    { number: "15+", label: "Years of experience", icon: Award },
+    { number: "500+", label: "Happy families", icon: TrendingUp },
   ];
 
   const benefits = [
-    "whyChooseUs.points.quality",
-    "whyChooseUs.points.flexibility",
-    "whyChooseUs.points.experience",
+    "Quality new construction and clear pricing so you know what you're getting.",
+    "Flexibility with Rent to Own and financing options that work for real families.",
+    "Experience you can trust—we've helped hundreds of families into their new homes.",
   ];
 
   return (
@@ -80,7 +61,7 @@ export const WhyChooseUs = () => {
                           {stat.number}
                         </div>
                         <div className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight" suppressHydrationWarning>
-                          {t(stat.labelKey)}
+                          {stat.label}
                         </div>
                       </div>
                     );
@@ -107,7 +88,7 @@ export const WhyChooseUs = () => {
                       {stat.number}
                     </div>
                     <div className="text-xs sm:text-sm text-muted-foreground font-medium" suppressHydrationWarning>
-                      {t(stat.labelKey)}
+                      {stat.label}
                     </div>
                   </div>
                 );
@@ -126,22 +107,22 @@ export const WhyChooseUs = () => {
             <div className="space-y-6">
               <div>
                 <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.1] mb-6" suppressHydrationWarning>
-                  {t("whyChooseUs.title")}
+                  Why Choose M.J. Newell Homes?
                 </h2>
                 <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl" suppressHydrationWarning>
-                  {t("whyChooseUs.subtitle")}
+                  We build quality homes and offer flexible paths to ownership—including Rent to Own—so more families can achieve their dream.
                 </p>
               </div>
 
               {/* Benefits List - Clean Design */}
               <div className="space-y-4 pt-4">
-                {benefits.map((benefitKey, index) => (
+                {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-4 group">
                     <div className="shrink-0 mt-1">
                       <CheckCircle2 className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
                     </div>
-                    <p className="text-base sm:text-lg text-foreground leading-relaxed flex-1" suppressHydrationWarning>
-                      {t(benefitKey)}
+                    <p className="text-base sm:text-lg text-foreground leading-relaxed flex-1">
+                      {benefit}
                     </p>
                   </div>
                 ))}
@@ -156,7 +137,7 @@ export const WhyChooseUs = () => {
                 className="px-8 py-6 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
               >
                 <Link href="/rent-to-own#rto-application-form">
-                  <span suppressHydrationWarning>{t("hero.applyNow")}</span>
+                  Apply for Rent to Own
                 </Link>
               </Button>
             </div>

@@ -1,38 +1,15 @@
 "use client";
 
 import { Home, Users, Award, TrendingUp } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { motion } from "framer-motion";
 
 export const Statistics = () => {
-  const { t } = useTranslation();
-
   const stats = [
-    {
-      icon: Home,
-      valueKey: "statistics.stats.homesBuilt.value",
-      labelKey: "statistics.stats.homesBuilt.label",
-      descriptionKey: "statistics.stats.homesBuilt.description",
-    },
-    {
-      icon: Users,
-      valueKey: "statistics.stats.happyFamilies.value",
-      labelKey: "statistics.stats.happyFamilies.label",
-      descriptionKey: "statistics.stats.happyFamilies.description",
-    },
-    {
-      icon: Award,
-      valueKey: "statistics.stats.yearsExperience.value",
-      labelKey: "statistics.stats.yearsExperience.label",
-      descriptionKey: "statistics.stats.yearsExperience.description",
-    },
-    {
-      icon: TrendingUp,
-      valueKey: "statistics.stats.downPayment.value",
-      labelKey: "statistics.stats.downPayment.label",
-      descriptionKey: "statistics.stats.downPayment.description",
-    },
+    { icon: Home, value: "500+", label: "Homes built", description: "New construction homes delivered in Southwest Florida" },
+    { icon: Users, value: "500+", label: "Happy families", description: "Families who found their path to homeownership with us" },
+    { icon: Award, value: "15+", label: "Years of experience", description: "Building quality homes and lasting relationships" },
+    { icon: TrendingUp, value: "$0", label: "Down payment with RTO", description: "Rent to Own lets you move in without a large down payment" },
   ];
 
   return (
@@ -53,10 +30,10 @@ export const Statistics = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
-            {t("statistics.title")}
+            Our Numbers Speak for Themselves
           </h2>
           <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            {t("statistics.subtitle")}
+            The impact we&apos;ve made in Southwest Florida
           </p>
         </motion.div>
 
@@ -64,7 +41,7 @@ export const Statistics = () => {
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <AnimatedCard key={stat.labelKey} index={index}>
+              <AnimatedCard key={stat.label} index={index}>
                 <motion.div
                   className="text-center space-y-3 sm:space-y-4 p-4 sm:p-6 rounded-xl bg-background/10 hover:bg-background/15 backdrop-blur-sm border border-background/20 hover:border-primary/30 transition-all duration-200 hover:shadow-lg hover:shadow-primary/20"
                   whileHover={{ scale: 1.05, y: -4, transition: { duration: 0.2 } }}
@@ -76,10 +53,10 @@ export const Statistics = () => {
                 </div>
                 <div className="space-y-1 sm:space-y-2">
                   <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-primary" suppressHydrationWarning>
-                    {t(stat.valueKey)}
+                    {stat.value}
                   </div>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-background" suppressHydrationWarning>{t(stat.labelKey)}</h3>
-                  <p className="text-xs sm:text-sm text-background/70 px-1" suppressHydrationWarning>{t(stat.descriptionKey)}</p>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-background" suppressHydrationWarning>{stat.label}</h3>
+                  <p className="text-xs sm:text-sm text-background/70 px-1" suppressHydrationWarning>{stat.description}</p>
                 </div>
                 </motion.div>
               </AnimatedCard>

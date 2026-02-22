@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { PageContent } from "@/components/layout/page-container";
 import { FileCheck, MapPin, Home, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/hooks/use-translation";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
 import { AnimatedSection } from "@/components/ui/animated-section";
@@ -17,33 +16,11 @@ const iconMap = {
 };
 
 export default function HomeBuyingGuidePage() {
-  const { t } = useTranslation();
-
   const steps = [
-    {
-      number: "1",
-      icon: FileCheck,
-      title: t("homeBuyingGuide.steps.1.title"),
-      description: t("homeBuyingGuide.steps.1.description"),
-    },
-    {
-      number: "2",
-      icon: MapPin,
-      title: t("homeBuyingGuide.steps.2.title"),
-      description: t("homeBuyingGuide.steps.2.description"),
-    },
-    {
-      number: "3",
-      icon: Home,
-      title: t("homeBuyingGuide.steps.3.title"),
-      description: t("homeBuyingGuide.steps.3.description"),
-    },
-    {
-      number: "4",
-      icon: DollarSign,
-      title: t("homeBuyingGuide.steps.4.title"),
-      description: t("homeBuyingGuide.steps.4.description"),
-    },
+    { number: "1", icon: FileCheck, title: "Get pre-approved or explore Rent to Own", description: "Know your budget. With Rent to Own you can skip the bank at the start and build toward ownership while you live in your new home." },
+    { number: "2", icon: MapPin, title: "Choose your community and floor plan", description: "We build in LaBelle and Lehigh Acres. Pick a floor plan that fits your family and a community you'll love." },
+    { number: "3", icon: Home, title: "Tour and sign", description: "Visit our models, pick your lot, and sign your agreement. We'll guide you through every step so you're ready to move in." },
+    { number: "4", icon: DollarSign, title: "Close and move in", description: "With Rent to Own you move in and pay monthly; when you're ready you can purchase. With traditional financing you'll close with your lender and get the keys." },
   ];
 
   return (
@@ -51,10 +28,10 @@ export default function HomeBuyingGuidePage() {
       <div className="space-y-12">
         <div className="text-center space-y-3 sm:space-y-4 px-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter leading-tight" suppressHydrationWarning>
-            {t("homeBuyingGuide.title")}
+            First-Time Home Buyer Guide
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed" suppressHydrationWarning>
-            {t("homeBuyingGuide.subtitle")}
+            A simple roadmap from first step to keys. We'll help you choose the right path—Rent to Own or traditional purchase.
           </p>
         </div>
 
@@ -76,7 +53,7 @@ export default function HomeBuyingGuidePage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-xs sm:text-sm font-bold text-primary/60 mb-1" suppressHydrationWarning>
-                        {t("homeBuyingGuide.step")} {t(`homeBuyingGuide.steps.${step.number}.number`)}
+                        Step {step.number}
                       </div>
                       <CardTitle className="text-lg sm:text-xl md:text-2xl group-hover:text-primary transition-colors duration-300 leading-tight" suppressHydrationWarning>
                         {step.title}

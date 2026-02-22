@@ -4,7 +4,6 @@ import { useMemo, useState, useCallback, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
-import { useTranslation } from "@/hooks/use-translation";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
@@ -218,15 +217,12 @@ const MobileImageCard = ({
 );
 
 export const HappyFamiliesGallery = () => {
-  const { t } = useTranslation();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Filtrar solo las imágenes (excluir el logo)
   const galleryImages = useMemo(() => familyImages.filter(img => !img.isLogo).map(img => img.src), []);
   const mobileGalleryImages = useMemo(() => mobileImages.filter(img => !img.isLogo).map(img => img.src), []);
 
-  // Detectar tamaño de pantalla
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -236,12 +232,9 @@ export const HappyFamiliesGallery = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Obtener las imágenes actuales según el tamaño de pantalla
   const currentImages = isMobile ? mobileGalleryImages : galleryImages;
-
-  // Usar translations como dependencia para que se re-renderice cuando se carguen
-  const title = useMemo(() => t("home.happyFamilies.title"), [t]);
-  const subtitle = useMemo(() => t("home.happyFamilies.subtitle"), [t]);
+  const title = "Happy families";
+  const subtitle = "See how we're helping families move into their new homes with flexible options and a personal touch.";
 
   const openGallery = useCallback((index: number) => {
     setSelectedImageIndex(index);

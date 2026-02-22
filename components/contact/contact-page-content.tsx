@@ -8,7 +8,6 @@ import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Calendar } from "lucide-react";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SEO_CONFIG, SOCIAL_LINKS } from "@/config/seo";
-import { useTranslation } from "@/hooks/use-translation";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
@@ -21,7 +20,6 @@ import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 const address = "45 Bridge St, LaBelle, FL 33935";
 
 export const ContactPageContent = () => {
-  const { t } = useTranslation();
 
   const redirectUrl = useMemo(() => {
     return `${SEO_CONFIG.siteUrl}/thank-you?type=contact`;
@@ -35,7 +33,7 @@ export const ContactPageContent = () => {
         <div className="absolute inset-0 z-0">
           <Image
             src={getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp")}
-            alt={t("contactForm.hero.imageAlt") || "Contact M.J. Newell Homes"}
+            alt="Contact M.J. Newell Homes"
             fill
             className="object-cover"
             priority
@@ -87,7 +85,7 @@ export const ContactPageContent = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 >
-                  {t("contactForm.title") || "Contact Us"}
+                  Contact Us
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -101,7 +99,7 @@ export const ContactPageContent = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
-                  {t("contactForm.subtitle") || "Get in touch with our team for questions about our homes, Rent to Own program, or to schedule a viewing."}
+                  Get in touch with our team for questions about our homes, Rent to Own program, or to schedule a viewing.
                 </motion.p>
               </motion.div>
             </div>
@@ -123,7 +121,7 @@ export const ContactPageContent = () => {
             {/* Title */}
             <div className="text-center">
               <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black mb-2 leading-tight px-4" suppressHydrationWarning>
-                {t("contactForm.contactInfo.title") || "Contact Information"}
+                Contact Information
               </h2>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -139,7 +137,7 @@ export const ContactPageContent = () => {
                     </div>
                     <div className="flex-1 w-full min-w-0">
                       <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                        {t("contactForm.contactInfo.phone") || "Phone"}
+                        Phone
                       </p>
                       <div className="space-y-1.5">
                         <a
@@ -171,7 +169,7 @@ export const ContactPageContent = () => {
                     </div>
                     <div className="flex-1 w-full min-w-0">
                       <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                        {t("contactForm.contactInfo.email") || "Email"}
+                        Email
                       </p>
                       <a
                         href={`mailto:${CONTACT_INFO.email}`}
@@ -193,7 +191,7 @@ export const ContactPageContent = () => {
                     </div>
                     <div className="flex-1 w-full min-w-0">
                       <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                        {t("contactForm.contactInfo.address") || "Address"}
+                        Address
                       </p>
                       <p className="text-sm sm:text-base font-black mb-1 break-words">
                         {address}
@@ -212,11 +210,11 @@ export const ContactPageContent = () => {
               <Card className="shadow-2xl border-2 border-primary/20 bg-gradient-to-br from-background via-background to-primary/5">
                 <CardHeader className="text-center space-y-2 sm:space-y-3 pb-4 sm:pb-5 md:pb-6 p-4 sm:p-6 md:p-8">
                   <CardTitle className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black leading-tight px-4" suppressHydrationWarning>
-                    {t("contactForm.formTitle") || "Send Us a Message"}
+                    Send Us a Message
                   </CardTitle>
                   <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
                   <CardDescription className="text-xs sm:text-sm md:text-base lg:text-lg pt-2 text-muted-foreground px-4 leading-relaxed" suppressHydrationWarning>
-                    {t("contactForm.formDescription") || "Fill out the form below and we'll get back to you as soon as possible."}
+                    Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </CardDescription>
                   <div className="flex justify-center pt-2">
                     <GoogleReviewsLink variant="outline" className="text-sm" />
@@ -245,14 +243,14 @@ export const ContactPageContent = () => {
                     </div>
                     <div className="flex-1 w-full min-w-0">
                       <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                        {t("contactForm.contactInfo.hours") || "Business Hours"}
+                        Business Hours
                       </p>
                       <div className="space-y-1.5 text-xs sm:text-sm">
                         <p className="font-semibold text-foreground break-words">
-                          {t("contactForm.contactInfo.everyDay") || "Every Day"}: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
+                          Every Day: {CONTACT_INFO.openingHoursDisplay.opens} - {CONTACT_INFO.openingHoursDisplay.closes}
                         </p>
                         <p className="text-xs text-muted-foreground break-words">
-                          {t("contactForm.contactInfo.hoursNote") || "Monday through Sunday"}
+                          Monday through Sunday
                         </p>
                       </div>
                     </div>
@@ -269,14 +267,14 @@ export const ContactPageContent = () => {
                     </div>
                     <div className="flex-1 w-full min-w-0">
                       <p className="font-semibold text-xs text-muted-foreground mb-2 uppercase tracking-wider" suppressHydrationWarning>
-                        {t("contactForm.contactInfo.scheduleAppointment") || "Schedule Appointment"}
+                        Schedule Appointment
                       </p>
                       <Link
                         href="/schedule-appointment"
                         className="text-sm sm:text-base font-black hover:text-primary transition-colors block break-words"
                         suppressHydrationWarning
                       >
-                        {t("contactForm.contactInfo.scheduleAppointmentDesc") || "Visit our office and see our homes"}
+                        Visit our office and see our homes
                       </Link>
                     </div>
                   </div>
@@ -292,7 +290,7 @@ export const ContactPageContent = () => {
                     </div>
                     <div className="flex-1 w-full min-w-0">
                       <p className="font-semibold text-xs text-muted-foreground mb-3 uppercase tracking-wider" suppressHydrationWarning>
-                        {t("contactForm.contactInfo.socialMedia") || "Follow Us"}
+                        Follow Us
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {SOCIAL_LINKS.facebook && (
@@ -303,7 +301,7 @@ export const ContactPageContent = () => {
                             className="flex items-center gap-1.5 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-semibold hover:scale-105 border border-primary/20"
                           >
                             <Facebook className="h-3.5 w-3.5" />
-                            <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.facebook") || "Facebook"}</span>
+                            <span suppressHydrationWarning>Facebook</span>
                           </a>
                         )}
                         {SOCIAL_LINKS.instagram && (
@@ -314,7 +312,7 @@ export const ContactPageContent = () => {
                             className="flex items-center gap-1.5 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-semibold hover:scale-105 border border-primary/20"
                           >
                             <Instagram className="h-3.5 w-3.5" />
-                            <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.instagram") || "Instagram"}</span>
+                            <span suppressHydrationWarning>Instagram</span>
                           </a>
                         )}
                         {SOCIAL_LINKS.tiktok && (
@@ -325,7 +323,7 @@ export const ContactPageContent = () => {
                             className="flex items-center gap-1.5 px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-300 text-xs font-semibold hover:scale-105 border border-primary/20"
                           >
                             <TikTokIcon size={12} />
-                            <span suppressHydrationWarning>{t("contactForm.contactInfo.socialNetworks.tiktok") || "TikTok"}</span>
+                            <span suppressHydrationWarning>TikTok</span>
                           </a>
                         )}
                       </div>
@@ -357,10 +355,10 @@ export const ContactPageContent = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {t("aboutUs.responseTimes.title") || "Fast Response Times"}
+                Fast Response Times
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-                {t("aboutUs.responseTimes.subtitle") || "We value your time and respond quickly to all inquiries"}
+                We value your time and respond quickly to all inquiries
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -368,35 +366,35 @@ export const ContactPageContent = () => {
             <div className="grid md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
               <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.value") || "< 24h"}
+                  {"< 24h"}
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.label") || "Phone Calls"}
+                  Phone Calls
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.description") || "We respond to all phone inquiries within 24 hours"}
+                  We respond to all phone inquiries within 24 hours
                 </p>
               </div>
               <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.value") || "< 48h"}
+                  {"< 48h"}
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.label") || "Email Inquiries"}
+                  Email Inquiries
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.description") || "Email responses within 48 hours"}
+                  Email responses within 48 hours
                 </p>
               </div>
               <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.value") || "Same Day"}
+                  Same Day
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.label") || "Appointments"}
+                  Appointments
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.description") || "Schedule your visit the same day"}
+                  Schedule your visit the same day
                 </p>
               </div>
             </div>

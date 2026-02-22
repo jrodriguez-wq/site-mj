@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useMemo, Suspense, lazy, useCallback } from "react";
-import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
@@ -25,43 +24,40 @@ const ModelFilters = lazy(() =>
   }))
 );
 
-// Configuración de badges y datos adicionales por modelo
-// Las etiquetas se obtendrán de las traducciones usando labelKey
 const MODEL_CONFIG = {
   louisiana: {
-    badges: [{ type: "bestseller" as const, labelKey: "homeModels.badges.bestseller" }],
+    badges: [{ type: "bestseller" as const, label: "Bestseller" }],
     satisfiedFamilies: 150,
   },
   viana: {
-    badges: [{ type: "favorite" as const, labelKey: "homeModels.badges.favorite" }],
+    badges: [{ type: "favorite" as const, label: "Favorite" }],
     satisfiedFamilies: 85,
   },
   delanie: {
-    badges: [{ type: "satisfied" as const, labelKey: "homeModels.badges.satisfied" }],
+    badges: [{ type: "satisfied" as const, label: "Satisfied" }],
     satisfiedFamilies: 120,
   },
   langdon: {
     badges: [
-      { type: "bestseller" as const, labelKey: "homeModels.badges.bestseller" },
-      { type: "favorite" as const, labelKey: "homeModels.badges.favorite" },
+      { type: "bestseller" as const, label: "Bestseller" },
+      { type: "favorite" as const, label: "Favorite" },
     ],
     satisfiedFamilies: 200,
   },
   emelia: {
-    badges: [{ type: "satisfied" as const, labelKey: "homeModels.badges.satisfied" }],
+    badges: [{ type: "satisfied" as const, label: "Satisfied" }],
     satisfiedFamilies: 95,
   },
   duplex: {
-    badges: [{ type: "favorite" as const, labelKey: "homeModels.badges.investment" }],
+    badges: [{ type: "favorite" as const, label: "Investment" }],
     satisfiedFamilies: 0,
   },
 } as const;
 
 interface ModelDisplayData {
   key: string;
-  nameKey: string;
-  descriptionKey: string;
-  priceKey: string;
+  name: string;
+  description: string;
   price: string;
   priceNumber: number;
   rtoPrice?: string;
@@ -72,7 +68,7 @@ interface ModelDisplayData {
   sqft: string;
   sqftNumber: number;
   modelData: ModelData | null;
-  community?: Community; // Comunidad a la que pertenece este modelo
+  community?: Community;
 }
 
 
@@ -89,7 +85,6 @@ const extractSqft = (sqftString: string): number => {
 };
 
 export default function ModelsPage() {
-  const { t } = useTranslation();
   const [models, setModels] = useState<ModelDisplayData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCommunity, setSelectedCommunity] = useState<Community | "all">("all");
@@ -114,20 +109,10 @@ export default function ModelsPage() {
         const lehighModels = getModelsForCommunity("lehigh-acres");
 
         // Cargar modelos de LaBelle
-        const labelleModelKeys = labelleModels.map((key) => ({
-          key,
-          nameKey: `homeModels.models.${key}.name`,
-          descriptionKey: `homeModels.models.${key}.description`,
-          priceKey: `homeModels.models.${key}.price`,
-        }));
+        const labelleModelKeys = labelleModels.map((key) => ({ key }));
 
         // Cargar modelos de Lehigh Acres
-        const lehighModelKeys = lehighModels.map((key) => ({
-          key,
-          nameKey: `homeModels.models.${key}.name`,
-          descriptionKey: `homeModels.models.${key}.description`,
-          priceKey: `homeModels.models.${key}.price`,
-        }));
+        const lehighModelKeys = lehighModels.map((key) => ({ key }));
 
         // Load models in batches to avoid blocking
         const batchSize = 3;
@@ -143,8 +128,9 @@ export default function ModelsPage() {
               if (!modelData) return [];
               
               return [{
-                ...model,
                 key: `${model.key}-labelle`,
+                name: modelData.name || model.key,
+                description: modelData.description || "",
                 price: modelData.price,
                 priceNumber: extractPrice(modelData.price),
                 rtoPrice: modelData.rtoPrice,
@@ -175,8 +161,9 @@ export default function ModelsPage() {
               if (!modelData) return [];
               
               return [{
-                ...model,
                 key: `${model.key}-lehigh-acres`,
+                name: modelData.name || model.key,
+                description: modelData.description || "",
                 price: modelData.price,
                 priceNumber: extractPrice(modelData.price),
                 rtoPrice: modelData.rtoPrice,
@@ -198,12 +185,7 @@ export default function ModelsPage() {
       } else {
         // Cargar modelos de una comunidad específica
         const communityModels = getModelsForCommunity(selectedCommunity);
-        const modelKeys = communityModels.map((key) => ({
-          key,
-          nameKey: `homeModels.models.${key}.name`,
-          descriptionKey: `homeModels.models.${key}.description`,
-          priceKey: `homeModels.models.${key}.price`,
-        }));
+        const modelKeys = communityModels.map((key) => ({ key }));
 
         // Load models in batches to avoid blocking
         const batchSize = 3;
@@ -218,7 +200,9 @@ export default function ModelsPage() {
               if (!modelData) return [];
               
               return [{
-                ...model,
+                key: model.key,
+                name: modelData.name || model.key,
+                description: modelData.description || "",
                 price: modelData.price,
                 priceNumber: extractPrice(modelData.price),
                 rtoPrice: modelData.rtoPrice,
@@ -329,13 +313,13 @@ export default function ModelsPage() {
               className="text-[clamp(1.25rem,4vw+1rem,3.75rem)] font-black tracking-tight text-foreground leading-tight max-w-full break-words px-1"
               suppressHydrationWarning
             >
-              {t("homeModels.allModels")}
+              All floor plans
             </h1>
             <p
               className="mx-auto max-w-2xl text-muted-foreground text-[clamp(0.6875rem,2vw+0.5rem,1.125rem)] leading-relaxed px-2 sm:px-4 break-words"
               suppressHydrationWarning
             >
-              {t("homeModels.allModelsSubtitle")}
+              Browse our new construction homes in LaBelle and Lehigh Acres. Filter by community, price, beds, baths, and square footage.
             </p>
           </div>
 
@@ -343,7 +327,7 @@ export default function ModelsPage() {
           {!isLoading && (
             <div className="mb-3 sm:mb-6 flex flex-wrap items-center gap-2 sm:gap-4">
               <label className="text-xs sm:text-sm md:text-base font-semibold text-foreground whitespace-nowrap shrink-0" suppressHydrationWarning>
-                {t("models.filters.community")}:
+                Community:
               </label>
               <Select
                 value={selectedCommunity}
@@ -354,13 +338,13 @@ export default function ModelsPage() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all" suppressHydrationWarning>
-                    {t("models.filters.allCommunities")}
+                    All communities
                   </SelectItem>
                   <SelectItem value="labelle" suppressHydrationWarning>
-                    {t("communities.labelle.name")} - {t("communities.labelle.country.subtitle")}
+                    LaBelle - Country living
                   </SelectItem>
                   <SelectItem value="lehigh-acres" suppressHydrationWarning>
-                    {t("communities.lehighAcres.name")} - {t("communities.lehighAcres.country.subtitle")}
+                    Lehigh Acres - Near Fort Myers
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -405,10 +389,10 @@ export default function ModelsPage() {
               <div className="mb-3 sm:mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3 md:gap-4 text-[10px] sm:text-xs md:text-sm pb-2 sm:pb-4 border-b border-border/30 min-w-0">
                 <span className="text-muted-foreground font-medium break-words">
                   <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
-                  {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
+                  {filteredModels.length === 1 ? "model" : "models"} found
                 </span>
                 <span className="text-muted-foreground/70 text-[10px] sm:text-xs truncate max-w-full" suppressHydrationWarning>
-                  {t("models.results.sortedBy") || "Sorted by price: Low to High"}
+                  Sorted by price: Low to High
                 </span>
               </div>
             )}
@@ -417,13 +401,13 @@ export default function ModelsPage() {
             {isLoading ? (
               <div className="flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20">
                 <div className="text-muted-foreground text-xs sm:text-sm md:text-base" suppressHydrationWarning>
-                  {t("models.loading")}
+                  Loading models…
                 </div>
               </div>
             ) : filteredModels.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-8 sm:py-12 md:py-16 lg:py-20 text-center px-4">
                 <p className="text-muted-foreground text-xs sm:text-sm md:text-base mb-3 sm:mb-4" suppressHydrationWarning>
-                  {t("models.noResults") || "No models found matching your filters."}
+                  No models found matching your filters.
                 </p>
                 <Button
                   variant="outline"
@@ -435,7 +419,7 @@ export default function ModelsPage() {
                   })}
                   className="text-xs sm:text-sm"
                 >
-                  {t("models.filters.reset") || "Reset Filters"}
+                  Reset Filters
                 </Button>
               </div>
             ) : (
@@ -453,10 +437,9 @@ export default function ModelsPage() {
                   const carouselInterval = 4000; // 4 seconds
                   const initialDelay = index * 80; // Stagger delay for animations
 
-                  // Convertir badges con labelKey a badges con label traducida
-                  const translatedBadges = config?.badges?.map(badge => ({
+                  const displayBadges = config?.badges?.map(badge => ({
                     type: badge.type,
-                    label: t(badge.labelKey),
+                    label: badge.label,
                   }));
 
                   return (
@@ -468,25 +451,25 @@ export default function ModelsPage() {
                     >
                       <ModelCard
                         modelKey={baseKey}
-                        name={t(model.nameKey)}
-                        description={t(model.descriptionKey)}
+                        name={model.name}
+                        description={model.description}
                         image={mainImage}
                         images={modelImages}
                         price={model.price}
                         rtoPrice={model.rtoPrice}
                         beds={model.beds}
-                        bedsLabel={t("homeModels.beds")}
+                        bedsLabel="Beds"
                         baths={model.baths}
-                        bathsLabel={t("homeModels.baths")}
+                        bathsLabel="Baths"
                         sqft={model.sqft}
-                        sqftLabel={t("homeModels.sqft")}
-                        badges={translatedBadges}
+                        sqftLabel="Sq ft"
+                        badges={displayBadges}
                         satisfiedFamilies={config?.satisfiedFamilies}
-                        viewDetailsLabel={t("homeModels.moreDetails")}
-                        viewPhotosLabel={`${t("homeModels.viewPhotos")} (${modelImages.length})`}
-                        galleryTitle={`${t("homeModels.gallery")} ${t(model.nameKey)}`}
-                        galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
-                        modelLabel={t("homeModels.model")}
+                        viewDetailsLabel="More details"
+                        viewPhotosLabel={`View photos (${modelImages.length})`}
+                        galleryTitle={`Gallery – ${model.name}`}
+                        galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? "image" : "images"} available`}
+                        modelLabel="Model"
                         carouselDelay={carouselInterval}
                         initialDelay={initialDelay}
                         community={model.community}

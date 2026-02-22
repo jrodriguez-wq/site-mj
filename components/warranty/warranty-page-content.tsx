@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { PageContent } from "@/components/layout/page-container";
-import { useTranslation } from "@/hooks/use-translation";
 import { Shield, CheckCircle2, Clock, HeadphonesIcon, Calendar, ArrowLeft, MapPin } from "lucide-react";
 import { SEO_CONFIG } from "@/config/seo";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,7 +12,6 @@ import { motion, AnimatePresence } from "framer-motion";
 type WarrantyFlowStep = "initial" | "community-selection" | "form";
 
 export const WarrantyPageContent = () => {
-  const { t } = useTranslation();
   const [flowStep, setFlowStep] = useState<WarrantyFlowStep>("initial");
 
   const redirectUrl = useMemo(() => {
@@ -38,10 +36,10 @@ export const WarrantyPageContent = () => {
       <div className="space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
-            {t("warranty.title")}
+            Warranty
           </h1>
           <p className="text-xl text-muted-foreground" suppressHydrationWarning>
-            {t("warranty.subtitle")}
+            We stand behind our homes. Here&apos;s what&apos;s covered and how to schedule service.
           </p>
         </div>
 
@@ -49,10 +47,10 @@ export const WarrantyPageContent = () => {
         <Card>
           <CardHeader>
             <CardTitle suppressHydrationWarning>
-              {t("warranty.coverage.title")}
+              What&apos;s covered
             </CardTitle>
             <CardDescription suppressHydrationWarning>
-              {t("warranty.coverage.description")}
+              Our new construction homes come with structural and mechanical warranties for your peace of mind.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -64,13 +62,13 @@ export const WarrantyPageContent = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-foreground mb-2" suppressHydrationWarning>
-                    {t("warranty.coverage.structural.title")}
+                    Structural warranty
                   </h3>
                   <p className="text-lg text-primary font-semibold mb-1" suppressHydrationWarning>
-                    {t("warranty.coverage.structural.duration")}
+                    10 years
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.coverage.structural.description")}
+                    Covers major structural defects so you can enjoy your home with confidence.
                   </p>
                 </div>
               </div>
@@ -82,13 +80,13 @@ export const WarrantyPageContent = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-foreground mb-2" suppressHydrationWarning>
-                    {t("warranty.coverage.mechanical.title")}
+                    Mechanical systems
                   </h3>
                   <p className="text-lg text-primary font-semibold mb-1" suppressHydrationWarning>
-                    {t("warranty.coverage.mechanical.duration")}
+                    1 year
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.coverage.mechanical.description")}
+                    HVAC, plumbing, and electrical systems are covered for the first year.
                   </p>
                 </div>
               </div>
@@ -101,7 +99,7 @@ export const WarrantyPageContent = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" />
-              <span suppressHydrationWarning>{t("warranty.features.title")}</span>
+              <span suppressHydrationWarning>Why our warranty works for you</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -110,10 +108,10 @@ export const WarrantyPageContent = () => {
                 <Clock className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.timely.title")}
+                    Timely response
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.timely.description")}
+                    We respond to warranty requests quickly and schedule repairs so you&apos;re not left waiting.
                   </p>
                 </div>
               </div>
@@ -121,10 +119,10 @@ export const WarrantyPageContent = () => {
                 <HeadphonesIcon className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.support.title")}
+                    Dedicated support
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.support.description")}
+                    A dedicated team handles warranty claims and coordinates with our builders.
                   </p>
                 </div>
               </div>
@@ -132,10 +130,10 @@ export const WarrantyPageContent = () => {
                 <CheckCircle2 className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.quality.title")}
+                    Quality builds
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.quality.description")}
+                    We build to last. Our warranty backs the quality of our construction.
                   </p>
                 </div>
               </div>
@@ -270,10 +268,10 @@ export const WarrantyPageContent = () => {
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-center" suppressHydrationWarning>
-                    {t("warranty.form.title")}
+                    Submit a warranty request
                   </CardTitle>
                   <CardDescription className="text-center" suppressHydrationWarning>
-                    {t("warranty.form.description")}
+                    Fill out the form below and our warranty team will get back to you.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

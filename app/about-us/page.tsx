@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useTranslation } from "@/hooks/use-translation";
 import { 
   Home, 
   Shield, 
@@ -56,63 +55,20 @@ const TEAM_FALLBACKS_ES = {
 } as const;
 
 export default function AboutUsPage() {
-  const { t, language } = useTranslation();
-  const isEn = language === "en";
-  const fb = isEn ? TEAM_FALLBACKS_EN : TEAM_FALLBACKS_ES;
-
-  const safeT = (key: string, fallback: string) => {
-    const v = t(key);
-    return v && v !== key ? v : fallback;
-  };
+  const fb = TEAM_FALLBACKS_EN;
 
   const stats = [
-    {
-      icon: Home,
-      value: t("statistics.stats.homesBuilt.value"),
-      label: t("statistics.stats.homesBuilt.label"),
-      description: t("statistics.stats.homesBuilt.description"),
-    },
-    {
-      icon: Users,
-      value: t("statistics.stats.happyFamilies.value"),
-      label: t("statistics.stats.happyFamilies.label"),
-      description: t("statistics.stats.happyFamilies.description"),
-    },
-    {
-      icon: Award,
-      value: t("statistics.stats.yearsExperience.value"),
-      label: t("statistics.stats.yearsExperience.label"),
-      description: t("statistics.stats.yearsExperience.description"),
-    },
-    {
-      icon: DollarSign,
-      value: t("statistics.stats.downPayment.value"),
-      label: t("statistics.stats.downPayment.label"),
-      description: t("statistics.stats.downPayment.description"),
-    },
+    { icon: Home, value: "500+", label: "Homes built", description: "New construction homes delivered in Southwest Florida" },
+    { icon: Users, value: "500+", label: "Happy families", description: "Families who found their path to homeownership with us" },
+    { icon: Award, value: "15+", label: "Years of experience", description: "Building quality homes and lasting relationships" },
+    { icon: DollarSign, value: "$0", label: "Down payment with RTO", description: "Rent to Own lets you move in without a large down payment" },
   ];
 
   const values = [
-    {
-      icon: Users,
-      title: t("aboutUs.values.teamMentality.title"),
-      description: t("aboutUs.values.teamMentality.description"),
-    },
-    {
-      icon: Heart,
-      title: t("aboutUs.values.winWin.title"),
-      description: t("aboutUs.values.winWin.description"),
-    },
-    {
-      icon: DollarSign,
-      title: t("aboutUs.values.affordableHousing.title"),
-      description: t("aboutUs.values.affordableHousing.description"),
-    },
-    {
-      icon: Shield,
-      title: t("aboutUs.values.ethicalBusiness.title"),
-      description: t("aboutUs.values.ethicalBusiness.description"),
-    },
+    { icon: Users, title: "Team mentality", description: "We recruit and support strong, trustworthy people. Our team is the backbone of our success and yours." },
+    { icon: Heart, title: "Win-win", description: "We believe in outcomes that work for our families and our business. Transparency and fairness guide every decision." },
+    { icon: DollarSign, title: "Affordable housing", description: "We make quality new construction accessible through flexible options like Rent to Own and clear pricing." },
+    { icon: Shield, title: "Ethical business", description: "We operate with integrity, respect, and a long-term view. Our reputation is built on doing right by our customers and our team." },
   ];
 
 
@@ -124,7 +80,7 @@ export default function AboutUsPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={getCloudinaryImageUrl("/img/oficina.webp")}
-            alt={t("aboutUs.hero.imageAlt") || "M.J. Newell Homes Office"}
+            alt="M.J. Newell Homes Office"
             fill
             className="object-cover"
             priority
@@ -154,7 +110,7 @@ export default function AboutUsPage() {
                   transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 >
                   <span className="text-sm font-semibold text-white uppercase tracking-wider px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
-                    {t("aboutUs.hero.badge") || "About Us"}
+                    About Us
                   </span>
                 </motion.div>
 
@@ -169,7 +125,7 @@ export default function AboutUsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 >
-                  {t("aboutUs.hero.title") || "Building Dreams, One Home at a Time"}
+                  Building Dreams, One Home at a Time
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -183,7 +139,7 @@ export default function AboutUsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
-                  {t("aboutUs.hero.subtitle")}
+                  We build quality new construction homes in Southwest Florida and help families get there with Rent to Own and traditional financing.
                 </motion.p>
               </motion.div>
             </div>
@@ -204,10 +160,10 @@ export default function AboutUsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {t("statistics.title") || "Our Numbers Speak for Themselves"}
+                Our Numbers Speak for Themselves
               </h2>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
-                {t("statistics.subtitle") || "The impact we've made in Southwest Florida"}
+                The impact we&apos;ve made in Southwest Florida
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -250,14 +206,14 @@ export default function AboutUsPage() {
             <div className="text-center space-y-3 sm:space-y-4">
               <div className="inline-block">
                 <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
-                  {t("aboutUs.leadership.badge") || "Leadership"}
+                  Leadership
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {t("aboutUs.leadership.title") || "Michael J. Newell"}
+                Michael J. Newell
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-                {t("aboutUs.leadership.subtitle") || "Founder & CEO of M.J. Newell Homes"}
+                Founder & CEO of M.J. Newell Homes
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -279,7 +235,7 @@ export default function AboutUsPage() {
               <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div className="space-y-3 sm:space-y-4">
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {t("aboutUs.leadership.description") || "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth."}
+                    Michael J. Newell applies a &quot;Win-Win&quot; approach to business, creating affordable housing for everyday Americans. He has applied a &quot;team mentality&quot; strategy at M.J. Newell Homes, resulting in enormous growth.
                   </p>
                   
                   <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-background">
@@ -288,10 +244,10 @@ export default function AboutUsPage() {
                         <Quote className="h-5 w-5 sm:h-6 sm:w-6 text-primary shrink-0 mt-1" />
                         <div className="flex-1 min-w-0">
                           <p className="text-sm sm:text-base italic text-foreground leading-relaxed" suppressHydrationWarning>
-                            {t("aboutUs.leadership.quote") || "\"The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I'd have to enlist first-line powerhouses.\""}
+                            &quot;The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I&apos;d have to enlist first-line powerhouses.&quot;
                           </p>
                           <p className="text-xs sm:text-sm text-muted-foreground mt-2" suppressHydrationWarning>
-                            {t("aboutUs.leadership.quoteAuthor") || "Michael J. Newell"}
+                            Michael J. Newell
                           </p>
                         </div>
                       </div>
@@ -300,7 +256,7 @@ export default function AboutUsPage() {
                 </div>
 
                 <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                  {t("aboutUs.leadership.belief") || "Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization."}
+                  Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization.
                 </p>
 
                 {/* Mission and Vision Cards */}
@@ -309,10 +265,10 @@ export default function AboutUsPage() {
                     <div className="p-4 sm:p-5 space-y-2 sm:space-y-3">
                       <h3 className="text-base sm:text-lg font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
                         <Award className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                        <span className="min-w-0">{t("aboutUs.leadership.mission.title") || "Our Mission"}</span>
+                        <span className="min-w-0">Our Mission</span>
                       </h3>
                       <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                        {t("aboutUs.leadership.mission.text") || "\"We want to make prime-value homes available at an economical rate to all Americans. We believe that affordable housing should be no more than a quarter of their income.\""}
+                        &quot;We want to make prime-value homes available at an economical rate to all Americans. We believe that affordable housing should be no more than a quarter of their income.&quot;
                       </p>
                     </div>
                   </Card>
@@ -321,10 +277,10 @@ export default function AboutUsPage() {
                     <div className="p-4 sm:p-5 space-y-2 sm:space-y-3">
                       <h3 className="text-base sm:text-lg font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
                         <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                        <span className="min-w-0">{t("aboutUs.leadership.vision.title") || "Vision for 2026"}</span>
+                        <span className="min-w-0">Vision for 2026</span>
                       </h3>
                       <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                        {t("aboutUs.leadership.vision.text") || "By 2026, M.J. Newell Homes continues to build quality homes and expand our Rent to Own program, helping more families achieve their dream of homeownership."}
+                        By 2026, M.J. Newell Homes continues to build quality homes and expand our Rent to Own program, helping more families achieve their dream of homeownership.
                       </p>
                     </div>
                   </Card>
@@ -349,10 +305,10 @@ export default function AboutUsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {t("aboutUs.values.title") || "Our Core Values"}
+                Our Core Values
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-                {t("aboutUs.values.subtitle") || "The principles that guide everything we do"}
+                The principles that guide everything we do
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -391,14 +347,14 @@ export default function AboutUsPage() {
             <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <div className="inline-block">
                 <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
-                  {t("aboutUs.fullTeam.badge")}
+                  Our team
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {t("aboutUs.fullTeam.title")}
+                The people behind M.J. Newell Homes
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-                {t("aboutUs.fullTeam.subtitle")}
+                Dedicated to building quality homes and helping families achieve their dreams
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -408,7 +364,7 @@ export default function AboutUsPage() {
               <div className="relative w-full aspect-[16/10] sm:aspect-[16/9]">
                 <Image
                   src={getCloudinaryImageUrl("/img/team.webp")}
-                  alt={t("aboutUs.fullTeam.imageAlt") || "M.J. Newell Homes Team - Building a Legacy"}
+                  alt="M.J. Newell Homes Team - Building a Legacy"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
@@ -423,7 +379,7 @@ export default function AboutUsPage() {
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full shadow-xl border border-slate-700/50">
                   <Users className="h-4 w-4 text-white" />
                   <span className="text-sm font-bold text-white" suppressHydrationWarning>
-                    {t("aboutUs.fullTeam.memberCount") || "17+ Team Members"}
+                    17+ Team Members
                   </span>
                 </div>
               </div>
@@ -434,7 +390,7 @@ export default function AboutUsPage() {
               <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
                 <div className="p-6 md:p-8 space-y-4">
                   <p className="text-base md:text-lg leading-relaxed text-muted-foreground text-center max-w-3xl mx-auto" suppressHydrationWarning>
-                    {t("aboutUs.fullTeam.description") || "Our team is the heart of M.J. Newell Homes. Each member brings expertise, dedication, and a shared commitment to building quality homes and helping families achieve their dreams of homeownership. Together, we're building not just houses, but a legacy of excellence in Southwest Florida."}
+                    Our team is the heart of M.J. Newell Homes. Each member brings expertise, dedication, and a shared commitment to building quality homes and helping families achieve their dreams of homeownership. Together, we&apos;re building not just houses, but a legacy of excellence in Southwest Florida.
                   </p>
                 </div>
               </Card>
@@ -451,10 +407,10 @@ export default function AboutUsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {safeT("aboutUs.team.title", fb.title)}
+                {fb.title}
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-                {safeT("aboutUs.team.subtitle", fb.subtitle)}
+                {fb.subtitle}
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -475,14 +431,14 @@ export default function AboutUsPage() {
                 <div className="space-y-3 sm:space-y-4">
                   <div>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                      {t("aboutUs.leadership.title") || "Michael J. Newell"}
+                      Michael J. Newell
                     </h3>
                     <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
-                      {t("aboutUs.leadership.role") || "Founder & CEO"}
+                      Founder & CEO
                     </p>
                   </div>
                   <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {t("aboutUs.leadership.description") || "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth."}
+                    Michael J. Newell applies a &quot;Win-Win&quot; approach to business, creating affordable housing for everyday Americans. He has applied a &quot;team mentality&quot; strategy at M.J. Newell Homes, resulting in enormous growth.
                   </p>
                 </div>
               </div>
@@ -492,7 +448,7 @@ export default function AboutUsPage() {
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
                     src={getCloudinaryImageUrl("/img/juliana.webp")}
-                    alt={`${safeT("aboutUs.team.juliana.name", fb.juliana.name)}, ${safeT("aboutUs.team.juliana.role", fb.juliana.role)}`}
+                    alt={`${fb.juliana.name}, ${fb.juliana.role}`}
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -501,14 +457,14 @@ export default function AboutUsPage() {
                 <div className="space-y-3 sm:space-y-4">
                   <div>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                      {safeT("aboutUs.team.juliana.name", fb.juliana.name)}
+                      {fb.juliana.name}
                     </h3>
                     <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
-                      {safeT("aboutUs.team.juliana.role", fb.juliana.role)}
+                      {fb.juliana.role}
                     </p>
                   </div>
                   <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {safeT("aboutUs.team.juliana.description", fb.juliana.description)}
+                    {fb.juliana.description}
                   </p>
                 </div>
               </div>
@@ -518,7 +474,7 @@ export default function AboutUsPage() {
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
                     src={getCloudinaryImageUrl("/img/nader.jpg")}
-                    alt={`${safeT("aboutUs.team.nader.name", fb.nader.name)}, ${safeT("aboutUs.team.nader.role", fb.nader.role)}`}
+                    alt={`${fb.nader.name}, ${fb.nader.role}`}
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -527,14 +483,14 @@ export default function AboutUsPage() {
                 <div className="space-y-3 sm:space-y-4">
                   <div>
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                      {safeT("aboutUs.team.nader.name", fb.nader.name)}
+                      {fb.nader.name}
                     </h3>
                     <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
-                      {safeT("aboutUs.team.nader.role", fb.nader.role)}
+                      {fb.nader.role}
                     </p>
                   </div>
                   <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {safeT("aboutUs.team.nader.description", fb.nader.description)}
+                    {fb.nader.description}
                   </p>
                 </div>
               </div>
@@ -557,10 +513,10 @@ export default function AboutUsPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
-                {t("aboutUs.responseTimes.title") || "Fast Response Times"}
+                Fast Response Times
               </h2>
               <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
-                {t("aboutUs.responseTimes.subtitle") || "We value your time and respond quickly to all inquiries"}
+                We value your time and respond quickly to all inquiries
               </p>
               <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
@@ -568,35 +524,35 @@ export default function AboutUsPage() {
             <div className="grid md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
               <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.value") || "< 24h"}
+                  {"< 24h"}
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.label") || "Phone Calls"}
+                  Phone Calls
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.description") || "We respond to all phone inquiries within 24 hours"}
+                  We respond to all phone inquiries within 24 hours
                 </p>
               </div>
               <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.value") || "< 48h"}
+                  {"< 48h"}
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.label") || "Email Inquiries"}
+                  Email Inquiries
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.description") || "Email responses within 48 hours"}
+                  Email responses within 48 hours
                 </p>
               </div>
               <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
                 <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.value") || "Same Day"}
+                  Same Day
                 </div>
                 <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.label") || "Appointments"}
+                  Appointments
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.description") || "Schedule your visit the same day"}
+                  Schedule your visit the same day
                 </p>
               </div>
             </div>
@@ -614,10 +570,10 @@ export default function AboutUsPage() {
               <div className="p-4 sm:p-6 md:p-8 lg:p-12 space-y-4 sm:space-y-5 md:space-y-6">
                 <div className="text-center space-y-3 sm:space-y-4">
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
-                    {t("aboutUs.housingCrisis.title") || "Solving the Affordable Housing Crisis"}
+                    Solving the Affordable Housing Crisis
                   </h2>
                   <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
-                    {t("aboutUs.housingCrisis.description") || "Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed M.J. Newell Homes to help solve our country's predicament."}
+                    Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed M.J. Newell Homes to help solve our country&apos;s predicament.
                   </p>
                   <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
                 </div>
@@ -626,23 +582,23 @@ export default function AboutUsPage() {
                   <div className="space-y-3 sm:space-y-4">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
                       <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                      <span className="min-w-0">{t("aboutUs.housingCrisis.learnToBuild.title") || "Learn to Build Course"}</span>
+                      <span className="min-w-0">Learn to Build Course</span>
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                      {t("aboutUs.housingCrisis.learnToBuild.description") || "Michael Newell has created a course called \"Learn to Build,\" in which he details every building process step. He believes that by sharing his construction knowledge with others, this can ultimately impact the housing deficit in our nation."}
+                      Michael Newell has created a course called &quot;Learn to Build,&quot; in which he details every building process step. He believes that by sharing his construction knowledge with others, this can ultimately impact the housing deficit in our nation.
                     </p>
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed italic" suppressHydrationWarning>
-                      {t("aboutUs.housingCrisis.learnToBuild.quote") || "\"I feel that a new builder who comes into this industry will only strengthen the market. Our country needs good builders who can supply the growing demand for new construction.\""}
+                      &quot;I feel that a new builder who comes into this industry will only strengthen the market. Our country needs good builders who can supply the growing demand for new construction.&quot;
                     </p>
                   </div>
 
                   <div className="space-y-3 sm:space-y-4">
                     <h3 className="text-lg sm:text-xl md:text-2xl font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
                       <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                      <span className="min-w-0">{t("aboutUs.housingCrisis.commitment.title") || "Our Commitment"}</span>
+                      <span className="min-w-0">Our Commitment</span>
                     </h3>
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                      {t("aboutUs.housingCrisis.commitment.text") || "\"The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. In a world where most people attempt to suppress others to gain power for themselves, we believe it's a detriment to society if we don't look for a win-win solution in business and help each other along the way.\""}
+                      &quot;The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. In a world where most people attempt to suppress others to gain power for themselves, we believe it&apos;s a detriment to society if we don&apos;t look for a win-win solution in business and help each other along the way.&quot;
                     </p>
                   </div>
                 </div>
@@ -667,10 +623,10 @@ export default function AboutUsPage() {
             <Card className="border-2 border-background/20 shadow-2xl bg-background/10 backdrop-blur-md">
               <div className="p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-4 sm:space-y-5 md:space-y-6 max-w-3xl mx-auto">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
-                  {t("aboutUs.cta.title") || "Ready to Find Your Dream Home?"}
+                  Ready to Find Your Dream Home?
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-background/80 leading-relaxed px-4" suppressHydrationWarning>
-                  {t("aboutUs.cta.description") || "Let us guide you through the entire process of buying your new home."}
+                  Let us guide you through the entire process of buying your new home.
                 </p>
                 <div className="pt-4">
                   <Button
@@ -679,7 +635,7 @@ export default function AboutUsPage() {
                     className="bg-primary text-primary-foreground px-8 py-6 text-base md:text-lg font-black shadow-2xl shadow-primary/30 hover:shadow-primary/40 transition-all duration-300 group hover:scale-105"
                   >
                     <Link href="/contact">
-                      {t("aboutUs.cta.button") || "Get in Touch"}
+                      Get in Touch
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>

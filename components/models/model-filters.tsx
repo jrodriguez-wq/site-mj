@@ -4,7 +4,6 @@ import { useState, memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Filter, DollarSign, Bed, Bath, Square, RotateCcw, ChevronDown } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
 import { cn } from "@/lib/utils";
 
 export interface FilterState {
@@ -22,7 +21,6 @@ interface ModelFiltersProps {
 }
 
 const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: ModelFiltersProps) => {
-  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const handlePriceChange = useCallback((value: number[]) => {
@@ -90,7 +88,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
         <span className="flex items-center gap-1.5 sm:gap-2 min-w-0">
           <Filter className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
           <span className="font-medium truncate" suppressHydrationWarning>
-            {t("models.filters.title") || "Filters"}
+            Filters
           </span>
           {activeFiltersCount > 0 && (
             <span className="bg-primary text-primary-foreground text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 rounded-full shrink-0">
@@ -108,7 +106,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
       )}>
         <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-border/30 min-w-0">
           <h3 className="font-semibold text-base sm:text-lg truncate" suppressHydrationWarning>
-            {t("models.filters.title") || "Filters"}
+            Filters
           </h3>
           {activeFiltersCount > 0 && (
             <Button
@@ -118,7 +116,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
               className="text-xs h-8 hover:bg-destructive/10 hover:text-destructive"
             >
               <RotateCcw className="h-3 w-3 mr-1.5" />
-              {t("models.filters.reset") || "Reset"}
+              Reset
             </Button>
           )}
         </div>
@@ -128,7 +126,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
           <div className="flex items-center gap-1.5 sm:gap-2">
             <DollarSign className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
             <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
-              {t("models.filters.priceRange") || "Price Range"}
+              Price Range
             </span>
           </div>
           <Slider
@@ -150,7 +148,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
           <div className="flex items-center gap-1.5 sm:gap-2">
             <Bed className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
             <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
-              {t("models.filters.bedrooms") || "Bedrooms"}
+              Bedrooms
             </span>
           </div>
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
@@ -179,7 +177,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
           <div className="flex items-center gap-1.5 sm:gap-2">
             <Bath className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
             <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
-              {t("models.filters.bathrooms") || "Bathrooms"}
+              Bathrooms
             </span>
           </div>
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
@@ -208,7 +206,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
           <div className="flex items-center gap-1.5 sm:gap-2">
             <Square className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground shrink-0" />
             <span className="text-xs sm:text-sm font-semibold" suppressHydrationWarning>
-              {t("models.filters.sqftRange") || "Square Feet"}
+              Square Feet
             </span>
           </div>
           <Slider
@@ -234,7 +232,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
             <div className="flex items-center gap-2">
               <Filter className="h-5 w-5 text-primary" />
               <h3 className="font-bold text-lg" suppressHydrationWarning>
-                {t("models.filters.title") || "Filters"}
+                Filters
               </h3>
             </div>
             {activeFiltersCount > 0 && (
@@ -245,7 +243,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
                 className="text-xs h-8 hover:bg-destructive/10 hover:text-destructive"
               >
                 <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
-                {t("models.filters.reset") || "Reset"}
+                Reset
               </Button>
             )}
           </div>
@@ -257,7 +255,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
                 <DollarSign className="h-4 w-4 text-primary" />
               </div>
               <label className="text-sm font-semibold cursor-pointer" suppressHydrationWarning>
-                {t("models.filters.priceRange") || "Price Range"}
+                Price Range
               </label>
             </div>
             <Slider
@@ -290,7 +288,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
                 <Bed className="h-4 w-4 text-primary" />
               </div>
               <label className="text-sm font-semibold cursor-pointer" suppressHydrationWarning>
-                {t("models.filters.bedrooms") || "Bedrooms"}
+                Bedrooms
               </label>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -322,7 +320,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
                 <Bath className="h-4 w-4 text-primary" />
               </div>
               <label className="text-sm font-semibold cursor-pointer" suppressHydrationWarning>
-                {t("models.filters.bathrooms") || "Bathrooms"}
+                Bathrooms
               </label>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -354,7 +352,7 @@ const ModelFiltersComponent = ({ filters, onFiltersChange, maxPrice, maxSqft }: 
                 <Square className="h-4 w-4 text-primary" />
               </div>
               <label className="text-sm font-semibold cursor-pointer" suppressHydrationWarning>
-                {t("models.filters.sqftRange") || "Square Feet"}
+                Square Feet
               </label>
             </div>
             <Slider
