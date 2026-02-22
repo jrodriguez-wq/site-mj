@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Office reception",
-  description: "Welcome. New client registration, schedule an appointment, or check-in.",
+  description: "Welcome. Check-in for your appointment or schedule a new one.",
   robots: "noindex, nofollow",
 };
 
