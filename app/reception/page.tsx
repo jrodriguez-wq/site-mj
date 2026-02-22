@@ -115,17 +115,30 @@ export default function ReceptionPage() {
       )}
 
       {step === "check-in" && (
-        <section className="w-full max-w-2xl flex flex-col items-center animate-in fade-in duration-300">
+        <section className="w-full max-w-4xl flex flex-col items-center animate-in fade-in duration-300">
           <button
             type="button"
             onClick={goBackToOptions}
-            className="mb-6 self-start py-3 px-5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 text-lg font-medium touch-manipulation shadow-sm"
+            className="mb-4 self-start py-3 px-5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 text-lg font-medium touch-manipulation shadow-sm"
           >
             Back
           </button>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-slate-900">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center text-slate-900">
             Check-in for your appointment
           </h2>
+          <p className="text-slate-600 mb-4 text-center text-sm md:text-base">
+            Today&apos;s appointments
+          </p>
+          <div className="w-full rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm mb-6">
+            <iframe
+               src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&mode=WEEK&showCalendars=0&showTabs=0&showTitle=0&showTz=0&src=amJvbmlsbGFAbWpuZXdlbGxob21lcy5jb20&src=YWphbnNzb25AbWpuZXdlbGxob21lcy5jb20&src=bWFyYUBtam5ld2VsbGhvbWVzLmNvbQ&src=b21vbnRveWFAbWpuZXdlbGxob21lcy5jb20&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%23795548&color=%237986cb&color=%23f6bf26&color=%230b8043" 
+              title="Office calendar"
+              className="w-full min-h-[320px] md:min-h-[500px] lg:min-h-[600px]"
+            />
+          </div>
+          <p className="text-slate-600 mb-2 text-center text-sm md:text-base font-medium">
+            Check-in form
+          </p>
           <div className="w-full bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
             <HubSpotForm
               portalId={HUBSPOT_PORTAL_ID}
