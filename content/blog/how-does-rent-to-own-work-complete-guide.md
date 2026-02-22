@@ -1,6 +1,6 @@
 ---
 title: "How Does Rent-to-Own Work? A Complete Guide"
-description: "Learn what's involved in renting a house to own it – and what to watch out for. Key takeaways, contract types, pros and cons, scams to avoid, and how to find rent-to-own homes."
+description: "Learn what's involved in renting a house to own it, and what to watch out for. Key takeaways, contract types, pros and cons, scams to avoid, and how to find rent-to-own homes."
 slug: how-does-rent-to-own-work-complete-guide
 category: Rent to Own
 date: 2026-02-09
@@ -22,7 +22,7 @@ readingTime: 16
 
 # How Does Rent-to-Own Work?
 
-Learn more about what's involved in renting a house to own it – and what to watch out for.
+Learn more about what's involved in renting a house to own it, and what to watch out for.
 
 ## Key takeaways
 
@@ -42,13 +42,13 @@ We'll review some of the basics of rent-to-own and the opportunity and pitfalls 
 
 ## What does rent-to-own mean?
 
-Rent-to-own is when a tenant signs a rental agreement or lease that includes an option — or requirement — to buy the house or condo later, usually within three years.
+Rent-to-own is when a tenant signs a rental agreement or lease that includes an option (or requirement) to buy the house or condo later, usually within three years.
 
 Under a rent-to-own agreement, the monthly rent payment would typically include an additional payment that will go toward a down payment for purchasing the home. The lease contract states the tenant's rental payment, how much of the rental payments accrue toward a down payment, and the purchase price of the home.
 
 ### Example of a rent-to-own contract
 
-Let's say you signed a rent-to-own lease that set your monthly rental payments at $1,450, with $250 of that payment going toward a down payment to purchase the home for $250,000. This would mean you'd accrue $9,000 over three years toward a down payment — or 3.6 percent of the purchase price.
+Let's say you signed a rent-to-own lease that set your monthly rental payments at $1,450, with $250 of that payment going toward a down payment to purchase the home for $250,000. This would mean you'd accrue $9,000 over three years toward a down payment, or 3.6 percent of the purchase price.
 
 Using the $9,000 savings, you could buy the home using a 3.5-percent FHA loan, or possibly even a conventional loan. As long as your pre-approval in the beginning of the process determined you could afford this, it might be a good deal.
 
@@ -114,7 +114,7 @@ You should treat renting to buy a house the same as you would if you were buying
 
 ### Cons
 
-1. **You could be on the hook for repairs and maintenance.** Because you're paying a premium on top of your rent to buy the home later, make sure you understand what you're getting for that premium before you sign anything. Some contracts may require you to maintain the property and pay for repairs — obligations that usually fall to the landlord when you're renting.
+1. **You could be on the hook for repairs and maintenance.** Because you're paying a premium on top of your rent to buy the home later, make sure you understand what you're getting for that premium before you sign anything. Some contracts may require you to maintain the property and pay for repairs, obligations that usually fall to the landlord when you're renting.
 
 2. **You'll have to treat the rental as a purchase, even if you opt not to eventually buy it.** You'll want to have the property inspected just as if you were buying it today to make sure there are no major problems that will cost you down the road. This would usually require an independent appraisal to make sure the home is worth what you've agreed to pay. You also want to be sure the owners are current on property taxes so you won't get stuck with that bill later.
 

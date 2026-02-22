@@ -59,12 +59,12 @@ export const RelatedArticles = ({ relatedArticles }: RelatedArticlesProps) => {
               </Link>
 
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg font-bold line-clamp-2 group-hover:text-primary transition-colors">
+                <CardTitle className="text-lg font-bold line-clamp-2 group-hover:text-primary transition-colors hyphens-none">
                   <Link href={`/blog/${article.slug}`}>
                     {article.title}
                   </Link>
                 </CardTitle>
-                <CardDescription className="text-sm line-clamp-2">
+                <CardDescription className="text-sm line-clamp-2 hyphens-none">
                   {article.description}
                 </CardDescription>
               </CardHeader>

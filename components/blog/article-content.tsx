@@ -22,7 +22,7 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
   });
 
   return (
-    <article className={cn("max-w-none", className)}>
+    <article className={cn("max-w-none hyphens-none", className)}>
       {/* Back link / breadcrumb - minimal */}
       <header className="mb-6 md:mb-10">
         {/* Category pill */}
@@ -33,13 +33,13 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
           </span>
         </div>
 
-        {/* Title - clear hierarchy */}
-        <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl xl:text-[3.25rem] font-black text-foreground mb-4 md:mb-5 leading-[1.12] tracking-tight max-w-4xl">
+        {/* Title - clear hierarchy, no hyphenation */}
+        <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl xl:text-[3.25rem] font-black text-foreground mb-4 md:mb-5 leading-[1.12] tracking-tight max-w-4xl hyphens-none">
           {frontmatter.title}
         </h1>
 
         {/* Description / lead */}
-        <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 md:mb-8 leading-relaxed max-w-3xl font-medium">
+        <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 md:mb-8 leading-relaxed max-w-3xl font-medium hyphens-none">
           {frontmatter.description}
         </p>
 
@@ -80,8 +80,8 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
       {/* Divider between header and body */}
       <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-8 md:mb-10" />
 
-      {/* Article body - Markdown */}
-      <div className="article-content prose prose-lg max-w-none">
+      {/* Article body - Markdown, no hyphenation for natural line breaks */}
+      <div className="article-content prose prose-lg max-w-none hyphens-none [&>*]:hyphens-none">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[rehypeRaw]}

@@ -69,7 +69,7 @@ export const BlogList = ({ posts }: BlogListProps) => {
               </Link>
               
               <CardHeader className="flex-1 relative z-10 px-5 sm:px-6 pt-5 pb-3">
-                <CardTitle className="text-lg sm:text-xl md:text-xl font-bold mb-2.5 line-clamp-2 group-hover:text-primary transition-colors duration-200 leading-tight">
+                <CardTitle className="text-lg sm:text-xl md:text-xl font-bold mb-2.5 line-clamp-2 group-hover:text-primary transition-colors duration-200 leading-tight hyphens-none">
                   <Link 
                     href={`/blog/${post.slug}`} 
                     className="hover:underline decoration-2 underline-offset-4"
@@ -79,7 +79,7 @@ export const BlogList = ({ posts }: BlogListProps) => {
                   </Link>
                 </CardTitle>
                 
-                <CardDescription className="text-sm sm:text-base text-muted-foreground line-clamp-2 leading-relaxed">
+                <CardDescription className="text-sm sm:text-base text-muted-foreground line-clamp-2 leading-relaxed hyphens-none">
                   {post.description}
                 </CardDescription>
               </CardHeader>
