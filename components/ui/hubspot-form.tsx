@@ -29,6 +29,11 @@ interface HubSpotFormProps {
    * URL a la que redirigir después de enviar el formulario
    */
   redirectUrl?: string
+  /**
+   * Callback que se ejecuta después de que HubSpot haya aceptado el envío del formulario.
+   * Útil para mostrar pantalla de agradecimiento en kioscos o recepción.
+   */
+  onFormSubmitted?: () => void
 }
 
 /**
@@ -51,6 +56,7 @@ export const HubSpotForm = ({
   region = "na1",
   target,
   redirectUrl,
+  onFormSubmitted,
 }: HubSpotFormProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const scriptLoadedRef = useRef(false)
@@ -126,6 +132,9 @@ export const HubSpotForm = ({
         if (redirectUrl) {
           formOptions.redirectUrl = redirectUrl
         }
+        if (onFormSubmitted) {
+          formOptions.onFormSubmitted = onFormSubmitted
+        }
 
         window.hbspt.forms.create(formOptions)
         formCreatedRef.current = true
@@ -145,7 +154,7 @@ export const HubSpotForm = ({
       }
       formCreatedRef.current = false
     }
-  }, [portalId, formId, region, target, redirectUrl])
+  }, [portalId, formId, region, target, redirectUrl, onFormSubmitted])
 
   return (
     <div
