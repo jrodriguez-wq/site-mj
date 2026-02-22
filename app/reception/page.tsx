@@ -2,19 +2,18 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { UserPlus, Calendar, CheckCircle, Home } from "lucide-react";
+import { Calendar, CheckCircle, Home } from "lucide-react";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { SEO_CONFIG } from "@/config/seo";
 
 const HUBSPOT_PORTAL_ID = "50215941";
 const HUBSPOT_REGION = "na1";
-const FORM_ID_NEW_CLIENT = "93068cd5-cb63-461a-b7a6-00a3ca4fcd0a";
 const FORM_ID_CHECK_IN = "7cea1132-08a4-400a-a6ac-04f38e136f28";
 const SCHEDULE_MEETING_URL = "https://meetings.hubspot.com/jrodriguez134/meeting-web";
 const IDLE_TIMEOUT_MS = 90_000;
 
-type Step = "welcome" | "options" | "new-client" | "check-in" | "success";
+type Step = "welcome" | "options" | "check-in" | "success";
 
 export default function ReceptionPage() {
   const [step, setStep] = useState<Step>("welcome");
@@ -102,14 +101,6 @@ export default function ReceptionPage() {
               <CheckCircle className="size-9 text-slate-600 shrink-0" aria-hidden />
               Check-in (existing appointment)
             </button>
-            <button
-              type="button"
-              onClick={() => setStep("new-client")}
-              className="w-full min-h-[88px] py-6 px-6 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 text-left text-xl md:text-2xl font-semibold transition-all touch-manipulation flex items-center justify-center gap-3 shadow-sm"
-            >
-              <UserPlus className="size-9 text-slate-600 shrink-0" aria-hidden />
-              New client
-            </button>
             <a
               href={SCHEDULE_MEETING_URL}
               target="_blank"
@@ -119,30 +110,6 @@ export default function ReceptionPage() {
               <Calendar className="size-9 text-slate-600 shrink-0" aria-hidden />
               Schedule an appointment
             </a>
-          </div>
-        </section>
-      )}
-
-      {step === "new-client" && (
-        <section className="w-full max-w-2xl flex flex-col items-center animate-in fade-in duration-300">
-          <button
-            type="button"
-            onClick={goBackToOptions}
-            className="mb-6 self-start py-3 px-5 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 text-lg font-medium touch-manipulation shadow-sm"
-          >
-            Back
-          </button>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-slate-900">
-            New client registration
-          </h2>
-          <div className="w-full bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
-            <HubSpotForm
-              portalId={HUBSPOT_PORTAL_ID}
-              formId={FORM_ID_NEW_CLIENT}
-              region={HUBSPOT_REGION}
-              onFormSubmitted={onFormSubmitted}
-              className="min-h-[400px] [&_.hs-form]:!text-slate-800 [&_label]:!text-slate-700 [&_input]:!bg-white [&_input]:!text-slate-900 [&_input]:!border-slate-300"
-            />
           </div>
         </section>
       )}
