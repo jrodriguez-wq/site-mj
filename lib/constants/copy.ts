@@ -53,7 +53,7 @@ const COPY = {
         "experienceValue": "15+ Years"
       },
       "title1": "Building the Future",
-      "subtitle1": "For American Familes",
+      "subtitle1": "For American Families",
       "description1": "Let's make homeownership a reality for your family.",
       "title2": "Rent to Own New Homes",
       "subtitle2": "Become a Home Owner",
