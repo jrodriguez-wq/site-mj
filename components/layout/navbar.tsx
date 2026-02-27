@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Menu, Phone, X, ChevronDown, Sparkles, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -33,7 +34,12 @@ interface NavigationItem {
   }>;
 }
 
+const WARRANTY_PATH = "/warranty";
+
 export const Navbar = () => {
+  const pathname = usePathname();
+  const isWarrantyPage = pathname === WARRANTY_PATH;
+
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -42,10 +48,11 @@ export const Navbar = () => {
   const [justClosed, setJustClosed] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  const navigationItems: NavigationItem[] = useMemo(() => [
-    { title: getCopy("nav.home"), href: "/" },
-    { title: getCopy("nav.rentToOwn"), href: "/rent-to-own" },
-    { title: getCopy("nav.scheduleAppointment"), href: "/schedule-appointment" },
+  const navigationItems: NavigationItem[] = useMemo(() => {
+    const items: NavigationItem[] = [
+      { title: getCopy("nav.home"), href: "/" },
+      { title: getCopy("nav.rentToOwn"), href: "/rent-to-own" },
+      ...(isWarrantyPage ? [] : [{ title: getCopy("nav.scheduleAppointment"), href: "/schedule-appointment" }]),
     {
       title: getCopy("nav.buyHome"),
       href: "#",
@@ -75,7 +82,9 @@ export const Navbar = () => {
         { title: getCopy("nav.contact"), href: "/contact", description: getCopy("nav.contactDesc") },
       ],
     },
-  ], []);
+    ];
+    return items;
+  }, [isWarrantyPage]);
 
   // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
@@ -451,7 +460,8 @@ export const Navbar = () => {
 
           {/* Right Side Actions - Orden: Botones → Teléfono → Idioma */}
           <div className="flex items-center gap-1.5 lg:gap-2 xl:gap-3">
-            {/* Schedule Appointment Button - Quick Action */}
+            {/* Schedule Appointment Button - Quick Action (hidden on warranty page) */}
+            {!isWarrantyPage && (
             <Button
               asChild
               className={cn(
@@ -480,6 +490,7 @@ export const Navbar = () => {
                 <span className="2xl:hidden" suppressHydrationWarning>Schedule</span>
               </a>
             </Button>
+            )}
 
             {/* Premium CTA Button */}
             <Button
@@ -635,6 +646,7 @@ export const Navbar = () => {
                     <Phone className="h-5 w-5 group-hover/phone:scale-110 transition-transform duration-300" />
                     <span className="tracking-wide">{CONTACT_INFO.phone}</span>
                   </a>
+                  {!isWarrantyPage && (
                   <Button
                     asChild
                     className="w-full bg-gradient-to-r from-primary via-primary to-primary/95 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold shadow-lg hover:shadow-xl tracking-wide rounded-xl border border-primary/20 relative overflow-hidden group/schedule"
@@ -652,6 +664,7 @@ export const Navbar = () => {
                       <span suppressHydrationWarning>{getCopy("nav.scheduleAppointment")}</span>
                     </a>
                   </Button>
+                  )}
                   <Button
                     asChild
                     className="w-full bg-gradient-to-r from-primary via-primary to-primary/95 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold shadow-lg hover:shadow-xl tracking-wide rounded-xl border border-primary/20 relative overflow-hidden group/cta"
