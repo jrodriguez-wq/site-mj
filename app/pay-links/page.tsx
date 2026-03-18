@@ -40,76 +40,8 @@ export default function PayLinksPage() {
         </div>
 
         {/* Payment Options */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Payment Option 1 - $300 */}
-          <Card className="relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full" />
-            <CardHeader className="relative">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <DollarSign className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-2xl">$300 USD Payment</CardTitle>
-              </div>
-              <CardDescription className="text-base">
-                Partial payment of $300 dollars
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="relative">
-              <div className="space-y-2">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-primary">$300</span>
-                  <span className="text-muted-foreground">USD</span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Secure and fast process
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter className="relative flex flex-col gap-4">
-              <Button
-                onClick={() =>
-                  handlePaymentRedirect(
-                    "https://50215941.hs-sites.com/hs/payments/HH7vcYjSdd4?referrer=PAYMENT_LINK"
-                  )
-                }
-                className="w-full h-12 text-base font-semibold"
-                size="lg"
-              >
-                Proceed to Payment
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="qr-300" className="border-0">
-                  <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">
-                    <div className="flex items-center gap-2">
-                      <QrCode className="w-4 h-4" />
-                      Pay with QR
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-col items-center gap-4 pt-2 pb-4">
-                      <div className="p-4 bg-white rounded-lg border-2 border-border shadow-sm">
-                        <Image
-                          src="/payments/300.png"
-                          alt="QR Code for $300 USD payment"
-                          width={250}
-                          height={250}
-                          className="w-full h-auto"
-                        />
-                      </div>
-                      <p className="text-xs text-muted-foreground text-center">
-                        Scan the QR code with your mobile device
-                      </p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </CardFooter>
-          </Card>
-
-          {/* Payment Option 2 - $500 */}
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+          {/* Payment Option - $500 */}
           <Card className="relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full" />
             <CardHeader className="relative">
