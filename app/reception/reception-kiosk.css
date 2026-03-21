@@ -1,0 +1,343 @@
+/**
+ * Reception / kiosk display (LG touch, embedded WebKit, older Chromium).
+ * Uses only hex + rgba and widely-supported gradients — no oklch, no color-mix, no backdrop-filter.
+ */
+
+.reception-kiosk-root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Prevent double-tap zoom delay on some embedded browsers */
+  touch-action: manipulation;
+}
+
+.reception-kiosk-root.rk-theme-dark {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+.reception-kiosk-root.rk-theme-light {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+/* --- Background layers (stacked absolutely inside a positioned parent) --- */
+.rk-bg-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rk-bg-dark-base {
+  background-color: #0f172a;
+  background-image: -webkit-linear-gradient(
+    left top,
+    #0f172a 0%,
+    #1e3a5f 50%,
+    #0f172a 100%
+  );
+  background-image: linear-gradient(
+    to bottom right,
+    #0f172a 0%,
+    #1e3a8a 50%,
+    #0f172a 100%
+  );
+}
+
+.rk-bg-dark-glow {
+  background-image: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(59, 130, 246, 0.2),
+    rgba(59, 130, 246, 0) 70%
+  );
+}
+
+.rk-bg-dark-dots {
+  opacity: 0.035;
+  background-image: radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.rk-bg-light-base {
+  background-color: #f1f5f9;
+  background-image: -webkit-linear-gradient(
+    left top,
+    #f1f5f9 0%,
+    #e2e8f0 50%,
+    #f1f5f9 100%
+  );
+  background-image: linear-gradient(
+    to bottom right,
+    #f1f5f9 0%,
+    #dbeafe 45%,
+    #f1f5f9 100%
+  );
+}
+
+.rk-bg-light-dots {
+  opacity: 0.03;
+  background-image: radial-gradient(circle at 1px 1px, #0f172a 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+.rk-bg-light-fade {
+  background-image: -webkit-linear-gradient(
+    top,
+    rgba(226, 232, 240, 0.35) 0%,
+    rgba(241, 245, 249, 0) 45%
+  );
+  background-image: linear-gradient(
+    to top,
+    rgba(226, 232, 240, 0.4) 0%,
+    rgba(241, 245, 249, 0) 50%
+  );
+}
+
+/* --- Panels & buttons (no backdrop-filter) --- */
+.rk-panel-glass {
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1rem;
+}
+
+.rk-option-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  min-height: 92px;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.rk-option-card:hover,
+.rk-option-card:focus-visible {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.35);
+  outline: none;
+}
+
+.rk-option-card:active {
+  transform: scale(0.99);
+}
+
+a.rk-option-card {
+  text-decoration: none;
+}
+
+.rk-option-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+
+.rk-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2.5rem;
+  min-height: 88px;
+  min-width: 260px;
+  border: none;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  color: #1e3a8a;
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  font-weight: 600;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.rk-btn-primary:hover {
+  background-color: #f1f5f9;
+}
+
+.rk-btn-primary:active {
+  transform: scale(0.99);
+}
+
+.rk-btn-back {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  border: 2px solid #cbd5e1;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+@media (min-width: 768px) {
+  .rk-btn-back {
+    width: 4rem;
+    height: 4rem;
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+}
+
+.rk-btn-back:hover {
+  background-color: #f8fafc;
+}
+
+.rk-btn-back:active {
+  transform: scale(0.95);
+}
+
+.rk-icon-back {
+  color: #334155;
+  width: 2rem;
+  height: 2rem;
+}
+
+@media (min-width: 768px) {
+  .rk-icon-back {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+.rk-success-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.rk-icon-success {
+  color: #34d399;
+  width: 4rem;
+  height: 4rem;
+}
+
+.rk-logo-invert {
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+
+/* Typography (avoid Tailwind color tokens that may compile to oklch) */
+.rk-heading-xl {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.rk-heading-lg {
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  text-align: center;
+  line-height: 1.15;
+}
+
+.rk-heading-form {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+}
+
+.rk-subtitle-dark {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  color: #cbd5e1;
+}
+
+.rk-subtitle-light {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  color: #64748b;
+}
+
+.rk-kicker {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.rk-card-surface {
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+.rk-form-shell {
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+@media (min-width: 768px) {
+  .rk-form-shell {
+    padding: 2rem;
+  }
+}
+
+/* Simple fade-in (opacity only — safe on old engines) */
+@keyframes rk-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.rk-fade-in {
+  animation: rk-fade-in 0.45s ease-out both;
+}
+
+/* HubSpot embed — force readable colors (avoid Tailwind/oklch in child selectors) */
+.reception-kiosk-root .rk-hubspot-form-wrapper .hs-form {
+  color: #1e293b !important;
+}
+
+.reception-kiosk-root .rk-hubspot-form-wrapper label {
+  color: #334155 !important;
+}
+
+.reception-kiosk-root .rk-hubspot-form-wrapper input,
+.reception-kiosk-root .rk-hubspot-form-wrapper textarea,
+.reception-kiosk-root .rk-hubspot-form-wrapper select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
