@@ -2,7 +2,7 @@
  * SEO config – single entry point. Re-exports from config/, contact/, metadata, etc.
  */
 export { SEO_CONFIG, ROBOTS_CONFIG } from "./config";
-export { CONTACT_INFO, SOCIAL_LINKS, GOOGLE_REVIEWS } from "./contact";
+export { CONTACT_INFO, SOCIAL_LINKS, GOOGLE_REVIEWS, SLD_WEBSITE_URL } from "./contact";
 export { SITEMAP_CONFIG } from "./sitemap-config";
 export { LOCATION_KEYWORDS, SERVICE_AREAS } from "./keywords-export";
 export { defaultMetadata } from "./metadata";

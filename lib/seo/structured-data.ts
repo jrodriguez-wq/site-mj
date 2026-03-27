@@ -4,7 +4,7 @@ import {
   RealEstateListingStructuredData,
   BreadcrumbStructuredData,
 } from "@/types/seo";
-import { SEO_CONFIG, CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
+import { SEO_CONFIG, CONTACT_INFO, SOCIAL_LINKS, SLD_WEBSITE_URL } from "@/config/seo";
 
 export const generateOrganizationStructuredData =
   (): OrganizationStructuredData & Record<string, unknown> => {
@@ -49,7 +49,15 @@ export const generateOrganizationStructuredData =
         SOCIAL_LINKS.youtube,
         SOCIAL_LINKS.tiktok,
         SOCIAL_LINKS.googleBusiness,
+        SLD_WEBSITE_URL, // Sister company — same founder (EEAT signal)
       ].filter(Boolean),
+      // Cross-link to parent developer (EEAT: verifiable entity relationship)
+      parentOrganization: {
+        "@type": "Organization",
+        name: "Standard Land Development",
+        url: SLD_WEBSITE_URL,
+        description: "Parent development company and land developer. Founded by Michael J. Newell.",
+      },
     } as OrganizationStructuredData & Record<string, unknown>;
   };
 

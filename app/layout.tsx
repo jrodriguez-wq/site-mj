@@ -11,6 +11,10 @@ import {
   generateLocalBusinessStructuredData,
 } from "@/lib/seo/structured-data";
 import { generateAllServiceSchemas } from "@/lib/seo/service-structured-data";
+import {
+  generatePersonSchema,
+  generateAggregateRatingSchema,
+} from "@/lib/seo/person-structured-data";
 import { ConditionalSiteLayout } from "@/components/layout/conditional-site-layout";
 // Promoción desactivada por el momento
 // import { GlobalStars } from "@/components/promotion/global-stars";
@@ -72,6 +76,8 @@ export default function RootLayout({
     generateOrganizationStructuredData(),
     generateWebSiteStructuredData(),
     generateLocalBusinessStructuredData(),
+    generatePersonSchema(),
+    generateAggregateRatingSchema(),
     ...generateAllServiceSchemas(),
   ];
 
