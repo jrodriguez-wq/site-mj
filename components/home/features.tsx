@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Home, DollarSign, Shield } from "lucide-react";
 import { getCopy } from "@/lib/constants/copy";
 import { AnimatedCard } from "@/components/ui/animated-card";
-import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/ui/animated-section";
 
 export const Features = () => {
   const features = [
@@ -38,20 +38,14 @@ export const Features = () => {
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-foreground text-background">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
-        <motion.div 
-          className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
+        <AnimatedSection className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2" suppressHydrationWarning>
             {getCopy("features.title")}
           </h2>
           <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4">
             {getCopy("features.subtitle")}
           </p>
-        </motion.div>
+        </AnimatedSection>
 
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => {

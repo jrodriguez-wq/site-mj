@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, Home, DollarSign, Award, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/ui/animated-section";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 export const WhyChooseUs = () => {
@@ -27,13 +27,7 @@ export const WhyChooseUs = () => {
         {/* Main Layout - Split Design */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Image with Integrated Stats */}
-          <motion.div 
-            className="relative order-2 lg:order-1"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <AnimatedSection className="relative order-2 lg:order-1" direction="left">
             <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src={getCloudinaryImageUrl("/img/hero/1w5a0741-1.webp")}
@@ -94,16 +88,10 @@ export const WhyChooseUs = () => {
                 );
               })}
             </div>
-          </motion.div>
+          </AnimatedSection>
 
           {/* Right Side - Content */}
-          <motion.div 
-            className="space-y-8 order-1 lg:order-2"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          >
+          <AnimatedSection className="space-y-8 order-1 lg:order-2" direction="right" delay={150}>
             <div className="space-y-6">
               <div>
                 <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.1] mb-6" suppressHydrationWarning>
@@ -141,7 +129,7 @@ export const WhyChooseUs = () => {
                 </Link>
               </Button>
             </div>
-          </motion.div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

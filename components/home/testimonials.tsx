@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote, MapPin } from "lucide-react";
 import { AnimatedCard } from "@/components/ui/animated-card";
-import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/ui/animated-section";
 import { GoogleReviewsLink } from "@/components/reviews/google-reviews-link";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
@@ -60,13 +60,7 @@ export const Testimonials = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(3,106,255,0.02),transparent_60%)] pointer-events-none" />
       
       <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
-        <motion.div 
-          className="text-center space-y-4 sm:space-y-5 md:space-y-6 mb-12 sm:mb-16 md:mb-20 lg:mb-24"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
+        <AnimatedSection className="text-center space-y-4 sm:space-y-5 md:space-y-6 mb-12 sm:mb-16 md:mb-20 lg:mb-24">
           <div className="inline-block">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight bg-gradient-to-r from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent px-2">
               What Our Families Say
@@ -79,7 +73,7 @@ export const Testimonials = () => {
           <div className="flex justify-center pt-2">
             <GoogleReviewsLink variant="outline" />
           </div>
-        </motion.div>
+        </AnimatedSection>
 
         <div className="grid gap-6 sm:gap-8 md:gap-10 lg:gap-12 md:grid-cols-2 lg:grid-cols-3">
           {TESTIMONIALS.map((testimonial, index) => (

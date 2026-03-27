@@ -102,85 +102,26 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         
-        {/* Preconnect crítico para CSS y fuentes - Mejora renderizado en Googlebot */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
-        {/* CSS crítico inline para Googlebot - CRÍTICO para indexación */}
-        {/* Esto asegura que Googlebot vea el sitio con estilos básicos */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            /* CSS crítico inline para Googlebot - Evita FOUC y mejora indexación */
-            html { 
-              font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-            }
-            body { 
-              margin: 0; 
-              padding: 0;
-              font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            }
-            * { 
-              box-sizing: border-box;
-            }
-            /* Asegurar que el contenido sea visible mientras carga el CSS completo */
-            body { visibility: visible; }
-          `
-        }} />
-        
-        {/* Preload de recursos críticos (Cloudinary) */}
-        <link
-          rel="preload"
-          href={getCloudinaryImageUrl("/img/logo.svg")}
-          as="image"
-          type="image/svg+xml"
-          fetchPriority="high"
-        />
-        {/* Preload de imagen de promoción para mejor rendimiento */}
+        {/* ── Preconnect (max 3 — only most-critical origins) ──────────────────
+            fonts.googleapis / fonts.gstatic REMOVED: next/font self-hosts fonts,
+            no CDN request is ever made. Having them wastes a connection slot.
+            Rule: only preconnect origins that load in the first 2 seconds.     */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://js.hs-scripts.com" crossOrigin="anonymous" />
+
+        {/* ── DNS prefetch for below-fold 3rd parties ───────────────────────── */}
+        <link rel="dns-prefetch" href="https://js.hsforms.net" />
+        <link rel="dns-prefetch" href="https://static.hsappstatic.net" />
+        <link rel="dns-prefetch" href="https://meetings.hubspot.com" />
+
+        {/* ── Preload LCP hero image ─────────────────────────────────────────── */}
         <link
           rel="preload"
           href={getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp")}
           as="image"
           type="image/webp"
           fetchPriority="high"
-        />
-        
-        {/* Preconnect y DNS prefetch para recursos externos */}
-        <link
-          rel="dns-prefetch"
-          href="https://js.hs-scripts.com"
-        />
-        <link
-          rel="dns-prefetch"
-          href="https://js.hsforms.net"
-        />
-        <link
-          rel="dns-prefetch"
-          href="https://static.hsappstatic.net"
-        />
-        <link
-          rel="dns-prefetch"
-          href="https://meetings.hubspot.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://js.hs-scripts.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preconnect"
-          href="https://static.hsappstatic.net"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="dns-prefetch"
-          href="https://www.googletagmanager.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://www.googletagmanager.com"
-          crossOrigin="anonymous"
         />
         
         {/* Google Analytics - Google tag (gtag.js) */}

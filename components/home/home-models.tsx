@@ -16,7 +16,8 @@ import emeliaData from "@/data/models/emelia.json";
 import duplexData from "@/data/models/duplex.json";
 import { cn } from "@/lib/utils";
 import { sortModelsByPrice } from "@/lib/models/model-utils";
-import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { AnimatedCard } from "@/components/ui/animated-card";
 
 const modelsData = sortModelsByPrice([
   louisianaData,
@@ -34,37 +35,21 @@ export const HomeModels = () => {
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
-        <motion.div 
-          className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
+        <AnimatedSection className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
             Our Floor Plans
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
             Browse our new construction homes in LaBelle and Lehigh Acres. Quality builds and flexible options including Rent to Own.
           </p>
-        </motion.div>
+        </AnimatedSection>
 
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {modelsData.map((model, index) => {
             const mainImage = getModelMainImage(model.key);
-            
+
             return (
-              <motion.div
-                key={model.key}
-                initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-              >
+              <AnimatedCard key={model.key} index={index}>
                 <div
                   className={cn(
                     "relative overflow-hidden border border-border/60 rounded-xl bg-card shadow-sm flex flex-col h-full"
@@ -181,7 +166,7 @@ export const HomeModels = () => {
                   </Button>
                 </div>
                 </div>
-              </motion.div>
+              </AnimatedCard>
             );
           })}
         </div>

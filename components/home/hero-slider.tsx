@@ -104,37 +104,49 @@ export const HeroSlider = () => {
 
   return (
     <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden pb-16">
-      {/* Background Images - Slider */}
+      {/* Background Images - Slider
+          Only render: active slide + next slide (preload).
+          Slides 2+ are NOT in the DOM until needed — reduces initial payload ~400 KiB.
+          The active slide always has priority for LCP. */}
       <div className="absolute inset-0 z-0">
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={cn(
-              "absolute inset-0 transition-opacity duration-400 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
-              index === currentIndex
-                ? "opacity-100 z-10"
-                : "opacity-0 z-0 pointer-events-none"
-            )}
-          >
-            <Image
-              src={slide.image}
-              alt={
-                index === 0
-                  ? "New construction homes in Florida - Rent to Own with $0 down payment - M.J. Newell Homes"
-                  : index === 1
-                  ? "Best home builder in Florida - Quality new homes for sale Miami, LaBelle, Lehigh Acres"
-                  : "Buy house in Florida - New homes Miami, LaBelle - Home builder Florida"
-              }
-              fill
-              className="object-cover"
-              priority={index === 0}
-              quality={90}
-              sizes="100vw"
-              suppressHydrationWarning
-            />
-          </div>
-        ))}
-        {/* Gradient Overlay - Lighter for more natural look */}
+        {heroSlides.map((slide, index) => {
+          const nextIndex = (currentIndex + 1) % heroSlides.length;
+          // Skip rendering slides that are neither active nor next
+          if (index !== currentIndex && index !== nextIndex) return null;
+
+          const alts = [
+            "New construction homes in Florida - Rent to Own with $0 down payment - M.J. Newell Homes",
+            "Best home builder in Florida - Quality new homes for sale in LaBelle and Lehigh Acres",
+            "Buy house in Florida - New homes in LaBelle - Home builder Southwest Florida",
+          ];
+
+          return (
+            <div
+              key={index}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-400 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
+                index === currentIndex
+                  ? "opacity-100 z-10"
+                  : "opacity-0 z-0 pointer-events-none"
+              )}
+            >
+              <Image
+                src={slide.image}
+                alt={alts[index] ?? alts[0]}
+                fill
+                className="object-cover"
+                // Only the visible slide is priority (LCP signal to browser)
+                priority={index === currentIndex && currentIndex === 0}
+                // Next slide: preload quietly without blocking LCP
+                loading={index === nextIndex && currentIndex !== 0 ? "eager" : undefined}
+                quality={85}
+                sizes="100vw"
+                suppressHydrationWarning
+              />
+            </div>
+          );
+        })}
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 z-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
       </div>

@@ -1,17 +1,32 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode, useEffect, useState } from "react";
+import { useRef, useEffect, useState, ReactNode } from "react";
 
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
+  /** Delay in ms before animation starts once visible */
   delay?: number;
   direction?: "up" | "down" | "left" | "right" | "fade";
 }
 
-/** Fallback: mostrar contenido tras este tiempo si useInView no dispara (tablets, pantallas táctiles) */
-const FALLBACK_VISIBLE_MS = 600;
+/**
+ * AnimatedSection — CSS-only entrance animation via IntersectionObserver.
+ *
+ * WHY no framer-motion here:
+ * - framer-motion v12 is ~180 KiB gzipped when fully parsed
+ * - This component wraps every section on the homepage (15+ instances)
+ * - Simple fade+slide doesn't need a JS animation library
+ * - CSS transitions run on the compositor thread (no main-thread work)
+ * - IntersectionObserver is available in all browsers we support
+ */
+const TRANSFORM: Record<NonNullable<AnimatedSectionProps["direction"]>, string> = {
+  up:    "translateY(28px)",
+  down:  "translateY(-28px)",
+  left:  "translateX(-28px)",
+  right: "translateX(28px)",
+  fade:  "none",
+};
 
 export const AnimatedSection = ({
   children,
@@ -19,55 +34,55 @@ export const AnimatedSection = ({
   delay = 0,
   direction = "up",
 }: AnimatedSectionProps) => {
-  const ref = useRef(null);
-  const [forceVisible, setForceVisible] = useState(false);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -80px 0px", amount: 0.01 });
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const t = setTimeout(() => setForceVisible(true), FALLBACK_VISIBLE_MS);
-    return () => clearTimeout(t);
+    const el = ref.current;
+    if (!el) return;
+
+    // Already in viewport on mount (above-fold content) — show immediately
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -60px 0px", threshold: 0.01 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  const show = isInView || forceVisible;
-
-  const variants = {
-    up: {
-      hidden: { opacity: 0, y: 30 },
-      visible: { opacity: 1, y: 0 },
-    },
-    down: {
-      hidden: { opacity: 0, y: -30 },
-      visible: { opacity: 1, y: 0 },
-    },
-    left: {
-      hidden: { opacity: 0, x: -30 },
-      visible: { opacity: 1, x: 0 },
-    },
-    right: {
-      hidden: { opacity: 0, x: 30 },
-      visible: { opacity: 1, x: 0 },
-    },
-    fade: {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1 },
-    },
-  };
+  const transform = TRANSFORM[direction];
+  const delayS = (delay / 1000).toFixed(2);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial="hidden"
-      animate={show ? "visible" : "hidden"}
-      variants={variants[direction]}
-      transition={{
-        duration: 0.35,
-        delay: show ? delay / 1000 : 0,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
       className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible || transform === "none" ? "none" : transform,
+        transition: visible
+          ? `opacity 0.35s cubic-bezier(0.25,0.1,0.25,1) ${delayS}s, transform 0.35s cubic-bezier(0.25,0.1,0.25,1) ${delayS}s`
+          : "none",
+        // Respect prefers-reduced-motion
+        ...(typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? { opacity: 1, transform: "none", transition: "none" }
+          : {}),
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
-
