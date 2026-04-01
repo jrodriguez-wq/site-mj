@@ -160,7 +160,10 @@ export const HubSpotForm = ({
     <div
       id={target || `hubspot-form-${formId}`}
       ref={containerRef}
-      className={cn("hubspot-form-container", className)}
+      className={cn(
+        "hubspot-form-container max-w-full overflow-x-auto overscroll-x-contain min-h-[280px] [-webkit-overflow-scrolling:touch]",
+        className
+      )}
     />
   )
 }

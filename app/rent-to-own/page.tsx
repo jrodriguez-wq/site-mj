@@ -40,6 +40,7 @@ import { HUBSPOT_FORMS } from "@/lib/constants";
 import { RTOGallery } from "@/components/rent-to-own/rto-gallery";
 import { LogoSlider } from "@/components/ui/logo-slider";
 import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { RENT_TO_OWN_FAQ_ITEMS } from "@/lib/seo/rent-to-own-structured-data";
 
 // Modelos disponibles para RTO por comunidad
 // LaBelle: langdon, emelia, aurora, delanie, viana, louisiana
@@ -212,7 +213,7 @@ export default function RentToOwnPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
                 >
-                  Rent to Own Your New Home
+                  Rent to Own Your New Home in Florida
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -226,7 +227,7 @@ export default function RentToOwnPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                 >
-                  Live in your new home while you save. No bank loan required to get started.
+                  New construction in LaBelle and Lehigh Acres, Southwest Florida. Live in your new home while you save. No bank loan required to get started.
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -874,6 +875,42 @@ export default function RentToOwnPage() {
                 </CardContent>
               </Card>
             </div>
+          </PageContent>
+        </section>
+      </AnimatedSection>
+
+      {/* FAQ — matches FAQPage JSON-LD in layout (same Q&A copy) */}
+      <AnimatedSection delay={0.05} direction="fade">
+        <section
+          className="py-10 md:py-14 lg:py-16 bg-background border-t border-border/50"
+          aria-labelledby="rto-faq-heading"
+        >
+          <PageContent size="lg">
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 max-w-2xl mx-auto">
+              <h2
+                id="rto-faq-heading"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight"
+                suppressHydrationWarning
+              >
+                Rent-to-Own in Florida — FAQ
+              </h2>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                Straight answers about our program, areas we serve, and how to apply.
+              </p>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto" />
+            </div>
+            <dl className="max-w-3xl mx-auto space-y-0 divide-y divide-border rounded-2xl border-2 border-border/60 bg-muted/20 px-4 py-2 sm:px-6 sm:py-4">
+              {RENT_TO_OWN_FAQ_ITEMS.map((item, index) => (
+                <div key={index} className="py-5 sm:py-6 first:pt-4 last:pb-4">
+                  <dt className="text-base sm:text-lg font-black text-foreground leading-snug pr-2">
+                    {item.question}
+                  </dt>
+                  <dd className="mt-2 sm:mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                    {item.answer}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </PageContent>
         </section>
       </AnimatedSection>

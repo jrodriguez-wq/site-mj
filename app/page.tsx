@@ -35,13 +35,16 @@ const homepageKeywords = [
 ];
 
 export const metadata = generateMetadata({
-  title: "Home Builder Florida | New Homes Miami & LaBelle | Rent to Own $0 Down | M.J. Newell Homes",
-  description: "Best home builder in Florida. New construction homes in Miami, LaBelle, and Lehigh Acres. Rent to Own program with $0 down payment. Buy house Florida. Real estate new homes. Constructora Florida. Comprar casa Florida. 1,500+ homes built. Top rated home builder.",
+  // Root layout title.template adds " | M.J. Newell Homes" — do not repeat brand here
+  title: "Florida Builder & Rent to Own $0 Down",
+  description:
+    "New construction and rent-to-own homes in LaBelle & Lehigh Acres, Florida. $0 down program. Southwest Florida home builder—1,500+ homes built.",
   canonical: SEO_CONFIG.siteUrl,
   keywords: homepageKeywords,
   openGraph: {
-    title: "Home Builder Florida | New Homes Miami & LaBelle | Rent to Own $0 Down",
-    description: "Best home builder in Florida. New construction homes in Miami, LaBelle, and Lehigh Acres. Rent to Own program with $0 down payment. Buy house Florida. Real estate new homes. 1,500+ homes built.",
+    title: "Florida Builder & Rent to Own $0 Down | M.J. Newell Homes",
+    description:
+      "LaBelle & Lehigh Acres new construction and rent to own with $0 down. Trusted Florida home builder, 1,500+ homes built.",
     url: SEO_CONFIG.siteUrl,
     type: "website",
     images: [
@@ -49,14 +52,15 @@ export const metadata = generateMetadata({
         url: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
         width: 1200,
         height: 630,
-        alt: "M.J. Newell Homes - New Construction Homes in Florida",
+        alt: "M.J. Newell Homes — new construction and rent to own in Florida",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home Builder Florida | New Homes Miami & LaBelle | Rent to Own $0 Down",
-    description: "Best home builder in Florida. New construction homes in Miami, LaBelle. Rent to Own $0 down. Buy house Florida. Real estate new homes. 1,500+ homes built.",
+    title: "Florida Builder & Rent to Own $0 Down | M.J. Newell Homes",
+    description:
+      "New construction & rent to own in LaBelle & Lehigh Acres, FL. $0 down. 1,500+ homes built.",
     images: [`${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`],
   },
 });

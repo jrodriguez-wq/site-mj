@@ -16,7 +16,7 @@ import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { cn } from "@/lib/utils";
 import { getCopy } from "@/lib/constants/copy";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 
 const OFFICES = [
@@ -226,6 +226,7 @@ export const Navbar = () => {
   const socialIcons = [
     { key: "facebook", href: SOCIAL_LINKS.facebook, icon: Facebook, label: "Facebook" },
     { key: "instagram", href: SOCIAL_LINKS.instagram, icon: Instagram, label: "Instagram" },
+    { key: "youtube", href: SOCIAL_LINKS.youtube, icon: Youtube, label: "YouTube" },
     { key: "tiktok", href: SOCIAL_LINKS.tiktok, icon: TikTokIcon, label: "TikTok" },
     { key: "linkedin", href: SOCIAL_LINKS.linkedin, icon: Linkedin, label: "LinkedIn" },
   ].filter((s) => s.href);
@@ -283,10 +284,10 @@ export const Navbar = () => {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-6 w-6 sm:h-7 sm:w-7 rounded-full flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-200 hover:scale-110"
+                    className="min-h-[44px] min-w-[44px] sm:min-h-[36px] sm:min-w-[36px] rounded-full inline-flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-200 active:scale-95"
                     aria-label={label}
                   >
-                    {key === "tiktok" ? <TikTokIcon size={12} className="sm:w-3.5 sm:h-3.5" /> : <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />}
+                    {key === "tiktok" ? <TikTokIcon size={14} className="sm:w-4 sm:h-4" /> : <Icon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />}
                   </a>
                 ))}
               </div>

@@ -16,18 +16,18 @@ const googleMapsEmbedUrl = `${googleMapsEmbedBaseUrl}&hl=en&gl=US`;
 export const LocationMap = () => {
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-12 sm:py-16 md:py-24 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl" suppressHydrationWarning>{getCopy("location.title")}</h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-lg md:text-xl" suppressHydrationWarning>{getCopy("location.subtitle")}</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Mapa */}
-          <Card className="overflow-hidden border-2">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
+          {/* Mapa — altura moderada en móvil para scroll/usabilidad */}
+          <Card className="overflow-hidden border-2 order-2 md:order-1">
             <CardContent className="p-0">
-              <div className="relative w-full h-[400px] md:h-[500px]">
+              <div className="relative w-full h-[min(55vh,420px)] sm:h-[400px] md:h-[500px] min-h-[260px]">
                 <iframe
                   src={googleMapsEmbedUrl}
                   width="100%"
@@ -37,14 +37,14 @@ export const LocationMap = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="M.J. Newell Homes Office Location - 45 Bridge St, LaBelle, FL 33935"
-                  className="absolute inset-0"
+                  className="absolute inset-0 w-full h-full max-w-full"
                 />
               </div>
             </CardContent>
           </Card>
 
-          {/* Información de Contacto */}
-          <Card className="border-2">
+          {/* Información de Contacto — primero en móvil (orden natural) */}
+          <Card className="border-2 order-1 md:order-2">
             <CardHeader>
               <CardTitle className="text-2xl flex items-center gap-2" suppressHydrationWarning>
                 <MapPin className="h-6 w-6 text-primary" />

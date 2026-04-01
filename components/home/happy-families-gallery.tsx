@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
+import { getCopy } from "@/lib/constants/copy";
 
 const familyImages = [
   { src: getCloudinaryImageUrl("/recursos/clientes/testimonio-5.webp") },
@@ -233,8 +234,8 @@ export const HappyFamiliesGallery = () => {
   }, []);
 
   const currentImages = isMobile ? mobileGalleryImages : galleryImages;
-  const title = "Happy families";
-  const subtitle = "See how we're helping families move into their new homes with flexible options and a personal touch.";
+  const title = getCopy("home.happyFamilies.title");
+  const subtitle = getCopy("home.happyFamilies.subtitle");
 
   const openGallery = useCallback((index: number) => {
     setSelectedImageIndex(index);

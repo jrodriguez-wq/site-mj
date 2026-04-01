@@ -412,7 +412,7 @@ export const RentalApplicationContent = () => {
                         className="flex items-center gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-all"
                       >
                         <Mail className="h-5 w-5 text-primary" />
-                        <span className="text-sm font-medium break-all">{CONTACT_INFO.email}</span>
+                        <span className="text-sm font-medium">{CONTACT_INFO.emailLinkLabel}</span>
                       </a>
                     </div>
                     <Button asChild className="w-full" size="lg">

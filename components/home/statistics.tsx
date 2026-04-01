@@ -7,7 +7,7 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 export const Statistics = () => {
   const stats = [
     { icon: Home, value: "500+", label: "Homes built", description: "New construction homes delivered in Southwest Florida" },
-    { icon: Users, value: "500+", label: "Happy families", description: "Families who found their path to homeownership with us" },
+    { icon: Users, value: "500+", label: "Families served", description: "Families who found their path to homeownership with us" },
     { icon: Award, value: "15+", label: "Years of experience", description: "Building quality homes and lasting relationships" },
     { icon: TrendingUp, value: "$0", label: "Down payment with RTO", description: "Rent to Own lets you move in without a large down payment" },
   ];

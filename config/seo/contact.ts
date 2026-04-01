@@ -3,6 +3,8 @@
  */
 export const CONTACT_INFO = {
   email: "customerservice@mjnewellhomes.com",
+  /** Use for visible link text — reduces plain-text email harvesting; `mailto:` still works. */
+  emailLinkLabel: "Email customer service",
   phone: "(239) 323-9797",
   phoneSecondary: "(239) 323-9696",
   phoneFormatted: "+1 (239) 323-9797",
@@ -37,7 +39,7 @@ export const SOCIAL_LINKS = {
   facebook: "https://www.facebook.com/MjNewellHomesFL/",
   instagram: "https://www.instagram.com/mjnewellhomes?igsh=emg5bHZpcnJnZnIy",
   linkedin: "https://www.linkedin.com/company/mj-newell-homes-fl/",
-  youtube: "",
+  youtube: "https://www.youtube.com/@MJNewellHomes",
   tiktok: "https://www.tiktok.com/@mjnhomesofficial?_r=1&_t=ZM-92HUBTS1UFP",
   website: "https://www.mjnewellhomes.com",
   googleBusiness: "https://maps.app.goo.gl/iPK2Xa6eG8RCyT8m8",

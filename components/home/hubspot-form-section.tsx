@@ -20,7 +20,7 @@ export const HubSpotFormSection = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center space-y-3 sm:space-y-4 mb-6 sm:mb-8">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-              Get in Touch
+              Request more information
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4" suppressHydrationWarning>
               Fill out the form below and we&apos;ll get back to you as soon as possible.

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useMemo } from "react";
-import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail, Youtube } from "lucide-react";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
 import { CURRENT_YEAR } from "@/config/version";
@@ -110,9 +110,9 @@ export const Footer = () => {
                   <p className="text-xs font-semibold text-background/90 mb-1">{getCopy("footer.email")}</p>
                   <a
                     href={`mailto:${CONTACT_INFO.email}`}
-                    className="text-sm text-background/70 hover:text-primary transition-colors break-words"
+                    className="text-sm text-background/70 hover:text-primary transition-colors min-h-[44px] inline-flex items-center"
                   >
-                    {CONTACT_INFO.email}
+                    {CONTACT_INFO.emailLinkLabel}
                   </a>
                 </div>
               </div>
@@ -127,7 +127,7 @@ export const Footer = () => {
                     href={SOCIAL_LINKS.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
+                    className="min-h-11 min-w-11 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
                     aria-label="Facebook"
                   >
                     <Facebook className="h-4 w-4" />
@@ -138,10 +138,21 @@ export const Footer = () => {
                     href={SOCIAL_LINKS.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
+                    className="min-h-11 min-w-11 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
                     aria-label="Instagram"
                   >
                     <Instagram className="h-4 w-4" />
+                  </a>
+                )}
+                {SOCIAL_LINKS.youtube && (
+                  <a
+                    href={SOCIAL_LINKS.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="min-h-11 min-w-11 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
+                    aria-label="YouTube — M.J. Newell Homes"
+                  >
+                    <Youtube className="h-4 w-4" />
                   </a>
                 )}
                 {SOCIAL_LINKS.tiktok && (
@@ -149,7 +160,7 @@ export const Footer = () => {
                     href={SOCIAL_LINKS.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
+                    className="min-h-11 min-w-11 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
                     aria-label="TikTok"
                   >
                     <TikTokIcon size={16} />
@@ -160,7 +171,7 @@ export const Footer = () => {
                     href={SOCIAL_LINKS.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
+                    className="min-h-11 min-w-11 flex items-center justify-center rounded-lg bg-background/10 hover:bg-primary/20 text-background/70 hover:text-background transition-all duration-300 hover:scale-110"
                     aria-label="LinkedIn"
                   >
                     <Linkedin className="h-4 w-4" />

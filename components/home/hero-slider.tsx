@@ -186,12 +186,26 @@ export const HeroSlider = () => {
                 transitionDelay: isTransitioning ? "0ms" : "100ms",
               }}
             >
-              {/* Title */}
+              {/* Primary H1: stable for SEO — matches homepage title & body terms */}
               <h1
                 className={cn(
-                  "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black tracking-tight leading-[0.95] sm:leading-[0.9] text-white",
+                  "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[0.95] sm:leading-[0.9] text-white",
+                  "pr-20 sm:pr-0"
+                )}
+                style={{
+                  textShadow:
+                    "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
+                }}
+                suppressHydrationWarning
+              >
+                Florida new construction &amp; rent to own — M.J. Newell Homes
+              </h1>
+
+              {/* Rotating hero lines (not H1) — visual emphasis preserved */}
+              <p
+                className={cn(
+                  "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black tracking-tight leading-[0.95] sm:leading-[0.9] text-white m-0",
                   "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                  "pr-20 sm:pr-0", // Espacio para el badge en móvil
                   isTransitioning
                     ? "translate-y-4 opacity-0"
                     : "translate-y-0 opacity-100"
@@ -201,9 +215,10 @@ export const HeroSlider = () => {
                     "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
                   transitionDelay: isTransitioning ? "0ms" : "150ms",
                 }}
+                aria-live="polite"
                 suppressHydrationWarning
               >
-                {currentSlide.title}
+                <span className="block">{currentSlide.title}</span>
                 {currentSlide.subtitle && (
                   <span
                     className={cn(
@@ -223,7 +238,7 @@ export const HeroSlider = () => {
                     {currentSlide.subtitle}
                   </span>
                 )}
-              </h1>
+              </p>
 
               {/* Description */}
               {currentSlide.description && (

@@ -173,9 +173,9 @@ export const ContactPageContent = () => {
                       </p>
                       <a
                         href={`mailto:${CONTACT_INFO.email}`}
-                        className="text-xs sm:text-[13px] md:text-[14px] font-black hover:text-primary transition-colors block break-words word-break-break-all"
+                        className="text-xs sm:text-sm md:text-base font-black hover:text-primary transition-colors inline-flex min-h-[44px] items-center"
                       >
-                        {CONTACT_INFO.email}
+                        {CONTACT_INFO.emailLinkLabel}
                       </a>
                     </div>
                   </div>

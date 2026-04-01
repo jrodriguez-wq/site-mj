@@ -6,7 +6,7 @@ import { AnimatedSection } from "@/components/ui/animated-section";
 
 export const HowItWorks = () => {
   const steps = [
-    { number: "01", title: "Get in touch", description: "Contact us online or by phone. Tell us what you're looking for and we'll guide you through the next steps." },
+    { number: "01", title: "Reach us first", description: "Contact us online or by phone. Tell us what you're looking for and we'll guide you through the next steps." },
     { number: "02", title: "Choose your home", description: "Browse our floor plans and communities. We'll help you find a home and a path to ownership that fits your situation." },
     { number: "03", title: "Apply", description: "Submit your application. For Rent to Own, we'll review your income and documents. No bank loan required to get started." },
     { number: "04", title: "Sign & move in", description: "Sign your agreement and get the keys. You'll move into your new home and start building toward ownership." },

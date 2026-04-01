@@ -160,7 +160,7 @@ export const PrivacyPolicyContent = () => {
               <p>
                 <strong>Email:</strong>{" "}
                 <a href={`mailto:${CONTACT_INFO.email}`} className="text-primary hover:underline">
-                  {CONTACT_INFO.email}
+                  {CONTACT_INFO.emailLinkLabel}
                 </a>
               </p>
               <p>
