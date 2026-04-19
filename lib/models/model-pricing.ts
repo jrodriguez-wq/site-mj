@@ -31,7 +31,7 @@ export const MODEL_PRICING: Record<Community, Record<string, ModelPricing>> = {
     aurora: {
       price: "$359,900",
       rtoPrice: "$2,900/mo",
-      sqft: "2,077",
+      sqft: "2,277",
       bedrooms: "4",
       bathrooms: "3",
       garage: "2",
