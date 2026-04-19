@@ -1,7 +1,7 @@
 {
   "key": "aurora",
   "name": "AURORA",
-  "sqft": "2,077",
+  "sqft": "2,277",
   "bedrooms": "4",
   "bathrooms": "3",
   "garage": "2-Car Garage",
@@ -26,11 +26,11 @@
       "title": "Floorplan",
       "description": "View the detailed floor plan layout.",
       "measures": {
-        "livingArea": "1,596 SQ. FT.",
+        "livingArea": "1,796 SQ. FT.",
         "entry": "22 SQ. FT.",
         "garage": "351 SQ. FT.",
         "lanai": "108 SQ. FT.",
-        "totalArea": "2,077 SQ. FT."
+        "totalArea": "2,277 SQ. FT."
       }
     },
     "standardFeatures": {
