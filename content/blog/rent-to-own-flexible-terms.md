@@ -11,7 +11,7 @@ keywords:
   - rent to own lease length
   - short term rent to own
   - customizable rent to own
-image: /recursos/rto/familia-cocina.webp
+image: /img/hero/1w5a1456-e5.webp
 readingTime: 6
 ---
 

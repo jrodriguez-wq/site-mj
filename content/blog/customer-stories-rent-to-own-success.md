@@ -11,7 +11,7 @@ keywords:
   - customer stories rent to own
   - MJ newell homes reviews
   - rent to own real stories
-image: /recursos/rto/familia-cocina.webp
+image: /recursos/rto/testimonio-19.webp
 readingTime: 8
 ---
 

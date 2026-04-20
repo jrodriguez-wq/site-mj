@@ -14,7 +14,7 @@ keywords:
   - divvy rent to own reviews
   - landis rent to own
   - homebridge rent to own
-image: /recursos/rto/familia-cocina.webp
+image: /img/hero/1w5a0754-e4.webp
 readingTime: 10
 ---
 

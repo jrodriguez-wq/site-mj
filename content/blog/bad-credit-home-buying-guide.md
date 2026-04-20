@@ -13,7 +13,7 @@ keywords:
   - rebuild credit while renting
   - bad credit mortgage alternatives
   - rent to own low credit score
-image: /recursos/rto/familia-cocina.webp
+image: /recursos/familia-casa.webp
 readingTime: 9
 ---
 

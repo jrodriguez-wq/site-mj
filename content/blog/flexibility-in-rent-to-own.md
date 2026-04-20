@@ -9,7 +9,7 @@ keywords:
   - flexible rent to own
   - rent to own lease flexibility
   - what if life changes rent to own
-image: /recursos/rto/familia-cocina.webp
+image: /img/hero/1w5a1493-e5.webp
 readingTime: 5
 ---
 

@@ -11,7 +11,7 @@ keywords:
   - rent to own qualification
   - rent to own approval time
   - rent to own requirements
-image: /recursos/rto/familia-cocina.webp
+image: /img/hero/1w5a0741-1.webp
 readingTime: 7
 ---
 

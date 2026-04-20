@@ -10,7 +10,7 @@ keywords:
   - first time home buyer rent to own
   - rent to own explained beginners
   - rent to own for new buyers
-image: /recursos/rto/familia-cocina.webp
+image: /img/hero/1w5a1489-e5.webp
 readingTime: 6
 ---
 

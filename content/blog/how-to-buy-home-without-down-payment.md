@@ -14,7 +14,7 @@ keywords:
   - rent to own programs florida
   - alternative to traditional mortgage
   - first time home buyer no savings
-image: /recursos/rto/familia-cocina.webp
+image: /recursos/familia-conduciendo.webp
 readingTime: 8
 ---
 

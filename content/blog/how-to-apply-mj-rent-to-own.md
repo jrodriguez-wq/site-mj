@@ -10,7 +10,7 @@ keywords:
   - MJ newell homes application
   - rent to own application process
   - apply for rent to own
-image: /recursos/rto/familia-cocina.webp
+image: /recursos/rio.webp
 readingTime: 5
 ---
 
