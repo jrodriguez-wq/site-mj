@@ -282,7 +282,7 @@ A: Divvy. MJ compensates with personal service.
 | If You Want Maximum Transparency | MJ Newell Homes |
 | If You Want Fastest Ownership | MJ Newell Homes (12-month express) |
 
-**Ready to start?** [Compare more options or apply now](#cta).
+**Ready to start?** [Compare more options or apply now](/rto-application).
 
 ---
 

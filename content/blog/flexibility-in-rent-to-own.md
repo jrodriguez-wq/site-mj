@@ -204,7 +204,7 @@ Rent-to-own should work for your life—not the other way around.
 
 **At MJ, it does.**
 
-Ready to own? [Apply now](#cta)
+Ready to own? [Apply now](/rto-application)
 
 ---
 

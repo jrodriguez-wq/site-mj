@@ -154,7 +154,7 @@ A: Always an option. Some clients finish their lease early after credit improves
 
 No massive down payment. No wait. Just a clear path from renting to owning.
 
-[Start Your Application](#cta) or call MJ Newell Homes at 1-800-MJ-HOMES to speak with an advisor today.
+[Start Your Application](/rto-application) or call MJ Newell Homes at 1-800-MJ-HOMES to speak with an advisor today.
 
 ---
 

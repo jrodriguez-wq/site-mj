@@ -230,7 +230,7 @@ What they had: **Commitment to a plan. Support from MJ. A timeline to success.**
 
 ## Ready to Start Your Story?
 
-[Apply Today](#cta) and join hundreds of families who've achieved homeownership through MJ Newell Homes.
+[Apply Today](/rto-application) and join hundreds of families who've achieved homeownership through MJ Newell Homes.
 
 Your story matters. Let's write it together.
 

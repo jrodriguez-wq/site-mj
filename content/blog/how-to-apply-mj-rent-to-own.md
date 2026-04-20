@@ -137,7 +137,7 @@ A: No. Free to apply.
 
 ## Ready to Apply?
 
-**[Apply Now](#cta)** — takes 5 minutes.
+**[Apply Now](/rto-application)** — takes 5 minutes.
 
 Or **[call us](#phone)** to talk first.
 

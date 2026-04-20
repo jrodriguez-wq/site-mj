@@ -212,9 +212,9 @@ A: Typically 2-3 hours. Can schedule in month 11 of 12-month path.
 
 Ready to start your timeline?
 
-**[Apply Now](#cta)** and we'll walk you through every step.
+**[Apply Now](/rto-application)** and we'll walk you through every step.
 
-Questions? **[Talk to an advisor](#cta)** — no obligation.
+Questions? **[Talk to an advisor](/rto-application)** — no obligation.
 
 ---
 

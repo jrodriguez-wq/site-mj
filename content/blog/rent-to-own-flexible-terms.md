@@ -199,9 +199,9 @@ A: 24-month balanced (65% of applicants). It balances speed, credit building, an
 
 Not sure which path fits you?
 
-**[Take Our Quiz](#cta)** to determine your best timeline.
+**[Take Our Quiz](/rto-application)** to determine your best timeline.
 
-Or **[talk to an MJ advisor](#cta)** who'll help you choose.
+Or **[talk to an MJ advisor](/rto-application)** who'll help you choose.
 
 ---
 

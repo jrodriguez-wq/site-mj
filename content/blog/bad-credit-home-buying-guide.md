@@ -194,7 +194,7 @@ A: Yes! Finish your lease early if your credit improves faster—no penalty.
 
 You've waited long enough. With MJ Newell Homes, bad credit isn't a barrier—it's a starting point.
 
-**[Apply Today](#cta)** or call **1-800-MJ-HOMES** to discuss your situation with a credit advisor.
+**[Apply Today](/rto-application)** or call **1-800-MJ-HOMES** to discuss your situation with a credit advisor.
 
 ---
 

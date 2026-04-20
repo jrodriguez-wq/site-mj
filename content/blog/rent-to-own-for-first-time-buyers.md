@@ -107,9 +107,9 @@ Before applying:
 
 ## Next Steps
 
-**Ready?** [Apply now](#cta)
+**Ready?** [Apply now](/rto-application)
 
-**Questions?** [Chat with an advisor](#chat)
+**Questions?** [Chat with an advisor](/rto-application)
 
 ---
 
