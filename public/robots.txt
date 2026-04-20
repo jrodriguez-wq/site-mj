@@ -1,38 +1,44 @@
-# robots.txt para M.J. Newell Homes
-# Optimizado para SEO y indexación completa
-
+# MJ Newell Homes — Optimized for Search Engines & Answer Engines
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /_next/
-Disallow: /admin/
-Disallow: /*.json$
+Allow: /blog/
+Allow: /sitemap.xml
 
-# Permitir acceso a recursos importantes
-Allow: /img/
-Allow: /recursos/
-Allow: /models/
-
-# Sitemap
-Sitemap: https://www.mjnewellhomes.com/sitemap.xml
-
-# Googlebot específico
+# Google
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
-# Bingbot
+# Bing
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 0
+Crawl-delay: 1
 
-# Otros bots importantes
-User-agent: Slurp
+# Answer Engine Optimizations (ChatGPT, Perplexity, Claude, etc.)
+User-agent: GPTBot
+Allow: /blog/
+Allow: /content/blog/
+
+User-agent: Perplexity-Agent
+Allow: /
+Allow: /blog/
+
+User-agent: CCBot
+Allow: /blog/
 Allow: /
 
-User-agent: DuckDuckBot
+User-agent: Claude-Web
 Allow: /
+Allow: /blog/
 
-User-agent: Baiduspider
-Allow: /
+# Disallow private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
 
+# Allow feed access
+Allow: /rss.xml
+Allow: /feed.xml
+
+# Sitemap
+Sitemap: https://mjnewellhomes.com/sitemap.xml

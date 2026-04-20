@@ -41,3 +41,4 @@ yarn-error.log*
 next-env.d.ts
 # El archivo de lock de pnpm no debe ir a github (por lo general)
 pnpm-lock.yaml
+.claude/CLAUDE.md
