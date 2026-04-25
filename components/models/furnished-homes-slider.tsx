@@ -16,7 +16,8 @@ interface FurnishedImage {
 // Textos en inglés hardcodeados para evitar problemas de cache
 const FURNISHED_EN = {
   title: "Furnished Homes",
-  subtitle: "See how our models look when fully furnished",
+  subtitle:
+    "Photos are for model illustration only. Furniture shown in images is not included with the properties.",
   scheduleAppointment: "Schedule Appointment",
   viewModel: "View Model",
 } as const;
