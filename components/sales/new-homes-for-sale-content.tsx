@@ -208,16 +208,25 @@ export function NewHomesForSaleContent() {
 
       <section className="py-16 md:py-20 bg-foreground text-background text-center">
         <div className="container mx-auto px-4 sm:px-6 max-w-2xl space-y-6">
-          <h2 className="text-2xl md:text-3xl font-bold">Ready to buy your new home?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-background">Ready to buy your new home?</h2>
           <p className="text-background/80">
             Contact our team today to see homes for sale and get personalized pricing for
             LaBelle and Lehigh Acres.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
+            <Button
+              asChild
+              size="lg"
+              className="w-full sm:w-auto px-8 py-6 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-xl"
+            >
               <Link href="/contact">Contact Us</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-background/40 text-background hover:bg-background/10">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto px-8 py-6 text-base font-semibold border-2 border-background/40 bg-transparent text-white hover:text-white hover:bg-background/10 hover:border-background/60 transition-all duration-300 rounded-xl"
+            >
               <Link href="/schedule-appointment">Schedule Appointment</Link>
             </Button>
           </div>
