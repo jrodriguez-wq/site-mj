@@ -1,32 +1,5 @@
-import { COPY } from "@/lib/constants/copy";
+import { getAllFAQItems } from "@/lib/faq/site-faq-categories";
 import { SEO_CONFIG } from "@/config/seo";
-
-type FAQItem = { question: string; answer: string };
-
-/**
- * Extracts all FAQ question/answer pairs from COPY.faq.categories for FAQPage schema.
- */
-function getFAQItemsFromCopy(): FAQItem[] {
-  const items: FAQItem[] = [];
-  const faq = COPY.faq as Record<string, unknown> | undefined;
-  if (!faq || typeof faq !== "object" || !("categories" in faq)) return items;
-
-  const categories = faq.categories as Record<string, { items?: Record<string, { question?: string; answer?: string }> }> | undefined;
-  if (!categories || typeof categories !== "object") return items;
-
-  for (const category of Object.values(categories)) {
-    const categoryItems = category?.items;
-    if (!categoryItems || typeof categoryItems !== "object") continue;
-    for (const item of Object.values(categoryItems)) {
-      const q = item?.question;
-      const a = item?.answer;
-      if (typeof q === "string" && typeof a === "string") {
-        items.push({ question: q, answer: a });
-      }
-    }
-  }
-  return items;
-}
 
 export interface FAQPageStructuredData {
   "@context": string;
@@ -40,9 +13,10 @@ export interface FAQPageStructuredData {
 
 /**
  * Generates FAQPage JSON-LD for the /faq page (rich results in Google).
+ * Uses SITE_FAQ_CATEGORIES — same content as the visible FAQ page.
  */
 export function generateFAQPageStructuredData(): FAQPageStructuredData {
-  const faqItems = getFAQItemsFromCopy();
+  const faqItems = getAllFAQItems();
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -57,9 +31,6 @@ export function generateFAQPageStructuredData(): FAQPageStructuredData {
   };
 }
 
-/**
- * Returns the FAQ page URL for the schema.
- */
 export function getFAQPageUrl(): string {
   return `${SEO_CONFIG.siteUrl}/faq`;
 }

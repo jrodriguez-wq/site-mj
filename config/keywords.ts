@@ -874,17 +874,17 @@ export const getKeywordsByCategory = (category: keyof typeof KEYWORDS): string[]
 export const getPriorityKeywords = (): string[] => {
   return [
     ...KEYWORDS.brand,
-    ...KEYWORDS.rentToOwn.slice(0, 20), // Primeras 20 de rent to own
-    ...KEYWORDS.zeroDown.slice(0, 15), // Primeras 15 de zero down
-    ...KEYWORDS.newConstruction.slice(0, 20), // Primeras 20 de new construction
-    ...KEYWORDS.labelle.slice(0, 15), // Primeras 15 de LaBelle
-    ...KEYWORDS.miami.slice(0, 20), // Primeras 20 de Miami
-    ...KEYWORDS.homeBuilder.slice(0, 20), // Primeras 20 de home builder
-    ...KEYWORDS.realEstate.slice(0, 15), // Primeras 15 de real estate
-    ...KEYWORDS.buyHouse.slice(0, 20), // Primeras 20 de buy house
-    ...KEYWORDS.floridaGeneral.slice(0, 20), // Primeras 20 de Florida general
-    ...KEYWORDS.lehighAcres.slice(0, 10), // Primeras 10 de Lehigh Acres
-    ...KEYWORDS.southwestFlorida.slice(0, 10), // Primeras 10 de Southwest Florida
+    ...KEYWORDS.buyHouse.slice(0, 25),
+    ...KEYWORDS.floridaGeneral.slice(0, 25),
+    ...KEYWORDS.newConstruction.slice(0, 20),
+    ...KEYWORDS.homeBuilder.slice(0, 20),
+    ...KEYWORDS.labelle.slice(0, 15),
+    ...KEYWORDS.lehighAcres.slice(0, 12),
+    ...KEYWORDS.realEstate.slice(0, 15),
+    ...KEYWORDS.miami.slice(0, 15),
+    ...KEYWORDS.southwestFlorida.slice(0, 10),
+    ...KEYWORDS.rentToOwn.slice(0, 12),
+    ...KEYWORDS.zeroDown.slice(0, 8),
   ];
 };
 

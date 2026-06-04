@@ -104,7 +104,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
   const displayViewMoreLabel = "View more";
   const displayModelLabel = modelLabel || "Model";
   const displayPriceFromLabel = "From";
-  const displayRtoLabel = "RTO";
+  const displayRtoLabel = "Also: Rent to Own";
   const displayFeaturesLabel = "Features";
   const addToFavoritesLabel = "Add to favorites";
   const removeFromFavoritesLabel = "Remove from favorites";

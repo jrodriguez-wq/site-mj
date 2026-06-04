@@ -41,4 +41,4 @@ Allow: /rss.xml
 Allow: /feed.xml
 
 # Sitemap
-Sitemap: https://mjnewellhomes.com/sitemap.xml
+Sitemap: https://www.mjnewellhomes.com/sitemap.xml

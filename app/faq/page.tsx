@@ -7,7 +7,7 @@ import type { StructuredData } from "@/types/seo";
 
 export const metadata = generateMetadata({
   title: "Frequently Asked Questions | M.J. Newell Homes",
-  description: "Find answers to common questions about our new construction homes, Rent to Own program, communities, and home buying process in Florida.",
+  description: "Find answers about buying new homes for sale, our Rent to Own program, communities in LaBelle and Lehigh Acres, and the home buying process in Florida.",
   canonical: `${SEO_CONFIG.siteUrl}/faq`,
   keywords: [
     "FAQ",

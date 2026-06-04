@@ -4,7 +4,7 @@ import { getLocalKeywords } from "@/config/keywords";
 
 export const metadata = generateMetadata({
   title: "About Us | M.J. Newell Homes | Southwest Florida Home Builder",
-  description: "Learn about M.J. Newell Homes, a leading home builder in Southwest Florida. Founded by Michael J. Newell, we've built 1,500+ homes in LaBelle and Lehigh Acres. Pioneers in Rent to Own programs. Quality, affordable housing for American families.",
+  description: "M.J. Newell Homes builds and sells new construction homes in LaBelle and Lehigh Acres, Florida. 1,500+ homes built. Buy your new home with transparent pricing — Rent to Own also available.",
   canonical: `${SEO_CONFIG.siteUrl}/about-us`,
   keywords: [
     ...getLocalKeywords().slice(0, 15),

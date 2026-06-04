@@ -1,26 +1,19 @@
 import { generateMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
-import { getLocalKeywords, getServiceKeywords } from "@/config/keywords";
+import { getPageKeywords } from "@/lib/seo/keyword-utils";
+import { StructuredDataComponent } from "@/components/seo/structured-data";
+import { generateModelsItemListSchema } from "@/lib/seo/models-structured-data";
 
 export const metadata = generateMetadata({
-  title: "Home Models | New Construction Homes | M.J. Newell Homes",
-  description: "Browse our complete collection of new construction home models in LaBelle and Lehigh Acres, Florida. From 2 to 5 bedrooms, find your perfect home. Starting from $200,000. View floor plans, photos, and pricing.",
+  title: "New Homes for Sale | Floor Plans LaBelle & Lehigh Acres",
+  description:
+    "Browse new construction homes for sale in LaBelle and Lehigh Acres, Florida. Seven floor plans from $316,900. Buy your new home from M.J. Newell Homes — photos, pricing, and features.",
   canonical: `${SEO_CONFIG.siteUrl}/models`,
-  keywords: [
-    ...getLocalKeywords().slice(0, 20),
-    ...getServiceKeywords().slice(0, 15),
-    "home models",
-    "new construction models",
-    "home floor plans",
-    "house models Florida",
-    "new home designs",
-    "home builder models",
-    "custom home models",
-    "affordable home models",
-  ],
+  keywords: getPageKeywords("models"),
   openGraph: {
-    title: "Home Models | M.J. Newell Homes",
-    description: "Browse our complete collection of new construction home models in LaBelle and Lehigh Acres, Florida.",
+    title: "New Homes for Sale | M.J. Newell Homes",
+    description:
+      "New construction homes for sale in LaBelle & Lehigh Acres. Louisiana, Viana, Langdon, and more — view floor plans and pricing.",
     url: `${SEO_CONFIG.siteUrl}/models`,
     type: "website",
   },
@@ -31,5 +24,10 @@ export default function ModelsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <StructuredDataComponent data={[generateModelsItemListSchema()]} />
+      {children}
+    </>
+  );
 }

@@ -29,9 +29,9 @@ const heroSlidesConfig: HeroSlideConfig[] = [
     titleKey: "hero.title1",
     subtitleKey: "hero.subtitle1",
     descriptionKey: "hero.description1",
-    primaryButtonKey: "hero.contactUs",
-    primaryButtonAction: "scroll",
-    primaryButtonScrollTarget: "quick-register-form",
+    primaryButtonKey: "hero.viewHomesForSale",
+    primaryButtonLink: "/new-homes-for-sale",
+    primaryButtonAction: "link",
     secondaryButtonKey: "hero.applyNow",
     secondaryButtonLink: "/schedule-appointment",
     secondaryButtonAction: "link",
@@ -198,7 +198,7 @@ export const HeroSlider = () => {
                 }}
                 suppressHydrationWarning
               >
-                Florida new construction &amp; rent to own — M.J. Newell Homes
+                New construction homes for sale in Florida — M.J. Newell Homes
               </h1>
 
               {/* Rotating hero lines (not H1) — visual emphasis preserved */}

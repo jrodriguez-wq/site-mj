@@ -1,6 +1,18 @@
 import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
+import { SEO_CONFIG } from "@/config/seo";
+import { SITEMAP_CONFIG } from "@/config/seo/sitemap-config";
+
+const MODEL_KEYS = [
+  "louisiana",
+  "viana",
+  "delanie",
+  "aurora",
+  "langdon",
+  "emelia",
+  "duplex",
+] as const;
 
 interface BlogPost {
   slug: string;
@@ -32,30 +44,40 @@ function getBlogPosts(): BlogPost[] {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogPosts = getBlogPosts();
-  const baseUrl = "https://mjnewellhomes.com";
+  const baseUrl = SEO_CONFIG.siteUrl.replace(/\/$/, "");
+  const now = new Date();
 
-  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+  const mainEntries: MetadataRoute.Sitemap = SITEMAP_CONFIG.mainRoutes.map(
+    (route) => ({
+      url: route.path ? `${baseUrl}${route.path}` : baseUrl,
+      lastModified: now,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    })
+  );
+
+  const modelEntries: MetadataRoute.Sitemap = MODEL_KEYS.map((model) => ({
+    url: `${baseUrl}/models/${model}`,
+    lastModified: now,
     changeFrequency: "weekly" as const,
-    priority: 0.8,
+    priority: 0.9,
   }));
 
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 1.0,
-    },
+  const blogPosts = getBlogPosts();
+  const blogEntries: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "daily" as const,
-      priority: 0.9,
+      priority: 0.85,
     },
+    ...blogPosts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
   ];
 
-  return [...staticPages, ...blogEntries];
+  return [...mainEntries, ...modelEntries, ...blogEntries];
 }

@@ -51,12 +51,14 @@ export const Navbar = () => {
   const navigationItems: NavigationItem[] = useMemo(() => {
     const items: NavigationItem[] = [
       { title: getCopy("nav.home"), href: "/" },
+      { title: getCopy("nav.homesForSale"), href: "/new-homes-for-sale" },
       { title: getCopy("nav.rentToOwn"), href: "/rent-to-own" },
       ...(isWarrantyPage ? [] : [{ title: getCopy("nav.scheduleAppointment"), href: "/schedule-appointment" }]),
     {
       title: getCopy("nav.buyHome"),
       href: "#",
       children: [
+        { title: getCopy("nav.homesForSale"), href: "/new-homes-for-sale", description: getCopy("nav.homesForSaleDesc") },
         { title: getCopy("nav.models"), href: "/models", description: getCopy("nav.modelsDesc") },
         { title: getCopy("nav.labelle"), href: "/communities/labelle", description: getCopy("communities.labelle.description") },
         { title: getCopy("nav.lehighAcres"), href: "/communities/lehigh-acres", description: getCopy("communities.lehighAcres.description") },

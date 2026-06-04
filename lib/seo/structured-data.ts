@@ -315,25 +315,35 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
     serviceType: "New Home Construction",
     // Propiedades adicionales específicas de bienes raíces
     knowsAbout: [
+      "Home Sales",
       "New Home Construction",
-      "Rent to Own",
+      "Residential Construction",
       "Real Estate",
       "Home Building",
-      "Residential Construction",
-      "Home Sales",
       "Property Development",
+      "Rent to Own",
     ],
     paymentAccepted: ["Cash", "Financing", "Rent to Own"],
     currenciesAccepted: "USD",
     // Información sobre el tipo de propiedades
     additionalType: "https://schema.org/RealEstateAgent",
     // Servicios ofrecidos
-    makesOffer: {
-      "@type": "Offer",
-      name: "Rent to Own Program",
-      description: "Rent to Own program with $0 down payment for new construction homes",
-      availability: "https://schema.org/InStock",
-    },
+    makesOffer: [
+      {
+        "@type": "Offer",
+        name: "New Homes for Sale",
+        description: "Buy new construction homes in LaBelle and Lehigh Acres, Florida",
+        availability: "https://schema.org/InStock",
+        url: `${SEO_CONFIG.siteUrl}/new-homes-for-sale`,
+      },
+      {
+        "@type": "Offer",
+        name: "Rent to Own Program",
+        description: "Rent to Own program with $0 down payment for new construction homes",
+        availability: "https://schema.org/InStock",
+        url: `${SEO_CONFIG.siteUrl}/rent-to-own`,
+      },
+    ],
   };
 };
 

@@ -522,5 +522,5 @@ Key takeaways:
 
 Remember, this is likely the largest purchase you'll make, so thorough preparation and patience are essential. Don't hesitate to ask questions and seek guidance from professionals throughout the process.
 
-For personalized guidance on buying your first home in Florida, contact M.J. Newell Homes. We specialize in helping first-time buyers navigate the process and can provide information about rent-to-own options, new construction, and available properties in Southwest Florida.
+For personalized guidance on buying your first home in Florida, [browse our new homes for sale](/new-homes-for-sale) in LaBelle and Lehigh Acres, explore [floor plans and pricing](/models), or [schedule a visit](/schedule-appointment). M.J. Newell Homes helps first-time buyers with traditional purchase and Rent to Own options.
 

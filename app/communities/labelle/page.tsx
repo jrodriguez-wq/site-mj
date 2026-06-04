@@ -211,8 +211,8 @@ export default function LaBellePage() {
         <div id="models-section" className="py-10 md:py-14 lg:py-18">
         <CommunityModelsSection
           modelKeys={labelleModels.map((m) => m.key)}
-          title="Homes in LaBelle"
-          subtitle="Browse our new construction floor plans available in LaBelle. Rent to Own and traditional purchase options."
+          title="Homes for Sale in LaBelle"
+          subtitle="New construction homes for sale in LaBelle, FL. Compare models, pricing, and features — buy outright or explore Rent to Own."
           community="labelle"
         />
         </div>

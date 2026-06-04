@@ -1,27 +1,17 @@
 import { generateMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
-import { getLocalKeywords } from "@/config/keywords";
+import { getCommunityKeywords } from "@/lib/seo/keyword-utils";
 
 export const metadata = generateMetadata({
-  title: "Lehigh Acres, Florida | New Homes & Communities | M.J. Newell Homes",
-  description: "Discover new construction homes in Lehigh Acres, Florida. Growing community with affordable housing options. View available home models and schedule a visit. Starting from $200,000.",
+  title: "New Homes for Sale in Lehigh Acres, FL",
+  description:
+    "Homes for sale in Lehigh Acres, Florida — new construction from M.J. Newell Homes near Fort Myers. Langdon, Emelia, Delanie, Duplex. Buy or Rent to Own.",
   canonical: `${SEO_CONFIG.siteUrl}/communities/lehigh-acres`,
-  keywords: [
-    ...getLocalKeywords().filter(k => k.toLowerCase().includes("lehigh")),
-    "Lehigh Acres Florida homes",
-    "new homes Lehigh Acres",
-    "Lehigh Acres new construction",
-    "Lehigh Acres home builder",
-    "homes for sale Lehigh Acres",
-    "Lehigh Acres communities",
-    "Lehigh Acres real estate",
-    "Lehigh Acres new homes",
-    "Lehigh Acres home models",
-    "Lehigh Acres Florida builder",
-  ],
+  keywords: getCommunityKeywords("lehigh-acres"),
   openGraph: {
-    title: "Lehigh Acres, Florida | New Homes & Communities | M.J. Newell Homes",
-    description: "Discover new construction homes in Lehigh Acres, Florida. Growing community with affordable housing options.",
+    title: "New Homes for Sale in Lehigh Acres, FL | M.J. Newell Homes",
+    description:
+      "Buy new construction homes for sale in Lehigh Acres, Florida. Quality builder near Fort Myers with flexible financing.",
     url: `${SEO_CONFIG.siteUrl}/communities/lehigh-acres`,
     type: "website",
   },

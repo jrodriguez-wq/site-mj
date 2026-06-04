@@ -313,13 +313,13 @@ export default function ModelsPage() {
               className="text-[clamp(1.25rem,4vw+1rem,3.75rem)] font-black tracking-tight text-foreground leading-tight max-w-full break-words px-1"
               suppressHydrationWarning
             >
-              All floor plans
+              New Homes for Sale
             </h1>
             <p
               className="mx-auto max-w-2xl text-muted-foreground text-[clamp(0.6875rem,2vw+0.5rem,1.125rem)] leading-relaxed px-2 sm:px-4 break-words"
               suppressHydrationWarning
             >
-              Browse our new construction homes in LaBelle and Lehigh Acres. Filter by community, price, beds, baths, and square footage.
+              Browse new construction homes for sale in LaBelle and Lehigh Acres. Compare floor plans, purchase prices, and features. Rent to Own available on select models.
             </p>
           </div>
 

@@ -6,6 +6,8 @@ const COPY = {
     "nav": {
       "home": "Home",
       "buyHome": "Buy a Home",
+      "homesForSale": "Homes for Sale",
+      "homesForSaleDesc": "New construction homes for sale in LaBelle & Lehigh Acres",
       "rentToOwn": "Rent to Own",
       "rentToOwnDesc": "Own your dream home with $0 down payment",
       "models": "Our Models",
@@ -52,9 +54,10 @@ const COPY = {
         "experience": "Experience",
         "experienceValue": "15+ Years"
       },
-      "title1": "Building the Future",
-      "subtitle1": "For American Families",
-      "description1": "Let's make homeownership a reality for your family.",
+      "title1": "New Homes for Sale",
+      "subtitle1": "In Southwest Florida",
+      "description1": "Buy a brand-new construction home in LaBelle or Lehigh Acres. Seven floor plans, transparent pricing, and flexible financing.",
+      "viewHomesForSale": "View Homes for Sale",
       "title2": "Rent to Own New Homes",
       "subtitle2": "Become a Home Owner",
       "description2": "Live in your new home while building equity. Start your journey to homeownership today.",
@@ -256,8 +259,28 @@ const COPY = {
       "registerButton": "Register Now - Interested in Our Programs"
     },
     "statistics": {
-      "title": "Building Dreams, One Home at a Time",
-      "subtitle": "Our numbers speak for themselves",
+      "title": "Our Numbers Speak for Themselves",
+      "subtitle": "Building quality new homes for sale across Southwest Florida",
+      "homesBuilt": {
+        "value": "1,500+",
+        "label": "Homes built",
+        "description": "New construction homes delivered in Southwest Florida"
+      },
+      "models": {
+        "value": "7",
+        "label": "Models for sale",
+        "description": "Single-family and duplex floor plans available now"
+      },
+      "startingPrice": {
+        "value": "$316K",
+        "label": "Homes from",
+        "description": "Transparent pricing on new construction homes for sale"
+      },
+      "rto": {
+        "value": "$0",
+        "label": "Down with RTO",
+        "description": "Rent to Own available — flexible path to ownership"
+      },
       "stats": {
         "homesBuilt": {
           "value": "1,500+",
@@ -270,14 +293,14 @@ const COPY = {
           "description": "Families living their American dream"
         },
         "yearsExperience": {
-          "value": "Pioneers",
-          "label": "Rent to Own",
-          "description": "Pioneers in the Rent to Own program"
+          "value": "7",
+          "label": "Models for sale",
+          "description": "New construction floor plans available now"
         },
         "downPayment": {
           "value": "$0",
-          "label": "Down Payment",
-          "description": "Homeownership with $0 down payment"
+          "label": "Down with RTO",
+          "description": "Rent to Own path to ownership"
         }
       }
     },
@@ -655,14 +678,15 @@ const COPY = {
       "callNow": "Call now"
     },
     "cta": {
-      "title": "Ready to Start Your Homeownership Journey?",
-      "subtitle": "Get free advice on the buying process and discover how you can own your dream home with $0 down payment through our Rent to Own program.",
-      "applyNow": "Apply Now - $0 Down",
+      "title": "Ready to Buy Your New Home?",
+      "subtitle": "Browse new construction homes for sale in LaBelle and Lehigh Acres. Schedule a visit or explore flexible financing including our Rent to Own program.",
+      "viewHomesForSale": "View Homes for Sale",
+      "applyNow": "Rent to Own — $0 Down",
       "schedule": "Schedule a Consultation",
       "quickRegister": "Quick Register - Interested in Our Programs"
     },
     "carousel": {
-      "message": "Own Your Dream Home with $0 Down Payment - Rent to Own Program Available Now"
+      "message": "New Construction Homes for Sale in LaBelle & Lehigh Acres — Buy or Rent to Own with $0 Down"
     },
     "contactForm": {
       "title": "Contact Us",
@@ -1227,7 +1251,7 @@ const COPY = {
       }
     },
     "footer": {
-      "description": "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Flexible options such as rento-to-own and $0 down payment purchases.",
+      "description": "New construction homes for sale in LaBelle and Lehigh Acres, Southwest Florida. Buy your dream home from a trusted builder — flexible financing including Rent to Own.",
       "address": "Address",
       "phone": "Phone",
       "email": "Email",

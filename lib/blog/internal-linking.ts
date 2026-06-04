@@ -58,8 +58,13 @@ export const getContextualLinks = (keywords: string[]): InternalLink[] => {
     });
   }
   
-  // Home buying related
-  if (keywords.some((k) => /home.?buy|first.?time|buying.?home|homeowner/i.test(k))) {
+  // Home buying / sales related
+  if (keywords.some((k) => /home.?buy|first.?time|buying.?home|homeowner|for.?sale|purchase|new.?home/i.test(k))) {
+    links.push({
+      href: "/new-homes-for-sale",
+      text: "New Homes for Sale",
+      description: "Browse new construction homes for sale in LaBelle and Lehigh Acres",
+    });
     links.push({
       href: "/blog/first-time-home-buyer-guide-complete-checklist",
       text: "First-Time Home Buyer Guide",
@@ -67,8 +72,8 @@ export const getContextualLinks = (keywords: string[]): InternalLink[] => {
     });
     links.push({
       href: "/models",
-      text: "View Our Models",
-      description: "Explore our new construction home models",
+      text: "View Floor Plans",
+      description: "Explore models and purchase pricing",
     });
   }
   
@@ -120,14 +125,19 @@ export const getContextualLinks = (keywords: string[]): InternalLink[] => {
 export const getServiceLinks = (): InternalLink[] => {
   return [
     {
-      href: "/rent-to-own",
-      text: "Rent to Own Program",
-      description: "$0 down payment program",
+      href: "/new-homes-for-sale",
+      text: "Homes for Sale",
+      description: "New construction homes for sale in Southwest Florida",
     },
     {
       href: "/models",
-      text: "Our Home Models",
-      description: "Browse our new construction homes",
+      text: "Floor Plans & Models",
+      description: "Browse models, photos, and pricing",
+    },
+    {
+      href: "/rent-to-own",
+      text: "Rent to Own Program",
+      description: "$0 down payment program",
     },
     {
       href: "/communities/labelle",

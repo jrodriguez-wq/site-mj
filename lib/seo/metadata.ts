@@ -77,24 +77,25 @@ export const generatePropertyMetadata = (
   price?: string,
   location?: string
 ): Metadata => {
-  const title = `${propertyName} Home Model | ${SEO_CONFIG.siteName}`;
-  const fullDescription = `${description} ${location ? `Available in ${location}.` : ""} ${price ? `Starting from ${price}.` : ""} View floor plans, photos, and pricing.`;
+  const title = `${propertyName} Home for Sale | New Construction`;
+  const fullDescription = `Buy the ${propertyName} new construction home for sale in Southwest Florida. ${description.slice(0, 120)}${price ? ` Starting from ${price}.` : ""} View floor plan, photos, and standard features. LaBelle & Lehigh Acres.`;
 
   return generateMetadata({
     title,
-    description: fullDescription,
+    description: fullDescription.slice(0, 160),
     keywords: [
-      propertyName,
-      `${propertyName} home model`,
+      `${propertyName} home for sale`,
+      `${propertyName} new home`,
       `${propertyName} floor plan`,
-      "home model",
-      "new construction home",
-      "home floor plan",
-      "new home design",
-      "custom home",
-      "home builder",
-      ...(location ? [`${propertyName} ${location}`, `homes in ${location}`] : []),
-      ...(price ? [`homes from ${price}`, `affordable homes`] : []),
+      "new construction home for sale",
+      "homes for sale Florida",
+      "buy new home Florida",
+      "new home LaBelle",
+      "new home Lehigh Acres",
+      propertyName,
+      "home builder Florida",
+      ...(location ? [`${propertyName} ${location}`, `homes for sale ${location}`] : []),
+      ...(price ? [`homes from ${price}`, `new home ${price}`] : []),
     ],
     canonical: `${SEO_CONFIG.siteUrl}/models/${propertyName.toLowerCase()}`,
     openGraph: {

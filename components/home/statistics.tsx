@@ -1,20 +1,40 @@
 "use client";
 
-import { Home, Users, Award, TrendingUp } from "lucide-react";
+import { Home, Users, Award, DollarSign } from "lucide-react";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { getCopy } from "@/lib/constants/copy";
 
 export const Statistics = () => {
   const stats = [
-    { icon: Home, value: "500+", label: "Homes built", description: "New construction homes delivered in Southwest Florida" },
-    { icon: Users, value: "500+", label: "Families served", description: "Families who found their path to homeownership with us" },
-    { icon: Award, value: "15+", label: "Years of experience", description: "Building quality homes and lasting relationships" },
-    { icon: TrendingUp, value: "$0", label: "Down payment with RTO", description: "Rent to Own lets you move in without a large down payment" },
+    {
+      icon: Home,
+      value: getCopy("statistics.homesBuilt.value"),
+      label: getCopy("statistics.homesBuilt.label"),
+      description: getCopy("statistics.homesBuilt.description"),
+    },
+    {
+      icon: Users,
+      value: getCopy("statistics.models.value"),
+      label: getCopy("statistics.models.label"),
+      description: getCopy("statistics.models.description"),
+    },
+    {
+      icon: DollarSign,
+      value: getCopy("statistics.startingPrice.value"),
+      label: getCopy("statistics.startingPrice.label"),
+      description: getCopy("statistics.startingPrice.description"),
+    },
+    {
+      icon: Award,
+      value: getCopy("statistics.rto.value"),
+      label: getCopy("statistics.rto.label"),
+      description: getCopy("statistics.rto.description"),
+    },
   ];
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-foreground text-background relative overflow-hidden">
-      {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-10" aria-hidden>
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
@@ -24,10 +44,10 @@ export const Statistics = () => {
       <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
         <AnimatedSection className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-background px-2">
-            Our Numbers Speak for Themselves
+            {getCopy("statistics.title")}
           </h2>
           <p className="mx-auto max-w-[700px] text-background/80 text-base sm:text-lg md:text-xl px-4">
-            The impact we&apos;ve made in Southwest Florida
+            {getCopy("statistics.subtitle")}
           </p>
         </AnimatedSection>
 
@@ -36,7 +56,6 @@ export const Statistics = () => {
             const Icon = stat.icon;
             return (
               <AnimatedCard key={stat.label} index={index}>
-                {/* hover lift handled by AnimatedCard via CSS — no extra motion.div needed */}
                 <div className="text-center space-y-3 sm:space-y-4 p-4 sm:p-6 rounded-xl bg-background/10 hover:bg-background/15 backdrop-blur-sm border border-background/20 hover:border-primary/30 transition-all duration-200 hover:shadow-lg hover:shadow-primary/20">
                   <div className="flex justify-center">
                     <div className="p-3 sm:p-4 bg-primary/30 rounded-full border border-primary/40 shadow-lg shadow-primary/20">

@@ -24,6 +24,13 @@ export const ArticleCTA = ({ category, keywords = [], showBlogLink = true }: Art
       description: string;
     }> = [
       {
+        href: "/new-homes-for-sale",
+        label: "Homes for Sale",
+        icon: Home,
+        variant: "default",
+        description: "Browse new construction homes for sale",
+      },
+      {
         href: "/schedule-appointment",
         label: "Schedule Appointment",
         icon: Calendar,
@@ -34,7 +41,7 @@ export const ArticleCTA = ({ category, keywords = [], showBlogLink = true }: Art
         href: "/rent-to-own",
         label: "Rent to Own Program",
         icon: Home,
-        variant: "default",
+        variant: "outline",
         description: "$0 down payment program",
       },
     ];
@@ -72,8 +79,18 @@ export const ArticleCTA = ({ category, keywords = [], showBlogLink = true }: Art
       }
     }
 
-    // Home buying related
-    if (/home.?buy|first.?time|buying.?home|homeowner/i.test(keywordString)) {
+    // Home buying / sales related
+    if (/home.?buy|first.?time|buying.?home|homeowner|for.?sale|purchase|new.?construction/i.test(keywordString)) {
+      if (!existingHrefs.has("/new-homes-for-sale")) {
+        linkList.unshift({
+          href: "/new-homes-for-sale",
+          label: "New Homes for Sale",
+          icon: Home,
+          variant: "default",
+          description: "See models and purchase pricing",
+        });
+        existingHrefs.add("/new-homes-for-sale");
+      }
       if (!existingHrefs.has("/blog/first-time-home-buyer-guide-complete-checklist")) {
         linkList.push({
           href: "/blog/first-time-home-buyer-guide-complete-checklist",

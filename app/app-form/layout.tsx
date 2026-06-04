@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Application Form",
+  robots: "noindex, nofollow",
+};
+
 export default function AppFormLayout({
   children,
 }: {

@@ -2,7 +2,9 @@
 
 import { useState, useMemo, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { Bed, Bath, Square, Car, ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
+import Link from "next/link";
+import { Bed, Bath, Square, Car, ChevronLeft, ChevronRight, X, Maximize2, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -213,6 +215,9 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                     >
                       {modelName}
                     </h1>
+                    <p className="text-sm sm:text-base md:text-lg text-white/90 mt-2 font-medium" suppressHydrationWarning>
+                      New home for sale — LaBelle &amp; Lehigh Acres, FL
+                    </p>
                   </div>
                 </div>
               </div>
@@ -234,22 +239,31 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                   {price}
                 </CardTitle>
-                {modelData.rtoAvailable !== false && (
-                  <p className="text-sm sm:text-base md:text-lg font-semibold text-emerald-600 dark:text-emerald-400 mt-2">
-                    $0 Down
-                  </p>
-                )}
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1" suppressHydrationWarning>
+                  Purchase price — new construction for sale
+                </p>
               </CardHeader>
               <CardContent className="p-5 sm:p-6 pt-0 space-y-4">
-                {/* RTO Price Section - solo modelos con programa RTO */}
+                <div className="flex flex-col gap-2">
+                  <Button asChild className="w-full font-semibold">
+                    <Link href="/schedule-appointment">
+                      <Calendar className="mr-2 h-4 w-4" aria-hidden />
+                      Schedule a visit
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href="/contact">Contact to buy</Link>
+                  </Button>
+                </div>
                 {rtoPrice && (
                   <div className="pt-4 border-t border-border/50">
-                    <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2" suppressHydrationWarning>
-                      {getCopy("rentToOwn.hero.title")} Program
+                    <p className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-1" suppressHydrationWarning>
+                      Also available: Rent to Own
                     </p>
-                    <p className="text-xl sm:text-2xl md:text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                    <p className="text-lg sm:text-xl font-bold text-foreground">
                       {rtoPrice}
                     </p>
+                    <p className="text-xs text-muted-foreground mt-1">Flexible path — $0 down to start</p>
                   </div>
                 )}
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>

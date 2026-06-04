@@ -140,9 +140,9 @@ export const generateHomeSalesServiceSchema = (): StructuredData => {
       name: "Home Sales",
       description: "Purchase new construction homes",
       availability: "https://schema.org/InStock",
-      url: `${SEO_CONFIG.siteUrl}/models`,
+      url: `${SEO_CONFIG.siteUrl}/new-homes-for-sale`,
     },
-    url: `${SEO_CONFIG.siteUrl}/models`,
+    url: `${SEO_CONFIG.siteUrl}/new-homes-for-sale`,
   };
 };
 

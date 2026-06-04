@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contractor Application",
+  robots: "noindex, nofollow",
+};
+
 export default function AppContractorLayout({
   children,
 }: {

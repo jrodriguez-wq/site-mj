@@ -196,8 +196,8 @@ export default function LehighAcresPage() {
         <div id="models-section" className="py-10 md:py-14 lg:py-18">
         <CommunityModelsSection
           modelKeys={lehighAcresModels.map((m) => m.key)}
-          title="Homes in Lehigh Acres"
-          subtitle="Browse our new construction floor plans available in Lehigh Acres. Rent to Own and traditional purchase options."
+          title="Homes for Sale in Lehigh Acres"
+          subtitle="New construction homes for sale in Lehigh Acres, FL. Compare models and pricing — buy or explore Rent to Own."
           community="lehigh-acres"
         />
         </div>

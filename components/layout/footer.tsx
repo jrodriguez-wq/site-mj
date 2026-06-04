@@ -18,6 +18,7 @@ export const Footer = () => {
     {
       title: getCopy("footer.sections.properties"),
       links: [
+        { label: getCopy("nav.homesForSale"), href: "/new-homes-for-sale" },
         { label: getCopy("nav.models"), href: "/models" },
         { label: getCopy("footer.links.duplex"), href: "/models/duplex" },
         { label: getCopy("nav.rentToOwn"), href: "/rent-to-own" },

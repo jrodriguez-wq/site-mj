@@ -37,10 +37,10 @@ export const HomeModels = () => {
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
         <AnimatedSection className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-            Our Floor Plans
+            New Homes for Sale
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            Browse our new construction homes in LaBelle and Lehigh Acres. Quality builds and flexible options including Rent to Own.
+            Browse new construction homes for sale in LaBelle and Lehigh Acres. View pricing and floor plans — purchase or Rent to Own.
           </p>
         </AnimatedSection>
 

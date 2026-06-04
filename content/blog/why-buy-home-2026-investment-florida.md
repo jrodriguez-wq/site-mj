@@ -486,7 +486,7 @@ Key takeaways:
 
 The economic conditions of 2026, combined with the unique opportunities in Southwest Florida, make this an ideal time to take action toward homeownership. Don't let indecision cost you another year of wealth building.
 
-Contact M.J. Newell Homes today to begin your journey toward financial security and generational wealth through homeownership. Your future self will thank you for the decision you make today.
+[Browse new homes for sale](/new-homes-for-sale) in LaBelle and Lehigh Acres, compare [floor plans](/models), or [schedule a visit](/schedule-appointment). Contact M.J. Newell Homes today to begin your journey toward homeownership.
 
 **Service Areas:** LaBelle, Clewiston, Lehigh Acres, Fort Myers, and all of Hendry and Lee Counties.
 

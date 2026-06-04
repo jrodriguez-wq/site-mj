@@ -6,7 +6,7 @@ import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 export const SEO_CONFIG = {
   siteName: "M.J. Newell Homes",
   siteDescription:
-    "Building American Homes in South Florida. New constructions in LaBelle and Lehigh Acres. Rent to Own programs with $0 down payment. Your dream home, ideal for your family.",
+    "New construction homes for sale in Southwest Florida. Buy your dream home in LaBelle and Lehigh Acres from M.J. Newell Homes. Quality builder with flexible financing including Rent to Own.",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.mjnewellhomes.com",
   defaultLocale: "en",
   locale: "en_US",
@@ -35,6 +35,12 @@ export const ROBOTS_CONFIG = {
     "/admin/",
     "/private/",
     "/internal-team",
+    "/reception",
+    "/app-form",
+    "/app-cert",
+    "/app-contractor",
+    "/thank-you",
+    "/pay-links",
     "/_next/static/chunks/pages/_error",
     "/_next/static/chunks/pages/_app",
   ],
