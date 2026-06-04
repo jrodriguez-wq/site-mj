@@ -26,7 +26,6 @@
     "floorplan": {
       "title": "Floorplan",
       "description": "View the detailed floor plan layout.",
-      "image": "/modelos-optimized/duplex/interior/duplex-plano.webp",
       "measures": {
         "unit1": {
           "livingArea": "1,150 SQ. FT.",
