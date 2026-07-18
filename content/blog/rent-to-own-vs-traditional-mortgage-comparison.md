@@ -81,7 +81,7 @@ Rent-to-own (also called lease-option or lease-purchase) is an alternative finan
 ### How Rent-to-Own Works
 
 **The Process:**
-1. Pay an option fee (typically 3% to 5% of purchase price)
+1. Apply and get approved with $0 down
 2. Sign a lease-option agreement
 3. Pay monthly rent (portion may go toward purchase)
 4. Use lease period to improve credit and save
@@ -90,7 +90,7 @@ Rent-to-own (also called lease-option or lease-purchase) is an alternative finan
 
 **Key Characteristics:**
 - Lease period before purchase (typically 1 to 3 years)
-- Lower upfront costs (option fee vs. full down payment)
+- Lower upfront costs ($0 down vs. full down payment)
 - More flexible qualification requirements
 - Rent credits accumulate toward purchase
 - Purchase price locked in at lease signing
@@ -100,8 +100,7 @@ Rent-to-own (also called lease-option or lease-purchase) is an alternative finan
 
 **Lease-Option:**
 - Right, but not obligation, to purchase
-- Can walk away at end of lease
-- Forfeit option fee if not purchasing
+- Can walk away at end of lease per agreement terms
 - More flexible for buyers
 
 **Lease-Purchase:**
@@ -127,16 +126,16 @@ Example for $250,000 home:
 - **Total: $23,000**
 
 **Rent-to-Own:**
-- Option fee: 3% to 5% of purchase price
+- $0 down to start (M.J. Newell Homes program)
 - First month's rent: Varies
 - Security deposit: Typically one month's rent
-- **Total upfront: 3% to 7% of purchase price**
+- **Total upfront: primarily first month’s rent and any deposits in your agreement**
 
 Example for $250,000 home:
-- 4% option fee: $10,000
+- Down to start: $0
 - First month's rent: $1,500
 - Security deposit: $1,500
-- **Total: $13,000**
+- **Total to move in: about $3,000** (illustrative; exact amounts depend on the home and agreement)
 
 **Winner for Upfront Costs: Rent-to-Own** - Significantly lower initial investment required.
 
@@ -265,13 +264,13 @@ Example for $250,000 home:
 - **Total over 30 years: $700,160**
 
 **Rent-to-Own ($250,000 home, 3-year lease, then purchase):**
-- Option fee: $10,000
+- Down to start: $0
 - Monthly rent (36 months): $64,800
 - Rent credits accumulated: $12,960
-- Down payment at purchase (using credits): $37,040
+- Down payment at purchase (using credits + savings): $37,040
 - Closing costs: $7,500
 - Monthly payment after purchase (27 years): $1,806
-- **Total over 30 years: $710,300** (approximately $10,140 more)
+- **Total over 30 years: approximately $700,300** (illustrative)
 
 Note: This comparison assumes the buyer qualifies for a mortgage after the lease period. If the buyer wouldn't qualify for a traditional mortgage initially, rent-to-own may be the only viable path to ownership.
 
@@ -425,9 +424,9 @@ Rent-to-own is ideal when:
 ### Rent-to-Own Risks
 
 **Financial Risks:**
-- Option fee may be forfeited
-- Rent credits lost if not purchasing
-- Higher total cost over time
+- Agreement terms must be understood before signing
+- Rent credits lost if not purchasing (per contract)
+- Higher total cost over time is possible
 - May not qualify for mortgage at end
 
 **Contract Risks:**

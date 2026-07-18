@@ -37,17 +37,15 @@ Think of it as a "test drive" for your future home. It provides a structured pat
 
 To understand the process, we break it down into four essential steps:
 
-#### 1. The Option Fee (Securing Your Right)
+#### 1. Apply and Get Approved ($0 Down)
 
-The tenant pays an upfront, one-time fee (often referred to as "consideration"). This creates a binding contract that prevents the owner from selling the home to anyone else during the lease term.
+With M.J. Newell Homes, you can start Rent-to-Own with **$0 down payment**. You submit an application with proof of income and documents; once approved, you lock in the home and the future purchase price.
 
-This fee is typically much smaller than a traditional down payment, usually ranging from 3% to 5% of the purchase price. For example, on a $200,000 home, the option fee might be $6,000 to $10,000, compared to a traditional 20% down payment of $40,000.
-
-The option fee serves multiple purposes:
-- It creates a legally binding contract
-- It demonstrates your serious intent to purchase
-- It reserves the property exclusively for you
-- It protects you from the home being sold to another buyer
+Getting started:
+- No large upfront deposit required to begin
+- Stable, verifiable income is the priority
+- Approval focuses on your ability to handle monthly payments
+- Your purchase price is locked when you sign
 
 #### 2. The Monthly Rent and Premium
 
@@ -115,7 +113,7 @@ This stability is particularly valuable for families with children in school, as
 
 #### Commitment Required
 
-If you decide not to buy the home at the end of the term, you typically forfeit the upfront Option Fee. This is why it's important to be confident that you want to purchase the home before entering into a rent-to-own agreement.
+If you decide not to buy the home at the end of the term, you can leave when your agreement ends. This is why it's important to be confident that you want to purchase the home before entering into a rent-to-own agreement.
 
 That same commitment works in your favor: the seller cannot sell the property to someone else during your lease term.
 
@@ -156,10 +154,10 @@ Our inventory includes:
 
 #### Professional Negotiation
 
-We help structure the deal so that the Option Fee and Rent Credits work in your favor. Our team has experience negotiating terms that benefit both parties and create a win-win situation.
+We help structure the deal so that Rent Credits and payment terms work in your favor. Our team has experience negotiating terms that benefit both parties and create a win-win situation.
 
 We ensure:
-- Fair option fees that protect your investment
+- Transparent terms with $0 down to start
 - Reasonable rent credits that accelerate your path to ownership
 - Clear terms that protect your rights
 - Favorable purchase prices locked in at signing
@@ -228,7 +226,7 @@ During your lease term, we provide:
 
 ### What happens if I decide not to buy the house?
 
-You are not obligated to buy. You can walk away at the end of the lease, though you will generally forfeit the initial Option Fee and any rent credits accumulated. This is why it's important to be confident in your decision before entering the agreement.
+You are not obligated to buy. You can walk away at the end of the lease per your agreement terms. This is why it's important to be confident in your decision before entering the agreement.
 
 ### Can I do Rent-to-Own with bad credit?
 
@@ -244,7 +242,7 @@ This price lock is particularly valuable in Florida's competitive real estate ma
 
 ### How much down payment do I need upfront?
 
-Instead of a full 20% down payment, a Rent-to-Own agreement usually requires a smaller Option Fee (typically 3% to 5% of the purchase price), making it much easier to get started. For example, on a $200,000 home, you might need $6,000 to $10,000 upfront instead of $40,000.
+With M.J. Newell Homes Rent-to-Own, you can get started with **$0 down payment**—no large upfront deposit required. You focus on affordable monthly payments while a portion builds toward your future purchase.
 
 Additionally, your monthly rent credits accumulate toward your down payment, reducing the amount you'll need at closing.
 
@@ -263,7 +261,7 @@ Common improvements that are usually allowed:
 If you've fulfilled your obligations under the lease but still can't secure financing, you have a few options:
 - Extend the lease term if both parties agree
 - Explore alternative financing options (FHA loans, VA loans, etc.)
-- Walk away (forfeiting the Option Fee and any rent credits)
+- Walk away according to your agreement terms
 
 This is why it's important to use the lease term to actively work on improving your credit and financial situation. We provide resources and guidance to help you get mortgage-ready.
 

@@ -65,7 +65,7 @@ We build and finance new homes in LaBelle, Lehigh Acres, and Fort Myers with a c
 
 ## Your 12-month path with M.J. Newell Homes
 
-1. **Month 0:** Lock home + option fee (typically 3–5%).  
+1. **Month 0:** Apply, get approved, and lock your home with $0 down.  
 2. **Months 1–3:** On-time payments, credit clean-up, income docs organized.  
 3. **Months 4–9:** Build rent credits, stay within spending plan, no new debt.  
 4. **Months 10–12:** Lender pre-approval, appraisal, close on your home.  
@@ -76,7 +76,6 @@ Need a deeper dive? Read our full guide: [The Ultimate Guide to Rent-to-Own in F
 
 - ID + proof of income (pay stubs or 1099 statements).
 - Last 2–3 months of bank statements.
-- Proof of option fee funds.
 - If self-employed: last year’s tax return + P&L.
 
 ## Where we build

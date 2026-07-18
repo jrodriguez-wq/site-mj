@@ -43,7 +43,7 @@ There are several factors to consider when planning a move. Buying outright requ
 
 ### Consider when doing Rent to Own
 
-- **Can you afford the upfront costs** of entering a rent-to-own agreement (e.g., option fee, first month’s rent)?
+- **Can you afford the monthly payment** of entering a rent-to-own agreement (first month’s rent and ongoing rent)?
 - **Can you afford the monthly payment**, which may include a rent credit that goes toward your future down payment?
 - **Will you have enough** for ongoing expenses such as utilities, and any maintenance or fees spelled out in your contract?
 

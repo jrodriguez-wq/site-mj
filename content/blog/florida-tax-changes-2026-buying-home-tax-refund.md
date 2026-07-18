@@ -202,7 +202,7 @@ Your tax refund can often cover the entire down payment and closing costs. For e
 
 **Step 3: Rent-to-Own Options**
 
-If your refund isn't quite enough for a full down payment yet, M.J. Newell Homes offers Lease Option programs. Use your refund to pay the "Option Fee" (typically 3% to 5% of purchase price) and lock in your home price today while you rebuild your credit or save additional funds.
+If your refund isn't quite enough for a full down payment yet, M.J. Newell Homes offers Rent-to-Own with **$0 down**. Use your refund toward first month’s rent or savings, lock in your home price, and move in while you rebuild credit or save additional funds.
 
 **The Strategic Advantage:**
 
@@ -231,10 +231,10 @@ Don't spend your tax refund on a car that depreciates. Spend it on an M.J. Newel
 - Target home: $180,000
 
 **Strategy:**
-- Use $2,800 refund for rent-to-own option fee ($5,400 needed)
-- Supplement with $2,600 in savings
-- Lock in home price for 2-year lease term
-- Build credit and save for traditional mortgage during lease
+- Use $2,800 refund toward first month’s rent / move-in on Rent-to-Own ($0 down)
+- Supplement with savings as needed
+- Lock in home price for your lease term
+- Build credit and save for traditional mortgage during the lease
 - Purchase home at locked price after lease term
 
 **Example 3: Growing Family in Lehigh Acres**
@@ -274,7 +274,7 @@ To buy a house, you need your tax transcripts ready. Mark these important dates 
 
 **May-June 2026:**
 - Receive your tax refund (typically 2-3 weeks after filing)
-- Use refund for down payment or option fee
+- Use refund for down payment or to start Rent-to-Own ($0 down)
 - Begin the home buying process
 - Pre-qualify for mortgage if using traditional financing
 
@@ -418,7 +418,7 @@ File as early as possible if you're planning to use your refund for a down payme
 
 ### Can I use a tax refund for rent-to-own?
 
-Yes, tax refunds are commonly used for rent-to-own option fees. The option fee (typically 3% to 5% of purchase price) is often covered by tax refunds, making rent-to-own accessible to many families.
+Yes. Tax refunds can help you start Rent-to-Own with **$0 down**—for example covering first month’s rent, deposits, or moving costs—making homeownership more accessible.
 
 ### What if my refund isn't enough for a down payment?
 
@@ -439,12 +439,12 @@ The 2026 tax changes make homeownership more attractive because:
 
 ## Conclusion
 
-The 2026 tax changes present both challenges and opportunities for Florida residents. While tax rates may increase and deductions may change, homeownership remains one of the most tax-advantaged investments available. Using your tax refund as a down payment or option fee can transform your financial situation and set you on the path to building wealth through real estate.
+The 2026 tax changes present both challenges and opportunities for Florida residents. While tax rates may increase and deductions may change, homeownership remains one of the most tax-advantaged investments available. Using your tax refund as a down payment—or to get started on Rent-to-Own with $0 down—can transform your financial situation and set you on the path to building wealth through real estate.
 
 Key takeaways:
 
 - 2026 tax changes make homeownership tax benefits more valuable
-- Tax refunds can cover down payments or option fees
+- Tax refunds can cover down payments or help you start Rent-to-Own
 - Strategic planning maximizes your refund and home purchase opportunities
 - Florida's no state income tax provides significant advantages
 - Homestead Exemption and Save Our Homes provide ongoing tax savings

@@ -23,20 +23,20 @@ Your tax refund can be the fastest way to unlock a new construction home. Here�
 ## Fast overview (60 seconds)
 
 - Refund timing: January through April is prime. Get under contract before inventory moves.
-- Use refund for: option fee (rent-to-own), earnest money, or closing costs.
+- Use refund for: first month’s rent (rent-to-own), earnest money, or closing costs.
 - Pair with credits: combine with rent credits to grow your down payment.
 
 ## See it in action
 
 ![New Construction Home in LaBelle, Florida](/modelos-optimized/aurora/exterior/aurora-exterior-01.webp)
 
-*Use your tax refund to secure a beautiful new construction home like this Aurora model in LaBelle, Florida. Our Rent-to-Own program makes it easy to use your refund as an option fee and start building equity immediately.*
+*Use your tax refund to secure a beautiful new construction home like this Aurora model in LaBelle, Florida. Our Rent-to-Own program with $0 down makes it easy to get started and build equity while you live in your home.*
 
 ## How much refund do you need?
 
 | Refund Size | Best Use | Outcome |
 | --- | --- | --- |
-| $3,000–$5,000 | Option fee on rent-to-own | Secures the home and locks price |
+| $3,000–$5,000 | First months of Rent-to-Own or moving costs | Get into a new home with $0 down |
 | $6,000–$9,000 | Earnest money + inspections | Strengthens offers on inventory homes |
 | $10,000–$15,000 | FHA/ITIN down payment assist | Lowers monthly payment and MI |
 
@@ -57,14 +57,14 @@ Your tax refund can be the fastest way to unlock a new construction home. Here�
 ### ITIN buyers
 
 - Yes, you can use your refund. Show consistent deposits and a clean ID trail.
-- Combine refund with a 3–5% option fee to enter rent-to-own, then refi later.
+- Use your refund toward first month’s rent or savings while you start Rent-to-Own with $0 down.
 - Keep all IRS letters; lenders will ask for them.
 
 Need an ITIN-specific guide? Read: [Buying a Home with an ITIN in Florida](/blog/home-buying-taxes-florida-complete-guide).
 
 ## Where to apply the refund first
 
-1) **Secure the property:** Option fee (rent-to-own) or earnest money on an inventory home.
+1) **Secure the property:** Apply for Rent-to-Own ($0 down) or put earnest money on an inventory home.
 2) **Cover critical due diligence:** Inspection + appraisal so you move faster than other buyers.
 3) **Stack credits:** Combine refund + rent credits + possible seller incentives.
 
