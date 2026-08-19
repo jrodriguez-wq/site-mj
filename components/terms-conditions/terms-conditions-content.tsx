@@ -158,6 +158,21 @@ export const TermsConditionsContent = () => {
                 className="text-2xl font-bold text-foreground"
                 suppressHydrationWarning
               >
+                {getCopy("termsConditions.sections.disputeResolution.title")}
+              </h2>
+              <p
+                className="text-muted-foreground leading-relaxed"
+                suppressHydrationWarning
+              >
+                {getCopy("termsConditions.sections.disputeResolution.description")}
+              </p>
+            </div>
+
+            <div className="bg-card border rounded-xl p-6 md:p-8 space-y-4">
+              <h2
+                className="text-2xl font-bold text-foreground"
+                suppressHydrationWarning
+              >
                 {getCopy("termsConditions.sections.governingLaw.title")}
               </h2>
               <p

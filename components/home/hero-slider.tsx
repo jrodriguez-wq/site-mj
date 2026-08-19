@@ -173,7 +173,7 @@ export const HeroSlider = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 w-full h-full flex items-center">
+      <div className="relative z-20 w-full h-full flex items-start sm:items-center pt-24 sm:pt-0">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <div className="max-w-4xl pb-16 sm:pb-0">
             <div

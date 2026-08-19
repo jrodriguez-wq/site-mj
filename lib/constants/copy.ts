@@ -1531,6 +1531,10 @@ const COPY = {
           "title": "Intellectual Property",
           "description": "All content on this website, including text, graphics, logos, images, and software, is the property of M.J. Newell Homes or its content suppliers and is protected by copyright and other intellectual property laws. You may not reproduce, distribute, or create derivative works from any content without our express written permission."
         },
+        "disputeResolution": {
+          "title": "Dispute Resolution",
+          "description": "We ask that any concern about your home or our services first go through our warranty and escalation process, described on our Warranty page, so we have a fair chance to make it right. For construction defect claims specifically, Florida Statute Chapter 558 requires a written Notice of Claim describing the defect in reasonable detail before a lawsuit may be filed; we commit to responding to any such notice within the 45-day period the statute provides. This process is intended to resolve concerns faster and in good faith, without the cost or delay of litigation."
+        },
         "governingLaw": {
           "title": "Governing Law",
           "description": "These Terms and Conditions shall be governed by and construed in accordance with the laws of the State of Florida, without regard to its conflict of law provisions. Any disputes arising from these terms shall be resolved in the courts of Florida."
