@@ -21,6 +21,8 @@ import { ConditionalSiteLayout } from "@/components/layout/conditional-site-layo
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { RegisterSw } from "@/components/pwa/register-sw";
+import { ConsentedTrackingScripts } from "@/components/consent/consented-tracking-scripts";
+import { CookieConsentBanner } from "@/components/consent/cookie-consent-banner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -125,60 +127,16 @@ export default function RootLayout({
           fetchPriority="high"
         />
         
-        {/* Google Analytics - Google tag (gtag.js) */}
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-XBCDDYFMJQ"
-        />
-        <Script
-          id="google-analytics-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XBCDDYFMJQ');
-            `,
-          }}
-        />
-
-        {/* Meta (Facebook) Pixel */}
-        <Script
-          id="meta-pixel"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1266988268208353');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} ${pacifico.variable}`}
         suppressHydrationWarning
       >
-        <noscript>
-          <img
-            height={1}
-            width={1}
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1266988268208353&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
+        {/* Google Analytics + Meta Pixel: only render after the visitor accepts cookies */}
+        <ConsentedTrackingScripts />
         <StructuredDataComponent data={structuredData} />
         <ConditionalSiteLayout>{children}</ConditionalSiteLayout>
+        <CookieConsentBanner />
         <Analytics />
         <SpeedInsights />
         <RegisterSw />

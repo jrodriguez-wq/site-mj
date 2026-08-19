@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { PageContent } from "@/components/layout/page-container";
-import { Shield, CheckCircle2, Clock, HeadphonesIcon, Calendar, ArrowLeft, MapPin } from "lucide-react";
-import { SEO_CONFIG } from "@/config/seo";
+import { Shield, CheckCircle2, Clock, HeadphonesIcon, Calendar, ArrowLeft, MapPin, FileText, PhoneCall, Scale } from "lucide-react";
+import { SEO_CONFIG, CONTACT_INFO } from "@/config/seo";
 import { motion, AnimatePresence } from "framer-motion";
 
 type WarrantyFlowStep = "initial" | "community-selection" | "form";
@@ -294,6 +294,105 @@ export const WarrantyPageContent = () => {
                   </p>
                 </div>
               </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Escalation Process - resolution steps if a warranty request isn't resolved */}
+        <Card className="border-2 border-primary/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Scale className="h-5 w-5 text-primary" />
+              <span suppressHydrationWarning>If your warranty request isn&apos;t resolved</span>
+            </CardTitle>
+            <CardDescription suppressHydrationWarning>
+              A clear, step-by-step process so you always know what to expect and when.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="mt-4 space-y-5">
+              {/* Step 1 */}
+              <div className="flex items-start gap-4 p-5 rounded-xl border bg-background">
+                <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm">
+                  1
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold flex items-center gap-2" suppressHydrationWarning>
+                    <PhoneCall className="h-4 w-4 text-primary" />
+                    Submit your request
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1" suppressHydrationWarning>
+                    Contact our warranty team at{" "}
+                    <a href={CONTACT_INFO.phoneTelHref} className="text-primary hover:underline font-medium">
+                      {CONTACT_INFO.phoneDisplay}
+                    </a>{" "}
+                    or{" "}
+                    <a href={`mailto:${CONTACT_INFO.email}`} className="text-primary hover:underline font-medium">
+                      {CONTACT_INFO.email}
+                    </a>
+                    , or use the scheduling form above. We respond to phone calls within 24 hours and emails within 48 hours.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex items-start gap-4 p-5 rounded-xl border bg-background">
+                <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm">
+                  2
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold flex items-center gap-2" suppressHydrationWarning>
+                    <Clock className="h-4 w-4 text-primary" />
+                    Not resolved within 5 business days? Escalate.
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1" suppressHydrationWarning>
+                    If your original point of contact hasn&apos;t scheduled or resolved your request, call our
+                    escalation line directly:{" "}
+                    <a
+                      href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      {CONTACT_INFO.phoneSecondary}
+                    </a>{" "}
+                    ({CONTACT_INFO.phoneSecondaryLabel}). This line is reviewed directly by warranty management.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex items-start gap-4 p-5 rounded-xl border bg-background">
+                <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm">
+                  3
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold flex items-center gap-2" suppressHydrationWarning>
+                    <FileText className="h-4 w-4 text-primary" />
+                    Formal written notice (Florida Chapter 558)
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1" suppressHydrationWarning>
+                    Under Florida Statute Chapter 558, homeowners may submit a written{" "}
+                    <strong className="text-foreground">Notice of Claim</strong> describing a construction defect in
+                    reasonable detail. Once received, we have 45 days to respond in writing — either resolving the
+                    issue or offering a plan to repair it. Send your Notice of Claim in writing to{" "}
+                    <a href={`mailto:${CONTACT_INFO.email}`} className="text-primary hover:underline font-medium">
+                      {CONTACT_INFO.email}
+                    </a>{" "}
+                    or by mail to 45 Bridge St, LaBelle, FL 33935.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Statutory basis note */}
+            <div className="mt-6 p-4 rounded-lg bg-muted/50 border text-sm text-muted-foreground space-y-2">
+              <p suppressHydrationWarning>
+                <strong className="text-foreground">Your statutory protections:</strong> New homes built in Florida
+                are covered by a mandatory 1-year builder warranty under{" "}
+                <strong className="text-foreground">Fla. Stat. §553.837</strong> for defects that violate the
+                Florida Building Code, in addition to our structural and mechanical warranty above. The{" "}
+                <strong className="text-foreground">Chapter 558</strong> notice process gives every homeowner a
+                documented, time-bound path to resolution before any dispute needs to go further.
+              </p>
             </div>
           </CardContent>
         </Card>

@@ -210,10 +210,10 @@ export const TermsConditionsContent = () => {
               <p>
                 <strong>Phone:</strong>{" "}
                 <a
-                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                  href={CONTACT_INFO.phoneTelHref}
                   className="text-primary hover:underline"
                 >
-                  {CONTACT_INFO.phone}
+                  {CONTACT_INFO.phoneDisplay}
                 </a>
               </p>
               <p>

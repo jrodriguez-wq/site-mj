@@ -158,12 +158,37 @@ export const SITE_FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "What warranty do you offer?",
         answer:
-          "Our new construction homes come with a structural warranty (e.g. 10 years) and a mechanical systems warranty (e.g. 1 year). Exact terms will be in your warranty documents.",
+          "Our new construction homes come with a structural warranty (10 years) and mechanical systems warranties for plumbing, electrical, septic, and general finishes (1 year each). Exact terms will be in your warranty documents.",
       },
       {
         question: "What if I have an issue after move-in?",
         answer:
-          "Submit a warranty request through our warranty page or contact us. Our warranty team will review and coordinate service so repairs are handled in a timely way.",
+          "Submit a warranty request through our warranty page or contact us. We respond to phone calls within 24 hours and emails within 48 hours, and coordinate repairs so issues are handled in a timely way.",
+      },
+      {
+        question: "Am I entitled to a warranty even if it isn't in my contract?",
+        answer:
+          "Yes. Under Florida Statute §553.837, all newly constructed homes in Florida carry a mandatory 1-year builder warranty covering construction defects that violate the Florida Building Code, regardless of what's written in your contract. This is in addition to our structural and mechanical warranty.",
+      },
+      {
+        question: "What if my warranty request isn't resolved in a reasonable time?",
+        answer:
+          "If your original point of contact hasn't scheduled or resolved your request, call our Warranty Escalation Line directly — see the step-by-step process on our Warranty page. This line is reviewed by warranty management, separate from the general customer care line.",
+      },
+      {
+        question: "How do I file a formal Notice of Claim for a construction defect?",
+        answer:
+          "Florida Statute Chapter 558 lets homeowners submit a written Notice of Claim describing a construction defect in reasonable detail. Once we receive it, we have 45 days to respond in writing — either resolving the issue or offering a repair plan. Send your Notice of Claim by email or mail using the contact details on our Warranty page.",
+      },
+      {
+        question: "Do I have to go through Chapter 558 before I can take legal action?",
+        answer:
+          "Yes, under Florida law a written Notice of Claim must generally be served at least 60 days before filing a construction defect lawsuit, giving the builder a chance to respond and offer repairs first. We follow this process in good faith and encourage every homeowner to use it — it's usually faster than litigation.",
+      },
+      {
+        question: "Is my contractor's license verifiable?",
+        answer:
+          "Yes. All Florida contractor licenses, including ours, can be verified for free at MyFloridaLicense.com, the official portal of the Florida Department of Business and Professional Regulation (DBPR). You can also file a complaint there if you believe a licensing issue hasn't been addressed.",
       },
     ],
   },

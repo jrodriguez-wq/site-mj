@@ -401,11 +401,11 @@ export const RentalApplicationContent = () => {
                   <CardContent className="space-y-4">
                     <div className="space-y-3">
                       <a
-                        href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                        href={CONTACT_INFO.phoneTelHref}
                         className="flex items-center gap-3 p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-all"
                       >
                         <Phone className="h-5 w-5 text-primary" />
-                        <span className="text-sm font-medium">{CONTACT_INFO.phone}</span>
+                        <span className="text-sm font-medium">{CONTACT_INFO.phoneDisplay}</span>
                       </a>
                       <a
                         href={`mailto:${CONTACT_INFO.email}`}

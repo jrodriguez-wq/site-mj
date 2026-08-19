@@ -2,12 +2,18 @@
  * Contact, social links, and Google Business/reviews. Update GOOGLE_REVIEWS periodically from your profile.
  */
 export const CONTACT_INFO = {
-  email: "customerservice@mjnewellhomes.com",
+  email: "customercare@mjnewellhomes.com",
   /** Use for visible link text — reduces plain-text email harvesting; `mailto:` still works. */
-  emailLinkLabel: "Email customer service",
-  phone: "(239) 323-9797",
-  phoneSecondary: "(239) 323-9696",
-  phoneFormatted: "+1 (239) 323-9797",
+  emailLinkLabel: "Email customer care",
+  phone: "(239) 268-6644",
+  phoneExtension: "500",
+  phoneDisplay: "(239) 268-6644 ext. 500",
+  /** `tel:` links use a DTMF pause (,) before the extension so mobile dialers submit it automatically. */
+  phoneTelHref: "tel:+12392686644,,500",
+  phoneFormatted: "+12392686644",
+  /** Secondary / escalation line — kept as the prior main number for warranty escalation. */
+  phoneSecondary: "(239) 323-9797",
+  phoneSecondaryLabel: "Warranty Escalation Line",
   address: {
     streetAddress: "LaBelle, FL",
     addressLocality: "LaBelle",

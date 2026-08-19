@@ -1462,7 +1462,17 @@ const COPY = {
         },
         "cookies": {
           "title": "Cookies and Tracking",
-          "description": "We use cookies and similar tracking technologies to enhance your browsing experience, analyze website traffic, and understand user preferences. You can control cookie preferences through your browser settings."
+          "description": "We use cookies and similar tracking technologies for two purposes: (1) essential cookies required for the site to function, such as HubSpot forms you actively submit, and (2) analytics and advertising cookies (Google Analytics, Meta/Facebook Pixel), which only load after you accept them in the cookie banner shown on your first visit. You can decline analytics and advertising cookies at any time and still use the site fully — only the essential cookies remain active. Your browser settings can also be used to block cookies globally."
+        },
+        "thirdPartyTools": {
+          "title": "Third-Party Tools We Use",
+          "content": [
+            "We use the following third-party services, which may collect information as described in their own privacy policies:",
+            "• HubSpot — for contact forms, appointment scheduling, and customer communication",
+            "• Google Analytics — for website traffic analytics (only after cookie consent)",
+            "• Meta (Facebook) Pixel — for advertising performance measurement (only after cookie consent)",
+            "• Vercel Analytics — for anonymous, aggregate site performance metrics"
+          ]
         },
         "changes": {
           "title": "Changes to This Policy",

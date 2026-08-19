@@ -88,17 +88,18 @@ export const Footer = () => {
                   <p className="text-xs font-semibold text-background/90 mb-1">{getCopy("footer.phone")}</p>
                   <div className="space-y-1">
                     <a
-                      href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                      href={CONTACT_INFO.phoneTelHref}
                       className="text-sm text-background/70 hover:text-primary transition-colors block"
                     >
-                      {CONTACT_INFO.phone}
+                      {CONTACT_INFO.phoneDisplay}
                     </a>
                     {CONTACT_INFO.phoneSecondary && (
                       <a
                         href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
                         className="text-sm text-background/70 hover:text-primary transition-colors block"
+                        title={CONTACT_INFO.phoneSecondaryLabel}
                       >
-                        {CONTACT_INFO.phoneSecondary}
+                        {CONTACT_INFO.phoneSecondary} <span className="text-background/50">({CONTACT_INFO.phoneSecondaryLabel})</span>
                       </a>
                     )}
                   </div>

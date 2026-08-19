@@ -281,10 +281,10 @@ export const ScheduleAppointmentContent = () => {
                           <span suppressHydrationWarning>{getCopy("scheduleAppointment.officeInfo.phone")}</span>
                         </h4>
                         <a
-                          href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                          href={CONTACT_INFO.phoneTelHref}
                           className="text-xs sm:text-sm text-primary hover:underline font-medium block mt-0.5"
                         >
-                          {CONTACT_INFO.phone}
+                          {CONTACT_INFO.phoneDisplay}
                         </a>
                       </div>
 
@@ -330,7 +330,7 @@ export const ScheduleAppointmentContent = () => {
                           size="default"
                         >
                           <a
-                            href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                            href={CONTACT_INFO.phoneTelHref}
                             className="flex items-center justify-center gap-1.5 sm:gap-2"
                           >
                             <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />

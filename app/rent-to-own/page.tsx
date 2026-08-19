@@ -982,8 +982,8 @@ export default function RentToOwnPage() {
                     variant="outline"
                     className="border-2 border-background/40 text-background bg-background/10 hover:bg-background/20 hover:border-background/60 hover:text-background px-8 py-6 text-base md:text-lg font-bold backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105 relative overflow-hidden group"
                   >
-                    <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`} className="relative z-10 flex items-center justify-center gap-2">
-                      Call us: {CONTACT_INFO.phone}
+                    <a href={CONTACT_INFO.phoneTelHref} className="relative z-10 flex items-center justify-center gap-2">
+                      Call us: {CONTACT_INFO.phoneDisplay}
                     </a>
                   </Button>
                 </div>

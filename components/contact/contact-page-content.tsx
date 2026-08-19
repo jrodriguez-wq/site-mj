@@ -141,17 +141,17 @@ export const ContactPageContent = () => {
                       </p>
                       <div className="space-y-1.5">
                         <a
-                          href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                          href={CONTACT_INFO.phoneTelHref}
                           className="text-sm sm:text-base font-black hover:text-primary transition-colors block break-words"
                         >
-                          {CONTACT_INFO.phone}
+                          {CONTACT_INFO.phoneDisplay}
                         </a>
                         {CONTACT_INFO.phoneSecondary && (
                           <a
                             href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
                             className="text-sm sm:text-base font-black hover:text-primary transition-colors block break-words"
                           >
-                            {CONTACT_INFO.phoneSecondary}
+                            {CONTACT_INFO.phoneSecondary} <span className="text-muted-foreground font-normal">({CONTACT_INFO.phoneSecondaryLabel})</span>
                           </a>
                         )}
                       </div>

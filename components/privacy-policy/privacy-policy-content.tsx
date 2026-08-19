@@ -138,6 +138,24 @@ export const PrivacyPolicyContent = () => {
 
             <div className="bg-card border rounded-xl p-6 md:p-8 space-y-4">
               <h2 className="text-2xl font-bold text-foreground" suppressHydrationWarning>
+                {getCopy("privacyPolicy.sections.thirdPartyTools.title")}
+              </h2>
+              <div className="space-y-2 text-muted-foreground leading-relaxed">
+                {(() => {
+                  const items = getNestedValue(COPY, "privacyPolicy.sections.thirdPartyTools.content");
+                  return Array.isArray(items)
+                    ? (items as string[]).map((item, index) => (
+                        <p key={index} className={item.startsWith("•") ? "pl-4" : ""}>
+                          {item}
+                        </p>
+                      ))
+                    : null;
+                })()}
+              </div>
+            </div>
+
+            <div className="bg-card border rounded-xl p-6 md:p-8 space-y-4">
+              <h2 className="text-2xl font-bold text-foreground" suppressHydrationWarning>
                 {getCopy("privacyPolicy.sections.changes.title")}
               </h2>
               <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
@@ -165,8 +183,8 @@ export const PrivacyPolicyContent = () => {
               </p>
               <p>
                 <strong>Phone:</strong>{" "}
-                <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`} className="text-primary hover:underline">
-                  {CONTACT_INFO.phone}
+                <a href={CONTACT_INFO.phoneTelHref} className="text-primary hover:underline">
+                  {CONTACT_INFO.phoneDisplay}
                 </a>
               </p>
               <p>
