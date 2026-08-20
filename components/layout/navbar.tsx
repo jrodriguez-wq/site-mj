@@ -244,7 +244,7 @@ export const Navbar = () => {
       {/* Top announcement bar: responsiva — móvil solo teléfono + redes; tablet+ direcciones + teléfono + redes */}
       <div className="border-b border-border/10 bg-muted/30">
         <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8">
-          <div className="flex h-7 sm:h-8 md:h-9 items-center justify-between gap-2 sm:gap-4 text-xs">
+          <div className="flex h-9 sm:h-9 md:h-10 items-center justify-between gap-2 sm:gap-4 text-xs py-1">
             {/* Oficinas: oculto en móvil muy estrecho, corto en sm, completo en md+ */}
             <div className="hidden sm:flex items-center gap-3 md:gap-4 lg:gap-6 min-w-0 flex-1">
               {/* sm: una sola línea corta; md+: enlaces por oficina */}
@@ -271,12 +271,12 @@ export const Navbar = () => {
             {/* Teléfono + redes: número completo visible en todos los tamaños; tap/click para llamar */}
             <div className="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
               <a
-                href={CONTACT_INFO.phoneTelHref}
+                href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
                 className="flex items-center gap-1.5 font-semibold text-foreground/90 hover:text-primary transition-colors whitespace-nowrap"
-                aria-label={`Call ${CONTACT_INFO.phoneDisplay}`}
+                aria-label={`Call ${CONTACT_INFO.phoneSecondary}`}
               >
                 <Phone className="h-3.5 w-3.5 shrink-0" />
-                <span>{CONTACT_INFO.phoneDisplay}</span>
+                <span>{CONTACT_INFO.phoneSecondary}</span>
               </a>
               <div className="h-3.5 w-px bg-border/60 hidden sm:block" aria-hidden />
               <div className="flex items-center gap-0.5 sm:gap-1">
@@ -641,13 +641,13 @@ export const Navbar = () => {
                 
                 <div className="px-6 py-6 border-t border-border/20 space-y-4 bg-gradient-to-b from-muted/10 to-transparent">
                   <a
-                    href={CONTACT_INFO.phoneTelHref}
+                    href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
                     className="flex items-center gap-3 px-5 py-3.5 text-base font-semibold rounded-xl bg-background hover:bg-primary/5 hover:text-primary transition-all duration-300 border border-border/30 hover:border-primary/20 cursor-pointer shadow-sm hover:shadow-md group/phone"
                     onClick={() => setIsOpen(false)}
-                    aria-label={`Call us at ${CONTACT_INFO.phoneDisplay}`}
+                    aria-label={`Call us at ${CONTACT_INFO.phoneSecondary}`}
                   >
                     <Phone className="h-5 w-5 group-hover/phone:scale-110 transition-transform duration-300" />
-                    <span className="tracking-wide">{CONTACT_INFO.phoneDisplay}</span>
+                    <span className="tracking-wide">{CONTACT_INFO.phoneSecondary}</span>
                   </a>
                   {!isWarrantyPage && (
                   <Button
