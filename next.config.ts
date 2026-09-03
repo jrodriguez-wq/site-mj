@@ -175,6 +175,8 @@ const getHeadersConfig = () => {
     { source: "/communities/:path*", headers: [getHtmlRevalidateHeader()] },
     { source: "/blog/:path*", headers: [getHtmlRevalidateHeader()] },
     { source: "/privacy-policy", headers: [getHtmlRevalidateHeader()] },
+    { source: "/pay-links", headers: [getHtmlRevalidateHeader()] },
+    { source: "/pay-links/thanks", headers: [getHtmlRevalidateHeader()] },
     { source: "/terms-conditions", headers: [getHtmlRevalidateHeader()] },
     // Cache agresivo para assets estáticos (imágenes, _next/static, etc.)
     ...STATIC_ASSET_PATHS.map((path) => ({

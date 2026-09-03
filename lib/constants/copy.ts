@@ -17,7 +17,7 @@ const COPY = {
       "labelle": "LaBelle",
       "lehighAcres": "Lehigh Acres",
       "payments": "Payments",
-      "paymentsDesc": "Make secure payments for your home",
+      "paymentsDesc": "Pay the $500 reservation for your home",
       "homeBuyingGuide": "Home Buying Guide",
       "homeBuyingGuideDesc": "Learn everything about buying a home",
       "blog": "Blog",

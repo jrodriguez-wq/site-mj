@@ -1,122 +1,133 @@
 "use client"
 
-import Image from "next/image"
-import { CreditCard, DollarSign, ArrowRight, QrCode } from "lucide-react"
+import Link from "next/link"
+import { ArrowUpRight, Phone, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { HubSpotPaymentsEmbed } from "@/components/ui/hubspot-payments"
+import { HUBSPOT_PAYMENTS } from "@/lib/constants"
+import { PageContent } from "@/components/layout/page-container"
+import { CONTACT_INFO } from "@/config/seo"
 
-const handlePaymentRedirect = (url: string) => {
-  window.location.href = url
-}
+const PAYMENT = HUBSPOT_PAYMENTS.RESERVATION_500
 
 export default function PayLinksPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-primary/5">
-      <div className="w-full max-w-4xl mx-auto space-y-8">
-        {/* Header Section */}
-        <div className="text-center space-y-4">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-            <CreditCard className="w-8 h-8 text-primary" />
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Select Your Payment Method
+    <div className="min-h-screen bg-background">
+      <PageContent size="lg" className="pt-20 sm:pt-24 md:pt-28 pb-16 md:pb-24">
+        <div className="mx-auto max-w-3xl text-center space-y-4 mb-10 md:mb-14">
+          <p className="text-sm font-medium tracking-[0.18em] uppercase text-primary">
+            M.J. Newell Homes
+          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight">
+            Reserve your home — $500
           </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Choose the amount you want to pay. The process is secure and fast.
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+            This $500 reservation holds your home while we complete the next
+            steps with your advisor. Checkout is processed securely by HubSpot.
           </p>
         </div>
 
-        {/* Payment Options */}
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-          {/* Payment Option - $500 */}
-          <Card className="relative overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full" />
-            <CardHeader className="relative">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <DollarSign className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-2xl">$500 USD Payment</CardTitle>
-              </div>
-              <CardDescription className="text-base">
-                Partial payment of $500 dollars
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="relative">
-              <div className="space-y-2">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-primary">$500</span>
-                  <span className="text-muted-foreground">USD</span>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Secure and fast process
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_280px] gap-8 lg:gap-10 items-start">
+          <section
+            aria-labelledby="checkout-heading"
+            className="rounded-xl border border-border bg-card p-4 sm:p-6 shadow-sm"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+              <div>
+                <h2
+                  id="checkout-heading"
+                  className="text-xl sm:text-2xl font-bold"
+                >
+                  Pay online
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Card checkout opens on this page. Amount is fixed at $500.00 USD.
                 </p>
               </div>
-            </CardContent>
-            <CardFooter className="relative flex flex-col gap-4">
-              <Button
-                onClick={() =>
-                  handlePaymentRedirect(
-                    "https://50215941.hs-sites.com/hs/payments/jFmMCZtxNTn?referrer=PAYMENT_LINK"
-                  )
-                }
-                className="w-full h-12 text-base font-semibold"
-                size="lg"
-              >
-                Proceed to Payment
-                <ArrowRight className="w-5 h-5 ml-2" />
+              <p className="text-3xl font-black text-primary tabular-nums">
+                $500
+                <span className="ml-1 text-sm font-medium text-muted-foreground">
+                  USD
+                </span>
+              </p>
+            </div>
+
+            <HubSpotPaymentsEmbed embedUrl={PAYMENT.embedUrl} />
+
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <a
+                  href={PAYMENT.checkoutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open payment page
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
               </Button>
-              
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="qr-500" className="border-0">
-                  <AccordionTrigger className="py-2 text-sm font-medium hover:no-underline">
-                    <div className="flex items-center gap-2">
-                      <QrCode className="w-4 h-4" />
-                      Pay with QR
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="flex flex-col items-center gap-4 pt-2 pb-4">
-                      <div className="p-4 bg-white rounded-lg border-2 border-border shadow-sm">
-                        <Image
-                          src="/payments/500.png"
-                          alt="QR Code for $500 USD payment"
-                          width={250}
-                          height={250}
-                          className="w-full h-auto"
-                        />
-                      </div>
-                      <p className="text-xs text-muted-foreground text-center">
-                        Scan the QR code with your mobile device
-                      </p>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </CardFooter>
-          </Card>
+              <p className="text-xs text-muted-foreground sm:max-w-sm">
+                If the form does not load, use this link. It is the same $500
+                HubSpot checkout.
+              </p>
+            </div>
+          </section>
+
+          <aside
+            aria-labelledby="qr-heading"
+            className="rounded-xl border border-border bg-card p-6 shadow-sm lg:sticky lg:top-28"
+          >
+            <h2 id="qr-heading" className="text-lg font-bold">
+              Pay with your phone
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1 mb-5">
+              Scan this QR to open the same $500 reservation checkout.
+            </p>
+            <div className="flex justify-center">
+              <div className="bg-white p-3 rounded-lg border border-border">
+                {/* Native img: Next optimizer would recompress the QR and can break scans. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={PAYMENT.qrSrc}
+                  alt="QR code to pay the $500 home reservation"
+                  width={240}
+                  height={240}
+                  className="w-[240px] h-[240px]"
+                />
+              </div>
+            </div>
+          </aside>
         </div>
 
-        {/* Security Notice */}
-        <div className="text-center pt-4">
-          <p className="text-sm text-muted-foreground">
-            🔒 Your payments are protected with SSL encryption
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-muted-foreground">
+          <p className="inline-flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-primary shrink-0" aria-hidden />
+            Payments processed by HubSpot over HTTPS
+          </p>
+          <span className="hidden sm:inline" aria-hidden>
+            ·
+          </span>
+          <p className="inline-flex items-center gap-2">
+            <Phone className="w-4 h-4 text-primary shrink-0" aria-hidden />
+            Questions?{" "}
+            <a
+              href={CONTACT_INFO.phoneTelHref}
+              className="text-primary font-medium underline underline-offset-2 hover:no-underline"
+            >
+              {CONTACT_INFO.phoneDisplay}
+            </a>
           </p>
         </div>
-      </div>
+
+        <p className="text-center text-xs sm:text-sm text-muted-foreground mt-4">
+          Need an advisor first?{" "}
+          <Link
+            href="/contact"
+            className="text-primary font-medium underline underline-offset-2 hover:no-underline"
+          >
+            Contact us
+          </Link>
+        </p>
+      </PageContent>
     </div>
   )
 }

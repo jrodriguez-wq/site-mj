@@ -42,10 +42,10 @@ export default function PaymentThanksPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-              Thank You for Your Payment!
+              Thank you for your reservation
             </h1>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Your payment has been processed successfully. You can now continue the process with our advisors.
+              Your $500 reservation has been received. An advisor will help you with the next steps.
             </p>
           </motion.div>
 
@@ -104,7 +104,7 @@ export default function PaymentThanksPage() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <p className="text-sm text-muted-foreground">
-              🔒 Your payment information is secure and encrypted
+              Payments are processed by HubSpot over HTTPS
             </p>
           </motion.div>
         </motion.div>

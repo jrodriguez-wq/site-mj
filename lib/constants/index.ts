@@ -16,6 +16,7 @@ export const ROUTES = {
   LABELLE: "/communities/labelle",
   LEHIGH_ACRES: "/communities/lehigh-acres",
   HOME_BUYING_GUIDE: "/home-buying-guide",
+  PAY_LINKS: "/pay-links",
 } as const;
 
 // IDs de formularios HubSpot
@@ -39,6 +40,20 @@ export const HUBSPOT_FORMS = {
     portalId: "50215941",
     formId: "260b5e42-6035-4dc3-af93-d6cb83b8a254",
     region: "na1" as const,
+  },
+} as const;
+
+/** HubSpot Payments — public checkout on /pay-links (not the tenant portal). */
+export const HUBSPOT_PAYMENTS = {
+  RESERVATION_500: {
+    amountUsd: 500,
+    checkoutUrl:
+      "https://50215941.hs-sites.com/hs/payments/jFmMCZtxNTn?referrer=PAYMENT_LINK",
+    embedUrl:
+      "https://50215941.hs-sites.com/hs/payments/jFmMCZtxNTn?referrer=PAYMENT_LINK_EMBED&layout=embed-full",
+    qrSrc: "/payments/500.png",
+    scriptSrc:
+      "https://static.hsappstatic.net/payments-embed/ex/PaymentsEmbedCode.js",
   },
 } as const;
 
