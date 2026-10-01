@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Globe, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Globe, Instagram, Linkedin, Youtube } from "lucide-react";
 import { SOCIAL_LINKS } from "@/config/seo";
 import { TikTokIcon } from "@/components/icons/tiktok-icon";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 type LinkItem = {
   href: string;
@@ -28,6 +29,7 @@ const socials: LinkItem[] = [
   socialLink(SOCIAL_LINKS.facebook, "Facebook", "M.J. Newell Homes", <Facebook className="h-5 w-5" aria-hidden />),
   socialLink(SOCIAL_LINKS.tiktok, "TikTok", "@mjnhomesofficial", <TikTokIcon size={20} />),
   socialLink(SOCIAL_LINKS.linkedin, "LinkedIn", "M.J. Newell Homes FL", <Linkedin className="h-5 w-5" aria-hidden />),
+  socialLink(SOCIAL_LINKS.youtube, "YouTube", "M.J. Newell Homes", <Youtube className="h-5 w-5" aria-hidden />),
 ].filter((item): item is LinkItem => item !== null);
 
 export default function LinksPage() {
@@ -36,7 +38,7 @@ export default function LinksPage() {
       <div className="w-full max-w-md flex flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-4 text-center">
           <Image
-            src="/img/logo-blanco.png"
+            src={getCloudinaryImageUrl("/img/logo-blanco.png")}
             alt="M.J. Newell Homes"
             width={220}
             height={64}
