@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Globe, Instagram, Linkedin, Youtube } from "lucide-react";
 import { SOCIAL_LINKS } from "@/config/seo";
@@ -37,13 +36,13 @@ export default function LinksPage() {
     <div className="min-h-dvh bg-foreground text-background flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md flex flex-col items-center gap-8">
         <div className="flex flex-col items-center gap-4 text-center">
-          <Image
+          <img
             src={getCloudinaryImageUrl("/img/logo-blanco.png")}
             alt="M.J. Newell Homes"
-            width={220}
-            height={64}
-            priority
-            className="h-12 w-auto object-contain"
+            width={1920}
+            height={555}
+            fetchPriority="high"
+            className="h-14 w-auto object-contain"
           />
           <div className="space-y-1">
             <h1 className="text-2xl font-black tracking-tight text-background">
