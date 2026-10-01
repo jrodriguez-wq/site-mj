@@ -10,7 +10,6 @@ import { Testimonials } from "@/components/home/testimonials";
 import { LocationMap } from "@/components/home/location-map";
 import { CTASection } from "@/components/home/cta-section";
 import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
-import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { AnimatedSection } from "@/components/ui/animated-section";
 
@@ -79,9 +78,6 @@ export const HomePageContent = () => {
       <AnimatedSection delay={150}>
         <CTASection />
       </AnimatedSection>
-
-      {/* Modal de promoción - solo aparece en home */}
-      <PromotionModal />
     </div>
   );
 };

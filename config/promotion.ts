@@ -49,7 +49,7 @@ export interface PromotionConfig {
 }
 
 export const PROMOTION_CONFIG: PromotionConfig = {
-  enabled: true,
+  enabled: false,
   
   title: "Monthly Special Promotion",
   subtitle: "Limited Time Offer!",
