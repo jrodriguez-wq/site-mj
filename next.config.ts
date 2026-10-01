@@ -71,7 +71,6 @@ const STATIC_ASSET_PATHS = [
   "/recursos/:path*",
   "/modelos-optimized/:path*",
   "/_next/static/:path*",  // JS/CSS bundles with content hash — safe to cache forever
-  "/_next/image",           // Re-enabled: image optimizer is active again
   "/favicon.ico",
   "/favicon.png",
   "/favicon-16x16.png",

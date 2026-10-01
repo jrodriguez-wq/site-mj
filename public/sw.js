@@ -2,7 +2,7 @@
  * Service Worker - PWA: caché de estáticos para cargas más rápidas en visitas repetidas y app instalada.
  * Scope: toda la app. No cachea HTML para no servir contenido desactualizado.
  */
-const CACHE_NAME = "mjnewell-v1";
+const CACHE_NAME = "mjnewell-v2";
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
