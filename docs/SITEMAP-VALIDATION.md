@@ -129,7 +129,6 @@ El sitemap se actualiza automáticamente:
 
 Estas páginas NO están en el sitemap (correcto):
 - `/thank-you` - Página post-submission (debe ser noindex)
-- `/promotion-preview` - Página interna de preview (debe ser noindex)
 - `/api/*` - Rutas de API (excluidas en robots.txt)
 - `/_next/*` - Archivos internos de Next.js (excluidos en robots.txt)
 

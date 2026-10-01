@@ -1105,27 +1105,6 @@
       "benefits": "Beneficios Rent to Own"
     }
   },
-  "promotion": {
-    "badge": "¡Oferta por Tiempo Limitado!",
-    "limitedTime": "Tiempo Limitado",
-    "thisMonthOnly": "¡Solo Este Mes!",
-    "dontMissOut": "¡No te lo pierdas!",
-    "validDuring": "Válido durante",
-    "benefits": {
-      "downPayment": "Enganche",
-      "flexibleFinancing": "Financiamiento Flexible",
-      "limitedTimeOffer": "Oferta por Tiempo Limitado"
-    },
-    "tabs": {
-      "info": "Información de Promoción",
-      "schedule": "Agendar Cita"
-    },
-    "schedule": {
-      "title": "Agenda tu Cita",
-      "subtitle": "Completa el formulario a continuación y nos pondremos en contacto contigo para agendar tu cita",
-      "formTitle": "Formulario de Solicitud de Cita"
-    }
-  },
   "scheduleAppointment": {
     "title": "Agenda tu Cita",
     "heroTitle": "Agenda tu Cita",

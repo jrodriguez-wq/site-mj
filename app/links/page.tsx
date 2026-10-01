@@ -13,43 +13,21 @@ type LinkItem = {
   icon: ReactNode;
 };
 
+function socialLink(
+  href: string,
+  label: string,
+  hint: string,
+  icon: ReactNode,
+): LinkItem | null {
+  if (!href) return null;
+  return { href, label, hint, external: true, icon };
+}
+
 const socials: LinkItem[] = [
-  SOCIAL_LINKS.instagram
-    ? {
-        href: SOCIAL_LINKS.instagram,
-        label: "Instagram",
-        hint: "@mjnewellhomes",
-        external: true,
-        icon: <Instagram className="h-5 w-5" aria-hidden />,
-      }
-    : null,
-  SOCIAL_LINKS.facebook
-    ? {
-        href: SOCIAL_LINKS.facebook,
-        label: "Facebook",
-        hint: "M.J. Newell Homes",
-        external: true,
-        icon: <Facebook className="h-5 w-5" aria-hidden />,
-      }
-    : null,
-  SOCIAL_LINKS.tiktok
-    ? {
-        href: SOCIAL_LINKS.tiktok,
-        label: "TikTok",
-        hint: "@mjnhomesofficial",
-        external: true,
-        icon: <TikTokIcon size={20} />,
-      }
-    : null,
-  SOCIAL_LINKS.linkedin
-    ? {
-        href: SOCIAL_LINKS.linkedin,
-        label: "LinkedIn",
-        hint: "M.J. Newell Homes FL",
-        external: true,
-        icon: <Linkedin className="h-5 w-5" aria-hidden />,
-      }
-    : null,
+  socialLink(SOCIAL_LINKS.instagram, "Instagram", "@mjnewellhomes", <Instagram className="h-5 w-5" aria-hidden />),
+  socialLink(SOCIAL_LINKS.facebook, "Facebook", "M.J. Newell Homes", <Facebook className="h-5 w-5" aria-hidden />),
+  socialLink(SOCIAL_LINKS.tiktok, "TikTok", "@mjnhomesofficial", <TikTokIcon size={20} />),
+  socialLink(SOCIAL_LINKS.linkedin, "LinkedIn", "M.J. Newell Homes FL", <Linkedin className="h-5 w-5" aria-hidden />),
 ].filter((item): item is LinkItem => item !== null);
 
 export default function LinksPage() {

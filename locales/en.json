@@ -1105,27 +1105,6 @@
       "benefits": "Rent to Own benefits"
     }
   },
-  "promotion": {
-    "badge": "Limited Time Offer!",
-    "limitedTime": "Limited Time",
-    "thisMonthOnly": "This Month Only!",
-    "dontMissOut": "Don't miss out!",
-    "validDuring": "Valid during",
-    "benefits": {
-      "downPayment": "Down Payment",
-      "flexibleFinancing": "Flexible Financing",
-      "limitedTimeOffer": "Limited Time Offer"
-    },
-    "tabs": {
-      "info": "Promotion Info",
-      "schedule": "Schedule Appointment"
-    },
-    "schedule": {
-      "title": "Schedule Your Appointment",
-      "subtitle": "Fill out the form below and we'll contact you to schedule your appointment",
-      "formTitle": "Appointment Request Form"
-    }
-  },
   "scheduleAppointment": {
     "title": "Schedule Your Appointment",
     "heroTitle": "Schedule Your Appointment",

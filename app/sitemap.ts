@@ -29,7 +29,6 @@ import { getAllModelKeys } from "@/lib/models/model-data";
  * 
  * EXCLUDED PAGES (not in sitemap):
  * - /thank-you (post-submission page, should be noindex)
- * - /promotion-preview (internal preview page, should be noindex)
  * - /api/* (API routes, excluded in robots.txt)
  * - /_next/* (Next.js internal files, excluded in robots.txt)
  * 
