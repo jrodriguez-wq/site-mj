@@ -4,42 +4,45 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CommunityModelsSection } from "@/components/communities/community-models-section";
 import { CommunityPageContent } from "@/components/communities/community-page-content";
-import { useTranslation } from "@/hooks/use-translation";
+import { CommunityMap } from "@/components/communities/community-map";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { LogoSlider } from "@/components/ui/logo-slider";
+import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 const labelleImages = [
-  "/recursos/shutterstock-1065297917.webp",
-  "/recursos/shutterstock-1197062707.webp",
-  "/recursos/shutterstock-2252703911.webp",
-  "/recursos/shutterstock-440999080.webp",
-  "/recursos/rio.webp",
-  "/recursos/pai.webp",
+  getCloudinaryImageUrl("/recursos/shutterstock-1065297917.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-2252703911.webp"),
+  getCloudinaryImageUrl("/recursos/shutterstock-440999080.webp"),
+  getCloudinaryImageUrl("/recursos/rio.webp"),
+  getCloudinaryImageUrl("/recursos/pai.webp"),
+  getCloudinaryImageUrl("/recursos/familia-casa.webp"),
+  getCloudinaryImageUrl("/recursos/orlandof.webp"),
 ];
 
 export default function LaBellePage() {
-  const { t } = useTranslation();
-
   const labelleActivities = [
     {
       icon: "Fish",
-      title: t("communities.labelle.activities.fishing.title"),
-      description: t("communities.labelle.activities.fishing.description"),
-      image: "/recursos/shutterstock-1197062707.webp",
+      title: "Fishing",
+      description: "Enjoy fishing on the Caloosahatchee River and nearby lakes. LaBelle is known for its peaceful waterways and great catches.",
+      image: getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
     },
     {
       icon: "TreePine",
-      title: t("communities.labelle.activities.outdoor walks.title"),
-      description: t("communities.labelle.activities.outdoor walks.description"),
-      image: "/recursos/orlandof.webp",
+      title: "Outdoor walks",
+      description: "Explore nature trails and parks. LaBelle offers a quiet, rural setting perfect for walking and outdoor activities.",
+      image: getCloudinaryImageUrl("/recursos/orlandof.webp"),
     },
     {
       icon: "Sailboat",
-      title: t("communities.labelle.activities.boating.title"),
-      description: t("communities.labelle.activities.boating.description"),
-      image: "/recursos/rio.webp",
+      title: "Boating",
+      description: "Launch your boat and explore the Caloosahatchee River. Easy water access makes boating a popular pastime for residents.",
+      image: getCloudinaryImageUrl("/recursos/rio.webp"),
     },
   ];
 
@@ -60,7 +63,7 @@ export default function LaBellePage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={labelleImages[0]}
-            alt={t("communities.labelle.hero.imageAlt") || `${t("communities.labelle.name")}, Florida - Beautiful community`}
+            alt="LaBelle, Florida - Beautiful community"
             fill
             className="object-cover"
             priority
@@ -89,8 +92,8 @@ export default function LaBellePage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 >
-                  <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full border border-primary/40" suppressHydrationWarning>
-                    {t("communities.labelle.hero.badge") || t("communities.labelle.country.title")}
+                  <span className="text-sm font-semibold text-white uppercase tracking-wider px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
+                    Southwest Florida
                   </span>
                 </motion.div>
 
@@ -105,7 +108,7 @@ export default function LaBellePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 >
-                  {t("communities.labelle.name") || "LaBelle"}
+                  LaBelle
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -119,7 +122,7 @@ export default function LaBellePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
-                  {t("communities.labelle.hero.subtitle") || "Discover Your Dream Home in Southwest Florida"}
+                  Discover Your Dream Home in Southwest Florida
                 </motion.p>
 
                 {/* CTA Button */}
@@ -150,7 +153,7 @@ export default function LaBellePage() {
                     )}
                   >
                     <span className="relative z-10 flex items-center gap-2" suppressHydrationWarning>
-                      {t("communities.labelle.hero.cta") || "View Available Models"}
+                      View Available Models
                     </span>
                     <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   </Button>
@@ -176,38 +179,54 @@ export default function LaBellePage() {
 
       <AnimatedSection delay={0.1}>
         <CommunityPageContent
-          aboutTitle={t("communities.labelle.about.title")}
-          aboutDescription={t("communities.labelle.about.fullDescription")}
-          activitiesTitle={t("communities.labelle.activities.title")}
+          aboutTitle="About LaBelle"
+          aboutDescription="LaBelle is a small, friendly community in Hendry County, Florida. Known for its rural charm, outdoor recreation, and affordable new construction homes, it's the perfect place for families who want space, nature, and a strong sense of community. M.J. Newell Homes offers several floor plans here, including Rent to Own options."
+          activitiesTitle="Things to do in LaBelle"
           activities={labelleActivities}
           features={[
-            { icon: "Square", label: t("communities.labelle.features.acreLots") },
-            { icon: "Home", label: t("communities.labelle.features.noHOA") },
-            { icon: "Car", label: t("communities.labelle.features.familyFriendly") },
+            { icon: "Square", label: "Acre+ lots available" },
+            { icon: "Home", label: "No HOA" },
+            { icon: "Car", label: "Family-friendly" },
           ]}
-          futureTitle={t("communities.labelle.future.title")}
-          futureDescription={t("communities.labelle.future.description")}
-          scheduleTitle={t("communities.labelle.schedule.title")}
-          scheduleDescription={t("communities.labelle.schedule.description")}
-          scheduleButton={t("communities.labelle.schedule.button")}
-          galleryTitle={t("communities.labelle.gallery.title")}
-          galleryDescription={t("communities.labelle.gallery.description")}
+          futureTitle="Your future in LaBelle"
+          futureDescription="Build your new home in LaBelle and enjoy a relaxed lifestyle with easy access to Fort Myers, Lehigh Acres, and the Gulf Coast. Our team will guide you from lot selection to keys."
+          scheduleTitle="Schedule a visit"
+          scheduleDescription="Come see our models and available lots in LaBelle. We're happy to show you around and answer your questions."
+          scheduleButton="Schedule a visit"
+          galleryTitle="LaBelle gallery"
+          galleryDescription="See what life looks like in LaBelle and explore our new construction homes and community."
           galleryImages={labelleImages}
-          ctaTitle={t("communities.labelle.cta.title")}
-          ctaDescription={t("communities.labelle.cta.description")}
-          ctaButton={t("communities.labelle.cta.button")}
+          ctaTitle="Ready to build in LaBelle?"
+          ctaDescription="View our available floor plans and get in touch. We'll help you find the right home and the right path to ownership."
+          ctaButton="View models"
         />
+      </AnimatedSection>
+
+      {/* Community Map Section */}
+      <AnimatedSection delay={0.1}>
+        <CommunityMap community="labelle" />
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>
         <div id="models-section" className="py-10 md:py-14 lg:py-18">
         <CommunityModelsSection
           modelKeys={labelleModels.map((m) => m.key)}
-          title={t("communities.labelle.models.title")}
-          subtitle={t("communities.labelle.models.subtitle")}
+          title="Homes for Sale in LaBelle"
+          subtitle="New construction homes for sale in LaBelle, FL. Compare models, pricing, and features — buy outright or explore Rent to Own."
           community="labelle"
         />
         </div>
+      </AnimatedSection>
+
+      {/* Partner Logos Slider */}
+      <AnimatedSection delay={200}>
+        <LogoSlider
+          logos={PARTNER_LOGOS}
+          speed="normal"
+          pauseOnHover={true}
+          showTitle={false}
+          variant="default"
+        />
       </AnimatedSection>
     </div>
   );

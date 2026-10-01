@@ -4,7 +4,7 @@ import {
   RealEstateListingStructuredData,
   BreadcrumbStructuredData,
 } from "@/types/seo";
-import { SEO_CONFIG, CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
+import { SEO_CONFIG, CONTACT_INFO, SOCIAL_LINKS, SLD_WEBSITE_URL } from "@/config/seo";
 
 export const generateOrganizationStructuredData =
   (): OrganizationStructuredData & Record<string, unknown> => {
@@ -16,6 +16,7 @@ export const generateOrganizationStructuredData =
       description: SEO_CONFIG.siteDescription,
       logo: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
       image: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
+      inLanguage: "en-US",
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -33,7 +34,7 @@ export const generateOrganizationStructuredData =
             "Clewiston",
             "Immokalee",
           ],
-          availableLanguage: ["English", "Spanish"],
+          availableLanguage: ["English"],
         },
       ],
       address: {
@@ -47,7 +48,16 @@ export const generateOrganizationStructuredData =
         SOCIAL_LINKS.linkedin,
         SOCIAL_LINKS.youtube,
         SOCIAL_LINKS.tiktok,
+        SOCIAL_LINKS.googleBusiness,
+        SLD_WEBSITE_URL, // Sister company — same founder (EEAT signal)
       ].filter(Boolean),
+      // Cross-link to parent developer (EEAT: verifiable entity relationship)
+      parentOrganization: {
+        "@type": "Organization",
+        name: "Standard Land Development",
+        url: SLD_WEBSITE_URL,
+        description: "Parent development company and land developer. Founded by Michael J. Newell.",
+      },
     } as OrganizationStructuredData & Record<string, unknown>;
   };
 
@@ -155,7 +165,7 @@ export const generateWebSiteStructuredData = (): StructuredData => {
     name: SEO_CONFIG.siteName,
     url: SEO_CONFIG.siteUrl,
     description: SEO_CONFIG.siteDescription,
-    inLanguage: ["en", "es"],
+    inLanguage: "en-US",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -222,6 +232,7 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
     logo: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.logo}`,
     image: `${SEO_CONFIG.siteUrl}${SEO_CONFIG.ogImage}`,
     description: SEO_CONFIG.siteDescription,
+    inLanguage: "en-US",
     address: {
       "@type": "PostalAddress",
       ...CONTACT_INFO.address,
@@ -304,25 +315,35 @@ export const generateLocalBusinessStructuredData = (): StructuredData => {
     serviceType: "New Home Construction",
     // Propiedades adicionales específicas de bienes raíces
     knowsAbout: [
+      "Home Sales",
       "New Home Construction",
-      "Rent to Own",
+      "Residential Construction",
       "Real Estate",
       "Home Building",
-      "Residential Construction",
-      "Home Sales",
       "Property Development",
+      "Rent to Own",
     ],
     paymentAccepted: ["Cash", "Financing", "Rent to Own"],
     currenciesAccepted: "USD",
     // Información sobre el tipo de propiedades
     additionalType: "https://schema.org/RealEstateAgent",
     // Servicios ofrecidos
-    makesOffer: {
-      "@type": "Offer",
-      name: "Rent to Own Program",
-      description: "Rent to Own program with $0 down payment for new construction homes",
-      availability: "https://schema.org/InStock",
-    },
+    makesOffer: [
+      {
+        "@type": "Offer",
+        name: "New Homes for Sale",
+        description: "Buy new construction homes in LaBelle and Lehigh Acres, Florida",
+        availability: "https://schema.org/InStock",
+        url: `${SEO_CONFIG.siteUrl}/new-homes-for-sale`,
+      },
+      {
+        "@type": "Offer",
+        name: "Rent to Own Program",
+        description: "Rent to Own program with $0 down payment for new construction homes",
+        availability: "https://schema.org/InStock",
+        url: `${SEO_CONFIG.siteUrl}/rent-to-own`,
+      },
+    ],
   };
 };
 

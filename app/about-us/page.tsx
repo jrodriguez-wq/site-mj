@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useTranslation } from "@/hooks/use-translation";
 import { 
   Home, 
   Shield, 
@@ -21,58 +20,55 @@ import {
 import { motion } from "framer-motion";
 import { ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { LogoSlider } from "@/components/ui/logo-slider";
+import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
+
+const TEAM_FALLBACKS_EN = {
+  title: "Leadership Team",
+  subtitle: "360-degree support for your dreams",
+  juliana: {
+    name: "Juliana Bonilla",
+    role: "Principal Shareholder, Partner & Financial Leader",
+    description: "Juliana Bonilla is a principal shareholder, partner, and financial leader at M.J. Newell Homes. She brings strategic vision and operational excellence to every decision, ensuring our finances and day-to-day operations align with our mission to serve families. Juliana is dedicated to building lasting value, both for our company and for the families we help call a house their home.",
+  },
+  nader: {
+    name: "Nader Hack",
+    role: "COO, Operations & Finance",
+    description: "Nader Hack serves as Chief Operating Officer, overseeing operations and finance at M.J. Newell Homes. With a disciplined approach and deep expertise in financial stewardship, he ensures our company runs with precision and integrity. Nader is committed to building sustainable growth while keeping our focus on helping families achieve homeownership.",
+  },
+} as const;
+
+const TEAM_FALLBACKS_ES = {
+  title: "Equipo de Liderazgo",
+  subtitle: "Apoyo 360 grados para tus sueños",
+  juliana: {
+    name: "Juliana Bonilla",
+    role: "Accionista Principal, Socia y Líder Financiera",
+    description: "Juliana Bonilla es accionista principal, socia y líder financiera de M.J. Newell Homes. Aporta visión estratégica y excelencia operativa a cada decisión, asegurando que nuestras finanzas y operaciones diarias estén alineadas con nuestra misión de servir a las familias. Juliana se dedica a construir valor perdurable, tanto para nuestra empresa como para las familias a las que ayudamos a hacer de una casa su hogar.",
+  },
+  nader: {
+    name: "Nader Hack",
+    role: "COO, Operaciones y Finanzas",
+    description: "Nader Hack se desempeña como Director de Operaciones, supervisando operaciones y finanzas en M.J. Newell Homes. Con un enfoque disciplinado y amplia experiencia en la gestión financiera, asegura que la compañía opere con precisión e integridad. Nader está comprometido con impulsar un crecimiento sostenible manteniendo el foco en ayudar a las familias a alcanzar la propiedad de su vivienda.",
+  },
+} as const;
 
 export default function AboutUsPage() {
-  const { t } = useTranslation();
+  const fb = TEAM_FALLBACKS_EN;
 
   const stats = [
-    {
-      icon: Home,
-      value: t("statistics.stats.homesBuilt.value"),
-      label: t("statistics.stats.homesBuilt.label"),
-      description: t("statistics.stats.homesBuilt.description"),
-    },
-    {
-      icon: Users,
-      value: t("statistics.stats.happyFamilies.value"),
-      label: t("statistics.stats.happyFamilies.label"),
-      description: t("statistics.stats.happyFamilies.description"),
-    },
-    {
-      icon: Award,
-      value: t("statistics.stats.yearsExperience.value"),
-      label: t("statistics.stats.yearsExperience.label"),
-      description: t("statistics.stats.yearsExperience.description"),
-    },
-    {
-      icon: DollarSign,
-      value: t("statistics.stats.downPayment.value"),
-      label: t("statistics.stats.downPayment.label"),
-      description: t("statistics.stats.downPayment.description"),
-    },
+    { icon: Home, value: "500+", label: "Homes built", description: "New construction homes delivered in Southwest Florida" },
+    { icon: Users, value: "500+", label: "Happy families", description: "Families who found their path to homeownership with us" },
+    { icon: Award, value: "15+", label: "Years of experience", description: "Building quality homes and lasting relationships" },
+    { icon: DollarSign, value: "$0", label: "Down payment with RTO", description: "Rent to Own lets you move in without a large down payment" },
   ];
 
   const values = [
-    {
-      icon: Users,
-      title: t("aboutUs.values.teamMentality.title"),
-      description: t("aboutUs.values.teamMentality.description"),
-    },
-    {
-      icon: Heart,
-      title: t("aboutUs.values.winWin.title"),
-      description: t("aboutUs.values.winWin.description"),
-    },
-    {
-      icon: DollarSign,
-      title: t("aboutUs.values.affordableHousing.title"),
-      description: t("aboutUs.values.affordableHousing.description"),
-    },
-    {
-      icon: Shield,
-      title: t("aboutUs.values.ethicalBusiness.title"),
-      description: t("aboutUs.values.ethicalBusiness.description"),
-    },
+    { icon: Users, title: "Team mentality", description: "We recruit and support strong, trustworthy people. Our team is the backbone of our success and yours." },
+    { icon: Heart, title: "Win-win", description: "We believe in outcomes that work for our families and our business. Transparency and fairness guide every decision." },
+    { icon: DollarSign, title: "Affordable housing", description: "We make quality new construction accessible through flexible options like Rent to Own and clear pricing." },
+    { icon: Shield, title: "Ethical business", description: "We operate with integrity, respect, and a long-term view. Our reputation is built on doing right by our customers and our team." },
   ];
 
 
@@ -83,8 +79,8 @@ export default function AboutUsPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/oficina.webp"
-            alt={t("aboutUs.hero.imageAlt") || "M.J. Newell Homes Office"}
+            src={getCloudinaryImageUrl("/img/oficina.webp")}
+            alt="M.J. Newell Homes Office"
             fill
             className="object-cover"
             priority
@@ -113,8 +109,8 @@ export default function AboutUsPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                 >
-                  <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/20 backdrop-blur-sm rounded-full border border-primary/40" suppressHydrationWarning>
-                    {t("aboutUs.hero.badge") || "About Us"}
+                  <span className="text-sm font-semibold text-white uppercase tracking-wider px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
+                    About Us
                   </span>
                 </motion.div>
 
@@ -129,7 +125,7 @@ export default function AboutUsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                 >
-                  {t("aboutUs.hero.title") || "Building Dreams, One Home at a Time"}
+                  Building Dreams, One Home at a Time
                 </motion.h1>
 
                 {/* Subtitle */}
@@ -143,7 +139,7 @@ export default function AboutUsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 >
-                  {t("aboutUs.hero.subtitle")}
+                  We build quality new construction homes in Southwest Florida and help families get there with Rent to Own and traditional financing.
                 </motion.p>
               </motion.div>
             </div>
@@ -162,14 +158,14 @@ export default function AboutUsPage() {
         <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
-                {t("statistics.title") || "Our Numbers Speak for Themselves"}
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
+                Our Numbers Speak for Themselves
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
-                {t("statistics.subtitle") || "The impact we've made in Southwest Florida"}
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
+                The impact we&apos;ve made in Southwest Florida
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             {/* Stats Section */}
@@ -207,26 +203,26 @@ export default function AboutUsPage() {
         <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-3 sm:space-y-4">
               <div className="inline-block">
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
-                  {t("aboutUs.leadership.badge") || "Leadership"}
+                <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
+                  Leadership
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
-                {t("aboutUs.leadership.title") || "Michael J. Newell"}
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
+                Michael J. Newell
               </h2>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
-                {t("aboutUs.leadership.subtitle") || "Founder & CEO of M.J. Newell Homes"}
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
+                Founder & CEO of M.J. Newell Homes
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Michael's Image */}
               <div className="relative w-full h-72 sm:h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20">
                 <Image
-                  src="/img/michael.webp"
+                  src={getCloudinaryImageUrl("/img/michael.webp")}
                   alt="Michael J. Newell - Founder & CEO"
                   fill
                   className="object-cover"
@@ -236,22 +232,22 @@ export default function AboutUsPage() {
               </div>
 
               {/* Description Text */}
-              <div className="space-y-6">
-                <div className="space-y-4">
-                  <p className="text-base md:text-lg leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {t("aboutUs.leadership.description") || "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth."}
+              <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                <div className="space-y-3 sm:space-y-4">
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                    Michael J. Newell applies a &quot;Win-Win&quot; approach to business, creating affordable housing for everyday Americans. He has applied a &quot;team mentality&quot; strategy at M.J. Newell Homes, resulting in enormous growth.
                   </p>
                   
                   <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-background">
-                    <div className="p-6 space-y-4">
-                      <div className="flex items-start gap-3">
-                        <Quote className="h-6 w-6 text-primary shrink-0 mt-1" />
-                        <div>
-                          <p className="text-base italic text-foreground leading-relaxed" suppressHydrationWarning>
-                            {t("aboutUs.leadership.quote") || "\"The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I'd have to enlist first-line powerhouses.\""}
+                    <div className="p-4 sm:p-5 md:p-6 space-y-3 sm:space-y-4">
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <Quote className="h-5 w-5 sm:h-6 sm:w-6 text-primary shrink-0 mt-1" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm sm:text-base italic text-foreground leading-relaxed" suppressHydrationWarning>
+                            &quot;The power of a team is crucial. You must recruit individuals who are both strong and trustworthy. I knew in order to be successful, I&apos;d have to enlist first-line powerhouses.&quot;
                           </p>
-                          <p className="text-sm text-muted-foreground mt-2" suppressHydrationWarning>
-                            {t("aboutUs.leadership.quoteAuthor") || "— Michael J. Newell"}
+                          <p className="text-xs sm:text-sm text-muted-foreground mt-2" suppressHydrationWarning>
+                            Michael J. Newell
                           </p>
                         </div>
                       </div>
@@ -259,32 +255,32 @@ export default function AboutUsPage() {
                   </Card>
                 </div>
 
-                <p className="text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                  {t("aboutUs.leadership.belief") || "Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization."}
+                <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                  Michael strongly believes that managing a business means getting to know your employees and cultivating a culture of respect and appreciation. He has diligently invested hundreds of hours with each team member to achieve multi-linear success throughout the organization.
                 </p>
 
                 {/* Mission and Vision Cards */}
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
                   <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
-                    <div className="p-5 space-y-3">
-                      <h3 className="text-lg font-black flex items-center gap-2" suppressHydrationWarning>
-                        <Award className="h-5 w-5 text-primary" />
-                        {t("aboutUs.leadership.mission.title") || "Our Mission"}
+                    <div className="p-4 sm:p-5 space-y-2 sm:space-y-3">
+                      <h3 className="text-base sm:text-lg font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                        <Award className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                        <span className="min-w-0">Our Mission</span>
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                        {t("aboutUs.leadership.mission.text") || "\"We want to make prime-value homes available at an economical rate to all Americans. We believe that affordable housing should be no more than a quarter of their income.\""}
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                        &quot;We want to make prime-value homes available at an economical rate to all Americans. We believe that affordable housing should be no more than a quarter of their income.&quot;
                       </p>
                     </div>
                   </Card>
 
                   <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
-                    <div className="p-5 space-y-3">
-                      <h3 className="text-lg font-black flex items-center gap-2" suppressHydrationWarning>
-                        <TrendingUp className="h-5 w-5 text-primary" />
-                        {t("aboutUs.leadership.vision.title") || "Vision for 2026"}
+                    <div className="p-4 sm:p-5 space-y-2 sm:space-y-3">
+                      <h3 className="text-base sm:text-lg font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                        <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                        <span className="min-w-0">Vision for 2026</span>
                       </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                        {t("aboutUs.leadership.vision.text") || "By 2026, M.J. Newell Homes continues to build quality homes and expand our Rent to Own program, helping more families achieve their dream of homeownership."}
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                        By 2026, M.J. Newell Homes continues to build quality homes and expand our Rent to Own program, helping more families achieve their dream of homeownership.
                       </p>
                     </div>
                   </Card>
@@ -307,14 +303,14 @@ export default function AboutUsPage() {
         
         <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
-                {t("aboutUs.values.title") || "Our Core Values"}
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
+                Our Core Values
               </h2>
-              <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
-                {t("aboutUs.values.subtitle") || "The principles that guide everything we do"}
+              <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
+                The principles that guide everything we do
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -323,15 +319,15 @@ export default function AboutUsPage() {
                 return (
                   <div
                     key={index}
-                    className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+                    className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 hover:border-primary/50 hover:bg-background/15 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
-                        <Icon className="w-6 h-6 text-primary" />
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="p-2 sm:p-2.5 md:p-3 bg-primary/20 rounded-lg sm:rounded-xl group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 shrink-0">
+                        <Icon className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" />
                       </div>
-                      <div className="space-y-2">
-                        <h3 className="text-xl font-black text-background">{value.title}</h3>
-                        <p className="text-background/80 leading-relaxed">{value.description}</p>
+                      <div className="flex-1 min-w-0 space-y-1.5 sm:space-y-2">
+                        <h3 className="text-base sm:text-lg md:text-xl font-black text-background leading-tight">{value.title}</h3>
+                        <p className="text-sm sm:text-base text-background/80 leading-relaxed">{value.description}</p>
                       </div>
                     </div>
                   </div>
@@ -348,27 +344,27 @@ export default function AboutUsPage() {
         <section className="py-10 md:py-14 lg:py-18 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
               <div className="inline-block">
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
-                  {t("aboutUs.fullTeam.badge")}
+                <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/10 rounded-full border border-primary/20" suppressHydrationWarning>
+                  Our team
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
-                {t("aboutUs.fullTeam.title")}
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
+                The people behind M.J. Newell Homes
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
-                {t("aboutUs.fullTeam.subtitle")}
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
+                Dedicated to building quality homes and helping families achieve their dreams
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
             {/* Full Team Image */}
             <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20 group">
               <div className="relative w-full aspect-[16/10] sm:aspect-[16/9]">
                 <Image
-                  src="/img/team.webp"
-                  alt={t("aboutUs.fullTeam.imageAlt") || "M.J. Newell Homes Team - Building a Legacy"}
+                  src={getCloudinaryImageUrl("/img/team.webp")}
+                  alt="M.J. Newell Homes Team - Building a Legacy"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
@@ -380,10 +376,10 @@ export default function AboutUsPage() {
               
               {/* Optional badge overlay */}
               <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full shadow-lg border border-white/80">
-                  <Users className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-bold text-foreground" suppressHydrationWarning>
-                    {t("aboutUs.fullTeam.memberCount") || "17+ Team Members"}
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-full shadow-xl border border-slate-700/50">
+                  <Users className="h-4 w-4 text-white" />
+                  <span className="text-sm font-bold text-white" suppressHydrationWarning>
+                    17+ Team Members
                   </span>
                 </div>
               </div>
@@ -394,7 +390,7 @@ export default function AboutUsPage() {
               <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 via-background to-background">
                 <div className="p-6 md:p-8 space-y-4">
                   <p className="text-base md:text-lg leading-relaxed text-muted-foreground text-center max-w-3xl mx-auto" suppressHydrationWarning>
-                    {t("aboutUs.fullTeam.description") || "Our team is the heart of M.J. Newell Homes. Each member brings expertise, dedication, and a shared commitment to building quality homes and helping families achieve their dreams of homeownership. Together, we're building not just houses, but a legacy of excellence in Southwest Florida."}
+                    Our team is the heart of M.J. Newell Homes. Each member brings expertise, dedication, and a shared commitment to building quality homes and helping families achieve their dreams of homeownership. Together, we&apos;re building not just houses, but a legacy of excellence in Southwest Florida.
                   </p>
                 </div>
               </Card>
@@ -404,45 +400,45 @@ export default function AboutUsPage() {
         </section>
       </AnimatedSection>
 
-      {/* Team Section - Michael & Juliana */}
+      {/* Team Section - Michael, Juliana & Nader */}
       <AnimatedSection delay={0.1}>
         <section className="py-10 md:py-14 lg:py-18 bg-background">
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
-                {t("aboutUs.team.title") || "Leadership Team"}
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
+                {fb.title}
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto" suppressHydrationWarning>
-                {t("aboutUs.team.subtitle") || "360-degree support for your dreams"}
+              <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
+                {fb.subtitle}
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
               {/* Michael J. Newell */}
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
-                    src="/img/michael.webp"
+                    src={getCloudinaryImageUrl("/img/michael.webp")}
                     alt="Michael J. Newell - Founder & CEO"
                     fill
                     className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     priority
                   />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-black mb-2" suppressHydrationWarning>
-                      {t("aboutUs.leadership.title") || "Michael J. Newell"}
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
+                      Michael J. Newell
                     </h3>
-                    <p className="text-lg font-semibold text-primary" suppressHydrationWarning>
-                      {t("aboutUs.leadership.role") || "Founder & CEO"}
+                    <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
+                      Founder & CEO
                     </p>
                   </div>
-                  <p className="text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {t("aboutUs.leadership.description") || "Michael J. Newell applies a \"Win-Win\" approach to business, creating affordable housing for everyday Americans. He has applied a \"team mentality\" strategy at M.J. Newell Homes, resulting in enormous growth."}
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                    Michael J. Newell applies a &quot;Win-Win&quot; approach to business, creating affordable housing for everyday Americans. He has applied a &quot;team mentality&quot; strategy at M.J. Newell Homes, resulting in enormous growth.
                   </p>
                 </div>
               </div>
@@ -451,24 +447,50 @@ export default function AboutUsPage() {
               <div className="space-y-6">
                 <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
                   <Image
-                    src="/img/juliana.webp"
-                    alt="Juliana Bonilla - Administrative & Sales"
+                    src={getCloudinaryImageUrl("/img/juliana.webp")}
+                    alt={`${fb.juliana.name}, ${fb.juliana.role}`}
                     fill
                     className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-black mb-2" suppressHydrationWarning>
-                      {t("aboutUs.team.juliana.name") || "Juliana Bonilla"}
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
+                      {fb.juliana.name}
                     </h3>
-                    <p className="text-lg font-semibold text-primary" suppressHydrationWarning>
-                      {t("aboutUs.team.juliana.role") || "Administrative & Sales"}
+                    <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
+                      {fb.juliana.role}
                     </p>
                   </div>
-                  <p className="text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
-                    {t("aboutUs.team.juliana.description") || "Juliana Bonilla brings expertise in administration and sales, ensuring smooth operations and excellent customer service. She is dedicated to helping families find their dream home."}
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                    {fb.juliana.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Nader Hack */}
+              <div className="space-y-6">
+                <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-primary/20 bg-muted/20">
+                  <Image
+                    src={getCloudinaryImageUrl("/img/nader.jpg")}
+                    alt={`${fb.nader.name}, ${fb.nader.role}`}
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="space-y-3 sm:space-y-4">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
+                      {fb.nader.name}
+                    </h3>
+                    <p className="text-base sm:text-lg font-semibold text-primary" suppressHydrationWarning>
+                      {fb.nader.role}
+                    </p>
+                  </div>
+                  <p className="text-sm sm:text-base leading-relaxed text-muted-foreground" suppressHydrationWarning>
+                    {fb.nader.description}
                   </p>
                 </div>
               </div>
@@ -489,48 +511,48 @@ export default function AboutUsPage() {
         
         <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
-                {t("aboutUs.responseTimes.title") || "Fast Response Times"}
+            <div className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
+                Fast Response Times
               </h2>
-              <p className="text-base md:text-lg text-background/80 max-w-2xl mx-auto" suppressHydrationWarning>
-                {t("aboutUs.responseTimes.subtitle") || "We value your time and respond quickly to all inquiries"}
+              <p className="text-sm sm:text-base md:text-lg text-background/80 max-w-2xl mx-auto px-4 leading-relaxed" suppressHydrationWarning>
+                We value your time and respond quickly to all inquiries
               </p>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+              <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.value") || "< 24h"}
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
+                  {"< 24h"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.label") || "Phone Calls"}
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
+                  Phone Calls
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.phone.description") || "We respond to all phone inquiries within 24 hours"}
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
+                  We respond to all phone inquiries within 24 hours
                 </p>
               </div>
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.value") || "< 48h"}
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
+                  {"< 48h"}
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.label") || "Email Inquiries"}
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
+                  Email Inquiries
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.email.description") || "Email responses within 48 hours"}
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
+                  Email responses within 48 hours
                 </p>
               </div>
-              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
-                <div className="text-4xl md:text-5xl font-black text-primary mb-3" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.value") || "Same Day"}
+              <div className="border-2 border-background/20 bg-background/10 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 text-center hover:border-primary/50 hover:bg-background/15 transition-all duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-2 sm:mb-3 leading-tight" suppressHydrationWarning>
+                  Same Day
                 </div>
-                <h3 className="text-lg md:text-xl font-black text-background mb-2" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.label") || "Appointments"}
+                <h3 className="text-base sm:text-lg md:text-xl font-black text-background mb-1 sm:mb-2 leading-tight" suppressHydrationWarning>
+                  Appointments
                 </h3>
-                <p className="text-sm md:text-base text-background/80" suppressHydrationWarning>
-                  {t("aboutUs.responseTimes.appointment.description") || "Schedule your visit the same day"}
+                <p className="text-xs sm:text-sm md:text-base text-background/80 leading-relaxed" suppressHydrationWarning>
+                  Schedule your visit the same day
                 </p>
               </div>
             </div>
@@ -545,38 +567,38 @@ export default function AboutUsPage() {
         <div className="container mx-auto px-4 sm:px-5 md:px-6">
           <div className="max-w-6xl mx-auto">
             <Card className="border-2 border-primary/20 shadow-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden">
-              <div className="p-8 md:p-12 space-y-6">
-                <div className="text-center space-y-4">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight" suppressHydrationWarning>
-                    {t("aboutUs.housingCrisis.title") || "Solving the Affordable Housing Crisis"}
+              <div className="p-4 sm:p-6 md:p-8 lg:p-12 space-y-4 sm:space-y-5 md:space-y-6">
+                <div className="text-center space-y-3 sm:space-y-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight px-4" suppressHydrationWarning>
+                    Solving the Affordable Housing Crisis
                   </h2>
-                  <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed" suppressHydrationWarning>
-                    {t("aboutUs.housingCrisis.description") || "Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed M.J. Newell Homes to help solve our country's predicament."}
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4" suppressHydrationWarning>
+                    Like most Americans, Michael Newell has watched the housing crisis continue to grow in the United States. As a result, he has strategically employed M.J. Newell Homes to help solve our country&apos;s predicament.
                   </p>
-                  <div className="w-24 h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
+                  <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary via-primary/80 to-primary rounded-full mx-auto"></div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6 mt-8">
-                  <div className="space-y-4">
-                    <h3 className="text-xl md:text-2xl font-black flex items-center gap-2" suppressHydrationWarning>
-                      <FileText className="h-5 w-5 text-primary" />
-                      {t("aboutUs.housingCrisis.learnToBuild.title") || "Learn to Build Course"}
+                <div className="grid md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 mt-6 sm:mt-8">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                      <FileText className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                      <span className="min-w-0">Learn to Build Course</span>
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                      {t("aboutUs.housingCrisis.learnToBuild.description") || "Michael Newell has created a course called \"Learn to Build,\" in which he details every building process step. He believes that by sharing his construction knowledge with others, this can ultimately impact the housing deficit in our nation."}
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                      Michael Newell has created a course called &quot;Learn to Build,&quot; in which he details every building process step. He believes that by sharing his construction knowledge with others, this can ultimately impact the housing deficit in our nation.
                     </p>
-                    <p className="text-muted-foreground leading-relaxed italic" suppressHydrationWarning>
-                      {t("aboutUs.housingCrisis.learnToBuild.quote") || "\"I feel that a new builder who comes into this industry will only strengthen the market. Our country needs good builders who can supply the growing demand for new construction.\""}
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed italic" suppressHydrationWarning>
+                      &quot;I feel that a new builder who comes into this industry will only strengthen the market. Our country needs good builders who can supply the growing demand for new construction.&quot;
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-xl md:text-2xl font-black flex items-center gap-2" suppressHydrationWarning>
-                      <Target className="h-5 w-5 text-primary" />
-                      {t("aboutUs.housingCrisis.commitment.title") || "Our Commitment"}
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black flex items-center gap-2 leading-tight" suppressHydrationWarning>
+                      <Target className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                      <span className="min-w-0">Our Commitment</span>
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed" suppressHydrationWarning>
-                      {t("aboutUs.housingCrisis.commitment.text") || "\"The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. In a world where most people attempt to suppress others to gain power for themselves, we believe it's a detriment to society if we don't look for a win-win solution in business and help each other along the way.\""}
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed" suppressHydrationWarning>
+                      &quot;The advantages of business transparency has a positive domino-effect not just for me and my team, but for millions of other Americans. In a world where most people attempt to suppress others to gain power for themselves, we believe it&apos;s a detriment to society if we don&apos;t look for a win-win solution in business and help each other along the way.&quot;
                     </p>
                   </div>
                 </div>
@@ -599,12 +621,12 @@ export default function AboutUsPage() {
         <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             <Card className="border-2 border-background/20 shadow-2xl bg-background/10 backdrop-blur-md">
-              <div className="p-8 md:p-12 text-center space-y-6 max-w-3xl mx-auto">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight" suppressHydrationWarning>
-                  {t("aboutUs.cta.title") || "Ready to Find Your Dream Home?"}
+              <div className="p-4 sm:p-6 md:p-8 lg:p-12 text-center space-y-4 sm:space-y-5 md:space-y-6 max-w-3xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-background tracking-tight leading-tight px-4" suppressHydrationWarning>
+                  Ready to Find Your Dream Home?
                 </h2>
-                <p className="text-base md:text-lg lg:text-xl text-background/80" suppressHydrationWarning>
-                  {t("aboutUs.cta.description") || "Let us guide you through the entire process of buying your new home."}
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-background/80 leading-relaxed px-4" suppressHydrationWarning>
+                  Let us guide you through the entire process of buying your new home.
                 </p>
                 <div className="pt-4">
                   <Button
@@ -613,7 +635,7 @@ export default function AboutUsPage() {
                     className="bg-primary text-primary-foreground px-8 py-6 text-base md:text-lg font-black shadow-2xl shadow-primary/30 hover:shadow-primary/40 transition-all duration-300 group hover:scale-105"
                   >
                     <Link href="/contact">
-                      {t("aboutUs.cta.button") || "Get in Touch"}
+                      Get in Touch
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -623,6 +645,17 @@ export default function AboutUsPage() {
           </div>
         </div>
         </section>
+      </AnimatedSection>
+
+      {/* Partner Logos Slider */}
+      <AnimatedSection delay={200}>
+        <LogoSlider
+          logos={PARTNER_LOGOS}
+          speed="normal"
+          pauseOnHover={true}
+          showTitle={false}
+          variant="default"
+        />
       </AnimatedSection>
     </div>
   );

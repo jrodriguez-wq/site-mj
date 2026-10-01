@@ -1,41 +1,24 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { TrendingUp, Home, DollarSign, Award, CheckCircle2 } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 export const WhyChooseUs = () => {
-  const { t } = useTranslation();
-
   const stats = [
-    {
-      number: "$0",
-      labelKey: "whyChooseUs.highlights.downPayment",
-      icon: DollarSign,
-    },
-    {
-      number: "100%",
-      labelKey: "whyChooseUs.highlights.noHOA",
-      icon: Home,
-    },
-    {
-      number: "15+",
-      labelKey: "whyChooseUs.highlights.yearsExperience",
-      icon: Award,
-    },
-    {
-      number: "500+",
-      labelKey: "whyChooseUs.highlights.happyFamilies",
-      icon: TrendingUp,
-    },
+    { number: "$0", label: "Down payment with RTO", icon: DollarSign },
+    { number: "100%", label: "No HOA in our communities", icon: Home },
+    { number: "15+", label: "Years of experience", icon: Award },
+    { number: "500+", label: "Happy families", icon: TrendingUp },
   ];
 
   const benefits = [
-    "whyChooseUs.points.quality",
-    "whyChooseUs.points.flexibility",
-    "whyChooseUs.points.experience",
+    "Quality new construction and clear pricing so you know what you're getting.",
+    "Flexibility with Rent to Own and financing options that work for real families.",
+    "Experience you can trust—we've helped hundreds of families into their new homes.",
   ];
 
   return (
@@ -44,17 +27,11 @@ export const WhyChooseUs = () => {
         {/* Main Layout - Split Design */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Image with Integrated Stats */}
-          <motion.div 
-            className="relative order-2 lg:order-1"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <AnimatedSection className="relative order-2 lg:order-1" direction="left">
             <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/img/hero/1w5a0741-1.webp"
-                alt="M.J. Newell Homes - Quality Construction"
+                src={getCloudinaryImageUrl("/img/hero/1w5a0741-1.webp")}
+                alt="M.J. Newell Homes - Quality new construction homes in Florida - Best home builder Miami, LaBelle, Lehigh Acres"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -78,7 +55,7 @@ export const WhyChooseUs = () => {
                           {stat.number}
                         </div>
                         <div className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight" suppressHydrationWarning>
-                          {t(stat.labelKey)}
+                          {stat.label}
                         </div>
                       </div>
                     );
@@ -105,41 +82,35 @@ export const WhyChooseUs = () => {
                       {stat.number}
                     </div>
                     <div className="text-xs sm:text-sm text-muted-foreground font-medium" suppressHydrationWarning>
-                      {t(stat.labelKey)}
+                      {stat.label}
                     </div>
                   </div>
                 );
               })}
             </div>
-          </motion.div>
+          </AnimatedSection>
 
           {/* Right Side - Content */}
-          <motion.div 
-            className="space-y-8 order-1 lg:order-2"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          >
+          <AnimatedSection className="space-y-8 order-1 lg:order-2" direction="right" delay={150}>
             <div className="space-y-6">
               <div>
                 <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-foreground leading-[1.1] mb-6" suppressHydrationWarning>
-                  {t("whyChooseUs.title")}
+                  Why Choose M.J. Newell Homes?
                 </h2>
                 <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl" suppressHydrationWarning>
-                  {t("whyChooseUs.subtitle")}
+                  We build quality homes and offer flexible paths to ownership—including Rent to Own—so more families can achieve their dream.
                 </p>
               </div>
 
               {/* Benefits List - Clean Design */}
               <div className="space-y-4 pt-4">
-                {benefits.map((benefitKey, index) => (
+                {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-4 group">
                     <div className="shrink-0 mt-1">
                       <CheckCircle2 className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
                     </div>
-                    <p className="text-base sm:text-lg text-foreground leading-relaxed flex-1" suppressHydrationWarning>
-                      {t(benefitKey)}
+                    <p className="text-base sm:text-lg text-foreground leading-relaxed flex-1">
+                      {benefit}
                     </p>
                   </div>
                 ))}
@@ -149,20 +120,16 @@ export const WhyChooseUs = () => {
             {/* CTA Button */}
             <div className="pt-4">
               <Button
-                onClick={(e) => {
-                  e.preventDefault();
-                  const formSection = document.getElementById("quick-register-form");
-                  if (formSection) {
-                    formSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }
-                }}
+                asChild
                 size="lg"
                 className="px-8 py-6 text-base sm:text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300"
               >
-                <span suppressHydrationWarning>{t("hero.applyNow")}</span>
+                <Link href="/rent-to-own#rto-application-form">
+                  Apply for Rent to Own
+                </Link>
               </Button>
             </div>
-          </motion.div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

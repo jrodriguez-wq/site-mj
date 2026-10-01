@@ -1,72 +1,51 @@
 "use client";
 
-import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Home } from "lucide-react";
-import { useTranslation } from "@/hooks/use-translation";
-import { motion } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
-// Configuración estática de comunidades (fuera del componente para evitar problemas de hidratación)
 const COMMUNITIES_CONFIG = [
   {
     nameKey: "labelle",
-    alt: "LaBelle community",
+    name: "LaBelle",
+    description: "Rural charm, outdoor recreation, and affordable new construction. Acre+ lots, no HOA.",
     href: "/communities/labelle",
-    image: "/recursos/shutterstock-1065297917.webp",
-    featureKeys: [
-      "communities.labelle.features.acreLots",
-      "communities.labelle.features.noHOA",
-      "communities.labelle.features.familyFriendly",
-    ],
+    image: getCloudinaryImageUrl("/recursos/shutterstock-1065297917.webp"),
+    features: ["Acre+ lots", "No HOA", "Family-friendly"],
+    exploreText: "Explore LaBelle",
+    alt: "New homes in LaBelle, Florida - Home builder LaBelle - New construction homes by M.J. Newell Homes",
   },
   {
     nameKey: "lehighAcres",
-    alt: "Lehigh Acres community",
+    name: "Lehigh Acres",
+    description: "Spacious lots, great schools, and a prime location near Fort Myers. New homes and Rent to Own.",
     href: "/communities/lehigh-acres",
-    image: "/recursos/shutterstock-1197062707.webp",
-    featureKeys: [
-      "communities.lehighAcres.features.spaciousLots",
-      "communities.lehighAcres.features.greatSchools",
-      "communities.lehighAcres.features.primeLocation",
-    ],
+    image: getCloudinaryImageUrl("/recursos/shutterstock-1197062707.webp"),
+    features: ["Spacious lots", "Great schools", "Prime location"],
+    exploreText: "Explore Lehigh Acres",
+    alt: "New homes in Lehigh Acres, Florida - Home builder Lehigh Acres - New construction homes by M.J. Newell Homes",
   },
-] as const;
+];
 
 export const CommunitiesShowcase = () => {
-  const { t, translations } = useTranslation();
-
-  const communities = useMemo(() => 
-    COMMUNITIES_CONFIG.map((config) => ({
-      ...config,
-      name: t(`communities.${config.nameKey}.name`),
-      description: t(`communities.${config.nameKey}.description`),
-      features: config.featureKeys.map((key) => t(key)),
-      exploreText: t(`communities.${config.nameKey}.explore`),
-    })), 
-    [t, translations]
-  );
+  const communities = COMMUNITIES_CONFIG;
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-muted/20">
       <div className="container mx-auto px-4 sm:px-5 md:px-6">
-        <motion.div 
-          className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
+        <AnimatedSection className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter px-2" suppressHydrationWarning>
-            {t("communities.title")}
+            Where We Build
           </h2>
           <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl px-4" suppressHydrationWarning>
-            {t("communities.subtitle")}
+            We build new construction homes in LaBelle and Lehigh Acres. Explore each community and find your perfect fit.
           </p>
-        </motion.div>
+        </AnimatedSection>
 
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
           {communities.map((community, index) => (
@@ -111,7 +90,15 @@ export const CommunitiesShowcase = () => {
                   ))}
                 </div>
                 <Button asChild size="lg" className="w-full sm:w-auto group/btn text-sm sm:text-base">
-                  <Link href={community.href} className="flex items-center gap-2">
+                  <Link 
+                    href={community.href} 
+                    className="flex items-center gap-2"
+                    aria-label={
+                      community.nameKey === "labelle"
+                        ? "Explore new homes in LaBelle, Florida - Home builder LaBelle"
+                        : "Explore new homes in Lehigh Acres, Florida - Home builder Lehigh Acres"
+                    }
+                  >
                     <span suppressHydrationWarning>{community.exploreText}</span>
                     <span className="group-hover/btn:translate-x-1 transition-transform duration-150">→</span>
                   </Link>

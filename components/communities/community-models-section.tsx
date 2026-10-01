@@ -3,7 +3,6 @@
 import { ModelCard } from "@/components/models/model-card";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
 import { getModelData } from "@/lib/models/model-data";
-import { useTranslation } from "@/hooks/use-translation";
 import { useEffect, useState } from "react";
 import type { ModelData, Community } from "@/types/model";
 import { sortModelsByPrice } from "@/lib/models/model-utils";
@@ -17,7 +16,6 @@ interface CommunityModelsSectionProps {
 }
 
 export const CommunityModelsSection = ({ modelKeys, title, subtitle, community }: CommunityModelsSectionProps) => {
-  const { t } = useTranslation();
   const [modelsData, setModelsData] = useState<(ModelData & { key: string })[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -83,23 +81,23 @@ export const CommunityModelsSection = ({ modelKeys, title, subtitle, community }
                   key={modelData.key}
                   modelKey={modelData.key}
                   initialDelay={index * 100}
-                  name={t(`homeModels.models.${modelData.key}.name`)}
-                  description={t(`homeModels.models.${modelData.key}.description`)}
+                  name={modelData.name}
+                  description={modelData.description}
                   image={mainImage}
                   images={modelImages}
                   price={modelData.price}
                   rtoPrice={modelData.rtoPrice}
                   beds={modelData.bedrooms}
-                  bedsLabel={t("homeModels.beds")}
+                  bedsLabel="Beds"
                   baths={modelData.bathrooms}
-                  bathsLabel={t("homeModels.baths")}
+                  bathsLabel="Baths"
                   sqft={modelData.sqft}
-                  sqftLabel={t("homeModels.sqft")}
-                  viewDetailsLabel={t("homeModels.moreDetails")}
-                  viewPhotosLabel={`${t("homeModels.viewPhotos")} (${modelImages.length})`}
-                  galleryTitle={`${t("homeModels.gallery")} ${t(`homeModels.models.${modelData.key}.name`)}`}
-                  galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
-                  modelLabel={t("homeModels.model")}
+                  sqftLabel="Sq ft"
+                  viewDetailsLabel="More details"
+                  viewPhotosLabel={`View photos (${modelImages.length})`}
+                  galleryTitle={`Gallery – ${modelData.name}`}
+                  galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? "image" : "images"} available`}
+                  modelLabel="Model"
                   community={community}
                 />
               );

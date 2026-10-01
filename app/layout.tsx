@@ -3,18 +3,26 @@ import Script from "next/script";
 import { Geist, Geist_Mono, Outfit, DM_Sans, Pacifico } from "next/font/google";
 import "./globals.css";
 import { defaultMetadata, SEO_CONFIG } from "@/config/seo";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { StructuredDataComponent } from "@/components/seo/structured-data";
 import {
   generateOrganizationStructuredData,
   generateWebSiteStructuredData,
   generateLocalBusinessStructuredData,
 } from "@/lib/seo/structured-data";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { LanguageProvider } from "@/components/layout/language-provider";
-import { TranslationLoader } from "@/components/layout/translation-loader";
+import { generateAllServiceSchemas } from "@/lib/seo/service-structured-data";
+import {
+  generatePersonSchema,
+  generateAggregateRatingSchema,
+} from "@/lib/seo/person-structured-data";
+import { ConditionalSiteLayout } from "@/components/layout/conditional-site-layout";
+// Promoción desactivada por el momento
+// import { GlobalStars } from "@/components/promotion/global-stars";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { RegisterSw } from "@/components/pwa/register-sw";
+import { ConsentedTrackingScripts } from "@/components/consent/consented-tracking-scripts";
+import { CookieConsentBanner } from "@/components/consent/cookie-consent-banner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,58 +78,14 @@ export default function RootLayout({
     generateOrganizationStructuredData(),
     generateWebSiteStructuredData(),
     generateLocalBusinessStructuredData(),
+    generatePersonSchema(),
+    generateAggregateRatingSchema(),
+    ...generateAllServiceSchemas(),
   ];
 
   return (
     <html lang={SEO_CONFIG.defaultLocale} suppressHydrationWarning>
       <head>
-        {/* Viewport optimizado para móvil */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
-        />
-        
-        {/* Preload de recursos críticos */}
-        <link
-          rel="preload"
-          href="/img/logo.svg"
-          as="image"
-          type="image/svg+xml"
-          fetchPriority="high"
-        />
-        {/* Preload de imagen de promoción para mejor rendimiento */}
-        <link
-          rel="preload"
-          href="/img/hero/1w5a0754-e4.webp"
-          as="image"
-          type="image/jpeg"
-          fetchPriority="high"
-        />
-        
-        {/* Preconnect y DNS prefetch para recursos externos */}
-        <link
-          rel="dns-prefetch"
-          href="https://js.hs-scripts.com"
-        />
-        <link
-          rel="dns-prefetch"
-          href="https://js.hsforms.net"
-        />
-        <link
-          rel="preconnect"
-          href="https://js.hs-scripts.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="dns-prefetch"
-          href="https://www.googletagmanager.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://www.googletagmanager.com"
-          crossOrigin="anonymous"
-        />
-        
         {/* Google Search Console Verification */}
         {SEO_CONFIG.googleSearchConsole && (
           <meta
@@ -130,46 +94,68 @@ export default function RootLayout({
           />
         )}
         
-        {/* Google Analytics - Google tag (gtag.js) */}
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-XBCDDYFMJQ"
+        {/* Viewport optimizado para móvil */}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
         />
-        <Script
-          id="google-analytics-config"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XBCDDYFMJQ');
-            `,
-          }}
+        {/* PWA: color de la barra de estado al instalar la app */}
+        <meta name="theme-color" content="#036aff" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        
+        {/* ── Preconnect (max 3 — only most-critical origins) ──────────────────
+            fonts.googleapis / fonts.gstatic REMOVED: next/font self-hosts fonts,
+            no CDN request is ever made. Having them wastes a connection slot.
+            Rule: only preconnect origins that load in the first 2 seconds.     */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://js.hs-scripts.com" crossOrigin="anonymous" />
+
+        {/* ── DNS prefetch for below-fold 3rd parties ───────────────────────── */}
+        <link rel="dns-prefetch" href="https://js.hsforms.net" />
+        <link rel="dns-prefetch" href="https://static.hsappstatic.net" />
+        <link rel="dns-prefetch" href="https://meetings.hubspot.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+
+        {/* ── Preload LCP hero image ─────────────────────────────────────────── */}
+        <link
+          rel="preload"
+          href={getCloudinaryImageUrl("/img/hero/1w5a0754-e4.webp")}
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
         />
+        
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} ${dmSans.variable} ${pacifico.variable}`}
         suppressHydrationWarning
       >
+        {/* Google Analytics + Meta Pixel: only render after the visitor accepts cookies */}
+        <ConsentedTrackingScripts />
         <StructuredDataComponent data={structuredData} />
-        <LanguageProvider />
-        <TranslationLoader>
-          <div className="flex min-h-screen flex-col w-full max-w-full">
-            <Navbar />
-            <main className="flex-1 w-full max-w-full pt-16 sm:pt-[4.5rem] md:pt-20 lg:pt-24" id="main-content">{children}</main>
-            <Footer />
-          </div>
-        </TranslationLoader>
+        <ConditionalSiteLayout>{children}</ConditionalSiteLayout>
+        <CookieConsentBanner />
         <Analytics />
         <SpeedInsights />
-
+        <RegisterSw />
+        
+        {/* Efectos navideños / promoción - desactivado por el momento */}
+        {/* <GlobalStars /> */}
+        
         {/* HubSpot Embed Code - Tracking - Defer para mejor rendimiento */}
         <Script
           id="hs-script-loader"
           strategy="lazyOnload"
           src="https://js.hs-scripts.com/50215941.js"
+        />
+        
+        {/* HubSpot Meetings Embed Script - Precargar para mejor rendimiento */}
+        <Script
+          id="hs-meetings-embed"
+          strategy="afterInteractive"
+          src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"
         />
       </body>
     </html>

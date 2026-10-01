@@ -7,6 +7,7 @@
 export const ROUTES = {
   HOME: "/",
   RENT_TO_OWN: "/rent-to-own",
+  RTO_APPLICATION: "/rto-application",
   MODELS: "/models",
   SCHEDULE_APPOINTMENT: "/schedule-appointment",
   CONTACT: "/contact",
@@ -15,6 +16,7 @@ export const ROUTES = {
   LABELLE: "/communities/labelle",
   LEHIGH_ACRES: "/communities/lehigh-acres",
   HOME_BUYING_GUIDE: "/home-buying-guide",
+  PAY_LINKS: "/pay-links",
 } as const;
 
 // IDs de formularios HubSpot
@@ -26,13 +28,32 @@ export const HUBSPOT_FORMS = {
   },
   SCHEDULE_APPOINTMENT: {
     portalId: "50215941",
-    formId: "77bc0a99-fc8a-4509-8eb5-1b457f3452df",
+    formId: "cde5f2ab-dd73-49f1-be0d-e7fa20bfbd23",
     region: "na1" as const,
   },
   WARRANTY: {
     portalId: "50215941",
     formId: "warranty-form-id", // Actualizar con el ID real
     region: "na1" as const,
+  },
+  RENT_TO_OWN: {
+    portalId: "50215941",
+    formId: "260b5e42-6035-4dc3-af93-d6cb83b8a254",
+    region: "na1" as const,
+  },
+} as const;
+
+/** HubSpot Payments — public checkout on /pay-links (not the tenant portal). */
+export const HUBSPOT_PAYMENTS = {
+  RESERVATION_500: {
+    amountUsd: 500,
+    checkoutUrl:
+      "https://50215941.hs-sites.com/hs/payments/jFmMCZtxNTn?referrer=PAYMENT_LINK",
+    embedUrl:
+      "https://50215941.hs-sites.com/hs/payments/jFmMCZtxNTn?referrer=PAYMENT_LINK_EMBED&layout=embed-full",
+    qrSrc: "/payments/500.png",
+    scriptSrc:
+      "https://static.hsappstatic.net/payments-embed/ex/PaymentsEmbedCode.js",
   },
 } as const;
 

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 // ============================================================================
-// CONSTANTS - Configuración centralizada para fácil mantenimiento
+// CONSTANTS - Configuraci?n centralizada para f?cil mantenimiento
 // ============================================================================
 
 /**
@@ -14,18 +14,20 @@ const CACHE_TTL = {
 } as const;
 
 /**
- * Configuración de imágenes
+ * Configuraci?n de im?genes
  */
 const IMAGE_CONFIG = {
   FORMATS: ["image/avif", "image/webp"] as ("image/avif" | "image/webp")[],
   DEVICE_SIZES: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
   IMAGE_SIZES: [16, 32, 48, 64, 96, 128, 256, 384],
+  /** Default quality; also list all qualities used by <Image quality={?} /> in the app */
   QUALITY: 75,
+  QUALITIES: [75, 85, 90, 100] as const,
   MIN_CACHE_TTL: CACHE_TTL.ONE_YEAR,
 };
 
 /**
- * Dominios remotos permitidos para imágenes
+ * Dominios remotos permitidos para im?genes
  */
 const REMOTE_IMAGE_PATTERNS = [
   // HubSpot Forms & Scripts
@@ -37,7 +39,7 @@ const REMOTE_IMAGE_PATTERNS = [
     protocol: "https" as const,
     hostname: "js.hs-scripts.com",
   },
-  // YouTube (imágenes de videos)
+  // YouTube (im?genes de videos)
   {
     protocol: "https" as const,
     hostname: "img.youtube.com",
@@ -53,17 +55,23 @@ const REMOTE_IMAGE_PATTERNS = [
     hostname: "i.ytimg.com",
     pathname: "/**",
   },
+  // Cloudinary (imágenes del sitio)
+  {
+    protocol: "https" as const,
+    hostname: "res.cloudinary.com",
+    pathname: "/**",
+  },
 ];
 
 /**
- * Rutas estáticas que deben tener cache agresivo
+ * Rutas est?ticas que deben tener cache agresivo
  */
 const STATIC_ASSET_PATHS = [
   "/img/:path*",
   "/recursos/:path*",
   "/modelos-optimized/:path*",
-  "/_next/static/:path*",
-  "/_next/image",
+  "/_next/static/:path*",  // JS/CSS bundles with content hash — safe to cache forever
+  "/_next/image",           // Re-enabled: image optimizer is active again
   "/favicon.ico",
   "/favicon.png",
   "/favicon-16x16.png",
@@ -75,7 +83,7 @@ const STATIC_ASSET_PATHS = [
 ];
 
 /**
- * Paquetes para optimización de imports (tree-shaking)
+ * Paquetes para optimizaci?n de imports (tree-shaking)
  */
 const OPTIMIZED_PACKAGES = [
   "@radix-ui/react-accordion",
@@ -89,11 +97,11 @@ const OPTIMIZED_PACKAGES = [
 ];
 
 // ============================================================================
-// HELPER FUNCTIONS - Funciones auxiliares para configuración
+// HELPER FUNCTIONS - Funciones auxiliares para configuraci?n
 // ============================================================================
 
 /**
- * Genera headers de seguridad estándar para todas las rutas
+ * Genera headers de seguridad est?ndar para todas las rutas
  */
 const getSecurityHeaders = () => [
   {
@@ -123,7 +131,7 @@ const getSecurityHeaders = () => [
 ];
 
 /**
- * Genera header de cache inmutable para assets estáticos
+ * Genera header de cache inmutable para assets est?ticos
  */
 const getImmutableCacheHeader = () => ({
   key: "Cache-Control",
@@ -131,16 +139,46 @@ const getImmutableCacheHeader = () => ({
 });
 
 /**
+ * HTML/pages: serve from cache instantly (max-age=60), revalidate in background.
+ * stale-while-revalidate=86400: browser serves stale HTML while fetching fresh — feels instant.
+ * This dramatically improves TTFB for repeat visitors without risking stale content
+ * (JS/CSS bundles have content hashes so old HTML + new bundles auto-mismatches are avoided).
+ */
+const getHtmlRevalidateHeader = () => ({
+  key: "Cache-Control",
+  value: "public, max-age=60, stale-while-revalidate=86400",
+});
+
+/**
  * Genera configuración de headers para todas las rutas
  */
 const getHeadersConfig = () => {
   const headers = [
+    // Service Worker: no cachear para que las actualizaciones se propaguen
+    {
+      source: "/sw.js",
+      headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
+    },
     // Headers de seguridad para todas las rutas
     {
       source: "/:path*",
       headers: getSecurityHeaders(),
     },
-    // Cache agresivo para assets estáticos
+    // Páginas HTML: revalidar para que clientes que vuelven reciban la versión nueva
+    { source: "/", headers: [getHtmlRevalidateHeader()] },
+    { source: "/models/:path*", headers: [getHtmlRevalidateHeader()] },
+    { source: "/contact", headers: [getHtmlRevalidateHeader()] },
+    { source: "/about-us", headers: [getHtmlRevalidateHeader()] },
+    { source: "/rent-to-own", headers: [getHtmlRevalidateHeader()] },
+    { source: "/faq", headers: [getHtmlRevalidateHeader()] },
+    { source: "/schedule-appointment", headers: [getHtmlRevalidateHeader()] },
+    { source: "/communities/:path*", headers: [getHtmlRevalidateHeader()] },
+    { source: "/blog/:path*", headers: [getHtmlRevalidateHeader()] },
+    { source: "/privacy-policy", headers: [getHtmlRevalidateHeader()] },
+    { source: "/pay-links", headers: [getHtmlRevalidateHeader()] },
+    { source: "/pay-links/thanks", headers: [getHtmlRevalidateHeader()] },
+    { source: "/terms-conditions", headers: [getHtmlRevalidateHeader()] },
+    // Cache agresivo para assets estáticos (imágenes, _next/static, etc.)
     ...STATIC_ASSET_PATHS.map((path) => ({
       source: path,
       headers: [getImmutableCacheHeader()],
@@ -151,67 +189,58 @@ const getHeadersConfig = () => {
 };
   
 // ============================================================================
-// NEXT.JS CONFIG - Configuración principal
+// NEXT.JS CONFIG - Configuraci?n principal
 // ============================================================================
 
 const nextConfig: NextConfig = {
   // ========================================================================
-  // IMAGE OPTIMIZATION - Optimización de imágenes
+  // IMAGE OPTIMIZATION
+  // unoptimized: false → Next.js generates srcset + serves WebP/AVIF via /_next/image.
+  // This gives Lighthouse "Serve images in modern format" and "Properly sized images".
+  // The previous `unoptimized: true` forced the browser to download full-size images
+  // with no srcset — causing ~400 KiB wasted payload on mobile.
   // ========================================================================
   images: {
-    // Formatos modernos para mejor compresión
     formats: IMAGE_CONFIG.FORMATS,
-    
-    // Tamaños de dispositivos para responsive images
     deviceSizes: IMAGE_CONFIG.DEVICE_SIZES,
-    
-    // Tamaños de imágenes para diferentes contextos
     imageSizes: IMAGE_CONFIG.IMAGE_SIZES,
-    
-    // Calidad optimizada (balance entre calidad y tamaño)
-    qualities: [IMAGE_CONFIG.QUALITY],
-    
-    // Cache de imágenes optimizadas (1 año)
     minimumCacheTTL: IMAGE_CONFIG.MIN_CACHE_TTL,
-    
-    // Permitir SVGs con política de seguridad estricta
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    
-    // Mantener optimización habilitada
-    unoptimized: false,
-    
-    // Dominios remotos permitidos para imágenes
     remotePatterns: REMOTE_IMAGE_PATTERNS,
   },
 
   // ========================================================================
-  // COMPRESSION - Compresión de respuestas
+  // COMPRESSION - Compresi?n de respuestas
   // ========================================================================
   compress: true,
 
   // ========================================================================
-  // REACT CONFIGURATION - Configuración de React
+  // REACT CONFIGURATION - Configuraci?n de React
   // ========================================================================
   // Strict Mode deshabilitado para evitar double-rendering en desarrollo
-  // (no necesario para un sitio inmobiliario estático)
+  // (no necesario para un sitio inmobiliario est?tico)
   reactStrictMode: false,
 
   // ========================================================================
-  // PRODUCTION OPTIMIZATIONS - Optimizaciones de producción
+  // PRODUCTION OPTIMIZATIONS - Optimizaciones de producci?n
   // ========================================================================
-  // Deshabilitar source maps en producción para mejor seguridad y rendimiento
+  // Deshabilitar source maps en producci?n para mejor seguridad y rendimiento
   productionBrowserSourceMaps: false,
   
   // Remover header "X-Powered-By" por seguridad
   poweredByHeader: false,
 
   // ========================================================================
-  // BUNDLE OPTIMIZATION - Optimización de bundle
+  // BUNDLE OPTIMIZATION - Optimizaci?n de bundle
   // ========================================================================
   experimental: {
     // Tree-shaking optimizado para paquetes específicos
     optimizePackageImports: OPTIMIZED_PACKAGES,
+    optimizeCss: true,
+    // Cache de filesystem para builds más rápidos (next dev y next build)
+    turbopackFileSystemCacheForDev: true,
+    turbopackFileSystemCacheForBuild: true,
   },
 
   // ========================================================================
@@ -222,10 +251,10 @@ const nextConfig: NextConfig = {
   },
 
   // ========================================================================
-  // DEVELOPMENT CONFIG - Configuración de desarrollo
+  // DEVELOPMENT CONFIG - Configuraci?n de desarrollo
   // ========================================================================
-  // Para desarrollo, Next.js maneja automáticamente hot-reload y Fast Refresh
-  // No se requiere configuración adicional para desarrollo local
+  // Para desarrollo, Next.js maneja autom?ticamente hot-reload y Fast Refresh
+  // No se requiere configuraci?n adicional para desarrollo local
 };
 
 export default nextConfig;

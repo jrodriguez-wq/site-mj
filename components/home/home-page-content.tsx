@@ -1,3 +1,5 @@
+"use client";
+
 import { HeroSlider } from "@/components/home/hero-slider";
 import { InfiniteTextCarousel } from "@/components/home/infinite-text-carousel";
 import { Features } from "@/components/home/features";
@@ -10,10 +12,20 @@ import { Testimonials } from "@/components/home/testimonials";
 import { LocationMap } from "@/components/home/location-map";
 import { CTASection } from "@/components/home/cta-section";
 import { HubSpotFormSection } from "@/components/home/hubspot-form-section";
+// Promoción desactivada por el momento
+// import { PromotionModal } from "@/components/promotion/promotion-modal";
 import { HappyFamiliesGallery } from "@/components/home/happy-families-gallery";
 import { AnimatedSection } from "@/components/ui/animated-section";
+import { LogoSlider } from "@/components/ui/logo-slider";
+import { PARTNER_LOGOS } from "@/config/partner-logos";
+import { FurnishedHomesSlider } from "@/components/models/furnished-homes-slider";
 
 export const HomePageContent = () => {
+  // Site is English-only; copy comes from lib/constants/copy.ts
+  // Los componentes hijos usan useTranslation() que automáticamente muestra
+  // las traducciones cuando están disponibles, o la key como fallback
+  // Esto evita errores de hidratación mientras mantiene la funcionalidad
+  
   return (
     <div className="flex flex-col w-full max-w-full">
       {/* 1. Hero Section - First impression with call to action */}
@@ -27,6 +39,11 @@ export const HomePageContent = () => {
       {/* 3. Happy Families Gallery - Real families, real trust (builds confidence) */}
       <AnimatedSection delay={100}>
         <HappyFamiliesGallery />
+      </AnimatedSection>
+
+      {/* 3.5. Furnished Homes Slider - Showcase furnished models */}
+      <AnimatedSection delay={125}>
+        <FurnishedHomesSlider />
       </AnimatedSection>
 
       {/* 4. Home Models - Showcase available models immediately (main product) */}
@@ -78,7 +95,20 @@ export const HomePageContent = () => {
       <AnimatedSection delay={150}>
         <CTASection />
       </AnimatedSection>
+
+      {/* 14. Partner Logos Slider */}
+      <AnimatedSection delay={200}>
+        <LogoSlider
+          logos={PARTNER_LOGOS}
+          speed="normal"
+          pauseOnHover={true}
+          showTitle={false}
+          variant="default"
+        />
+      </AnimatedSection>
+
+      {/* Modal de promoción - desactivado por el momento */}
+      {/* <PromotionModal /> */}
     </div>
   );
 };
-

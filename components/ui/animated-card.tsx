@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { useRef, useEffect, useState, ReactNode } from "react";
 
 interface AnimatedCardProps {
   children: ReactNode;
@@ -11,34 +9,71 @@ interface AnimatedCardProps {
   className?: string;
 }
 
+/**
+ * AnimatedCard — fade-in + lift on hover, CSS only.
+ *
+ * The previous version used framer-motion but had a bug:
+ * both animate branches were identical {opacity:1, y:0, scale:1},
+ * meaning the entrance animation never ran — but framer-motion
+ * was still fully bundled. Replaced with CSS for zero JS cost.
+ *
+ * Hover lift (y: -4px, scale: 1.01) is done via CSS class to run
+ * on the compositor thread, avoiding layout recalculations.
+ */
 export const AnimatedCard = ({
   children,
   index = 0,
   delay = 0,
   className = "",
 }: AnimatedCardProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      setVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -20px 0px", threshold: 0.01 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const totalDelay = ((delay + index * 30) / 1000).toFixed(2);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.95 }}
-      transition={{
-        duration: 0.4,
-        delay: delay + index * 0.08,
-        ease: [0.16, 1, 0.3, 1],
+      className={[
+        "transition-[transform] duration-150 ease-out",
+        "hover:-translate-y-1 hover:scale-[1.01]",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : "translateY(18px)",
+        transition: visible
+          ? `opacity 0.25s ease ${totalDelay}s, transform 0.25s ease ${totalDelay}s`
+          : "none",
       }}
-      whileHover={{ 
-        y: -6, 
-        scale: 1.01,
-        transition: { duration: 0.2, ease: "easeOut" }
-      }}
-      className={className}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
-

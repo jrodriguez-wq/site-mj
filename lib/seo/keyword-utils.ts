@@ -3,24 +3,47 @@
  * Ayuda a usar keywords de forma dinámica en diferentes páginas
  */
 
-import { KEYWORDS, getKeywordsByCategory, getAllKeywords } from "@/config/keywords";
+import { KEYWORDS, getAllKeywords } from "@/config/keywords";
+
+export type PageKeywordType =
+  | "home"
+  | "sales"
+  | "rent-to-own"
+  | "models"
+  | "community"
+  | "about";
 
 /**
  * Obtiene keywords relevantes para una página específica
  */
-export const getPageKeywords = (pageType: "home" | "rent-to-own" | "models" | "community" | "about") => {
+export const getPageKeywords = (pageType: PageKeywordType): string[] => {
   switch (pageType) {
     case "home":
       return [
         ...KEYWORDS.brand,
-        ...KEYWORDS.rentToOwn.slice(0, 10),
-        ...KEYWORDS.zeroDown.slice(0, 8),
-        ...KEYWORDS.newConstruction.slice(0, 10),
-        ...KEYWORDS.labelle.slice(0, 5),
-        ...KEYWORDS.lehighAcres.slice(0, 5),
-        ...KEYWORDS.southwestFlorida.slice(0, 5),
+        ...KEYWORDS.buyHouse.slice(0, 20),
+        ...KEYWORDS.floridaGeneral.slice(0, 20),
+        ...KEYWORDS.newConstruction.slice(0, 15),
+        ...KEYWORDS.homeBuilder.slice(0, 12),
+        ...KEYWORDS.labelle.slice(0, 8),
+        ...KEYWORDS.lehighAcres.slice(0, 8),
+        ...KEYWORDS.southwestFlorida.slice(0, 8),
+        ...KEYWORDS.rentToOwn.slice(0, 8),
+        ...KEYWORDS.zeroDown.slice(0, 5),
       ];
-    
+
+    case "sales":
+      return [
+        ...KEYWORDS.buyHouse,
+        ...KEYWORDS.floridaGeneral.slice(0, 25),
+        ...KEYWORDS.newConstruction.slice(0, 15),
+        ...KEYWORDS.labelle.slice(0, 12),
+        ...KEYWORDS.lehighAcres.slice(0, 12),
+        ...KEYWORDS.homeBuilder.slice(0, 10),
+        ...KEYWORDS.brand,
+        ...KEYWORDS.rentToOwn.slice(0, 5),
+      ];
+
     case "rent-to-own":
       return [
         ...KEYWORDS.rentToOwn,
@@ -29,34 +52,43 @@ export const getPageKeywords = (pageType: "home" | "rent-to-own" | "models" | "c
         ...KEYWORDS.firstTimeBuyer,
         ...KEYWORDS.affordable.slice(0, 10),
       ];
-    
+
     case "models":
       return [
+        ...KEYWORDS.buyHouse.slice(0, 20),
+        ...KEYWORDS.floridaGeneral.slice(0, 15),
         ...KEYWORDS.newConstruction,
         ...KEYWORDS.bedrooms,
         ...KEYWORDS.customHomes,
         ...KEYWORDS.moveInReady,
         ...KEYWORDS.preBuilt,
+        "homes for sale Florida",
+        "new homes for sale",
       ];
-    
+
     case "community":
       return [
+        ...KEYWORDS.buyHouse.slice(0, 15),
+        ...KEYWORDS.floridaGeneral.slice(0, 12),
         ...KEYWORDS.labelle,
         ...KEYWORDS.lehighAcres,
         ...KEYWORDS.fortMyers,
         ...KEYWORDS.capeCoral,
         ...KEYWORDS.naples,
         ...KEYWORDS.miami,
+        ...KEYWORDS.newConstruction.slice(0, 8),
+        ...KEYWORDS.rentToOwn.slice(0, 5),
       ];
-    
+
     case "about":
       return [
         ...KEYWORDS.brand,
         ...KEYWORDS.bestBuilder,
         ...KEYWORDS.southwestFlorida,
         ...KEYWORDS.southFlorida,
+        ...KEYWORDS.buyHouse.slice(0, 8),
       ];
-    
+
     default:
       return getAllKeywords();
   }
@@ -65,68 +97,54 @@ export const getPageKeywords = (pageType: "home" | "rent-to-own" | "models" | "c
 /**
  * Obtiene keywords para una comunidad específica
  */
-export const getCommunityKeywords = (community: "labelle" | "lehigh-acres" | "fort-myers" | "cape-coral" | "naples" | "miami") => {
+export const getCommunityKeywords = (
+  community: "labelle" | "lehigh-acres" | "fort-myers" | "cape-coral" | "naples" | "miami"
+) => {
   const communityMap = {
-    "labelle": KEYWORDS.labelle,
+    labelle: KEYWORDS.labelle,
     "lehigh-acres": KEYWORDS.lehighAcres,
     "fort-myers": KEYWORDS.fortMyers,
     "cape-coral": KEYWORDS.capeCoral,
-    "naples": KEYWORDS.naples,
-    "miami": KEYWORDS.miami,
+    naples: KEYWORDS.naples,
+    miami: KEYWORDS.miami,
   };
 
   const communityKeywords = communityMap[community] || [];
-  
+
   return [
     ...KEYWORDS.brand,
+    ...KEYWORDS.buyHouse.slice(0, 12),
+    ...KEYWORDS.floridaGeneral.slice(0, 10),
     ...communityKeywords,
     ...KEYWORDS.newConstruction.slice(0, 10),
-    ...KEYWORDS.rentToOwn.slice(0, 8),
+    ...KEYWORDS.rentToOwn.slice(0, 5),
     ...KEYWORDS.zeroDown.slice(0, 5),
   ];
 };
 
-/**
- * Genera texto con keywords naturales para usar en contenido
- */
-export const generateKeywordRichText = (baseText: string, keywords: string[]): string => {
-  // Esta función puede ser usada para sugerir dónde insertar keywords
-  // en el contenido de forma natural
+export const generateKeywordRichText = (baseText: string, _keywords: string[]): string => {
   return baseText;
 };
 
-/**
- * Obtiene keywords para meta description (máximo 160 caracteres)
- */
 export const getMetaDescriptionKeywords = (pageType: string): string[] => {
-  const keywords = getPageKeywords(pageType as any);
-  // Retornar las keywords más importantes para meta description
+  const keywords = getPageKeywords(pageType as PageKeywordType);
   return keywords.slice(0, 5);
 };
 
-/**
- * Valida que las keywords estén en el formato correcto
- */
 export const validateKeywords = (keywords: string[]): boolean => {
-  return keywords.every(keyword => 
-    typeof keyword === "string" && 
-    keyword.length > 0 && 
-    keyword.length <= 100
+  return keywords.every(
+    (keyword) => typeof keyword === "string" && keyword.length > 0 && keyword.length <= 100
   );
 };
 
-/**
- * Obtiene keywords relacionadas (para sugerencias)
- */
 export const getRelatedKeywords = (keyword: string): string[] => {
   const allKeywords = getAllKeywords();
   const lowerKeyword = keyword.toLowerCase();
-  
+
   return allKeywords
-    .filter(k => 
-      k.toLowerCase().includes(lowerKeyword) || 
-      lowerKeyword.includes(k.toLowerCase())
+    .filter(
+      (k) =>
+        k.toLowerCase().includes(lowerKeyword) || lowerKeyword.includes(k.toLowerCase())
     )
     .slice(0, 10);
 };
-

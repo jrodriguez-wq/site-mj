@@ -281,6 +281,42 @@
 
 ---
 
-**Última actualización:** Diciembre 2024
-**Estado:** ✅ Optimizado para Google, Navegadores y Search Console
+---
+
+## 🏠 **11. SEO VENTA DE PROPIEDADES (Homes for Sale)**
+
+### Acciones en Google Search Console
+1. **Reenviar sitemap** tras deploy: `https://www.mjnewellhomes.com/sitemap.xml` (incluye `/new-homes-for-sale`, `/models/*`, comunidades).
+2. **Inspeccionar e indexar** URLs prioritarias de venta:
+   - `/new-homes-for-sale`
+   - `/models` y cada `/models/[modelo]`
+   - `/communities/labelle`, `/communities/lehigh-acres`
+   - `/home-buying-guide`
+3. **Monitorear queries** (crear filtro o comparar mes a mes):
+   - `new homes for sale florida`
+   - `homes for sale labelle`
+   - `homes for sale lehigh acres`
+   - `buy new construction home florida`
+   - `[modelo] home for sale`
+4. **Guardrail RTO:** Seguir monitoreando `rent to own florida` en `/rent-to-own` — no debe caer al reorientar homepage.
+
+### Google Business Profile (GBP)
+- Categoría principal: **Home builder** / constructora.
+- Servicios: venta de casas nuevas, new construction, Rent to Own.
+- Publicar semanalmente: modelo en venta + precio desde + enlace a `/new-homes-for-sale`.
+- Fotos: exteriores, interiores, planos.
+
+### Backlinks locales
+- Cámara de comercio Hendry (LaBelle) y Lee (Lehigh Acres).
+- Listados: “new homes for sale LaBelle FL”, “home builder Southwest Florida”.
+
+### Métricas de éxito (3–6 meses)
+- Impresiones/clics en queries de compra (ver arriba).
+- Páginas indexadas: hub venta + modelos + comunidades.
+- Conversiones: `/schedule-appointment` y `/contact` desde URLs de venta (GA4).
+
+---
+
+**Última actualización:** Junio 2026
+**Estado:** ✅ Optimizado para Google, Navegadores y Search Console + estrategia venta
 

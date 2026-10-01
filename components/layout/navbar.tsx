@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, Phone, X, ChevronDown, Sparkles, Calendar } from "lucide-react";
+import { Menu, Phone, X, ChevronDown, Sparkles, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,10 +12,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { CONTACT_INFO } from "@/config/seo";
+import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/seo";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { cn } from "@/lib/utils";
-import { LanguageSelector } from "@/components/ui/language-selector";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { TikTokIcon } from "@/components/icons/tiktok-icon";
+
+const OFFICES = [
+  { name: "LaBelle", address: "45 Bridge St, LaBelle, FL 33935", href: "/communities/labelle" },
+  { name: "Lehigh Acres", address: "Lehigh Acres, FL 33936", href: "/communities/lehigh-acres" },
+] as const;
 
 interface NavigationItem {
   title: string;
@@ -27,103 +34,59 @@ interface NavigationItem {
   }>;
 }
 
+const WARRANTY_PATH = "/warranty";
+
 export const Navbar = () => {
-  const { t, isLoading } = useTranslation();
+  const pathname = usePathname();
+  const isWarrantyPage = pathname === WARRANTY_PATH;
+
   const [isOpen, setIsOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
   const [justClosed, setJustClosed] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Track mount state to prevent hydration mismatches
-  useEffect(() => {
-    setTimeout(() => {
-      setIsMounted(true);
-    }, 0);
-  }, []);
-
-  // Memoize navigation items to prevent hydration mismatches
-  // Only compute when translations are loaded and component is mounted on client
   const navigationItems: NavigationItem[] = useMemo(() => {
-    // Check if translations are actually loaded by verifying t() doesn't return the key
-    // If t("nav.home") returns "nav.home", translations aren't loaded yet
-    const homeTranslation = t("nav.home");
-    const translationsLoaded = homeTranslation !== "nav.home" && !isLoading;
-
-    // During SSR (isMounted is false), always return empty array to prevent hydration mismatch
-    // On client, only compute navigation items after mount and when translations are loaded
-    // This ensures server and client render the same initial state (empty array)
-    if (!isMounted || !translationsLoaded) {
-      return [];
-    }
-
-    return [
-      {
-        title: t("nav.home"),
-        href: "/",
-      },
-      {
-        title: t("nav.rentToOwn"),
-        href: "/rent-to-own",
-      },
-      {
-        title: t("nav.buyHome"),
-        href: "#",
-        children: [
-          {
-            title: t("nav.models"),
-            href: "/models",
-            description: t("nav.modelsDesc"),
-          },
-          {
-            title: t("nav.labelle"),
-            href: "/communities/labelle",
-            description: t("communities.labelle.description"),
-          },
-          {
-            title: t("nav.lehighAcres"),
-            href: "/communities/lehigh-acres",
-            description: t("communities.lehighAcres.description"),
-          },
-        ],
-      },
-      {
-        title: t("nav.resources"),
-        href: "#",
-        children: [
-          {
-            title: t("nav.homeBuyingGuide"),
-            href: "/home-buying-guide",
-            description: t("nav.homeBuyingGuideDesc"),
-          },
-          {
-            title: t("nav.warranty"),
-            href: "/warranty",
-            description: t("nav.warrantyDesc"),
-          },
-        ],
-      },
-      {
-        title: t("nav.company"),
-        href: "#",
-        children: [
-          {
-            title: t("nav.aboutUs"),
-            href: "/about-us",
-            description: t("nav.aboutUsDesc"),
-          },
-          {
-            title: t("nav.contact"),
-            href: "/contact",
-            description: t("nav.contactDesc"),
-          },
-        ],
-      },
+    const items: NavigationItem[] = [
+      { title: getCopy("nav.home"), href: "/" },
+      { title: getCopy("nav.homesForSale"), href: "/new-homes-for-sale" },
+      { title: getCopy("nav.rentToOwn"), href: "/rent-to-own" },
+      ...(isWarrantyPage ? [] : [{ title: getCopy("nav.scheduleAppointment"), href: "/schedule-appointment" }]),
+    {
+      title: getCopy("nav.buyHome"),
+      href: "#",
+      children: [
+        { title: getCopy("nav.homesForSale"), href: "/new-homes-for-sale", description: getCopy("nav.homesForSaleDesc") },
+        { title: getCopy("nav.models"), href: "/models", description: getCopy("nav.modelsDesc") },
+        { title: getCopy("nav.labelle"), href: "/communities/labelle", description: getCopy("communities.labelle.description") },
+        { title: getCopy("nav.lehighAcres"), href: "/communities/lehigh-acres", description: getCopy("communities.lehighAcres.description") },
+        { title: getCopy("nav.payments"), href: "/pay-links", description: getCopy("nav.paymentsDesc") },
+      ],
+    },
+    {
+      title: getCopy("nav.resources"),
+      href: "#",
+      children: [
+        { title: getCopy("nav.blog"), href: "/blog", description: getCopy("nav.blogDesc") },
+        { title: getCopy("nav.homeBuyingGuide"), href: "/home-buying-guide", description: getCopy("nav.homeBuyingGuideDesc") },
+        { title: "Section 8", href: "/section8", description: "Learn about Section 8 Housing Voucher Program and how to use it for homeownership" },
+        { title: "Rental Application", href: "/rental-application", description: "Apply for rental properties with M.J. Newell Homes" },
+        { title: getCopy("nav.warranty"), href: "/warranty", description: getCopy("nav.warrantyDesc") },
+      ],
+    },
+    {
+      title: getCopy("nav.company"),
+      href: "#",
+      children: [
+        { title: getCopy("nav.aboutUs"), href: "/about-us", description: getCopy("nav.aboutUsDesc") },
+        { title: getCopy("nav.contact"), href: "/contact", description: getCopy("nav.contactDesc") },
+      ],
+    },
     ];
-  }, [t, isLoading, isMounted]);
+    return items;
+  }, [isWarrantyPage]);
 
   // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
@@ -262,6 +225,14 @@ export const Navbar = () => {
     };
   }, [hoverTimeout, closeTimeout]);
 
+  const socialIcons = [
+    { key: "facebook", href: SOCIAL_LINKS.facebook, icon: Facebook, label: "Facebook" },
+    { key: "instagram", href: SOCIAL_LINKS.instagram, icon: Instagram, label: "Instagram" },
+    { key: "youtube", href: SOCIAL_LINKS.youtube, icon: Youtube, label: "YouTube" },
+    { key: "tiktok", href: SOCIAL_LINKS.tiktok, icon: TikTokIcon, label: "TikTok" },
+    { key: "linkedin", href: SOCIAL_LINKS.linkedin, icon: Linkedin, label: "LinkedIn" },
+  ].filter((s) => s.href);
+
   return (
     <header 
       className="fixed top-0 left-0 right-0 z-[100] w-full border-b border-border/20 bg-background/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/80 shadow-[0_1px_3px_rgba(0,0,0,0.05)] animate-fade-in-down"
@@ -269,22 +240,80 @@ export const Navbar = () => {
     >
       {/* Elegant top accent line */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+      {/* Top announcement bar: responsiva — móvil solo teléfono + redes; tablet+ direcciones + teléfono + redes */}
+      <div className="border-b border-border/10 bg-muted/30">
+        <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8">
+          <div className="flex h-9 sm:h-9 md:h-10 items-center justify-between gap-2 sm:gap-4 text-xs py-1">
+            {/* Oficinas: oculto en móvil muy estrecho, corto en sm, completo en md+ */}
+            <div className="hidden sm:flex items-center gap-3 md:gap-4 lg:gap-6 min-w-0 flex-1">
+              {/* sm: una sola línea corta; md+: enlaces por oficina */}
+              <span className="sm:inline md:hidden flex items-center gap-1.5 text-muted-foreground truncate">
+                <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                <span className="truncate">LaBelle & Lehigh Acres, FL</span>
+              </span>
+              <div className="hidden md:flex items-center gap-3 lg:gap-6 min-w-0">
+                {OFFICES.map((office) => (
+                  <a
+                    key={office.name}
+                    href={office.href}
+                    className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors shrink-0 max-w-[160px] xl:max-w-none"
+                    title={office.address}
+                  >
+                    <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <span className="truncate font-medium">{office.name}:</span>
+                    <span className="truncate text-muted-foreground/90 hidden xl:inline">{office.address}</span>
+                    <span className="truncate text-muted-foreground/90 xl:hidden">{office.name === "LaBelle" ? "FL 33935" : "FL 33936"}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            {/* Teléfono + redes: número completo visible en todos los tamaños; tap/click para llamar */}
+            <div className="flex items-center gap-2 sm:gap-3 md:gap-4 shrink-0">
+              <a
+                href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
+                className="flex items-center gap-1.5 font-semibold text-foreground/90 hover:text-primary transition-colors whitespace-nowrap"
+                aria-label={`Call ${CONTACT_INFO.phoneSecondary}`}
+              >
+                <Phone className="h-3.5 w-3.5 shrink-0" />
+                <span>{CONTACT_INFO.phoneSecondary}</span>
+              </a>
+              <div className="h-3.5 w-px bg-border/60 hidden sm:block" aria-hidden />
+              <div className="flex items-center gap-0.5 sm:gap-1">
+                {socialIcons.map(({ key, href, icon: Icon, label }) => (
+                  <a
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="min-h-[44px] min-w-[44px] sm:min-h-[36px] sm:min-w-[36px] rounded-full inline-flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-all duration-200 active:scale-95"
+                    aria-label={label}
+                  >
+                    {key === "tiktok" ? <TikTokIcon size={14} className="sm:w-4 sm:h-4" /> : <Icon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8">
-        <div className="flex h-16 sm:h-18 md:h-20 lg:h-24 items-center justify-between">
-          {/* Logo - Grande, sin animación hover */}
+        <div className="flex h-12 sm:h-14 md:h-16 items-center justify-between">
+          {/* Logo */}
           <Link
             href="/"
             className="flex items-center"
             aria-label="M.J. Newell Homes - Home"
           >
-            <Image
-              src="/img/logo.svg"
+            {/* img nativo para SVG: nitidez perfecta a cualquier tamaño (next/image puede rasterizar y verse borroso) */}
+            <img
+              src={getCloudinaryImageUrl("/img/logo.svg")}
               alt="M.J. Newell Homes"
+              className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain"
               width={280}
               height={160}
-              className="h-14 sm:h-16 md:h-18 lg:h-20 xl:h-22 w-auto object-contain"
-              priority
+              fetchPriority="high"
             />
           </Link>
 
@@ -312,7 +341,7 @@ export const Navbar = () => {
                     <button
                       onClick={() => handleClick(item.title)}
                       className={cn(
-                        "group relative inline-flex h-10 items-center justify-center rounded-lg px-2 xl:px-3 py-2",
+                        "group relative inline-flex h-9 items-center justify-center rounded-lg px-2 xl:px-3 py-1.5",
                         "text-xs xl:text-sm font-semibold tracking-normal transition-all duration-300 ease-out whitespace-nowrap",
                         "text-foreground/80 hover:text-foreground",
                         "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
@@ -377,7 +406,7 @@ export const Navbar = () => {
                                 suppressHydrationWarning
                               >
                                 {/* Subtle background glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover/item:from-primary/10 group-hover/item:via-primary/5 group-hover/item:to-transparent transition-all duration-500 rounded-lg opacity-0 group-hover/item:opacity-100" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover/item:from-primary/10 group-hover/item:via-primary/5 group-hover/item:to-transparent transition-all duration-200 rounded-lg opacity-0 group-hover/item:opacity-100" />
                                 
                                 <div className="relative flex items-start justify-between gap-3">
                                   <div className="flex-1 space-y-1.5 min-w-0 pr-2">
@@ -413,7 +442,7 @@ export const Navbar = () => {
                   key={item.title}
                   href={item.href}
                   className={cn(
-                    "group relative inline-flex h-10 items-center justify-center rounded-lg px-2 xl:px-3 py-2",
+                    "group relative inline-flex h-9 items-center justify-center rounded-lg px-2 xl:px-3 py-1.5",
                     "text-xs xl:text-sm font-semibold tracking-normal transition-all duration-300 ease-out whitespace-nowrap",
                     "text-foreground/80 hover:text-foreground",
                     "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-primary/0 before:via-primary/0 before:to-primary/0",
@@ -434,7 +463,8 @@ export const Navbar = () => {
 
           {/* Right Side Actions - Orden: Botones → Teléfono → Idioma */}
           <div className="flex items-center gap-1.5 lg:gap-2 xl:gap-3">
-            {/* Schedule Appointment Button - Quick Action */}
+            {/* Schedule Appointment Button - Quick Action (hidden on warranty page) */}
+            {!isWarrantyPage && (
             <Button
               asChild
               className={cn(
@@ -447,16 +477,23 @@ export const Navbar = () => {
                 "rounded-xl border border-primary/20",
                 "relative overflow-hidden group/schedule",
                 "before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0",
-                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
+                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-300"
               )}
               size="default"
             >
-              <Link href="/schedule-appointment" className="relative z-10 flex items-center gap-1 xl:gap-1.5" suppressHydrationWarning>
+              <a 
+                href="https://meetings.hubspot.com/jrodriguez134/meeting-web" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-10 flex items-center gap-1 xl:gap-1.5" 
+                suppressHydrationWarning
+              >
                 <Calendar className="h-3.5 w-3.5 xl:h-4 xl:w-4 opacity-90 group-hover/schedule:opacity-100 transition-opacity duration-300" />
-                <span className="hidden 2xl:inline" suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
+                <span className="hidden 2xl:inline">{getCopy("nav.scheduleAppointment")}</span>
                 <span className="2xl:hidden" suppressHydrationWarning>Schedule</span>
-              </Link>
+              </a>
             </Button>
+            )}
 
             {/* Premium CTA Button */}
             <Button
@@ -471,26 +508,15 @@ export const Navbar = () => {
                 "rounded-xl border border-primary/20",
                 "relative overflow-hidden group/cta",
                 "before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0",
-                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700"
+                "before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-300"
               )}
               size="default"
             >
               <Link href="/#quick-register-form" className="relative z-10 flex items-center gap-1 xl:gap-1.5" suppressHydrationWarning>
                 <Sparkles className="h-3 w-3 xl:h-3.5 xl:w-3.5 opacity-80 group-hover/cta:opacity-100 transition-opacity duration-300" />
-                <span suppressHydrationWarning>{t("nav.applyNow")}</span>
+                <span>{getCopy("nav.applyNow")}</span>
               </Link>
             </Button>
-
-            {/* Premium Phone Link - Solo icono en pantallas grandes */}
-            <a
-              href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-              className="hidden lg:flex items-center justify-center h-9 w-9 rounded-lg text-foreground/70 hover:text-foreground transition-all duration-300 hover:bg-primary/5 cursor-pointer border border-transparent hover:border-primary/10 group/phone"
-              aria-label={`Call us at ${CONTACT_INFO.phone}`}
-            >
-              <Phone className="h-4 w-4 transition-transform duration-300 group-hover/phone:scale-110" />
-            </a>
-
-            <LanguageSelector />
 
             {/* Mobile Menu - Premium Design */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -498,7 +524,7 @@ export const Navbar = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-11 w-11 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300 border border-transparent hover:border-primary/10"
+                  className="h-10 w-10 rounded-xl hover:bg-primary/10 hover:text-primary transition-all duration-300 border border-transparent hover:border-primary/10"
                   aria-label="Toggle menu"
                 >
                   {isOpen ? (
@@ -518,10 +544,10 @@ export const Navbar = () => {
                 <SheetHeader className="px-6 pt-8 pb-6 border-b border-border/20">
                   <div className="flex items-center justify-between">
                     <SheetTitle className="text-left text-2xl font-bold text-foreground tracking-wide" suppressHydrationWarning>
-                      {t("nav.home")}
+                      {getCopy("nav.home")}
                     </SheetTitle>
-                    <Image
-                      src="/img/logo.svg"
+                    <img
+                      src={getCloudinaryImageUrl("/img/logo.svg")}
                       alt="M.J. Newell Homes"
                       width={200}
                       height={115}
@@ -615,29 +641,33 @@ export const Navbar = () => {
                 
                 <div className="px-6 py-6 border-t border-border/20 space-y-4 bg-gradient-to-b from-muted/10 to-transparent">
                   <a
-                    href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
+                    href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
                     className="flex items-center gap-3 px-5 py-3.5 text-base font-semibold rounded-xl bg-background hover:bg-primary/5 hover:text-primary transition-all duration-300 border border-border/30 hover:border-primary/20 cursor-pointer shadow-sm hover:shadow-md group/phone"
                     onClick={() => setIsOpen(false)}
-                    aria-label={`Call us at ${CONTACT_INFO.phone}`}
+                    aria-label={`Call us at ${CONTACT_INFO.phoneSecondary}`}
                   >
                     <Phone className="h-5 w-5 group-hover/phone:scale-110 transition-transform duration-300" />
-                    <span className="tracking-wide">{CONTACT_INFO.phone}</span>
+                    <span className="tracking-wide">{CONTACT_INFO.phoneSecondary}</span>
                   </a>
+                  {!isWarrantyPage && (
                   <Button
                     asChild
                     className="w-full bg-gradient-to-r from-primary via-primary to-primary/95 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold shadow-lg hover:shadow-xl tracking-wide rounded-xl border border-primary/20 relative overflow-hidden group/schedule"
                     size="lg"
                   >
-                    <Link
-                      href="/schedule-appointment"
+                    <a
+                      href="https://meetings.hubspot.com/jrodriguez134/meeting-web"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => setIsOpen(false)}
                       className="relative z-10 flex items-center justify-center gap-2"
                       suppressHydrationWarning
                     >
                       <Calendar className="h-4 w-4 opacity-90" />
-                      <span suppressHydrationWarning>{t("nav.scheduleAppointment")}</span>
-                    </Link>
+                      <span suppressHydrationWarning>{getCopy("nav.scheduleAppointment")}</span>
+                    </a>
                   </Button>
+                  )}
                   <Button
                     asChild
                     className="w-full bg-gradient-to-r from-primary via-primary to-primary/95 hover:from-primary/95 hover:via-primary hover:to-primary text-white font-bold shadow-lg hover:shadow-xl tracking-wide rounded-xl border border-primary/20 relative overflow-hidden group/cta"
@@ -650,7 +680,7 @@ export const Navbar = () => {
                       suppressHydrationWarning
                     >
                       <Sparkles className="h-4 w-4 opacity-80" />
-                      {t("nav.applyNow")}
+                      {getCopy("nav.applyNow")}
                     </Link>
                   </Button>
                 </div>

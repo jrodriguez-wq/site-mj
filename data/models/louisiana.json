@@ -6,7 +6,7 @@
   "bathrooms": "3",
   "garage": "3-Car Garage",
   "price": "$469,900",
-  "description": "Experience grandeur at its finest in the Louisiana—our largest and most prestigious model. Featuring 4 spacious bedrooms, 3 full bathrooms, a 3-car garage, and 2 versatile dens, this 3,277 sq. ft. residence is crafted for those who demand excellence. High ceilings and intentionally placed lighting create an airy, elegant atmosphere while maximizing energy efficiency. The gourmet kitchen is a showpiece—featuring soft-close cabinetry, premium countertops, and sleek stainless-steel appliances. The Louisiana isn't just a home—it's a statement of luxury, comfort, and superior craftsmanship.",
+  "description": "Experience grandeur at its finest in the Louisiana our largest and most prestigious model. Featuring 4 spacious bedrooms, 3 full bathrooms, a 3-car garage, and 2 versatile dens, this 3,277 sq. ft. residence is crafted for those who demand excellence. High ceilings and intentionally placed lighting create an airy, elegant atmosphere while maximizing energy efficiency. The gourmet kitchen is a showpiece featuring soft-close cabinetry, premium countertops, and sleek stainless-steel appliances. The Louisiana isn't just a home it's a statement of luxury, comfort, and superior craftsmanship.",
   "youtubeUrl": "https://www.youtube.com/watch?v=ekTwRFHRRs4",
   "imagesFolder": "louisiana",
   "sections": {
@@ -24,7 +24,14 @@
     },
     "floorplan": {
       "title": "Floorplan",
-      "description": "View the detailed floor plan layout."
+      "description": "View the detailed floor plan layout.",
+      "measures": {
+        "livingArea": "2,316 SQ. FT.",
+        "entry": "113 SQ. FT.",
+        "garage": "689 SQ. FT.",
+        "lanai": "159 SQ. FT.",
+        "totalArea": "3,277 SQ. FT."
+      }
     },
     "standardFeatures": {
       "title": "Standard Features",
@@ -63,9 +70,7 @@
         "warranty": {
           "title": "Warranty",
           "items": [
-            "10-year structural warranty",
-            "2-year systems warranty",
-            "1-year workmanship warranty"
+            "Standard Features"
           ]
         },
         "windows": {

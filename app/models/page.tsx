@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useMemo, Suspense, lazy, useCallback } from "react";
-import { useTranslation } from "@/hooks/use-translation";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
@@ -10,6 +9,7 @@ import { extractPrice } from "@/lib/models/model-utils";
 import { ModelData, Community } from "@/types/model";
 import { FilterState } from "@/components/models/model-filters";
 import { getModelsForCommunity } from "@/lib/models/model-pricing";
+import { FurnishedHomesSlider } from "@/components/models/furnished-homes-slider";
 
 // Lazy load heavy components
 const ModelCard = lazy(() => 
@@ -24,43 +24,40 @@ const ModelFilters = lazy(() =>
   }))
 );
 
-// Configuración de badges y datos adicionales por modelo
-// Las etiquetas se obtendrán de las traducciones usando labelKey
 const MODEL_CONFIG = {
   louisiana: {
-    badges: [{ type: "bestseller" as const, labelKey: "homeModels.badges.bestseller" }],
+    badges: [{ type: "bestseller" as const, label: "Bestseller" }],
     satisfiedFamilies: 150,
   },
   viana: {
-    badges: [{ type: "favorite" as const, labelKey: "homeModels.badges.favorite" }],
+    badges: [{ type: "favorite" as const, label: "Favorite" }],
     satisfiedFamilies: 85,
   },
   delanie: {
-    badges: [{ type: "satisfied" as const, labelKey: "homeModels.badges.satisfied" }],
+    badges: [{ type: "satisfied" as const, label: "Satisfied" }],
     satisfiedFamilies: 120,
   },
   langdon: {
     badges: [
-      { type: "bestseller" as const, labelKey: "homeModels.badges.bestseller" },
-      { type: "favorite" as const, labelKey: "homeModels.badges.favorite" },
+      { type: "bestseller" as const, label: "Bestseller" },
+      { type: "favorite" as const, label: "Favorite" },
     ],
     satisfiedFamilies: 200,
   },
   emelia: {
-    badges: [{ type: "satisfied" as const, labelKey: "homeModels.badges.satisfied" }],
+    badges: [{ type: "satisfied" as const, label: "Satisfied" }],
     satisfiedFamilies: 95,
   },
   duplex: {
-    badges: [{ type: "favorite" as const, labelKey: "homeModels.badges.investment" }],
+    badges: [{ type: "favorite" as const, label: "Investment" }],
     satisfiedFamilies: 0,
   },
 } as const;
 
 interface ModelDisplayData {
   key: string;
-  nameKey: string;
-  descriptionKey: string;
-  priceKey: string;
+  name: string;
+  description: string;
   price: string;
   priceNumber: number;
   rtoPrice?: string;
@@ -71,7 +68,7 @@ interface ModelDisplayData {
   sqft: string;
   sqftNumber: number;
   modelData: ModelData | null;
-  community?: Community; // Comunidad a la que pertenece este modelo
+  community?: Community;
 }
 
 
@@ -88,7 +85,6 @@ const extractSqft = (sqftString: string): number => {
 };
 
 export default function ModelsPage() {
-  const { t } = useTranslation();
   const [models, setModels] = useState<ModelDisplayData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCommunity, setSelectedCommunity] = useState<Community | "all">("all");
@@ -113,20 +109,10 @@ export default function ModelsPage() {
         const lehighModels = getModelsForCommunity("lehigh-acres");
 
         // Cargar modelos de LaBelle
-        const labelleModelKeys = labelleModels.map((key) => ({
-          key,
-          nameKey: `homeModels.models.${key}.name`,
-          descriptionKey: `homeModels.models.${key}.description`,
-          priceKey: `homeModels.models.${key}.price`,
-        }));
+        const labelleModelKeys = labelleModels.map((key) => ({ key }));
 
         // Cargar modelos de Lehigh Acres
-        const lehighModelKeys = lehighModels.map((key) => ({
-          key,
-          nameKey: `homeModels.models.${key}.name`,
-          descriptionKey: `homeModels.models.${key}.description`,
-          priceKey: `homeModels.models.${key}.price`,
-        }));
+        const lehighModelKeys = lehighModels.map((key) => ({ key }));
 
         // Load models in batches to avoid blocking
         const batchSize = 3;
@@ -142,8 +128,9 @@ export default function ModelsPage() {
               if (!modelData) return [];
               
               return [{
-                ...model,
                 key: `${model.key}-labelle`,
+                name: modelData.name || model.key,
+                description: modelData.description || "",
                 price: modelData.price,
                 priceNumber: extractPrice(modelData.price),
                 rtoPrice: modelData.rtoPrice,
@@ -174,8 +161,9 @@ export default function ModelsPage() {
               if (!modelData) return [];
               
               return [{
-                ...model,
                 key: `${model.key}-lehigh-acres`,
+                name: modelData.name || model.key,
+                description: modelData.description || "",
                 price: modelData.price,
                 priceNumber: extractPrice(modelData.price),
                 rtoPrice: modelData.rtoPrice,
@@ -197,12 +185,7 @@ export default function ModelsPage() {
       } else {
         // Cargar modelos de una comunidad específica
         const communityModels = getModelsForCommunity(selectedCommunity);
-        const modelKeys = communityModels.map((key) => ({
-          key,
-          nameKey: `homeModels.models.${key}.name`,
-          descriptionKey: `homeModels.models.${key}.description`,
-          priceKey: `homeModels.models.${key}.price`,
-        }));
+        const modelKeys = communityModels.map((key) => ({ key }));
 
         // Load models in batches to avoid blocking
         const batchSize = 3;
@@ -217,7 +200,9 @@ export default function ModelsPage() {
               if (!modelData) return [];
               
               return [{
-                ...model,
+                key: model.key,
+                name: modelData.name || model.key,
+                description: modelData.description || "",
                 price: modelData.price,
                 priceNumber: extractPrice(modelData.price),
                 rtoPrice: modelData.rtoPrice,
@@ -272,14 +257,26 @@ export default function ModelsPage() {
         return false;
       }
 
-      // Bedrooms filter
-      if (filters.bedrooms.length > 0 && !filters.bedrooms.includes(model.bedsNumber)) {
-        return false;
+      // Bedrooms filter - "2+" means 2 or more, "3+" means 3 or more, etc.
+      // If multiple filters are selected, model must match at least one (OR logic)
+      if (filters.bedrooms.length > 0) {
+        const matchesBedroomFilter = filters.bedrooms.some(minBedrooms => 
+          model.bedsNumber >= minBedrooms
+        );
+        if (!matchesBedroomFilter) {
+          return false;
+        }
       }
 
-      // Bathrooms filter
-      if (filters.bathrooms.length > 0 && !filters.bathrooms.includes(model.bathsNumber)) {
-        return false;
+      // Bathrooms filter - "1+" means 1 or more, "2+" means 2 or more, etc.
+      // If multiple filters are selected, model must match at least one (OR logic)
+      if (filters.bathrooms.length > 0) {
+        const matchesBathroomFilter = filters.bathrooms.some(minBathrooms => 
+          model.bathsNumber >= minBathrooms
+        );
+        if (!matchesBathroomFilter) {
+          return false;
+        }
       }
 
       // Sqft filter
@@ -304,47 +301,50 @@ export default function ModelsPage() {
   }, []);
 
   return (
-    <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 min-h-screen bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 max-w-[1800px]">
-        {/* Header Section - All Screens */}
-        <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10">
-          <div className="text-center space-y-1.5 sm:space-y-2 md:space-y-3 mb-4 sm:mb-6 md:mb-8">
+    <div className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-28 pb-6 sm:pb-10 md:pb-12 lg:pb-16 xl:pb-20 min-h-screen bg-gradient-to-b from-background to-muted/20 overflow-x-hidden">
+      <div className="container mx-auto px-2.5 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 max-w-[1800px] w-full min-w-0">
+        {/* Furnished Homes Slider - Before Header */}
+        <FurnishedHomesSlider />
+
+        {/* Header Section - Responsive typography and spacing */}
+        <div className="mb-3 sm:mb-6 md:mb-8 lg:mb-10">
+          <div className="text-center space-y-1 sm:space-y-1.5 md:space-y-2 lg:space-y-3 mb-3 sm:mb-6 md:mb-8">
             <h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight text-foreground leading-tight sm:leading-normal"
+              className="text-[clamp(1.25rem,4vw+1rem,3.75rem)] font-black tracking-tight text-foreground leading-tight max-w-full break-words px-1"
               suppressHydrationWarning
             >
-              {t("homeModels.allModels")}
+              New Homes for Sale
             </h1>
             <p
-              className="mx-auto max-w-2xl text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4"
+              className="mx-auto max-w-2xl text-muted-foreground text-[clamp(0.6875rem,2vw+0.5rem,1.125rem)] leading-relaxed px-2 sm:px-4 break-words"
               suppressHydrationWarning
             >
-              {t("homeModels.allModelsSubtitle")}
+              Browse new construction homes for sale in LaBelle and Lehigh Acres. Compare floor plans, purchase prices, and features. Rent to Own available on select models.
             </p>
           </div>
 
           {/* Community Selector - Visible on all screens */}
           {!isLoading && (
-            <div className="mb-4 sm:mb-6 flex items-center gap-3 sm:gap-4">
-              <label className="text-sm sm:text-base font-semibold text-foreground whitespace-nowrap" suppressHydrationWarning>
-                {t("models.filters.community")}:
+            <div className="mb-3 sm:mb-6 flex flex-wrap items-center gap-2 sm:gap-4">
+              <label className="text-xs sm:text-sm md:text-base font-semibold text-foreground whitespace-nowrap shrink-0" suppressHydrationWarning>
+                Community:
               </label>
               <Select
                 value={selectedCommunity}
                 onValueChange={(value) => setSelectedCommunity(value as Community | "all")}
               >
-                <SelectTrigger className="w-full sm:w-auto min-w-[200px]">
+                <SelectTrigger className="w-full min-w-0 sm:w-auto sm:min-w-[180px] max-w-full text-xs sm:text-sm">
                   <SelectValue suppressHydrationWarning />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all" suppressHydrationWarning>
-                    {t("models.filters.allCommunities")}
+                    All communities
                   </SelectItem>
                   <SelectItem value="labelle" suppressHydrationWarning>
-                    {t("communities.labelle.name")} - {t("communities.labelle.country.subtitle")}
+                    LaBelle - Country living
                   </SelectItem>
                   <SelectItem value="lehigh-acres" suppressHydrationWarning>
-                    {t("communities.lehighAcres.name")} - {t("communities.lehighAcres.country.subtitle")}
+                    Lehigh Acres - Near Fort Myers
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -386,13 +386,13 @@ export default function ModelsPage() {
           <div className="flex-1 min-w-0 w-full">
             {/* Results count and info - All Screens */}
             {!isLoading && (
-              <div className="mb-4 sm:mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm pb-3 sm:pb-4 border-b border-border/30">
-                <span className="text-muted-foreground font-medium">
+              <div className="mb-3 sm:mb-6 md:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3 md:gap-4 text-[10px] sm:text-xs md:text-sm pb-2 sm:pb-4 border-b border-border/30 min-w-0">
+                <span className="text-muted-foreground font-medium break-words">
                   <span className="font-semibold text-foreground">{filteredModels.length}</span>{" "}
-                  {filteredModels.length === 1 ? t("models.results.one") || "model" : t("models.results.many") || "models"} {t("models.results.found") || "found"}
+                  {filteredModels.length === 1 ? "model" : "models"} found
                 </span>
-                <span className="text-muted-foreground/70 text-[10px] sm:text-xs md:text-sm" suppressHydrationWarning>
-                  {t("models.results.sortedBy") || "Sorted by price: Low to High"}
+                <span className="text-muted-foreground/70 text-[10px] sm:text-xs truncate max-w-full" suppressHydrationWarning>
+                  Sorted by price: Low to High
                 </span>
               </div>
             )}
@@ -401,13 +401,13 @@ export default function ModelsPage() {
             {isLoading ? (
               <div className="flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20">
                 <div className="text-muted-foreground text-xs sm:text-sm md:text-base" suppressHydrationWarning>
-                  {t("models.loading")}
+                  Loading models…
                 </div>
               </div>
             ) : filteredModels.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-8 sm:py-12 md:py-16 lg:py-20 text-center px-4">
                 <p className="text-muted-foreground text-xs sm:text-sm md:text-base mb-3 sm:mb-4" suppressHydrationWarning>
-                  {t("models.noResults") || "No models found matching your filters."}
+                  No models found matching your filters.
                 </p>
                 <Button
                   variant="outline"
@@ -419,12 +419,12 @@ export default function ModelsPage() {
                   })}
                   className="text-xs sm:text-sm"
                 >
-                  {t("models.filters.reset") || "Reset Filters"}
+                  Reset Filters
                 </Button>
               </div>
             ) : (
               <div 
-                className="grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 grid-cols-1 md:grid-cols-2 w-full" 
+                className="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 2xl:gap-10 grid-cols-1 md:grid-cols-2 w-full min-w-0" 
                 suppressHydrationWarning
               >
                 {filteredModels.map((model, index) => {
@@ -433,14 +433,13 @@ export default function ModelsPage() {
                   const config = MODEL_CONFIG[baseKey];
                   const modelImages = getModelImages(baseKey);
                   const mainImage = getModelMainImage(baseKey);
-                  // Disable auto carousel for better performance
-                  const carouselInterval = 0; // Disabled
+                  // Auto carousel interval: 4 seconds (4000ms) - each card will cycle through images
+                  const carouselInterval = 4000; // 4 seconds
                   const initialDelay = index * 80; // Stagger delay for animations
 
-                  // Convertir badges con labelKey a badges con label traducida
-                  const translatedBadges = config?.badges?.map(badge => ({
+                  const displayBadges = config?.badges?.map(badge => ({
                     type: badge.type,
-                    label: t(badge.labelKey),
+                    label: badge.label,
                   }));
 
                   return (
@@ -452,25 +451,25 @@ export default function ModelsPage() {
                     >
                       <ModelCard
                         modelKey={baseKey}
-                        name={t(model.nameKey)}
-                        description={t(model.descriptionKey)}
+                        name={model.name}
+                        description={model.description}
                         image={mainImage}
                         images={modelImages}
                         price={model.price}
                         rtoPrice={model.rtoPrice}
                         beds={model.beds}
-                        bedsLabel={t("homeModels.beds")}
+                        bedsLabel="Beds"
                         baths={model.baths}
-                        bathsLabel={t("homeModels.baths")}
+                        bathsLabel="Baths"
                         sqft={model.sqft}
-                        sqftLabel={t("homeModels.sqft")}
-                        badges={translatedBadges}
+                        sqftLabel="Sq ft"
+                        badges={displayBadges}
                         satisfiedFamilies={config?.satisfiedFamilies}
-                        viewDetailsLabel={t("homeModels.moreDetails")}
-                        viewPhotosLabel={`${t("homeModels.viewPhotos")} (${modelImages.length})`}
-                        galleryTitle={`${t("homeModels.gallery")} ${t(model.nameKey)}`}
-                        galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? t("homeModels.image") : t("homeModels.images")} ${t("homeModels.available")}`}
-                        modelLabel={t("homeModels.model")}
+                        viewDetailsLabel="More details"
+                        viewPhotosLabel={`View photos (${modelImages.length})`}
+                        galleryTitle={`Gallery – ${model.name}`}
+                        galleryDescription={`${modelImages.length} ${modelImages.length === 1 ? "image" : "images"} available`}
+                        modelLabel="Model"
                         carouselDelay={carouselInterval}
                         initialDelay={initialDelay}
                         community={model.community}

@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
+import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 
 interface HeroSlideConfig {
   image: string;
@@ -15,64 +16,69 @@ interface HeroSlideConfig {
   primaryButtonKey?: string;
   primaryButtonLink?: string;
   primaryButtonAction?: "link" | "scroll" | "none";
+  primaryButtonScrollTarget?: string;
   secondaryButtonKey?: string;
   secondaryButtonLink?: string;
   secondaryButtonAction?: "link" | "scroll" | "none";
+  secondaryButtonScrollTarget?: string;
 }
 
 const heroSlidesConfig: HeroSlideConfig[] = [
-  { 
-    image: "/img/hero/1w5a0741-1.webp", 
-    titleKey: "hero.title1", 
+  {
+    image: getCloudinaryImageUrl("/img/hero/1w5a0741-1.webp"),
+    titleKey: "hero.title1",
     subtitleKey: "hero.subtitle1",
     descriptionKey: "hero.description1",
-    primaryButtonKey: "hero.contactUs",
-    primaryButtonAction: "scroll",
+    primaryButtonKey: "hero.viewHomesForSale",
+    primaryButtonLink: "/new-homes-for-sale",
+    primaryButtonAction: "link",
     secondaryButtonKey: "hero.applyNow",
-    secondaryButtonAction: "scroll"
+    secondaryButtonLink: "/schedule-appointment",
+    secondaryButtonAction: "link",
   },
-  { 
-    image: "/img/hero/1w5a0814-1.webp", 
-    titleKey: "hero.title2", 
+  {
+    image: getCloudinaryImageUrl("/img/hero/1w5a0814-1.webp"),
+    titleKey: "hero.title2",
     subtitleKey: "hero.subtitle2",
     descriptionKey: "hero.description2",
     primaryButtonKey: "hero.getPreQualified",
-    primaryButtonLink: "/rent-to-own",
-    primaryButtonAction: "link"
+    primaryButtonLink: "/rent-to-own#rto-application-form",
+    primaryButtonAction: "link",
   },
-  { 
-    image: "/img/hero/1w5a1489-e5.webp", 
-    titleKey: "hero.title3", 
+  {
+    image: getCloudinaryImageUrl("/img/hero/1w5a1489-e5.webp"),
+    titleKey: "hero.title3",
     subtitleKey: "hero.subtitle3",
     descriptionKey: "hero.description3",
     primaryButtonKey: "hero.applyNow",
-    primaryButtonAction: "scroll",
+    primaryButtonLink: "/schedule-appointment",
+    primaryButtonAction: "link",
     secondaryButtonKey: "hero.viewCommunities",
     secondaryButtonLink: "/communities/labelle",
-    secondaryButtonAction: "link"
+    secondaryButtonAction: "link",
   },
 ];
 
 export const HeroSlider = () => {
-  const { t, translations } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const heroSlides = useMemo(() => {
-    // Re-calcular solo cuando las traducciones cambien
-    return heroSlidesConfig.map((slide) => ({
+  const heroSlides = useMemo(() =>
+    heroSlidesConfig.map((slide) => ({
       image: slide.image,
-      title: t(slide.titleKey),
-      subtitle: slide.subtitleKey ? t(slide.subtitleKey) : undefined,
-      description: slide.descriptionKey ? t(slide.descriptionKey) : undefined,
-      primaryButton: slide.primaryButtonKey ? t(slide.primaryButtonKey) : undefined,
+      title: getCopy(slide.titleKey),
+      subtitle: slide.subtitleKey ? getCopy(slide.subtitleKey) : undefined,
+      description: slide.descriptionKey ? getCopy(slide.descriptionKey) : undefined,
+      primaryButton: slide.primaryButtonKey ? getCopy(slide.primaryButtonKey) : undefined,
       primaryButtonLink: slide.primaryButtonLink,
       primaryButtonAction: slide.primaryButtonAction || "link",
-      secondaryButton: slide.secondaryButtonKey ? t(slide.secondaryButtonKey) : undefined,
+      primaryButtonScrollTarget: slide.primaryButtonScrollTarget || "quick-register-form",
+      secondaryButton: slide.secondaryButtonKey ? getCopy(slide.secondaryButtonKey) : undefined,
       secondaryButtonLink: slide.secondaryButtonLink,
       secondaryButtonAction: slide.secondaryButtonAction || "link",
-    }));
-  }, [t, translations]);
+      secondaryButtonScrollTarget: slide.secondaryButtonScrollTarget || "quick-register-form",
+    })),
+  []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -98,37 +104,78 @@ export const HeroSlider = () => {
 
   return (
     <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden pb-16">
-      {/* Background Images - Slider */}
+      {/* Background Images - Slider
+          Only render: active slide + next slide (preload).
+          Slides 2+ are NOT in the DOM until needed — reduces initial payload ~400 KiB.
+          The active slide always has priority for LCP. */}
       <div className="absolute inset-0 z-0">
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={cn(
-              "absolute inset-0 transition-opacity duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]",
-              index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-            )}
-          >
-            <Image
-              src={slide.image}
-              alt={heroSlidesConfig[index].titleKey}
-              fill
-              className="object-cover"
-              priority={index === 0}
-              quality={90}
-              sizes="100vw"
-              suppressHydrationWarning
-            />
-          </div>
-        ))}
-        {/* Gradient Overlay - Lighter for more natural look */}
+        {heroSlides.map((slide, index) => {
+          const nextIndex = (currentIndex + 1) % heroSlides.length;
+          // Skip rendering slides that are neither active nor next
+          if (index !== currentIndex && index !== nextIndex) return null;
+
+          const alts = [
+            "New construction homes in Florida - Rent to Own with $0 down payment - M.J. Newell Homes",
+            "Best home builder in Florida - Quality new homes for sale in LaBelle and Lehigh Acres",
+            "Buy house in Florida - New homes in LaBelle - Home builder Southwest Florida",
+          ];
+
+          return (
+            <div
+              key={index}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-400 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
+                index === currentIndex
+                  ? "opacity-100 z-10"
+                  : "opacity-0 z-0 pointer-events-none"
+              )}
+            >
+              <Image
+                src={slide.image}
+                alt={alts[index] ?? alts[0]}
+                fill
+                className="object-cover"
+                // Only the visible slide is priority (LCP signal to browser)
+                priority={index === currentIndex && currentIndex === 0}
+                // Next slide: preload quietly without blocking LCP
+                loading={index === nextIndex && currentIndex !== 0 ? "eager" : undefined}
+                quality={85}
+                sizes="100vw"
+                suppressHydrationWarning
+              />
+            </div>
+          );
+        })}
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 z-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
       </div>
 
+      {/* Badge $0 Down - Móvil: arriba derecha para no tapar texto; desktop: arriba derecha */}
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 lg:top-12 lg:right-12 z-30 animate-fade-in">
+        <Link
+          href="/schedule-appointment"
+          className={cn(
+            "relative w-20 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto block",
+            "cursor-pointer badge-3d-container"
+          )}
+          aria-label="Schedule your appointment - $0 Down Payment"
+        >
+          <Image
+            src="/0down.png"
+            alt="Down Payment & Closing Cost $0"
+            width={256}
+            height={256}
+            className="w-full h-auto object-contain badge-image"
+            priority
+          />
+        </Link>
+      </div>
+
       {/* Content */}
-      <div className="relative z-20 w-full h-full flex items-center">
+      <div className="relative z-20 w-full h-full flex items-start sm:items-center pt-24 sm:pt-0">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl pb-16 sm:pb-0">
             <div
               className={cn(
                 "space-y-6 sm:space-y-8",
@@ -139,33 +186,51 @@ export const HeroSlider = () => {
                 transitionDelay: isTransitioning ? "0ms" : "100ms",
               }}
             >
-              {/* Title */}
+              {/* Primary H1: stable for SEO — matches homepage title & body terms */}
               <h1
                 className={cn(
-                  "text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.9] text-white",
+                  "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[0.95] sm:leading-[0.9] text-white",
+                  "pr-20 sm:pr-0"
+                )}
+                style={{
+                  textShadow:
+                    "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
+                }}
+                suppressHydrationWarning
+              >
+                New construction homes for sale in Florida — M.J. Newell Homes
+              </h1>
+
+              {/* Rotating hero lines (not H1) — visual emphasis preserved */}
+              <p
+                className={cn(
+                  "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black tracking-tight leading-[0.95] sm:leading-[0.9] text-white m-0",
                   "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
                   isTransitioning
                     ? "translate-y-4 opacity-0"
                     : "translate-y-0 opacity-100"
                 )}
                 style={{
-                  textShadow: "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
+                  textShadow:
+                    "0 4px 20px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
                   transitionDelay: isTransitioning ? "0ms" : "150ms",
                 }}
+                aria-live="polite"
                 suppressHydrationWarning
               >
-                {currentSlide.title}
+                <span className="block">{currentSlide.title}</span>
                 {currentSlide.subtitle && (
                   <span
                     className={cn(
                       "block text-primary mt-1 sm:mt-2 font-black",
-                      "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      "transition-transform duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
                       isTransitioning
                         ? "translate-x-4 opacity-0"
                         : "translate-x-0 opacity-100"
                     )}
                     style={{
-                      textShadow: "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6), 0 0 30px rgba(3,106,255,0.3)",
+                      textShadow:
+                        "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6), 0 0 30px rgba(3,106,255,0.3)",
                       transitionDelay: isTransitioning ? "0ms" : "250ms",
                     }}
                     suppressHydrationWarning
@@ -173,8 +238,8 @@ export const HeroSlider = () => {
                     {currentSlide.subtitle}
                   </span>
                 )}
-              </h1>
-              
+              </p>
+
               {/* Description */}
               {currentSlide.description && (
                 <p
@@ -186,7 +251,8 @@ export const HeroSlider = () => {
                       : "translate-y-0 opacity-100"
                   )}
                   style={{
-                    textShadow: "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
+                    textShadow:
+                      "0 2px 12px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.6)",
                     transitionDelay: isTransitioning ? "0ms" : "300ms",
                   }}
                   suppressHydrationWarning
@@ -199,23 +265,27 @@ export const HeroSlider = () => {
               <div
                 className={cn(
                   "flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2",
-                  "transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
-                  isTransitioning
-                    ? "opacity-0"
-                    : "opacity-100"
+                  "transition-opacity duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]",
+                  isTransitioning ? "opacity-0" : "opacity-100"
                 )}
                 style={{
                   transitionDelay: isTransitioning ? "0ms" : "400ms",
                 }}
               >
-                {currentSlide.primaryButton && (
-                  currentSlide.primaryButtonAction === "scroll" ? (
+                {currentSlide.primaryButton &&
+                  (currentSlide.primaryButtonAction === "scroll" ? (
                     <Button
                       onClick={(e) => {
                         e.preventDefault();
-                        const formSection = document.getElementById("quick-register-form");
+                        const formSection = document.getElementById(
+                          currentSlide.primaryButtonScrollTarget ||
+                            "quick-register-form"
+                        );
                         if (formSection) {
-                          formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                          formSection.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                         }
                       }}
                       size="lg"
@@ -230,7 +300,9 @@ export const HeroSlider = () => {
                         "border-2 border-primary/50"
                       )}
                     >
-                      <span className="relative z-10" suppressHydrationWarning>{currentSlide.primaryButton}</span>
+                      <span className="relative z-10" suppressHydrationWarning>
+                        {currentSlide.primaryButton}
+                      </span>
                       <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                     </Button>
                   ) : currentSlide.primaryButtonLink ? (
@@ -248,21 +320,31 @@ export const HeroSlider = () => {
                         "border-2 border-primary/50"
                       )}
                     >
-                      <Link href={currentSlide.primaryButtonLink} suppressHydrationWarning>
-                        <span className="relative z-10">{currentSlide.primaryButton}</span>
+                      <Link
+                        href={currentSlide.primaryButtonLink}
+                        suppressHydrationWarning
+                      >
+                        <span className="relative z-10">
+                          {currentSlide.primaryButton}
+                        </span>
                         <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                       </Link>
                     </Button>
-                  ) : null
-                )}
-                {currentSlide.secondaryButton && (
-                  currentSlide.secondaryButtonAction === "scroll" ? (
+                  ) : null)}
+                {currentSlide.secondaryButton &&
+                  (currentSlide.secondaryButtonAction === "scroll" ? (
                     <Button
                       onClick={(e) => {
                         e.preventDefault();
-                        const formSection = document.getElementById("quick-register-form");
+                        const formSection = document.getElementById(
+                          currentSlide.secondaryButtonScrollTarget ||
+                            "quick-register-form"
+                        );
                         if (formSection) {
-                          formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                          formSection.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                         }
                       }}
                       variant="outline"
@@ -277,7 +359,9 @@ export const HeroSlider = () => {
                         "hover:scale-105 active:scale-100"
                       )}
                     >
-                      <span suppressHydrationWarning>{currentSlide.secondaryButton}</span>
+                      <span suppressHydrationWarning>
+                        {currentSlide.secondaryButton}
+                      </span>
                     </Button>
                   ) : currentSlide.secondaryButtonLink ? (
                     <Button
@@ -294,10 +378,20 @@ export const HeroSlider = () => {
                         "hover:scale-105 active:scale-100"
                       )}
                     >
-                      <Link href={currentSlide.secondaryButtonLink} suppressHydrationWarning>{currentSlide.secondaryButton}</Link>
+                      <Link
+                        href={currentSlide.secondaryButtonLink}
+                        aria-label={
+                          currentSlide.secondaryButtonLink ===
+                          "/schedule-appointment"
+                            ? "Schedule appointment - Home builder consultation Florida"
+                            : "Learn more about Rent to Own - $0 down payment homes"
+                        }
+                        suppressHydrationWarning
+                      >
+                        {currentSlide.secondaryButton}
+                      </Link>
                     </Button>
-                  ) : null
-                )}
+                  ) : null)}
               </div>
             </div>
           </div>
@@ -305,11 +399,12 @@ export const HeroSlider = () => {
       </div>
 
       {/* Natural Fade Out - Very smooth and subtle transition */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-32 sm:h-40 md:h-48 z-10 pointer-events-none" 
-        style={{ 
-          background: 'linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background) / 0.4) 20%, hsl(var(--background) / 0.2) 40%, hsl(var(--background) / 0.08) 60%, hsl(var(--background) / 0.03) 80%, transparent 100%)' 
-        }} 
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 sm:h-40 md:h-48 z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to top, hsl(var(--background)) 0%, hsl(var(--background) / 0.4) 20%, hsl(var(--background) / 0.2) 40%, hsl(var(--background) / 0.08) 60%, hsl(var(--background) / 0.03) 80%, transparent 100%)",
+        }}
       />
 
       <div
@@ -324,7 +419,7 @@ export const HeroSlider = () => {
             key={index}
             onClick={() => handleSlideChange(index)}
             className={cn(
-              "h-1.5 sm:h-2 rounded-full transition-all duration-500 ease-out cursor-pointer",
+              "h-1.5 sm:h-2 rounded-full transition-all duration-200 ease-out cursor-pointer",
               "smooth-hover",
               index === currentIndex
                 ? "w-6 sm:w-8 bg-primary shadow-lg shadow-primary/50"
@@ -337,4 +432,3 @@ export const HeroSlider = () => {
     </section>
   );
 };
-

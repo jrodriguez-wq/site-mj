@@ -120,3 +120,44 @@ export interface BreadcrumbStructuredData extends StructuredData {
   }>;
 }
 
+/**
+ * Rating (schema.org/Rating). Use inside Review as reviewRating.
+ * Google: ratingValue required; bestRating/worstRating recommended (default 5/1).
+ */
+export interface RatingStructuredData {
+  "@type": "Rating";
+  ratingValue: number | string;
+  bestRating?: number;
+  worstRating?: number;
+}
+
+/**
+ * Review (schema.org/Review). Only use when parent or itemReviewed is a valid type
+ * per Google: Book, Course, Event, LocalBusiness, Organization, Product, Recipe, etc.
+ * Service is NOT valid. Do not use on pages where the entity controls its own reviews.
+ * Required: author (Person|Organization), reviewRating.ratingValue, itemReviewed (if not nested).
+ */
+export interface ReviewStructuredData {
+  "@type": "Review";
+  author: { "@type": "Person"; name: string } | { "@type": "Organization"; name: string };
+  reviewRating: RatingStructuredData;
+  itemReviewed?: { "@type": string; name: string };
+  datePublished?: string; // ISO 8601
+  name?: string;
+  reviewBody?: string;
+}
+
+/**
+ * AggregateRating (schema.org/AggregateRating). Only use when parent or itemReviewed
+ * is a valid type per Google (see Review). Required: ratingValue; ratingCount OR reviewCount.
+ * Recommended: bestRating, worstRating.
+ */
+export interface AggregateRatingStructuredData {
+  "@type": "AggregateRating";
+  ratingValue: number | string;
+  ratingCount?: number;
+  reviewCount?: number;
+  bestRating?: number;
+  worstRating?: number;
+}
+

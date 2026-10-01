@@ -1,28 +1,19 @@
-import { Metadata } from "next";
-import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
+import { generateMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
 import { getPageKeywords } from "@/lib/seo/keyword-utils";
+import { StructuredDataComponent } from "@/components/seo/structured-data";
+import { generateModelsItemListSchema } from "@/lib/seo/models-structured-data";
 
-export const metadata: Metadata = generateSEOMetadata({
-  title: "Home Models | Browse All Floor Plans | M.J. Newell Homes",
-  description: "Browse all our home models and floor plans. Louisiana, Viana, Delanie, Aurora, Langdon, Emelia, and Duplex models. Prices, square footage, bedrooms, and bathrooms. Rent to Own available. New construction homes in Florida.",
+export const metadata = generateMetadata({
+  title: "New Homes for Sale | Floor Plans LaBelle & Lehigh Acres",
+  description:
+    "Browse new construction homes for sale in LaBelle and Lehigh Acres, Florida. Seven floor plans from $316,900. Buy your new home from M.J. Newell Homes — photos, pricing, and features.",
   canonical: `${SEO_CONFIG.siteUrl}/models`,
-  keywords: [
-    ...getPageKeywords("models"),
-    "home models",
-    "floor plans",
-    "home designs",
-    "house plans",
-    "new home models",
-    "home floor plans Florida",
-    "home designs Florida",
-    "3 bedroom homes Florida",
-    "4 bedroom homes Florida",
-    "new construction floor plans",
-  ],
+  keywords: getPageKeywords("models"),
   openGraph: {
-    title: "Home Models | M.J. Newell Homes",
-    description: "Browse all our home models and floor plans. Multiple models available with Rent to Own program. New construction homes in Florida.",
+    title: "New Homes for Sale | M.J. Newell Homes",
+    description:
+      "New construction homes for sale in LaBelle & Lehigh Acres. Louisiana, Viana, Langdon, and more — view floor plans and pricing.",
     url: `${SEO_CONFIG.siteUrl}/models`,
     type: "website",
   },
@@ -33,5 +24,10 @@ export default function ModelsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <StructuredDataComponent data={[generateModelsItemListSchema()]} />
+      {children}
+    </>
+  );
 }

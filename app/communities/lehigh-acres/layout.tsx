@@ -1,20 +1,17 @@
-import { Metadata } from "next";
-import { generateMetadata as generateSEOMetadata } from "@/lib/seo/metadata";
+import { generateMetadata } from "@/lib/seo/metadata";
 import { SEO_CONFIG } from "@/config/seo";
 import { getCommunityKeywords } from "@/lib/seo/keyword-utils";
 
-export const metadata: Metadata = generateSEOMetadata({
-  title: "Lehigh Acres, Florida | New Homes & Rent to Own | M.J. Newell Homes",
-  description: "Discover new construction homes in Lehigh Acres, Florida. Beautiful beaches, entertainment, and nature activities. Rent to Own program available. $0 down payment.",
+export const metadata = generateMetadata({
+  title: "New Homes for Sale in Lehigh Acres, FL",
+  description:
+    "Homes for sale in Lehigh Acres, Florida — new construction from M.J. Newell Homes near Fort Myers. Langdon, Emelia, Delanie, Duplex. Buy or Rent to Own.",
   canonical: `${SEO_CONFIG.siteUrl}/communities/lehigh-acres`,
-  keywords: [
-    ...getCommunityKeywords("lehigh-acres"),
-    "Lee County homes",
-    "family homes Lehigh Acres",
-  ],
+  keywords: getCommunityKeywords("lehigh-acres"),
   openGraph: {
-    title: "Lehigh Acres, Florida | New Homes & Rent to Own | M.J. Newell Homes",
-    description: "Discover new construction homes in Lehigh Acres, Florida. Beautiful beaches, entertainment, and nature activities.",
+    title: "New Homes for Sale in Lehigh Acres, FL | M.J. Newell Homes",
+    description:
+      "Buy new construction homes for sale in Lehigh Acres, Florida. Quality builder near Fort Myers with flexible financing.",
     url: `${SEO_CONFIG.siteUrl}/communities/lehigh-acres`,
     type: "website",
   },

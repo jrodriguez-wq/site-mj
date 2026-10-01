@@ -1,15 +1,18 @@
 "use client";
 
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { HubSpotForm } from "@/components/ui/hubspot-form";
 import { PageContent } from "@/components/layout/page-container";
-import { useTranslation } from "@/hooks/use-translation";
-import { Shield, CheckCircle2, Clock, HeadphonesIcon } from "lucide-react";
-import { SEO_CONFIG } from "@/config/seo";
+import { Shield, CheckCircle2, Clock, HeadphonesIcon, Calendar, ArrowLeft, MapPin, FileText, PhoneCall, Scale } from "lucide-react";
+import { SEO_CONFIG, CONTACT_INFO } from "@/config/seo";
+import { motion, AnimatePresence } from "framer-motion";
+
+type WarrantyFlowStep = "initial" | "community-selection" | "form";
 
 export const WarrantyPageContent = () => {
-  const { t } = useTranslation();
+  const [flowStep, setFlowStep] = useState<WarrantyFlowStep>("initial");
 
   const redirectUrl = useMemo(() => {
     const baseUrl = typeof window !== 'undefined' 
@@ -18,26 +21,193 @@ export const WarrantyPageContent = () => {
     return `${baseUrl}/thank-you?type=warranty`;
   }, []);
 
+  const handleCommunitySelect = (community: "labelle" | "lehigh" | "sanibel") => {
+    if (community === "labelle") {
+      window.open("https://meetings.hubspot.com/customercare76/warrantys", "_blank");
+    } else if (community === "lehigh") {
+      window.open("https://meetings.hubspot.com/customercare76/warrantys-lehigh", "_blank");
+    } else if (community === "sanibel") {
+      window.open("https://meetings.hubspot.com/customercare76/warrantys-sanibel", "_blank");
+    }
+  };
+
   return (
     <PageContent size="md">
       <div className="space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl" suppressHydrationWarning>
-            {t("warranty.title")}
+            Warranty
           </h1>
           <p className="text-xl text-muted-foreground" suppressHydrationWarning>
-            {t("warranty.subtitle")}
+            We stand behind our homes. Here&apos;s what&apos;s covered and how to schedule service.
           </p>
         </div>
+
+        {/* Warranty Scheduling Flow - At top for quick access */}
+        <AnimatePresence mode="wait">
+          {flowStep === "initial" && (
+            <motion.div
+              key="initial"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="shadow-lg "><CardHeader>
+                  <CardTitle className="text-center flex items-center justify-center gap-2" suppressHydrationWarning>
+                    <Calendar className="h-6 w-6 text-primary" />
+                    <span>Schedule Warranty</span>
+                  </CardTitle>
+                  <CardDescription className="text-center" suppressHydrationWarning>
+                    Select your community to schedule a warranty appointment
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex justify-center pt-6 pb-8">
+                  <Button
+                    size="lg"
+                    onClick={() => setFlowStep("community-selection")}
+                    className="px-10 py-7 text-lg font-semibold bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all"
+                  >
+                    Schedule Warranty
+                    <Calendar className="ml-2 h-5 w-5" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+
+          {flowStep === "community-selection" && (
+            <motion.div
+              key="community-selection"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-center flex items-center justify-center gap-2" suppressHydrationWarning>
+                    <MapPin className="h-6 w-6 text-primary" />
+                    <span>Select Your Community</span>
+                  </CardTitle>
+                  <CardDescription className="text-center" suppressHydrationWarning>
+                    Choose your community to schedule your warranty appointment
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6 pt-6 pb-8">
+                  <div className="grid gap-4 md:grid-cols-3">
+                    {/* LaBelle - Soft Indigo Theme */}
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={() => handleCommunitySelect("labelle")}
+                      className="h-auto py-8 flex flex-col items-center gap-3 border-2 border-indigo-100/80 hover:border-indigo-300 hover:bg-indigo-50/50 hover:text-indigo-700 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-100/50 hover:scale-[1.02] group"
+                    >
+                      <div className="p-3 bg-indigo-50 group-hover:bg-indigo-100 rounded-full transition-colors">
+                        <MapPin className="h-6 w-6 text-indigo-400 group-hover:text-indigo-600 transition-colors" />
+                      </div>
+                      <span className="text-lg font-semibold text-foreground group-hover:text-indigo-700 transition-colors">LaBelle</span>
+                      <span className="text-sm text-muted-foreground group-hover:text-indigo-600/80 transition-colors">
+                        Click to schedule
+                      </span>
+                    </Button>
+
+                    {/* Lehigh - Soft Rose Theme */}
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={() => handleCommunitySelect("lehigh")}
+                      className="h-auto py-8 flex flex-col items-center gap-3 border-2 border-rose-100/80 hover:border-rose-300 hover:bg-rose-50/50 hover:text-rose-700 transition-all duration-300 hover:shadow-lg hover:shadow-rose-100/50 hover:scale-[1.02] group"
+                    >
+                      <div className="p-3 bg-rose-50 group-hover:bg-rose-100 rounded-full transition-colors">
+                        <MapPin className="h-6 w-6 text-rose-400 group-hover:text-rose-600 transition-colors" />
+                      </div>
+                      <span className="text-lg font-semibold text-foreground group-hover:text-rose-700 transition-colors">Lehigh</span>
+                      <span className="text-sm text-muted-foreground group-hover:text-rose-600/80 transition-colors">
+                        Click to schedule
+                      </span>
+                    </Button>
+
+                    {/* Sanibel - Soft Teal Theme */}
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      onClick={() => handleCommunitySelect("sanibel")}
+                      className="h-auto py-8 flex flex-col items-center gap-3 border-2 border-teal-100/80 hover:border-teal-300 hover:bg-teal-50/50 hover:text-teal-700 transition-all duration-300 hover:shadow-lg hover:shadow-teal-100/50 hover:scale-[1.02] group"
+                    >
+                      <div className="p-3 bg-teal-50 group-hover:bg-teal-100 rounded-full transition-colors">
+                        <MapPin className="h-6 w-6 text-teal-400 group-hover:text-teal-600 transition-colors" />
+                      </div>
+                      <span className="text-lg font-semibold text-foreground group-hover:text-teal-700 transition-colors">Sanibel</span>
+                      <span className="text-sm text-muted-foreground group-hover:text-teal-600/80 transition-colors">
+                        Click to schedule
+                      </span>
+                    </Button>
+                  </div>
+                  <div className="flex justify-center pt-2">
+                    <Button
+                      variant="ghost"
+                      onClick={() => setFlowStep("initial")}
+                      className="flex items-center gap-2"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      Back
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+
+          {flowStep === "form" && (
+            <motion.div
+              key="form"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-center" suppressHydrationWarning>
+                    Submit a warranty request
+                  </CardTitle>
+                  <CardDescription className="text-center" suppressHydrationWarning>
+                    Fill out the form below and our warranty team will get back to you.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4">
+                    <Button
+                      variant="ghost"
+                      onClick={() => setFlowStep("community-selection")}
+                      className="flex items-center gap-2"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      Back to Community Selection
+                    </Button>
+                  </div>
+                  <HubSpotForm
+                    portalId="50215941"
+                    formId="6c15d23c-5273-4555-b4cc-b5fb7cfe7b67"
+                    region="na1"
+                    redirectUrl={redirectUrl}
+                    className="w-full"
+                  />
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Warranty Coverage - Simplified */}
         <Card>
           <CardHeader>
             <CardTitle suppressHydrationWarning>
-              {t("warranty.coverage.title")}
+              What&apos;s covered
             </CardTitle>
             <CardDescription suppressHydrationWarning>
-              {t("warranty.coverage.description")}
+              Our new construction homes come with structural and mechanical warranties for your peace of mind.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -49,13 +219,13 @@ export const WarrantyPageContent = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-foreground mb-2" suppressHydrationWarning>
-                    {t("warranty.coverage.structural.title")}
+                    Structural warranty
                   </h3>
                   <p className="text-lg text-primary font-semibold mb-1" suppressHydrationWarning>
-                    {t("warranty.coverage.structural.duration")}
+                    10 years
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.coverage.structural.description")}
+                    Covers major structural defects so you can enjoy your home with confidence.
                   </p>
                 </div>
               </div>
@@ -67,13 +237,13 @@ export const WarrantyPageContent = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-foreground mb-2" suppressHydrationWarning>
-                    {t("warranty.coverage.mechanical.title")}
+                    Mechanical systems
                   </h3>
                   <p className="text-lg text-primary font-semibold mb-1" suppressHydrationWarning>
-                    {t("warranty.coverage.mechanical.duration")}
+                    1 year
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.coverage.mechanical.description")}
+                    HVAC, plumbing, and electrical systems are covered for the first year.
                   </p>
                 </div>
               </div>
@@ -86,7 +256,7 @@ export const WarrantyPageContent = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-primary" />
-              <span suppressHydrationWarning>{t("warranty.features.title")}</span>
+              <span suppressHydrationWarning>Why our warranty works for you</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -95,10 +265,10 @@ export const WarrantyPageContent = () => {
                 <Clock className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.timely.title")}
+                    Timely response
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.timely.description")}
+                    We respond to warranty requests quickly and schedule repairs so you&apos;re not left waiting.
                   </p>
                 </div>
               </div>
@@ -106,10 +276,10 @@ export const WarrantyPageContent = () => {
                 <HeadphonesIcon className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.support.title")}
+                    Dedicated support
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.support.description")}
+                    A dedicated team handles warranty claims and coordinates with our builders.
                   </p>
                 </div>
               </div>
@@ -117,10 +287,10 @@ export const WarrantyPageContent = () => {
                 <CheckCircle2 className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <p className="font-semibold" suppressHydrationWarning>
-                    {t("warranty.features.quality.title")}
+                    Quality builds
                   </p>
                   <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-                    {t("warranty.features.quality.description")}
+                    We build to last. Our warranty backs the quality of our construction.
                   </p>
                 </div>
               </div>
@@ -128,24 +298,102 @@ export const WarrantyPageContent = () => {
           </CardContent>
         </Card>
 
-        {/* Form */}
-        <Card className="shadow-lg">
+        {/* Escalation Process - resolution steps if a warranty request isn't resolved */}
+        <Card className="border-2 border-primary/20">
           <CardHeader>
-            <CardTitle className="text-center" suppressHydrationWarning>
-              {t("warranty.form.title")}
+            <CardTitle className="flex items-center gap-2">
+              <Scale className="h-5 w-5 text-primary" />
+              <span suppressHydrationWarning>If your warranty request isn&apos;t resolved</span>
             </CardTitle>
-            <CardDescription className="text-center" suppressHydrationWarning>
-              {t("warranty.form.description")}
+            <CardDescription suppressHydrationWarning>
+              A clear, step-by-step process so you always know what to expect and when.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <HubSpotForm
-              portalId="50215941"
-              formId="6c15d23c-5273-4555-b4cc-b5fb7cfe7b67"
-              region="na1"
-              redirectUrl={redirectUrl}
-              className="w-full"
-            />
+            <div className="mt-4 space-y-5">
+              {/* Step 1 */}
+              <div className="flex items-start gap-4 p-5 rounded-xl border bg-background">
+                <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm">
+                  1
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold flex items-center gap-2" suppressHydrationWarning>
+                    <PhoneCall className="h-4 w-4 text-primary" />
+                    Submit your request
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1" suppressHydrationWarning>
+                    Contact our warranty team at{" "}
+                    <a href={CONTACT_INFO.phoneTelHref} className="text-primary hover:underline font-medium">
+                      {CONTACT_INFO.phoneDisplay}
+                    </a>{" "}
+                    or{" "}
+                    <a href={`mailto:${CONTACT_INFO.email}`} className="text-primary hover:underline font-medium">
+                      {CONTACT_INFO.email}
+                    </a>
+                    , or use the scheduling form above. We respond to phone calls within 24 hours and emails within 48 hours.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex items-start gap-4 p-5 rounded-xl border bg-background">
+                <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm">
+                  2
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold flex items-center gap-2" suppressHydrationWarning>
+                    <Clock className="h-4 w-4 text-primary" />
+                    Not resolved within 5 business days? Escalate.
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1" suppressHydrationWarning>
+                    If your original point of contact hasn&apos;t scheduled or resolved your request, call our
+                    escalation line directly:{" "}
+                    <a
+                      href={`tel:${CONTACT_INFO.phoneSecondary.replace(/\s/g, "")}`}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      {CONTACT_INFO.phoneSecondary}
+                    </a>{" "}
+                    ({CONTACT_INFO.phoneSecondaryLabel}). This line is reviewed directly by warranty management.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex items-start gap-4 p-5 rounded-xl border bg-background">
+                <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm">
+                  3
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold flex items-center gap-2" suppressHydrationWarning>
+                    <FileText className="h-4 w-4 text-primary" />
+                    Formal written notice (Florida Chapter 558)
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-1" suppressHydrationWarning>
+                    Under Florida Statute Chapter 558, homeowners may submit a written{" "}
+                    <strong className="text-foreground">Notice of Claim</strong> describing a construction defect in
+                    reasonable detail. Once received, we have 45 days to respond in writing — either resolving the
+                    issue or offering a plan to repair it. Send your Notice of Claim in writing to{" "}
+                    <a href={`mailto:${CONTACT_INFO.email}`} className="text-primary hover:underline font-medium">
+                      {CONTACT_INFO.email}
+                    </a>{" "}
+                    or by mail to 45 Bridge St, LaBelle, FL 33935.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Statutory basis note */}
+            <div className="mt-6 p-4 rounded-lg bg-muted/50 border text-sm text-muted-foreground space-y-2">
+              <p suppressHydrationWarning>
+                <strong className="text-foreground">Your statutory protections:</strong> New homes built in Florida
+                are covered by a mandatory 1-year builder warranty under{" "}
+                <strong className="text-foreground">Fla. Stat. §553.837</strong> for defects that violate the
+                Florida Building Code, in addition to our structural and mechanical warranty above. The{" "}
+                <strong className="text-foreground">Chapter 558</strong> notice process gives every homeowner a
+                documented, time-bound path to resolution before any dispute needs to go further.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>

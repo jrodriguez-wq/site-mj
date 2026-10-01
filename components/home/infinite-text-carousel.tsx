@@ -1,10 +1,9 @@
 "use client";
 
-import { useTranslation } from "@/hooks/use-translation";
+import { getCopy } from "@/lib/constants/copy";
 
 export const InfiniteTextCarousel = () => {
-  const { t } = useTranslation();
-  const message = t("carousel.message");
+  const message = getCopy("carousel.message");
 
   // Duplicar el mensaje varias veces para efecto infinito suave
   const duplicatedMessage = `${message} • `.repeat(8);

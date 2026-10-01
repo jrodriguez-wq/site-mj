@@ -7,6 +7,8 @@ export interface ModelData {
   garage: string;
   price: string;
   rtoPrice?: string; // Precio de RTO (Rent to Own) mensual
+  /** Si false, el modelo no tiene programa RTO; solo compra o averiguar por renta (ej. duplex) */
+  rtoAvailable?: boolean;
   description: string;
   youtubeUrl?: string;
   imagesFolder: string;
@@ -27,6 +29,13 @@ export interface ModelData {
       title: string;
       description?: string;
       image?: string;
+      measures?: {
+        livingArea?: string; // Ejemplo: "2,316 SQ. FT."
+        entry?: string; // Ejemplo: "113 SQ. FT."
+        garage?: string; // Ejemplo: "689 SQ. FT."
+        lanai?: string; // Ejemplo: "159 SQ. FT."
+        totalArea: string; // Ejemplo: "3,277 SQ. FT."
+      };
     };
     standardFeatures?: {
       title: string;

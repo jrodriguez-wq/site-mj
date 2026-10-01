@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { ModelPageContent } from "@/components/models/model-page-content";
 import { getModelDataWithImages } from "@/lib/models/model-data";
 import { generatePropertyMetadata } from "@/lib/seo/metadata";
+import { generateModelProductSchema } from "@/lib/seo/models-structured-data";
+import { StructuredDataComponent } from "@/components/seo/structured-data";
 import { SEO_CONFIG } from "@/config/seo";
 import type { Metadata } from "next";
 import type { Community } from "@/types/model";
@@ -25,9 +27,13 @@ export async function generateMetadata({ params }: ModelPageProps): Promise<Meta
     };
   }
 
-  const imageUrl = modelData.images[0]
-    ? `${SEO_CONFIG.siteUrl}${modelData.images[0]}`
-    : undefined;
+  const firstImage = modelData.images[0];
+  const imageUrl =
+    firstImage && (firstImage.startsWith("http://") || firstImage.startsWith("https://"))
+      ? firstImage
+      : firstImage
+        ? `${SEO_CONFIG.siteUrl}${firstImage.startsWith("/") ? "" : "/"}${firstImage}`
+        : undefined;
 
   return generatePropertyMetadata(
     modelData.name,
@@ -53,5 +59,18 @@ export default async function ModelPage({ params, searchParams }: ModelPageProps
     notFound();
   }
 
-  return <ModelPageContent modelData={modelData} />;
+  const productSchema = generateModelProductSchema(
+    model,
+    modelData.name,
+    modelData.description,
+    modelData.price,
+    modelData.images[0]
+  );
+
+  return (
+    <>
+      <StructuredDataComponent data={[productSchema]} />
+      <ModelPageContent modelData={modelData} />
+    </>
+  );
 }
