@@ -27,6 +27,9 @@ export const metadata = generateMetadata({
     "rent to own program Florida",
     "rent to own application",
     "rent to own process",
+    "rent to own Florida from another state",
+    "$0 down homes Florida out of state",
+    "move to Florida with no down payment",
   ],
   openGraph: {
     title: "Rent to Own Homes in Florida | $0 Down | M.J. Newell Homes",

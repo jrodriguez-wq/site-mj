@@ -30,6 +30,7 @@ export const getPageKeywords = (pageType: PageKeywordType): string[] => {
         ...KEYWORDS.southwestFlorida.slice(0, 8),
         ...KEYWORDS.rentToOwn.slice(0, 8),
         ...KEYWORDS.zeroDown.slice(0, 5),
+        ...KEYWORDS.relocation.slice(0, 10),
       ];
 
     case "sales":
@@ -42,12 +43,14 @@ export const getPageKeywords = (pageType: PageKeywordType): string[] => {
         ...KEYWORDS.homeBuilder.slice(0, 10),
         ...KEYWORDS.brand,
         ...KEYWORDS.rentToOwn.slice(0, 5),
+        ...KEYWORDS.relocation.slice(0, 6),
       ];
 
     case "rent-to-own":
       return [
         ...KEYWORDS.rentToOwn,
         ...KEYWORDS.zeroDown,
+        ...KEYWORDS.relocation.slice(0, 8),
         ...KEYWORDS.badCredit,
         ...KEYWORDS.firstTimeBuyer,
         ...KEYWORDS.affordable.slice(0, 10),

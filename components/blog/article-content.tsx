@@ -15,6 +15,8 @@ interface ArticleContentProps {
 
 export const ArticleContent = ({ post, className }: ArticleContentProps) => {
   const { frontmatter, content } = post;
+  // The page template already renders the title as the only h1.
+  const body = content.replace(/^\s*#\s+[^\n]+\n+/, "");
   const publishedDate = new Date(frontmatter.date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -67,7 +69,7 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={frontmatter.image.startsWith("http") ? frontmatter.image : getCloudinaryImageUrl(frontmatter.image)}
-              alt=""
+              alt={frontmatter.title}
               className="absolute inset-0 w-full h-full object-cover"
               loading="eager"
               decoding="async"
@@ -119,14 +121,20 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
               <li className="leading-[1.7] pl-1" {...props} />
             ),
 
-            a: ({ ...props }) => (
-              <a
-                className="text-primary hover:text-primary/80 underline underline-offset-4 font-medium transition-colors decoration-2"
-                target="_blank"
-                rel="noopener noreferrer"
-                {...props}
-              />
-            ),
+            a: ({ href, ...props }) => {
+              const external =
+                typeof href === "string" &&
+                /^https?:\/\//.test(href) &&
+                !href.includes("mjnewellhomes.com");
+              return (
+                <a
+                  href={href}
+                  className="text-primary hover:text-primary/80 underline underline-offset-4 font-medium transition-colors decoration-2"
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  {...props}
+                />
+              );
+            },
 
             strong: ({ ...props }) => (
               <strong className="font-bold text-foreground" {...props} />
@@ -240,7 +248,7 @@ export const ArticleContent = ({ post, className }: ArticleContentProps) => {
             ),
           }}
         >
-          {content}
+          {body}
         </ReactMarkdown>
       </div>
     </article>

@@ -77,6 +77,20 @@ export const getContextualLinks = (keywords: string[]): InternalLink[] => {
     });
   }
   
+  // Relocation and out-of-state tax comparisons
+  if (keywords.some((k) => /out of state|reloc|moving to florida|new jersey|illinois|new york|texas|california|zero down|\$0 down/i.test(k))) {
+    links.push({
+      href: "/blog/out-of-state-buyer-florida-home-questions-answered",
+      text: "Out-of-State Buyer Questions",
+      description: "Income tax, the 4% discount, homestead, and $0 down",
+    });
+    links.push({
+      href: "/blog/zero-down-rent-to-own-for-out-of-state-buyers-florida",
+      text: "$0 Down Rent-to-Own From Out of State",
+      description: "Move in now, purchase when you are ready",
+    });
+  }
+
   // Tax related
   if (keywords.some((k) => /tax|refund|homestead|exemption/i.test(k))) {
     links.push({

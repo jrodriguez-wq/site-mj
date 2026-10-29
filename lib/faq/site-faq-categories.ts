@@ -153,6 +153,36 @@ export const SITE_FAQ_CATEGORIES: FAQCategory[] = [
     ],
   },
   {
+    title: "Moving from another state",
+    items: [
+      {
+        question: "Does Florida have a state income tax?",
+        answer:
+          "No. The Florida Constitution prohibits a state tax on the income of natural persons. The state you are leaving may still tax income from the part of the year you lived there. A tax preparer should time that move. We can help you buy the house.",
+      },
+      {
+        question: "Is there a discount for paying Florida property taxes early?",
+        answer:
+          "Yes. Florida Statute 197.162 gives a 4% discount in November, 3% in December, 2% in January, and 1% in February. March is full price. The discount applies to the county tax bill in both Hendry County (LaBelle) and Lee County (Lehigh Acres).",
+      },
+      {
+        question: "When does homestead exemption start for a new resident?",
+        answer:
+          "After you own the home and occupy it as your permanent residence on January 1, and the county property appraiser approves your application. For 2026 the exemption is $25,000 for all taxes, plus up to $26,411 more for non-school taxes. The Save Our Homes cap starts the year after homestead is granted. It does not apply during rent-to-own, because you are not the owner yet.",
+      },
+      {
+        question: "Can I move to Florida with $0 down?",
+        answer:
+          "With our Rent to Own program you can move into a new home in LaBelle or Lehigh Acres with $0 down and $0 closing costs. The price is locked and part of the monthly payment is credited toward the down payment and closing costs when you buy. A USDA or VA mortgage is a different $0 down path, and a lender has to approve it. We do not guarantee those loans.",
+      },
+      {
+        question: "Are Florida property taxes lower than New Jersey, New York, Illinois, or Texas?",
+        answer:
+          "On the Tax Foundation's 2025 statewide effective rates, Florida is 0.94% of owner-occupied housing value, compared with 2.21% in New Jersey, 2.05% in Illinois, 1.40% in New York, and 1.69% in Texas. California's rate in that table is lower, at 0.74%. Your bill in Hendry or Lee County will differ, and insurance is not included in those rates.",
+      },
+    ],
+  },
+  {
     title: "Warranty",
     items: [
       {

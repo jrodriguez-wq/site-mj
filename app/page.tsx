@@ -8,13 +8,13 @@ const homepageKeywords = getPageKeywords("home");
 export const metadata = generateMetadata({
   title: "New Homes for Sale in Florida",
   description:
-    "New construction homes for sale in LaBelle and Lehigh Acres, Florida. Buy your dream home from M.J. Newell Homes — quality builder, 7 floor plans, homes from $316,900. Rent to Own also available.",
+    "New homes in LaBelle and Lehigh Acres, Florida, from $316,900. No state income tax, and rent-to-own with $0 down to move in. M.J. Newell Homes.",
   canonical: SEO_CONFIG.siteUrl,
   keywords: homepageKeywords,
   openGraph: {
     title: "New Homes for Sale in Florida | M.J. Newell Homes",
     description:
-      "Buy new construction homes in LaBelle & Lehigh Acres, FL. 7 models for sale, transparent pricing. Trusted Southwest Florida home builder — 1,500+ homes built.",
+      "New construction homes in LaBelle and Lehigh Acres from $316,900. No Florida state income tax. Rent-to-own with $0 down to move in.",
     url: SEO_CONFIG.siteUrl,
     type: "website",
     images: [
