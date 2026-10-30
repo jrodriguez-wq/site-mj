@@ -22,7 +22,7 @@ export const FAQContent = () => {
               Frequently Asked Questions
             </h1>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed" suppressHydrationWarning>
-              Answers about buying new homes for sale, our Rent to Own program, and communities in Southwest Florida.
+              Answers about buying a new home, rent-to-own with $0 down, Florida property taxes, and moving from another state.
             </p>
           </div>
         </AnimatedSection>

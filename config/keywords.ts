@@ -850,6 +850,29 @@ export const KEYWORDS = {
     "trusted home builder Florida",
     "experienced home builder Florida",
   ],
+
+  // Buyers leaving other states: taxes, homestead, $0 down.
+  // Used on the homepage, rent-to-own, and the relocation guides.
+  relocation: [
+    "move to Florida from another state",
+    "buying a house in Florida from out of state",
+    "Florida property tax discount",
+    "Florida 4 percent property tax discount",
+    "Florida vs New Jersey property tax",
+    "Florida vs New York property tax",
+    "Florida vs Illinois property tax",
+    "Florida vs Texas property tax",
+    "Florida vs California taxes home buyers",
+    "no state income tax Florida homeowners",
+    "homestead exemption 2026 Florida",
+    "Save Our Homes cap 2026",
+    "zero down homes Florida out of state",
+    "rent to own Florida from another state",
+    "$0 down rent to own relocation",
+    "USDA zero down Southwest Florida",
+    "LaBelle Florida for out of state buyers",
+    "Lehigh Acres relocation new construction",
+  ],
 } as const;
 
 /**
@@ -885,6 +908,7 @@ export const getPriorityKeywords = (): string[] => {
     ...KEYWORDS.southwestFlorida.slice(0, 10),
     ...KEYWORDS.rentToOwn.slice(0, 12),
     ...KEYWORDS.zeroDown.slice(0, 8),
+    ...KEYWORDS.relocation.slice(0, 8),
   ];
 };
 

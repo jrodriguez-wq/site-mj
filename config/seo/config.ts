@@ -6,7 +6,7 @@ import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 export const SEO_CONFIG = {
   siteName: "M.J. Newell Homes",
   siteDescription:
-    "New construction homes for sale in Southwest Florida. Buy your dream home in LaBelle and Lehigh Acres from M.J. Newell Homes. Quality builder with flexible financing including Rent to Own.",
+    "New construction homes in LaBelle and Lehigh Acres, Southwest Florida. Buy outright or move in with rent-to-own and $0 down. Built for Florida residents and buyers relocating from other states.",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://www.mjnewellhomes.com",
   defaultLocale: "en",
   locale: "en_US",
