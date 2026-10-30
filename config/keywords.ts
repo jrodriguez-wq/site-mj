@@ -873,6 +873,25 @@ export const KEYWORDS = {
     "LaBelle Florida for out of state buyers",
     "Lehigh Acres relocation new construction",
   ],
+
+  // Lifestyle: quiet, nature, a simpler new house. In Florida and from outside.
+  lifestyle: [
+    "quiet towns in Florida to buy a home",
+    "small town Florida new construction",
+    "LaBelle Florida quiet living",
+    "LaBelle Florida nature",
+    "Caloosahatchee River homes",
+    "homes with land in Southwest Florida",
+    "quarter acre lots Florida new homes",
+    "no HOA homes LaBelle Florida",
+    "move from Miami to LaBelle",
+    "move from the Florida coast inland",
+    "Lehigh Acres near Fort Myers new homes",
+    "new construction more efficient than older home Florida",
+    "peaceful Florida communities new homes",
+    "Southwest Florida nature and new homes",
+    "buy a home in Florida for space and lower taxes",
+  ],
 } as const;
 
 /**

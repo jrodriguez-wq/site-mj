@@ -10,15 +10,15 @@ import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 export const WhyChooseUs = () => {
   const stats = [
     { number: "$0", label: "Down payment with RTO", icon: DollarSign },
-    { number: "100%", label: "No HOA in our communities", icon: Home },
+    { number: "1/4", label: "Acre lots, no HOA, in LaBelle", icon: Home },
     { number: "15+", label: "Years of experience", icon: Award },
     { number: "500+", label: "Happy families", icon: TrendingUp },
   ];
 
   const benefits = [
-    "Quality new construction and clear pricing so you know what you're getting.",
-    "Flexibility with Rent to Own and financing options that work for real families.",
-    "Experience you can trust—we've helped hundreds of families into their new homes.",
+    "Quarter-acre lots and no HOA on our LaBelle homes. Lehigh Acres if you want to be closer to Fort Myers.",
+    "Florida has no state income tax. Pay the property-tax bill in November and the statute takes 4% off.",
+    "Rent to own with $0 down to move in, or buy outright. The price on the model page is the price we publish.",
   ];
 
   return (
@@ -98,7 +98,7 @@ export const WhyChooseUs = () => {
                   Why Choose M.J. Newell Homes?
                 </h2>
                 <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl" suppressHydrationWarning>
-                  We build quality homes and offer flexible paths to ownership—including Rent to Own—so more families can achieve their dream.
+                  New homes in LaBelle and Lehigh Acres for people who want space, a simpler tax bill, and a way to move in with $0 down. River country in LaBelle, or Lee County, closer to Fort Myers.
                 </p>
               </div>
 

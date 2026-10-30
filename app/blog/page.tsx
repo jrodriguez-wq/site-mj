@@ -76,6 +76,29 @@ export default function BlogPage() {
           </ul>
         </section>
 
+        <section aria-labelledby="lifestyle-guides" className="rounded-2xl border border-border bg-background p-6 md:p-8">
+          <h2 id="lifestyle-guides" className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
+            Quiet, nature, and a simpler house
+          </h2>
+          <p className="mt-3 max-w-3xl text-base md:text-lg text-muted-foreground leading-relaxed">
+            For buyers already in Florida and for people moving in. LaBelle is the small city on the river. Lehigh Acres is the larger community east of Fort Myers.
+          </p>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {[
+              ["/blog/quiet-life-in-labelle-florida", "A quieter life in LaBelle"],
+              ["/blog/lehigh-acres-new-home-near-fort-myers", "A new home in Lehigh Acres"],
+              ["/blog/efficient-path-to-a-new-home-southwest-florida", "The efficient path: new home, no LaBelle HOA"],
+              ["/blog/moving-within-florida-coast-to-labelle-lehigh", "Moving within Florida, off the coast"],
+            ].map(([href, label]) => (
+              <li key={href}>
+                <Link href={href} className="text-primary font-medium underline-offset-4 hover:underline">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         {/* Blog Posts Grid */}
         <div>
           <div className="flex items-center gap-3 mb-8">
