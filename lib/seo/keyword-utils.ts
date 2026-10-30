@@ -31,6 +31,7 @@ export const getPageKeywords = (pageType: PageKeywordType): string[] => {
         ...KEYWORDS.rentToOwn.slice(0, 8),
         ...KEYWORDS.zeroDown.slice(0, 5),
         ...KEYWORDS.relocation.slice(0, 10),
+        ...KEYWORDS.lifestyle.slice(0, 8),
       ];
 
     case "sales":
@@ -122,6 +123,7 @@ export const getCommunityKeywords = (
     ...KEYWORDS.newConstruction.slice(0, 10),
     ...KEYWORDS.rentToOwn.slice(0, 5),
     ...KEYWORDS.zeroDown.slice(0, 5),
+    ...KEYWORDS.lifestyle.slice(0, 6),
   ];
 };
 

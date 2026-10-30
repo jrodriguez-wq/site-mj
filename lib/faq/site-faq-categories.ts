@@ -118,12 +118,22 @@ export const SITE_FAQ_CATEGORIES: FAQCategory[] = [
       {
         question: "What are the amenities?",
         answer:
-          "Our communities offer a quiet, family-friendly setting. LaBelle has a rural feel with acre+ lots and no HOA; Lehigh Acres has spacious lots and is close to Fort Myers amenities.",
+          "LaBelle is a small Hendry County city on the Caloosahatchee River. Our LaBelle homes sit on quarter-acre lots with no HOA. Lehigh Acres is a large Lee County community east of Fort Myers, with a mean commute to work of about 38 minutes in recent Census data. Lot and HOA details in Lehigh depend on the neighborhood.",
       },
       {
         question: "Are there HOA fees?",
         answer:
           "Our LaBelle homes do not have HOA fees. For Lehigh Acres, HOA details depend on the specific neighborhood; we can provide that when you choose a lot.",
+      },
+      {
+        question: "Is LaBelle quieter than the Florida coast?",
+        answer:
+          "LaBelle is a small city. The Census Bureau's July 1, 2025 estimate is 5,754 people, and the 2020 Census counted 4,966. It sits on the Caloosahatchee River in Hendry County, which is far less dense than coastal Lee County. Our homes there are on quarter-acre lots with no HOA. It is a small city with a drive to work, not a remote cabin. The Census puts mean travel time to work in LaBelle at 35.3 minutes for 2020–2024.",
+      },
+      {
+        question: "Why is a new house the more efficient purchase?",
+        answer:
+          "You buy from the builder at a published price, with a new roof and new systems, plus the warranties on our warranty page. Florida Statute 553.837 requires coverage for one year when a defect is a material violation of the Florida Building Code. It is not a warranty on every finish. In LaBelle there is no HOA fee on our homes. Florida does not tax personal income, and paying the property-tax bill in November takes 4% off under Statute 197.162. Insurance is separate and should be quoted before you compare states or coasts.",
       },
     ],
   },

@@ -77,6 +77,19 @@ export const getContextualLinks = (keywords: string[]): InternalLink[] => {
     });
   }
   
+  if (keywords.some((k) => /quiet|nature|river|acre|labelle|lehigh|commute|coast|miami/i.test(k))) {
+    links.push({
+      href: "/blog/quiet-life-in-labelle-florida",
+      text: "A quieter life in LaBelle",
+      description: "Small city, the Caloosahatchee, quarter-acre lots, no HOA",
+    });
+    links.push({
+      href: "/blog/lehigh-acres-new-home-near-fort-myers",
+      text: "Lehigh Acres near Fort Myers",
+      description: "Space in Lee County for people who work toward the coast",
+    });
+  }
+
   // Relocation and out-of-state tax comparisons
   if (keywords.some((k) => /out of state|reloc|moving to florida|new jersey|illinois|new york|texas|california|zero down|\$0 down/i.test(k))) {
     links.push({

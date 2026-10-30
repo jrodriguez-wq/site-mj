@@ -4,12 +4,12 @@ import { getCommunityKeywords } from "@/lib/seo/keyword-utils";
 
 export const metadata = generateMetadata({
   title: "New Homes for Sale in LaBelle, FL",
-  description: "Homes for sale in LaBelle, Florida — new construction from M.J. Newell Homes. Six floor plans, lots with space, no HOA on many homes. Buy or Rent to Own. Starting from $316,900.",
+  description: "New homes in LaBelle, Florida, on quarter-acre lots with no HOA. A small city on the Caloosahatchee, from $316,900. Buy or move in with $0 down.",
   canonical: `${SEO_CONFIG.siteUrl}/communities/labelle`,
   keywords: getCommunityKeywords("labelle"),
   openGraph: {
     title: "New Homes for Sale in LaBelle, FL | M.J. Newell Homes",
-    description: "Buy new construction homes for sale in LaBelle, Florida. Six models, acre lots, no HOA fees on many homes.",
+    description: "Quarter-acre lots and no HOA on our LaBelle homes. New construction from $316,900, on the Caloosahatchee.",
     url: `${SEO_CONFIG.siteUrl}/communities/labelle`,
     type: "website",
   },
