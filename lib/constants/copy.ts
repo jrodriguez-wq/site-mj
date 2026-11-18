@@ -1448,6 +1448,13 @@ const COPY = {
             "However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security."
           ]
         },
+        "residentPortal": {
+          "title": "Resident Portal",
+          "content": [
+            "When you accept the online payment fees, we keep the date, time, IP address, and device as proof.",
+            "Card and bank details go directly to Stripe; we keep only the last four digits, the brand, and the card's expiration date."
+          ]
+        },
         "yourRights": {
           "title": "Your Rights",
           "description": "You have the right to:",
@@ -1471,7 +1478,8 @@ const COPY = {
             "• HubSpot — for contact forms, appointment scheduling, and customer communication",
             "• Google Analytics — for website traffic analytics (only after cookie consent)",
             "• Meta (Facebook) Pixel — for advertising performance measurement (only after cookie consent)",
-            "• Vercel Analytics — for anonymous, aggregate site performance metrics"
+            "• Vercel Analytics — for anonymous, aggregate site performance metrics",
+            "• Stripe — to process online rent and deposit payments in the resident portal"
           ]
         },
         "changes": {
@@ -1521,6 +1529,13 @@ const COPY = {
             "Participation in our Rent to Own program is subject to approval and qualification. Terms and conditions of the program will be detailed in your rental agreement.",
             "Rent payments may be applied toward the purchase price as specified in your agreement. The application of rent toward purchase is subject to the terms of your specific contract.",
             "We reserve the right to modify program terms, eligibility requirements, and availability at any time."
+          ]
+        },
+        "residentPortalPayments": {
+          "title": "Online Payment Fees",
+          "content": [
+            "Residents accept these fees in the resident portal before using it, and again if an amount changes.",
+            "Added to your account only if it happens: failed bank payment $8, payment dispute $30, bank account verification $3. Paying at the office adds no fees."
           ]
         },
         "limitation": {

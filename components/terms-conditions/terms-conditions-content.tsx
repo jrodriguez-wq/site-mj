@@ -3,9 +3,8 @@
 import { useMemo } from "react";
 import { PageContent } from "@/components/layout/page-container";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { FileText, Scale, AlertCircle, CheckCircle } from "lucide-react";
+import { FileText, Scale, AlertCircle, CheckCircle, CreditCard } from "lucide-react";
 import { CONTACT_INFO } from "@/config/seo";
-import { CURRENT_YEAR } from "@/config/version";
 import { getCopy, COPY } from "@/lib/constants/copy";
 
 // Helper function to get nested value from translations
@@ -28,7 +27,7 @@ const getNestedValue = (obj: unknown, path: string): unknown => {
 };
 
 export const TermsConditionsContent = () => {
-  const lastUpdated = `January ${CURRENT_YEAR}`;
+  const lastUpdated = "November 18, 2026";
 
   const sections = useMemo(() => {
     const getArray = (path: string): string[] => {
@@ -58,6 +57,11 @@ export const TermsConditionsContent = () => {
         icon: CheckCircle,
         title: getCopy("termsConditions.sections.rentToOwn.title"),
         content: getArray("termsConditions.sections.rentToOwn.content"),
+      },
+      {
+        icon: CreditCard,
+        title: getCopy("termsConditions.sections.residentPortalPayments.title"),
+        content: getArray("termsConditions.sections.residentPortalPayments.content"),
       },
     ];
   }, []);
