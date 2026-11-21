@@ -15,9 +15,10 @@ import { ModelData } from "@/types/model";
 import { cn } from "@/lib/utils";
 import { SEO_CONFIG } from "@/config/seo";
 import { getCopy } from "@/lib/constants/copy";
-import { MODEL_FLOORPLANS, getModelInteriorImages, getModelExteriorImages, getModelAmoImages } from "@/lib/models/model-images";
+import { MODEL_FLOORPLANS, getModelInteriorImages, getModelExteriorImages, getModelAmoImages, getModelSheet } from "@/lib/models/model-images";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { FloorplanMeasures } from "./floorplan-measures";
+import { ModelPlanSheet } from "./model-plan-sheet";
 
 const FURNISHED_EN = {
   section: "Furnished",
@@ -117,6 +118,8 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
   const amoImages = useMemo(() => {
     return getModelAmoImages(modelData.key);
   }, [modelData.key]);
+
+  const planSheet = useMemo(() => getModelSheet(modelData.key), [modelData.key]);
   
   // Función helper para encontrar el índice real de una imagen en el array completo
   const findImageIndex = (imagePath: string): number => {
@@ -361,6 +364,12 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
           </section>
         </AnimatedSection>
 
+        {planSheet && (
+          <AnimatedSection delay={0.15}>
+            <ModelPlanSheet sheet={planSheet} name={modelName} />
+          </AnimatedSection>
+        )}
+
         {/* Tabs Section */}
         <AnimatedSection delay={0.15}>
           <section className="mt-10 sm:mt-12 md:mt-16 lg:mt-20">
@@ -550,7 +559,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                 </div>
                 {(() => {
                   // Prioridad: 1) Imagen del JSON, 2) Plano optimizado del mapeo, 3) Mensaje de "próximamente"
-                  const floorplanImage = sections.floorplan.image || MODEL_FLOORPLANS[modelData.key.toLowerCase()];
+                  const floorplanImage = planSheet?.src || sections.floorplan.image || MODEL_FLOORPLANS[modelData.key.toLowerCase()];
                   
                   if (floorplanImage) {
                     return (
@@ -559,21 +568,22 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                           <CardContent className="p-2 sm:p-3 md:p-4 lg:p-6">
                             <div className="relative w-full bg-background rounded-lg overflow-hidden">
                               {/* Mobile optimized container - no horizontal scroll */}
-                              <div className="relative w-full max-h-[60vh] sm:max-h-[70vh] md:max-h-none">
-                                <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]">
+                              <div className={planSheet ? "relative w-full" : "relative w-full max-h-[60vh] sm:max-h-[70vh] md:max-h-none"}>
+                                <div
+                                  className={planSheet ? "relative w-full" : "relative w-full aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]"}
+                                  style={planSheet ? { aspectRatio: `${planSheet.width} / ${planSheet.height}` } : undefined}
+                                >
                                   <Image
                                     src={floorplanImage}
-                                    alt={`${modelName} Floorplan - ${getCopy("homeModels.modelPage.sections.floorplan")}`}
+                                    alt={planSheet ? `${modelName} front elevation and furnished 3D floor plan` : `${modelName} Floorplan - ${getCopy("homeModels.modelPage.sections.floorplan")}`}
                                     fill
                                     className="object-contain p-2 sm:p-3 md:p-4 lg:p-6 xl:p-8"
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw"
-                                    quality={90}
-                                    priority={false}
                                     loading="lazy"
                                   />
                                   
                                   {/* Floorplan Measures Component - Desktop: absolute, Mobile: hidden (shown below) */}
-                                  {sections.floorplan.measures && (
+                                  {sections.floorplan.measures && !planSheet && (
                                     <div className="hidden md:block">
                                       <FloorplanMeasures
                                         livingArea={sections.floorplan.measures.livingArea}
@@ -590,7 +600,7 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                               
                               {/* Floorplan Measures Component - Mobile: shown below floorplan */}
                               {sections.floorplan.measures && (
-                                <div className="md:hidden mt-4">
+                                <div className={planSheet ? "mt-4" : "md:hidden mt-4"}>
                                   <FloorplanMeasures
                                     livingArea={sections.floorplan.measures.livingArea}
                                     entry={sections.floorplan.measures.entry}
@@ -649,12 +659,10 @@ export const ModelPageContent = ({ modelData }: ModelPageContentProps) => {
                                 <div className="relative w-full min-h-full p-4 flex items-center justify-center">
                                   <Image
                                     src={floorplanImage}
-                                    alt={`${modelName} Floorplan - ${getCopy("homeModels.modelPage.sections.floorplan")} - Expanded`}
-                                    width={1200}
-                                    height={900}
+                                    alt={planSheet ? `${modelName} front elevation and furnished 3D floor plan, enlarged` : `${modelName} Floorplan - ${getCopy("homeModels.modelPage.sections.floorplan")} - Expanded`}
+                                    width={planSheet?.width ?? 1200}
+                                    height={planSheet?.height ?? 900}
                                     className="object-contain w-full h-auto max-w-full"
-                                    quality={95}
-                                    priority={false}
                                   />
                                 </div>
                               </div>

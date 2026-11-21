@@ -11,6 +11,7 @@ import { ModelBadge } from "./model-badge";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { SEO_CONFIG } from "@/config/seo";
+import { getModelSheet } from "@/lib/models/model-images";
 
 const BLUR_PLACEHOLDER = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
 
@@ -144,10 +145,11 @@ const ModelCardComponent = (props: ModelCardProps) => {
   // Use all images if available, otherwise fallback to single image (filter empty/invalid)
   const displayImages = (images.length > 0 ? images : [image]).filter((src) => src && typeof src === "string");
   const hasMultipleImages = displayImages.length > 1;
+  const sheet = getModelSheet(modelKey);
 
   // Auto carousel with staggered delay - Only if carouselDelay > 0
   useEffect(() => {
-    if (!isGalleryOpen && hasMultipleImages && carouselDelay > 0) {
+    if (!sheet && !isGalleryOpen && hasMultipleImages && carouselDelay > 0) {
       // Add initial delay to stagger animations between cards
       const timeoutId = setTimeout(() => {
         intervalRef.current = setInterval(() => {
@@ -164,7 +166,7 @@ const ModelCardComponent = (props: ModelCardProps) => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isGalleryOpen, displayImages.length, hasMultipleImages, carouselDelay, initialDelay]);
+  }, [sheet, isGalleryOpen, displayImages.length, hasMultipleImages, carouselDelay, initialDelay]);
 
   const openGallery = useCallback(() => {
     setIsGalleryOpen(true);
@@ -273,8 +275,26 @@ const ModelCardComponent = (props: ModelCardProps) => {
           <motion.div 
             className="relative bg-card/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-2 border-border/50 hover:border-primary/50 transition-all duration-200 hover:shadow-2xl"
           >
-          {/* Image Carousel - Responsive height, images with fallback */}
-          <div className="relative h-40 min-[400px]:h-48 sm:h-52 md:h-60 lg:h-72 xl:h-80 overflow-hidden bg-gradient-to-br from-muted to-muted/50">
+          {/* Image Carousel — la pieza oficial se muestra entera; las fotos siguen en la galería */}
+          <div
+            className={cn(
+              "relative overflow-hidden",
+              sheet
+                ? "w-full bg-white"
+                : "h-40 min-[400px]:h-48 sm:h-52 md:h-60 lg:h-72 xl:h-80 bg-gradient-to-br from-muted to-muted/50"
+            )}
+            style={sheet ? { aspectRatio: `${sheet.width} / ${sheet.height}` } : undefined}
+          >
+            {sheet ? (
+              <Image
+                src={sheet.src}
+                alt={`${name} front elevation and furnished 3D floor plan`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 640px"
+                loading="eager"
+              />
+            ) : (
             <div
               className={cn(
                 "flex transition-transform duration-300 ease-out h-full",
@@ -301,8 +321,10 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 </div>
               ))}
             </div>
+            )}
 
             {/* Top Actions Bar - Left Side: Badges */}
+            {!sheet && (
             <div className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 z-20 flex flex-col gap-1.5 sm:gap-2">
               {/* Community Badge - Always visible if community is provided */}
               {community && communityLabel && (
@@ -338,8 +360,10 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 </div>
               )}
             </div>
+            )}
 
             {/* Top Actions Bar - Right Side: Action Buttons */}
+            {!sheet && (
             <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 flex gap-1 sm:gap-1.5 z-20">
               <button
                 onClick={() => setIsLiked(!isLiked)}
@@ -406,8 +430,10 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 </AnimatePresence>
               </button>
             </div>
+            )}
 
             {/* Price Badge - Responsive size */}
+            {!sheet && (
             <div className={cn(
               "absolute right-2 sm:right-3 md:right-4 lg:right-5 bg-white/98 dark:bg-gray-900/98 backdrop-blur-md text-emerald-700 dark:text-emerald-400 px-2.5 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-full font-bold text-[10px] sm:text-xs md:text-sm lg:text-base shadow-lg border border-emerald-200/60 dark:border-emerald-700/50 z-20 max-w-[50%] truncate",
               hasMultipleImages 
@@ -416,9 +442,10 @@ const ModelCardComponent = (props: ModelCardProps) => {
             )}>
               {price}
             </div>
+            )}
 
             {/* View Gallery Button - Hidden on mobile, visible on tablet+ */}
-            {hasMultipleImages && (
+            {hasMultipleImages && !sheet && (
               <button
                 onClick={openGallery}
                 onKeyDown={(e) => handleKeyDown(e, openGallery)}
@@ -443,9 +470,30 @@ const ModelCardComponent = (props: ModelCardProps) => {
                 <h2 className="text-[clamp(0.9375rem,2.5vw+0.5rem,1.875rem)] font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent flex-1 min-w-0 leading-tight break-words">
                   {name}
                 </h2>
+                {sheet ? (
+                  <div className="flex shrink-0 gap-1">
+                    <button
+                      onClick={() => setIsLiked(!isLiked)}
+                      className="bg-background p-1.5 rounded-full border border-border/70"
+                      aria-label={isLiked ? removeFromFavoritesLabel : addToFavoritesLabel}
+                      type="button"
+                    >
+                      <Heart className={cn("w-4 h-4", isLiked ? "fill-red-500 text-red-500" : "text-foreground/70")} />
+                    </button>
+                    <button
+                      onClick={handleShare}
+                      className="bg-background p-1.5 rounded-full border border-border/70"
+                      aria-label={isLinkCopied ? linkCopiedLabel : shareLabel}
+                      type="button"
+                    >
+                      {isLinkCopied ? <Check className="w-4 h-4 text-primary" /> : <Share2 className="w-4 h-4 text-foreground/70" />}
+                    </button>
+                  </div>
+                ) : (
                 <span className="text-[8px] sm:text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-wider shrink-0 mt-0.5 sm:mt-0" suppressHydrationWarning>
                   {displayModelLabel}
                 </span>
+                )}
               </div>
               {/* Community Badge in Content Area - Secondary display */}
               {community && communityLabel && (
@@ -504,6 +552,16 @@ const ModelCardComponent = (props: ModelCardProps) => {
                   </p>
                 )}
               </div>
+              {sheet && hasMultipleImages && (
+                <button
+                  type="button"
+                  onClick={openGallery}
+                  className="inline-flex h-11 items-center justify-center gap-1.5 rounded-lg border border-border px-3 text-xs font-semibold text-foreground"
+                >
+                  <Eye className="w-4 h-4" />
+                  {viewPhotosCountLabel(displayImages.length)}
+                </button>
+              )}
               <Button
                 asChild
                 className="relative w-full sm:w-auto min-w-0 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground px-3 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl font-bold text-[10px] sm:text-xs md:text-sm hover:shadow-2xl hover:shadow-primary/40 transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 group hover:scale-[1.02] hover:-translate-y-0.5 border-2 border-primary/20 hover:border-primary/50 overflow-hidden shrink-0"
