@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Bed, Bath, Square, Car } from "lucide-react";
 import { YouTubeVideo } from "@/components/ui/youtube-video";
-import { getModelMainImage } from "@/lib/models/model-images";
+import { getModelMainImage, getModelSheet } from "@/lib/models/model-images";
 import louisianaData from "@/data/models/louisiana.json";
 import vianaData from "@/data/models/viana.json";
 import delanieData from "@/data/models/delanie.json";
@@ -46,7 +46,8 @@ export const HomeModels = () => {
 
         <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
           {modelsData.map((model, index) => {
-            const mainImage = getModelMainImage(model.key);
+            const sheet = getModelSheet(model.key);
+            const mainImage = sheet?.src ?? getModelMainImage(model.key);
 
             return (
               <AnimatedCard key={model.key} index={index}>
@@ -55,25 +56,28 @@ export const HomeModels = () => {
                     "relative overflow-hidden border border-border/60 rounded-xl bg-card shadow-sm flex flex-col h-full"
                   )}
                 >
-                {/* Image Section - Principal - Más espacio */}
-                <div className="relative h-64 sm:h-72 md:h-80 lg:h-96">
+                <div
+                  className={cn("relative bg-white", !sheet && "h-64 sm:h-72 md:h-80 lg:h-96")}
+                  style={sheet ? { aspectRatio: `${sheet.width} / ${sheet.height}` } : undefined}
+                >
                   <Image
                     src={mainImage}
-                    alt={`${model.name} model home in Florida - New construction home by M.J. Newell Homes - Home builder Florida, Miami, LaBelle`}
+                    alt={sheet ? `${model.name} front elevation and furnished 3D floor plan` : `${model.name} model home in Florida - New construction home by M.J. Newell Homes`}
                     fill
-                    className="object-cover"
+                    className={sheet ? "object-contain" : "object-cover"}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={model.key === "louisiana"}
+                    priority={false}
+                    loading={sheet ? "eager" : "lazy"}
                   />
-                  
-                  {/* Price Badge */}
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 shadow-xl border border-slate-700/50 z-10">
-                    <div className="text-[10px] sm:text-xs text-slate-300 dark:text-slate-400 font-medium">Starting at</div>
-                    <div className="text-base sm:text-lg font-bold text-white">{model.price}</div>
-                  </div>
-                  
-                  {/* Gradient Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-24 bg-gradient-to-t from-card via-card/80 to-transparent pointer-events-none" />
+                  {!sheet && (
+                    <>
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 shadow-xl border border-slate-700/50 z-10">
+                        <div className="text-[10px] sm:text-xs text-slate-300 dark:text-slate-400 font-medium">Starting at</div>
+                        <div className="text-base sm:text-lg font-bold text-white">{model.price}</div>
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-24 bg-gradient-to-t from-card via-card/80 to-transparent pointer-events-none" />
+                    </>
+                  )}
                 </div>
 
                 {/* Content Section */}
@@ -83,6 +87,9 @@ export const HomeModels = () => {
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground" suppressHydrationWarning>
                       {model.name}
                     </h3>
+                    {sheet && (
+                      <p className="text-lg font-bold text-primary">{model.price}</p>
+                    )}
                     <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed line-clamp-3" suppressHydrationWarning>
                       {model.description}
                     </p>

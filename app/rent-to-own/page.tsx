@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 import { CONTACT_INFO, SEO_CONFIG } from "@/config/seo";
 import { getCloudinaryImageUrl } from "@/lib/cloudinary";
 import { getModelData } from "@/lib/models/model-data";
-import { getModelImages, getModelMainImage } from "@/lib/models/model-images";
+import { getModelImages, getModelMainImage, getModelSheet } from "@/lib/models/model-images";
 import { getModelPricing } from "@/lib/models/model-pricing";
 import { ModelData, Community } from "@/types/model";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -56,6 +56,7 @@ interface ModelDisplayData {
   description: string;
   image: string;
   images: string[];
+  sheet: { width: number; height: number } | null;
   price: string; // Precio de compra
   rtoPrice: string; // Precio mensual RTO
   beds: string;
@@ -123,7 +124,8 @@ export default function RentToOwnPage() {
             const modelData = await getModelData(modelKey, community);
             const pricing = getModelPricing(modelKey, community);
             const modelImages = getModelImages(modelKey);
-            const mainImage = getModelMainImage(modelKey);
+            const sheet = getModelSheet(modelKey);
+            const mainImage = sheet?.src ?? getModelMainImage(modelKey);
             
             return {
               key: selectedCommunity === "all" ? `${modelKey}-${community}` : modelKey,
@@ -131,6 +133,7 @@ export default function RentToOwnPage() {
               description: modelData?.description || "",
               image: mainImage,
               images: modelImages,
+              sheet: sheet ? { width: sheet.width, height: sheet.height } : null,
               price: modelData?.price || "",
               rtoPrice: pricing?.rtoPrice || "",
               beds: pricing?.bedrooms || modelData?.bedrooms || "",
@@ -526,7 +529,7 @@ export default function RentToOwnPage() {
                       className="group border-2 border-border/50 hover:border-primary/50 hover:shadow-2xl transition-all duration-200 overflow-hidden bg-background relative py-0 h-full"
                     >
                     {/* Community Badge */}
-                    {selectedCommunity === "all" && (
+                    {selectedCommunity === "all" && !model.sheet && (
                       <div className={cn(
                         "absolute top-4 left-4 z-20 px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-md shadow-lg",
                         model.community === "labelle"
@@ -537,22 +540,42 @@ export default function RentToOwnPage() {
                       </div>
                     )}
 
-                    <div className="relative h-64 sm:h-72 overflow-hidden bg-muted">
+                    <div
+                      className={cn("relative overflow-hidden bg-white", !model.sheet && "h-64 sm:h-72 bg-muted")}
+                      style={model.sheet ? { aspectRatio: `${model.sheet.width} / ${model.sheet.height}` } : undefined}
+                    >
                       <Image
                         src={model.image}
-                        alt={model.name}
+                        alt={model.sheet ? `${model.name} front elevation and furnished 3D floor plan` : model.name}
                         fill
-                        className="object-cover"
+                        className={model.sheet ? "object-contain" : "object-cover"}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        loading={model.sheet ? "eager" : "lazy"}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent"></div>
-                      <div className="absolute top-4 right-4 z-10">
-                        <span className="px-3 py-1.5 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md text-white text-xs font-bold rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
-                          RTO Available
-                        </span>
-                      </div>
+                      {!model.sheet && (
+                        <>
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent"></div>
+                          <div className="absolute top-4 right-4 z-10">
+                            <span className="px-3 py-1.5 bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md text-white text-xs font-bold rounded-full border border-slate-700/50 shadow-xl" suppressHydrationWarning>
+                              RTO Available
+                            </span>
+                          </div>
+                        </>
+                      )}
                     </div>
                     <CardContent className="p-6">
+                      {model.sheet && (
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <p className="inline-flex rounded-full bg-slate-900 px-3 py-1 text-xs font-bold text-white">
+                            RTO Available
+                          </p>
+                          {selectedCommunity === "all" && (
+                            <p className="text-xs font-semibold text-muted-foreground">
+                              {model.community === "labelle" ? "LaBelle" : "Lehigh Acres"}
+                            </p>
+                          )}
+                        </div>
+                      )}
                       <h3 className="text-xl md:text-2xl font-black mb-2 group-hover:text-primary transition-colors duration-150">
                         {model.name}
                       </h3>

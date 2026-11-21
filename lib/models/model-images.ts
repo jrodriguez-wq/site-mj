@@ -266,6 +266,26 @@ export const getModelMainImage = (modelKey: string): string => {
   return MODEL_MAIN_IMAGES[modelKey.toLowerCase()] || getCloudinaryImageUrl("/recursos/shutterstock-1065297917.webp");
 };
 
+/** Pieza oficial: fachada + plano 3D amoblado. Se muestra entera, sin recorte. */
+export interface ModelSheet {
+  src: string;
+  width: number;
+  height: number;
+}
+
+export const MODEL_SHEETS: Record<string, ModelSheet> = {
+  aurora: { src: "/models/sheets/aurora.jpg", width: 801, height: 1110 },
+  delanie: { src: "/models/sheets/delanie.jpg", width: 1201, height: 801 },
+  emelia: { src: "/models/sheets/emelia.jpg", width: 800, height: 1109 },
+  langdon: { src: "/models/sheets/langdon.jpg", width: 801, height: 1109 },
+  louisiana: { src: "/models/sheets/louisiana.jpg", width: 801, height: 1110 },
+  viana: { src: "/models/sheets/viana.jpg", width: 1201, height: 801 },
+};
+
+export const getModelSheet = (modelKey: string): ModelSheet | null => {
+  return MODEL_SHEETS[modelKey.toLowerCase()] ?? null;
+};
+
 /**
  * Obtiene la ruta del plano optimizado para un modelo
  */
